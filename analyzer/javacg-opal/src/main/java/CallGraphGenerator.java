@@ -8,12 +8,15 @@ import eu.fasten.core.maven.utils.MavenUtilities;
 import eu.fasten.core.merge.LocalMerger;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import scala.reflect.internal.TreeInfo;
 
 public class CallGraphGenerator {
     public static void main(String[] args) throws OPALException, MissingArtifactException {
 
-        MavenCoordinate depcoord = new MavenCoordinate("com.googlecode.json-simple","json-simple", "1.1.1", "jar");
+        MavenCoordinate depcoord = new MavenCoordinate("com.googlecode.json-simple", "json-simple", "1.1.1", "jar");
         final var depfile = new MavenCoordinate.MavenResolver().downloadArtifact(depcoord, MavenUtilities.MAVEN_CENTRAL_REPO);
 
         File file = new File("C:\\Users\\Jakub\\Desktop\\Playing round here\\helloGraphs.jar");
@@ -47,8 +50,40 @@ public class CallGraphGenerator {
         var mergedDirectedGraph = merger.mergeAllDeps();
         var allUris = merger.getAllUris();
 
-        System.out.println(rcgDep.getNodeCount());
-        System.out.println(rcg.getNodeCount());
+        System.out.println(rcgDep.mapOfAllMethods().size());
+        System.out.println(rcg.mapOfAllMethods().size());
+
         System.out.println(mergedDirectedGraph.numNodes());
+
+
+        //TODO hardcoded
+        Long vulnerableMethodID = 12l;
+
+
+        Set<Long> visited = new HashSet<>();
+        Set<Long> toBeVisited = new HashSet<>();
+
+        toBeVisited.add(vulnerableMethodID);
+
+        while(!toBeVisited.isEmpty()) {
+            Set<Long> toBeVisitedNext = new HashSet<>();
+            for(Long method : toBeVisited) {
+                //toBeVisited.remove(method);
+
+                if(!visited.contains(method)) {
+                    visited.add(method);
+                }
+                mergedDirectedGraph.edgesOf(method).stream().map(x -> x.leftLong()).forEach(x -> {
+                    if(!visited.contains(x)) {
+                        toBeVisitedNext.add(x);
+                    }
+                });
+            }
+            toBeVisited = toBeVisitedNext;
+        }
+
+        //TODO to improve performance change way of detecting if method is in correct repo
+        var hey = visited.stream().map(x -> allUris.get(x)).filter(x -> x.contains("helloGraphs")).toArray();
+
     }
 }
