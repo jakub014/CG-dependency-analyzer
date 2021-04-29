@@ -8,16 +8,18 @@ import eu.fasten.core.data.DirectedGraph;
 import eu.fasten.core.data.ExtendedRevisionJavaCallGraph;
 import eu.fasten.core.maven.utils.MavenUtilities;
 import eu.fasten.core.merge.LocalMerger;
+import org.jooq.tools.json.JSONParser;
+import org.jooq.tools.json.ParseException;
+import org.json.JSONArray;
+
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CallGraphGenerator {
-    public static void main(String[] args) throws OPALException, MissingArtifactException {
+    public static void main(String[] args) throws OPALException, MissingArtifactException, IOException, ParseException {
 
         MavenCoordinate depcoord = new MavenCoordinate("com.googlecode.json-simple", "json-simple", "1.1.1", "jar");
         final File depfile = new MavenCoordinate.MavenResolver().downloadArtifact(depcoord, MavenUtilities.MAVEN_CENTRAL_REPO);
@@ -60,19 +62,48 @@ public class CallGraphGenerator {
         //TODO understand why there are less nodes in the merged Graph
         System.out.println(mergedDirectedGraph.numNodes());
 
-        List<String> temp = getAffectedMethods(mergedDirectedGraph, allUris, "JSONObject.%3Cinit%3E()", rcg.product);
+        JSONParser jsonParser = new JSONParser();
+        JSONArray vulnUris_json = (JSONArray) jsonParser.parse(
+                new FileReader("../resources/vulnerable_uris.json"));
+        HashSet<String> vulnUris = (HashSet<String>) getVulnerableUris(vulnUris_json, allUris);
+
+        //TODO do something with lists of affected methods
+        List<List<String>> temp = new ArrayList<>();
+        for (String vulnUri : vulnUris) {
+            temp.add(getAffectedMethods(mergedDirectedGraph, allUris, vulnUri, rcg.product));
+        }
+    }
+
+    /**
+     * Takes the intersection of available URIs and the set of known vulnerable URIs in vulnerable_uris.json.
+     * The set of methods in projects is assumed to be smaller than the set of known vulnerable methods (6000+).
+     * @param vulnUris_json known vulnerable URIs
+     * @param allUris available URIs in the analyzed project
+     * @return the intersection of URIs
+     */
+    public static Set<String> getVulnerableUris(JSONArray vulnUris_json, BiMap<Long, String> allUris) {
+        Iterator<Object> iterator = vulnUris_json.iterator();
+        Set<String> vulnUris = new HashSet<>();
+        String[] allUris_val = (String[]) allUris.values().toArray();
+        while (iterator.hasNext()) {
+            String currentUri = (String) iterator.next();
+            if (Arrays.binarySearch(allUris_val, currentUri) >= 0) {
+                vulnUris.add(currentUri);
+            }
+        }
+        return vulnUris;
     }
 
     /**
      * Returns the id corresponding to the method name given in the allUris map.
      * @param allUris allUris
-     * @param methodName the methodname
+     * @param methodUri the methodname
      * @return the id
      */
-    public static Long getMethodID(BiMap<Long, String> allUris, String methodName) {
+    public static Long getMethodID(BiMap<Long, String> allUris, String methodUri) {
         for (Map.Entry<Long, String> x : allUris.entrySet()) {
             //TODO there might be better ways of getting the local ID
-            if(x.getValue().contains(methodName)) {
+            if(x.getValue().contains(methodUri)) {
                 return x.getKey();
             }
         }
@@ -83,14 +114,14 @@ public class CallGraphGenerator {
      *
      * Returns a list of all affected methods in the project.
      * @param mergedGraph the merged graph of a RCG
-     * @param vulnerableMethodName the vulnerable method in the dependency
+     * @param vulnerableMethodUri the vulnerable method in the dependency
      * @return a list of all affected methods in the project
      */
-    public static List<String> getAffectedMethods(DirectedGraph mergedGraph, BiMap<Long, String> allUris,  String vulnerableMethodName, String projectName) {
+    public static List<String> getAffectedMethods(DirectedGraph mergedGraph, BiMap<Long, String> allUris,  String vulnerableMethodUri, String projectName) {
         Set<Long> visited = new HashSet<>();
         Set<Long> toBeVisited = new HashSet<>();
 
-        Long vulnerableMethodID = getMethodID(allUris, vulnerableMethodName);
+        Long vulnerableMethodID = getMethodID(allUris, vulnerableMethodUri);
 
         toBeVisited.add(vulnerableMethodID);
 
