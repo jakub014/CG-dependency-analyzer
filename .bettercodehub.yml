@@ -1,9 +1,0 @@
-component_depth: 1
-
-languages:
-- java
-
-default_excludes: true
-
-exclude:
-- .*/eu/fasten/core/legacy/.*

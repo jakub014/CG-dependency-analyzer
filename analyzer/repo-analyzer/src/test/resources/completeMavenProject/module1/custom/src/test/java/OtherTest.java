@@ -1,1 +1,0 @@
-// This file is left empty and should not be recognised by the analyzer as a test file
