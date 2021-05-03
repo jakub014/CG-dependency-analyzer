@@ -64,7 +64,7 @@ public class CallGraphGenerator {
 
         JSONParser jsonParser = new JSONParser();
         JSONArray vulnUris_json = (JSONArray) jsonParser.parse(
-                new FileReader("../resources/vulnerable_uris.json"));
+                new FileReader("../resources/VulnerableUris.json"));
         HashSet<String> vulnUris = (HashSet<String>) getVulnerableUris(vulnUris_json, allUris);
 
         //TODO do something with lists of affected methods
