@@ -19,7 +19,7 @@ public class InformationGathering {
         GitHubAPIClient client = new GitHubAPIClient("https://api.github.com");
 
         JSONParser parser = new JSONParser();
-        JSONArray data = (JSONArray) parser.parse(new FileReader("resources/vuln-repos.json"));
+        JSONArray data = (JSONArray) parser.parse(new FileReader("src/main/resources/vuln-repos.json"));
 
 
         int failures = 0;
