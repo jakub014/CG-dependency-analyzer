@@ -11,11 +11,14 @@ import eu.fasten.core.merge.LocalMerger;
 import org.jooq.tools.json.JSONParser;
 import org.jooq.tools.json.ParseException;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class CallGraphGenerator {
@@ -63,9 +66,9 @@ public class CallGraphGenerator {
         System.out.println(mergedDirectedGraph.numNodes());
 
         JSONParser jsonParser = new JSONParser();
-        JSONArray vulnUris_json = (JSONArray) jsonParser.parse(
-                new FileReader("../resources/VulnerableUris.json"));
-        HashSet<String> vulnUris = (HashSet<String>) getVulnerableUris(vulnUris_json, allUris);
+        JSONObject vulnData = (JSONObject) jsonParser.parse(
+                new FileReader("../resources/VulnGrouped.json"));
+        HashSet<String> vulnUris = (HashSet<String>) getVulnerableUris(vulnData, allUris);
 
         //TODO do something with lists of affected methods
         List<List<String>> temp = new ArrayList<>();
@@ -77,18 +80,27 @@ public class CallGraphGenerator {
     /**
      * Takes the intersection of available URIs and the set of known vulnerable URIs in vulnerable_uris.json.
      * The set of methods in projects is assumed to be smaller than the set of known vulnerable methods (6000+).
-     * @param vulnUris_json known vulnerable URIs
+     * @param vulnData known vulnerable URIs
      * @param allUris available URIs in the analyzed project
      * @return the intersection of URIs
      */
-    public static Set<String> getVulnerableUris(JSONArray vulnUris_json, BiMap<Long, String> allUris) {
-        Iterator<Object> iterator = vulnUris_json.iterator();
+    public static Set<String> getVulnerableUris(JSONObject vulnData, BiMap<Long, String> allUris) {
+        String[] groups = (String[]) vulnData.keySet().toArray();
+        Iterator<String> usedMethods = allUris.values().iterator();
         Set<String> vulnUris = new HashSet<>();
-        String[] allUris_val = (String[]) allUris.values().toArray();
-        while (iterator.hasNext()) {
-            String currentUri = (String) iterator.next();
-            if (Arrays.binarySearch(allUris_val, currentUri) >= 0) {
-                vulnUris.add(currentUri);
+
+        while (usedMethods.hasNext()) {
+            // For each URI, check whether its package is a vulnerable group.
+            // Binary search should work, as the groups are sorted.
+            String currentUri = (String) usedMethods.next();
+            Pattern groupPattern = Pattern.compile("^(.+?)\\$");
+            Matcher match = groupPattern.matcher(currentUri);
+            if (match.find() && Arrays.binarySearch(groups, currentUri) >= 0) {
+                // Check whether the URI is in the group, again methods are sorted.
+                String[] urisInGroup = (String[]) vulnData.get(match.group(1));
+                if (Arrays.binarySearch(urisInGroup, currentUri) >= 0) {
+                    vulnUris.add(currentUri);
+                }
             }
         }
         return vulnUris;
