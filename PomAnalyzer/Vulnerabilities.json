@@ -1,0 +1,4461 @@
+[
+  {
+    "version": "2.0.16",
+    "id": 59559,
+    "package_id": 90104,
+    "package_name": "io.dropwizard:dropwizard-validation",
+    "packages": "(90104,io.dropwizard:dropwizard-validation,mvn,\"Dropwizard Validation Support\",,)"
+  },
+  {
+    "version": "8.7",
+    "id": 21126,
+    "package_id": 99352,
+    "package_name": "org.opencastproject:base",
+    "packages": "(99352,org.opencastproject:base,mvn,opencast,https://github.com/opencast/opencast/,)"
+  },
+  {
+    "version": "4.3.0",
+    "id": 37884,
+    "package_id": 49299,
+    "package_name": "org.apache.karaf:apache-karaf",
+    "packages": "(49299,org.apache.karaf:apache-karaf,mvn,\"Apache Karaf :: Assemblies :: Default Distribution\",,)"
+  },
+  {
+    "version": "1.5.1",
+    "id": 43492,
+    "package_id": 73849,
+    "package_name": "org.apache.cxf.fediz:fediz-spring",
+    "packages": "(73849,org.apache.cxf.fediz:fediz-spring,mvn,\"Apache Fediz Plugin Spring\",,)"
+  },
+  {
+    "version": "12.8-rc-1",
+    "id": 48962,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "12.10",
+    "id": 59563,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "10.0.0-M10",
+    "id": 72627,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "0.21.12",
+    "id": 75014,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "0.21.8",
+    "id": 96751,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "4.4",
+    "id": 90817,
+    "package_id": 30,
+    "package_name": "junit:junit",
+    "packages": "(30,junit:junit,mvn,JUnit,https://github.com/junit-team/junit4,)"
+  },
+  {
+    "version": "2.2.0",
+    "id": 115519,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "12.6.4",
+    "id": 99232,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "11.0.0.beta2",
+    "id": 232548,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "12.9",
+    "id": 127566,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "4.0.0.CR2",
+    "id": 146324,
+    "package_id": 2008,
+    "package_name": "io.vertx:vertx-core",
+    "packages": "(2008,io.vertx:vertx-core,mvn,\"Vert.x Core\",git@github.com:eclipse/vert.x.git,)"
+  },
+  {
+    "version": "0.21.11",
+    "id": 145325,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.3.3",
+    "id": 157245,
+    "package_id": 47761,
+    "package_name": "org.apache.hbase:hbase",
+    "packages": "(47761,org.apache.hbase:hbase,mvn,\"Apache HBase\",https://gitbox.apache.org/repos/asf?p=hbase.git,)"
+  },
+  {
+    "version": "11.0.0.beta3",
+    "id": 156700,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "11.10.12",
+    "id": 224509,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "2.13.4",
+    "id": 161269,
+    "package_id": 1205,
+    "package_name": "org.scala-lang:scala-compiler",
+    "packages": "(1205,org.scala-lang:scala-compiler,mvn,\"Scala Compiler\",https://github.com/scala/scala.git,)"
+  },
+  {
+    "version": "7.0.107",
+    "id": 178223,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "1.0.0-M7",
+    "id": 192266,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.4.4",
+    "id": 200980,
+    "package_id": 362508,
+    "package_name": "org.apache.camel:camel-snakeyaml",
+    "packages": "(362508,org.apache.camel:camel-snakeyaml,mvn,\"Camel :: SnakeYAML\",,)"
+  },
+  {
+    "version": "0.21.8",
+    "id": 219183,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "9.0.38",
+    "id": 165441,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "1.11.2",
+    "id": 214312,
+    "package_id": 75627,
+    "package_name": "org.apache.flink:flink-runtime_2.12",
+    "packages": "(75627,org.apache.flink:flink-runtime_2.12,mvn,\"Flink : Runtime\",,)"
+  },
+  {
+    "version": "1.0.0-M5",
+    "id": 248169,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "0.21.12",
+    "id": 242114,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.0.2",
+    "id": 271313,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "3.9.6",
+    "id": 1298325,
+    "package_id": 2008,
+    "package_name": "io.vertx:vertx-core",
+    "packages": "(2008,io.vertx:vertx-core,mvn,\"Vert.x Core\",git@github.com:eclipse/vert.x.git,)"
+  },
+  {
+    "version": "1.0-4-a7fc4a9",
+    "id": 273813,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-18-659c58b",
+    "id": 289717,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.4.2",
+    "id": 275221,
+    "package_id": 7258,
+    "package_name": "org.apache.cxf:cxf",
+    "packages": "(7258,org.apache.cxf:cxf,mvn,\"Apache CXF\",https://gitbox.apache.org/repos/asf?p=cxf.git;a=summary,)"
+  },
+  {
+    "version": "0.10.0-M10",
+    "id": 319999,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.3.8",
+    "id": 295069,
+    "package_id": 1440218,
+    "package_name": "org.apache.hive:hive",
+    "packages": "(1440218,org.apache.hive:hive,mvn,Hive,,)"
+  },
+  {
+    "version": "1.12.1",
+    "id": 409891,
+    "package_id": 2134421,
+    "package_name": "org.apache.nifi:nifi",
+    "packages": "(2134421,org.apache.nifi:nifi,mvn,,https://git-wip-us.apache.org/repos/asf?p=nifi.git,)"
+  },
+  {
+    "version": "1.0-232-85dadc2",
+    "id": 299986,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.13.0",
+    "id": 302954,
+    "package_id": 99221,
+    "package_name": "org.apache.nifi:nifi-web-error",
+    "packages": "(99221,org.apache.nifi:nifi-web-error,mvn,,,)"
+  },
+  {
+    "version": "1.0-37-9661f07",
+    "id": 304716,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-57-0368053",
+    "id": 304934,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "0.22-53-01128f5",
+    "id": 286485,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.0.17",
+    "id": 299252,
+    "package_id": 90104,
+    "package_name": "io.dropwizard:dropwizard-validation",
+    "packages": "(90104,io.dropwizard:dropwizard-validation,mvn,\"Dropwizard Validation Support\",,)"
+  },
+  {
+    "version": "1.0.0-M15",
+    "id": 628766,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "10.0.2",
+    "id": 316749,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "1.0-2-1e49ccf",
+    "id": 315056,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.4.5",
+    "id": 317836,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "1.0.0-M13",
+    "id": 326107,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-16-b673b49",
+    "id": 324763,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-2-79831c5",
+    "id": 288693,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-37-9661f07",
+    "id": 328586,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-231-e9b2b41",
+    "id": 604778,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "0.21.15",
+    "id": 1200052,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.1.2",
+    "id": 349763,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "8.10",
+    "id": 306963,
+    "package_id": 31269,
+    "package_name": "org.opencastproject:opencast-common-jpa-impl",
+    "packages": "(31269,org.opencastproject:opencast-common-jpa-impl,mvn,\"Opencast :: common-jpa-impl\",,)"
+  },
+  {
+    "version": "1.4.13-java7",
+    "id": 337319,
+    "package_id": 3820,
+    "package_name": "com.thoughtworks.xstream:xstream",
+    "packages": "(3820,com.thoughtworks.xstream:xstream,mvn,\"XStream Core\",,)"
+  },
+  {
+    "version": "1.0-103-5f6e845",
+    "id": 734230,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.5.25",
+    "id": 342355,
+    "package_id": 72874,
+    "package_name": "org.apache.struts:struts2-core",
+    "packages": "(72874,org.apache.struts:struts2-core,mvn,\"Struts 2 Core\",,)"
+  },
+  {
+    "version": "1.0-37-9661f07",
+    "id": 289627,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.9.4",
+    "id": 349479,
+    "package_id": 2432,
+    "package_name": "io.vertx:vertx-web",
+    "packages": "(2432,io.vertx:vertx-web,mvn,,,)"
+  },
+  {
+    "version": "3.4.1",
+    "id": 362762,
+    "package_id": 1845411,
+    "package_name": "org.apache.cxf:apache-cxf",
+    "packages": "(1845411,org.apache.cxf:apache-cxf,mvn,\"Apache CXF Distribution\",,)"
+  },
+  {
+    "version": "8.6",
+    "id": 360698,
+    "package_id": 99352,
+    "package_name": "org.opencastproject:base",
+    "packages": "(99352,org.opencastproject:base,mvn,opencast,https://github.com/opencast/opencast/,)"
+  },
+  {
+    "version": "0.22-96-55d3184",
+    "id": 742435,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "10.0.0.beta2",
+    "id": 534333,
+    "package_id": 7082,
+    "package_name": "org.eclipse.jetty:jetty-util",
+    "packages": "(7082,org.eclipse.jetty:jetty-util,mvn,\"Jetty :: Utilities\",,)"
+  },
+  {
+    "version": "9.0.39",
+    "id": 360522,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "1.0-18-a497d1a",
+    "id": 604681,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0.0-M5",
+    "id": 493858,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "8.5.58",
+    "id": 370307,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "0.21.9",
+    "id": 418234,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.4.1",
+    "id": 395327,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "3.4.4",
+    "id": 338742,
+    "package_id": 31381,
+    "package_name": "org.apache.camel:camel-jackson",
+    "packages": "(31381,org.apache.camel:camel-jackson,mvn,\"Camel :: Jackson\",,)"
+  },
+  {
+    "version": "11.0.1",
+    "id": 933157,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "30.0-android",
+    "id": 372311,
+    "package_id": 204,
+    "package_name": "com.google.guava:guava",
+    "packages": "(204,com.google.guava:guava,mvn,\"Guava: Google Core Libraries for Java\",,)"
+  },
+  {
+    "version": "0.21.11",
+    "id": 374791,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.4.1",
+    "id": 462348,
+    "package_id": 7258,
+    "package_name": "org.apache.cxf:cxf",
+    "packages": "(7258,org.apache.cxf:cxf,mvn,\"Apache CXF\",https://gitbox.apache.org/repos/asf?p=cxf.git;a=summary,)"
+  },
+  {
+    "version": "1.0.0.RC3",
+    "id": 913908,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "7.0.106",
+    "id": 382388,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "3.7.2",
+    "id": 748969,
+    "package_id": 31381,
+    "package_name": "org.apache.camel:camel-jackson",
+    "packages": "(31381,org.apache.camel:camel-jackson,mvn,\"Camel :: Jackson\",,)"
+  },
+  {
+    "version": "8.5.60",
+    "id": 395427,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "2.25.3",
+    "id": 604426,
+    "package_id": 362508,
+    "package_name": "org.apache.camel:camel-snakeyaml",
+    "packages": "(362508,org.apache.camel:camel-snakeyaml,mvn,\"Camel :: SnakeYAML\",,)"
+  },
+  {
+    "version": "24.1-jre",
+    "id": 658312,
+    "package_id": 204,
+    "package_name": "com.google.guava:guava",
+    "packages": "(204,com.google.guava:guava,mvn,\"Guava: Google Core Libraries for Java\",,)"
+  },
+  {
+    "version": "1.4.14-java7",
+    "id": 597502,
+    "package_id": 3820,
+    "package_name": "com.thoughtworks.xstream:xstream",
+    "packages": "(3820,com.thoughtworks.xstream:xstream,mvn,\"XStream Core\",,)"
+  },
+  {
+    "version": "1.3.2",
+    "id": 914847,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "10.0.0",
+    "id": 603296,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "2.1.1",
+    "id": 427128,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.0.0-M5",
+    "id": 432983,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "0.21.13",
+    "id": 430254,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.5.0",
+    "id": 436178,
+    "package_id": 362508,
+    "package_name": "org.apache.camel:camel-snakeyaml",
+    "packages": "(362508,org.apache.camel:camel-snakeyaml,mvn,\"Camel :: SnakeYAML\",,)"
+  },
+  {
+    "version": "0.21.13",
+    "id": 447558,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "12.8",
+    "id": 438212,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "4.0.0.Beta3",
+    "id": 442649,
+    "package_id": 2432,
+    "package_name": "io.vertx:vertx-web",
+    "packages": "(2432,io.vertx:vertx-web,mvn,,,)"
+  },
+  {
+    "version": "8.6",
+    "id": 505009,
+    "package_id": 31269,
+    "package_name": "org.opencastproject:opencast-common-jpa-impl",
+    "packages": "(31269,org.opencastproject:opencast-common-jpa-impl,mvn,\"Opencast :: common-jpa-impl\",,)"
+  },
+  {
+    "version": "3.9.5",
+    "id": 939057,
+    "package_id": 2432,
+    "package_name": "io.vertx:vertx-web",
+    "packages": "(2432,io.vertx:vertx-web,mvn,,,)"
+  },
+  {
+    "version": "1.0.0-M6",
+    "id": 446055,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "5.2.9.RELEASE",
+    "id": 453758,
+    "package_id": 1037,
+    "package_name": "org.springframework:spring-web",
+    "packages": "(1037,org.springframework:spring-web,mvn,\"Spring Web\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "2.3.2",
+    "id": 448900,
+    "package_id": 47761,
+    "package_name": "org.apache.hbase:hbase",
+    "packages": "(47761,org.apache.hbase:hbase,mvn,\"Apache HBase\",https://gitbox.apache.org/repos/asf?p=hbase.git,)"
+  },
+  {
+    "version": "12.7",
+    "id": 463449,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "3.9.5",
+    "id": 763070,
+    "package_id": 2008,
+    "package_name": "io.vertx:vertx-core",
+    "packages": "(2008,io.vertx:vertx-core,mvn,\"Vert.x Core\",git@github.com:eclipse/vert.x.git,)"
+  },
+  {
+    "version": "1.0.0-M7",
+    "id": 462440,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "8.8",
+    "id": 607144,
+    "package_id": 99352,
+    "package_name": "org.opencastproject:base",
+    "packages": "(99352,org.opencastproject:base,mvn,opencast,https://github.com/opencast/opencast/,)"
+  },
+  {
+    "version": "12.6.5",
+    "id": 473794,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "2.1.0",
+    "id": 470548,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "7.0.108",
+    "id": 738044,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "2.2.3",
+    "id": 604999,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "2.1.3",
+    "id": 478387,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.0.5",
+    "id": 661964,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "12.7.1",
+    "id": 520090,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "0.21.11",
+    "id": 507181,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-2-1e49ccf",
+    "id": 617280,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "10.0.0-M8",
+    "id": 514462,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "7.8",
+    "id": 343516,
+    "package_id": 31269,
+    "package_name": "org.opencastproject:opencast-common-jpa-impl",
+    "packages": "(31269,org.opencastproject:opencast-common-jpa-impl,mvn,\"Opencast :: common-jpa-impl\",,)"
+  },
+  {
+    "version": "2.14.0",
+    "id": 531406,
+    "package_id": 24606,
+    "package_name": "org.apache.logging.log4j:log4j",
+    "packages": "(24606,org.apache.logging.log4j:log4j,mvn,\"Apache Log4j 2\",https://gitbox.apache.org/repos/asf?p=logging-log4j2.git,)"
+  },
+  {
+    "version": "3.9.3",
+    "id": 526641,
+    "package_id": 2432,
+    "package_name": "io.vertx:vertx-web",
+    "packages": "(2432,io.vertx:vertx-web,mvn,,,)"
+  },
+  {
+    "version": "11.10.11",
+    "id": 530870,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "2.1.0",
+    "id": 539023,
+    "package_id": 2902356,
+    "package_name": "org.apache.ranger:ranger",
+    "packages": "(2902356,org.apache.ranger:ranger,mvn,ranger,scm:git:git@github.com:apache/ranger.git,)"
+  },
+  {
+    "version": "4.2.10",
+    "id": 546771,
+    "package_id": 2178415,
+    "package_name": "org.apache.karaf:karaf",
+    "packages": "(2178415,org.apache.karaf:karaf,mvn,\"Apache Karaf\",https://gitbox.apache.org/repos/asf?p=karaf.git;a=summary,)"
+  },
+  {
+    "version": "1.11.2",
+    "id": 556147,
+    "package_id": 1529,
+    "package_name": "org.apache.flink:flink-runtime_2.11",
+    "packages": "(1529,org.apache.flink:flink-runtime_2.11,mvn,\"Flink : Runtime\",,)"
+  },
+  {
+    "version": "12.6.7",
+    "id": 1136786,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "4.13",
+    "id": 555412,
+    "package_id": 30,
+    "package_name": "junit:junit",
+    "packages": "(30,junit:junit,mvn,JUnit,https://github.com/junit-team/junit4,)"
+  },
+  {
+    "version": "4.0.0.CR1",
+    "id": 568904,
+    "package_id": 2432,
+    "package_name": "io.vertx:vertx-web",
+    "packages": "(2432,io.vertx:vertx-web,mvn,,,)"
+  },
+  {
+    "version": "0.14.14",
+    "id": 569661,
+    "package_id": 916805,
+    "package_name": "org.http4s:blaze-core_2.11",
+    "packages": "(916805,org.http4s:blaze-core_2.11,mvn,blaze-core,https://github.com/http4s/blaze,)"
+  },
+  {
+    "version": "4.8.6",
+    "id": 578753,
+    "package_id": 1206013,
+    "package_name": "com.adobe.acs:acs-aem-commons",
+    "packages": "(1206013,com.adobe.acs:acs-aem-commons,mvn,\"ACS AEM Commons - Reactor Project\",https://github.com/Adobe-Consulting-Services/acs-aem-commons/tree/master,)"
+  },
+  {
+    "version": "1.4.14",
+    "id": 569893,
+    "package_id": 3820,
+    "package_name": "com.thoughtworks.xstream:xstream",
+    "packages": "(3820,com.thoughtworks.xstream:xstream,mvn,\"XStream Core\",,)"
+  },
+  {
+    "version": "1.4.13",
+    "id": 592588,
+    "package_id": 3820,
+    "package_name": "com.thoughtworks.xstream:xstream",
+    "packages": "(3820,com.thoughtworks.xstream:xstream,mvn,\"XStream Core\",,)"
+  },
+  {
+    "version": "2.1.4",
+    "id": 591648,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "8.5.59",
+    "id": 622017,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "0.22.0-M2",
+    "id": 1099595,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-25-f1a4ab0",
+    "id": 617662,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "11.0.0.beta2",
+    "id": 621773,
+    "package_id": 7082,
+    "package_name": "org.eclipse.jetty:jetty-util",
+    "packages": "(7082,org.eclipse.jetty:jetty-util,mvn,\"Jetty :: Utilities\",,)"
+  },
+  {
+    "version": "4.8.0",
+    "id": 626508,
+    "package_id": 272899,
+    "package_name": "org.apache.olingo:odata-client-core",
+    "packages": "(272899,org.apache.olingo:odata-client-core,mvn,odata-client-core,,)"
+  },
+  {
+    "version": "3.7.0",
+    "id": 626268,
+    "package_id": 362508,
+    "package_name": "org.apache.camel:camel-snakeyaml",
+    "packages": "(362508,org.apache.camel:camel-snakeyaml,mvn,\"Camel :: SnakeYAML\",,)"
+  },
+  {
+    "version": "1.11.0",
+    "id": 647925,
+    "package_id": 203564,
+    "package_name": "org.apache.mesos:mesos",
+    "packages": "(203564,org.apache.mesos:mesos,mvn,mesos,https://gitbox.apache.org/repos/asf/mesos.git,)"
+  },
+  {
+    "version": "1.0-10-df008e1",
+    "id": 634449,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-39-5736fdc",
+    "id": 634869,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "0.21.13",
+    "id": 479570,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "9.4.32.v20200930",
+    "id": 638256,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "1.0.0-M6",
+    "id": 640339,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "9.4.35.v20201120",
+    "id": 641298,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "1.0-2-1e49ccf",
+    "id": 626897,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-23-f99b0af",
+    "id": 626985,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "0.21.18",
+    "id": 628631,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-14-cdeb1e3",
+    "id": 635312,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.3.6",
+    "id": 660795,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.0-6-e439945",
+    "id": 648704,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.0.0.RC2",
+    "id": 929369,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.1.1",
+    "id": 659173,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.2.6",
+    "id": 660994,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.2.5",
+    "id": 662504,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.1.0.M2",
+    "id": 672771,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.1.0",
+    "id": 663977,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "9.0.40",
+    "id": 685608,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "4.0.1",
+    "id": 1161372,
+    "package_id": 2432,
+    "package_name": "io.vertx:vertx-web",
+    "packages": "(2432,io.vertx:vertx-web,mvn,,,)"
+  },
+  {
+    "version": "10.0.0-M9",
+    "id": 683001,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "0.21.14",
+    "id": 687289,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "7.7",
+    "id": 510574,
+    "package_id": 31269,
+    "package_name": "org.opencastproject:opencast-common-jpa-impl",
+    "packages": "(31269,org.opencastproject:opencast-common-jpa-impl,mvn,\"Opencast :: common-jpa-impl\",,)"
+  },
+  {
+    "version": "3.9.4",
+    "id": 516621,
+    "package_id": 2008,
+    "package_name": "io.vertx:vertx-core",
+    "packages": "(2008,io.vertx:vertx-core,mvn,\"Vert.x Core\",git@github.com:eclipse/vert.x.git,)"
+  },
+  {
+    "version": "0.22-129-24d065b",
+    "id": 691196,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.12.0",
+    "id": 896761,
+    "package_id": 75627,
+    "package_name": "org.apache.flink:flink-runtime_2.12",
+    "packages": "(75627,org.apache.flink:flink-runtime_2.12,mvn,\"Flink : Runtime\",,)"
+  },
+  {
+    "version": "0.22-129-24d065b",
+    "id": 714273,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.12.13",
+    "id": 719733,
+    "package_id": 1205,
+    "package_name": "org.scala-lang:scala-compiler",
+    "packages": "(1205,org.scala-lang:scala-compiler,mvn,\"Scala Compiler\",https://github.com/scala/scala.git,)"
+  },
+  {
+    "version": "4.0.0",
+    "id": 704430,
+    "package_id": 2008,
+    "package_name": "io.vertx:vertx-core",
+    "packages": "(2008,io.vertx:vertx-core,mvn,\"Vert.x Core\",git@github.com:eclipse/vert.x.git,)"
+  },
+  {
+    "version": "2.2.12.RELEASE",
+    "id": 723347,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "1.2.0.RC2",
+    "id": 923410,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "2.2.13.RELEASE",
+    "id": 728551,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "2.0.0.M3",
+    "id": 1151875,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "2.4.4",
+    "id": 710476,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "0.22-53-01128f5",
+    "id": 714061,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-16-b673b49",
+    "id": 718775,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-81-ce14ddb",
+    "id": 729973,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-2-79831c5",
+    "id": 763110,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "12.6.6",
+    "id": 757661,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "7.9",
+    "id": 761320,
+    "package_id": 99352,
+    "package_name": "org.opencastproject:base",
+    "packages": "(99352,org.opencastproject:base,mvn,opencast,https://github.com/opencast/opencast/,)"
+  },
+  {
+    "version": "8.8",
+    "id": 761295,
+    "package_id": 31269,
+    "package_name": "org.opencastproject:opencast-common-jpa-impl",
+    "packages": "(31269,org.opencastproject:opencast-common-jpa-impl,mvn,\"Opencast :: common-jpa-impl\",,)"
+  },
+  {
+    "version": "2.2.2",
+    "id": 746243,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "0.22-129-24d065b",
+    "id": 766302,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-21-a0087dd",
+    "id": 770442,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "9.1",
+    "id": 765134,
+    "package_id": 99352,
+    "package_name": "org.opencastproject:base",
+    "packages": "(99352,org.opencastproject:base,mvn,opencast,https://github.com/opencast/opencast/,)"
+  },
+  {
+    "version": "2.14.0",
+    "id": 783439,
+    "package_id": 97,
+    "package_name": "org.apache.logging.log4j:log4j-core",
+    "packages": "(97,org.apache.logging.log4j:log4j-core,mvn,\"Apache Log4j Core\",,)"
+  },
+  {
+    "version": "1.0-103-5f6e845",
+    "id": 603371,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.4.2",
+    "id": 625955,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "0.21.14",
+    "id": 784881,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-21-a0087dd",
+    "id": 860841,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-103-5f6e845",
+    "id": 785009,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "0.21.15",
+    "id": 788067,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0.0-M13",
+    "id": 856475,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.8.0",
+    "id": 797392,
+    "package_id": 31381,
+    "package_name": "org.apache.camel:camel-jackson",
+    "packages": "(31381,org.apache.camel:camel-jackson,mvn,\"Camel :: Jackson\",,)"
+  },
+  {
+    "version": "1.3.28",
+    "id": 818464,
+    "package_id": 90104,
+    "package_name": "io.dropwizard:dropwizard-validation",
+    "packages": "(90104,io.dropwizard:dropwizard-validation,mvn,\"Dropwizard Validation Support\",,)"
+  },
+  {
+    "version": "0.22.0-M1",
+    "id": 833000,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.3.0.M2",
+    "id": 655690,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "8.5.63",
+    "id": 790489,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "1.0.0-M17",
+    "id": 1151617,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "8.9",
+    "id": 815096,
+    "package_id": 31269,
+    "package_name": "org.opencastproject:opencast-common-jpa-impl",
+    "packages": "(31269,org.opencastproject:opencast-common-jpa-impl,mvn,\"Opencast :: common-jpa-impl\",,)"
+  },
+  {
+    "version": "4.0.1",
+    "id": 851303,
+    "package_id": 2008,
+    "package_name": "io.vertx:vertx-core",
+    "packages": "(2008,io.vertx:vertx-core,mvn,\"Vert.x Core\",git@github.com:eclipse/vert.x.git,)"
+  },
+  {
+    "version": "11.0.0",
+    "id": 1000173,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "1.0.0-beta.7",
+    "id": 706766,
+    "package_id": 3898032,
+    "package_name": "com.datadoghq:datadog-api-client",
+    "packages": "(3898032,com.datadoghq:datadog-api-client,mvn,datadog-api-client,https://github.com/DataDog/datadog-api-client-java,)"
+  },
+  {
+    "version": "9.4.38.v20210224",
+    "id": 911083,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "2.25.3",
+    "id": 995507,
+    "package_id": 31381,
+    "package_name": "org.apache.camel:camel-jackson",
+    "packages": "(31381,org.apache.camel:camel-jackson,mvn,\"Camel :: Jackson\",,)"
+  },
+  {
+    "version": "1.0-234-d1a2b53",
+    "id": 878884,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "4.0.0.Beta2",
+    "id": 520045,
+    "package_id": 2008,
+    "package_name": "io.vertx:vertx-core",
+    "packages": "(2008,io.vertx:vertx-core,mvn,\"Vert.x Core\",git@github.com:eclipse/vert.x.git,)"
+  },
+  {
+    "version": "1.3.0",
+    "id": 1153268,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.0-25-f1a4ab0",
+    "id": 1001922,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "30.1-android",
+    "id": 1000435,
+    "package_id": 204,
+    "package_name": "com.google.guava:guava",
+    "packages": "(204,com.google.guava:guava,mvn,\"Guava: Google Core Libraries for Java\",,)"
+  },
+  {
+    "version": "1.0-232-85dadc2",
+    "id": 1001926,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "12.10.1",
+    "id": 804725,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "1.1.0.RC1",
+    "id": 1024496,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.3.3",
+    "id": 1005492,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "4.1.52.Final",
+    "id": 469047,
+    "package_id": 8301,
+    "package_name": "io.netty:netty-all",
+    "packages": "(8301,io.netty:netty-all,mvn,Netty/All-in-One,,)"
+  },
+  {
+    "version": "1.1.0.RC2",
+    "id": 1034102,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.0.0-M9",
+    "id": 634096,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.3.4",
+    "id": 1029553,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "2.3.7.RELEASE",
+    "id": 981772,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "2.3.3",
+    "id": 1038146,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.0.0-M11",
+    "id": 601030,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0.0-M19",
+    "id": 1036788,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.2.0",
+    "id": 1045427,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.0.0",
+    "id": 1044898,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "9.4.37.v20210219",
+    "id": 1050573,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "1.2.11",
+    "id": 1047567,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.2.0.RC1",
+    "id": 1045484,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "0.22-96-55d3184",
+    "id": 1065515,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "0.21.16",
+    "id": 1058963,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-39-5736fdc",
+    "id": 1097311,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-2-79831c5",
+    "id": 1068117,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "8.10",
+    "id": 1066247,
+    "package_id": 99352,
+    "package_name": "org.opencastproject:base",
+    "packages": "(99352,org.opencastproject:base,mvn,opencast,https://github.com/opencast/opencast/,)"
+  },
+  {
+    "version": "0.22-143-49b5a8d",
+    "id": 1077232,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-18-659c58b",
+    "id": 1069520,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "0.21.16",
+    "id": 1070430,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "0.22-96-55d3184",
+    "id": 1070935,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-57-0368053",
+    "id": 1075033,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.11.3",
+    "id": 1074135,
+    "package_id": 75627,
+    "package_name": "org.apache.flink:flink-runtime_2.12",
+    "packages": "(75627,org.apache.flink:flink-runtime_2.12,mvn,\"Flink : Runtime\",,)"
+  },
+  {
+    "version": "3.4.5",
+    "id": 1074616,
+    "package_id": 362508,
+    "package_name": "org.apache.camel:camel-snakeyaml",
+    "packages": "(362508,org.apache.camel:camel-snakeyaml,mvn,\"Camel :: SnakeYAML\",,)"
+  },
+  {
+    "version": "3.7.2",
+    "id": 1088622,
+    "package_id": 362508,
+    "package_name": "org.apache.camel:camel-snakeyaml",
+    "packages": "(362508,org.apache.camel:camel-snakeyaml,mvn,\"Camel :: SnakeYAML\",,)"
+  },
+  {
+    "version": "3.4.2",
+    "id": 1080705,
+    "package_id": 1845411,
+    "package_name": "org.apache.cxf:apache-cxf",
+    "packages": "(1845411,org.apache.cxf:apache-cxf,mvn,\"Apache CXF Distribution\",,)"
+  },
+  {
+    "version": "1.0-14-7c5ec00",
+    "id": 1091283,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-10-df008e1",
+    "id": 1096792,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "10.0.0",
+    "id": 1090482,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "1.0-18-a497d1a",
+    "id": 1102900,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.3.6.RELEASE",
+    "id": 1102005,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "3.8.0",
+    "id": 1106881,
+    "package_id": 362508,
+    "package_name": "org.apache.camel:camel-snakeyaml",
+    "packages": "(362508,org.apache.camel:camel-snakeyaml,mvn,\"Camel :: SnakeYAML\",,)"
+  },
+  {
+    "version": "1.0-57-0368053",
+    "id": 1103333,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "0.21.17",
+    "id": 1105587,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.7.0",
+    "id": 1129997,
+    "package_id": 31381,
+    "package_name": "org.apache.camel:camel-jackson",
+    "packages": "(31381,org.apache.camel:camel-jackson,mvn,\"Camel :: Jackson\",,)"
+  },
+  {
+    "version": "3.7.1",
+    "id": 1058856,
+    "package_id": 31381,
+    "package_name": "org.apache.camel:camel-jackson",
+    "packages": "(31381,org.apache.camel:camel-jackson,mvn,\"Camel :: Jackson\",,)"
+  },
+  {
+    "version": "2.4.1",
+    "id": 1116749,
+    "package_id": 47761,
+    "package_name": "org.apache.hbase:hbase",
+    "packages": "(47761,org.apache.hbase:hbase,mvn,\"Apache HBase\",https://gitbox.apache.org/repos/asf?p=hbase.git,)"
+  },
+  {
+    "version": "3.4.5",
+    "id": 1108980,
+    "package_id": 31381,
+    "package_name": "org.apache.camel:camel-jackson",
+    "packages": "(31381,org.apache.camel:camel-jackson,mvn,\"Camel :: Jackson\",,)"
+  },
+  {
+    "version": "2.3.4",
+    "id": 1115935,
+    "package_id": 47761,
+    "package_name": "org.apache.hbase:hbase",
+    "packages": "(47761,org.apache.hbase:hbase,mvn,\"Apache HBase\",https://gitbox.apache.org/repos/asf?p=hbase.git,)"
+  },
+  {
+    "version": "1.0-107-6676c1e",
+    "id": 1163314,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0.0-M11",
+    "id": 1166074,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-81-ce14ddb",
+    "id": 1171434,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-107-6676c1e",
+    "id": 1170213,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-14-7c5ec00",
+    "id": 1170435,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-231-e9b2b41",
+    "id": 1177459,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "12.10.2",
+    "id": 1177435,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "4.0.0",
+    "id": 1175961,
+    "package_id": 2432,
+    "package_name": "io.vertx:vertx-web",
+    "packages": "(2432,io.vertx:vertx-web,mvn,,,)"
+  },
+  {
+    "version": "1.0-107-6676c1e",
+    "id": 1182021,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-234-d1a2b53",
+    "id": 1188952,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-6-e439945",
+    "id": 1187863,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-234-d1a2b53",
+    "id": 1183617,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.5.0",
+    "id": 1227808,
+    "package_id": 31381,
+    "package_name": "org.apache.camel:camel-jackson",
+    "packages": "(31381,org.apache.camel:camel-jackson,mvn,\"Camel :: Jackson\",,)"
+  },
+  {
+    "version": "9.0",
+    "id": 1195159,
+    "package_id": 99352,
+    "package_name": "org.opencastproject:base",
+    "packages": "(99352,org.opencastproject:base,mvn,opencast,https://github.com/opencast/opencast/,)"
+  },
+  {
+    "version": "3.6.0",
+    "id": 1212460,
+    "package_id": 362508,
+    "package_name": "org.apache.camel:camel-snakeyaml",
+    "packages": "(362508,org.apache.camel:camel-snakeyaml,mvn,\"Camel :: SnakeYAML\",,)"
+  },
+  {
+    "version": "10.0.0.beta3",
+    "id": 1212492,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "1.0-4-a7fc4a9",
+    "id": 1216157,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-21-a0087dd",
+    "id": 1223580,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "4.0.2",
+    "id": 1226293,
+    "package_id": 2008,
+    "package_name": "io.vertx:vertx-core",
+    "packages": "(2008,io.vertx:vertx-core,mvn,\"Vert.x Core\",git@github.com:eclipse/vert.x.git,)"
+  },
+  {
+    "version": "4.0.0.Beta2",
+    "id": 1227782,
+    "package_id": 2432,
+    "package_name": "io.vertx:vertx-web",
+    "packages": "(2432,io.vertx:vertx-web,mvn,,,)"
+  },
+  {
+    "version": "2.3.2",
+    "id": 1191391,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "9.0.43",
+    "id": 714914,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "9.4.36.v20210114",
+    "id": 1206538,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "1.0.0-M10",
+    "id": 1136117,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.12.0",
+    "id": 1187066,
+    "package_id": 1529,
+    "package_name": "org.apache.flink:flink-runtime_2.11",
+    "packages": "(1529,org.apache.flink:flink-runtime_2.11,mvn,\"Flink : Runtime\",,)"
+  },
+  {
+    "version": "1.0-10-df008e1",
+    "id": 1216608,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-12-e6a1f1f",
+    "id": 1205410,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "4.1.53.Final",
+    "id": 1230432,
+    "package_id": 8301,
+    "package_name": "io.netty:netty-all",
+    "packages": "(8301,io.netty:netty-all,mvn,Netty/All-in-One,,)"
+  },
+  {
+    "version": "0.22.0-M1",
+    "id": 1242221,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.3.9",
+    "id": 1240397,
+    "package_id": 7258,
+    "package_name": "org.apache.cxf:cxf",
+    "packages": "(7258,org.apache.cxf:cxf,mvn,\"Apache CXF\",https://gitbox.apache.org/repos/asf?p=cxf.git;a=summary,)"
+  },
+  {
+    "version": "11.10.13",
+    "id": 1240346,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "2.3.0",
+    "id": 1241567,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.0-14-cdeb1e3",
+    "id": 1246245,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "9.0",
+    "id": 1200735,
+    "package_id": 31269,
+    "package_name": "org.opencastproject:opencast-common-jpa-impl",
+    "packages": "(31269,org.opencastproject:opencast-common-jpa-impl,mvn,\"Opencast :: common-jpa-impl\",,)"
+  },
+  {
+    "version": "1.0.0-M9",
+    "id": 824006,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.13.0",
+    "id": 1254852,
+    "package_id": 2134421,
+    "package_name": "org.apache.nifi:nifi",
+    "packages": "(2134421,org.apache.nifi:nifi,mvn,,https://git-wip-us.apache.org/repos/asf?p=nifi.git,)"
+  },
+  {
+    "version": "8.9",
+    "id": 1252674,
+    "package_id": 99352,
+    "package_name": "org.opencastproject:base",
+    "packages": "(99352,org.opencastproject:base,mvn,opencast,https://github.com/opencast/opencast/,)"
+  },
+  {
+    "version": "1.0.0-M14",
+    "id": 1253721,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.4.0",
+    "id": 1251001,
+    "package_id": 47761,
+    "package_name": "org.apache.hbase:hbase",
+    "packages": "(47761,org.apache.hbase:hbase,mvn,\"Apache HBase\",https://gitbox.apache.org/repos/asf?p=hbase.git,)"
+  },
+  {
+    "version": "9.1",
+    "id": 1257579,
+    "package_id": 31269,
+    "package_name": "org.opencastproject:opencast-common-jpa-impl",
+    "packages": "(31269,org.opencastproject:opencast-common-jpa-impl,mvn,\"Opencast :: common-jpa-impl\",,)"
+  },
+  {
+    "version": "0.21.14",
+    "id": 1255755,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-14-cdeb1e3",
+    "id": 1257003,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.1.2",
+    "id": 1282958,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.2.2",
+    "id": 1281022,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.3.5",
+    "id": 1283624,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.2.10",
+    "id": 1302084,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.0.1",
+    "id": 1286821,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.3.1",
+    "id": 1299724,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "0.22.0-M5",
+    "id": 1292732,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.3.7",
+    "id": 1295934,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.2.7",
+    "id": 1315880,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.2.8",
+    "id": 1311237,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.1.3",
+    "id": 1311546,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "0.22.0-M4",
+    "id": 1311896,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.9.6",
+    "id": 1317790,
+    "package_id": 2432,
+    "package_name": "io.vertx:vertx-web",
+    "packages": "(2432,io.vertx:vertx-web,mvn,,,)"
+  },
+  {
+    "version": "2.13.5",
+    "id": 1320811,
+    "package_id": 1205,
+    "package_name": "org.scala-lang:scala-compiler",
+    "packages": "(1205,org.scala-lang:scala-compiler,mvn,\"Scala Compiler\",https://github.com/scala/scala.git,)"
+  },
+  {
+    "version": "2.0.0.RC1",
+    "id": 1320561,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.0-81-ce14ddb",
+    "id": 1324624,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-4-a7fc4a9",
+    "id": 1332894,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.0.0.M2",
+    "id": 1329831,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "2.1.3",
+    "id": 1370877,
+    "package_id": 5023,
+    "package_name": "org.dom4j:dom4j",
+    "packages": "(5023,org.dom4j:dom4j,mvn,dom4j,git@github.com:dom4j/dom4j.git,)"
+  },
+  {
+    "version": "2.0.0.M1",
+    "id": 1343791,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.2.4",
+    "id": 1340423,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.1.4",
+    "id": 1344336,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.26",
+    "id": 1370872,
+    "package_id": 746,
+    "package_name": "org.yaml:snakeyaml",
+    "packages": "(746,org.yaml:snakeyaml,mvn,SnakeYAML,https://bitbucket.org/asomov/snakeyaml/src,)"
+  },
+  {
+    "version": "0.10.0-M10",
+    "id": 1251410,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.3.4",
+    "id": 1378340,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.2.1",
+    "id": 1375358,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.3.0.M1",
+    "id": 1378137,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "0.22.0-M1",
+    "id": 600727,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.0.20",
+    "id": 1378663,
+    "package_id": 90104,
+    "package_name": "io.dropwizard:dropwizard-validation",
+    "packages": "(90104,io.dropwizard:dropwizard-validation,mvn,\"Dropwizard Validation Support\",,)"
+  },
+  {
+    "version": "1.2.9",
+    "id": 1378575,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "2.6.7.4",
+    "id": 563512,
+    "package_id": 26,
+    "package_name": "com.fasterxml.jackson.core:jackson-databind",
+    "packages": "(26,com.fasterxml.jackson.core:jackson-databind,mvn,,,)"
+  },
+  {
+    "version": "2.0.3",
+    "id": 964408,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.3.0.RC1",
+    "id": 1151817,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "12.6.3",
+    "id": 476976,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "12.6.2",
+    "id": 105469,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "12.9-rc-1",
+    "id": 53373,
+    "package_id": 231661,
+    "package_name": "org.xwiki.commons:xwiki-commons",
+    "packages": "(231661,org.xwiki.commons:xwiki-commons,mvn,\"XWiki Commons - Parent POM\",https://github.com/xwiki/xwiki-commons/tree/master/,)"
+  },
+  {
+    "version": "2.12.1",
+    "id": 1200547,
+    "package_id": 26,
+    "package_name": "com.fasterxml.jackson.core:jackson-databind",
+    "packages": "(26,com.fasterxml.jackson.core:jackson-databind,mvn,,,)"
+  },
+  {
+    "version": "2.11.4",
+    "id": 1135133,
+    "package_id": 26,
+    "package_name": "com.fasterxml.jackson.core:jackson-databind",
+    "packages": "(26,com.fasterxml.jackson.core:jackson-databind,mvn,,,)"
+  },
+  {
+    "version": "2.10.5.1",
+    "id": 28774,
+    "package_id": 26,
+    "package_name": "com.fasterxml.jackson.core:jackson-databind",
+    "packages": "(26,com.fasterxml.jackson.core:jackson-databind,mvn,,,)"
+  },
+  {
+    "version": "2.12.0-rc2",
+    "id": 1214177,
+    "package_id": 26,
+    "package_name": "com.fasterxml.jackson.core:jackson-databind",
+    "packages": "(26,com.fasterxml.jackson.core:jackson-databind,mvn,,,)"
+  },
+  {
+    "version": "2.9.10.8",
+    "id": 1097753,
+    "package_id": 26,
+    "package_name": "com.fasterxml.jackson.core:jackson-databind",
+    "packages": "(26,com.fasterxml.jackson.core:jackson-databind,mvn,,,)"
+  },
+  {
+    "version": "2.9.10.7",
+    "id": 958512,
+    "package_id": 26,
+    "package_name": "com.fasterxml.jackson.core:jackson-databind",
+    "packages": "(26,com.fasterxml.jackson.core:jackson-databind,mvn,,,)"
+  },
+  {
+    "version": "2.11.3",
+    "id": 610365,
+    "package_id": 26,
+    "package_name": "com.fasterxml.jackson.core:jackson-databind",
+    "packages": "(26,com.fasterxml.jackson.core:jackson-databind,mvn,,,)"
+  },
+  {
+    "version": "2.12.2",
+    "id": 1045200,
+    "package_id": 26,
+    "package_name": "com.fasterxml.jackson.core:jackson-databind",
+    "packages": "(26,com.fasterxml.jackson.core:jackson-databind,mvn,,,)"
+  },
+  {
+    "version": "2.10.1",
+    "id": 17813,
+    "package_id": 83914,
+    "package_name": "org.apache.hadoop:hadoop-main",
+    "packages": "(83914,org.apache.hadoop:hadoop-main,mvn,,,)"
+  },
+  {
+    "version": "3.2.2",
+    "id": 978244,
+    "package_id": 83914,
+    "package_name": "org.apache.hadoop:hadoop-main",
+    "packages": "(83914,org.apache.hadoop:hadoop-main,mvn,,,)"
+  },
+  {
+    "version": "2.3.8",
+    "id": 1121493,
+    "package_id": 14361,
+    "package_name": "org.apache.hive:hive-service",
+    "packages": "(14361,org.apache.hive:hive-service,mvn,\"Hive Service\",,)"
+  },
+  {
+    "version": "2.4.21",
+    "id": 225927,
+    "package_id": 6013,
+    "package_name": "org.codehaus.groovy:groovy",
+    "packages": "(6013,org.codehaus.groovy:groovy,mvn,\"Apache Groovy\",https://github.com/apache/groovy.git,)"
+  },
+  {
+    "version": "10.1.13",
+    "id": 418812,
+    "package_id": 26655,
+    "package_name": "com.typesafe.akka:akka-http-core_2.12",
+    "packages": "(26655,com.typesafe.akka:akka-http-core_2.12,mvn,akka-http-core,https://github.com/akka/akka-http,)"
+  },
+  {
+    "version": "3.0.6",
+    "id": 471197,
+    "package_id": 6013,
+    "package_name": "org.codehaus.groovy:groovy",
+    "packages": "(6013,org.codehaus.groovy:groovy,mvn,\"Apache Groovy\",https://github.com/apache/groovy.git,)"
+  },
+  {
+    "version": "8.3.4",
+    "id": 824397,
+    "package_id": 297054,
+    "package_name": "net.sf.mpxj:mpxj",
+    "packages": "(297054,net.sf.mpxj:mpxj,mvn,MPXJ,https://github.com/joniles/mpxj,)"
+  },
+  {
+    "version": "7.1.9",
+    "id": 464277,
+    "package_id": 35676,
+    "package_name": "org.apache.qpid:qpid-broker",
+    "packages": "(35676,org.apache.qpid:qpid-broker,mvn,\"Apache Qpid Broker-J\",,)"
+  },
+  {
+    "version": "0.0.18",
+    "id": 461692,
+    "package_id": 153933,
+    "package_name": "com.sap.scimono:scimono-server",
+    "packages": "(153933,com.sap.scimono:scimono-server,mvn,,,)"
+  },
+  {
+    "version": "2.12.0",
+    "id": 228744,
+    "package_id": 26,
+    "package_name": "com.fasterxml.jackson.core:jackson-databind",
+    "packages": "(26,com.fasterxml.jackson.core:jackson-databind,mvn,,,)"
+  },
+  {
+    "version": "2.3.8",
+    "id": 719654,
+    "package_id": 37086,
+    "package_name": "org.apache.hive:hive-jdbc",
+    "packages": "(37086,org.apache.hive:hive-jdbc,mvn,\"Hive JDBC\",,)"
+  },
+  {
+    "version": "8.0.2",
+    "id": 84050,
+    "package_id": 35676,
+    "package_name": "org.apache.qpid:qpid-broker",
+    "packages": "(35676,org.apache.qpid:qpid-broker,mvn,\"Apache Qpid Broker-J\",,)"
+  },
+  {
+    "version": "8.0.1",
+    "id": 509692,
+    "package_id": 35676,
+    "package_name": "org.apache.qpid:qpid-broker",
+    "packages": "(35676,org.apache.qpid:qpid-broker,mvn,\"Apache Qpid Broker-J\",,)"
+  },
+  {
+    "version": "7.1.10",
+    "id": 547629,
+    "package_id": 35676,
+    "package_name": "org.apache.qpid:qpid-broker",
+    "packages": "(35676,org.apache.qpid:qpid-broker,mvn,\"Apache Qpid Broker-J\",,)"
+  },
+  {
+    "version": "8.0.4",
+    "id": 858904,
+    "package_id": 35676,
+    "package_name": "org.apache.qpid:qpid-broker",
+    "packages": "(35676,org.apache.qpid:qpid-broker,mvn,\"Apache Qpid Broker-J\",,)"
+  },
+  {
+    "version": "8.0.3",
+    "id": 815013,
+    "package_id": 35676,
+    "package_name": "org.apache.qpid:qpid-broker",
+    "packages": "(35676,org.apache.qpid:qpid-broker,mvn,\"Apache Qpid Broker-J\",,)"
+  },
+  {
+    "version": "7.1.12",
+    "id": 283438,
+    "package_id": 35676,
+    "package_name": "org.apache.qpid:qpid-broker",
+    "packages": "(35676,org.apache.qpid:qpid-broker,mvn,\"Apache Qpid Broker-J\",,)"
+  },
+  {
+    "version": "7.1.11",
+    "id": 899202,
+    "package_id": 35676,
+    "package_name": "org.apache.qpid:qpid-broker",
+    "packages": "(35676,org.apache.qpid:qpid-broker,mvn,\"Apache Qpid Broker-J\",,)"
+  },
+  {
+    "version": "8.6.3",
+    "id": 432277,
+    "package_id": 21386,
+    "package_name": "org.apache.solr:solr-core",
+    "packages": "(21386,org.apache.solr:solr-core,mvn,\"Apache Solr Core\",https://gitbox.apache.org/repos/asf?p=lucene-solr.git;f=solr,)"
+  },
+  {
+    "version": "2.2.1",
+    "id": 897326,
+    "package_id": 2594,
+    "package_name": "org.apache.santuario:xmlsec",
+    "packages": "(2594,org.apache.santuario:xmlsec,mvn,\"Apache XML Security for Java\",https://gitbox.apache.org/repos/asf?p=santuario-xml-security-java.git;a=summary,)"
+  },
+  {
+    "version": "8.8.1",
+    "id": 672687,
+    "package_id": 21386,
+    "package_name": "org.apache.solr:solr-core",
+    "packages": "(21386,org.apache.solr:solr-core,mvn,\"Apache Solr Core\",https://gitbox.apache.org/repos/asf?p=lucene-solr.git;f=solr,)"
+  },
+  {
+    "version": "2.12.0-rc1",
+    "id": 21596,
+    "package_id": 26,
+    "package_name": "com.fasterxml.jackson.core:jackson-databind",
+    "packages": "(26,com.fasterxml.jackson.core:jackson-databind,mvn,,,)"
+  },
+  {
+    "version": "1.4.14-jdk7",
+    "id": 9254,
+    "package_id": 3820,
+    "package_name": "com.thoughtworks.xstream:xstream",
+    "packages": "(3820,com.thoughtworks.xstream:xstream,mvn,\"XStream Core\",,)"
+  },
+  {
+    "version": "4.9.0",
+    "id": 251971,
+    "package_id": 1206013,
+    "package_name": "com.adobe.acs:acs-aem-commons",
+    "packages": "(1206013,com.adobe.acs:acs-aem-commons,mvn,\"ACS AEM Commons - Reactor Project\",https://github.com/Adobe-Consulting-Services/acs-aem-commons/tree/master,)"
+  },
+  {
+    "version": "10.0.1",
+    "id": 740000,
+    "package_id": 22539,
+    "package_name": "io.kubernetes:client-java",
+    "packages": "(22539,io.kubernetes:client-java,mvn,client-java,,)"
+  },
+  {
+    "version": "8.8.0",
+    "id": 1099631,
+    "package_id": 21386,
+    "package_name": "org.apache.solr:solr-core",
+    "packages": "(21386,org.apache.solr:solr-core,mvn,\"Apache Solr Core\",https://gitbox.apache.org/repos/asf?p=lucene-solr.git;f=solr,)"
+  },
+  {
+    "version": "2.2.1",
+    "id": 424848,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "10.0.0",
+    "id": 576970,
+    "package_id": 22539,
+    "package_name": "io.kubernetes:client-java",
+    "packages": "(22539,io.kubernetes:client-java,mvn,client-java,,)"
+  },
+  {
+    "version": "1.0.2",
+    "id": 915927,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.3.26",
+    "id": 171394,
+    "package_id": 90104,
+    "package_name": "io.dropwizard:dropwizard-validation",
+    "packages": "(90104,io.dropwizard:dropwizard-validation,mvn,\"Dropwizard Validation Support\",,)"
+  },
+  {
+    "version": "30.0-jre",
+    "id": 141186,
+    "package_id": 204,
+    "package_name": "com.google.guava:guava",
+    "packages": "(204,com.google.guava:guava,mvn,\"Guava: Google Core Libraries for Java\",,)"
+  },
+  {
+    "version": "5.10.0",
+    "id": 67578,
+    "package_id": 15116,
+    "package_name": "com.rabbitmq:amqp-client",
+    "packages": "(15116,com.rabbitmq:amqp-client,mvn,\"RabbitMQ Java Client\",https://github.com/rabbitmq/rabbitmq-java-client,)"
+  },
+  {
+    "version": "2.8.6",
+    "id": 1250554,
+    "package_id": 31332,
+    "package_name": "com.typesafe.play:play_2.12",
+    "packages": "(31332,com.typesafe.play:play_2.12,mvn,Play,https://github.com/playframework/playframework,)"
+  },
+  {
+    "version": "8.9",
+    "id": 1195793,
+    "package_id": 30361,
+    "package_name": "org.opencastproject:opencast-kernel",
+    "packages": "(30361,org.opencastproject:opencast-kernel,mvn,\"Opencast :: kernel\",,)"
+  },
+  {
+    "version": "0.14.14",
+    "id": 145422,
+    "package_id": 694183,
+    "package_name": "org.http4s:blaze-core_2.13",
+    "packages": "(694183,org.http4s:blaze-core_2.13,mvn,blaze-core,https://github.com/http4s/blaze,)"
+  },
+  {
+    "version": "1.3.27",
+    "id": 411364,
+    "package_id": 90104,
+    "package_name": "io.dropwizard:dropwizard-validation",
+    "packages": "(90104,io.dropwizard:dropwizard-validation,mvn,\"Dropwizard Validation Support\",,)"
+  },
+  {
+    "version": "7.7",
+    "id": 96965,
+    "package_id": 30361,
+    "package_name": "org.opencastproject:opencast-kernel",
+    "packages": "(30361,org.opencastproject:opencast-kernel,mvn,\"Opencast :: kernel\",,)"
+  },
+  {
+    "version": "2.0.14",
+    "id": 83620,
+    "package_id": 90104,
+    "package_name": "io.dropwizard:dropwizard-validation",
+    "packages": "(90104,io.dropwizard:dropwizard-validation,mvn,\"Dropwizard Validation Support\",,)"
+  },
+  {
+    "version": "1.3.25",
+    "id": 134679,
+    "package_id": 90104,
+    "package_name": "io.dropwizard:dropwizard-validation",
+    "packages": "(90104,io.dropwizard:dropwizard-validation,mvn,\"Dropwizard Validation Support\",,)"
+  },
+  {
+    "version": "0.14.14",
+    "id": 145933,
+    "package_id": 696590,
+    "package_name": "org.http4s:blaze-core_2.12",
+    "packages": "(696590,org.http4s:blaze-core_2.12,mvn,blaze-core,https://github.com/http4s/blaze,)"
+  },
+  {
+    "version": "8.7",
+    "id": 935172,
+    "package_id": 30361,
+    "package_name": "org.opencastproject:opencast-kernel",
+    "packages": "(30361,org.opencastproject:opencast-kernel,mvn,\"Opencast :: kernel\",,)"
+  },
+  {
+    "version": "2.3.5.RELEASE",
+    "id": 157001,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "2.4.0",
+    "id": 100176,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "2.0.15",
+    "id": 782453,
+    "package_id": 90104,
+    "package_name": "io.dropwizard:dropwizard-validation",
+    "packages": "(90104,io.dropwizard:dropwizard-validation,mvn,\"Dropwizard Validation Support\",,)"
+  },
+  {
+    "version": "7.8",
+    "id": 139752,
+    "package_id": 30361,
+    "package_name": "org.opencastproject:opencast-kernel",
+    "packages": "(30361,org.opencastproject:opencast-kernel,mvn,\"Opencast :: kernel\",,)"
+  },
+  {
+    "version": "1.3.29",
+    "id": 831826,
+    "package_id": 90104,
+    "package_name": "io.dropwizard:dropwizard-validation",
+    "packages": "(90104,io.dropwizard:dropwizard-validation,mvn,\"Dropwizard Validation Support\",,)"
+  },
+  {
+    "version": "2.1.21.RELEASE",
+    "id": 206706,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "1.0-231-e9b2b41",
+    "id": 706202,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.1.20.RELEASE",
+    "id": 260919,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "7.9",
+    "id": 629117,
+    "package_id": 30361,
+    "package_name": "org.opencastproject:opencast-kernel",
+    "packages": "(30361,org.opencastproject:opencast-kernel,mvn,\"Opencast :: kernel\",,)"
+  },
+  {
+    "version": "0.21.8",
+    "id": 4247,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.2.6",
+    "id": 105259,
+    "package_id": 47761,
+    "package_name": "org.apache.hbase:hbase",
+    "packages": "(47761,org.apache.hbase:hbase,mvn,\"Apache HBase\",https://gitbox.apache.org/repos/asf?p=hbase.git,)"
+  },
+  {
+    "version": "9.1",
+    "id": 904597,
+    "package_id": 30361,
+    "package_name": "org.opencastproject:opencast-kernel",
+    "packages": "(30361,org.opencastproject:opencast-kernel,mvn,\"Opencast :: kernel\",,)"
+  },
+  {
+    "version": "8.10",
+    "id": 766518,
+    "package_id": 30361,
+    "package_name": "org.opencastproject:opencast-kernel",
+    "packages": "(30361,org.opencastproject:opencast-kernel,mvn,\"Opencast :: kernel\",,)"
+  },
+  {
+    "version": "2.2.10.RELEASE",
+    "id": 105215,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "2.3.4.RELEASE",
+    "id": 260093,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "1.0.0-M8",
+    "id": 148524,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "8.5",
+    "id": 1212337,
+    "package_id": 30361,
+    "package_name": "org.opencastproject:opencast-kernel",
+    "packages": "(30361,org.opencastproject:opencast-kernel,mvn,\"Opencast :: kernel\",,)"
+  },
+  {
+    "version": "8.8",
+    "id": 1155679,
+    "package_id": 30361,
+    "package_name": "org.opencastproject:opencast-kernel",
+    "packages": "(30361,org.opencastproject:opencast-kernel,mvn,\"Opencast :: kernel\",,)"
+  },
+  {
+    "version": "1.0-232-85dadc2",
+    "id": 325034,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "9.4.33.v20201020",
+    "id": 140836,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "1.0-16-b673b49",
+    "id": 275234,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.3.8",
+    "id": 484617,
+    "package_id": 1845411,
+    "package_name": "org.apache.cxf:apache-cxf",
+    "packages": "(1845411,org.apache.cxf:apache-cxf,mvn,\"Apache CXF Distribution\",,)"
+  },
+  {
+    "version": "9.3.29.v20201019",
+    "id": 411085,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "10.0.0.beta2",
+    "id": 107789,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "1.20",
+    "id": 692449,
+    "package_id": 2691,
+    "package_name": "org.apache.commons:commons-compress",
+    "packages": "(2691,org.apache.commons:commons-compress,mvn,\"Apache Commons Compress\",https://gitbox.apache.org/repos/asf?p=commons-compress.git,)"
+  },
+  {
+    "version": "0.21.20",
+    "id": 673099,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "9.4.34.v20201102",
+    "id": 25196,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "7.9",
+    "id": 1155745,
+    "package_id": 31269,
+    "package_name": "org.opencastproject:opencast-common-jpa-impl",
+    "packages": "(31269,org.opencastproject:opencast-common-jpa-impl,mvn,\"Opencast :: common-jpa-impl\",,)"
+  },
+  {
+    "version": "10.1.14",
+    "id": 1287021,
+    "package_id": 26655,
+    "package_name": "com.typesafe.akka:akka-http-core_2.12",
+    "packages": "(26655,com.typesafe.akka:akka-http-core_2.12,mvn,akka-http-core,https://github.com/akka/akka-http,)"
+  },
+  {
+    "version": "10.2.4",
+    "id": 914514,
+    "package_id": 26655,
+    "package_name": "com.typesafe.akka:akka-http-core_2.12",
+    "packages": "(26655,com.typesafe.akka:akka-http-core_2.12,mvn,akka-http-core,https://github.com/akka/akka-http,)"
+  },
+  {
+    "version": "8.7",
+    "id": 124804,
+    "package_id": 31269,
+    "package_name": "org.opencastproject:opencast-common-jpa-impl",
+    "packages": "(31269,org.opencastproject:opencast-common-jpa-impl,mvn,\"Opencast :: common-jpa-impl\",,)"
+  },
+  {
+    "version": "8.5",
+    "id": 432813,
+    "package_id": 31269,
+    "package_name": "org.opencastproject:opencast-common-jpa-impl",
+    "packages": "(31269,org.opencastproject:opencast-common-jpa-impl,mvn,\"Opencast :: common-jpa-impl\",,)"
+  },
+  {
+    "version": "3.6.0",
+    "id": 455638,
+    "package_id": 12326,
+    "package_name": "org.apache.camel:camel-core",
+    "packages": "(12326,org.apache.camel:camel-core,mvn,\"Camel :: Core\",,)"
+  },
+  {
+    "version": "8.7.0",
+    "id": 553516,
+    "package_id": 21386,
+    "package_name": "org.apache.solr:solr-core",
+    "packages": "(21386,org.apache.solr:solr-core,mvn,\"Apache Solr Core\",https://gitbox.apache.org/repos/asf?p=lucene-solr.git;f=solr,)"
+  },
+  {
+    "version": "3.6.0",
+    "id": 340468,
+    "package_id": 31381,
+    "package_name": "org.apache.camel:camel-jackson",
+    "packages": "(31381,org.apache.camel:camel-jackson,mvn,\"Camel :: Jackson\",,)"
+  },
+  {
+    "version": "1.0.0-M6",
+    "id": 356736,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.4.4",
+    "id": 271783,
+    "package_id": 12326,
+    "package_name": "org.apache.camel:camel-core",
+    "packages": "(12326,org.apache.camel:camel-core,mvn,\"Camel :: Core\",,)"
+  },
+  {
+    "version": "3.8.0",
+    "id": 895213,
+    "package_id": 12326,
+    "package_name": "org.apache.camel:camel-core",
+    "packages": "(12326,org.apache.camel:camel-core,mvn,\"Camel :: Core\",,)"
+  },
+  {
+    "version": "0.21.15",
+    "id": 758838,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.25.3",
+    "id": 1324310,
+    "package_id": 12326,
+    "package_name": "org.apache.camel:camel-core",
+    "packages": "(12326,org.apache.camel:camel-core,mvn,\"Camel :: Core\",,)"
+  },
+  {
+    "version": "1.0-12-e6a1f1f",
+    "id": 275159,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.7.0",
+    "id": 1170674,
+    "package_id": 12326,
+    "package_name": "org.apache.camel:camel-core",
+    "packages": "(12326,org.apache.camel:camel-core,mvn,\"Camel :: Core\",,)"
+  },
+  {
+    "version": "3.7.2",
+    "id": 301777,
+    "package_id": 12326,
+    "package_name": "org.apache.camel:camel-core",
+    "packages": "(12326,org.apache.camel:camel-core,mvn,\"Camel :: Core\",,)"
+  },
+  {
+    "version": "0.21.9",
+    "id": 144982,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.1.8",
+    "id": 304846,
+    "package_id": 5788,
+    "package_name": "org.apache.syncope:syncope-core",
+    "packages": "(5788,org.apache.syncope:syncope-core,mvn,\"Apache Syncope Core\",,)"
+  },
+  {
+    "version": "2.0.16",
+    "id": 539764,
+    "package_id": 5788,
+    "package_name": "org.apache.syncope:syncope-core",
+    "packages": "(5788,org.apache.syncope:syncope-core,mvn,\"Apache Syncope Core\",,)"
+  },
+  {
+    "version": "1.0.0-M8",
+    "id": 43606,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.4.5",
+    "id": 819367,
+    "package_id": 12326,
+    "package_name": "org.apache.camel:camel-core",
+    "packages": "(12326,org.apache.camel:camel-core,mvn,\"Camel :: Core\",,)"
+  },
+  {
+    "version": "3.7.1",
+    "id": 1070841,
+    "package_id": 12326,
+    "package_name": "org.apache.camel:camel-core",
+    "packages": "(12326,org.apache.camel:camel-core,mvn,\"Camel :: Core\",,)"
+  },
+  {
+    "version": "3.5.0",
+    "id": 75610,
+    "package_id": 12326,
+    "package_name": "org.apache.camel:camel-core",
+    "packages": "(12326,org.apache.camel:camel-core,mvn,\"Camel :: Core\",,)"
+  },
+  {
+    "version": "0.21.12",
+    "id": 89686,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.12.0-rc1",
+    "id": 683134,
+    "package_id": 1543,
+    "package_name": "com.fasterxml.jackson.dataformat:jackson-dataformat-xml",
+    "packages": "(1543,com.fasterxml.jackson.dataformat:jackson-dataformat-xml,mvn,Jackson-dataformat-XML,http://github.com/FasterXML/jackson-dataformat-xml,)"
+  },
+  {
+    "version": "8.2.0",
+    "id": 231587,
+    "package_id": 297054,
+    "package_name": "net.sf.mpxj:mpxj",
+    "packages": "(297054,net.sf.mpxj:mpxj,mvn,MPXJ,https://github.com/joniles/mpxj,)"
+  },
+  {
+    "version": "0.22-143-49b5a8d",
+    "id": 277075,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.25",
+    "id": 625072,
+    "package_id": 3927,
+    "package_name": "org.apache.tika:tika-core",
+    "packages": "(3927,org.apache.tika:tika-core,mvn,\"Apache Tika core\",,)"
+  },
+  {
+    "version": "1.0-23-f99b0af",
+    "id": 898425,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.3.8",
+    "id": 25652,
+    "package_id": 7258,
+    "package_name": "org.apache.cxf:cxf",
+    "packages": "(7258,org.apache.cxf:cxf,mvn,\"Apache CXF\",https://gitbox.apache.org/repos/asf?p=cxf.git;a=summary,)"
+  },
+  {
+    "version": "2.0.0-ALPHA",
+    "id": 879635,
+    "package_id": 3927,
+    "package_name": "org.apache.tika:tika-core",
+    "packages": "(3927,org.apache.tika:tika-core,mvn,\"Apache Tika core\",,)"
+  },
+  {
+    "version": "0.21.9",
+    "id": 56442,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "3.3.12",
+    "id": 596327,
+    "package_id": 73480,
+    "package_name": "com.alipay.sofa:hessian",
+    "packages": "(73480,com.alipay.sofa:hessian,mvn,com.alipay.sofa:hessian,http://github.com/alipay/sofa-hessian/tree/master,)"
+  },
+  {
+    "version": "7.8",
+    "id": 360645,
+    "package_id": 173354,
+    "package_name": "org.opencastproject:opencast-oaipmh-api",
+    "packages": "(173354,org.opencastproject:opencast-oaipmh-api,mvn,\"Opencast :: oaipmh-api\",,)"
+  },
+  {
+    "version": "4.13.1",
+    "id": 125301,
+    "package_id": 30,
+    "package_name": "junit:junit",
+    "packages": "(30,junit:junit,mvn,JUnit,https://github.com/junit-team/junit4,)"
+  },
+  {
+    "version": "5.6.1",
+    "id": 47830,
+    "package_id": 158464,
+    "package_name": "org.apache.tapestry:tapestry-core",
+    "packages": "(158464,org.apache.tapestry:tapestry-core,mvn,,,)"
+  },
+  {
+    "version": "9.0",
+    "id": 1058417,
+    "package_id": 30361,
+    "package_name": "org.opencastproject:opencast-kernel",
+    "packages": "(30361,org.opencastproject:opencast-kernel,mvn,\"Opencast :: kernel\",,)"
+  },
+  {
+    "version": "5.7.0",
+    "id": 901915,
+    "package_id": 158464,
+    "package_name": "org.apache.tapestry:tapestry-core",
+    "packages": "(158464,org.apache.tapestry:tapestry-core,mvn,,,)"
+  },
+  {
+    "version": "1.12.1",
+    "id": 426817,
+    "package_id": 99219,
+    "package_name": "org.apache.nifi:nifi-web-api",
+    "packages": "(99219,org.apache.nifi:nifi-web-api,mvn,,,)"
+  },
+  {
+    "version": "4.13.2",
+    "id": 743983,
+    "package_id": 30,
+    "package_name": "junit:junit",
+    "packages": "(30,junit:junit,mvn,JUnit,https://github.com/junit-team/junit4,)"
+  },
+  {
+    "version": "4.12",
+    "id": 197768,
+    "package_id": 30,
+    "package_name": "junit:junit",
+    "packages": "(30,junit:junit,mvn,JUnit,https://github.com/junit-team/junit4,)"
+  },
+  {
+    "version": "1.10.9",
+    "id": 139053,
+    "package_id": 3794,
+    "package_name": "org.apache.ant:ant",
+    "packages": "(3794,org.apache.ant:ant,mvn,\"Apache Ant Core\",,)"
+  },
+  {
+    "version": "1.68",
+    "id": 284740,
+    "package_id": 1279473,
+    "package_name": "org.bouncycastle:bcprov-jdk14",
+    "packages": "(1279473,org.bouncycastle:bcprov-jdk14,mvn,\"Bouncy Castle Provider\",https://github.com/bcgit/bc-java,)"
+  },
+  {
+    "version": "1.25",
+    "id": 641695,
+    "package_id": 42302,
+    "package_name": "org.apache.tika:tika-parsers",
+    "packages": "(42302,org.apache.tika:tika-parsers,mvn,,,)"
+  },
+  {
+    "version": "1.0.0-M16",
+    "id": 1147083,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-23-f99b0af",
+    "id": 730094,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "2.1.7",
+    "id": 890,
+    "package_id": 5788,
+    "package_name": "org.apache.syncope:syncope-core",
+    "packages": "(5788,org.apache.syncope:syncope-core,mvn,\"Apache Syncope Core\",,)"
+  },
+  {
+    "version": "0.14.0",
+    "id": 1295575,
+    "package_id": 10060,
+    "package_name": "org.apache.thrift:libthrift",
+    "packages": "(10060,org.apache.thrift:libthrift,mvn,\"Apache Thrift\",https://github.com/apache/thrift,)"
+  },
+  {
+    "version": "1.0.0-M18",
+    "id": 929259,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "5.16.1",
+    "id": 806620,
+    "package_id": 3901529,
+    "package_name": "org.apache.activemq:activemq-web-console",
+    "packages": "(3901529,org.apache.activemq:activemq-web-console,mvn,\"ActiveMQ :: Web Console\",,)"
+  },
+  {
+    "version": "1.0-12-e6a1f1f",
+    "id": 984058,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "5.6.2",
+    "id": 288095,
+    "package_id": 158464,
+    "package_name": "org.apache.tapestry:tapestry-core",
+    "packages": "(158464,org.apache.tapestry:tapestry-core,mvn,,,)"
+  },
+  {
+    "version": "2.3.8",
+    "id": 961413,
+    "package_id": 14362,
+    "package_name": "org.apache.hive:hive-exec",
+    "packages": "(14362,org.apache.hive:hive-exec,mvn,\"Hive Query Language\",,)"
+  },
+  {
+    "version": "1.5.0",
+    "id": 890691,
+    "package_id": 2619301,
+    "package_name": "org.eclipse.hono:hono-parent",
+    "packages": "(2619301,org.eclipse.hono:hono-parent,mvn,Hono,https://github.com/eclipse/hono,)"
+  },
+  {
+    "version": "2.5.26",
+    "id": 283476,
+    "package_id": 72874,
+    "package_name": "org.apache.struts:struts2-core",
+    "packages": "(72874,org.apache.struts:struts2-core,mvn,\"Struts 2 Core\",,)"
+  },
+  {
+    "version": "8.5",
+    "id": 377828,
+    "package_id": 99352,
+    "package_name": "org.opencastproject:base",
+    "packages": "(99352,org.opencastproject:base,mvn,opencast,https://github.com/opencast/opencast/,)"
+  },
+  {
+    "version": "1.4.0",
+    "id": 1209913,
+    "package_id": 2619301,
+    "package_name": "org.eclipse.hono:hono-parent",
+    "packages": "(2619301,org.eclipse.hono:hono-parent,mvn,Hono,https://github.com/eclipse/hono,)"
+  },
+  {
+    "version": "5.15.14",
+    "id": 734182,
+    "package_id": 3901529,
+    "package_name": "org.apache.activemq:activemq-web-console",
+    "packages": "(3901529,org.apache.activemq:activemq-web-console,mvn,\"ActiveMQ :: Web Console\",,)"
+  },
+  {
+    "version": "2.3.2",
+    "id": 232575,
+    "package_id": 10045,
+    "package_name": "org.apache.hbase:hbase-thrift",
+    "packages": "(10045,org.apache.hbase:hbase-thrift,mvn,\"Apache HBase - Thrift\",,)"
+  },
+  {
+    "version": "5.2.9.RELEASE",
+    "id": 271041,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "2.3.3",
+    "id": 389719,
+    "package_id": 10045,
+    "package_name": "org.apache.hbase:hbase-thrift",
+    "packages": "(10045,org.apache.hbase:hbase-thrift,mvn,\"Apache HBase - Thrift\",,)"
+  },
+  {
+    "version": "2.2.6",
+    "id": 1652,
+    "package_id": 10045,
+    "package_name": "org.apache.hbase:hbase-thrift",
+    "packages": "(10045,org.apache.hbase:hbase-thrift,mvn,\"Apache HBase - Thrift\",,)"
+  },
+  {
+    "version": "2.4.1",
+    "id": 1242023,
+    "package_id": 10045,
+    "package_name": "org.apache.hbase:hbase-thrift",
+    "packages": "(10045,org.apache.hbase:hbase-thrift,mvn,\"Apache HBase - Thrift\",,)"
+  },
+  {
+    "version": "4.0.0.CR1",
+    "id": 84653,
+    "package_id": 2008,
+    "package_name": "io.vertx:vertx-core",
+    "packages": "(2008,io.vertx:vertx-core,mvn,\"Vert.x Core\",git@github.com:eclipse/vert.x.git,)"
+  },
+  {
+    "version": "9.1.2",
+    "id": 783423,
+    "package_id": 75623,
+    "package_name": "com.cronutils:cron-utils",
+    "packages": "(75623,com.cronutils:cron-utils,mvn,cron-utils,https://github.com/jmrozanec/cron-utils,)"
+  },
+  {
+    "version": "1.2.2",
+    "id": 1195042,
+    "package_id": 35597,
+    "package_name": "com.mikesamuel:json-sanitizer",
+    "packages": "(35597,com.mikesamuel:json-sanitizer,mvn,json-sanitizer,https://github.com/OWASP/json-sanitizer,)"
+  },
+  {
+    "version": "1.27",
+    "id": 135404,
+    "package_id": 746,
+    "package_name": "org.yaml:snakeyaml",
+    "packages": "(746,org.yaml:snakeyaml,mvn,SnakeYAML,https://bitbucket.org/asomov/snakeyaml/src,)"
+  },
+  {
+    "version": "4.0.0.Beta3",
+    "id": 91355,
+    "package_id": 2008,
+    "package_name": "io.vertx:vertx-core",
+    "packages": "(2008,io.vertx:vertx-core,mvn,\"Vert.x Core\",git@github.com:eclipse/vert.x.git,)"
+  },
+  {
+    "version": "5.0.19.RELEASE",
+    "id": 1344,
+    "package_id": 1037,
+    "package_name": "org.springframework:spring-web",
+    "packages": "(1037,org.springframework:spring-web,mvn,\"Spring Web\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "12.0.0",
+    "id": 299222,
+    "package_id": 2759,
+    "package_name": "org.keycloak:keycloak-saml-core",
+    "packages": "(2759,org.keycloak:keycloak-saml-core,mvn,\"Keycloak SAML Core\",,)"
+  },
+  {
+    "version": "2.5.14",
+    "id": 597486,
+    "package_id": 6013,
+    "package_name": "org.codehaus.groovy:groovy",
+    "packages": "(6013,org.codehaus.groovy:groovy,mvn,\"Apache Groovy\",https://github.com/apache/groovy.git,)"
+  },
+  {
+    "version": "3.0.7",
+    "id": 401911,
+    "package_id": 6013,
+    "package_name": "org.codehaus.groovy:groovy",
+    "packages": "(6013,org.codehaus.groovy:groovy,mvn,\"Apache Groovy\",https://github.com/apache/groovy.git,)"
+  },
+  {
+    "version": "4.0.0.CR2",
+    "id": 115387,
+    "package_id": 2432,
+    "package_name": "io.vertx:vertx-web",
+    "packages": "(2432,io.vertx:vertx-web,mvn,,,)"
+  },
+  {
+    "version": "3.5.0",
+    "id": 364196,
+    "package_id": 146138,
+    "package_name": "org.apache.camel:camel-netty",
+    "packages": "(146138,org.apache.camel:camel-netty,mvn,\"Camel :: Netty\",,)"
+  },
+  {
+    "version": "4.3.29.RELEASE",
+    "id": 62597,
+    "package_id": 1037,
+    "package_name": "org.springframework:spring-web",
+    "packages": "(1037,org.springframework:spring-web,mvn,\"Spring Web\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "2.25.3",
+    "id": 842989,
+    "package_id": 146138,
+    "package_name": "org.apache.camel:camel-netty",
+    "packages": "(146138,org.apache.camel:camel-netty,mvn,\"Camel :: Netty\",,)"
+  },
+  {
+    "version": "0.0.15",
+    "id": 36390,
+    "package_id": 153933,
+    "package_name": "com.sap.scimono:scimono-server",
+    "packages": "(153933,com.sap.scimono:scimono-server,mvn,,,)"
+  },
+  {
+    "version": "3.8.0",
+    "id": 312730,
+    "package_id": 146138,
+    "package_name": "org.apache.camel:camel-netty",
+    "packages": "(146138,org.apache.camel:camel-netty,mvn,\"Camel :: Netty\",,)"
+  },
+  {
+    "version": "3.7.2",
+    "id": 927665,
+    "package_id": 146138,
+    "package_name": "org.apache.camel:camel-netty",
+    "packages": "(146138,org.apache.camel:camel-netty,mvn,\"Camel :: Netty\",,)"
+  },
+  {
+    "version": "0.0.16",
+    "id": 354742,
+    "package_id": 153933,
+    "package_name": "com.sap.scimono:scimono-server",
+    "packages": "(153933,com.sap.scimono:scimono-server,mvn,,,)"
+  },
+  {
+    "version": "0.0.17",
+    "id": 646076,
+    "package_id": 153933,
+    "package_name": "com.sap.scimono:scimono-server",
+    "packages": "(153933,com.sap.scimono:scimono-server,mvn,,,)"
+  },
+  {
+    "version": "3.7.1",
+    "id": 1115968,
+    "package_id": 146138,
+    "package_name": "org.apache.camel:camel-netty",
+    "packages": "(146138,org.apache.camel:camel-netty,mvn,\"Camel :: Netty\",,)"
+  },
+  {
+    "version": "0.0.14",
+    "id": 571488,
+    "package_id": 153933,
+    "package_name": "com.sap.scimono:scimono-server",
+    "packages": "(153933,com.sap.scimono:scimono-server,mvn,,,)"
+  },
+  {
+    "version": "0.0.13",
+    "id": 149196,
+    "package_id": 153933,
+    "package_name": "com.sap.scimono:scimono-server",
+    "packages": "(153933,com.sap.scimono:scimono-server,mvn,,,)"
+  },
+  {
+    "version": "3.4.5",
+    "id": 903483,
+    "package_id": 146138,
+    "package_name": "org.apache.camel:camel-netty",
+    "packages": "(146138,org.apache.camel:camel-netty,mvn,\"Camel :: Netty\",,)"
+  },
+  {
+    "version": "2.1.6",
+    "id": 1062764,
+    "package_id": 2594,
+    "package_name": "org.apache.santuario:xmlsec",
+    "packages": "(2594,org.apache.santuario:xmlsec,mvn,\"Apache XML Security for Java\",https://gitbox.apache.org/repos/asf?p=santuario-xml-security-java.git;a=summary,)"
+  },
+  {
+    "version": "3.6.0",
+    "id": 579551,
+    "package_id": 146138,
+    "package_name": "org.apache.camel:camel-netty",
+    "packages": "(146138,org.apache.camel:camel-netty,mvn,\"Camel :: Netty\",,)"
+  },
+  {
+    "version": "3.7.0",
+    "id": 763388,
+    "package_id": 146138,
+    "package_name": "org.apache.camel:camel-netty",
+    "packages": "(146138,org.apache.camel:camel-netty,mvn,\"Camel :: Netty\",,)"
+  },
+  {
+    "version": "3.4.4",
+    "id": 567168,
+    "package_id": 146138,
+    "package_name": "org.apache.camel:camel-netty",
+    "packages": "(146138,org.apache.camel:camel-netty,mvn,\"Camel :: Netty\",,)"
+  },
+  {
+    "version": "4.9.2",
+    "id": 952010,
+    "package_id": 1206013,
+    "package_name": "com.adobe.acs:acs-aem-commons",
+    "packages": "(1206013,com.adobe.acs:acs-aem-commons,mvn,\"ACS AEM Commons - Reactor Project\",https://github.com/Adobe-Consulting-Services/acs-aem-commons/tree/master,)"
+  },
+  {
+    "version": "2.6.10",
+    "id": 454886,
+    "package_id": 380,
+    "package_name": "com.typesafe.akka:akka-actor_2.12",
+    "packages": "(380,com.typesafe.akka:akka-actor_2.12,mvn,akka-actor,https://github.com/akka/akka,)"
+  },
+  {
+    "version": "2.5.32",
+    "id": 388806,
+    "package_id": 954,
+    "package_name": "com.typesafe.akka:akka-actor_2.11",
+    "packages": "(954,com.typesafe.akka:akka-actor_2.11,mvn,akka-actor,https://github.com/akka/akka,)"
+  },
+  {
+    "version": "2.5.32",
+    "id": 455427,
+    "package_id": 380,
+    "package_name": "com.typesafe.akka:akka-actor_2.12",
+    "packages": "(380,com.typesafe.akka:akka-actor_2.12,mvn,akka-actor,https://github.com/akka/akka,)"
+  },
+  {
+    "version": "2.6.12",
+    "id": 880954,
+    "package_id": 380,
+    "package_name": "com.typesafe.akka:akka-actor_2.12",
+    "packages": "(380,com.typesafe.akka:akka-actor_2.12,mvn,akka-actor,https://github.com/akka/akka,)"
+  },
+  {
+    "version": "9.0.3",
+    "id": 757954,
+    "package_id": 22539,
+    "package_name": "io.kubernetes:client-java",
+    "packages": "(22539,io.kubernetes:client-java,mvn,client-java,,)"
+  },
+  {
+    "version": "1.2.3",
+    "id": 810316,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "2.6.11",
+    "id": 1110393,
+    "package_id": 380,
+    "package_name": "com.typesafe.akka:akka-actor_2.12",
+    "packages": "(380,com.typesafe.akka:akka-actor_2.12,mvn,akka-actor,https://github.com/akka/akka,)"
+  },
+  {
+    "version": "2.6.9",
+    "id": 165497,
+    "package_id": 380,
+    "package_name": "com.typesafe.akka:akka-actor_2.12",
+    "packages": "(380,com.typesafe.akka:akka-actor_2.12,mvn,akka-actor,https://github.com/akka/akka,)"
+  },
+  {
+    "version": "2.6.13",
+    "id": 1318047,
+    "package_id": 380,
+    "package_name": "com.typesafe.akka:akka-actor_2.12",
+    "packages": "(380,com.typesafe.akka:akka-actor_2.12,mvn,akka-actor,https://github.com/akka/akka,)"
+  },
+  {
+    "version": "11.0.0",
+    "id": 799021,
+    "package_id": 22539,
+    "package_name": "io.kubernetes:client-java",
+    "packages": "(22539,io.kubernetes:client-java,mvn,client-java,,)"
+  },
+  {
+    "version": "1.0.3",
+    "id": 809828,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "2.3.1",
+    "id": 845411,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "2.0.19",
+    "id": 887719,
+    "package_id": 90104,
+    "package_name": "io.dropwizard:dropwizard-validation",
+    "packages": "(90104,io.dropwizard:dropwizard-validation,mvn,\"Dropwizard Validation Support\",,)"
+  },
+  {
+    "version": "1.1.0.M1",
+    "id": 809913,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "2.0.18",
+    "id": 984915,
+    "package_id": 90104,
+    "package_name": "io.dropwizard:dropwizard-validation",
+    "packages": "(90104,io.dropwizard:dropwizard-validation,mvn,\"Dropwizard Validation Support\",,)"
+  },
+  {
+    "version": "1.0.4",
+    "id": 924130,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "2.8.3",
+    "id": 394228,
+    "package_id": 31332,
+    "package_name": "com.typesafe.play:play_2.12",
+    "packages": "(31332,com.typesafe.play:play_2.12,mvn,Play,https://github.com/playframework/playframework,)"
+  },
+  {
+    "version": "2.7.9",
+    "id": 1216224,
+    "package_id": 31332,
+    "package_name": "com.typesafe.play:play_2.12",
+    "packages": "(31332,com.typesafe.play:play_2.12,mvn,Play,https://github.com/playframework/playframework,)"
+  },
+  {
+    "version": "2.7.8",
+    "id": 1322999,
+    "package_id": 31332,
+    "package_name": "com.typesafe.play:play_2.12",
+    "packages": "(31332,com.typesafe.play:play_2.12,mvn,Play,https://github.com/playframework/playframework,)"
+  },
+  {
+    "version": "2.8.7",
+    "id": 1332786,
+    "package_id": 31332,
+    "package_name": "com.typesafe.play:play_2.12",
+    "packages": "(31332,com.typesafe.play:play_2.12,mvn,Play,https://github.com/playframework/playframework,)"
+  },
+  {
+    "version": "2.7.7",
+    "id": 564335,
+    "package_id": 31332,
+    "package_name": "com.typesafe.play:play_2.12",
+    "packages": "(31332,com.typesafe.play:play_2.12,mvn,Play,https://github.com/playframework/playframework,)"
+  },
+  {
+    "version": "2.8.5",
+    "id": 208491,
+    "package_id": 31332,
+    "package_name": "com.typesafe.play:play_2.12",
+    "packages": "(31332,com.typesafe.play:play_2.12,mvn,Play,https://github.com/playframework/playframework,)"
+  },
+  {
+    "version": "2.0.0",
+    "id": 932601,
+    "package_id": 168,
+    "package_name": "io.micronaut:micronaut-http-client",
+    "packages": "(168,io.micronaut:micronaut-http-client,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "2.2.11.RELEASE",
+    "id": 966798,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "5.11.0",
+    "id": 287912,
+    "package_id": 15116,
+    "package_name": "com.rabbitmq:amqp-client",
+    "packages": "(15116,com.rabbitmq:amqp-client,mvn,\"RabbitMQ Java Client\",https://github.com/rabbitmq/rabbitmq-java-client,)"
+  },
+  {
+    "version": "2.8.4",
+    "id": 553816,
+    "package_id": 31332,
+    "package_name": "com.typesafe.play:play_2.12",
+    "packages": "(31332,com.typesafe.play:play_2.12,mvn,Play,https://github.com/playframework/playframework,)"
+  },
+  {
+    "version": "2.7.6",
+    "id": 141571,
+    "package_id": 31332,
+    "package_name": "com.typesafe.play:play_2.12",
+    "packages": "(31332,com.typesafe.play:play_2.12,mvn,Play,https://github.com/playframework/playframework,)"
+  },
+  {
+    "version": "8.7",
+    "id": 51317,
+    "package_id": 173354,
+    "package_name": "org.opencastproject:opencast-oaipmh-api",
+    "packages": "(173354,org.opencastproject:opencast-oaipmh-api,mvn,\"Opencast :: oaipmh-api\",,)"
+  },
+  {
+    "version": "8.6",
+    "id": 460465,
+    "package_id": 173354,
+    "package_name": "org.opencastproject:opencast-oaipmh-api",
+    "packages": "(173354,org.opencastproject:opencast-oaipmh-api,mvn,\"Opencast :: oaipmh-api\",,)"
+  },
+  {
+    "version": "2.4.3",
+    "id": 795319,
+    "package_id": 9007,
+    "package_name": "org.springframework.data:spring-data-jpa",
+    "packages": "(9007,org.springframework.data:spring-data-jpa,mvn,\"Spring Data JPA\",,)"
+  },
+  {
+    "version": "8.10",
+    "id": 601328,
+    "package_id": 173354,
+    "package_name": "org.opencastproject:opencast-oaipmh-api",
+    "packages": "(173354,org.opencastproject:opencast-oaipmh-api,mvn,\"Opencast :: oaipmh-api\",,)"
+  },
+  {
+    "version": "8.9",
+    "id": 856004,
+    "package_id": 173354,
+    "package_name": "org.opencastproject:opencast-oaipmh-api",
+    "packages": "(173354,org.opencastproject:opencast-oaipmh-api,mvn,\"Opencast :: oaipmh-api\",,)"
+  },
+  {
+    "version": "10.0.1",
+    "id": 810509,
+    "package_id": 832,
+    "package_name": "org.eclipse.jetty:jetty-server",
+    "packages": "(832,org.eclipse.jetty:jetty-server,mvn,\"Jetty :: Server Core\",,)"
+  },
+  {
+    "version": "8.8",
+    "id": 992438,
+    "package_id": 173354,
+    "package_name": "org.opencastproject:opencast-oaipmh-api",
+    "packages": "(173354,org.opencastproject:opencast-oaipmh-api,mvn,\"Opencast :: oaipmh-api\",,)"
+  },
+  {
+    "version": "8.5",
+    "id": 349449,
+    "package_id": 173354,
+    "package_name": "org.opencastproject:opencast-oaipmh-api",
+    "packages": "(173354,org.opencastproject:opencast-oaipmh-api,mvn,\"Opencast :: oaipmh-api\",,)"
+  },
+  {
+    "version": "9.0",
+    "id": 1335000,
+    "package_id": 173354,
+    "package_name": "org.opencastproject:opencast-oaipmh-api",
+    "packages": "(173354,org.opencastproject:opencast-oaipmh-api,mvn,\"Opencast :: oaipmh-api\",,)"
+  },
+  {
+    "version": "0.22-53-01128f5",
+    "id": 856715,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "9.1",
+    "id": 1325691,
+    "package_id": 173354,
+    "package_name": "org.opencastproject:opencast-oaipmh-api",
+    "packages": "(173354,org.opencastproject:opencast-oaipmh-api,mvn,\"Opencast :: oaipmh-api\",,)"
+  },
+  {
+    "version": "0.21.19",
+    "id": 857369,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-18-a497d1a",
+    "id": 872578,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0.0-M9",
+    "id": 688198,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "0.21.16",
+    "id": 826789,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0.0-M7",
+    "id": 190815,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-25-f1a4ab0",
+    "id": 940477,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-6-e439945",
+    "id": 884811,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0.0-M8",
+    "id": 952685,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0.0-M13",
+    "id": 862601,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "0.10.0-M10",
+    "id": 825310,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-14-7c5ec00",
+    "id": 884446,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "9.0.41",
+    "id": 842119,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "0.22.0-M3",
+    "id": 1147047,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0.0-M10",
+    "id": 819889,
+    "package_id": 8260,
+    "package_name": "org.http4s:http4s-server_2.12",
+    "packages": "(8260,org.http4s:http4s-server_2.12,mvn,server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-18-659c58b",
+    "id": 860624,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "1.0-39-5736fdc",
+    "id": 903540,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "10.2.2",
+    "id": 982557,
+    "package_id": 26655,
+    "package_name": "com.typesafe.akka:akka-http-core_2.12",
+    "packages": "(26655,com.typesafe.akka:akka-http-core_2.12,mvn,akka-http-core,https://github.com/akka/akka-http,)"
+  },
+  {
+    "version": "1.0.0-M10",
+    "id": 819952,
+    "package_id": 11451,
+    "package_name": "org.http4s:http4s-blaze-server_2.13",
+    "packages": "(11451,org.http4s:http4s-blaze-server_2.13,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "10.1.14",
+    "id": 1291415,
+    "package_id": 322930,
+    "package_name": "com.typesafe.akka:akka-http-core_2.11",
+    "packages": "(322930,com.typesafe.akka:akka-http-core_2.11,mvn,akka-http-core,https://github.com/akka/akka-http,)"
+  },
+  {
+    "version": "0.22-143-49b5a8d",
+    "id": 802162,
+    "package_id": 8268,
+    "package_name": "org.http4s:http4s-blaze-server_2.12",
+    "packages": "(8268,org.http4s:http4s-blaze-server_2.12,mvn,blaze-server,https://github.com/http4s/http4s,)"
+  },
+  {
+    "version": "10.2.1",
+    "id": 949000,
+    "package_id": 26655,
+    "package_name": "com.typesafe.akka:akka-http-core_2.12",
+    "packages": "(26655,com.typesafe.akka:akka-http-core_2.12,mvn,akka-http-core,https://github.com/akka/akka-http,)"
+  },
+  {
+    "version": "10.2.3",
+    "id": 990952,
+    "package_id": 26655,
+    "package_name": "com.typesafe.akka:akka-http-core_2.12",
+    "packages": "(26655,com.typesafe.akka:akka-http-core_2.12,mvn,akka-http-core,https://github.com/akka/akka-http,)"
+  },
+  {
+    "version": "10.1.13",
+    "id": 395448,
+    "package_id": 322930,
+    "package_name": "com.typesafe.akka:akka-http-core_2.11",
+    "packages": "(322930,com.typesafe.akka:akka-http-core_2.11,mvn,akka-http-core,https://github.com/akka/akka-http,)"
+  },
+  {
+    "version": "7.9",
+    "id": 875486,
+    "package_id": 173354,
+    "package_name": "org.opencastproject:opencast-oaipmh-api",
+    "packages": "(173354,org.opencastproject:opencast-oaipmh-api,mvn,\"Opencast :: oaipmh-api\",,)"
+  },
+  {
+    "version": "8.6",
+    "id": 422104,
+    "package_id": 30361,
+    "package_name": "org.opencastproject:opencast-kernel",
+    "packages": "(30361,org.opencastproject:opencast-kernel,mvn,\"Opencast :: kernel\",,)"
+  },
+  {
+    "version": "2.11.4",
+    "id": 1000524,
+    "package_id": 1543,
+    "package_name": "com.fasterxml.jackson.dataformat:jackson-dataformat-xml",
+    "packages": "(1543,com.fasterxml.jackson.dataformat:jackson-dataformat-xml,mvn,Jackson-dataformat-XML,http://github.com/FasterXML/jackson-dataformat-xml,)"
+  },
+  {
+    "version": "30.1-jre",
+    "id": 847630,
+    "package_id": 204,
+    "package_name": "com.google.guava:guava",
+    "packages": "(204,com.google.guava:guava,mvn,\"Guava: Google Core Libraries for Java\",,)"
+  },
+  {
+    "version": "2.12.0",
+    "id": 784477,
+    "package_id": 1543,
+    "package_name": "com.fasterxml.jackson.dataformat:jackson-dataformat-xml",
+    "packages": "(1543,com.fasterxml.jackson.dataformat:jackson-dataformat-xml,mvn,Jackson-dataformat-XML,http://github.com/FasterXML/jackson-dataformat-xml,)"
+  },
+  {
+    "version": "2.12.1",
+    "id": 843643,
+    "package_id": 1543,
+    "package_name": "com.fasterxml.jackson.dataformat:jackson-dataformat-xml",
+    "packages": "(1543,com.fasterxml.jackson.dataformat:jackson-dataformat-xml,mvn,Jackson-dataformat-XML,http://github.com/FasterXML/jackson-dataformat-xml,)"
+  },
+  {
+    "version": "2.12.2",
+    "id": 1154975,
+    "package_id": 1543,
+    "package_name": "com.fasterxml.jackson.dataformat:jackson-dataformat-xml",
+    "packages": "(1543,com.fasterxml.jackson.dataformat:jackson-dataformat-xml,mvn,Jackson-dataformat-XML,http://github.com/FasterXML/jackson-dataformat-xml,)"
+  },
+  {
+    "version": "2.12.0-rc2",
+    "id": 524864,
+    "package_id": 1543,
+    "package_name": "com.fasterxml.jackson.dataformat:jackson-dataformat-xml",
+    "packages": "(1543,com.fasterxml.jackson.dataformat:jackson-dataformat-xml,mvn,Jackson-dataformat-XML,http://github.com/FasterXML/jackson-dataformat-xml,)"
+  },
+  {
+    "version": "2.11.3",
+    "id": 583620,
+    "package_id": 1543,
+    "package_name": "com.fasterxml.jackson.dataformat:jackson-dataformat-xml",
+    "packages": "(1543,com.fasterxml.jackson.dataformat:jackson-dataformat-xml,mvn,Jackson-dataformat-XML,http://github.com/FasterXML/jackson-dataformat-xml,)"
+  },
+  {
+    "version": "4.8.0",
+    "id": 903691,
+    "package_id": 398253,
+    "package_name": "org.apache.olingo:odata-server-core",
+    "packages": "(398253,org.apache.olingo:odata-server-core,mvn,odata-server-core,,)"
+  },
+  {
+    "version": "4.8.0",
+    "id": 758158,
+    "package_id": 4178180,
+    "package_name": "org.apache.rocketmq:rocketmq-broker",
+    "packages": "(4178180,org.apache.rocketmq:rocketmq-broker,mvn,\"rocketmq-broker 4.8.0\",,)"
+  },
+  {
+    "version": "8.3.3",
+    "id": 633583,
+    "package_id": 297054,
+    "package_name": "net.sf.mpxj:mpxj",
+    "packages": "(297054,net.sf.mpxj:mpxj,mvn,MPXJ,https://github.com/joniles/mpxj,)"
+  },
+  {
+    "version": "8.3.1",
+    "id": 170922,
+    "package_id": 297054,
+    "package_name": "net.sf.mpxj:mpxj",
+    "packages": "(297054,net.sf.mpxj:mpxj,mvn,MPXJ,https://github.com/joniles/mpxj,)"
+  },
+  {
+    "version": "8.3.0",
+    "id": 372604,
+    "package_id": 297054,
+    "package_name": "net.sf.mpxj:mpxj",
+    "packages": "(297054,net.sf.mpxj:mpxj,mvn,MPXJ,https://github.com/joniles/mpxj,)"
+  },
+  {
+    "version": "8.3.2",
+    "id": 466057,
+    "package_id": 297054,
+    "package_name": "net.sf.mpxj:mpxj",
+    "packages": "(297054,net.sf.mpxj:mpxj,mvn,MPXJ,https://github.com/joniles/mpxj,)"
+  },
+  {
+    "version": "4.8.0",
+    "id": 866377,
+    "package_id": 4763334,
+    "package_name": "org.apache.olingo:odata-client-proxy",
+    "packages": "(4763334,org.apache.olingo:odata-client-proxy,mvn,odata-client-proxy,,)"
+  },
+  {
+    "version": "1.67",
+    "id": 590402,
+    "package_id": 1279473,
+    "package_name": "org.bouncycastle:bcprov-jdk14",
+    "packages": "(1279473,org.bouncycastle:bcprov-jdk14,mvn,\"Bouncy Castle Provider\",https://github.com/bcgit/bc-java,)"
+  },
+  {
+    "version": "3.3.9",
+    "id": 960592,
+    "package_id": 1845411,
+    "package_name": "org.apache.cxf:apache-cxf",
+    "packages": "(1845411,org.apache.cxf:apache-cxf,mvn,\"Apache CXF Distribution\",,)"
+  },
+  {
+    "version": "2.0.0-ALPHA",
+    "id": 879248,
+    "package_id": 42302,
+    "package_name": "org.apache.tika:tika-parsers",
+    "packages": "(42302,org.apache.tika:tika-parsers,mvn,,,)"
+  },
+  {
+    "version": "1.13.0",
+    "id": 308027,
+    "package_id": 99219,
+    "package_name": "org.apache.nifi:nifi-web-api",
+    "packages": "(99219,org.apache.nifi:nifi-web-api,mvn,,,)"
+  },
+  {
+    "version": "3.7.1",
+    "id": 880070,
+    "package_id": 362508,
+    "package_name": "org.apache.camel:camel-snakeyaml",
+    "packages": "(362508,org.apache.camel:camel-snakeyaml,mvn,\"Camel :: SnakeYAML\",,)"
+  },
+  {
+    "version": "2.26.0",
+    "id": 314019,
+    "package_id": 154441,
+    "package_name": "org.apache.beam:beam-sdks-java-io-mongodb",
+    "packages": "(154441,org.apache.beam:beam-sdks-java-io-mongodb,mvn,,https://gitbox.apache.org/repos/asf?p=beam.git;a=summary,)"
+  },
+  {
+    "version": "2.15.0",
+    "id": 620000,
+    "package_id": 67631,
+    "package_name": "org.apache.activemq:artemis-commons",
+    "packages": "(67631,org.apache.activemq:artemis-commons,mvn,\"ActiveMQ Artemis Commons\",,)"
+  },
+  {
+    "version": "2.25.0",
+    "id": 460807,
+    "package_id": 154441,
+    "package_name": "org.apache.beam:beam-sdks-java-io-mongodb",
+    "packages": "(154441,org.apache.beam:beam-sdks-java-io-mongodb,mvn,,https://gitbox.apache.org/repos/asf?p=beam.git;a=summary,)"
+  },
+  {
+    "version": "2.27.0",
+    "id": 329192,
+    "package_id": 154441,
+    "package_name": "org.apache.beam:beam-sdks-java-io-mongodb",
+    "packages": "(154441,org.apache.beam:beam-sdks-java-io-mongodb,mvn,,https://gitbox.apache.org/repos/asf?p=beam.git;a=summary,)"
+  },
+  {
+    "version": "2.24.0",
+    "id": 32609,
+    "package_id": 154441,
+    "package_name": "org.apache.beam:beam-sdks-java-io-mongodb",
+    "packages": "(154441,org.apache.beam:beam-sdks-java-io-mongodb,mvn,,https://gitbox.apache.org/repos/asf?p=beam.git;a=summary,)"
+  },
+  {
+    "version": "2.28.0",
+    "id": 919281,
+    "package_id": 154441,
+    "package_name": "org.apache.beam:beam-sdks-java-io-mongodb",
+    "packages": "(154441,org.apache.beam:beam-sdks-java-io-mongodb,mvn,,https://gitbox.apache.org/repos/asf?p=beam.git;a=summary,)"
+  },
+  {
+    "version": "4.0.0-beta",
+    "id": 628972,
+    "package_id": 23460,
+    "package_name": "org.apache.kylin:kylin-core-common",
+    "packages": "(23460,org.apache.kylin:kylin-core-common,mvn,\"Apache Kylin - Core Common\",,)"
+  },
+  {
+    "version": "2.0.22",
+    "id": 1129954,
+    "package_id": 1267,
+    "package_name": "org.apache.pdfbox:pdfbox",
+    "packages": "(1267,org.apache.pdfbox:pdfbox,mvn,\"Apache PDFBox\",,)"
+  },
+  {
+    "version": "4.0.0-alpha",
+    "id": 199225,
+    "package_id": 23460,
+    "package_name": "org.apache.kylin:kylin-core-common",
+    "packages": "(23460,org.apache.kylin:kylin-core-common,mvn,\"Apache Kylin - Core Common\",,)"
+  },
+  {
+    "version": "3.1.1",
+    "id": 510442,
+    "package_id": 23460,
+    "package_name": "org.apache.kylin:kylin-core-common",
+    "packages": "(23460,org.apache.kylin:kylin-core-common,mvn,\"Apache Kylin - Core Common\",,)"
+  },
+  {
+    "version": "4.2.10",
+    "id": 450129,
+    "package_id": 49299,
+    "package_name": "org.apache.karaf:apache-karaf",
+    "packages": "(49299,org.apache.karaf:apache-karaf,mvn,\"Apache Karaf :: Assemblies :: Default Distribution\",,)"
+  },
+  {
+    "version": "2.4.7",
+    "id": 245233,
+    "package_id": 6637,
+    "package_name": "org.apache.spark:spark-core_2.11",
+    "packages": "(6637,org.apache.spark:spark-core_2.11,mvn,\"Spark Project Core\",,)"
+  },
+  {
+    "version": "8.5.61",
+    "id": 798526,
+    "package_id": 3409,
+    "package_name": "org.apache.tomcat.embed:tomcat-embed-core",
+    "packages": "(3409,org.apache.tomcat.embed:tomcat-embed-core,mvn,,,)"
+  },
+  {
+    "version": "5.1.19.RELEASE",
+    "id": 405569,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "5.3.1",
+    "id": 1232152,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "4.3.0",
+    "id": 417298,
+    "package_id": 2178415,
+    "package_name": "org.apache.karaf:karaf",
+    "packages": "(2178415,org.apache.karaf:karaf,mvn,\"Apache Karaf\",https://gitbox.apache.org/repos/asf?p=karaf.git;a=summary,)"
+  },
+  {
+    "version": "5.2.10.RELEASE",
+    "id": 461450,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "5.2.13.RELEASE",
+    "id": 1221019,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "5.0.19.RELEASE",
+    "id": 520670,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "5.2.12.RELEASE",
+    "id": 283809,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "4.3.29.RELEASE",
+    "id": 396978,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "5.3.0",
+    "id": 1231098,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "5.0.20.RELEASE",
+    "id": 688423,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "5.1.20.RELEASE",
+    "id": 1090677,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "5.2.11.RELEASE",
+    "id": 345018,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "5.3.4",
+    "id": 1078703,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "5.3.3",
+    "id": 892025,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "4.3.30.RELEASE",
+    "id": 283959,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "5.1.18.RELEASE",
+    "id": 214388,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "3.7.2",
+    "id": 652397,
+    "package_id": 112470,
+    "package_name": "org.apache.camel:camel-mail",
+    "packages": "(112470,org.apache.camel:camel-mail,mvn,\"Camel :: Mail\",,)"
+  },
+  {
+    "version": "5.3.2",
+    "id": 1079274,
+    "package_id": 1563,
+    "package_name": "org.springframework:spring-core",
+    "packages": "(1563,org.springframework:spring-core,mvn,\"Spring Core\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "3.7.0",
+    "id": 1182583,
+    "package_id": 112470,
+    "package_name": "org.apache.camel:camel-mail",
+    "packages": "(112470,org.apache.camel:camel-mail,mvn,\"Camel :: Mail\",,)"
+  },
+  {
+    "version": "3.8.0",
+    "id": 1185626,
+    "package_id": 112470,
+    "package_name": "org.apache.camel:camel-mail",
+    "packages": "(112470,org.apache.camel:camel-mail,mvn,\"Camel :: Mail\",,)"
+  },
+  {
+    "version": "1.5.0",
+    "id": 704042,
+    "package_id": 40775,
+    "package_name": "com.linecorp.armeria:armeria",
+    "packages": "(40775,com.linecorp.armeria:armeria,mvn,\"Armeria (armeria)\",https://github.com/line/armeria,)"
+  },
+  {
+    "version": "3.5.0",
+    "id": 947461,
+    "package_id": 112470,
+    "package_name": "org.apache.camel:camel-mail",
+    "packages": "(112470,org.apache.camel:camel-mail,mvn,\"Camel :: Mail\",,)"
+  },
+  {
+    "version": "3.4.5",
+    "id": 294250,
+    "package_id": 112470,
+    "package_name": "org.apache.camel:camel-mail",
+    "packages": "(112470,org.apache.camel:camel-mail,mvn,\"Camel :: Mail\",,)"
+  },
+  {
+    "version": "3.7.1",
+    "id": 600646,
+    "package_id": 112470,
+    "package_name": "org.apache.camel:camel-mail",
+    "packages": "(112470,org.apache.camel:camel-mail,mvn,\"Camel :: Mail\",,)"
+  },
+  {
+    "version": "3.6.0",
+    "id": 611389,
+    "package_id": 112470,
+    "package_name": "org.apache.camel:camel-mail",
+    "packages": "(112470,org.apache.camel:camel-mail,mvn,\"Camel :: Mail\",,)"
+  },
+  {
+    "version": "2.25.3",
+    "id": 1158405,
+    "package_id": 112470,
+    "package_name": "org.apache.camel:camel-mail",
+    "packages": "(112470,org.apache.camel:camel-mail,mvn,\"Camel :: Mail\",,)"
+  },
+  {
+    "version": "3.4.4",
+    "id": 167196,
+    "package_id": 112470,
+    "package_name": "org.apache.camel:camel-mail",
+    "packages": "(112470,org.apache.camel:camel-mail,mvn,\"Camel :: Mail\",,)"
+  },
+  {
+    "version": "1.3.0",
+    "id": 89873,
+    "package_id": 40775,
+    "package_name": "com.linecorp.armeria:armeria",
+    "packages": "(40775,com.linecorp.armeria:armeria,mvn,\"Armeria (armeria)\",https://github.com/line/armeria,)"
+  },
+  {
+    "version": "1.2.0",
+    "id": 558060,
+    "package_id": 40775,
+    "package_name": "com.linecorp.armeria:armeria",
+    "packages": "(40775,com.linecorp.armeria:armeria,mvn,\"Armeria (armeria)\",https://github.com/line/armeria,)"
+  },
+  {
+    "version": "7.1.11",
+    "id": 771026,
+    "package_id": 35675,
+    "package_name": "org.apache.qpid:apache-qpid-broker-j",
+    "packages": "(35675,org.apache.qpid:apache-qpid-broker-j,mvn,\"Apache Qpid Broker-J Bundles\",,)"
+  },
+  {
+    "version": "7.1.10",
+    "id": 350037,
+    "package_id": 35675,
+    "package_name": "org.apache.qpid:apache-qpid-broker-j",
+    "packages": "(35675,org.apache.qpid:apache-qpid-broker-j,mvn,\"Apache Qpid Broker-J Bundles\",,)"
+  },
+  {
+    "version": "8.0.3",
+    "id": 971662,
+    "package_id": 35675,
+    "package_name": "org.apache.qpid:apache-qpid-broker-j",
+    "packages": "(35675,org.apache.qpid:apache-qpid-broker-j,mvn,\"Apache Qpid Broker-J Bundles\",,)"
+  },
+  {
+    "version": "1.1.0",
+    "id": 521362,
+    "package_id": 40775,
+    "package_name": "com.linecorp.armeria:armeria",
+    "packages": "(40775,com.linecorp.armeria:armeria,mvn,\"Armeria (armeria)\",https://github.com/line/armeria,)"
+  },
+  {
+    "version": "7.1.12",
+    "id": 1101536,
+    "package_id": 35675,
+    "package_name": "org.apache.qpid:apache-qpid-broker-j",
+    "packages": "(35675,org.apache.qpid:apache-qpid-broker-j,mvn,\"Apache Qpid Broker-J Bundles\",,)"
+  },
+  {
+    "version": "8.0.4",
+    "id": 883338,
+    "package_id": 35675,
+    "package_name": "org.apache.qpid:apache-qpid-broker-j",
+    "packages": "(35675,org.apache.qpid:apache-qpid-broker-j,mvn,\"Apache Qpid Broker-J Bundles\",,)"
+  },
+  {
+    "version": "8.0.1",
+    "id": 454268,
+    "package_id": 35675,
+    "package_name": "org.apache.qpid:apache-qpid-broker-j",
+    "packages": "(35675,org.apache.qpid:apache-qpid-broker-j,mvn,\"Apache Qpid Broker-J Bundles\",,)"
+  },
+  {
+    "version": "8.0.2",
+    "id": 4795,
+    "package_id": 35675,
+    "package_name": "org.apache.qpid:apache-qpid-broker-j",
+    "packages": "(35675,org.apache.qpid:apache-qpid-broker-j,mvn,\"Apache Qpid Broker-J Bundles\",,)"
+  },
+  {
+    "version": "7.1.9",
+    "id": 475739,
+    "package_id": 35675,
+    "package_name": "org.apache.qpid:apache-qpid-broker-j",
+    "packages": "(35675,org.apache.qpid:apache-qpid-broker-j,mvn,\"Apache Qpid Broker-J Bundles\",,)"
+  },
+  {
+    "version": "1.4.0",
+    "id": 1326283,
+    "package_id": 40775,
+    "package_name": "com.linecorp.armeria:armeria",
+    "packages": "(40775,com.linecorp.armeria:armeria,mvn,\"Armeria (armeria)\",https://github.com/line/armeria,)"
+  },
+  {
+    "version": "3.9.3",
+    "id": 941456,
+    "package_id": 2008,
+    "package_name": "io.vertx:vertx-core",
+    "packages": "(2008,io.vertx:vertx-core,mvn,\"Vert.x Core\",git@github.com:eclipse/vert.x.git,)"
+  },
+  {
+    "version": "12.0.0",
+    "id": 1144389,
+    "package_id": 966,
+    "package_name": "org.keycloak:keycloak-core",
+    "packages": "(966,org.keycloak:keycloak-core,mvn,\"Keycloak Core\",,)"
+  },
+  {
+    "version": "2.3.4",
+    "id": 699080,
+    "package_id": 10045,
+    "package_name": "org.apache.hbase:hbase-thrift",
+    "packages": "(10045,org.apache.hbase:hbase-thrift,mvn,\"Apache HBase - Thrift\",,)"
+  },
+  {
+    "version": "2.4.0",
+    "id": 757648,
+    "package_id": 10045,
+    "package_name": "org.apache.hbase:hbase-thrift",
+    "packages": "(10045,org.apache.hbase:hbase-thrift,mvn,\"Apache HBase - Thrift\",,)"
+  },
+  {
+    "version": "4.0.2",
+    "id": 863269,
+    "package_id": 2432,
+    "package_name": "io.vertx:vertx-web",
+    "packages": "(2432,io.vertx:vertx-web,mvn,,,)"
+  },
+  {
+    "version": "1.1.0",
+    "id": 907422,
+    "package_id": 31313,
+    "package_name": "io.micronaut:micronaut-http-netty",
+    "packages": "(31313,io.micronaut:micronaut-http-netty,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "5.1.18.RELEASE",
+    "id": 948021,
+    "package_id": 1037,
+    "package_name": "org.springframework:spring-web",
+    "packages": "(1037,org.springframework:spring-web,mvn,\"Spring Web\",https://github.com/spring-projects/spring-framework,)"
+  },
+  {
+    "version": "1.12.1",
+    "id": 814958,
+    "package_id": 75627,
+    "package_name": "org.apache.flink:flink-runtime_2.12",
+    "packages": "(75627,org.apache.flink:flink-runtime_2.12,mvn,\"Flink : Runtime\",,)"
+  },
+  {
+    "version": "1.2.6",
+    "id": 1033998,
+    "package_id": 31313,
+    "package_name": "io.micronaut:micronaut-http-netty",
+    "packages": "(31313,io.micronaut:micronaut-http-netty,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.0.5",
+    "id": 1285201,
+    "package_id": 31313,
+    "package_name": "io.micronaut:micronaut-http-netty",
+    "packages": "(31313,io.micronaut:micronaut-http-netty,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.2.4",
+    "id": 1168817,
+    "package_id": 31313,
+    "package_name": "io.micronaut:micronaut-http-netty",
+    "packages": "(31313,io.micronaut:micronaut-http-netty,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.2.5",
+    "id": 1284624,
+    "package_id": 31313,
+    "package_name": "io.micronaut:micronaut-http-netty",
+    "packages": "(31313,io.micronaut:micronaut-http-netty,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.2.0",
+    "id": 916101,
+    "package_id": 31313,
+    "package_name": "io.micronaut:micronaut-http-netty",
+    "packages": "(31313,io.micronaut:micronaut-http-netty,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  },
+  {
+    "version": "1.1.4",
+    "id": 917191,
+    "package_id": 31313,
+    "package_name": "io.micronaut:micronaut-http-netty",
+    "packages": "(31313,io.micronaut:micronaut-http-netty,mvn,Micronaut,scm:git@github.com:micronaut-projects/micronaut-core.git,)"
+  }
+]
