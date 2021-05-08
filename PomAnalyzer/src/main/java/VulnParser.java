@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Set;
 
 public class VulnParser {
 
@@ -28,19 +30,15 @@ public class VulnParser {
             //Read JSON file
             Object obj = jsonParser.parse(reader);
 
-            JSONArray depList = (JSONArray) obj;
+            JSONObject depList = (JSONObject) obj;
+            Set<String> keys = depList.keySet();
 
-            for (Object dep : depList) {
-                String[] depInfo = ((String) dep).split(":");
-                if (depInfo.length == 3) {
-                    vulnerabilities.add(new Dependency(depInfo[0], depInfo[1], depInfo[2]));
+            for (String key : keys) {
+                JSONArray vulnArr = (JSONArray) depList.get(key);
+                for (Object vuln : vulnArr) {
+                    vulnerabilities.add(parseDepObject( (JSONObject) vuln));
                 }
             }
-
-
-            //for (Object dep : depList) {
-               // vulnerabilities.add(parseDepObject( (JSONObject) dep));
-            //}
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -54,12 +52,12 @@ public class VulnParser {
 
     private static Dependency parseDepObject(JSONObject dependency)
     {
+        JSONArray infArr = (JSONArray) dependency.get("vulnerable_purls");
+        String info = (String) infArr.get(0);
 
-        String version = (String) dependency.get("version");
+        String[] info1 = info.split("/");
+        String[] info2 = info1[2].split("@");
 
-        String packageName = (String) dependency.get("package_name");
-        String[] packageInfo = packageName.split(":");
-
-        return new Dependency(packageInfo[0], packageInfo[1], version);
+        return new Dependency(info1[1], info2[0], info2[1]);
     }
 }

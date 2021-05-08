@@ -23,7 +23,7 @@ public class PomAnalyzer {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
         ArrayList<Dependency> listOfDeps = new ArrayList<>();
-        ArrayList<Dependency> listOfVuln = new VulnParser("D:\\Repos\\CG-dependency-analyzer\\PomAnalyzer\\vulnerable_pkg_vers.json").readVuln();
+        ArrayList<Dependency> listOfVuln = new VulnParser("D:\\Repos\\CG-dependency-analyzer\\PomAnalyzer\\NewFormat.json").readVuln();
 
         try {
 
