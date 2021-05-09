@@ -1,0 +1,34 @@
+{
+  "groupid:pkg": [
+    {
+      "id": "CVE-code1",
+      "severity": "MODERATE",
+      "vulnerable_purls": ["pkg:maven/groupid/pkgid@version"],
+      "vulnerable_fasten_uris": ["uri1", "uri2"],
+      "references": ["ref1"]
+    },
+    {
+      "id": "CVE-code1",
+      "severity": "MODERATE",
+      "vulnerable_purls": ["pkg:maven/groupid/pkgid@version"],
+      "vulnerable_fasten_uris": ["uri1", "uri2"],
+      "references": ["ref1"]
+    }
+  ],
+  "groupid:pkg2": [
+    {
+      "id": "CVE-code1",
+      "severity": "MODERATE",
+      "vulnerable_purls": ["pkg:maven/groupid/pkgid@version"],
+      "vulnerable_fasten_uris": ["uri1", "uri2"],
+      "references": ["ref1"]
+    },
+    {
+      "id": "CVE-code1",
+      "severity": "MODERATE",
+      "vulnerable_purls": ["pkg:maven/groupid/pkgid@version"],
+      "vulnerable_fasten_uris": ["uri1", "uri2"],
+      "references": ["ref1"]
+    }
+  ]
+}

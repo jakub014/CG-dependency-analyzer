@@ -69,6 +69,13 @@
             <artifactId>gradle-tooling-api</artifactId>
             <version>RELEASE123</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>30.1-jre</version>
+        </dependency>
+
     </dependencies>
 
 </project>
