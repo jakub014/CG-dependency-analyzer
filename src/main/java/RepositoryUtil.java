@@ -2,19 +2,13 @@ import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.shared.invoker.*;
-import org.gradle.tooling.GradleConnectionException;
-import org.gradle.tooling.GradleConnector;
-import org.gradle.tooling.ProjectConnection;
 
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.attribute.PosixFilePermission;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 public class RepositoryUtil {
@@ -22,17 +16,53 @@ public class RepositoryUtil {
     // !!! IMPORTANT: Set MAVEN_HOME to the PATH on your computer
     final static String MAVEN_HOME = "/usr/share/maven";
 
+    public static class JarNotFoundException extends Exception {
+        public JarNotFoundException(String message) {
+            super(message);
+        }
+    }
+
+    static class Pair {
+        private String left;
+        private String right;
+
+        public Pair(String left, String right) {
+            this.left = left;
+            this.right = right;
+        }
+
+        public String getLeft() {
+            return left;
+        }
+
+        public String getRight() {
+            return right;
+        }
+    }
+
+    public static Pair getRepoAndLink(String link) {
+        // Extract repoName and standardize link format
+        String repositoryName;
+        if (link.startsWith("https://")) {
+            repositoryName = link.split("/")[4];
+        } else if (link.startsWith("http://")) {
+            repositoryName = link.split("/")[4];
+            link = "https://" + link.substring(7);
+        } else {
+            repositoryName = link.split("/")[2];
+            link = "https://" + link;
+        }
+        return new Pair(repositoryName, link);
+    }
+
     /**
      * Downloads a zip file of a given GitHub repository and extracts the zip file to a folder
      * @param link: string containing the url of the GitHub repository source code to download
-     *
-     * @param repositoryName: repository name
      * @param defaultBranch: default branch of the repository
      */
-    private static void downloadRepository(String link, String repositoryName, String defaultBranch) {
+    public static String downloadRepository(String link, String repositoryName, String defaultBranch) {
         // Download zip file.
         String zipPath = repositoryName + ".zip";
-        System.out.println("LINK IS " + link + "/archive/refs/heads/" + defaultBranch + ".zip" );
         try {
            FileUtils.copyURLToFile(new URL(link + "/archive/refs/heads/" + defaultBranch + ".zip"), new File(zipPath));
         } catch (IOException e) {
@@ -49,6 +79,7 @@ public class RepositoryUtil {
 
         // Delete downloaded zip file.
         new File(zipPath).delete();
+        return repositoryName + "/" + repositoryName + "-" + defaultBranch;
     }
 
     private static boolean buildMavenProject(String pomXMLPath) {
@@ -69,14 +100,8 @@ public class RepositoryUtil {
         return false;
     }
 
-    private static boolean buildGradleProject(String repositoryName, String branch) {
-//        GradleConnector gradleConnector = GradleConnector.newConnector();
-//        gradleConnector.forProjectDirectory(new File(repositoryName + "/" + repositoryName + "-" + branch));
-
+    private static void buildGradleProject(String repositoryName, String branch) {
         try {
-//            ProjectConnection connection = gradleConnector.connect();
-//            connection.newBuild().forTasks("assemble").run();
-//            connection.close();
             String path = repositoryName + "/" + repositoryName + "-" + branch;
             File repoDir = new File(path);
             File gradlewFile = new File(path + "/gradlew");
@@ -87,49 +112,33 @@ public class RepositoryUtil {
             String[] cmdArray = new String[1];
             cmdArray[0] = "sudo bash ./gradlew assemble";
             Runtime.getRuntime().exec(cmdArray, null, repoDir.getAbsoluteFile());
-            return true;
         } catch (IOException e) {
-        //catch (GradleConnectionException | IllegalStateException e) {
             e.printStackTrace();
         }
-        return false;
     }
 
-    private static boolean buildRepositoryJAR(String repositoryName, String defaultBranch) {
+    private static void buildRepositoryJAR(String repositoryName, String defaultBranch) {
         String pomXMLPath = repositoryName + "/" + repositoryName + "-" + defaultBranch + "/pom.xml";
-        String buildGradlePath = repositoryName + "/" + repositoryName + "-" + defaultBranch + "/gradlew";
 
         // Check whether pom.xml file exists in project
         if (new File(pomXMLPath).exists()) {
-            return buildMavenProject(pomXMLPath);
-        // Check whether build.gradle file exists in project
-        } else if (new File(buildGradlePath).exists()) {
-            return buildGradleProject(repositoryName, defaultBranch);
+            buildMavenProject(pomXMLPath);
         }
         // No known dependency file in project.
-        return false;
     }
 
-    public static void getRepositoryJAR(String link, String defaultBranch) {
-        // Extract repoName and standardize link format
-        String repositoryName;
-        if (link.startsWith("https://")) {
-            repositoryName = link.split("/")[4];
-        } else if (link.startsWith("http://")) {
-            repositoryName = link.split("/")[4];
-            link = "https://" + link.substring(7);
-        } else {
-            repositoryName = link.split("/")[2];
-            link = "https://" + link;
+    private static String getJarPath(String repositoryName, String defaultBranch) throws JarNotFoundException {
+        String repositoryTargetPath = repositoryName + "/" + repositoryName + "-" + defaultBranch + "/target";
+        for (File file : Objects.requireNonNull(new File(repositoryTargetPath).listFiles())) {
+            if (file.getName().endsWith(".jar")) {
+                return file.getAbsolutePath();
+            }
         }
-        downloadRepository(link, repositoryName,defaultBranch);
+        throw new JarNotFoundException("Jar file not found for repository " + repositoryName);
+    }
+
+    public static String getRepositoryJAR(String repositoryName, String defaultBranch) throws JarNotFoundException {
         buildRepositoryJAR(repositoryName, defaultBranch);
+        return getJarPath(repositoryName, defaultBranch);
     }
-
-    public static void main(String[] args) {
-        //getRepositoryJAR("https://github.com/belaban/JGroups", "master");
-        //getRepositoryJAR("https://github.com/anatawa12/ForgeGradle-1.2", "FG_1.2");
-        getRepositoryJAR("https://github.com/TNG/ArchUnit", "main");
-    }
-
 }

@@ -1,3 +1,5 @@
+package PomAnalyzer;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -10,28 +12,28 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class PomAnalyzer {
 
-    private static final String FILENAME = "D:\\Repos\\CG-dependency-analyzer\\pom.xml";
+    public static class VulnsNotFoundException extends Exception {
+        public VulnsNotFoundException(String message) {
+            super(message);
+        }
+    }
 
-    public static void main(String[] args) {
-
+    public static List<Dependency> getProjectDependencies(String pomXMLPath, String vulnerabilityFilePath) throws VulnsNotFoundException {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
         ArrayList<Dependency> listOfDeps = new ArrayList<>();
-        ArrayList<Dependency> listOfVuln = new VulnParser("D:\\Repos\\CG-dependency-analyzer\\PomAnalyzer\\NewFormat.json").readVuln();
+        ArrayList<Dependency> listOfVuln = new VulnParser(vulnerabilityFilePath).readVuln();
 
         try {
-
             dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-
             DocumentBuilder db = dbf.newDocumentBuilder();
-
-            Document doc = db.parse(new File(FILENAME));
+            Document doc = db.parse(new File(pomXMLPath));
 
             doc.getDocumentElement().normalize();
 
@@ -39,13 +41,10 @@ public class PomAnalyzer {
             System.out.println("------");
 
             NodeList list = doc.getElementsByTagName("dependency");
-
             for (int temp = 0; temp < list.getLength(); temp++) {
-
                 Node node = list.item(temp);
 
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
-
                     Element element = (Element) node;
 
                     String groupId = element.getElementsByTagName("groupId").item(0).getTextContent();
@@ -54,14 +53,12 @@ public class PomAnalyzer {
                     listOfDeps.add(new Dependency(groupId, artifactId, version));
                 }
             }
-
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
 
-
         // retainAll finds the intersection of both
-        System.out.print(listOfVuln.retainAll(listOfDeps));
-
+        if (listOfVuln.retainAll(listOfDeps)) return listOfVuln;
+        throw new VulnsNotFoundException("Vulnerabilities not found in path " + pomXMLPath);
     }
 }

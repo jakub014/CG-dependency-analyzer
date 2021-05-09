@@ -1,3 +1,5 @@
+package PomAnalyzer;
+
 import java.util.Objects;
 
 public class Dependency {
