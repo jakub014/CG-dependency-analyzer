@@ -1,5 +1,6 @@
 package PomAnalyzer;
 
+import java.util.stream.Collectors;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -18,17 +19,20 @@ import java.util.List;
 
 public class PomAnalyzer {
 
+    private static final String VULNERABILITY_FILE_PATH = "src/main/resources/pkg_cves.json";
+    static final ArrayList<Dependency> listOfVuln = new VulnParser(VULNERABILITY_FILE_PATH).readVuln();
+
     public static class VulnsNotFoundException extends Exception {
         public VulnsNotFoundException(String message) {
             super(message);
         }
     }
 
-    public static List<Dependency> getProjectDependencies(String pomXMLPath, String vulnerabilityFilePath) throws VulnsNotFoundException {
+    public static List<Dependency> getProjectDependencies(String pomXMLPath) throws VulnsNotFoundException {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
         ArrayList<Dependency> listOfDeps = new ArrayList<>();
-        ArrayList<Dependency> listOfVuln = new VulnParser(vulnerabilityFilePath).readVuln();
+        //ArrayList<Dependency> listOfVuln = new VulnParser(vulnerabilityFilePath).readVuln();
 
         try {
             dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
@@ -64,11 +68,11 @@ public class PomAnalyzer {
             System.out.println("POM NOT FOUND");
         }
 
-        // retainAll finds the intersection of both
-        listOfVuln.retainAll(listOfDeps);
+        //finds the intersection of both
+        List<Dependency> result = listOfVuln.stream().distinct().filter(listOfDeps::contains).collect(Collectors.toList());
 
-        if(listOfVuln.size() > 0) {
-            return listOfVuln;
+        if(result.size() > 0) {
+            return result;
         } else {
             throw new VulnsNotFoundException("Vulnerabilities not found in path " + pomXMLPath);
         }

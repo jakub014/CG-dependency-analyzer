@@ -65,7 +65,7 @@ public class MainScript {
             // Get dependencies from project dependency file.
             System.out.println("GETTING DEPENDENCIES FROM pom.xml file");
             String pomXMLPath = repositoryPath + "/pom.xml";
-            List<Dependency> dependencyList = PomAnalyzer.getProjectDependencies(pomXMLPath, VULNERABILITY_FILE_PATH);
+            List<Dependency> dependencyList = PomAnalyzer.getProjectDependencies(pomXMLPath);
             System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM pom.xml file");
 
             // If no exception thrown, vulnerabilities have been found in the dependency file of project. Continue.
