@@ -37,8 +37,8 @@ public class PomAnalyzer {
 
             doc.getDocumentElement().normalize();
 
-            System.out.println("Root Element :" + doc.getDocumentElement().getNodeName());
-            System.out.println("------");
+            //System.out.println("Root Element :" + doc.getDocumentElement().getNodeName());
+            //System.out.println("------");
 
             NodeList list = doc.getElementsByTagName("dependency");
             for (int temp = 0; temp < list.getLength(); temp++) {
@@ -47,18 +47,30 @@ public class PomAnalyzer {
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element element = (Element) node;
 
-                    String groupId = element.getElementsByTagName("groupId").item(0).getTextContent();
-                    String artifactId = element.getElementsByTagName("artifactId").item(0).getTextContent();
-                    String version = element.getElementsByTagName("version").item(0).getTextContent();
-                    listOfDeps.add(new Dependency(groupId, artifactId, version));
+                    try {
+                        String groupId = element.getElementsByTagName("groupId").item(0).getTextContent();
+                        String artifactId = element.getElementsByTagName("artifactId").item(0).getTextContent();
+                        String version = element.getElementsByTagName("version").item(0).getTextContent();
+                        listOfDeps.add(new Dependency(groupId, artifactId, version));
+                    } catch (NullPointerException e) {
+                        //INCOMPLETE DEPENDENCY DEFINITION IN POM
+                    }
+
                 }
             }
-        } catch (ParserConfigurationException | SAXException | IOException e) {
+        } catch (ParserConfigurationException | SAXException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("POM NOT FOUND");
         }
 
         // retainAll finds the intersection of both
-        if (listOfVuln.retainAll(listOfDeps)) return listOfVuln;
-        throw new VulnsNotFoundException("Vulnerabilities not found in path " + pomXMLPath);
+        listOfVuln.retainAll(listOfDeps);
+
+        if(listOfVuln.size() > 0) {
+            return listOfVuln;
+        } else {
+            throw new VulnsNotFoundException("Vulnerabilities not found in path " + pomXMLPath);
+        }
     }
 }
