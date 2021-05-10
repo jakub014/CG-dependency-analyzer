@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.hdiv</groupId>
+	<artifactId>hdiv</artifactId>
+	<packaging>pom</packaging>
+	<name>Hdiv Community</name>
+	<version>4.0.0-SNAPSHOT</version>
+	<url>http://www.hdiv.org</url>
+	<description>Web Application Security Framework</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<org.springframework.version>3.2.16.RELEASE</org.springframework.version>
+		<org.spring-security.version>3.2.9.RELEASE</org.spring-security.version>
+		<commons.fileupload.version>1.3.3</commons.fileupload.version>
+	</properties>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/hdiv/hdiv/issues</url>
+	</issueManagement>
+
+	<!-- who the developers are for the project -->
+	<developers>
+		<developer>
+			<name>Roberto Velasco</name>
+			<id>robertovelasco</id>
+			<email>roberto at hdiv.org</email>
+			<roles>
+				<role>Project Admin</role>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Gorka Vicente</name>
+			<id>gorkavicente</id>
+			<email>gorka at hdiv.org</email>
+			<roles>
+				<role>Project Admin</role>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Gotzon Illarramendi</name>
+			<id>gillarramendi</id>
+			<email>gotzon at hdiv.org</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<name>Fernando Lozano</name>
+			<id>fernandolozano</id>
+			<email>fernando at hdiv.org</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+					<compilerArgs>
+						<arg>-Xlint:all</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.mycila</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>2.11</version>
+				<configuration>
+					<header>${basedir}/LICENSE_HEADER</header>
+					<encoding>UTF-8</encoding>
+					<strictCheck>true</strictCheck>
+					<includes>
+						<include>src/main/java/**</include>
+						<include>src/test/java/**</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>1.4.1</version>
+				<executions>
+					<execution>
+						<id>enforce-versions</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>3.0.0</version>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.0.1</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>oss-staging</id>
+			<name>OSS Staging repository</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>oss-snapshot</id>
+			<name>OSS Snapshot repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<!-- Modules -->
+	<modules>
+		<module>hdiv-core</module>
+		<module>hdiv-config</module>
+		<module>hdiv-jstl-taglibs-1.2</module>
+		<module>hdiv-spring-mvc</module>
+		<module>hdiv-struts-1</module>
+		<module>hdiv-jsf</module>
+		<module>hdiv-thymeleaf</module>
+		<module>hdiv-services</module>
+	</modules>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments />
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git://github.com/hdiv/hdiv.git</connection>
+		<developerConnection>scm:git:git://github.com/hdiv/hdiv.git</developerConnection>
+		<url>git@github.com:hdiv/hdiv.git</url>
+	</scm>
+
+	<organization>
+		<name>hdiv.org</name>
+		<url>http://www.hdiv.org/</url>
+	</organization>
+
+	<!-- Project Dependencies -->
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<!-- Profile to activate artifact signing in release -->
+		<profile>
+			<id>performRelease</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-install-plugin</artifactId>
+						<version>2.5.2</version>
+						<configuration>
+							<createChecksum>true</createChecksum>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>package</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>deploySnapshot</id>
+			<distributionManagement>
+				<snapshotRepository>
+					<id>nexus</id>
+					<url>http://dev.hdivsecurity.com:8081/nexus/content/repositories/snapshots</url>
+				</snapshotRepository>
+				<repository>
+					<id>nexus</id>
+					<url>http://dev.hdivsecurity.com:8081/nexus/content/repositories/releases</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+	</profiles>
+
+</project>

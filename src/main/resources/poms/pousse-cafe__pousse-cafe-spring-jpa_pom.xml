@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.pousse-cafe-framework</groupId>
+        <artifactId>pousse-cafe</artifactId>
+        <version>0.28.0</version>
+    </parent>
+
+    <artifactId>pousse-cafe-spring-jpa</artifactId>
+    <name>Pousse Café - Spring Data JPA</name>
+    <version>0.6.0</version>
+
+    <properties>
+        <spring.data.jpa.version>2.4.3</spring.data.jpa.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.pousse-cafe-framework</groupId>
+            <artifactId>pousse-cafe-core</artifactId>
+            <version>0.28.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.pousse-cafe-framework</groupId>
+            <artifactId>pousse-cafe-spring</artifactId>
+            <version>0.15.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring.data.jpa.version}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/groups/public/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <scm>
+        <connection>scm:git:https://github.com/pousse-cafe/pousse-cafe-spring-jpa.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/pousse-cafe/pousse-cafe-spring-jpa.git</developerConnection>
+        <url>http://github.com/pousse-cafe/pousse-cafe-spring-jpa</url>
+    </scm>
+</project>

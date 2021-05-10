@@ -1,0 +1,300 @@
+<!--
+
+    Copyright © 2013-2020, The SeedStack authors <http://seedstack.org>
+
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.seedstack.poms</groupId>
+        <artifactId>parent-internal</artifactId>
+        <version>3.4.9</version>
+    </parent>
+
+    <groupId>org.seedstack.addons.swagger</groupId>
+    <artifactId>swagger</artifactId>
+    <version>2.1.3-SNAPSHOT</version>
+
+    <properties>
+        <seed.version>3.10.0</seed.version>
+        <compatibility.skip>true</compatibility.skip>
+        <bintray.package>swagger-addon</bintray.package>
+        <swagger-jersey.version>1.6.2</swagger-jersey.version>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <configuration>
+                        <includedLicenses>
+                            <includedLicense>Apache 2</includedLicense>
+                            <includedLicense>BSD</includedLicense>
+                            <includedLicense>CDDL</includedLicense>
+                            <includedLicense>EPL 1.0</includedLicense>
+                            <includedLicense>MIT</includedLicense>
+                            <includedLicense>LGPL 2.1</includedLicense>
+                            <includedLicense>LGPL 3.0</includedLicense>
+                            <includedLicense>MPL 2.0</includedLicense>
+                            <includedLicense>Public Domain</includedLicense>
+                            <includedLicense>WTFPL</includedLicense>
+
+                            <!-- Some licenses are ignored because they are alternatives to acceptable licenses and the plugin doesn't handle alternate licenses -->
+                            <includedLicense>IGNORED_LICENSE</includedLicense>
+                        </includedLicenses>
+                        <licenseMerges>
+                            <licenseMerge>Apache 2|Apache License 2.0</licenseMerge>
+                            <licenseMerge>Apache 2|Apache License, Version 2.0</licenseMerge>
+                            <licenseMerge>Apache 2|Apache License Version 2.0</licenseMerge>
+                            <licenseMerge>Apache 2|The Apache Software License, Version 2.0</licenseMerge>
+                            <licenseMerge>Apache 2|Apache License, version 2.0</licenseMerge>
+                            <licenseMerge>Apache 2|The Apache License, Version 2.0</licenseMerge>
+                            <licenseMerge>Apache 2|Apache 2.0</licenseMerge>
+                            <licenseMerge>Apache 2|Apache License, 2.0</licenseMerge>
+                            <licenseMerge>BSD|The New BSD License</licenseMerge>
+                            <licenseMerge>BSD|The BSD License</licenseMerge>
+                            <licenseMerge>BSD|Modified BSD</licenseMerge>
+                            <licenseMerge>CDDL|CDDL 1.1</licenseMerge>
+                            <licenseMerge>CDDL|CDDL License</licenseMerge>
+                            <licenseMerge>CDDL|CDDL + GPLv2 with classpath exception</licenseMerge>
+                            <licenseMerge>CDDL|CDDL+GPL License</licenseMerge>
+                            <licenseMerge>CDDL|CDDL/GPLv2+CE</licenseMerge>
+                            <licenseMerge>CDDL|Common Development and Distribution License (CDDL), Version 1.1</licenseMerge>
+                            <licenseMerge>LGPL 3.0|GNU Lesser Public License</licenseMerge>
+                            <licenseMerge>MIT|MIT License</licenseMerge>
+                            <licenseMerge>MIT|MIT license</licenseMerge>
+                            <licenseMerge>MIT|The MIT License</licenseMerge>
+                            <licenseMerge>IGNORED_LICENSE|GPL2 w/ CPE</licenseMerge>
+                            <licenseMerge>IGNORED_LICENSE|MPL 1.1</licenseMerge>
+                            <licenseMerge>IGNORED_LICENSE|GNU General Public License, version 2 (GPL2), with the classpath exception</licenseMerge>
+                            <licenseMerge>IGNORED_LICENSE|GNU General Public License (GPL), Version 2, With Classpath Exception</licenseMerge>
+                            <licenseMerge>IGNORED_LICENSE|The GNU General Public License (GPL), Version 2, With Classpath Exception</licenseMerge>
+                            <licenseMerge>IGNORED_LICENSE|BSD 2-Clause</licenseMerge>
+                            <licenseMerge>IGNORED_LICENSE|EDL 1.0</licenseMerge>
+                            <licenseMerge>IGNORED_LICENSE|EPL 2.0</licenseMerge>
+                            <licenseMerge>IGNORED_LICENSE|Eclipse Distribution License - v 1.0</licenseMerge>
+                            <licenseMerge>IGNORED_LICENSE|jQuery license</licenseMerge>
+                            <licenseMerge>IGNORED_LICENSE|W3C license</licenseMerge>
+                        </licenseMerges>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.siom79.japicmp</groupId>
+                    <artifactId>japicmp-maven-plugin</artifactId>
+                    <configuration>
+                        <parameter>
+                            <excludes>
+                                <exclude>*.internal.*</exclude>
+                                <exclude>org.seedstack.swagger.SwaggerConfig</exclude>
+                            </excludes>
+                        </parameter>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.seedstack.seed</groupId>
+            <artifactId>seed-rest-jersey2</artifactId>
+            <version>${seed.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-jersey2-jaxrs</artifactId>
+            <version>${swagger-jersey.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.validation</groupId>
+                    <artifactId>validation-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.glassfish.jersey.containers</groupId>
+                    <artifactId>jersey-container-servlet-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.reflections</groupId>
+                    <artifactId>reflections</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.module</groupId>
+                    <artifactId>jackson-module-jaxb-annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.dataformat</groupId>
+                    <artifactId>jackson-dataformat-xml</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.dataformat</groupId>
+                    <artifactId>jackson-dataformat-yaml</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.datatype</groupId>
+                    <artifactId>jackson-datatype-joda</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.jaxrs</groupId>
+                    <artifactId>jackson-jaxrs-json-provider</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.glassfish.jersey.media</groupId>
+                    <artifactId>jersey-media-multipart</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>${jackson.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.xml.bind</groupId>
+                    <artifactId>jakarta.xml.bind-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-joda</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- TESTS-->
+        <dependency>
+            <groupId>org.seedstack.seed</groupId>
+            <artifactId>seed-testing-junit4</artifactId>
+            <version>${seed.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seedstack.seed</groupId>
+            <artifactId>seed-web-undertow</artifactId>
+            <version>${seed.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest-assured.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+            <version>${jsonassert.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <scm>
+        <url>https://github.com/seedstack/swagger-addon</url>
+        <connection>scm:git:git://github.com/seedstack/swagger-addon.git</connection>
+        <developerConnection>scm:git:git@github.com:seedstack/swagger-addon.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-jfrog-jfrog-jars</id>
+            <name>bintray-plugins</name>
+            <url>http://dl.bintray.com/jfrog/jfrog-jars</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <profiles>
+        <profile>
+            <id>snapshots</id>
+            <repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <id>ojo-libs-snapshot</id>
+                    <name>ojo-snapshots</name>
+                    <url>https://oss.jfrog.org/artifactory/libs-snapshot</url>
+                </repository>
+            </repositories>
+        </profile>
+        <profile>
+            <id>bintray</id>
+            <repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <id>bintray-seedstack-jars</id>
+                    <name>bintray</name>
+                    <url>http://dl.bintray.com/seedstack/jars</url>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+</project>

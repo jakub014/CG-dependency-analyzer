@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.nablarch</groupId>
+  <artifactId>nablarch-parent</artifactId>
+  <version>5u19</version>
+  <packaging>pom</packaging>
+
+  <name>${project.artifactId}</name>
+  <description>Nablarch Framework.</description>
+  <url>https://github.com/nablarch</url>
+
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>nablarch</id>
+      <name>Nablarch</name>
+      <email>nablarch@tis.co.jp</email>
+      <organization>Nablarch</organization>
+      <organizationUrl>https://github.com/nablarch</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git://github.com/nablarch/${project.artifactId}.git</connection>
+    <developerConnection>scm:git:git://github.com/nablarch/${project.artifactId}.git</developerConnection>
+    <url>https://github.com/nablarch/${project.artifactId}/tree/master</url>
+  </scm>
+  
+  <properties>
+    <junit.defaultArgLine>-Dfile.encoding=utf-8 -Djdk.attach.allowAttachSelf -Djava.locale.providers=JRE,SPI</junit.defaultArgLine>
+    <!-- 各モジュールで設定 (-Xmx等) -->
+    <junit.additionalArgLine/>
+    <ci.additionalArgLine />
+    <junit.argLine>${junit.defaultArgLine} ${junit.additionalArgLine} ${ci.additionalArgLine}</junit.argLine>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jmockit.version>1.35</jmockit.version>
+  </properties>
+
+  <profiles>
+    <profile>
+      <!-- CI 用のprofile -->
+      <id>ci</id>
+      <properties>
+        <sonar.host.url>${env.SONAR_URL}</sonar.host.url>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.6.2</version>
+            <configuration>
+              <fork>true</fork>
+              <executable>${env.COMPILE_JAVA_HOME}\bin\javac</executable>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.20</version>
+            <configuration>
+              <jvm>${env.TEST_JDK}\bin\java</jvm>
+              <argLine>
+                @{argLine} ${junit.argLine}
+              </argLine>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>3.3.0.603</version>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    
+    <profile>
+      <!-- 開発時のdeploy用のprofile -->
+      <id>dev-deploy</id>
+      <properties>
+        <gpg.skip>true</gpg.skip>
+      </properties>
+      <distributionManagement>
+        <snapshotRepository>
+          <id>dev-deploy</id>
+          <url>${develop_snapshot_repo_url}</url>
+        </snapshotRepository>
+        <repository>
+          <id>dev-deploy</id>
+          <url>${develop_repo_url}</url>
+        </repository>
+        <site>
+          <id>dev-deploy</id>
+          <url>${develop_test_report_url}</url>
+        </site>
+      </distributionManagement>
+    </profile>
+    
+    <profile>
+      <id>postgres</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.postgresql</groupId>
+          <artifactId>postgresql</artifactId>
+          <version>42.1.4.jre6</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>postgres115</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.postgresql</groupId>
+          <artifactId>postgresql</artifactId>
+          <version>42.2.6.jre6</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>postgres122</id>
+      <dependencies>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.10.jre6</version>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>postgres132</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.postgresql</groupId>
+          <artifactId>postgresql</artifactId>
+          <version>42.2.19.jre6</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>oracle</id>
+      <dependencies>
+        <dependency>
+          <groupId>com.oracle</groupId>
+          <artifactId>ojdbc6</artifactId>
+          <version>11.2.0.4.0</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>oracle19c</id>
+      <dependencies>
+        <dependency>
+          <groupId>com.oracle</groupId>
+          <artifactId>ojdbc8</artifactId>
+          <version>19c</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>db2</id>
+      <dependencies>
+        <dependency>
+          <groupId>com.ibm.db2</groupId>
+          <artifactId>db2jcc4</artifactId>
+          <version>10.5</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>db2115</id>
+      <dependencies>
+        <dependency>
+          <groupId>com.ibm.db2</groupId>
+          <artifactId>db2jcc4</artifactId>
+          <version>11.5</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
+
+    <profile>
+      <id>sqlserver</id>
+      <dependencies>
+        <dependency>
+          <groupId>com.microsoft.sqlserver</groupId>
+          <artifactId>mssql-jdbc</artifactId>
+          <version>7.4.1.jre8</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>sqlserver2019</id>
+      <dependencies>
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>8.2.1.jre8</version>
+            <scope>test</scope>
+        </dependency>
+      </dependencies>
+    </profile>
+
+
+    <profile>
+      <id>disable-java8-doclint</id>
+      <activation>
+          <jdk>[1.8,)</jdk>
+      </activation>
+      <properties>
+          <additionalparam>-Xdoclint:none</additionalparam>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>ossrh</id>
+      <distributionManagement>
+        <repository>
+          <id>nablarch.staging</id>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+        <snapshotRepository>
+          <id>nablarch.snapshot</id>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+      </distributionManagement>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.5</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    
+  </profiles>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.6.2</version>
+        <configuration>
+          <fork>true</fork>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.20</version>
+        <configuration>
+          <argLine>
+            ${junit.argLine}
+          </argLine>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.0</version>
+        <executions>
+          <execution>
+            <id>prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.0.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.4</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>pl.project13.maven</groupId>
+        <artifactId>git-commit-id-plugin</artifactId>
+        <version>2.1.15</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>revision</goal>
+            </goals>
+            <phase>prepare-package</phase>
+          </execution>
+        </executions>
+        <configuration>
+          <verbose>false</verbose>
+          <failOnNoGitDirectory>false</failOnNoGitDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.1</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+            <manifestEntries>
+              <git-hash>${git.commit.id}</git-hash>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav-jackrabbit</artifactId>
+        <version>2.12</version>
+      </extension>
+    </extensions>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
+  
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.nablarch.profile</groupId>
+        <artifactId>nablarch-bom</artifactId>
+        <version>5u19</version> <!-- 注：nablarch-test-supportについては本pomファイルにバージョンを記載しているので、リリース時にこの行を書き換えるタイミングで、あわせてバージョンを修正してください。 -->
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <!-- テストでよく使うライブラリのバージョン定義 -->
+      <dependency>
+        <groupId>org.jmockit</groupId>
+        <artifactId>jmockit</artifactId>
+        <version>${jmockit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>1.4.191</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.nablarch.dev</groupId>
+        <artifactId>nablarch-test-support</artifactId>
+        <version>0.2.1</version>
+        <scope>test</scope>
+      </dependency>
+      
+      <!-- Java 11以降で必要となるライブラリの定義 -->
+      <dependency>
+        <groupId>javax.activation</groupId>
+        <artifactId>javax.activation-api</artifactId>
+        <version>1.2.0</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.activation</groupId>
+        <artifactId>javax.activation</artifactId>
+        <version>1.2.0</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <scope>test</scope>
+        <version>2.3.1</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.xml.bind</groupId>
+        <artifactId>jaxb-impl</artifactId>
+        <scope>test</scope>
+        <version>2.3.1</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- test用の共通的に使われるライブラリのみ定義 -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+      <version>1.3</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>

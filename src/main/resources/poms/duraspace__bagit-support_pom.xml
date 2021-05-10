@@ -1,0 +1,347 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.duraspace</groupId>
+  <artifactId>bagit-support</artifactId>
+  <name>bagit-support</name>
+  <version>1.1.0</version>
+  <description>Libraries to provide support for the use of Bagit bags and Bagit Profiles</description>
+  <url>https://github.com/duraspace/bagit-support</url>
+
+  <developers>
+    <developer>
+      <name>Ritter, Michael</name>
+    </developer>
+
+    <developer>
+      <name>Bernstein, Danny</name>
+      <email>daniel.bernstein@lyrasis.org</email>
+      <organization>LYRASIS</organization>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.java.source>1.8</project.java.source>
+    <!-- dependency versions -->
+    <assertj.version>3.11.1</assertj.version>
+    <bagit.version>5.1.1</bagit.version>
+    <commons-io.version>2.6</commons-io.version>
+    <commons-compress.version>1.20</commons-compress.version>
+    <junit.version>4.13.1</junit.version>
+    <logback.version>1.1.2</logback.version>
+    <slf4j.version>1.7.10</slf4j.version>
+    <tika.version>1.23</tika.version>
+    <yaml-beans.version>1.13</yaml-beans.version>
+    <!-- plugin versions -->
+    <codestyle.version>1.0.1</codestyle.version>
+    <compiler.plugin.version>3.8.0</compiler.plugin.version>
+    <license.plugin.version>3.0</license.plugin.version>
+    <javadoc.plugin.version>3.2.0</javadoc.plugin.version>
+    <source.plugin.version>3.2.0</source.plugin.version>
+    <site.plugin.version>3.9.1</site.plugin.version>
+    <resources.plugin.version>3.2.0</resources.plugin.version>
+    <gpg.plugin.version>1.6</gpg.plugin.version>
+    <github.site.plugin.version>0.12</github.site.plugin.version>
+  </properties>
+
+  <distributionManagement>
+    <repository>
+      <id>sonatype-releases</id>
+      <name>Sonatype Release Staging Maven Repository</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+    </repository>
+
+    <snapshotRepository>
+      <id>sonatype-snapshots</id>
+      <name>Sonatype Snapshots Maven Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <profiles>
+
+    <profile>
+      <!-- Adds source jar and signs all jars for release to Central -->
+      <!-- Executed with: 'mvn deploy -Drelease' -->
+      <id>profile-generate-source-signature</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+        <property>
+          <name>release</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${source.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${javadoc.plugin.version}</version>
+            <configuration>
+              <source>${project.java.source}</source>
+              <linksource>true</linksource>
+            </configuration>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                  <goal>javadoc</goal>
+                </goals>
+                <phase>verify</phase>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${gpg.plugin.version}</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-compress</artifactId>
+      <version>${commons-compress.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.tika</groupId>
+      <artifactId>tika-core</artifactId>
+      <version>${tika.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>gov.loc</groupId>
+      <artifactId>bagit</artifactId>
+      <version>${bagit.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.esotericsoftware.yamlbeans</groupId>
+      <artifactId>yamlbeans</artifactId>
+      <version>${yaml-beans.version}</version>
+    </dependency>
+
+    <!-- logging -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>${logback.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+
+    <!-- testing -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>${commons-io.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${assertj.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <scm>
+    <connection>scm:git:git://github.com/duraspace/bagit-support.git</connection>
+    <developerConnection>scm:git:git@github.com:duraspace/bagit-support.git</developerConnection>
+    <url>https://github.com/duraspace/bagit-support</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <build>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <version>3.0.0</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.duraspace</groupId>
+            <artifactId>codestyle</artifactId>
+            <version>${codestyle.version}</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <includeTestSourceDirectory>true</includeTestSourceDirectory>
+          <consoleOutput>true</consoleOutput>
+          <logViolationsToConsole>true</logViolationsToConsole>
+          <failsOnError>true</failsOnError>
+          <failOnViolation>true</failOnViolation>
+          <violationSeverity>warning</violationSeverity>
+          <configLocation>duraspace-checkstyle/checkstyle.xml</configLocation>
+          <suppressionsLocation>src/test/resources/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+        </configuration>
+        <executions>
+          <execution>
+            <id>checkstyle</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${compiler.plugin.version}</version>
+        <configuration>
+          <debug>true</debug>
+          <source>${project.java.source}</source>
+          <target>${project.java.source}</target>
+          <!-- <release>${project.java.source}</release> -->
+          <compilerArgument>-Xlint:unchecked,deprecation</compilerArgument>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>${resources.plugin.version}</version>
+      </plugin>
+
+      <!-- verify that source files contain the correct license headers
+            $ mvn license:check to check files
+            $ mvn license:format to update files -->
+      <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>${license.plugin.version}</version>
+        <configuration>
+          <header>src/test/resources/license/LICENSE_HEADER.txt</header>
+          <mapping>
+            <java>SLASHSTAR_STYLE</java>
+          </mapping>
+          <includes>
+            <include>**/src/main/java/**</include>
+            <include>**/src/test/java/**</include>
+          </includes>
+          <excludes>
+            <exclude>target/**</exclude>
+            <include>**/src/main/resources/**</include>
+            <include>**/src/test/resources/**</include>
+            <include>**/*.properties</include>
+          </excludes>
+          <encoding>UTF-8</encoding>
+          <strictCheck>true</strictCheck>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.github.github</groupId>
+        <artifactId>site-maven-plugin</artifactId>
+        <version>${github.site.plugin.version}</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>${site.plugin.version}</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${javadoc.plugin.version}</version>
+        <configuration>
+          <source>${project.java.source}</source>
+          <linksource>false</linksource>
+        </configuration>
+        <executions>
+          <execution>
+            <id>verify-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- for codecov -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.5</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

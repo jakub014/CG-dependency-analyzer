@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.songyz0310</groupId>
+	<artifactId>java-toolkits</artifactId>
+	<version>0.0.1</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>java-toolkits-utility</module>
+		<module>java-toolkits-file</module>
+	</modules>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<log4j.version>2.9.1</log4j.version>
+		<slf4j.version>1.7.25</slf4j.version>
+	</properties>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:git:https://github.com/songyz0310/java-toolkits.git</connection>
+		<developerConnection>scm:git:https://github.com/songyz0310/java-toolkits.git</developerConnection>
+		<url>git:https://github.com/songyz0310/java-toolkits.git</url>
+	</scm>
+	<developers>
+		<developer>
+			<name>songyz</name>
+			<email>songyinzeng@gmail.com</email>
+			<organization>i1stcs</organization>
+		</developer>
+	</developers>
+</project>
