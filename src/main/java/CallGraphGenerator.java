@@ -19,6 +19,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class CallGraphGenerator {
+
     public static void main(String[] args) throws OPALException, MissingArtifactException, IOException, ParseException {
 
         MavenCoordinate depcoord = new MavenCoordinate("com.googlecode.json-simple", "json-simple", "1.1.1", "jar");
