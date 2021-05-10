@@ -19,9 +19,14 @@ public class MainScript {
     public static void main(String[] args) {
         // TODO: Get set of projects to use from input file and execute the code below for each project.
 
+        String link = "https://github.com/liquibase/liquibase-hibernate";
+        String defaultBranch = "main";
+
+        analyzeRepository(link, defaultBranch);
+    }
+
+    public static void analyzeRepository(String link, String defaultBranch) {
         try {
-            String link = "https://github.com/liquibase/liquibase-hibernate";
-            String defaultBranch = "main";
 
             // Get repository name and standardize link.
             RepositoryUtil.Pair pair = RepositoryUtil.getRepoAndLink(link);
@@ -73,6 +78,5 @@ public class MainScript {
         } catch (org.json.simple.parser.ParseException e) {
             e.printStackTrace();
         }
-
     }
 }
