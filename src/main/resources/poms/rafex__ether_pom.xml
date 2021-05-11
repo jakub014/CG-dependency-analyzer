@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>dev.rafex.ether</groupId>
+	<artifactId>ether</artifactId>
+	<!-- <version>${revision.master}</version> -->
+	<version>2.0.0.0-v20210220</version>
+
+	<packaging>pom</packaging>
+	<name>ether</name>
+
+	<description>
+        utilities to create microservices without frameworks
+    </description>
+
+	<url>https://rafex.dev/ether</url>
+
+	<licenses>
+		<license>
+			<name>GNU LESSER GENERAL PUBLIC LICENSE, Version 3.0</name>
+			<url>https://www.gnu.org/licenses/lgpl-3.0.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Raúl Eduardo González Argote</name>
+			<email>rafex@rafex.dev</email>
+			<organization>dev.rafex</organization>
+			<organizationUrl>https://rafex.dev</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/rafex/ether.git</connection>
+		<developerConnection>scm:git:ssh://github.com:rafex/ether.git</developerConnection>
+		<url>https://github.com/rafex/ether/tree/master</url>
+	</scm>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<properties>
+		<revision>2.0.0-v20210220</revision>
+
+		<owner.name>Raúl Eduardo González Argote</owner.name>
+		<owner.email>rafex@rafex.dev</owner.email>
+
+		<license-maven-plugin.version>3.0</license-maven-plugin.version>
+		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+		<nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
+	</properties>
+
+	<modules>
+		<module>ether-parent</module>
+		<module>ether-json</module>
+		<module>ether-object</module>
+		<module>ether-properties</module>
+		<module>ether-email</module>
+		<module>ether-jdbc</module>
+		<module>ether-cli</module>
+		<module>ether-rest</module>
+		<module>ether-jwt</module>
+	</modules>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>${maven-gpg-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>sign-artifacts</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>com.mycila</groupId>
+					<artifactId>license-maven-plugin</artifactId>
+					<version>${license-maven-plugin.version}</version>
+					<configuration>
+						<header>LICENSE</header>
+						<properties>
+							<owner>${owner.name}</owner>
+							<email>${owner.email}</email>
+						</properties>
+						<excludes>
+							<exclude>README.md</exclude>
+							<exclude>LICENSE</exclude>
+							<exclude>pom.xml</exclude>
+							<exclude>**/target/</exclude>
+							<exclude>**/src/main/resources</exclude>
+						</excludes>
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>${nexus-staging-maven-plugin.version}</version>
+				<extensions>true</extensions>
+				<executions>
+					<execution>
+						<id>default-deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl> 	
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

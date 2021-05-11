@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    >
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.apicatalog</groupId>
+    <artifactId>titanium-json-ld</artifactId>
+    <version>1.1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Titanium JSON-LD 1.1</name>
+    
+    <description>
+        A JSON-LD 1.1 Processor &amp; API
+    </description>
+    
+    <url>https://github.com/filip26/titanium-json-ld</url>
+    
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>    
+   
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/filip26/titanium-json-ld/issues</url>
+    </issueManagement>
+    
+    <scm>
+        <connection>scm:git:git://github.com/filip26/titanium-json-ld.git</connection>
+        <developerConnection>scm:git:git://github.com/filip26/titanium-json-ld.git</developerConnection>
+        <url>https://github.com/filip26/titanium-json-ld/tree/main</url>
+    </scm>
+
+    <developers>
+        <developer>
+          <id>filip26</id>
+          <name>Filip Kolarik</name>
+          <email>filip26@gmail.com</email>
+          <roles><role>author</role></roles>
+        </developer>
+    </developers>
+    
+    <inceptionYear>2020</inceptionYear>
+    
+    <properties>
+        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+
+        <envSources>src/main/java11</envSources>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        
+        <jakarta.json.version>2.0.0</jakarta.json.version> 
+
+        <argLine>-Dfile.encoding=UTF-8</argLine>
+
+        <!--  test resources -->
+        <junit.version>5.7.1</junit.version>
+        <wiremock.version>2.27.2</wiremock.version>
+
+        <sonar.projectKey>filip26_titanium-json-ld</sonar.projectKey>
+        <sonar.organization>apicatalog</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    </properties>
+
+    <dependencies>
+        <dependency>
+			<groupId>jakarta.json</groupId>
+    		<artifactId>jakarta.json-api</artifactId>
+            <version>${jakarta.json.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <!--  Tests -->
+		<dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.json</artifactId>
+            <version>${jakarta.json.version}</version>
+            <scope>test</scope>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+		    <scope>test</scope>
+		</dependency>
+		        
+        <dependency>
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock-jre8</artifactId>
+            <version>${wiremock.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>        
+        <plugins>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <classifier>${envClassifier}</classifier>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${envSources}</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin> 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>                    
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.7</version>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin> 
+        	<plugin>
+            	<artifactId>maven-surefire-plugin</artifactId>
+            	<version>2.22.2</version>
+        	</plugin>
+        	<plugin>
+            	<artifactId>maven-failsafe-plugin</artifactId>
+            	<version>2.22.2</version>
+        	</plugin>            
+        </plugins>
+    </build>
+
+	<profiles>
+		<profile>
+			<id>maven-central</id>
+
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+
+			<build>
+				<plugins>				
+		            <plugin>
+		                <groupId>org.apache.maven.plugins</groupId>
+		                <artifactId>maven-gpg-plugin</artifactId>
+		                <version>3.0.1</version>
+		                <executions>
+		                    <execution>
+		                        <id>sign-artifacts</id>
+		                        <phase>verify</phase>
+		                        <goals>
+		                            <goal>sign</goal>
+		                        </goals>
+		                    </execution>
+		                </executions>
+		            </plugin> 
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.8</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						</configuration>
+					</plugin>   				
+				</plugins>
+			</build>
+
+		    <distributionManagement>
+		        <snapshotRepository>
+		            <id>ossrh</id>
+		            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		        </snapshotRepository>
+		    </distributionManagement>		
+		</profile>
+
+        <!--  Android (Java 8) Build -->
+        <profile>
+            <id>android</id>
+
+            <activation>
+                <activeByDefault>false</activeByDefault>            
+                <jdk>1.8</jdk>
+            </activation>
+
+            <properties>
+                <maven.compiler.target>1.8</maven.compiler.target>
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <envClassifier>android</envClassifier>
+                <envSources>src/main/android</envSources>
+            </properties>
+            
+            <dependencies>
+                <dependency>
+                    <groupId>com.squareup.okhttp3</groupId>
+                    <artifactId>okhttp</artifactId>
+                    <version>4.9.1</version>
+                </dependency>            
+            </dependencies>
+        </profile>        
+    </profiles>
+
+</project>
