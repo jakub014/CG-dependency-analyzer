@@ -1,0 +1,256 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>pm.pride</groupId>
+    <artifactId>pride</artifactId>
+    <packaging>jar</packaging>
+    <version>3.4.8</version>
+    <name>pride</name>
+    <description>World's smallest O/R mapper for Java</description>
+    <url>http://pride.pm</url>
+    
+	<licenses>
+	  <license>
+	    <name>The Apache License, Version 2.0</name>
+	    <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+	  </license>
+	</licenses>
+    
+	<distributionManagement>
+	  <snapshotRepository>
+	    <id>ossrh</id>
+	    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+	  </snapshotRepository>
+	  <repository>
+	    <id>ossrh</id>
+	    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+	  </repository>	  
+	</distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+			<dependencies>
+				<!--
+				The following libraries are required for SQLXML support in Oracle. They have to be
+				provided in a fairly obscure way, according to the advice here:
+				https://stackoverflow.com/questions/28085992/which-settings-do-i-have-to-configure-to-use-xml-as-input-parameter-with-oracle
+				xdb6.jar can be loaded from the Oracle Maven repository using the same version as
+				for the JDBC driver. The xmlparserv2.jar library is also available there but it
+				doesn't work! You have to follow the instructions from the site above intead, i.e.
+				downloading JDeveloper 12 Java Edition and copy the JAR file to your local Maven repository.
+				Due to this strange problem, we have defined a separate profile "travis" for running
+				the unittest on Travis CI. As the Oracle XML libraries are not available on Travis,
+				we skip the Maven dependencies and the XML tests (see class PrideXMLTest).
+				The "travis" profile is adressed by Maven's -P parameter as you can see in file .travis.yml
+				-->
+				<dependency>
+					<groupId>com.oracle.jdbc</groupId>
+					<artifactId>xdb6</artifactId>
+					<version>12.2.0.1</version>
+					<scope>test</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.oracle.jdbc</groupId>
+					<artifactId>xmlparserv2</artifactId>
+					<version>12.2.0.1</version>
+					<scope>test</scope>
+				</dependency>
+			</dependencies>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>travis</id>
+        </profile>
+    </profiles>
+
+	<scm>
+	  <connection>scm:git:git://github.com/j-pride/pride.pm.git</connection>
+	  <developerConnection>scm:git:ssh://github.com/j-pride/pride.pm.git</developerConnection>
+	  <url>https://github.com/j-pride/pride.pm/tree/master</url>
+	</scm>
+	
+	<developers>
+	    <developer>
+	      <name>Jan Lessner</name>
+	      <email>jlessner@gmx.de</email>
+	      <organization>S&amp;N Invent</organization>
+	      <organizationUrl>https://www.s-und-n.de/</organizationUrl>
+	    </developer>
+	</developers>
+  
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    
+    <build>
+        <plugins>
+        
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <shortRevisionLength>7</shortRevisionLength>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <git-SHA-1>${buildNumber}</git-SHA-1>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
+			<!--
+				Following plugins are concerned with publishing PriDE on Maven Central.
+				They are simply added here according to the descriptions at
+				https://central.sonatype.org/pages/ossrh-guide.html, December 2018
+				Introduction to publishing process, see https://www.youtube.com/watch?v=bxP9IuJbcDQ 
+			-->
+		    <plugin>
+		      <groupId>org.sonatype.plugins</groupId>
+		      <artifactId>nexus-staging-maven-plugin</artifactId>
+		      <version>1.6.7</version>
+		      <extensions>true</extensions>
+		      <configuration>
+		        <serverId>ossrh</serverId>
+		        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+		        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+		      </configuration>
+		    </plugin>
+            
+		    <plugin>
+		      <groupId>org.apache.maven.plugins</groupId>
+		      <artifactId>maven-source-plugin</artifactId>
+		      <version>2.2.1</version>
+		      <executions>
+		        <execution>
+		          <id>attach-sources</id>
+		          <goals>
+		            <goal>jar-no-fork</goal>
+		          </goals>
+		        </execution>
+		      </executions>
+		    </plugin>
+		    
+		    <plugin>
+		      <groupId>org.apache.maven.plugins</groupId>
+		      <artifactId>maven-javadoc-plugin</artifactId>
+		      <version>3.0.1</version>
+		      <executions>
+		        <execution>
+		          <id>attach-javadocs</id>
+		          <goals>
+		            <goal>jar</goal>
+		          </goals>
+		        </execution>
+		      </executions>
+		    </plugin>
+		    
+		    <plugin>
+		      <groupId>org.apache.maven.plugins</groupId>
+		      <artifactId>maven-gpg-plugin</artifactId>
+		      <version>1.5</version>
+		      <executions>
+		        <execution>
+		          <id>sign-artifacts</id>
+		          <phase>verify</phase>
+		          <goals>
+		            <goal>sign</goal>
+		          </goals>
+		        </execution>
+		      </executions>
+		    </plugin>
+		    
+        </plugins>
+        <finalName>${project.artifactId}-${project.version}-r${buildNumber}</finalName>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+
+		<!-- JDBC driver libraries for various database types -->
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.3.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.16</version>
+            <scope>test</scope>
+        </dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.5</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>12.2.0.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+		  <groupId>org.xerial</groupId>
+		  <artifactId>sqlite-jdbc</artifactId>
+		  <version>3.25.2</version>
+		  <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>2.4.0</version>
+		  	<scope>test</scope>
+		</dependency>
+
+		<!--
+		DB2 is not automatically test-covered by Travis CI. However, the following
+		dependencies for DB2 JDBC drivers do not bother anyone and allow running
+		the test for everyone having DB2 available
+		-->
+		<!--
+		<dependency>
+			<groupId>com.ibm.db2</groupId>
+			<artifactId>db2jcc_license_cu</artifactId>
+			<version>11.1.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.db2</groupId>
+			<artifactId>db2java</artifactId>
+			<version>11.1.0</version>
+			<scope>test</scope>
+		</dependency>
+		-->
+    </dependencies>
+</project>

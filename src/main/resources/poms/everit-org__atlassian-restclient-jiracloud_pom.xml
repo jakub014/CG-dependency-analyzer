@@ -1,0 +1,360 @@
+<!--
+
+    Copyright © 2011 Everit Kft. (http://www.everit.org)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.everit.config</groupId>
+    <artifactId>org.everit.config.oss</artifactId>
+    <version>9.0.0</version>
+  </parent>
+
+  <groupId>org.everit.atlassian</groupId>
+  <artifactId>org.everit.atlassian.restclient.jiracloud</artifactId>
+  <version>3.0.3-202010281413</version>
+
+  <packaging>bundle</packaging>
+
+  <name>Everit - Atlassian Jira Cloud REST Client</name>
+  <description>Jira Cloud REST Client generated with OpenAPITools that uses RXJava for asynchornous processing. Version in JSON: 1001.0.0</description>
+
+  <properties>
+    <checkstyle.skip>true</checkstyle.skip>
+    <spotbugs.skip>true</spotbugs.skip>
+    <pmd.skip>true</pmd.skip>
+    <projectpath>atlassian-restclient-jiracloud</projectpath>
+    <com.fasterxml.jackson.version>2.12.1</com.fasterxml.jackson.version>
+  </properties>
+
+  <scm>
+    <connection>scm:git:git://github.com/everit-org/${projectpath}.git</connection>
+    <developerConnection>scm:git:https://github.com/everit-org/${projectpath}.git</developerConnection>
+    <url>https://github.com/everit-org/${projectpath}</url>
+  </scm>
+
+  <url>https://github.com/everit-org/${projectpath}</url>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/everit-org/${projectpath}/issues</url>
+  </issueManagement>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Everit Team</name>
+    </developer>
+  </developers>
+
+  <organization>
+    <name>Everit Kft.</name>
+    <url>http://www.everit.org</url>
+  </organization>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Import-Package>
+              *
+            </Import-Package>
+            <Export-Package>
+              org.everit.atlassian.restclient.jiracloud.v2.*;version="3.0.0",
+              org.everit.atlassian.restclient.jiracloud.v3.*;version="3.0.0",
+              org.everit.atlassian.restclient.jiracloud.util;version="1.0.1"
+            </Export-Package>
+          </instructions>
+        </configuration>
+        <executions>
+          <execution>
+            <id>baseline</id>
+            <goals>
+              <goal>baseline</goal>
+            </goals>
+            <configuration>
+              <failOnError>true</failOnError>
+              <failOnWarning>true</failOnWarning>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>3.0</version>
+        <configuration>
+          <excludes>
+            <exclude>LICENSE</exclude>
+            <exclude>**/.pmdruleset.xml</exclude>
+            <exclude>**/.fbExcludeFilterFile</exclude>
+            <exclude>**/.checkstyle</exclude>
+            <exclude>**/.pmd</exclude>
+            <exclude>**/*.min.js</exclude>
+            <exclude>**/*.min.css</exclude>
+            <exclude>**/*.patch</exclude>
+            <exclude>**/*.sha256</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <!-- Real dependencies -->
+    <dependency>
+      <groupId>org.everit.http</groupId>
+      <artifactId>org.everit.http.restclient</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${com.fasterxml.jackson.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>${com.fasterxml.jackson.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jdk8</artifactId>
+      <version>${com.fasterxml.jackson.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>1.5.22</version>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>generate-rest-client</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.googlecode.maven-download-plugin</groupId>
+            <artifactId>download-maven-plugin</artifactId>
+            <version>1.4.2</version>
+            <executions>
+              <execution>
+                <id>download-v2</id>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>wget</goal>
+                </goals>
+                <configuration>
+                  <url>https://developer.atlassian.com/cloud/jira/platform/swagger.v3.json</url>
+                  <outputFileName>jira-cloud-v2.openapi.json</outputFileName>
+                  <outputDirectory>${project.basedir}/src/main/resources/META-INF</outputDirectory>
+                  <overwrite>true</overwrite>
+                  <skipCache>true</skipCache>
+                </configuration>
+              </execution>
+              <execution>
+                <id>download-v3</id>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>wget</goal>
+                </goals>
+                <configuration>
+                  <url>https://developer.atlassian.com/cloud/jira/platform/swagger-v3.v3.json</url>
+                  <outputFileName>jira-cloud-v3.openapi.json</outputFileName>
+                  <outputDirectory>${project.basedir}/src/main/resources/META-INF</outputDirectory>
+                  <overwrite>true</overwrite>
+                  <skipCache>true</skipCache>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.openapitools</groupId>
+            <artifactId>openapi-generator-maven-plugin</artifactId>
+            <!-- RELEASE_VERSION -->
+            <version>4.0.3</version>
+            <!-- /RELEASE_VERSION -->
+            <executions>
+              <execution>
+                <id>generate-v2</id>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+                <configuration>
+                  <inputSpec>${project.basedir}/src/main/resources/META-INF/jira-cloud-v2.openapi.json</inputSpec>
+                  <generatorName>java</generatorName>
+                  <library>jersey2</library>
+                  <templateDirectory>${project.basedir}/src/main/template</templateDirectory>
+                  <generateAliasAsModel>true</generateAliasAsModel>
+                  <generateApiDocumentation>false</generateApiDocumentation>
+                  <generateApiTests>false</generateApiTests>
+                  <generateModelDocumentation>false</generateModelDocumentation>
+                  <generateModelTests>false</generateModelTests>
+                  <generateSupportingFiles>false</generateSupportingFiles>
+                  <apiPackage>org.everit.atlassian.restclient.jiracloud.v2.api</apiPackage>
+                  <modelPackage>org.everit.atlassian.restclient.jiracloud.v2.model</modelPackage>
+                  <output>${project.basedir}</output>
+                  <configOptions>
+                    <sourceFolder>src/main/java</sourceFolder>
+                    <dateLibrary>java8</dateLibrary>
+                    <java8>true</java8>
+                  </configOptions>
+                  <skipValidateSpec>true</skipValidateSpec>
+                </configuration>
+              </execution>
+              <execution>
+                <id>generate-v3</id>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+                <configuration>
+                  <inputSpec>${project.basedir}/src/main/resources/META-INF/jira-cloud-v3.openapi.json</inputSpec>
+                  <generatorName>java</generatorName>
+                  <library>jersey2</library>
+                  <templateDirectory>${project.basedir}/src/main/template</templateDirectory>
+                  <generateAliasAsModel>true</generateAliasAsModel>
+                  <generateApiDocumentation>false</generateApiDocumentation>
+                  <generateApiTests>false</generateApiTests>
+                  <generateModelDocumentation>false</generateModelDocumentation>
+                  <generateModelTests>false</generateModelTests>
+                  <generateSupportingFiles>false</generateSupportingFiles>
+                  <apiPackage>org.everit.atlassian.restclient.jiracloud.v3.api</apiPackage>
+                  <modelPackage>org.everit.atlassian.restclient.jiracloud.v3.model</modelPackage>
+                  <output>${project.basedir}</output>
+                  <configOptions>
+                    <sourceFolder>src/main/java</sourceFolder>
+                    <dateLibrary>java8</dateLibrary>
+                    <java8>true</java8>
+                  </configOptions>
+                  <skipValidateSpec>true</skipValidateSpec>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>com.mycila</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>format</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- Do NOT include null values in JSON for FieldUpdateOperation model -->
+          <plugin>
+            <groupId>com.google.code.maven-replacer-plugin</groupId>
+            <artifactId>replacer</artifactId>
+            <version>1.5.1</version>
+            <executions>
+              <execution>
+                <id>add-jsoninclude-to-fieldupdateoperation-class</id>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>replace</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <includes>
+                <include>src/main/java/org/everit/atlassian/restclient/jiracloud/v2/model/FieldUpdateOperation.java</include>
+                <include>src/main/java/org/everit/atlassian/restclient/jiracloud/v3/model/FieldUpdateOperation.java</include>
+              </includes>
+              <replacements>
+                <replacement>
+                  <token>public class FieldUpdateOperation</token>
+                  <value>@com.fasterxml.jackson.annotation.JsonInclude(com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL)&#xA;public
+                    class FieldUpdateOperation</value>
+                </replacement>
+              </replacements>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>ide</id>
+      <!-- This profile is only activated when building in Eclipse with m2e -->
+
+      <dependencies>
+        <!-- For executing groovy scripts in the ide -->
+        <dependency>
+          <groupId>com.atlassian.commonmark</groupId>
+          <artifactId>commonmark</artifactId>
+          <version>0.13.0</version>
+        </dependency>
+        <dependency>
+          <groupId>org.codehaus.groovy</groupId>
+          <artifactId>groovy-all</artifactId>
+          <version>2.5.7</version>
+          <type>pom</type>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>ci</id>
+      <activation>
+        <property>
+          <name>env.CI</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.owasp</groupId>
+            <artifactId>dependency-check-maven</artifactId>
+            <version>6.1.2</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>aggregate</goal>
+                </goals>
+                <configuration>
+                  <!-- high or above -->
+                  <failBuildOnCVSS>7</failBuildOnCVSS>
+                  <suppressionFile>${nvd.supprpression.file}</suppressionFile>
+                  <skipProvidedScope>true</skipProvidedScope>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

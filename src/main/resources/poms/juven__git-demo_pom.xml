@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>net.java</groupId>
+    <artifactId>jvnet-parent</artifactId>
+    <version>1</version>
+  </parent>
+  <groupId>com.juvenxu</groupId>
+  <artifactId>git-demo</artifactId>
+  <version>1.2-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>git-demo</name>
+  <url>http://maven.apache.org</url>
+
+  <scm>
+    <url>git@github.com:juven/git-demo.git</url>
+    <connection>scm:git:git@github.com:juven/git-demo.git</connection>
+    <developerConnection>scm:git:git@github.com:juven/git-demo.git</developerConnection>
+  </scm>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+    <plugins>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>

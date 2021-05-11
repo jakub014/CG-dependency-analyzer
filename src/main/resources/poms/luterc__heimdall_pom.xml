@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ /*
+  ~  *    Copyright 2020-2021 Luter.me
+  ~  *
+  ~  *    Licensed under the Apache License, Version 2.0 (the "License");
+  ~  *    you may not use this file except in compliance with the License.
+  ~  *    You may obtain a copy of the License at
+  ~  *
+  ~  *      http://www.apache.org/licenses/LICENSE-2.0
+  ~  *
+  ~  *    Unless required by applicable law or agreed to in writing, software
+  ~  *    distributed under the License is distributed on an "AS IS" BASIS,
+  ~  *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  *    See the License for the specific language governing permissions and
+  ~  *    limitations under the License.
+  ~  */
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.luterc</groupId>
+    <artifactId>heimdall</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.5</version>
+    <modules>
+        <module>heimdall-core</module>
+        <module>heimdall-cache-caffeine</module>
+        <module>heimdall-starter-data-redis</module>
+        <module>heimdall-starter-spring-boot</module>
+        <module>samples</module>
+    </modules>
+    <name>${project.artifactId}</name>
+    <description>Heimdall Security Management Platform</description>
+    <url>https://github.com/luterc/heimdall</url>
+    <!--    licenses-->
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+    <!--    配置管理-->
+    <scm>
+        <tag>master</tag>
+        <url>git@github.com:luterc/heimdall.git</url>
+        <connection>scm:git@github.com:luterc/heimdall.git</connection>
+        <developerConnection>scm:git@github.com:luterc/heimdall.git</developerConnection>
+    </scm>
+    <!--    开发者信息-->
+    <developers>
+        <developer>
+            <id>luterc</id>
+            <name>luterc</name>
+            <email>cluter@qq.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+    <!--    属性定义-->
+    <properties>
+        <!-- spring boot 示例程序打包后文件拷贝到这里-->
+        <dest.path>/opt/luter/develop/jiaoshoujia/heimdall/dest</dest.path>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.test.skip>true</maven.test.skip>
+        <maven-source-plugin.version>3.1.0</maven-source-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+        <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
+        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+        <maven-antrun-plugin.version>1.8</maven-antrun-plugin.version>
+        <versions-maven-plugin.version>2.7</versions-maven-plugin.version>
+        <spring-boot.version>2.4.1</spring-boot.version>
+        <spring-boot-maven-plugin.version>${spring-boot.version}</spring-boot-maven-plugin.version>
+    </properties>
+    <!--    maven库-->
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>https://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+        </repository>
+        <repository>
+            <id>oss-public</id>
+            <url>https://oss.sonatype.org/content/repositories/public</url>
+        </repository>
+    </repositories>
+    <!--    打包配置-->
+    <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <!--        build插件公共配置-->
+        <pluginManagement>
+            <plugins>
+                <!--  编译-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                    </configuration>
+                </plugin>
+                <!--maven jar打包插件-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
+                    <configuration>
+                        <!--不要把maven自己也打进去META-INF下面-->
+                        <archive>
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <!-- spring boot 打包-->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <!-- 排除 lombok-->
+                        <excludes>
+                            <exclude>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                            </exclude>
+                        </excludes>
+                        <!--可直接执行的jar包,jar包无法通过解压缩工具进行解压-->
+                        <executable>false</executable>
+                        <!-- 包含本地Lib-->
+                        <includeSystemScope>true</includeSystemScope>
+                        <!-- spring boot2.3以后支持分层 jar 包,用作增量docker打包，如果没docker那意义不大-->
+                        <layers>
+                            <enabled>true</enabled>
+                        </layers>
+                    </configuration>
+                </plugin>
+                <!-- resources资源插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                    <configuration>
+                        <delimiters>
+                            <delimiter>@</delimiter>
+                        </delimiters>
+                        <useDefaultDelimiters>true</useDefaultDelimiters>
+                        <encoding>UTF-8</encoding>
+                        <!-- 不处理这类资源，多媒体、字体等内容可以通过这里进行排除 -->
+                        <nonFilteredFileExtensions>
+                            <nonFilteredFileExtension>pem</nonFilteredFileExtension>
+                            <nonFilteredFileExtension>jks</nonFilteredFileExtension>
+                            <nonFilteredFileExtension>pfx</nonFilteredFileExtension>
+                            <nonFilteredFileExtension>p12</nonFilteredFileExtension>
+                            <nonFilteredFileExtension>key</nonFilteredFileExtension>
+                            <nonFilteredFileExtension>db</nonFilteredFileExtension>
+                            <nonFilteredFileExtension>dat</nonFilteredFileExtension>
+                        </nonFilteredFileExtensions>
+                    </configuration>
+                </plugin>
+                <!-- java文档插件 -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                        <charset>UTF-8</charset>
+                        <docencoding>UTF-8</docencoding>
+                        <show>package</show>
+                        <!-- 禁用java 8 的DocLint新特性，以确保当javadoc有编译错误时，也能正常生成javadoc jar包-->
+                        <doclint>none</doclint>
+                    </configuration>
+                    <executions>
+                        <!--                        保留注释-->
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                            <configuration>
+                                <additionalJOption>-Xdoclint:none</additionalJOption>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!--生成源码包-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${maven-source-plugin.version}</version>
+                    <configuration>
+                        <attach>true</attach>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!--  拷贝最终打包文件到统一目录-->
+                <plugin>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>${maven-antrun-plugin.version}</version>
+                    <executions>
+                        <!-- 拷贝jar包、源码包、文档包： mvn clean pre-integration-test-->
+                        <execution>
+                            <id>post-package</id>
+                            <phase>pre-integration-test</phase>
+                            <configuration>
+                                <target>
+                                    <echo message="start copy jars.................................."/>
+                                    <copy overwrite="true"
+                                          todir="${dest.path}/">
+                                        <!--模块自己编译后jar的位置，也就是target目录下 -->
+                                        <fileset dir="${project.build.directory}">
+                                            <include name="*.jar"/>
+                                            <include name="*.zip"/>
+                                        </fileset>
+                                    </copy>
+                                </target>
+                            </configuration>
+                            <goals>
+                                <goal>run</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <!-- 只拷贝 jar mvn clean pre-integration-test-->
+                            <phase>package</phase>
+                            <configuration>
+                                <target>
+                                    <echo message="start copy jars.................................."/>
+                                    <copy overwrite="true"
+                                          todir="${dest.path}/">
+                                        <!--模块自己编译后jar的位置，也就是target目录下 -->
+                                        <fileset dir="${project.build.directory}">
+                                            <include name="*.jar"/>
+                                            <include name="*.zip"/>
+                                        </fileset>
+                                    </copy>
+                                    <echo message="copy jars complete.................................."/>
+                                </target>
+                            </configuration>
+                            <goals>
+                                <goal>run</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- 一键更新子模块版本号 -->
+                <!--   修改：mvn versions:set -DnewVersion=1.0.0-RELEASE-->
+                <!--   回退：mvn versions:revert-->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${versions-maven-plugin.version}</version>
+                    <configuration>
+                        <generateBackupPoms>false</generateBackupPoms>
+                    </configuration>
+                </plugin>
+                <!-- GPG  打包插件-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>1.6</version>
+                    <executions>
+                        <execution>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>sign</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <!--默认所有模块都加载的插件-->
+        <plugins>
+            <!--            编译-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <!-- 一键更新子模块版本号
+            查看: mvn help:evaluate -Dexpression=project.version -q -DforceStdout
+            修改: mvn versions:set -DprocessAllModules=true -DnewVersion=1.0.2-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <!--    环境配置-->
+    <profiles>
+        <!--        本地安装 mvn install -P inst-->
+        <profile>
+            <id>inst</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!--  编译-->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                    </plugin>
+                    <!--配置生成源码包-->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <!--maven 中央库发布 maven clean deploy -P release -->
+        <profile>
+            <id>release</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!--  编译-->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                    </plugin>
+                    <!--配置生成源码包-->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                    </plugin>
+                    <!-- javadoc-->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                    </plugin>
+                    <!-- GPG  打包插件-->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+            <!--    发布配置-->
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>sonatype-nexus-snapshots</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>sonatype-nexus-staging</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+</project>

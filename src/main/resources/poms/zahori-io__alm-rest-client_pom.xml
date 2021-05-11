@@ -1,0 +1,273 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>io.zahori.tms</groupId>
+	<artifactId>alm-rest-client</artifactId>
+	<version>0.1.4-SNAPSHOT</version>
+
+	<name>alm-rest-client</name>
+
+	<description>Integration with the ALM test repository at Zahori.io</description>
+	<url>https://zahori.io</url>
+
+	<organization>
+		<name>PANEL SISTEMAS INFORMATICOS,S.L</name>
+		<url>www.panel.es</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Zahori Panel Team</name>
+			<email>eco@zahori.io</email>
+			<organization>PANEL SISTEMAS INFORMATICOS,S.L</organization>
+			<organizationUrl>www.panel.es</organizationUrl>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>GNU AFFERO GENERAL PUBLIC LICENSE, Version 3 (AGPL-3.0)</name>
+			<url>http://opensource.org/licenses/AGPL-3.0</url>
+		</license>
+	</licenses>
+
+	<inceptionYear>2021</inceptionYear>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>11</java.version>
+		<license.licenseName>agpl_v3</license.licenseName>
+		<license.licenseResolver>${project.baseUri}/src/license</license.licenseResolver>
+		<jaxb-api.version>2.4.0-b180830.0359</jaxb-api.version>
+
+		<sonar.projectKey>zahori-io_${project.artifactId}</sonar.projectKey>
+		<sonar.organization>zahoriio</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	</properties>
+
+	<scm>
+		<connection>scm:git:git://github.com/zahori-io/${project.artifactId}.git</connection>
+		<developerConnection>scm:git:git@github.com:zahori-io/${project.artifactId}.git</developerConnection>
+		<url>https://github.com/zahori-io/${project.artifactId}.git</url>
+		<tag>v0.1.0</tag>
+	</scm>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<dependencies>
+        <dependency>
+            <groupId>io.zahori</groupId>
+            <artifactId>zahori-model</artifactId>
+            <version>0.1.3</version>
+        </dependency>
+        
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.7.30</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>4.3.30.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.12.2</version>
+		</dependency>
+
+		<dependency>
+		  <groupId>javax.xml.bind</groupId>
+		  <artifactId>jaxb-api</artifactId>
+		  <version>${jaxb-api.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<sourceDirectory>src/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.1.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<inherited>true</inherited>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<compilerArgs>
+						<arg>-Xlint:unchecked</arg>
+						<arg>-Xlint:deprecation</arg>
+					</compilerArgs>
+					<!-- Veracode -->
+					<debug>true</debug>
+					<debuglevel>lines,vars,source</debuglevel>
+					<!-- FIN Veracode -->
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.8.1</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+					<releaseProfiles>release</releaseProfiles>
+					<goals>deploy</goals>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+	<profiles>
+		<profile>
+			<id>fatJAR</id>
+			<build>
+				<plugins>
+
+					<!-- Plugin para generación 'FAT' jar: mvn package -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>3.3.0</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>license-maven-plugin</artifactId>
+						<version>2.0.0</version>
+						<configuration>
+							<verbose>false</verbose>
+							<addSvnKeyWords>true</addSvnKeyWords>
+						</configuration>
+						<executions>
+							<execution>
+								<id>first</id>
+								<goals>
+									<goal>update-file-header</goal>
+								</goals>
+								<phase>process-sources</phase>
+								<configuration>
+									<licenseName>${license.licenseName}</licenseName>
+									<roots>
+										<root>src/main/java</root>
+										<root>src/test</root>
+									</roots>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-release-plugin</artifactId>
+						<version>2.5.3</version>
+						<configuration>
+							<autoVersionSubmodules>true</autoVersionSubmodules>
+							<useReleaseProfile>false</useReleaseProfile>
+							<releaseProfiles>release</releaseProfiles>
+							<goals>deploy</goals>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.8</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>3.0.1</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>3.2.0</version>
+						<configuration>
+							<javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+						</configuration>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
