@@ -22,10 +22,10 @@ public class MainScript {
     private static final String VULNERABILITY_FILE_PATH = "src/main/resources/pkg_cves.json";
 
 
-    public static void main(String[] args) throws IOException, ParseException {
+    public static void main(String[] args) throws ParseException, IOException {
 
         JSONParser parser = new JSONParser();
-        JSONArray data = (JSONArray) parser.parse(new FileReader("src/main/resources/filteredProjects50StarsLast2Weeks.json"));
+        JSONArray data = (JSONArray) parser.parse(new FileReader("src/main/resources/vulnerableProjectData.json"));
 
         System.out.println(data.size());
 
@@ -42,9 +42,28 @@ public class MainScript {
 
                 JSONObject apiResponse = (JSONObject) obj.get("fullresponse");
 
-                String defaultBranch = (String) apiResponse.get("default_branch");
-                String link =(String) apiResponse.get("html_url");
-                analyzeRepository(link, defaultBranch);
+                String packageName = (String) obj.get("repository");
+                String groupID = (String) obj.get("user");
+
+                String pomName = groupID + "__" + packageName + "_pom.xml";
+
+                String pomPath = "src/main/resources/poms/" + pomName;
+
+                File pom = new File(pomPath);
+
+                if(!pom.exists()) {
+                    System.out.println("POM LOCALLY NOT FOUND FOR " + packageName + " ~ " +  groupID);
+                    continue;
+                }
+
+                try {
+                    PomAnalyzer.getProjectDependencies(pomPath);
+                    String defaultBranch = (String) apiResponse.get("default_branch");
+                    String link =(String) apiResponse.get("html_url");
+                    analyzeRepository(link, defaultBranch);
+                } catch (PomAnalyzer.VulnsNotFoundException e) {
+                    System.out.println("NO VULNERABLE DEPENDENCIES FOUND");
+                }
             }
         }
 
