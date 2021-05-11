@@ -1,0 +1,162 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>net.psgglobal.wsrpc</groupId>
+	<artifactId>wsrpc-core</artifactId>
+	<version>1.2-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>WebSocket RPC Core Library</name>
+	<description>This is the core libraries for the WebSocket (wsrpc) project.</description>
+	<url>https://github.com/kc7bfi/wsrpc-core</url>
+
+	<licenses>
+		<license>
+			<name>The GNU Lesser General Public License, Version 3.0</name>
+			<url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>David R. Robison</name>
+			<email>david.robison@psgglobal.net</email>
+			<organization>Prometheus Security Group Global</organization>
+			<organizationUrl>http://www.psggloba.net</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/kc7bfi/wsrpc-core</connection>
+		<developerConnection>scm:git:ssh://github.com:kc7bfi/wsrpc-core.git</developerConnection>
+		<url>http://github.com/kc7bfi/wsrpc-core</url>
+	</scm>
+
+	<properties>
+		<commons.lang3.version>3.7</commons.lang3.version>
+		<java.websocket.version>1.5.1</java.websocket.version>
+		<javajwt.version>3.4.1</javajwt.version>
+		<jsonrpc2.version>1.38.1</jsonrpc2.version>
+		<junit.version>4.13.1</junit.version>
+		<rxjava2.version>2.1.8</rxjava2.version>
+		<slf4j.version>1.7.22</slf4j.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons.lang3.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.java-websocket</groupId>
+			<artifactId>Java-WebSocket</artifactId>
+			<version>${java.websocket.version}</version>
+		</dependency>
+		<dependency>
+    		<groupId>io.reactivex.rxjava2</groupId>
+    		<artifactId>rxjava</artifactId>
+			<version>${rxjava2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thetransactioncompany</groupId>
+			<artifactId>jsonrpc2-base</artifactId>
+			<version>${jsonrpc2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>${javajwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<build>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.5.1</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+						<compilerArgument>-proc:none</compilerArgument>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.2.1</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.9.1</version>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>1.5</version>
+					<executions>
+						<execution>
+							<id>sign-artifacts</id>
+							<phase>deploy</phase>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<version>1.6.7</version>
+					<extensions>true</extensions>
+					<configuration>
+						<serverId>ossrh</serverId>
+						<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+						<autoReleaseAfterClose>true</autoReleaseAfterClose>
+					</configuration>
+				</plugin>
+			</plugins>
+	</build>
+</project>

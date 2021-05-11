@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2014-2021 Philip Helger (www.helger.com)
+    philip[at]helger[dot]com
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.helger</groupId>
+    <artifactId>parent-pom</artifactId>
+    <version>1.11.3</version>
+    <relativePath />
+  </parent>
+  <groupId>com.helger.photon</groupId>
+  <artifactId>ph-oton-parent-pom</artifactId>
+  <version>8.3.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>ph-oton</name>
+  <description>Base POM to build the ph-oton web stack</description>
+  <url>https://github.com/phax/ph-oton</url>
+  <inceptionYear>2014</inceptionYear>
+ 
+  <licenses>
+    <license>
+      <name>Apache 2</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  
+  <scm>
+    <connection>scm:git:git@github.com:phax/ph-oton.git</connection>
+    <developerConnection>scm:git:git@github.com:phax/ph-oton.git</developerConnection>
+    <url>http://github.com/phax/ph-oton</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <organization>
+    <name>Philip Helger</name>
+    <url>http://www.helger.com</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <id>philip</id>
+      <name>Philip Helger</name>
+      <email>ph(at)helger.com</email>
+      <url>http://www.helger.com</url>
+    </developer>
+  </developers>
+  
+  <properties>
+    <m2e.jaxrs.activation>false</m2e.jaxrs.activation>
+    <m2e.jpa.activation>false</m2e.jpa.activation>
+    <m2e.jsf.activation>false</m2e.jsf.activation>
+    <log4j.version>2.14.1</log4j.version>
+    <jetty.version>9.4.36.v20210114</jetty.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>jetty.snapshot</id>
+      <url>https://oss.sonatype.org/content/repositories/jetty-snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+    
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.helger.commons</groupId>
+        <artifactId>ph-commons-parent-pom</artifactId>
+        <version>10.1.1</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.helger</groupId>
+        <artifactId>ph-poi</artifactId>
+        <version>5.2.0</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.schedule</groupId>
+        <artifactId>ph-schedule-parent-pom</artifactId>
+        <version>4.2.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.masterdata</groupId>
+        <artifactId>ph-masterdata-parent-pom</artifactId>
+        <version>6.2.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.helger</groupId>
+        <artifactId>ph-css-parent-pom</artifactId>
+        <version>6.3.1</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.web</groupId>
+        <artifactId>ph-web-parent-pom</artifactId>
+        <version>9.6.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-html</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-jscode</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-jquery</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-atom</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-app</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-audit</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-ajax</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-security</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-exchange</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-connect</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-uicore</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-icon</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-tinymce4</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-datatables</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-uictrls</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-jetty</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-bootstrap3</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-bootstrap3-uictrls</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-bootstrap3-pages</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-bootstrap3-stub</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-bootstrap4</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-bootstrap4-uictrls</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-bootstrap4-pages</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.helger.photon</groupId>
+        <artifactId>ph-oton-bootstrap4-stub</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.jcraft</groupId>
+        <artifactId>jsch</artifactId>
+        <version>0.1.55</version>
+      </dependency>
+      <dependency>
+        <groupId>commons-net</groupId>
+        <artifactId>commons-net</artifactId>
+        <version>3.8.0</version>
+      </dependency>       
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-slf4j-impl</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-web</artifactId>
+        <version>${log4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-bom</artifactId>
+        <version>${jetty.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-runner</artifactId>
+        <version>${jetty.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  
+  <dependencies>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
+  <modules>
+    <module>ph-oton-html</module>
+    <module>ph-oton-jscode</module>
+    <module>ph-oton-jquery</module>
+    <module>ph-oton-atom</module>
+    <module>ph-oton-app</module>
+    <module>ph-oton-audit</module>
+    <module>ph-oton-ajax</module>
+    <module>ph-oton-api</module>
+    <module>ph-oton-security</module>
+    <module>ph-oton-exchange</module>
+    <module>ph-oton-connect</module>
+    <module>ph-oton-core</module>
+    <module>ph-oton-uicore</module>
+    <module>ph-oton-icon</module>
+    <module>ph-oton-tinymce4</module>
+    <module>ph-oton-datatables</module>
+    <module>ph-oton-uictrls</module>
+    <module>ph-oton-jetty</module>
+    <module>ph-oton-bootstrap3</module>
+    <module>ph-oton-bootstrap3-uictrls</module>
+    <module>ph-oton-bootstrap3-pages</module>
+    <module>ph-oton-bootstrap3-stub</module>
+    <module>ph-oton-bootstrap3-demo</module>
+    <module>ph-oton-bootstrap4</module>
+    <module>ph-oton-bootstrap4-uictrls</module>
+    <module>ph-oton-bootstrap4-pages</module>
+    <module>ph-oton-bootstrap4-stub</module>
+    <module>ph-oton-bootstrap4-demo</module>
+  </modules>
+  
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.helger.maven</groupId>
+          <artifactId>ph-jscompress-maven-plugin</artifactId>
+          <version>2.2.3</version>
+        </plugin>
+        <plugin>
+          <groupId>com.helger.maven</groupId>
+          <artifactId>ph-csscompress-maven-plugin</artifactId>
+          <version>6.3.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <source>8</source>
+        </configuration>
+      </plugin> 
+    </plugins>
+  </build>
+</project>

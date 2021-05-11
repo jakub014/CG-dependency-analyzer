@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.xingyuezhiyun</groupId>
+    <artifactId>common</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>common</name>
+    <description>common project for xingyue</description>
+
+
+    <!--//////////变量配置//////////-->
+
+    <properties>
+        <!--项目编码-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!--maven编码,仅仅只是推荐-->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!--java版本-->
+        <java.version>1.8</java.version>
+        <!--spring-cloud版本-->
+        <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
+        <!--commons-lang3-->
+        <commons-lang3.version>3.9</commons-lang3.version>
+        <!--commons-id版本-->
+        <commons-io.version>2.6</commons-io.version>
+        <!--guava版本-->
+        <guava.version>28.2-jre</guava.version>
+        <!--hu-tool版本-->
+        <hutool.version>5.2.3</hutool.version>
+    </properties>
+
+    <dependencies>
+
+        <!--//////////lombok支持,只参与编译,不参与打包//////////-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--//////////java基础操作工具类//////////-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <!--//////////java基础操作集合工具类//////////-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.4</version>
+        </dependency>
+
+        <!--//////////commons-io,提供输入输出流操作//////////-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+
+        <!--//////////使用guava处理集合//////////-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <!--//////////使用hu-tool基础工具类//////////-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

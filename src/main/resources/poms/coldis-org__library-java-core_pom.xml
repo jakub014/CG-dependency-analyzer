@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.coldis</groupId>
+		<artifactId>configuration</artifactId>
+		<version>0.0.52</version>
+	</parent>
+
+	<groupId>org.coldis.library</groupId>
+	<artifactId>core</artifactId>
+	<version>0.0.32-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>Core utilities</name>
+	<description>Core Java utilities.</description>
+	<url>http://coldis.org/project/library/core</url>
+	<licenses>
+		<license>
+			<name>GPL</name>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<email>me@rvcoutinho.com</email>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.config.source.main.aspect.phase>none</project.config.source.main.aspect.phase>
+		<project.config.source.test.aspect.phase>none</project.config.source.test.aspect.phase>
+	</properties>
+
+	<scm>
+		<url>https://github.com/coldis-org/library-java-core</url>
+		<connection>scm:git:https://github.com/coldis-org/library-java-core.git</connection>
+		<developerConnection>scm:git:git@github.com:coldis-org/library-java-core.git</developerConnection>
+		<tag>core-0.0.28</tag>
+	</scm>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-params</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+</project>

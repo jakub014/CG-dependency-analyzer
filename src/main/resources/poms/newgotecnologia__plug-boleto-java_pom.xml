@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>br.com.newgo</groupId>
+    <artifactId>plug-boleto-java</artifactId>
+    <version>1.0.0</version>
+
+    <name>PlugBoleto Java SDK</name>
+    <description>A Java client for Tecnospeed's boleto API</description>
+    <url>https://github.com/newgotecnologia/plug-boleto-java</url>
+
+    <scm>
+        <connection>scm:git:git://github.com/newgotecnologia/plug-boleto-java.git</connection>
+        <developerConnection>scm:git:ssh://github.com:newgotecnologia/plug-boleto-java.git</developerConnection>
+        <url>http://github.com/newgotecnologia/plug-boleto-java/tree/master</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>ioxua</id>
+            <name>Yehoshua Oliveira</name>
+            <email>ioxua@newgo.com.br</email>
+            <organization>NewGo Tecnologia</organization>
+            <organizationUrl>https://www.newgo.com.br/</organizationUrl>
+            <timezone>-3</timezone>
+        </developer>
+        <developer>
+            <id>marcelovbcfilho</id>
+            <name>Marcelo Correa Filho</name>
+            <email>marcelo.correa@newgo.com.br</email>
+            <organization>NewGo Tecnologia</organization>
+            <organizationUrl>https://www.newgo.com.br/</organizationUrl>
+            <timezone>-3</timezone>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>BSD 3-Clause License</name>
+            <url>https://opensource.org/licenses/BSD-3-Clause</url>
+        </license>
+    </licenses>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                    <id>attach-sources</id>
+                    <goals>
+                        <goal>jar-no-fork</goal>
+                    </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <detectJavaApiLink>false</detectJavaApiLink>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>sonatypeossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatypeossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatypeossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>retrofit</artifactId>
+            <version>2.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-jackson</artifactId>
+            <version>2.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.10.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.stefanbirkner</groupId>
+            <artifactId>system-rules</artifactId>
+            <version>1.19.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

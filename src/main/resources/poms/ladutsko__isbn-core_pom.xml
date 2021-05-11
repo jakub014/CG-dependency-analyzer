@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+  
+  <groupId>com.github.ladutsko</groupId>
+  <artifactId>isbn-core</artifactId>
+  <version>1.0.14</version>
+
+  <packaging>bundle</packaging>
+
+  <name>ISBN core</name>
+  <url>https://github.com/ladutsko/isbn-core</url>
+  <description>ISBN core tools</description>
+
+  <issueManagement>
+    <url>https://github.com/ladutsko/isbn-core/issues</url>
+    <system>GitHub Issues</system>
+  </issueManagement>
+
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://github.com/ladutsko/isbn-core/blob/master/LICENSE</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>git@github.com:ladutsko/isbn-core.git</url>
+    <connection>scm:git:git@github.com:ladutsko/isbn-core.git</connection>
+    <developerConnection>scm:git:git@github.com:ladutsko/isbn-core.git</developerConnection>
+  </scm>
+
+  <developers>
+    <developer>
+      <email>ladutsko@gmail.com</email>
+      <name>George Ladutsko</name>
+      <url>https://github.com/ladutsko</url>
+      <id>ladutsko</id>
+    </developer>
+  </developers>
+
+  <properties>
+    <maven.compiler.source>1.5</maven.compiler.source>
+    <maven.compiler.target>1.5</maven.compiler.target>
+  </properties>
+  
+  <build>
+    <resources>
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+      </resource>
+
+      <resource>
+        <directory>${basedir}</directory>
+        <targetPath>META-INF</targetPath>
+        <includes>
+          <include>LICENSE</include>
+        </includes>
+      </resource>
+    </resources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.jvnet.jaxb2.maven2</groupId>
+        <artifactId>maven-jaxb2-plugin</artifactId>
+        <version>0.8.3</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <schemaLanguage>dtd</schemaLanguage>
+              <schemaDirectory>${basedir}/src/main/schemas</schemaDirectory>
+              <schemaIncludes>
+                <value>RangeMessage.dtd</value>
+              </schemaIncludes>
+              <generatePackage>org.isbn.prefix.ranges.model</generatePackage>
+              <episode>false</episode>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>2.3.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Export-Package>{local-packages};version=${project.version};-noimport:=true</Export-Package>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
