@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>net.oneandone.maven.poms</groupId>
+        <artifactId>foss-parent</artifactId>
+        <version>1.6.1</version>
+    </parent>
+
+    <groupId>net.oneandone.spock</groupId>
+    <artifactId>order-extension</artifactId>
+    <version>0.2-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+    <url>https://github.com/1and1/spock-order-extension</url>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/1and1/spock-order-extension/issues</url>
+    </issueManagement>
+    <ciManagement>
+        <system>Travis</system>
+        <url>TBD</url>
+    </ciManagement>
+    <developers>
+        <developer>
+            <id>masooh</id>
+            <name>Martin Hofmann-Sobik</name>
+            <organization>1 &amp; 1 Internet AG</organization>
+            <url>https://github.com/masooh</url>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+
+    <inceptionYear>2020</inceptionYear>
+
+    <scm>
+        <connection>scm:git:git://github.com/1and1/spock-order-extension.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/1and1/spock-order-extension.git</developerConnection>
+        <url>https://github.com/1and1/spock-order-extension/</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- Mandatory plugins for using Spock -->
+            <plugin>
+                <!-- The gmavenplus plugin is used to compile Groovy code. To learn more about this plugin,
+                visit https://github.com/groovy/GMavenPlus/wiki -->
+                <groupId>org.codehaus.gmavenplus</groupId>
+                <artifactId>gmavenplus-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>compileTests</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>1.3-groovy-2.5</version>
+        </dependency>
+        <!-- change scope to compile -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

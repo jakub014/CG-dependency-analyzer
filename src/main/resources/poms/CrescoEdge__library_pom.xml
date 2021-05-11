@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.cresco</groupId>
+    <artifactId>library</artifactId>
+    <version>1.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Cresco Library</name>
+    <description>Library of classes needed by the Cresco framework</description>
+    <url>https://github.com/CrescoEdge/library</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+
+    <scm>
+        <connection>scm:git:git://github.com/CrescoEdge/library.git</connection>
+        <developerConnection>scm:git:git://github.com/CrescoEdge/library.git</developerConnection>
+        <url>git@github.com:CrescoEdge/library.git</url>
+    </scm>
+
+
+<properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jdk>1.8</jdk>
+    <maven.compiler.version>3.8.1</maven.compiler.version>
+    <maven.javadoc.version>3.2.0</maven.javadoc.version>
+    <maven.source.version>3.2.1</maven.source.version>
+    <maven.bundle.compiler.version>4.2.1</maven.bundle.compiler.version>
+    <micrometer.version>1.0.8</micrometer.version>
+    <siddhi.version>5.1.2</siddhi.version>
+
+</properties>
+
+<dependencies>
+
+    <!-- https://mvnrepository.com/artifact/org.osgi/osgi.core -->
+    <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.core</artifactId>
+        <version>6.0.0</version>
+        <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>io.micrometer</groupId>
+        <artifactId>micrometer-core</artifactId>
+        <version>${micrometer.version}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>io.micrometer</groupId>
+        <artifactId>micrometer-registry-jmx</artifactId>
+        <version>${micrometer.version}</version>
+        <exclusions>
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.geronimo.specs</groupId>
+        <artifactId>geronimo-jms_1.1_spec</artifactId>
+        <version>1.1.1</version>
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.geronimo.specs</groupId>
+        <artifactId>geronimo-j2ee-management_1.1_spec</artifactId>
+        <version>1.0.1</version>
+    </dependency>
+
+    <!-- CEP -->
+    <dependency>
+        <groupId>io.siddhi</groupId>
+        <artifactId>siddhi-core</artifactId>
+        <version>${siddhi.version}</version>
+        <exclusions>
+            <exclusion>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>io.dropwizard.metrics</groupId>
+                <artifactId>metrics-core</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.quartz-scheduler.wso2</groupId>
+                <artifactId>quartz</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+
+
+
+    <dependency>
+        <groupId>com.jayway.jsonpath</groupId>
+        <artifactId>json-path</artifactId>
+        <version>2.4.0</version>
+        <exclusions>
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+
+    <dependency>
+        <groupId>org.quartz-scheduler.wso2</groupId>
+        <artifactId>quartz</artifactId>
+        <version>2.1.1.wso2v1</version>
+        <exclusions>
+            <exclusion>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+
+    <dependency>
+        <groupId>org.quartz-scheduler</groupId>
+        <artifactId>quartz</artifactId>
+        <version>2.3.2</version>
+        <exclusions>
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>c3p0</groupId>
+                <artifactId>c3p0</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+
+    <dependency>
+        <groupId>c3p0</groupId>
+        <artifactId>c3p0</artifactId>
+        <version>0.9.1.1</version>
+    </dependency>
+
+    <dependency>
+        <groupId>net.minidev</groupId>
+        <artifactId>json-smart</artifactId>
+        <version>2.3</version>
+    </dependency>
+
+
+    <dependency>
+        <groupId>io.siddhi.extension.map.json</groupId>
+        <artifactId>siddhi-map-json</artifactId>
+        <version>5.0.6</version>
+        <exclusions>
+            <exclusion>
+                <groupId>org.apache.log4j.wso2</groupId>
+                <artifactId>log4j</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.wso2.orbit.org.apache.tapestry</groupId>
+                <artifactId>tapestry-json</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>net.minidev</groupId>
+                <artifactId>json-smart</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+            </exclusion>
+        </exclusions>
+
+    </dependency>
+
+    <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>2.8.5</version>
+    </dependency>
+
+
+
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.9.10.8</version>
+        <exclusions>
+            <exclusion>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>2.9.10</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>2.9.10</version>
+
+    </dependency>
+
+    <dependency>
+        <groupId>org.wso2.orbit.org.apache.tapestry</groupId>
+        <artifactId>tapestry-json</artifactId>
+        <version>5.4.1.wso2v1</version>
+    </dependency>
+
+
+
+</dependencies>
+
+<build>
+    <plugins>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven.compiler.version}</version>
+            <configuration>
+                <source>${jdk}</source>
+                <target>${jdk}</target>
+            </configuration>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${maven.javadoc.version}</version>
+            <configuration>
+                <source>8</source>
+                <detectJavaApiLink>false</detectJavaApiLink>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>attach-javadocs</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>jar</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${maven.source.version}</version>
+            <executions>
+                <execution>
+                    <id>attach-sources</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>jar-no-fork</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
+        <plugin>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>maven-bundle-plugin</artifactId>
+            <version>${maven.bundle.compiler.version}</version>
+            <extensions>true</extensions>
+            <configuration>
+                <instructions>
+                    <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+                    <Bundle-Name>Cresco Library</Bundle-Name>
+                    <Bundle-Description>Library for Cresco</Bundle-Description>
+                    <Bundle-Vendor>Cresco.io</Bundle-Vendor>
+                    <Bundle-Version>${project.version}-${maven.build.timestamp}</Bundle-Version>
+                    <Import-Package>*;resolution:=optional</Import-Package>
+                    <Embed-Dependency>!org.osgi.*;*</Embed-Dependency>
+                    <Export-Package>
+                        io.siddhi.*;
+                        org.atteo.classindex.*;
+                        com.lmax.disruptor.*;
+                        org.antlr.v4.runtime.*;
+                        org.quartz.*;
+                        com.google.common.*;
+                        javax.jms.*;
+                        com.thoughtworks.*;
+                        com.codahale.metrics.*;
+                        org.LatencyUtils;
+                        io.micrometer.*;
+                        io.cresco.library.*
+                    </Export-Package>
+                    <Bundle-RequiredExecutionEnvironment>JavaSE-1.8</Bundle-RequiredExecutionEnvironment>
+                </instructions>
+            </configuration>
+        </plugin>
+
+    </plugins>
+</build>
+
+    <profiles>
+
+        <profile>
+            <id>allow-snapshots</id>
+            <activation><activeByDefault>true</activeByDefault></activation>
+            <repositories>
+
+                <repository>
+                    <id>snapshots-repo</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                    <releases><enabled>false</enabled></releases>
+                    <snapshots><enabled>true</enabled></snapshots>
+                </repository>
+
+                <repository>
+                    <id>wso2-maven2-repository</id>
+                    <name>WSO2 Maven2 Repository</name>
+                    <url>http://dist.wso2.org/maven2</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                        <checksumPolicy>fail</checksumPolicy>
+                    </releases>
+                </repository>
+
+
+                <repository>
+                    <id>wso2.releases</id>
+                    <name>WSO2 internal Repository</name>
+                    <url>http://maven.wso2.org/nexus/content/repositories/releases/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>daily</updatePolicy>
+                        <checksumPolicy>ignore</checksumPolicy>
+                    </releases>
+                </repository>
+
+
+            </repositories>
+
+
+        </profile>
+
+    </profiles>
+
+
+</project>

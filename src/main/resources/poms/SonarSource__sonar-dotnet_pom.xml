@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.sonarsource.parent</groupId>
+    <artifactId>parent</artifactId>
+    <version>59.0.29</version>
+  </parent>
+
+  <groupId>org.sonarsource.dotnet</groupId>
+  <artifactId>sonar-dotnet</artifactId>
+  <version>8.23-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>.NET Analyzers parent</name>
+  <description>Code Analyzers for .NET</description>
+  <url>https://github.com/SonarSource/sonar-dotnet</url>
+  <inceptionYear>2014</inceptionYear>
+  <organization>
+    <name>SonarSource</name>
+    <url>http://www.sonarsource.com</url>
+  </organization>
+  <licenses>
+    <license>
+      <name>GNU LGPL 3</name>
+      <url>http://www.gnu.org/licenses/lgpl.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <modules>
+    <module>sonar-dotnet-shared-library</module>
+    <module>sonar-csharp-plugin</module>
+    <module>sonar-vbnet-plugin</module>
+  </modules>
+
+  <scm>
+    <connection>scm:git:git@github.com:SonarSource/sonar-dotnet.git</connection>
+    <developerConnection>scm:git:git@github.com:SonarSource/sonar-dotnet.git</developerConnection>
+    <url>https://github.com/SonarSource/sonar-dotnet</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub Issues</system>
+    <url>https://github.com/SonarSource/sonar-dotnet/issues</url>
+  </issueManagement>
+
+  <properties>
+    <gitRepositoryName>sonar-dotnet</gitRepositoryName>
+    <!-- Release: enable publication to Bintray -->
+    <artifactsToPublish>${project.groupId}:sonar-csharp-plugin:jar,${project.groupId}:sonar-vbnet-plugin:jar</artifactsToPublish>
+    <artifactsToDownload>${project.groupId}:SonarAnalyzer.CSharp:nupkg,${project.groupId}:SonarAnalyzer.VisualBasic:nupkg</artifactsToDownload>
+    <!-- We are ignoring java doc warnings - this is because we are using JDK 11. Ideally we should not do that. -->
+    <doclint>none</doclint>
+    <sonar.analyzer.commons>1.14.1.690</sonar.analyzer.commons>
+    <sonar.version>7.9</sonar.version>
+  </properties>
+
+  <profiles>
+    <profile>
+      <id>sonaranalyzer</id>
+      <modules>
+        <module>analyzers</module>
+      </modules>
+    </profile>
+    <profile>
+      <!--
+        Use javac's release flag for Java 9 and higher to avoid Java 11 failures on javadoc phase which happens
+        when the 'release' profile is ran. The 'release' generates the javadoc necessary for the MVN Repository.
+      -->
+      <id>java9+</id>
+      <activation>
+        <jdk>[9,)</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.release>8</maven.compiler.release>
+      </properties>
+    </profile>
+    <profile>
+      <id>sign</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.simplify4u.plugins</groupId>
+            <artifactId>sign-maven-plugin</artifactId>
+            <version>${version.gpg.plugin}</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <configuration>
+                  <keyPass>${env.PGP_PASSPHRASE}</keyPass>
+                  <keyFile>${env.SIGNKEY_PATH}</keyFile>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

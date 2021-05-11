@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.tum.ei.lkn.eces</groupId>
+		<artifactId>master-pom</artifactId>
+		<version>1.0.21</version>
+	</parent>
+
+	<artifactId>sbi</artifactId>
+	<version>1.1.13</version>
+
+	<description>Southbound interface (SBI) of the OpenFlow 1.0 network controller of Chameleon (ACM CoNEXT 2020) using the ECES framework. The module does topology discovery and creates the network using the ECES network library. The module also listens to events from the tenant manager ECES library and automatically configures rules in the data plane when flows are created.</description>
+	<url>https://github.com/AmoVanB/eces-sbi</url>
+
+	<scm>
+		<connection>scm:git:git://github.com/amovanb/eces-sbi.git</connection>
+		<developerConnection>scm:git:ssh://github.com:amovanb/eces-sbi.git</developerConnection>
+		<url>http://github.com/amovanb/eces-sbi/tree/master</url>
+	</scm>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>4.1.37.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tum.ei.lkn.eces</groupId>
+			<artifactId>core</artifactId>
+			<version>2.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tum.ei.lkn.eces</groupId>
+			<artifactId>network</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tum.ei.lkn.eces</groupId>
+			<artifactId>routing</artifactId>
+			<version>2.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>de.tum.ei.lkn.eces</groupId>
+			<artifactId>tenant-manager</artifactId>
+			<version>1.0.18</version>
+		</dependency>
+		<dependency>
+			<groupId>com.jcraft</groupId>
+			<artifactId>jsch</artifactId>
+			<version>0.1.55</version>
+		</dependency>
+		<!-- Just for testing: -->
+		<dependency>
+			<groupId>de.tum.ei.lkn.eces</groupId>
+			<artifactId>WebGraphGUI</artifactId>
+			<version>3.0.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.tum.ei.lkn.eces</groupId>
+			<artifactId>dnm</artifactId>
+			<version>2.0.2</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

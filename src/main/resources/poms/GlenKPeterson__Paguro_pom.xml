@@ -1,0 +1,216 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!--
+To build javadoc:
+javadoc:javadoc
+
+To see updated versions available: http://mojo.codehaus.org/versions-maven-plugin/
+versions:display-dependency-updates
+
+To see third-party licenses: http://mojo.codehaus.org/license-maven-plugin/
+license:add-third-party
+
+// Java Code Coverage report:
+mvn clean test jacoco:report
+
+pmd:cpd reports on cut and pasted code in your project.
+
+Show the dependency tree:
+http://maven.apache.org/plugins/maven-dependency-plugin/examples/resolving-conflicts-using-the-dependency-tree.html
+dependency:tree
+
+Release: just type:
+mvn clean deploy
+
+If gpg complains, set the gpg.passphrase or update the server/password in ~/.m2/settings.xml
+by running mvn -encrypt-master-password to encrypt the Sonatype password (not GPG).
+
+Full release instructions (they can change):
+http://central.sonatype.org/pages/apache-maven.html
+
+I think if you can see it here, then it's deployed:
+https://oss.sonatype.org/content/groups/staging/org/organicdesign/Paguro/
+
+They say that the Maven search site can take up to 2 hours to update:
+http://mvnrepository.com/artifact/org.organicdesign/Paguro
+	-->
+	<groupId>org.organicdesign</groupId>
+	<artifactId>Paguro</artifactId>
+	<version>3.5.9</version>
+	<packaging>jar</packaging>
+
+	<name>Paguro</name>
+	<description>Immutable Clojure collections and a Transformation abstraction for Java 8+, immutably, type-safely, and with good performance.</description>
+	<url>https://github.com/GlenKPeterson/Paguro</url>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<comments>The license for most of the files in this
+				project.</comments>
+		</license>
+		<license>
+			<name>Eclipse Public License - v 1.0</name>
+			<url>http://www.eclipse.org/legal/epl-v10.html</url>
+			<comments>For the persistent collections in the
+				collections/ folder. These files are derivative
+				works based on the Clojure source code.</comments>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Glen K. Peterson</name>
+			<email>glen@organicdesign.org</email>
+			<organization>PlanBase Inc.</organization>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:https://github.com/GlenKPeterson/Paguro.git</connection>
+		<developerConnection>scm:git:https://github.com/GlenKPeterson/Paguro.git</developerConnection>
+		<url>https://github.com/GlenKPeterson/Paguro.git</url>
+	</scm>
+	<build>
+		<defaultGoal>compile</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.0.0-M3</version>
+				<executions>
+					<execution>
+						<id>enforce-maven</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>[3.6.0,)</version>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<!--
+						Changed this to deploy to make trivis-ci build correctly.
+						<phase>verify</phase>
+						-->
+						<phase>deploy</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<!-- JavaDoc wasn't providing the right links to the Java APIs with the default version of the plugin on my machine. -->
+				<version>3.2.0</version>
+				<configuration>
+					<additionalOptions>-Xdoclint:none</additionalOptions>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.8</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains</groupId>
+			<artifactId>annotations</artifactId>
+			<version>20.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.organicdesign</groupId>
+			<artifactId>TestUtils</artifactId>
+			<version>1.0.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.arg>-profile</maven.compiler.arg>
+		<maven.compiler.arg>compact1</maven.compiler.arg>
+		<maven.compiler.arg>-Xlint</maven.compiler.arg>
+	</properties>
+</project>

@@ -1,0 +1,209 @@
+<!-- 
+   Copyright 2010-2021 Norconex Inc.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.norconex.commons</groupId>
+    <artifactId>norconex-commons-maven-parent</artifactId>
+    <version>1.0.0-M1</version>
+  </parent>  
+  <groupId>com.norconex.jef</groupId>
+  <artifactId>norconex-jef</artifactId>
+  <version>5.0.0-M1</version>
+  <name>Norconex JEF</name>
+
+  <properties>
+  </properties>
+  <inceptionYear>2007</inceptionYear>
+
+  <dependencies>
+  
+    <dependency>
+        <groupId>com.norconex.commons</groupId>
+        <artifactId>norconex-commons-lang</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.norconex.commons</groupId>
+        <artifactId>norconex-commons-lang</artifactId>
+        <classifier>resources</classifier>
+        <type>zip</type>
+        <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+
+    <!--  Tests: -->
+    <!-- TODO: replace with Junit 5. -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+      </plugin>
+     
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+      </plugin>
+    
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+      </plugin>
+      
+      <!--  Use VM argument -Dgpg.skip=true to disable GPG signing. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>unpack-shared-resources</id>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <phase>prepare-package</phase>
+            <configuration>
+              <classifier>resources</classifier>
+              <outputDirectory>${project.build.directory}/shared-resources</outputDirectory>
+              <includeArtifacIds>norconex-commons-lang</includeArtifacIds>
+              <includeGroupIds>com.norconex.commons</includeGroupIds>
+              <excludeTransitive>true</excludeTransitive>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <distributionManagement>
+    <site>
+      <id>norconex-site-deployment</id>
+      <url>${site.baseurl}/jef/api/v5</url>
+    </site>
+  </distributionManagement>
+  <!-- 
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.7</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.9.1</version>
+        <configuration>
+          <overview>src/main/javadoc/overview.html</overview>
+          <header><![CDATA[
+            <style>div.aboutLanguage .siteLink {font-size: 2em;}</style>
+            <span class="siteLink">
+              <a href="https://opensource.norconex.com/jef/api">Norconex JEF API</a>
+            </span>
+            ]]>
+          </header>
+          <footer><![CDATA[
+            <script type="text/javascript">
+              var _gaq = _gaq || [];
+              _gaq.push(['_setAccount', 'UA-23162620-1']);
+              _gaq.push(['_setDomainName', 'norconex.com']);
+              _gaq.push(['_trackPageview']);
+              (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+              })();
+            </script>
+            <a style="font-size: 1.4em;" href="https://github.com/norconex/jef/issues">Submit an Issue</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp; 
+            <a style="font-size: 1.4em;" href="https://norconex.com">norconex.com</a>
+            ]]>
+          </footer>
+          <show>protected</show>
+          <detectLinks>true</detectLinks>
+          <source>1.8</source>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <id>default</id>
+            <configuration>
+            </configuration>
+            <reports>
+              <report>javadoc</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>  
+   -->
+
+  <url>https://opensource.norconex.com/jef/api</url>
+  <description>JEF is a Java API library meant to facilitate the lives of developers and integrators who have to build any kind of maintenance tasks on a server.</description>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/Norconex/jef/issues</url>
+  </issueManagement>
+  <scm>
+    <url>https://github.com/Norconex/jef</url>
+    <connection>scm:git:git@github.com:Norconex/jef.git</connection>
+    <developerConnection>scm:git:git@github.com:Norconex/jef.git</developerConnection>
+  </scm>
+
+</project>

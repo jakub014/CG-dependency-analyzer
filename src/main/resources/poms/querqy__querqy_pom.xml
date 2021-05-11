@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.querqy</groupId>
+    <artifactId>querqy-multimodule</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!--
+        ****** THIS IS NOT A PARENT.pom *********************************************************
+
+         This project is NOT a parent project and not a release artifact.
+
+         The two modules, querqy-core and querqy-for-lucene, are released separately. This .pom
+         file only serves as a help to run a multi-module build when developing new core and
+         lucene/solr features at the same time
+
+        *****************************************************************************************
+    -->
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Querqy query rewriting - multi-module build helper</description>
+    <url>https://querqy.org</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>renekrie</id>
+            <name>René Kriegler</name>
+            <email>post@rene-kriegler.com</email>
+            <url>https://github.com/renekrie</url>
+        </developer>
+        <developer>
+            <id>mkr</id>
+            <name>Matthias Krüger</name>
+            <url>https://github.com/mkr</url>
+        </developer>
+        <developer>
+            <id>JohannesDaniel</id>
+            <name>Johannes Peter</name>
+            <email>johannesdaniel.peter@gmx.de</email>
+            <url>https://github.com/JohannesDaniel</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>git@github.com:querqy/querqy.git</url>
+        <connection>scm:git:git@github.com:querqy/querqy.git</connection>
+        <developerConnection>scm:git:git@github.com:querqy/querqy.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <prerequisites>
+        <maven>3.3.0</maven>
+    </prerequisites>
+
+    <modules>
+        <module>querqy-core</module>
+        <module>querqy-for-lucene</module>
+    </modules>
+
+
+</project>

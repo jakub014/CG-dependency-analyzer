@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+
+  <groupId>org.genomicsdb</groupId>
+  <artifactId>genomicsdb</artifactId>
+  <!-- Build version passed from parent Makefile -->
+  <version>${genomicsdb.version}</version>
+
+  <name>org.genomicsdb:genomicsdb</name>
+  <description>Java API for GenomicsDB</description>
+  <url>https://github.com/GenomicsDB/GenomicsDB/wiki</url>
+
+  <licenses>
+    <license>
+      <name>MIT and other recursive licenses</name>
+      <url>https://github.com/GenomicsDB/GenomicsDB/blob/master/LICENSE</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>support</id>
+      <name>Support</name>
+      <email>support@genomicsdb.org</email>
+      <url>https://www.genomicsdb.org</url>
+      <organization>GenomicsDB</organization>
+    </developer>
+    <developer>
+      <id>nalini</id>
+      <name>Nalini Ganapati</name>
+      <email>nalini@omicsautomation.com</email>
+      <url>https://www.omicsautomation.com</url>
+      <organization>Omics Data Automation, Inc.</organization>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:https://github.com/GenomicsDB/GenomicsDB.git</connection>
+    <url>https://github.com/GenomicsDB/GenomicsDB.git</url>
+  </scm>
+
+  <!-- Distribution management section to push jars to Maven central-->
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+
+  <properties>
+    <java.version>1.8</java.version>
+    <scala.main>2.12</scala.main>
+    <spark.version>3.0.1</spark.version>
+    <spark.core.artifactid>spark-core_${scala.main}</spark.core.artifactid>
+    <spark.sql.artifactid>spark-sql_${scala.main}</spark.sql.artifactid>
+    <spark.exclude.packages>org.genomicsdb.spark.v2</spark.exclude.packages>
+    <spark.exclude.files>**/org/genomicsdb/spark/v2/**.java</spark.exclude.files>
+    <htsjdk.version>2.23.0</htsjdk.version>
+    <json.simple.version>[1.1.1,)</json.simple.version>
+    <log4j.version>[2.13.0,)</log4j.version>
+    <protobuf.version>3.0.2</protobuf.version>
+    <protobuf_shade_version>com.google.protobufv3_0_2</protobuf_shade_version>
+    <testng.version>6.10</testng.version>
+    <gnu.getopt.version>1.0.13</gnu.getopt.version>
+    <surefire.plugin.version>2.20</surefire.plugin.version>
+    <genomicsdb_source_directory>.</genomicsdb_source_directory>
+    <genomicsdb_lib_directory>${genomicsdb_build_directory}/src/main</genomicsdb_lib_directory>
+    <genomicsdb_build_directory>${project.basedir}/build</genomicsdb_build_directory>
+    <protobuf.input.directory>${genomicsdb_source_directory}/src/resources</protobuf.input.directory>
+    <protobuf.output.directory>${genomicsdb_build_directory}/src/main/java</protobuf.output.directory>
+    <test_source_directory>${genomicsdb_source_directory}/src/test/java</test_source_directory>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <surefireArgLine>-Djava.library.path=${project.basedir}/bin:${java.library.path}</surefireArgLine>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>${spark.core.artifactid}</artifactId>
+      <version>${spark.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>${spark.sql.artifactid}</artifactId>
+      <version>${spark.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.google.protobuf</groupId>
+          <artifactId>protobuf-java</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.github.samtools</groupId>
+      <artifactId>htsjdk</artifactId>
+      <version>${htsjdk.version}</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.googlecode.json-simple</groupId>
+      <artifactId>json-simple</artifactId>
+      <version>${json.simple.version}</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>${log4j.version}</version>
+  </dependency>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>${protobuf.version}</version>
+    </dependency>
+    <dependency>
+      <!--Required to convert protocol buffer to JSON string conversion
+         using for JsonFormat.printToString-->
+      <groupId>com.googlecode.protobuf-java-format</groupId>
+      <artifactId>protobuf-java-format</artifactId>
+      <version>1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${testng.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>gnu.getopt</groupId>
+      <artifactId>java-getopt</artifactId>
+      <version>${gnu.getopt.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <directory>${genomicsdb_build_directory}</directory>
+    <testSourceDirectory>${test_source_directory}</testSourceDirectory>
+    <resources>
+      <resource>
+        <directory>${genomicsdb_lib_directory}</directory>
+        <includes>
+          <include>**/libtiledbgenomicsdb.so</include>
+          <include>**/libtiledbgenomicsdb.dylib</include>
+        </includes>
+      </resource>
+    </resources>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>3.2.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    
+    <plugins>
+      <plugin>
+        <inherited>true</inherited>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+          <compilerArgs>
+            <arg>-Xlint</arg>
+          </compilerArgs>
+          <excludes>
+            <exclude>${spark.exclude.files}</exclude>
+          </excludes>
+          <testExcludes>
+            <testExclude>${spark.exclude.files}</testExclude>
+          </testExcludes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>unzip-test-artifacts</id>
+            <phase>process-test-resources</phase>
+            <configuration>
+              <target>
+                <mkdir dir="${genomicsdb_build_directory}/test" />
+                <copy file="${test_source_directory}/../inputs/test.tgz" tofile="${genomicsdb_build_directory}/test/test.tar.gz" />
+                <gunzip src="${genomicsdb_build_directory}/test/test.tar.gz" />
+                <untar src="${genomicsdb_build_directory}/test/test.tar" dest="${genomicsdb_build_directory}/test/"/>
+                <replace file="${genomicsdb_build_directory}/test/inputs/query.json" token="inputs/" value="${genomicsdb_build_directory}/test/inputs/" />
+                <replace file="${genomicsdb_build_directory}/test/inputs/loader.json" token="inputs/" value="${genomicsdb_build_directory}/test/inputs/" />
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Jacoco adapted from 
+           https://www.petrikainulainen.net/programming/maven/creating-code-coverage-reports-for-unit-and-integration-tests-with-the-jacoco-maven-plugin/ -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.6</version>
+        <executions>
+          <!--
+            Prepares the property pointing to the JaCoCo runtime agent which
+            is passed as VM argument when Maven the Surefire plugin is executed.
+          -->
+          <execution>
+            <id>pre-unit-test</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <configuration>
+              <!-- Sets the path to the file which contains the execution data. -->
+              <destFile>${project.build.directory}/jacoco-reports/jacoco-ut.exec</destFile>
+              <!--
+                  Sets the name of the property containing the settings
+                  for JaCoCo runtime agent.
+              -->
+              <propertyName>surefireJacoco</propertyName>
+            </configuration>
+          </execution>
+          <!--
+            Ensures that the code coverage report for unit tests is created after
+            unit tests have been run.
+          -->
+          <execution>
+            <id>post-unit-test</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <!-- Sets the path to the file which contains the execution data. -->
+              <dataFile>${project.build.directory}/jacoco-reports/jacoco-ut.exec</dataFile>
+              <!-- Sets the output directory for the code coverage report. -->
+              <outputDirectory>${project.build.directory}/jacoco-reports/jacoco-ut</outputDirectory>
+              </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.scala-tools</groupId>
+        <artifactId>maven-scala-plugin</artifactId>
+        <version>2.15.2</version>
+<!-- removing for OSX build
+        <executions>
+          <execution>
+            <id>scala-compile-first</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+-->
+      </plugin>
+      <plugin>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>scala-maven-plugin</artifactId>
+        <version>4.4.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.2.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin> 
+        <groupId>org.apache.maven.plugins</groupId> 
+        <artifactId>maven-shade-plugin</artifactId>  
+        <version>3.2.4</version> 
+        <executions> 
+          <execution> 
+            <phase>package</phase> 
+            <goals> 
+              <goal>shade</goal> 
+            </goals> 
+            <configuration> 
+            <shadedArtifactAttached>true</shadedArtifactAttached> 
+            <shadedClassifierName>allinone</shadedClassifierName> 
+            <filters>
+              <filter>
+                <artifact>*:*</artifact>
+                <excludes>
+                  <exclude>META-INF/*.SF</exclude>
+                  <exclude>META-INF/*.DSA</exclude>
+                  <exclude>META-INF/*.RSA</exclude>
+                </excludes>
+              </filter>
+            </filters>
+            <relocations> 
+              <relocation> 
+                <pattern>com.google.protobuf</pattern> 
+                <shadedPattern>${protobuf_shade_version}</shadedPattern> 
+              </relocation> 
+            </relocations> 
+            </configuration>  
+          </execution>  
+        </executions> 
+      </plugin> 
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${surefire.plugin.version}</version>
+        <configuration>
+          <includes>
+            <include>**/*.java</include>
+            <include>**/*.scala</include>
+          </includes>
+          <reuseForks>true</reuseForks>
+          <parallel>all</parallel>
+          <useUnlimitedThreads>true</useUnlimitedThreads>
+          <argLine>${surefireJacoco} ${surefireArgLine}</argLine>
+          <systemPropertyVariables>
+            <buildDirectory>${project.build.directory}</buildDirectory>
+            <log4j.configuration>file:${genomicsdb_source_directory}/src/resources/log4j.properties</log4j.configuration>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.scalatest</groupId>
+        <artifactId>scalatest-maven-plugin</artifactId>
+        <version>2.0.2</version>
+        <configuration>
+          <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+          <junitxml>.</junitxml>
+          <filereports>WDF TestSuite.txt</filereports>
+          <argLine>-Djava.library.path=${basedir}/bin</argLine>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.2.0</version>
+        <configuration>
+          <show>private</show>
+          <nohelp>true</nohelp>
+          <source>8</source>
+          <excludePackageNames>${spark.exclude.packages}</excludePackageNames>
+          <sourceFileExcludes>
+            <sourceFileExclude>**/Coordinates.java</sourceFileExclude>
+            <sourceFileExclude>**/GenomicsDBVidMapProto.java</sourceFileExclude>
+            <sourceFileExclude>**/GenomicsDBCallsetsMapProto.java</sourceFileExclude>
+            <sourceFileExclude>**/GenomicsDBImportConfiguration.java</sourceFileExclude>
+            <sourceFileExclude>**/GenomicsDBExportConfiguration.java</sourceFileExclude>
+          </sourceFileExcludes>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <version>1.6</version>
+        <executions>
+          <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+            </execution>
+        </executions>
+      </plugin>
+      <!-- previously in default profile, moving out to avoid duplicating for spark2 profile -->
+      <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>3.0.0</version>
+            <executions>
+              <execution>
+                <id>exec-protoc</id>
+                <phase>generate-sources</phase>
+                <configuration>
+                  <target>
+                    <mkdir dir="${protobuf.output.directory}" />
+                    <path id="protobuf.input.filepaths.path">
+                      <fileset dir="${protobuf.input.directory}">
+                        <include name="**/*.proto"/>
+                      </fileset>
+                    </path>
+                    <pathconvert pathsep=" " property="protobuf.input.filepaths" refid="protobuf.input.filepaths.path"/>
+                    <exec executable="${protoc.filepath}" failonerror="true">
+                      <arg value="-I"/>
+                      <arg value="${protobuf.input.directory}"/>
+                      <arg value="--java_out"/>
+                      <arg value="${protobuf.output.directory}"/>
+                      <arg line="${protobuf.input.filepaths}"/>
+                    </exec>
+                  </target>
+                </configuration>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+              <!--Add src/main/scala to source path of Eclipse -->
+              <execution>
+                <id>add-source</id>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>add-source</goal>
+                </goals>
+                <configuration>
+                  <sources>
+                    <source>${protobuf.output.directory}</source>
+                    <source>${genomicsdb_source_directory}/src/main/java</source>
+                    <source>${genomicsdb_source_directory}/src/main/scala</source>
+                  </sources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+    </plugins>
+  </build>
+  <profiles>
+    <profile>
+      <id>java11</id>
+      <properties>
+        <java.version>11</java.version>
+        <surefireArgLine>--illegal-access=permit -Djava.library.path=${project.basedir}/bin:${java.library.path}</surefireArgLine>
+      </properties>
+      </profile>  
+    <profile>
+      <id>spark2</id>
+      <properties>
+        <scala.main>2.11</scala.main>
+        <spark.version>2.4.0</spark.version>
+        <spark.exclude.packages>org.genomicsdb.spark.sources</spark.exclude.packages>
+        <spark.exclude.files>**/org/genomicsdb/spark/sources/*.java</spark.exclude.files>
+      </properties>  
+    </profile>
+  </profiles>
+</project>
