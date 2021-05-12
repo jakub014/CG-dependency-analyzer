@@ -1,5 +1,7 @@
 package PomAnalyzer;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -20,9 +22,9 @@ public class VulnParser {
         this.myPath = myPath;
     }
 
-    public ArrayList<Dependency> readVuln() {
+    public List<Dependency> readVuln() {
         //JSON parser object to parse read file
-        ArrayList<Dependency> vulnerabilities = new ArrayList<>();
+        List<Dependency> vulnerabilities = new ArrayList<>();
         JSONParser jsonParser = new JSONParser();
 
         try (FileReader reader = new FileReader(new File(myPath).getAbsolutePath()))
@@ -36,23 +38,30 @@ public class VulnParser {
             for (String key : keys) {
                 JSONArray vulnArr = (JSONArray) depList.get(key);
                 for (Object vuln : vulnArr) {
-                    vulnerabilities.add(parseDepObject( (JSONObject) vuln));
+                    vulnerabilities.addAll(parseDepObject( (JSONObject) vuln));
                 }
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+
+        vulnerabilities = vulnerabilities.stream().distinct().collect(Collectors.toList());
+
         return vulnerabilities;
     }
 
-    private static Dependency parseDepObject(JSONObject dependency)
+    private static List<Dependency> parseDepObject(JSONObject dependency)
     {
+        List<Dependency> packages = new ArrayList<>();
         JSONArray infArr = (JSONArray) dependency.get("vulnerable_purls");
-        String info = (String) infArr.get(0);
 
-        String[] info1 = info.split("/");
-        String[] info2 = info1[2].split("@");
+        for(Object pUrl : infArr) {
+            String info = (String) pUrl;
 
-        return new Dependency(info1[1], info2[0], info2[1]);
+            String[] info1 = info.split("/");
+            String[] info2 = info1[2].split("@");
+            packages.add(new Dependency(info1[1], info2[0], info2[1]));
+        }
+        return packages;
     }
 }

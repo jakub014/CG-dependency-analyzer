@@ -20,7 +20,7 @@ import java.util.List;
 public class PomAnalyzer {
 
     private static final String VULNERABILITY_FILE_PATH = "src/main/resources/pkg_cves.json";
-    static final ArrayList<Dependency> listOfVuln = new VulnParser(VULNERABILITY_FILE_PATH).readVuln();
+    static final List<Dependency> listOfVuln = new VulnParser(VULNERABILITY_FILE_PATH).readVuln();
 
     public static class VulnsNotFoundException extends Exception {
         public VulnsNotFoundException(String message) {
