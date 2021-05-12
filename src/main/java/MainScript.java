@@ -37,33 +37,37 @@ public class MainScript {
         for (Object o : data) {
             counter++;
             if (counter > startFrom) {
-                System.out.println("START ANALYSIS ON PROJECT NO." + counter);
                 JSONObject obj = (JSONObject) o;
 
-                JSONObject apiResponse = (JSONObject) obj.get("fullresponse");
+                if(10 <= (Long) obj.get("stars")) {
+                    System.out.println("START ANALYSIS ON PROJECT NO." + counter);
 
-                String packageName = (String) obj.get("repository");
-                String groupID = (String) obj.get("user");
+                    JSONObject apiResponse = (JSONObject) obj.get("fullresponse");
 
-                String pomName = groupID + "__" + packageName + "_pom.xml";
+                    String packageName = (String) obj.get("repository");
+                    String groupID = (String) obj.get("user");
 
-                String pomPath = "src/main/resources/poms/" + pomName;
+                    String pomName = groupID + "__" + packageName + "_pom.xml";
 
-                File pom = new File(pomPath);
+                    String pomPath = "src/main/resources/poms/" + pomName;
 
-                if(!pom.exists()) {
-                    System.out.println("POM LOCALLY NOT FOUND FOR " + packageName + " ~ " +  groupID);
-                    continue;
+                    File pom = new File(pomPath);
+
+                    if(!pom.exists()) {
+                        System.out.println("POM LOCALLY NOT FOUND FOR " + packageName + " ~ " +  groupID);
+                        continue;
+                    }
+
+                    try {
+                        PomAnalyzer.getProjectDependencies(pomPath);
+                        String defaultBranch = (String) apiResponse.get("default_branch");
+                        String link =(String) apiResponse.get("html_url");
+                        analyzeRepository(link, defaultBranch);
+                    } catch (PomAnalyzer.VulnsNotFoundException e) {
+                        System.out.println("NO VULNERABLE DEPENDENCIES FOUND");
+                    }
                 }
 
-                try {
-                    PomAnalyzer.getProjectDependencies(pomPath);
-                    String defaultBranch = (String) apiResponse.get("default_branch");
-                    String link =(String) apiResponse.get("html_url");
-                    analyzeRepository(link, defaultBranch);
-                } catch (PomAnalyzer.VulnsNotFoundException e) {
-                    System.out.println("NO VULNERABLE DEPENDENCIES FOUND");
-                }
             }
         }
 
