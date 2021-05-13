@@ -14,7 +14,7 @@ import java.util.*;
 public class RepositoryUtil {
 
     // !!! IMPORTANT: Set MAVEN_HOME to the PATH on your computer
-    final static String MAVEN_HOME = "C:\\Program Files (x86)\\Maven\\apache-maven-3.8.1";
+    final static String MAVEN_HOME = "/usr/share/maven";
 
     public static class JarNotFoundException extends Exception {
         public JarNotFoundException(String message) {
@@ -63,6 +63,7 @@ public class RepositoryUtil {
     public static String downloadRepository(String link, String repositoryName, String defaultBranch) {
         // Download zip file.
         String zipPath = repositoryName + ".zip";
+        System.out.println("HIER");
         try {
            FileUtils.copyURLToFile(new URL(link + "/archive/refs/heads/" + defaultBranch + ".zip"), new File(zipPath));
         } catch (IOException e) {
@@ -87,7 +88,7 @@ public class RepositoryUtil {
         InvocationRequest request = new DefaultInvocationRequest();
         request.setPomFile(new File(pomXMLPath));
         // Run `mvn package -Dmaven.test.skip=true`. Last part of command skips run of tests
-        request.setGoals(Collections.singletonList("package -Dmaven.test.skip=true"));
+        request.setGoals(Collections.singletonList("package -Dmaven.test.skip=true -Dmaven.javadoc.skip=true"));
 
         Invoker invoker = new DefaultInvoker();
         invoker.setMavenHome(new File(Paths.get(MAVEN_HOME).toUri()));
@@ -104,14 +105,14 @@ public class RepositoryUtil {
         try {
             String path = repositoryName + "/" + repositoryName + "-" + branch;
             File repoDir = new File(path);
-            File gradlewFile = new File(path + "/gradlew");
-            Set<PosixFilePermission> permissions = new HashSet<>();
-            permissions.add(PosixFilePermission.OWNER_EXECUTE);
-            Files.setPosixFilePermissions(gradlewFile.toPath(), permissions);
+            File gradlewFile = new File(repoDir.getAbsolutePath() + "/gradlew");
+            gradlewFile.setExecutable(true);
 
-            String[] cmdArray = new String[1];
-            cmdArray[0] = "sudo bash ./gradlew assemble";
-            Runtime.getRuntime().exec(cmdArray, null, repoDir.getAbsoluteFile());
+            String[] cmdArray = {gradlewFile.getAbsolutePath(), "build"};
+            var res = Runtime.getRuntime().exec(gradlewFile.getPath() + " build");
+
+
+            System.out.println(res.exitValue());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -129,9 +130,13 @@ public class RepositoryUtil {
 
     private static String getJarPath(String repositoryName, String defaultBranch) throws JarNotFoundException {
         String repositoryTargetPath = repositoryName + "/" + repositoryName + "-" + defaultBranch + "/target";
-        for (File file : Objects.requireNonNull(new File(repositoryTargetPath).listFiles())) {
-            if (file.getName().endsWith(".jar")) {
-                return file.getAbsolutePath();
+        File[] files = new File(repositoryTargetPath).listFiles();
+
+        if (files != null) {
+            for (File file : files) {
+                if (file.getName().endsWith(".jar")) {
+                    return file.getAbsolutePath();
+                }
             }
         }
         throw new JarNotFoundException("Jar file not found for repository " + repositoryName);
@@ -140,5 +145,11 @@ public class RepositoryUtil {
     public static String getRepositoryJAR(String repositoryName, String defaultBranch) throws JarNotFoundException {
         buildRepositoryJAR(repositoryName, defaultBranch);
         return getJarPath(repositoryName, defaultBranch);
+    }
+
+    public static void main(String[] args) {
+        Pair pair = getRepoAndLink("https://github.com/adobe/target-java-sdk");
+        downloadRepository(pair.getRight(), pair.getLeft(), "main");
+        buildGradleProject(pair.getLeft(), "main");
     }
 }

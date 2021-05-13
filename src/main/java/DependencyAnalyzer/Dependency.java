@@ -1,4 +1,4 @@
-package PomAnalyzer;
+package DependencyAnalyzer;
 
 import java.util.Objects;
 

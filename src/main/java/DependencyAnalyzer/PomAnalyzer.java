@@ -1,4 +1,4 @@
-package PomAnalyzer;
+package DependencyAnalyzer;
 
 import java.util.stream.Collectors;
 import org.w3c.dom.Document;
@@ -41,9 +41,6 @@ public class PomAnalyzer {
 
             doc.getDocumentElement().normalize();
 
-            //System.out.println("Root Element :" + doc.getDocumentElement().getNodeName());
-            //System.out.println("------");
-
             NodeList list = doc.getElementsByTagName("dependency");
             for (int temp = 0; temp < list.getLength(); temp++) {
                 Node node = list.item(temp);
@@ -55,9 +52,18 @@ public class PomAnalyzer {
                         String groupId = element.getElementsByTagName("groupId").item(0).getTextContent();
                         String artifactId = element.getElementsByTagName("artifactId").item(0).getTextContent();
                         String version = element.getElementsByTagName("version").item(0).getTextContent();
+
+                        if (version.startsWith("${") && version.endsWith("}")) {
+                            String trimmedVersion = version.substring(2, version.length()-1);
+                            NodeList propertiesList = doc.getElementsByTagName("properties");
+
+                            Element propertyElement = (Element) propertiesList.item(0);
+                            version = propertyElement.getElementsByTagName(trimmedVersion).item(0).getTextContent();
+                        }
                         listOfDeps.add(new Dependency(groupId, artifactId, version));
                     } catch (NullPointerException e) {
                         //INCOMPLETE DEPENDENCY DEFINITION IN POM
+
                     }
 
                 }
