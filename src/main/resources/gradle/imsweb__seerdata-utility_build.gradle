@@ -1,0 +1,128 @@
+plugins {
+    id 'java-library'
+    id 'com.bmuschko.nexus' version '2.3.1'
+    id 'io.codearte.nexus-staging' version '0.21.2'
+}
+
+group = 'com.imsweb'
+version = file('VERSION').text
+description = 'SEER*Rx Drugs/regimens and HematoDB Diseases XML definitions and search utilities.'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+println "Starting build using JDK ${Runtime.version().feature()}"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api 'com.thoughtworks.xstream:xstream:1.4.15'
+    api 'com.fasterxml.jackson.core:jackson-core:2.12.1'
+    api 'com.fasterxml.jackson.core:jackson-annotations:2.12.1'
+    api 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
+
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'commons-io:commons-io:2.7'
+}
+
+// enforce UTF-8, display the compilation warnings
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+}
+
+// the Javadoc was made way too strict in Java 8 and it's not worth the time fixing everything!
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
+
+// customize the manifest
+jar {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'Information Management Services Inc.',
+                'Created-By': System.properties['java.vm.version'] + ' (' + System.properties['java.vm.vendor'] + ')',
+                'Built-By': System.getProperty('user.name'),
+                'Built-Date': new Date(),
+                'Built-JDK': System.getProperty('java.version'),
+                'Automatic-Module-Name': 'com.imsweb.seerdata'
+        )
+    }
+}
+
+// configure nexus staging plugin
+nexusStaging {
+    numberOfRetries = 50
+    delayBetweenRetriesInMillis = 5000
+}
+
+// needed to deploy to Maven Central
+modifyPom {
+    project {
+        name 'SEER Data Utility'
+        description 'SEER*Rx Drugs/regimens and HematoDB Diseases XML definitions and search utilities.'
+        url 'https://github.com/imsweb/seerdata-utility'
+        inceptionYear '2016'
+
+        scm {
+            url 'https://github.com/imsweb/seerdata-utility'
+            connection 'scm:https://github.com/imsweb/seerdata-utility.git'
+            developerConnection 'scm:git@github.com:imsweb/seerdata-utility.git'
+        }
+
+        licenses {
+            license {
+                name 'A modified BSD License (BSD)'
+                url 'https://github.com/imsweb/layout/blob/master/LICENSE'
+                distribution 'repo'
+            }
+        }
+
+        developers {
+            developer {
+                id 'depryf'
+                name 'Fabian Depry'
+                email 'depryf@imsweb.com'
+            }
+        }
+    }
+}
+// this will add the XML-related tasks
+configurations {
+    xjc
+}
+
+dependencies {
+    xjc group: 'com.sun.xml.bind', name: 'jaxb-xjc', version: '2.2.7'
+}
+
+task generateHematodbXmlEntities {
+    doLast {
+        ant.taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask', classpath: configurations.xjc.asPath)
+        ant.xjc(destdir: 'src/main/java', schema: 'src/main/resources/diseases.xsd', package: 'com.imsweb.data.hematodb.xml', extension: 'true') {
+            arg(line: '-no-header')
+        }
+    }
+}
+
+task generateSeerrxXmlEntities {
+    doLast {
+        ant.taskdef(name: 'xjc', classname: 'com.sun.tools.xjc.XJCTask', classpath: configurations.xjc.asPath)
+        ant.xjc(destdir: 'src/main/java', schema: 'src/main/resources/drugs.xsd', package: 'com.imsweb.data.seerrx.xml', extension: 'true') {
+            arg(line: '-no-header')
+        }
+    }
+}
+
+// don't try to release a snapshot to a non-snapshot repository, that won't work anyway
+if (version.endsWith('-SNAPSHOT'))
+    gradle.startParameter.excludedTaskNames += 'closeAndReleaseRepository'
+
+// Gradle wrapper, this allows to build the project without having to install Gradle!
+wrapper {
+    gradleVersion = '6.0.1'
+    distributionType = Wrapper.DistributionType.ALL
+}
+

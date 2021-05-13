@@ -1,0 +1,210 @@
+plugins {
+    id "java"
+    id "maven-publish"
+    id "signing"
+    id "checkstyle"
+}
+
+group = "org.embulk"
+version = "0.3.0-SNAPSHOT"
+description = "Embulk configuration processor for Embulk plugins"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+configurations {
+    compileClasspath.resolutionStrategy.activateDependencyLocking()
+    runtimeClasspath.resolutionStrategy.activateDependencyLocking()
+
+    legacyTestImplementation {
+        extendsFrom testImplementation
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly "org.embulk:embulk-api:0.10.31"
+    implementation "javax.validation:validation-api:1.1.0.Final"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:2.6.7"
+    implementation "com.fasterxml.jackson.core:jackson-core:2.6.7"
+    implementation "com.fasterxml.jackson.core:jackson-databind:2.6.7"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.6.7"  // Required for java.util.Optional.
+
+    testImplementation "org.embulk:embulk-api:0.10.31"
+    testImplementation "org.apache.bval:bval-jsr303:0.5"
+    testImplementation "joda-time:joda-time:2.9.2"
+    testImplementation "ch.qos.logback:logback-classic:1.1.3"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.6.1"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.6.1"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.6.1"
+
+    legacyTestImplementation "junit:junit:4.12"
+    legacyTestImplementation "org.embulk:embulk-core:0.10.31"
+    legacyTestImplementation "org.embulk:embulk-core:0.10.31:tests"
+    legacyTestImplementation "org.embulk:embulk-junit4:0.10.31"
+    legacyTestImplementation "org.embulk:embulk-deps:0.10.31"
+    legacyTestImplementation "ch.qos.logback:logback-classic:1.1.3"
+}
+
+sourceSets {
+    legacyTest {
+        java {
+            srcDir "src/legacyTest/java"
+        }
+        resources {
+            srcDir "src/legacyTest/resources"
+        }
+        compileClasspath += main.output
+        runtimeClasspath += main.output
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+    options.encoding = "UTF-8"
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+javadoc {
+    title = "${project.name} v${project.version}"
+
+    // "*NodeRebuilder" classes are unofficial and undocumented while ObjectNodeRebuilder is "public".
+    exclude "org/embulk/util/config/rebuild/*.java"
+
+    // "DataSourceImpl" is unofficial and undocumented while it is "public".
+    exclude "org/embulk/util/config/DataSourceImpl.java"
+
+    options {
+        locale = "en_US"
+        encoding = "UTF-8"
+        overview = "src/main/html/overview.html"
+        links "https://docs.oracle.com/javase/8/docs/api/"
+        links "https://docs.oracle.com/javaee/7/api/"
+        links "https://dev.embulk.org/embulk-api/0.10.31/javadoc/"
+        links "https://fasterxml.github.io/jackson-core/javadoc/2.6/"
+        links "https://fasterxml.github.io/jackson-databind/javadoc/2.6/"
+        links "https://fasterxml.github.io/jackson-datatype-jdk8/javadoc/2.6/"
+    }
+}
+
+check {
+    dependsOn "legacyTest"
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        outputs.upToDateWhen { false }
+        showStandardStreams = true
+    }
+    systemProperty "org.embulk.embulk_util_config.version", "${project.version}"
+}
+
+task legacyTest(type: Test, description: "Tests compatible with legacy Embulk DataSource.", group: "Verification") {
+    classpath = sourceSets.legacyTest.runtimeClasspath
+    testClassesDirs = sourceSets.legacyTest.output.classesDirs
+
+    testLogging {
+        outputs.upToDateWhen { false }
+        showStandardStreams = true
+    }
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        // Not to skip up-to-date checkstyles.
+        outputs.upToDateWhen { false }
+    }
+}
+
+checkstyle {
+    toolVersion "8.7"
+    configFile = file("${projectDir}/config/checkstyle/checkstyle.xml")
+    configProperties = [
+        "checkstyle.config.path": file("${projectDir}/config/checkstyle")
+    ]
+    ignoreFailures = false
+    maxWarnings = 0  // https://github.com/gradle/gradle/issues/881
+}
+
+jar {
+    from rootProject.file("LICENSE")
+}
+
+sourcesJar {
+    from rootProject.file("LICENSE")
+}
+
+javadocJar {
+    from rootProject.file("LICENSE")
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = "${project.group}"
+            artifactId = "${project.name}"
+
+            from components.java
+            // javadocJar and sourcesJar are added by java.withJavadocJar() and java.withSourcesJar() above.
+            // See: https://docs.gradle.org/current/javadoc/org/gradle/api/plugins/JavaPluginExtension.html
+
+            pom {  // https://central.sonatype.org/pages/requirements.html
+                packaging "jar"
+
+                name = "${project.name}"
+                description = "${project.description}"
+                url = "https://www.embulk.org/"
+
+                licenses {
+                    license {
+                        // http://central.sonatype.org/pages/requirements.html#license-information
+                        name = "The Apache License, Version 2.0"
+                        url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = "dmikurube"
+                        name = "Dai MIKURUBE"
+                        email = "dmikurube@treasure-data.com"
+                    }
+                }
+
+                scm {
+                    connection = "scm:git:git://github.com/embulk/embulk-util-config.git"
+                    developerConnection = "scm:git:git@github.com:embulk/embulk-util-config.git"
+                    url = "https://github.com/embulk/embulk-util-config"
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {  // publishMavenPublicationToMavenCentralRepository
+            name = "mavenCentral"
+            if (project.version.endsWith("-SNAPSHOT")) {
+                url "https://oss.sonatype.org/content/repositories/snapshots"
+            } else {
+                url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            }
+
+            credentials {
+                username = project.hasProperty("ossrhUsername") ? ossrhUsername : ""
+                password = project.hasProperty("ossrhPassword") ? ossrhPassword : ""
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.maven
+}

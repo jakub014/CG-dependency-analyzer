@@ -1,0 +1,54 @@
+// when on the project path, mdoc's version of FlexMark  conflicts with the ScalaTest's;
+// when it is here, I do not need to introduce `mdoc` configuration - and I can
+// call it directly.
+buildscript {
+  dependencies {
+    classpath "org.scalameta:mdoc_$scalaVersionMajor:$mdocVersion"
+  }
+}
+
+plugins {
+  id 'com.github.ben-manes.versions'
+  id 'idea'
+  id 'base'
+  id 'io.miret.etienne.sass'
+}
+
+ext.mdocRunner = mdoc.Main
+
+idea {
+  module {
+    excludeDirs += [
+      file('.idea'),
+      file('gradle')
+    ]
+  }
+}
+
+// There is no Java in the project :)
+project.gradle.startParameter.excludedTaskNames.add('compileJava')
+
+subprojects {
+  group = 'org.opentorah'
+  version = projectVersion
+
+  task site
+  site.description = 'Generate project website'
+  site.group = 'publishing'
+
+  task upload
+  upload.description = 'Upload artifacts and plugins'
+  upload.group = 'publishing'
+
+  task deploy
+  deploy.description = 'Publish containers and re-deploy services'
+  deploy.group = 'publishing'
+}
+
+compileSass {
+  group = 'publishing'
+
+  sourceDir = project.file ("$rootDir/docs/sass")
+  outputDir = project.file ("$rootDir/docs/css")
+}
+

@@ -1,0 +1,121 @@
+apply plugin: 'application'
+apply plugin: 'eclipse'
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+group = 'com.foilen'
+version = System.getenv('VERSION')?:'master-SNAPSHOT'
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+
+sourceCompatibility = 8
+
+eclipse {
+  classpath {
+    downloadSources = true
+    downloadJavadoc = true
+  }
+}
+
+dependencies {
+
+  // Misc
+  compile "args4j:args4j:$argsVersion"
+  compile "ch.qos.logback:logback-classic:$logbackVersion"
+  compile 'com.fasterxml.jackson.core:jackson-databind:2.9.1'
+  compile "com.foilen:jl-smalltools:$smalltoolsVersion"
+  compile "com.google.guava:guava:27.0.1-jre"
+  compile 'org.apache.commons:commons-lang3:3.6'
+  compile 'org.slf4j:slf4j-api:1.7.25'
+  
+  // Databases
+  compile "org.mariadb.jdbc:mariadb-java-client:$dbMariadbVersion"
+  compile "org.mongodb:mongodb-driver:$dbMongodbVersion"
+  
+  // Spring
+  compile "org.springframework.data:spring-data-jdbc:$springDataJdbcVersion"
+  
+  // Test
+  testCompileOnly 'junit:junit:4.13'
+  testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+  testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$junitVersion"
+  testCompile 'org.junit.platform:junit-platform-commons:1.5.2'
+  testCompile 'org.junit.platform:junit-platform-engine:1.5.2'
+}
+
+test {
+  useJUnitPlatform()
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from javadoc.destinationDir
+}
+
+application {
+  mainClassName = 'com.foilen.databasetools.Application'
+  applicationDefaultJvmArgs = ['-Xmx200m']
+}
+
+artifacts {
+  archives javadocJar, sourcesJar
+}
+
+signing {
+  required { isReleaseVersion && gradle.taskGraph.hasTask(":uploadArchives") }
+  sign configurations.archives
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication(userName: System.getenv('OSSRH_USER'), password: System.getenv('OSSRH_PASS'))
+      }
+
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication(userName: System.getenv('OSSRH_USER'), password: System.getenv('OSSRH_PASS'))
+      }
+
+      pom.project {
+        name = "database-tools"
+        packaging 'jar'
+        artifactId 'database-tools'
+        description 'This is an application to help manipulating databases'
+        url 'https://github.com/foilen/database-tools'
+
+        scm {
+          connection = "scm:git:git@github.com:foilen/database-tools.git"
+          url = "https://github.com/foilen/database-tools"
+        }
+
+        licenses {
+          license {
+            name = "MIT"
+            url = "https://opensource.org/licenses/MIT"
+          }
+        }
+
+        developers {
+          developer {
+            id 'foilen'
+            name 'Simon Levesque'
+            email 'simon@foilen.com'
+          }
+        }
+      }
+    }
+  }
+}

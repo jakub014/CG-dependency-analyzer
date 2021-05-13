@@ -1,0 +1,73 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.14.2'
+    }
+}
+
+apply plugin: 'java-library'
+apply plugin: 'com.vanniktech.maven.publish'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+def projectName = 'jdkgdxds'
+version "$VERSION_NAME"
+group 'com.github.tommyettinger'
+
+//api "com.github.tommyettinger:jdkgdxds:0.1.1"
+
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+// Disable JDK 8's doclint
+// http://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            // The -quiet is because of some sort of weird JDK JavaCompiler bug:
+            // https://discuss.gradle.org/t/passing-arguments-to-compiler-and-javadoc/1661
+            options.addStringOption('Xdoclint:none,-missing', '-quiet')
+            options.tags('apiNote:a:"API Note"', 'implSpec:a:"Implementation Requirements"', 'implNote:a:"Implementation Note"')
+        }
+    }
+}
+if (JavaVersion.current().isJava9Compatible()) {
+    compileJava.targetCompatibility = 8
+}
+compileJava.exclude("emu")
+javadoc.exclude("emu")
+javadoc.options.source("15")
+javadoc.destinationDir = file("docs/apidocs")
+
+sourceSets.test.resources.srcDirs = [ file('src/test/resources').path ]
+
+jar {
+    archiveBaseName.set(projectName)
+    manifest {
+        attributes 'Implementation-Title': projectName, 'Implementation-Version': archiveVersion
+    }
+}
+
+if(JavaVersion.current().isJava9Compatible()) {
+    allprojects {
+        tasks.withType(JavaCompile) {
+            options.release.set(8)
+        }
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+}
+
+dependencies {
+    api 'com.google.code.findbugs:jsr305:3.0.2'
+    testImplementation "junit:junit:4.13.1"
+}

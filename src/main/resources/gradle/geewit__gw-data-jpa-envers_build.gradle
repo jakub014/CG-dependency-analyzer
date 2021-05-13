@@ -1,0 +1,40 @@
+apply from: "https://gitee.com/geewit/gradle_publish_sonatype/raw/master/sub_publish_signing.gradle"
+
+task publish {
+    doFirst {
+        println 'run publish start'
+    }
+    doLast {
+        println 'run publish complete'
+    }
+}
+
+publish.dependsOn(":domain:publish")
+publish.dependsOn(":repository:publish")
+
+
+task publishToMavenLocal {
+    doFirst {
+        println 'run publishToMavenLocal start'
+    }
+    doLast {
+        println 'run publishToMavenLocal complete'
+    }
+}
+
+publishToMavenLocal.dependsOn(":domain:publishToMavenLocal")
+publishToMavenLocal.dependsOn(":repository:publishToMavenLocal")
+
+task clean {
+    doFirst {
+        println 'run clean start'
+    }
+    doLast {
+        println 'run clean complete'
+    }
+}
+
+
+clean.dependsOn(":domain:clean")
+clean.dependsOn(":repository:clean")
+

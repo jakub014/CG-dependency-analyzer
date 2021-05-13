@@ -1,0 +1,36 @@
+/*
+ * Build file for jpalmyra
+ * 
+ */
+
+
+plugins {
+    id 'java'
+    id 'maven'
+}
+
+apply from: './dependencies.gradle'
+
+//apply from: './mvn-push.gradle'
+
+group = 'com.zitlab.palmyra'
+//version = VERSION_NAME
+version = '0.5.1'
+sourceCompatibility = '1.8'
+
+repositories {
+    jcenter()
+}
+
+compileJava {
+    options.debug = true;
+    options.debugOptions.debugLevel = 'source,lines,vars'
+}
+
+dependencies {
+	implementation deps.log.slf4j.api 
+    implementation deps.jackson.annotations
+    implementation deps.jackson.core
+    implementation deps.jackson.databind
+    implementation deps.apache.http.client
+}

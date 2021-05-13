@@ -1,0 +1,39 @@
+plugins {
+    id "java-library"
+}
+
+group = 'com.zebrunner'
+version = "${version != 'unspecified' ? version : '1.0-SNAPSHOT'}"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation("com.konghq:unirest-java:3.6.01")
+    implementation("org.yaml:snakeyaml:1.26")
+
+    implementation("net.bytebuddy:byte-buddy:1.10.18")
+    compileOnly("org.seleniumhq.selenium:selenium-remote-driver:3.141.59")
+
+    implementation("org.slf4j:slf4j-api:1.7.30")
+    compileOnly("log4j:log4j:1.2.17")
+    compileOnly("org.apache.logging.log4j:log4j-core:2.13.2")
+    compileOnly("ch.qos.logback:logback-classic:1.2.3")
+
+    annotationProcessor("org.projectlombok:lombok:1.18.10")
+    compileOnly("org.projectlombok:lombok:1.18.10")
+}
+
+jar {
+    manifest {
+        attributes(
+                "Premain-Class": "com.zebrunner.agent.core.webdriver.DriverSessionsAgent",
+                "Can-Redefine-Classes": false,
+                "Can-Retransform-Classes": true,
+                "Build-Jdk": "1.8.0_152"
+        )
+    }
+}
+
+apply from: 'publish-maven.gradle'

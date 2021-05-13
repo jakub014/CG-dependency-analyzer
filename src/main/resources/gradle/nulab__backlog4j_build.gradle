@@ -1,0 +1,128 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+sourceCompatibility=1.7
+tasks.withType(JavaCompile){ options.encoding = 'UTF-8' }
+
+group = 'com.nulab-inc'
+archivesBaseName = 'backlog4j'
+version = '2.4.4-SNAPSHOT'
+
+repositories {
+    maven {
+        url 'https://repo1.maven.org/maven2/'
+    }
+}
+
+dependencies {
+    testCompile 'junit:junit:4.11'
+    testCompile 'uk.co.modular-it:hamcrest-date:0.9.5'
+
+    compile 'org.apache.commons:commons-lang3:3.3.2'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.1.1'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.1.1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.1.1'
+    compile 'org.slf4j:slf4j-api:1.7.30'
+}
+
+javadoc {
+    options.locale = 'en_US'
+    options.encoding = 'UTF-8'
+    title = 'Backlog4j ' + version + ' API'
+}
+
+// Turning off doclint in JDK 8 Javadoc
+// ref : http://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': archivesBaseName, 'Implementation-Version': version
+    }
+}
+
+task sourceJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourceJar, javadocJar
+}
+configurations {
+    deployerJars
+}
+
+signing {
+    // Skip signing snapshot archives
+    if (System.env.TRAVIS || version.endsWith("-SNAPSHOT")) return
+
+    sign configurations.archives
+}
+
+uploadArchives {
+    // Skip uploading production archives when travis
+    if (System.env.TRAVIS && !version.endsWith("-SNAPSHOT")) return
+
+    repositories {
+        mavenDeployer {
+            beforeDeployment {
+                MavenDeployment deployment -> if (!version.endsWith("-SNAPSHOT")) { signing.signPom(deployment) }
+            }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'Backlog4j'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'Backlog4j is a Backlog binding library for Java.'
+                url 'https://github.com/nulab/backlog4j'
+
+                scm {
+                    connection 'https://github.com/nulab/backlog4j.git'
+                    developerConnection 'https://github.com/nulab/backlog4j.git'
+                    url 'https://github.com/nulab/backlog4j.git'
+                }
+
+                licenses {
+                    license {
+                        name 'MIT License'
+                        url 'http://www.opensource.org/licenses/mit-license.php'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'kimzo'
+                        name 'Yuh Kim'
+                        email 'kim@nulab.co.jp'
+                    }
+                }
+            }
+        }
+    }
+}

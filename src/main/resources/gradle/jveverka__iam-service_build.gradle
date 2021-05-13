@@ -1,0 +1,341 @@
+plugins {
+    id "org.sonarqube" version "3.0"
+    id "jacoco"
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "jveverka_iam-service"
+        property "sonar.organization", "osuxueki"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.tests", "src/test"
+        property "sonar.java.test.binaries", "build/classes/java/test"
+        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'jacoco'
+    task allDeps(type: DependencyReportTask) {}
+    test {
+        useJUnitPlatform()
+        afterSuite { desc, result ->
+            if (!desc.parent) {
+                println "\nTest result: ${result.resultType}"
+                println "Test summary: ${result.testCount} tests, " +
+                        "${result.successfulTestCount} succeeded, " +
+                        "${result.failedTestCount} failed, " +
+                        "${result.skippedTestCount} skipped"
+            }
+        }
+        finalizedBy jacocoTestReport
+    }
+    jacocoTestReport {
+        reports {
+            xml.enabled true
+        }
+    }
+}
+
+project(':iam-model') {
+    dependencies {
+        implementation('com.fasterxml.jackson.core:jackson-annotations:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-core:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-databind:2.11.4')
+        testImplementation('org.junit.jupiter:junit-jupiter:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-engine:5.7.1')
+    }
+}
+
+project(':iam-client') {
+    dependencies {
+        implementation project(':iam-model')
+        testImplementation project(':iam-core')
+
+        implementation('org.slf4j:slf4j-api:1.7.30')
+        implementation('io.jsonwebtoken:jjwt-api:0.11.2')
+        implementation('io.jsonwebtoken:jjwt-impl:0.11.2')
+        implementation('com.squareup.okhttp3:okhttp:4.9.1')
+        implementation('com.fasterxml.jackson.core:jackson-annotations:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-core:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-databind:2.11.4')
+        implementation 'org.bouncycastle:bcpg-jdk15on:1.68'
+        implementation 'org.bouncycastle:bcpkix-jdk15on:1.68'
+
+        testImplementation('org.junit.jupiter:junit-jupiter:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-engine:5.7.1')
+    }
+}
+
+project(':iam-client-spring') {
+    dependencies {
+        implementation project(':iam-model')
+        implementation project(':iam-client')
+
+        implementation('org.slf4j:slf4j-api:1.7.30')
+        implementation('org.apache.tomcat.embed:tomcat-embed-core:9.0.45')
+        implementation('org.springframework:spring-context:5.3.6')
+        implementation('org.springframework.boot:spring-boot:2.4.5')
+        implementation('org.springframework:spring-web:5.3.6')
+        implementation('org.springframework.security:spring-security-core:5.4.6')
+        implementation('io.jsonwebtoken:jjwt-api:0.11.2')
+        implementation('io.jsonwebtoken:jjwt-impl:0.11.2')
+        implementation('com.fasterxml.jackson.core:jackson-annotations:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-core:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-databind:2.11.4')
+
+        testImplementation('org.junit.jupiter:junit-jupiter:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-engine:5.7.1')
+    }
+}
+
+project(':iam-service-client') {
+    dependencies {
+        implementation project(':iam-model')
+        implementation project(':iam-core')
+
+        implementation('org.slf4j:slf4j-api:1.7.30')
+        implementation('io.jsonwebtoken:jjwt-api:0.11.2')
+        implementation('io.jsonwebtoken:jjwt-impl:0.11.2')
+        implementation('com.squareup.okhttp3:okhttp:4.9.1')
+        implementation('com.fasterxml.jackson.core:jackson-annotations:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-core:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-databind:2.11.4')
+        implementation 'org.bouncycastle:bcpg-jdk15on:1.68'
+        implementation 'org.bouncycastle:bcpkix-jdk15on:1.68'
+
+        testImplementation('org.junit.jupiter:junit-jupiter:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-engine:5.7.1')
+    }
+}
+
+project(':iam-core') {
+    dependencies {
+        implementation project(':iam-model')
+        implementation project(':iam-client')
+
+        implementation('org.slf4j:slf4j-api:1.7.30')
+        implementation('io.jsonwebtoken:jjwt-api:0.11.2')
+        implementation('io.jsonwebtoken:jjwt-impl:0.11.2')
+        implementation('io.jsonwebtoken:jjwt-jackson:0.11.2') {
+            exclude group: 'com.fasterxml.jackson.core'
+        }
+        implementation('org.bouncycastle:bcpg-jdk15on:1.68')
+        implementation('org.bouncycastle:bcpkix-jdk15on:1.68')
+        implementation('com.fasterxml.jackson.core:jackson-annotations:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-core:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-databind:2.11.4')
+
+        testImplementation('org.slf4j:slf4j-simple:1.7.30')
+        testImplementation('org.junit.jupiter:junit-jupiter:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-engine:5.7.1')
+    }
+}
+
+project(':iam-service') {
+    dependencies {
+        implementation project(':iam-core')
+        implementation project(':iam-model')
+        implementation project(':iam-client')
+        implementation project(':iam-client-spring')
+        implementation project(':iam-persistence-file-system')
+        implementation project(':iam-persistence-mongo')
+        implementation project(':iam-caches-redis')
+        testImplementation project(':iam-service-client')
+
+        implementation 'org.bouncycastle:bcpg-jdk15on:1.68'
+        implementation 'org.bouncycastle:bcpkix-jdk15on:1.68'
+        implementation 'org.springdoc:springdoc-openapi-ui:1.5.4'
+        implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+
+        implementation 'org.mongodb:mongodb-driver-sync:4.2.3'
+        implementation 'org.mongodb:mongodb-driver-core:4.2.3'
+        implementation 'org.mongodb:bson:4.2.3'
+        implementation ('org.mongojack:mongojack:4.2.0') {
+            exclude group: 'org.mongodb', module: 'mongodb-driver-sync'
+            exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+            exclude group: 'com.fasterxml.jackson.datatype', module: 'jackson-datatype-jsr310'
+        }
+
+        implementation('redis.clients:jedis:3.6.0')
+
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
+        testImplementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    }
+}
+
+project(':iam-persistence-file-system') {
+    dependencies {
+        implementation project(':iam-model')
+        implementation project(':iam-core')
+
+        implementation('org.slf4j:slf4j-api:1.7.30')
+        implementation('com.fasterxml.jackson.core:jackson-core:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-databind:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-annotations:2.11.4')
+        implementation('org.bouncycastle:bcpg-jdk15on:1.68')
+        implementation('org.bouncycastle:bcpkix-jdk15on:1.68')
+
+        testImplementation('org.slf4j:slf4j-simple:1.7.30')
+        testImplementation('org.junit.jupiter:junit-jupiter:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-engine:5.7.1')
+    }
+}
+
+project(':iam-persistence-mongo') {
+    dependencies {
+        implementation project(':iam-model')
+        implementation project(':iam-core')
+
+        implementation('org.slf4j:slf4j-api:1.7.30')
+        implementation('com.fasterxml.jackson.core:jackson-core:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-databind:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-annotations:2.11.4')
+        implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.4')
+        implementation('org.bouncycastle:bcpg-jdk15on:1.68')
+        implementation('org.bouncycastle:bcpkix-jdk15on:1.68')
+
+        implementation('org.mongodb:mongodb-driver-sync:4.2.3')
+        implementation 'org.mongodb:mongodb-driver-core:4.2.3'
+        implementation ('org.mongojack:mongojack:4.2.0') {
+            exclude group: 'org.mongodb', module: 'mongodb-driver-sync'
+            exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+            exclude group: 'com.fasterxml.jackson.datatype', module: 'jackson-datatype-jsr310'
+        }
+
+        testImplementation('org.slf4j:slf4j-simple:1.7.30')
+        testImplementation('org.junit.jupiter:junit-jupiter:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-engine:5.7.1')
+        testImplementation('org.testcontainers:junit-jupiter:1.15.2')
+        testImplementation('org.testcontainers:mongodb:1.15.2')
+    }
+}
+
+project(':iam-caches-redis') {
+    dependencies {
+        implementation project(':iam-model')
+        implementation project(':iam-core')
+
+        implementation('org.slf4j:slf4j-api:1.7.30')
+        implementation('com.fasterxml.jackson.core:jackson-core:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-databind:2.11.4')
+        implementation('com.fasterxml.jackson.core:jackson-annotations:2.11.4')
+        implementation('redis.clients:jedis:3.6.0')
+
+        testImplementation('org.slf4j:slf4j-simple:1.7.30')
+        testImplementation('org.junit.jupiter:junit-jupiter:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-engine:5.7.1')
+        testImplementation('org.testcontainers:junit-jupiter:1.15.2')
+    }
+}
+
+// Spring EXAMPLES
+
+project(':performance-testing') {
+    dependencies {
+        implementation project(':iam-model')
+        implementation project(':iam-client')
+        implementation project(':iam-core')
+        implementation project(':iam-service-client')
+
+        implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+        implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+        implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+        implementation 'org.bouncycastle:bcpg-jdk15on:1.68'
+        implementation 'org.bouncycastle:bcpkix-jdk15on:1.68'
+        implementation 'org.slf4j:slf4j-api:1.7.30'
+        implementation 'one.microproject.testmeter:test-meter:0.0.1'
+        implementation('org.junit.jupiter:junit-jupiter-params:5.7.1')
+
+        testImplementation('org.slf4j:slf4j-simple:1.7.30')
+        testImplementation('org.junit.jupiter:junit-jupiter:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-engine:5.7.1')
+        testImplementation('org.junit.platform:junit-platform-suite-api:1.7.1')
+        testImplementation('org.junit.platform:junit-platform-runner:1.7.1')
+        testImplementation('org.junit.vintage:junit-vintage-engine:5.7.1')
+        testImplementation('com.squareup.okhttp3:okhttp:4.9.1')
+    }
+}
+
+project(':integration-tests') {
+    dependencies {
+        implementation project(':iam-model')
+        implementation project(':iam-client')
+        implementation project(':iam-core')
+        implementation project(':iam-service-client')
+
+        implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+        implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+        implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+        implementation 'org.bouncycastle:bcpg-jdk15on:1.68'
+        implementation 'org.bouncycastle:bcpkix-jdk15on:1.68'
+        implementation 'org.slf4j:slf4j-api:1.7.30'
+
+        testImplementation('org.slf4j:slf4j-simple:1.7.30')
+        testImplementation('org.junit.jupiter:junit-jupiter:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-api:5.7.1')
+        testImplementation('org.junit.jupiter:junit-jupiter-engine:5.7.1')
+        testImplementation('com.squareup.okhttp3:okhttp:4.9.1')
+    }
+}
+
+project(':spring-resource-server') {
+    dependencies {
+        testImplementation project(':iam-model')
+        testImplementation project(':iam-client')
+        testImplementation project(':iam-core')
+        testImplementation project(':iam-service-client')
+        testImplementation project(':integration-tests')
+
+        testImplementation('com.squareup.okhttp3:okhttp:4.9.1')
+    }
+}
+
+project(':spring-method-security') {
+    dependencies {
+        implementation project(':iam-model')
+        implementation project(':iam-client')
+        implementation project(':iam-client-spring')
+        testImplementation project(':iam-core')
+        testImplementation project(':iam-service-client')
+        testImplementation project(':integration-tests')
+
+        implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+        implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+        implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+        implementation 'org.bouncycastle:bcpg-jdk15on:1.68'
+        implementation 'org.bouncycastle:bcpkix-jdk15on:1.68'
+        implementation 'org.springdoc:springdoc-openapi-ui:1.5.4'
+
+        testImplementation('com.squareup.okhttp3:okhttp:4.9.1')
+    }
+}
+
+project(':spring-webflux-secured') {
+    dependencies {
+        implementation project(':iam-model')
+        implementation project(':iam-client')
+        testImplementation project(':iam-core')
+        testImplementation project(':iam-service-client')
+        testImplementation project(':integration-tests')
+
+        implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+        implementation 'io.jsonwebtoken:jjwt-impl:0.11.2'
+        implementation 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+        implementation 'org.bouncycastle:bcpg-jdk15on:1.68'
+        implementation 'org.bouncycastle:bcpkix-jdk15on:1.68'
+        testImplementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    }
+}
+

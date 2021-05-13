@@ -1,0 +1,68 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'com.auth0.gradle.oss-library.java'
+}
+group = 'com.auth0'
+
+logger.lifecycle("Using version ${version} for ${name} group $group")
+
+oss {
+    name 'jwks-rsa'
+    repository 'jwks-rsa-java'
+    organization 'auth0'
+    description 'JSON Web Key Set parser library'
+    baselineCompareVersion '0.15.0'
+
+    developers {
+        auth0 {
+            displayName = 'Auth0'
+            email = 'oss@auth0.com'
+        }
+        lbalmaceda {
+            displayName = 'Luciano Balmaceda'
+            email = 'luciano.balmaceda@auth0.com'
+        }
+        hzalaz {
+            displayName = 'Hernan Zalazar'
+            email = 'hernan@auth0.com'
+        }
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+compileJava {
+    sourceCompatibility '1.8'
+    targetCompatibility '1.8'
+}
+
+test {
+    testLogging {
+        events "skipped", "failed"
+        exceptionFormat "short"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.11.3'
+    implementation group: 'com.google.guava', name: 'guava', version:'30.0-jre'
+    testImplementation group: 'junit', name: 'junit', version:'4.13.1'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version:'1.10.19'
+    testImplementation group: 'org.hamcrest', name: 'hamcrest-library', version:'1.3'
+}

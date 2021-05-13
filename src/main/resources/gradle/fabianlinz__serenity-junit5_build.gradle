@@ -1,0 +1,14 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:${serenityCoreVersion}")
+    }
+}
+
+wrapper {
+    gradleVersion = '6.7'
+    distributionType = Wrapper.DistributionType.ALL
+}

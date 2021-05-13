@@ -1,0 +1,314 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'de.thetaphi:forbiddenapis:3.0.1'
+        classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0'
+    }
+}
+
+plugins {
+    id "com.github.spotbugs" version "4.6.0"
+    id "com.github.johnrengelman.shadow" version "4.0.4"
+}
+
+Properties props = new Properties()
+props.load(new FileInputStream(file("gradle/version.properties")));
+ext.set("versions", props)
+
+import org.gradle.api.internal.artifacts.publish.DefaultPublishArtifact
+
+// Please reflect the version change in ``README.rst`` to point to what will be
+// the newly released version.
+project.version = "1.0.0"
+
+apply plugin: 'io.codearte.nexus-staging'
+
+allprojects {
+    group = 'io.crate'
+
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    apply plugin: 'maven'
+    apply plugin: 'signing'
+    apply plugin: 'jacoco'
+    apply plugin: 'checkstyle'
+    apply plugin: 'de.thetaphi.forbiddenapis'
+    apply plugin: 'com.github.johnrengelman.shadow'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    sourceCompatibility = "11"
+    targetCompatibility = "11"
+}
+
+dependencies {
+    // Needed to output all metrics using the prometheus text format
+    compile "io.prometheus:simpleclient_common:${versions.prometheus_lib}"
+    // Let's use default JMX metric exporter from prometheus lib
+    compile "io.prometheus:simpleclient_hotspot:${versions.prometheus_lib}"
+
+    testCompile "io.crate:crate-testing:${versions.crate_testing}"
+    testCompile "junit:junit:${versions.junit}"
+    testCompile "org.hamcrest:hamcrest-all:${versions.hamcrest}"
+    testCompile ("com.carrotsearch.randomizedtesting:randomizedtesting-runner:${versions.randomizedtesting}") {
+        exclude group: 'junit', module: 'junit'
+    }
+    // gradle does not include tools.jar by default
+    testCompile files("${System.getProperty('java.home')}/../lib/tools.jar")
+}
+
+jacoco {
+    toolVersion = "0.8.2"
+}
+
+spotbugs {
+    ignoreFailures = true
+    effort = "max"
+    reportLevel = "low"
+}
+
+spotbugsMain {
+    reports {
+        html {
+            enabled = true
+            destination = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+            stylesheet = 'fancy-hist.xsl'
+        }
+    }
+}
+
+tasks.withType(Javadoc) {
+    failOnError = false
+}
+
+
+compileJava {
+    options.warnings = true
+    options.deprecation = true
+
+    finalizedBy checkstyleMain, forbiddenApisMain, spotbugsMain
+}
+
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+    }
+    test {
+        java {
+            srcDir 'src/test/java'
+        }
+    }
+}
+
+def jvmTestFlags = ['-ea']
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
+
+idea {
+    workspace {
+        iws.withXml { xmlFile ->
+            def runManager = xmlFile.asNode().component.find { it.@name == 'RunManager' }
+
+            // enable assertions for junit tests
+            def junitDefaults = runManager.configuration.find { it.@default == 'true' && it.@type == 'JUnit' }
+            junitDefaults.option.find { it.@name == 'VM_PARAMETERS' }.replaceNode {
+                option(name: 'VM_PARAMETERS', value: jvmTestFlags.join(' '))
+            }
+        }
+    }
+
+    project {
+        vcs = 'Git'
+
+        ipr {
+            withXml { provider ->
+                def node = provider.asNode()
+                node.append(new XmlParser().parse(file("idea/codeStyle.xml")))
+                node.append(new XmlParser().parse(file("idea/codeInspection.xml")))
+                def copyrightManager = node.component.find { it.'@name' == 'CopyrightManager' }
+                copyrightManager.@default = "CrateASL2"
+                def aslCopyright = copyrightManager.copyright.find {
+                    it.option.find { it.@name == "myName" }?.@value == "CrateASL2"
+                }
+                if (aslCopyright == null) {
+                    copyrightManager.append(new XmlParser().parse(file("idea/copyright.xml")))
+                }
+            }
+        }
+    }
+}
+
+checkstyle {
+    toolVersion = "8.1"
+    def checkstyle_dir = new String("$rootDir/gradle/checkstyle/")
+    configProperties = [
+            'checkstyleDir' : checkstyle_dir,
+            // May be overwritten by other modules, e.g. enterprise
+            'licenseHeaderFile' : 'header.txt'
+    ]
+    configFile = file(checkstyle_dir + "rules.xml")
+    checkstyleTest.enabled = false
+}
+
+forbiddenApisMain {
+    bundledSignatures = ['jdk-unsafe', 'jdk-deprecated']
+    signaturesFiles = files("$rootDir/gradle/forbidden-signatures.txt")
+    suppressAnnotations = ['**.SuppressForbidden']
+    ignoreFailures = false
+}
+
+forbiddenApisTest {
+    bundledSignatures = ['jdk-unsafe', 'jdk-deprecated']
+    signaturesFiles = files("$rootDir/gradle/forbidden-signatures.txt")
+    suppressAnnotations = ['**.SuppressForbidden']
+    ignoreFailures = true
+}
+
+wrapper {
+    gradleVersion = '6.8.1'
+}
+
+shadowJar {
+    baseName = 'crate-jmx-exporter'
+    classifier ''
+    duplicatesStrategy 'fail'
+    configurations = [project.configurations.compile]
+
+    dependencies {
+        exclude(dependency {
+            it.moduleGroup == 'org.apache'
+        })
+    }
+    manifest {
+        attributes(
+            "Implementation-Title": "Crate.IO JMX HTTP Exporter Agent",
+            "Implementation-Version": project.version,
+            "Premain-Class": 'io.crate.jmx.Agent',
+            "Agent-Class": 'io.crate.jmx.Agent'
+            )
+    }
+
+    relocate 'io.prometheus', 'io.crate.jmx.shade.io.prometheus'
+}
+
+jar.dependsOn(dependsOn: [shadowJar])
+jar {
+    actions = [] // Do nothing, build shadedJar instead
+}
+
+test.dependsOn(dependsOn: [jar])   // JAR is needed by integration tests
+
+
+task myJavadocs(type: Javadoc, dependsOn: processResources) {
+    classpath = configurations.compile
+    source = sourceSets.main.allJava
+    failOnError = false
+}
+
+task javadocJar (type: Jar, dependsOn: [myJavadocs]) {
+    baseName = 'crate-jmx-exporter'
+    classifier = 'javadoc'
+    from myJavadocs.destinationDir
+    manifest {
+        attributes("Implementation-Title": "Crate.IO JMX HTTP Exporter Agent")
+    }
+}
+
+task sourceJar (type : Jar) {
+    baseName = 'crate-jmx-exporter'
+    classifier = 'sources'
+    from sourceSets.main.allSource
+    manifest {
+        attributes("Implementation-Title": "Crate.IO JMX HTTP Exporter Agent")
+    }
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourceJar
+}
+
+task signJars (type : Sign, dependsOn: [jar, javadocJar, sourceJar]) {
+    sign configurations.archives
+}
+
+
+project.ext.sonatypeUsername = project.hasProperty('sonatypeUsername') ? sonatypeUsername : ""
+project.ext.sonatypePassword = project.hasProperty('sonatypePassword') ? sonatypePassword : ""
+project.ext.url = 'https://crate.io'
+project.ext.scm = {
+    url 'https://github.com/crate/jmx_exporter'
+    connection 'scm:git:git://github.com/crate/jmx_exporter.git'
+    developerConnection 'scm:git:ssh:git@github.com:crate/jmx_exporter.git'
+}
+project.ext.licenses = {
+    license {
+        name 'The Apache Software License, Version 2.0'
+        url 'http://www.apache.org/license/LICENSE-2.0.txt'
+        distribution 'repo'
+    }
+}
+project.ext.developers = {
+    developer {
+        id 'crate'
+        name 'Crate Developers'
+        email 'office@crate.io'
+    }
+}
+
+uploadArchives.dependsOn([signJars])
+uploadArchives {
+    repositories{
+        mavenDeployer {
+            beforeDeployment {
+                MavenDeployment deployment -> signing.signPom(deployment)
+                if (project.ext.sonatypeUsername.length() == 0 || project.ext.sonatypePassword.length() == 0) {
+                    throw new StopExecutionException("uploadArchives cannot be called without sonatype username and password")
+                }
+
+                // This is a (very) un-pretty way of attaching the asc files as artifacts to the deployment.
+                // The mavenDeployer is pretty old, not documented very well - and does not pick up .asc files.
+                // Here we're slightly abusing the system and creating "fake" .asc artifacts for each .jar file,
+                // because we know for certain that if we got there, the asc files must exist.
+                // If we don't do this, Sonatype will not allow promotion to maven central.
+                artifacts.each { ca ->
+                    if (ca.file.path.endsWith('jar')) {
+                        def ascfile = file(ca.file.path + '.asc')
+                        deployment.addArtifact(new DefaultPublishArtifact(ca.name, "jar.asc", "jar.asc", ca.classifier, null, ascfile))
+                    }
+                }
+            }
+
+            MavenPom pomJmx = addFilter('crate-jmx-exporter') {artifact, file ->
+                artifact.name == 'crate-jmx-exporter'
+            }
+
+            pomJmx.project {
+                artifactId 'crate-jmx-exporter'
+                name 'crate-jmx-exporter'
+                description 'Crate.IO Java Agent to expose JMX metrics via HTTP'
+                url project.ext.url
+                scm project.ext.scm
+                licenses project.ext.licenses
+                developers project.ext.developers
+            }
+
+            repository(id: 'crate-jmx-exporter', url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
+                authentication(userName: project.ext.sonatypeUsername, password: project.ext.sonatypePassword)
+            }
+        }
+    }
+}

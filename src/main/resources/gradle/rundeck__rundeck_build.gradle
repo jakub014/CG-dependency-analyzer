@@ -1,0 +1,219 @@
+/*
+ * Copyright 2016 SimplifyOps, Inc. (http://simplifyops.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * Rundeck Master-Build Project
+ *
+ * This project does not contain any buildable code and does not generate any
+ * artifacts, however it allows us to set defaults for the subjects and provides
+ * Groovy syntax highlighting for gradle build files (like this one)
+ **/
+
+buildscript {
+    repositories {
+        maven {
+            name 'mavenCentralProxy'
+            url mavenCentralUrl
+            if (project.hasProperty('mavenUser') && project.hasProperty('mavenPassword')) {
+                credentials {
+                    username mavenUser
+                    password mavenPassword
+                }
+            }
+        }
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.adaptc.gradle:nexus-workflow:0.6'
+        classpath 'com.google.gradle:osdetector-gradle-plugin:1.4.0'
+        classpath group: 'org.yaml', name: 'snakeyaml', version: '1.26'
+        classpath 'org.owasp:dependency-check-gradle:5.3.2'
+    }
+}
+
+plugins {
+    id 'com.gradle.build-scan' version '3.2.1'
+    id "org.dvaske.gradle.git-build-info" version "0.8"
+    id "com.dorongold.task-tree" version "1.5"
+    id "org.ajoberstar.grgit" version "2.2.1"
+    id "signing"
+}
+
+apply plugin: 'java'
+apply plugin: 'nexus-workflow'
+apply plugin: 'eclipse';
+apply plugin: 'idea'
+apply plugin: 'com.google.osdetector'
+apply plugin: 'org.owasp.dependencycheck'
+
+dependencyCheck {
+    suppressionFile='cve-suppress.xml'
+    formats=['HTML','JUNIT']
+    outputDirectory="build/owasp-reports/junit"
+    failBuildOnCVSS=8
+    skipConfigurations=['agent']
+    scanSet=[]
+}
+
+/*
+ * Project configuration:
+ * Configure build context(release, publish, etc)
+ * Setup global project attributes
+*/
+
+description = 'The main-build project for Rundeck';
+
+eclipse.project.name = 'rundeck'
+
+ext.exportedProjects = [
+        ":core",
+        ":rundeck-authz:rundeck-authz-api",
+        ":rundeck-authz:rundeck-authz-core",
+        ":rundeck-authz:rundeck-authz-yaml",
+        ":rundeck-storage:rundeck-storage-api",
+        ":rundeck-storage:rundeck-storage-data",
+        ":rundeck-storage:rundeck-storage-filesys",
+        ":rundeck-storage:rundeck-storage-conf",
+        ":rundeckapp"
+]
+
+project.ext.environment = project.hasProperty('environment') ? environment : 'development'
+project.ext.artifactDir = "$projectDir/artifacts"
+
+def versionProps = new Properties()
+file("version.properties").withInputStream { versionProps.load(it) }
+
+def vVersion = versionProps.getProperty('version.version')
+def vNum = ext.vNum = versionProps.getProperty('version.number')
+def vTag = ext.vTag = project.environment == 'release'? versionProps.getProperty('version.tag') : 'SNAPSHOT'
+def vDate = ext.vDate = versionProps.getProperty('version.date')
+def vRevision = ext.vRevision = versionProps.getProperty('version.release.number')
+
+if (ext.environment == 'release') {
+    project.ext.resolvedVersion = vVersion
+} else {
+    project.ext.resolvedVersion = "${vNum}-SNAPSHOT".toString()
+}
+
+project.ext.branch = grgit.branch.current().name
+project.ext.commit = grgit.head().id
+
+logger.lifecycle("Building version {}", project.resolvedVersion)
+
+allprojects {
+    version = project.resolvedVersion
+    ext.isReleaseBuild = false
+    ext.isSnapshotBuild = false
+    ext.isDevBuild = false
+    if(project.environment == 'release'){
+        ext.isReleaseBuild=true
+    } else {
+        ext.isDevBuild=true
+    }
+    configurations.all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        exclude group: 'ch.qos.logback', module: 'logback-classic'
+        exclude group: 'ch.qos.logback', module: 'logback-core'
+    }
+}
+
+/**
+ * Defaults for all projects
+ */
+subprojects {
+    // set the eclipse project naming convention to rundeck:<path>:<projectName>
+    // so it matches the logical hierarchy more closely
+    apply plugin: 'eclipse'
+    eclipse.project.name = "${project.getParent().eclipse.project.name}:${name}"
+}
+
+def buildConf  = new org.yaml.snakeyaml.Yaml().load( file('./build.yaml').newDataInputStream() )
+project(':rundeckapp') {
+    it.ext.bundledPlugins = buildConf.rundeck.plugins
+
+    it.ext.bundledPlugins += [
+        project(':plugins:script-plugin'),
+        project(':plugins:stub-plugin'),
+        project(':plugins:localexec-plugin'),
+        project(':plugins:copyfile-plugin'),
+        project(':plugins:job-state-plugin'),
+        project(':plugins:flow-control-plugin'),
+        project(':plugins:jasypt-encryption-plugin'),
+        project(':plugins:object-store-plugin'),
+        project(':plugins:orchestrator-plugin'),
+        project(':plugins:git-plugin'),
+        project(':plugins:source-refresh-plugin'),
+        project(':plugins:upvar-plugin')
+    ]
+}
+
+// prompt for PGP key passphrase if not set
+gradle.taskGraph.whenReady { taskGraph ->
+    if (taskGraph.allTasks.any { it instanceof Sign } && project.hasProperty("signing.keyId") && !project.hasProperty( "signing.password") && !project.isDevBuild) {
+        // Use Java 6's console to read from the console (no good for a CI environment)
+        def console = System.console()
+        console.printf "\n\nWe have to sign some things in this build.\n\nPlease enter your signing details.\n\n"
+
+        //def id = console.readLine("PGP Key Id: ")
+        //def file = console.readLine("PGP Secret Key Ring File (absolute path): ")
+        def password = console.readPassword("PGP Private Key Password: ")
+
+        //allprojects { ext."signing.keyId" = id }
+        //allprojects { ext."signing.secretKeyRingFile" = file }
+        allprojects { ext."signing.password" = password }
+
+        console.printf "\nThanks.\n\n"
+    }
+}
+
+//subproject libs that are uploaded to maven central
+exportedProjects.each {
+    project(it) {
+        apply from: "${rootDir}/gradle/exported-project.gradle"
+    }
+}
+
+task bashVersionInfo {
+    doLast {
+        println """\
+        |VERSION_FULL=${project.resolvedVersion}
+        |VERSION_NUMBER=${project.vNum}
+        |VERSION_TAG=${project.vTag}
+        |VERSION_DATE=${project.vDate}
+        |VERSION_REVISION=${project.vRevision}""".stripMargin()
+    }
+}
+
+task alljavadoc(type: Javadoc) {
+    source exportedProjects.collect { project(it).sourceSets.main.allJava }
+    classpath = files(exportedProjects.collect { project(it).sourceSets.main.compileClasspath })
+    destinationDir = file("${buildDir}/docs/javadoc")
+
+    if (JavaVersion.current().isJava8Compatible()) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
+}
+
+buildScan {
+    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+    termsOfServiceAgree = 'yes'
+}
+
+// Limit heap size in forked test processes for CI
+test {
+    maxHeapSize = "512m"
+}

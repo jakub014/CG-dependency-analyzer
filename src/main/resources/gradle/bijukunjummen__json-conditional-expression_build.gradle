@@ -1,0 +1,118 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+    }
+}
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'maven'
+    id 'signing'
+    id 'nebula.release' version '13.0.0'
+    id "org.jetbrains.kotlin.jvm" version "1.4.31"
+}
+
+group = 'com.github.bijukunjummen'
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+ext {
+    jacksonBom = "2.9.10.20191020"
+    junitVersion = "5.3.2"
+    assertJVersion = "3.16.1"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation enforcedPlatform("com.fasterxml.jackson:jackson-bom:${jacksonBom}")
+    api("com.fasterxml.jackson.core:jackson-core")
+    api("com.fasterxml.jackson.core:jackson-databind")
+    api("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    api("org.jetbrains.kotlin:kotlin-reflect")
+    api("org.jetbrains.kotlin:kotlin-stdlib")
+    api("org.jetbrains.kotlin:kotlin-stdlib-common")
+    testImplementation("org.assertj:assertj-core:$assertJVersion")
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task javadocJar(type: Jar) {
+    archiveClassifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+tasks.snapshot {
+    finalizedBy tasks.uploadArchives
+}
+
+tasks.candidate {
+    finalizedBy tasks.uploadArchives
+}
+
+tasks.final {
+    finalizedBy tasks.uploadArchives
+}
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'json-conditional-expression'
+                description 'Utility for expressing and evaluating a conditional expression in Java'
+                url 'https://github.com/bijukunjummen/json-conditional-expression.git'
+
+                scm {
+                    connection 'https://github.com/bijukunjummen/json-conditional-expression.git'
+                    url 'https://github.com/bijukunjummen/json-conditional-expression.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'bijukunjummen'
+                        name 'Biju Kunjummen'
+                        email 'biju.kunjummen@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+}

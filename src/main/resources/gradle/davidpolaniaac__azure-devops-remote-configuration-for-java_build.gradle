@@ -1,0 +1,139 @@
+buildscript {
+  repositories {
+      jcenter()
+   }
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.2.12.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'maven-publish'
+	id 'com.jfrog.bintray' version '1.8.1'
+	id 'java'
+	id 'maven'
+}
+
+group = 'com.github.davidpolaniaac'
+version = '1.0.0'
+description = 'Java library to manage remote azure devops configuration from a configuration repository'
+
+sourceCompatibility = '1.8'
+
+repositories {
+	jcenter()
+}
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+bootJar {
+  enabled = false
+}
+
+jar {
+  enabled = true
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.retry:spring-retry'
+	implementation 'org.springframework:spring-web'
+	implementation 'com.google.code.gson:gson:2.8.6'
+	compileOnly 'org.springframework:spring-beans'
+    compileOnly 'org.springframework:spring-context'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'org.mockito:mockito-all:1.10.19'
+}
+
+test {
+	useJUnit()
+
+}
+
+tasks.register("sourcesJar", Jar) {
+    from sourceSets.main.allJava
+    classifier "sources"
+}
+
+tasks.register("javadocJar", Jar) {
+    from javadoc
+    classifier "javadoc"
+}
+
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "https://github.com/davidpolaniaac/azure-devops-remote-configuration-for-java"
+        }
+    }
+    developers {
+        developer {
+            id "davidpolaniaac"
+            name "David Polania"
+            email "davidpolaniaac@users.noreply.github.com"
+        }
+    }
+
+    scm {
+        url "https://github.com/davidpolaniaac/azure-devops-remote-configuration-for-java"
+    }
+}
+
+publishing {
+	publications {
+		MyPublication(MavenPublication) {
+			from components.java
+			artifact sourcesJar
+            artifact javadocJar
+			groupId = project.group
+            artifactId = project.archivesBaseName
+            version = project.version
+            pom.withXml {
+	            def root = asNode()
+	            root.appendNode('description', project.description)
+	            root.appendNode('name', project.archivesBaseName)
+	            root.appendNode('url', 'https://github.com/davidpolaniaac/azure-devops-remote-configuration-for-java')
+	            root.children().last() + pomConfig
+            }
+		}
+	}
+}
+
+bintray {
+	user = System.getenv('BINTRAY_USER')
+	key = System.getenv('BINTRAY_API_KEY')
+	publications = ['MyPublication']
+	publish = true
+	override = true
+	pkg {
+		repo = 'remote-configuration'
+		name = project.archivesBaseName
+		userOrg = user
+		licenses = ['Apache-2.0']
+		vcsUrl = 'https://github.com/davidpolaniaac/azure-devops-remote-configuration-for-java'
+		labels = ['azure', 'devops', 'configuration', 'remote']
+		publicDownloadNumbers = true
+		version {
+			gpg {
+                sign = true
+            }
+			name = project.version
+			desc = project.description
+			vcsTag = project.version
+			released  = new Date()
+		}
+	}
+}
