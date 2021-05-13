@@ -49,8 +49,7 @@ public class VulnParser {
         return vulnerabilities;
     }
 
-    private static List<Dependency> parseDepObject(JSONObject dependency)
-    {
+    private static List<Dependency> parseDepObject(JSONObject dependency) {
         List<Dependency> packages = new ArrayList<>();
         JSONArray infArr = (JSONArray) dependency.get("vulnerable_purls");
 

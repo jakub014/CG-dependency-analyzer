@@ -1,6 +1,8 @@
+import DependencyAnalyzer.BuildGradleAnalyzer;
 import DependencyAnalyzer.PomAnalyzer;
 import DependencyAnalyzer.Dependency;
 
+import DependencyAnalyzer.VulnsNotFoundException;
 import eu.fasten.analyzer.javacgopal.data.MavenCoordinate;
 
 import java.io.*;
@@ -17,16 +19,31 @@ import org.json.simple.parser.ParseException;
 
 public class MainScript {
 
+    private static ProjectType getProjectType(String groupID, String packageName) {
+        String pomName = groupID + "__" + packageName + "_pom.xml";
+        String pomPath = "src/main/resources/poms/" + pomName;
+
+        String gradleName = groupID + "__" + packageName + "_build.gradle";
+        String gradlePath = "src/main/resources/gradle/" + gradleName;
+
+        if (new File(pomPath).exists()) {
+            return ProjectType.MAVEN;
+        } else if (new File(gradlePath).exists()) {
+            return ProjectType.GRADLE;
+        }
+        return null;
+    }
+
     public static void main(String[] args) throws ParseException, IOException {
         JSONParser parser = new JSONParser();
         JSONArray data = (JSONArray) parser.parse(new FileReader("src/main/resources/vulnerableProjectData.json"));
 
         System.out.println(data.size());
 
-        final int startFrom = 0;
+        final int startFrom = 184;
         int counter = 0;
 
-        String filePath = "analysisResults/analysed-repos.txt";
+        String filePath = "analysisResults/analysed-repos-gradle.txt";
         File file = new File(filePath);
         file.createNewFile();
 
@@ -42,28 +59,27 @@ public class MainScript {
 
                     String packageName = (String) obj.get("repository");
                     String groupID = (String) obj.get("user");
+                    ProjectType projectType = getProjectType(groupID, packageName);
 
-                    String pomName = groupID + "__" + packageName + "_pom.xml";
-                    String pomPath = "src/main/resources/poms/" + pomName;
-                    File pom = new File(pomPath);
+                    if (projectType == ProjectType.MAVEN) {
+                        continue;
+                    }
 
-                    if (!pom.exists()) {
+                    if (projectType == null) {
                         try {
                             Writer output = new FileWriter(filePath, true);
-                            String result = "POM LOCALLY NOT FOUND FOR " + packageName + " ~ " + groupID + "\n";
+                            String result = "POM/GRADLE FILE LOCALLY NOT FOUND FOR " + packageName + " ~ " + groupID + "\n";
                             output.append(result);
                             output.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        continue;
                     }
 
                     try {
-                        PomAnalyzer.getProjectDependencies(pomPath);
                         String defaultBranch = (String) apiResponse.get("default_branch");
                         String link = (String) apiResponse.get("html_url");
-                        analyzeRepository(link, defaultBranch);
+                        analyzeRepository(link, defaultBranch, projectType);
 
                         try {
                             Writer output = new FileWriter(filePath, true);
@@ -74,7 +90,7 @@ public class MainScript {
                             e.printStackTrace();
                         }
 
-                    } catch (PomAnalyzer.VulnsNotFoundException e) {
+                    } catch (VulnsNotFoundException e) {
                         System.out.println("NO VULNERABLE DEPENDENCIES FOUND");
                         try {
                             Writer output = new FileWriter(filePath, true);
@@ -101,11 +117,12 @@ public class MainScript {
 
     }
 
-    public static void analyzeRepository(String link, String defaultBranch) throws IOException, OPALException, MissingArtifactException, ParseException, RepositoryUtil.JarNotFoundException, PomAnalyzer.VulnsNotFoundException {
+    public static void analyzeRepository(String link, String defaultBranch, ProjectType projectType) throws IOException, OPALException, MissingArtifactException, ParseException, RepositoryUtil.JarNotFoundException, VulnsNotFoundException {
         // Get repository name and standardize link.
         RepositoryUtil.Pair pair = RepositoryUtil.getRepoAndLink(link);
         String repositoryName = pair.getLeft();
         link = pair.getRight();
+
         try {
 
             // Download repository from GitHub.
@@ -114,15 +131,22 @@ public class MainScript {
             System.out.println("SUCCESSFULLY DOWNLOADED REPOSITORY " + repositoryPath);
 
             // Get dependencies from project dependency file.
-            System.out.println("GETTING DEPENDENCIES FROM pom.xml file");
-            String pomXMLPath = repositoryPath + "/pom.xml";
-            List<Dependency> dependencyList = PomAnalyzer.getProjectDependencies(pomXMLPath);
-            System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM pom.xml file");
+            List<Dependency> dependencyList;
+            if (projectType == ProjectType.MAVEN) {
+                System.out.println("GETTING DEPENDENCIES FROM pom.xml file");
+                String pomXMLPath = repositoryPath + "/pom.xml";
+                dependencyList = PomAnalyzer.getProjectDependencies(pomXMLPath);
+                System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM pom.xml file");
+            } else {
+                System.out.println("GETTING DEPENDENCIES FROM build.gradle file");
+                dependencyList = BuildGradleAnalyzer.getProjectDependencies(repositoryPath);
+                System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM build.gradle file");
+            }
 
             // If no exception thrown, vulnerabilities have been found in the dependency file of project. Continue.
             // Get the jar of the downloaded repository.
             System.out.println("GENERATING JAR FILE");
-            String jarPath = RepositoryUtil.getRepositoryJAR(repositoryName, defaultBranch);
+            String jarPath = RepositoryUtil.getRepositoryJAR(repositoryName, defaultBranch, projectType);
             System.out.println("SUCCESSFULLY GENERATED JAR FILE WITH JAR PATH " + jarPath);
 
             List<MavenCoordinate> coordList = new ArrayList<MavenCoordinate>();
@@ -133,24 +157,8 @@ public class MainScript {
 
             MavenCoordinate[] toBeFilled = new MavenCoordinate[coordList.size()];
             VulnerabilityTracer.traceProjectVulnerabilities(new File(jarPath), coordList.toArray(toBeFilled), repositoryName, link);
-        } catch (PomAnalyzer.VulnsNotFoundException e) {
-            throw new PomAnalyzer.VulnsNotFoundException(e.getMessage());
-        } catch (IOException e) {
-            throw new IOException(e.getMessage());
-        } catch (OPALException e) {
-            throw new OPALException(e.getMessage());
-        } catch (MissingArtifactException e) {
-            throw new MissingArtifactException(e.getMessage(), e.getCause());
-        } catch (ParseException e) {
-            throw new ParseException(e.getErrorType());
-        } catch (RepositoryUtil.JarNotFoundException e) {
-            throw new RepositoryUtil.JarNotFoundException(e.getMessage());
         } finally {
-            try {
-                FileUtils.deleteDirectory(new File(repositoryName));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            FileUtils.deleteDirectory(new File(repositoryName));
         }
     }
 }

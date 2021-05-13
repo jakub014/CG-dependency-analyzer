@@ -22,17 +22,10 @@ public class PomAnalyzer {
     private static final String VULNERABILITY_FILE_PATH = "src/main/resources/pkg_cves.json";
     static final List<Dependency> listOfVuln = new VulnParser(VULNERABILITY_FILE_PATH).readVuln();
 
-    public static class VulnsNotFoundException extends Exception {
-        public VulnsNotFoundException(String message) {
-            super(message);
-        }
-    }
-
     public static List<Dependency> getProjectDependencies(String pomXMLPath) throws VulnsNotFoundException {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
         ArrayList<Dependency> listOfDeps = new ArrayList<>();
-        //ArrayList<Dependency> listOfVuln = new VulnParser(vulnerabilityFilePath).readVuln();
 
         try {
             dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
