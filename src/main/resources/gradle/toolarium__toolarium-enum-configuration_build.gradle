@@ -1,0 +1,23 @@
+/*
+ * build.gradle
+ *
+ * Copyright by toolarium-enum-configuration, all rights reserved.
+ * MIT License: https://mit-license.org
+ */
+apply from: "https://raw.githubusercontent.com/toolarium/common-gradle-build/master/gradle/common.gradle"
+
+
+/****************************************************************************************
+ * Define project dependencies
+ ****************************************************************************************/
+dependencies {
+    // see https://docs.gradle.org/current/userguide/java_library_plugin.html
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.1'
+
+    // utilities
+    testImplementation 'com.google.guava:guava:0.30-jre'
+    testImplementation 'com.google.truth:truth:1.1.2'
+    testImplementation 'com.google.testing.compile:compile-testing:0.19'
+    testRuntimeOnly "org.junit.platform:junit-platform-commons:1.7.0"
+}

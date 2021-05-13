@@ -1,0 +1,14 @@
+apply from: "https://gitee.com/geewit/gradle_publish_sonatype/raw/master/publish.gradle"
+
+
+dependencies {
+    api("io.geewit.utils.core:gw-core-enum-utils:$gw_utils_version")
+    api("com.fasterxml.jackson.core:jackson-core:$jackson_version")
+    api("com.fasterxml.jackson.core:jackson-databind:$jackson_version")
+    api("org.springframework.boot:spring-boot:$spring_boot_version")
+    api("org.springframework.boot:spring-boot-autoconfigure:$spring_boot_version")
+    compileOnly("org.springframework.data:spring-data-commons:$spring_data_commons_version")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:$junit_version")
+    testImplementation("org.junit.platform:junit-platform-launcher:$junit_platform_version")
+}
+

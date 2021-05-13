@@ -1,0 +1,102 @@
+buildscript {
+    ext {
+        springBootVersion = '2.4.5'
+        springVersion = '5.3.4.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'org.owasp:dependency-check-gradle:6.1.5'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:6.1.0'
+    }
+}
+
+plugins {
+    id 'io.codearte.nexus-staging' version '0.30.0'
+}
+
+//
+//\
+///\
+////\
+def jlineup_version = "4.3.3-SNAPSHOT"
+/////
+////
+///
+//
+
+project.ext.set("debugUpload", false)
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+    //maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+apply plugin: 'java'
+apply plugin: 'io.codearte.nexus-staging'
+apply plugin: 'org.owasp.dependencycheck'
+
+nexusStaging {
+    username = sonatypeUsername
+    password = sonatypePassword
+    packageGroup = 'de.otto'
+}
+
+dependencyCheck {
+    failBuildOnCVSS = 4
+    suppressionFiles = ["${rootDir}/dependency-check-suppressions.xml"]
+}
+
+subprojects {
+    version = jlineup_version
+    group = 'de.otto'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+
+    task allDeps(type: DependencyReportTask) {}
+
+    apply plugin: 'application'
+    apply plugin: 'maven-publish'
+
+    apply plugin: 'project-report'
+    apply plugin: 'signing'
+    apply plugin: 'idea'
+
+    jar {
+        manifest.attributes provider: 'gradle'
+    }
+}
+
+// This function converts 1.8 -> 8
+static String compat(String src) {
+    if (src.contains('.')) {
+        src.substring(src.lastIndexOf('.')+1)
+    } else {
+        src
+    }
+}
+
+static String runCommand(command) {
+    Process proc = command.execute()
+    def out = new StringBuffer()
+    proc.consumeProcessOutputStream(out)
+    proc.consumeProcessErrorStream(out)
+    proc.waitFor()
+    def errorlevel = proc.exitValue()
+    if (errorlevel != 0) {
+        throw new RuntimeException("exec failed on command: '${command}' with errorlevel ${errorlevel}".toString())
+    }
+    //System.err.println("Git Hash: " + out.toString().trim())
+    out.toString().trim()
+}

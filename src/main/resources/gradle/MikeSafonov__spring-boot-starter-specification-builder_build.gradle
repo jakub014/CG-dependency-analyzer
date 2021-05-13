@@ -1,0 +1,292 @@
+plugins {
+    id "java"
+    id "jacoco"
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+    id 'info.solidsoft.pitest' version '1.6.0'
+}
+
+apply plugin: "java-library"
+apply plugin: "maven"
+apply plugin: "signing"
+
+ext { springBootVersion = "2.4.4" }
+
+group "com.github.mikesafonov"
+version "1.6.0"
+
+sourceCompatibility = 1.8
+[compileJava, compileTestJava]*.options*.encoding = "UTF-8"
+
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+}
+
+jar {
+    enabled = true
+}
+
+configurations {
+    compile.exclude module: "spring-boot-starter-logging"
+}
+
+dependencies {
+    implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    implementation ("org.slf4j:slf4j-api")
+    implementation ("org.apache.commons:commons-lang3")
+
+    compileOnly ("org.projectlombok:lombok:1.18.18")
+    annotationProcessor ("org.projectlombok:lombok:1.18.16")
+
+    testCompileOnly ("org.projectlombok:lombok:1.18.16")
+    testAnnotationProcessor ("org.projectlombok:lombok:1.18.16")
+    testImplementation ("org.springframework.boot:spring-boot-starter-test")
+    testImplementation ("com.h2database:h2:1.4.200")
+}
+
+task sourceJar(type: Jar) {
+    classifier "sources"
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier "javadoc"
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourceJar
+    archives javadocJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+jacoco {
+    toolVersion = "0.8.3"
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+    }
+}
+
+// Build, sign, and upload
+uploadArchives {
+    repositories {
+        mavenDeployer {
+
+            // Sign POM
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            // Destination
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+
+            // Add required metadata to POM
+            pom.project {
+                name "spring-boot-starter-specification-builder"
+                packaging "jar"
+                description "Spring Boot starter for building specifications in declarative way"
+                url "https://github.com/MikeSafonov/spring-boot-starter-specification-builder"
+                organization {
+                    name "com.github.mikesafonov"
+                    url "https://github.com/MikeSafonov"
+                }
+                issueManagement {
+                    system "GitHub"
+                    url "https://github.com/MikeSafonov/spring-boot-starter-specification-builder/issues"
+                }
+                licenses {
+                    license {
+                        name "MIT"
+                        url "https://github.com/MikeSafonov/spring-boot-starter-specification-builder/blob/master/LICENSE"
+                        distribution "repo"
+                    }
+                }
+                scm {
+                    url "https://github.com/MikeSafonov/spring-boot-starter-specification-builder"
+                    connection "scm:git:git://github.com/MikeSafonov/spring-boot-starter-specification-builder.git"
+                    developerConnection "scm:git:ssh://git@github.com:MikeSafonov/spring-boot-starter-specification-builder.git"
+                }
+                developers {
+                    developer {
+                        name "Mike Safonov"
+                        organization "com.github.mikesafonov"
+                        organizationUrl "https://github.com/MikeSafonov"
+                    }
+                }
+            }
+        }
+    }
+}
+
+pitest {
+    junit5PluginVersion = '0.12'
+    targetClasses = ["com.github.mikesafonov.specification.builder.starter.*"]
+    threads = 4
+    outputFormats = ["HTML", "XML"]
+    enableDefaultIncrementalAnalysis = true
+    timestampedReports = false
+    historyInputLocation = ".pitest/pitHistory.txt"
+    historyOutputLocation = ".pitest/pitHistory.txt"
+}
+plugins {
+    id "java"
+    id "jacoco"
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+    id 'info.solidsoft.pitest' version '1.6.0'
+}
+
+apply plugin: "java-library"
+apply plugin: "maven"
+apply plugin: "signing"
+
+ext { springBootVersion = "2.4.4" }
+
+group "com.github.mikesafonov"
+version "1.6.0"
+
+sourceCompatibility = 1.8
+[compileJava, compileTestJava]*.options*.encoding = "UTF-8"
+
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+}
+
+jar {
+    enabled = true
+}
+
+configurations {
+    compile.exclude module: "spring-boot-starter-logging"
+}
+
+dependencies {
+    implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    implementation ("org.slf4j:slf4j-api")
+    implementation ("org.apache.commons:commons-lang3")
+
+    compileOnly ("org.projectlombok:lombok:1.18.18")
+    annotationProcessor ("org.projectlombok:lombok:1.18.16")
+
+    testCompileOnly ("org.projectlombok:lombok:1.18.16")
+    testAnnotationProcessor ("org.projectlombok:lombok:1.18.16")
+    testImplementation ("org.springframework.boot:spring-boot-starter-test")
+    testImplementation ("com.h2database:h2:1.4.200")
+}
+
+task sourceJar(type: Jar) {
+    classifier "sources"
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier "javadoc"
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourceJar
+    archives javadocJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+jacoco {
+    toolVersion = "0.8.3"
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+    }
+}
+
+// Build, sign, and upload
+uploadArchives {
+    repositories {
+        mavenDeployer {
+
+            // Sign POM
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            // Destination
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+
+            // Add required metadata to POM
+            pom.project {
+                name "spring-boot-starter-specification-builder"
+                packaging "jar"
+                description "Spring Boot starter for building specifications in declarative way"
+                url "https://github.com/MikeSafonov/spring-boot-starter-specification-builder"
+                organization {
+                    name "com.github.mikesafonov"
+                    url "https://github.com/MikeSafonov"
+                }
+                issueManagement {
+                    system "GitHub"
+                    url "https://github.com/MikeSafonov/spring-boot-starter-specification-builder/issues"
+                }
+                licenses {
+                    license {
+                        name "MIT"
+                        url "https://github.com/MikeSafonov/spring-boot-starter-specification-builder/blob/master/LICENSE"
+                        distribution "repo"
+                    }
+                }
+                scm {
+                    url "https://github.com/MikeSafonov/spring-boot-starter-specification-builder"
+                    connection "scm:git:git://github.com/MikeSafonov/spring-boot-starter-specification-builder.git"
+                    developerConnection "scm:git:ssh://git@github.com:MikeSafonov/spring-boot-starter-specification-builder.git"
+                }
+                developers {
+                    developer {
+                        name "Mike Safonov"
+                        organization "com.github.mikesafonov"
+                        organizationUrl "https://github.com/MikeSafonov"
+                    }
+                }
+            }
+        }
+    }
+}
+
+pitest {
+    junit5PluginVersion = '0.12'
+    targetClasses = ["com.github.mikesafonov.specification.builder.starter.*"]
+    threads = 4
+    outputFormats = ["HTML", "XML"]
+    enableDefaultIncrementalAnalysis = true
+    timestampedReports = false
+    historyInputLocation = ".pitest/pitHistory.txt"
+    historyOutputLocation = ".pitest/pitHistory.txt"
+}

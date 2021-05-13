@@ -1,0 +1,23 @@
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    group = "de.westnordost"
+
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+}
+
+ext {
+    all_version = 4.0
+    core_version = 2.0
+    changesets_version = 2.0
+    user_version = 2.0
+    traces_version = 2.0
+    notes_version = 2.0
+    map_version = 2.0
+}

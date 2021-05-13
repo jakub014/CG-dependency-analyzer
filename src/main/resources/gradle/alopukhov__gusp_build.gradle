@@ -1,0 +1,65 @@
+subprojects {
+    pluginManager.withPlugin('java') {
+        java {
+            sourceCompatibility = JavaVersion.VERSION_1_8
+            targetCompatibility = JavaVersion.VERSION_1_8
+            withJavadocJar()
+            withSourcesJar()
+        }
+
+        repositories {
+            mavenCentral()
+        }
+    }
+
+    pluginManager.withPlugin('maven-publish') {
+        publishing {
+            repositories {
+                maven {
+                    final isReleaseVersion = !version.endsWith("SNAPSHOT")
+                    final releaseRepo = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                    final snapshotRepo = "https://oss.sonatype.org/content/repositories/snapshots/"
+                    url = isReleaseVersion ? releaseRepo : snapshotRepo
+                    credentials {
+                        username = findProperty('ossrhUsername')
+                        password = findProperty('ossrhPassword')
+                    }
+                }
+            }
+        }
+
+        publishing.publications.configureEach {
+            pom {
+                url = 'https://github.com/alopukhov/gusp'
+                scm {
+                    connection = 'scm:git:https://github.com/alopukhov/gusp.git'
+                    developerConnection = 'scm:git:https://github.com/alopukhov/gusp.git'
+                    url = 'https://github.com/alopukhov/gusp'
+                }
+                developers {
+                    developer {
+                        id = 'alopukhov'
+                        name = 'Andrei Lopukhov'
+                    }
+                }
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+            }
+        }
+    }
+
+
+    pluginManager.withPlugin('signing') {
+        signing {
+            sign publishing.publications
+        }
+
+        tasks.withType(Sign) {
+            onlyIf { !project.hasProperty("skipSigning") }
+        }
+    }
+}

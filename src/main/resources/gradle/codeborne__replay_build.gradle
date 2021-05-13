@@ -1,0 +1,48 @@
+defaultTasks 'clean', 'test', 'install'
+
+subprojects {
+
+  group='com.codeborne.replay'
+  version=project.properties['revision'] ?: '1.8.6'
+
+  apply plugin: 'java'
+  apply plugin: 'maven'
+
+  [compileJava, compileTestJava]*.options.collect {options -> options.encoding = 'UTF-8'}
+  [compileJava, compileTestJava]*.options.collect {options -> options.debug = true}
+  compileJava.options.debugOptions.debugLevel = "source,lines,vars"
+  sourceCompatibility = 11
+  targetCompatibility = 11
+
+  repositories {
+    jcenter()
+    mavenCentral()
+    mavenLocal()
+  }
+
+  sourceSets {
+    main {
+      java {srcDir 'src'}
+      resources {srcDir 'src'}
+    }
+    test {
+      java {srcDir 'test'}
+      resources {srcDir 'test'}
+    }
+  }
+
+  classes.dependsOn ':deps'
+
+  test {
+    include 'play/**/*'
+    systemProperties['file.encoding'] = 'UTF-8'
+  }
+}
+
+apply from: rootProject.file('gradle/dependencies.gradle')
+apply from: rootProject.file('gradle/deploy.gradle')
+
+task integrationTests(type: GradleBuild) {
+  buildFile = 'replay-tests/build.gradle'
+  tasks = ['test', 'uitest']
+}

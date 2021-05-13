@@ -1,0 +1,96 @@
+import java.nio.charset.StandardCharsets
+
+buildscript {
+    repositories {
+        mavenLocal()
+        [
+                'http://maven.aliyun.com/nexus/content/repositories/jcenter',
+                'http://maven.aliyun.com/nexus/content/groups/public/',
+                "https://plugins.gradle.org/m2/",
+                "https://repo.spring.io/plugins-release",
+        ].each { repo ->
+            maven { url repo }
+        }
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("io.spring.gradle:propdeps-plugin:0.0.9.RELEASE")
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.7.RELEASE"
+        classpath 'com.github.marcpoppleton:git-changelog:0.1.3'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'maven'
+    id "io.spring.dependency-management" version "1.0.7.RELEASE" apply false
+}
+
+ext {
+    jar_version_guava = "23.0"
+    jar_version_netty = "4.1.19.Final"
+    jar_version_commons_io = "2.6"
+    jar_version_ok_http = "3.14.2"
+    jar_version_fast_json = "1.2.59"
+    jar_version_oaks = "1.0.4"
+    jar_version_commons_collection = "3.2.2"
+    jar_version_blocking_map = "0.91"
+    jar_version_hibernate_validator = "6.0.17.Final"
+    jar_javax_annotation_api = "1.3.2"
+
+    defaultCharset = StandardCharsets.UTF_8.name()
+    defaultJavaVersion = JavaVersion.VERSION_1_8
+}
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+configure(rootProject) {
+    configurations.archives.artifacts.clear()
+    apply from: getBuildScriptPath("ide.gradle")
+}
+
+configure(allprojects) { project ->
+    group = projectGroup
+    version = projectVersion
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+}
+
+// 1. java-env config
+configure(subprojects.findAll {
+    (it.name != "docs") && (it.name != 'samples')
+}) { subProject ->
+    apply from: getBuildScriptPath("common-java-env-config.gradle")
+    apply from: getBuildScriptPath("ide.gradle")
+}
+
+// 2. maven config
+apply from: getBuildScriptPath("repo-credentials.gradle")
+
+def modulesToPublishToMavenRepo = ["jt-core", "jt-spring", "jt-808-server-support", "jt-808-server-spring-boot-stater"]
+configure(subprojects.findAll {
+    modulesToPublishToMavenRepo.contains(it.name)
+}) { subProject ->
+    apply from: getBuildScriptPath("common-maven-config.gradle")
+}
+
+// 3. changelog.md
+apply from: getBuildScriptPath("change-log-config.gradle")
+
+def getBuildScriptPath(String path) {
+    return "${project(":build-script").projectDir}/script/${path}"
+}
+

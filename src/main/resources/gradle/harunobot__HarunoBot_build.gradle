@@ -1,0 +1,35 @@
+
+plugins {
+    id 'java-library'
+}
+
+description = 'HarunoBot'
+
+allprojects {
+    group = 'io.github.harunobot'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven {
+            url "https://repo1.maven.org/maven2/"
+        }
+    }
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+    tasks.withType(JavaCompile) {  
+        options.encoding = "UTF-8"  
+    } 
+}
+
+subprojects {
+    
+    apply plugin: 'java'
+    ext {
+          junitVersion = "4.12"
+          vertxVersion = "3.9.4"
+    } 
+    dependencies {
+        testCompile("junit:junit:${junitVersion}")
+    }
+}

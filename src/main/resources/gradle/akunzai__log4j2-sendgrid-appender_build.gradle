@@ -1,0 +1,102 @@
+plugins {
+    id 'java-library'
+    id 'jacoco'
+    id 'maven-publish'
+    id 'signing'
+    id 'com.github.spotbugs' version '4.7.1'
+}
+
+group 'com.github.akunzai'
+version '2.0.1'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.sendgrid:sendgrid-java:4.7.2"
+    implementation "com.sun.mail:javax.mail:1.5.0"
+    implementation "org.apache.logging.log4j:log4j-core:2.13.2"
+    annotationProcessor "org.apache.logging.log4j:log4j-core:2.13.2"
+    testImplementation "junit:junit:4.13.2"
+    spotbugs 'com.github.spotbugs:spotbugs:4.2.3'
+    spotbugsPlugins "com.h3xstream.findsecbugs:findsecbugs-plugin:1.11.0"
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'log4j2-sendgrid-appender'
+                description = 'Send log4j2 errors via SendGrid service'
+                url = 'https://github.com/akunzai/log4j2-sendgrid-appender'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'akunzai'
+                        name = 'Charley Wu'
+                        email = 'akunzai@gmail.com'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/akunzai/log4j2-sendgrid-appender.git'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "OSSRH"
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username = project.findProperty('sonatype.user') ?: System.getenv("SONATYPE_USER")
+                password = project.findProperty('sonatype.token') ?: System.getenv("SONATYPE_TOKEN")
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}

@@ -1,0 +1,23 @@
+plugins {
+    id "org.ajoberstar.reckon" version "0.13.0"
+}
+
+reckon {
+    scopeFromProp()
+    snapshotFromProp()
+}
+
+configure(subprojects) {
+    plugins.withType(JavaPlugin) {
+        java {
+            withSourcesJar()
+            withJavadocJar()
+        }
+
+        repositories {
+            mavenCentral()
+        }
+    }
+}
+
+reckonTagCreate.dependsOn project.getTasksByName("check", true)

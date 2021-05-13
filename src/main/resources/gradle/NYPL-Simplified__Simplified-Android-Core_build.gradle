@@ -1,0 +1,384 @@
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZoneOffset
+
+buildscript {
+  // Load in our list of dependencies.
+  //
+  apply from: file("$rootDir/libraries.gradle")
+
+  repositories {
+    mavenCentral()
+    google()
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:4.1.1'
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.androidx_navigation}"
+    classpath "biz.aQute.bnd:biz.aQute.bnd.gradle:5.2.0"
+    classpath "com.nabilhachicha:android-native-dependencies:0.1.2"
+    classpath 'com.google.gms:google-services:4.3.4'
+    classpath 'com.google.firebase:firebase-crashlytics-gradle:2.4.1'
+  }
+}
+
+plugins {
+  id "com.github.ben-manes.versions" version "0.27.0"
+  id "ru.vyarus.animalsniffer" version "1.5.0"
+}
+
+ext {
+  // Required for some dependencies only available from our private nexus
+  //
+  nyplNexusDepend =
+    project.findProperty('org.librarysimplified.nexus.depend') as Boolean
+  nyplNexusUsername =
+    project.findProperty('org.librarysimplified.nexus.username') ?: ''
+  nyplNexusPassword =
+    project.findProperty('org.librarysimplified.nexus.password') ?: ''
+
+  if (nyplNexusDepend && !nyplNexusUsername) {
+    throw new GradleException(
+      """\
+      'org.librarysimplified.nexus.username' is undefined!
+        ^ required by 'org.librarysimplified.nexus.depend'\
+      """.stripIndent())
+  }
+  if (nyplNexusDepend && !nyplNexusPassword) {
+    throw new GradleException(
+      """\
+      'org.librarysimplified.nexus.password' is undefined!
+        ^ required by 'org.librarysimplified.nexus.depend'\
+      """.stripIndent())
+  }
+
+  // Required by some projects to build with drm support
+  //
+  nyplDrmEnabled =
+    project.findProperty('org.librarysimplified.drm.enabled') as Boolean
+  if (nyplDrmEnabled && !nyplNexusDepend) {
+    throw new GradleException(
+      """\
+      'org.librarysimplified.nexus.depend' is undefined!
+        ^ required by 'org.librarysimplified.drm.enabled'\
+      """.stripIndent())
+  }
+}
+
+subprojects { project ->
+  group = project.ext["GROUP"]
+  version = project.ext["VERSION_NAME"]
+
+  switch (POM_PACKAGING) {
+    case "aar":
+      apply from: file("$rootDir/build_aar.gradle")
+      break
+    case "apk":
+      apply from: file("$rootDir/build_apk.gradle")
+      break
+    case "jar":
+      apply from: file("$rootDir/build_jar.gradle")
+      break
+    default:
+      throw new IllegalStateException(
+        "Unrecognized packaging type ${POM_PACKAGING} for ${project}")
+  }
+
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    google()
+
+    if (nyplNexusDepend) {
+      maven {
+        credentials {
+          username nyplNexusUsername
+          password nyplNexusPassword
+        }
+        url 'https://nexus.librarysimplified.org:8443/nexus/content/groups/external/'
+      }
+    }
+
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "http://maven.findawayworld.com/artifactory/libs-release/" }
+    maven { url "https://jitpack.io" }
+    jcenter()
+  }
+
+  // Configure publishing for java projects
+  //
+  pluginManager.withPlugin("java") {
+    logger.info("Configuring publishing for ${project} (${POM_PACKAGING})")
+    apply from: file("$rootDir/.publish/publishing.gradle")
+  }
+
+  // Configure publishing for android-library projects
+  //
+  pluginManager.withPlugin("com.android.library") {
+    logger.info("Configuring publishing for ${project} (${POM_PACKAGING})")
+    apply from: file("$rootDir/.publish/publishing.gradle")
+  }
+
+  configurations.all {
+    // We currently have transitive dependencies that specify dependencies on newer versions
+    // of SLF4J. These are subtly incompatible with Logback-Android, and it will be a while before
+    // new versions appear of both artifacts. Remove this when both are updated!
+    //
+    resolutionStrategy.force libraries.slf4j
+
+    // one.irradia.mime.api depends on an outdated version of kotlin-reflect
+    //
+    resolutionStrategy.force libraries.kotlin_reflect
+  }
+
+  // Skip tasks for projects that require drm; unless drm is enabled
+  //
+  def nyplDrmRequired =
+    project.findProperty('org.librarysimplified.drm.required') as Boolean
+  if (nyplDrmRequired) {
+    project.tasks.all { task ->
+      task.onlyIf { nyplDrmEnabled }
+    }
+  }
+}
+
+/**
+ * An empty task called by CI. We don't do semantic versioning analysis here yet.
+ */
+task verifySemanticVersioning {}
+
+/**
+ * Displays properties starting with 'org.librarysimplified'.
+ */
+task listProperties(group: 'NYPL') {
+  description = "Displays properties starting with 'org.librarysimplified'."
+  doLast {
+    project.properties
+      .findAll { p ->
+        p.key.startsWith('org.librarysimplified')
+      }
+      .sort()
+      .each { println(it) }
+  }
+}
+
+// Add ktlint tasks to root project. This executes faster than
+// configuring the task for each individual subproject.
+//
+apply from: file("$rootDir/ktlint.gradle")
+
+subprojects {
+  assemble.dependsOn ktlint
+}
+
+/**
+ * Expand the 'tilde' character to user.home.
+ */
+@SuppressWarnings('unused')
+static String expandUserHome(String path) {
+  if (path == null) return
+  return path.replaceFirst("~", System.getProperty("user.home"))
+}
+
+@SuppressWarnings('unused')
+static Integer calculateVersionCode(Project project) {
+  def now = LocalDateTime.now(ZoneId.of("UTC"))
+  def nowSeconds = now.toEpochSecond(ZoneOffset.UTC)
+  // Seconds since 2021-03-15 09:20:00 UTC
+  def nowReduced = nowSeconds - 1615800000
+  return nowReduced
+}
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZoneOffset
+
+buildscript {
+  // Load in our list of dependencies.
+  //
+  apply from: file("$rootDir/libraries.gradle")
+
+  repositories {
+    mavenCentral()
+    google()
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:4.1.1'
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    classpath "androidx.navigation:navigation-safe-args-gradle-plugin:${versions.androidx_navigation}"
+    classpath "biz.aQute.bnd:biz.aQute.bnd.gradle:5.2.0"
+    classpath "com.nabilhachicha:android-native-dependencies:0.1.2"
+    classpath 'com.google.gms:google-services:4.3.4'
+    classpath 'com.google.firebase:firebase-crashlytics-gradle:2.4.1'
+  }
+}
+
+plugins {
+  id "com.github.ben-manes.versions" version "0.27.0"
+  id "ru.vyarus.animalsniffer" version "1.5.0"
+}
+
+ext {
+  // Required for some dependencies only available from our private nexus
+  //
+  nyplNexusDepend =
+    project.findProperty('org.librarysimplified.nexus.depend') as Boolean
+  nyplNexusUsername =
+    project.findProperty('org.librarysimplified.nexus.username') ?: ''
+  nyplNexusPassword =
+    project.findProperty('org.librarysimplified.nexus.password') ?: ''
+
+  if (nyplNexusDepend && !nyplNexusUsername) {
+    throw new GradleException(
+      """\
+      'org.librarysimplified.nexus.username' is undefined!
+        ^ required by 'org.librarysimplified.nexus.depend'\
+      """.stripIndent())
+  }
+  if (nyplNexusDepend && !nyplNexusPassword) {
+    throw new GradleException(
+      """\
+      'org.librarysimplified.nexus.password' is undefined!
+        ^ required by 'org.librarysimplified.nexus.depend'\
+      """.stripIndent())
+  }
+
+  // Required by some projects to build with drm support
+  //
+  nyplDrmEnabled =
+    project.findProperty('org.librarysimplified.drm.enabled') as Boolean
+  if (nyplDrmEnabled && !nyplNexusDepend) {
+    throw new GradleException(
+      """\
+      'org.librarysimplified.nexus.depend' is undefined!
+        ^ required by 'org.librarysimplified.drm.enabled'\
+      """.stripIndent())
+  }
+}
+
+subprojects { project ->
+  group = project.ext["GROUP"]
+  version = project.ext["VERSION_NAME"]
+
+  switch (POM_PACKAGING) {
+    case "aar":
+      apply from: file("$rootDir/build_aar.gradle")
+      break
+    case "apk":
+      apply from: file("$rootDir/build_apk.gradle")
+      break
+    case "jar":
+      apply from: file("$rootDir/build_jar.gradle")
+      break
+    default:
+      throw new IllegalStateException(
+        "Unrecognized packaging type ${POM_PACKAGING} for ${project}")
+  }
+
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    google()
+
+    if (nyplNexusDepend) {
+      maven {
+        credentials {
+          username nyplNexusUsername
+          password nyplNexusPassword
+        }
+        url 'https://nexus.librarysimplified.org:8443/nexus/content/groups/external/'
+      }
+    }
+
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven { url "http://maven.findawayworld.com/artifactory/libs-release/" }
+    maven { url "https://jitpack.io" }
+    jcenter()
+  }
+
+  // Configure publishing for java projects
+  //
+  pluginManager.withPlugin("java") {
+    logger.info("Configuring publishing for ${project} (${POM_PACKAGING})")
+    apply from: file("$rootDir/.publish/publishing.gradle")
+  }
+
+  // Configure publishing for android-library projects
+  //
+  pluginManager.withPlugin("com.android.library") {
+    logger.info("Configuring publishing for ${project} (${POM_PACKAGING})")
+    apply from: file("$rootDir/.publish/publishing.gradle")
+  }
+
+  configurations.all {
+    // We currently have transitive dependencies that specify dependencies on newer versions
+    // of SLF4J. These are subtly incompatible with Logback-Android, and it will be a while before
+    // new versions appear of both artifacts. Remove this when both are updated!
+    //
+    resolutionStrategy.force libraries.slf4j
+
+    // one.irradia.mime.api depends on an outdated version of kotlin-reflect
+    //
+    resolutionStrategy.force libraries.kotlin_reflect
+  }
+
+  // Skip tasks for projects that require drm; unless drm is enabled
+  //
+  def nyplDrmRequired =
+    project.findProperty('org.librarysimplified.drm.required') as Boolean
+  if (nyplDrmRequired) {
+    project.tasks.all { task ->
+      task.onlyIf { nyplDrmEnabled }
+    }
+  }
+}
+
+/**
+ * An empty task called by CI. We don't do semantic versioning analysis here yet.
+ */
+task verifySemanticVersioning {}
+
+/**
+ * Displays properties starting with 'org.librarysimplified'.
+ */
+task listProperties(group: 'NYPL') {
+  description = "Displays properties starting with 'org.librarysimplified'."
+  doLast {
+    project.properties
+      .findAll { p ->
+        p.key.startsWith('org.librarysimplified')
+      }
+      .sort()
+      .each { println(it) }
+  }
+}
+
+// Add ktlint tasks to root project. This executes faster than
+// configuring the task for each individual subproject.
+//
+apply from: file("$rootDir/ktlint.gradle")
+
+subprojects {
+  assemble.dependsOn ktlint
+}
+
+/**
+ * Expand the 'tilde' character to user.home.
+ */
+@SuppressWarnings('unused')
+static String expandUserHome(String path) {
+  if (path == null) return
+  return path.replaceFirst("~", System.getProperty("user.home"))
+}
+
+@SuppressWarnings('unused')
+static Integer calculateVersionCode(Project project) {
+  def now = LocalDateTime.now(ZoneId.of("UTC"))
+  def nowSeconds = now.toEpochSecond(ZoneOffset.UTC)
+  // Seconds since 2021-03-15 09:20:00 UTC
+  def nowReduced = nowSeconds - 1615800000
+  return nowReduced
+}

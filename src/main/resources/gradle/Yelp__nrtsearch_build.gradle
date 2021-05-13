@@ -1,0 +1,267 @@
+plugins {
+    // Provide convenience executables for trying out the examples.
+    id 'application'
+    // Generate IntelliJ IDEA's .idea & .iml project files
+    id 'idea'
+    id 'maven-publish'
+    id 'signing'
+    id "com.diffplug.gradle.spotless" version "4.3.0"
+}
+
+repositories {
+    maven { // The google mirror is less flaky than mavenCentral()
+        url "https://maven-central.storage-download.googleapis.com/repos/central/data/"
+    }
+    mavenLocal()
+    mavenCentral()
+}
+
+sourceCompatibility = 1.14
+targetCompatibility = 1.14
+
+allprojects {
+    version = '0.6.15'
+    group = 'com.yelp.nrtsearch'
+}
+
+def _artifactId = 'server'
+
+//This is for https://github.com/gradle/gradle/issues/11308
+System.setProperty("org.gradle.internal.publish.checksums.insecure", "True")
+
+def luceneVersion = '8.4.0'
+project.ext.slf4jVersion = '2.0.0-alpha0'
+def gsonVersion = '2.8.5'
+def snakeYamlVersion = '1.25'
+def spatial4jVersion = '0.7'
+def s3mockVersion = '0.2.5'
+def commonsCompressVersion = '1.19'
+def awsJavaSdkVersion = '1.11.695'
+def guicedeeVersion = '1.0.1.7-jre13'
+def lz4Version = '1.7.0'
+def prometheusClientVersion = '0.8.0'
+
+dependencies {
+
+    //prometheus (metrics) deps
+    implementation "io.prometheus:simpleclient_servlet:${prometheusClientVersion}"
+    implementation "io.prometheus:simpleclient_hotspot:${prometheusClientVersion}"
+
+    //
+    implementation "org.slf4j:slf4j-api:${project.ext.slf4jVersion}"
+    implementation "org.slf4j:slf4j-jdk14:2.0.0-alpha1"
+    implementation "com.google.code.gson:gson:${gsonVersion}"
+    implementation 'org.apache.commons:commons-io:1.3.2'
+    implementation "org.yaml:snakeyaml:${snakeYamlVersion}"
+    implementation "org.apache.commons:commons-compress:${commonsCompressVersion}"
+    implementation "com.amazonaws:aws-java-sdk-core:${awsJavaSdkVersion}"
+    implementation "com.amazonaws:aws-java-sdk-s3:${awsJavaSdkVersion}"
+    implementation "javax.xml.bind:jaxb-api:2.3.1"
+    implementation "com.guicedee.services:guice:${guicedeeVersion}"
+    implementation "org.lz4:lz4-java:${lz4Version}"
+
+    //lucene deps
+    implementation "org.apache.lucene:lucene-core:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-codecs:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-backward-codecs:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-queries:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-facet:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-replicator:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-analyzers-common:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-suggest:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-expressions:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-queries:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-queryparser:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-highlighter:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-grouping:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-queries:${luceneVersion}"
+    implementation "org.apache.lucene:lucene-join:${luceneVersion}"
+
+    //cli deps
+    implementation 'info.picocli:picocli:4.0.4'
+    implementation 'org.apache.commons:commons-csv:1.7'
+
+    testImplementation "junit:junit:4.12"
+    testImplementation "org.mockito:mockito-core:2.25.1"
+    testImplementation "org.apache.lucene:lucene-test-framework:${luceneVersion}"
+    testImplementation "org.locationtech.spatial4j:spatial4j:${spatial4jVersion}"
+    testImplementation "io.findify:s3mock_2.12:${s3mockVersion}"
+
+    compile project(':clientlib')
+}
+
+startScripts.enabled = false
+
+task luceneServer(type: CreateStartScripts) {
+    mainClassName = 'com.yelp.nrtsearch.server.grpc.LuceneServer'
+    applicationName = 'lucene-server'
+    outputDir = new File(project.buildDir, 'tmp')
+    classpath = startScripts.classpath
+}
+
+task luceneServerClient(type: CreateStartScripts) {
+    mainClassName = 'com.yelp.nrtsearch.server.cli.LuceneClientCommand'
+    applicationName = 'lucene-client'
+    outputDir = new File(project.buildDir, 'tmp')
+    classpath = startScripts.classpath
+}
+
+applicationDistribution.into('bin') {
+    from(luceneServer)
+    from(luceneServerClient)
+    fileMode = 0755
+}
+
+task buildGrpcGateway(dependsOn: installDist, type: Exec) {
+    workingDir = '.'
+    executable = 'bash'
+    args = ['-c', './build_grpc_gateway.sh']
+}
+
+//Dynamic exclude through property defined in the build.gradle file
+//e.g. to include perfTests: ./gradlew test -PincludePerfTests=true
+//e.g. default is to exclude perfTests: ./gradlew test
+test {
+    finalizedBy 'spotlessJavaCheck'
+    if (!project.hasProperty('includePerfTests')) {
+        exclude '**/YelpReviewsTest.class'
+        exclude '**/YelpSuggestTest.class'
+        exclude '**/MergeBehaviorTests.class'
+    }
+    systemProperties System.properties
+}
+
+task javadocs(type: Javadoc) {
+    source = sourceSets.main.java.srcDirs
+}
+
+task javadocsJar(type: Jar) {
+    classifier('javadoc')
+    from javadocs.destinationDir
+}
+
+task sourcesJar(type: Jar) {
+    classifier('sources')
+    from sourceSets.main.java.srcDirs
+}
+
+task testsJar(type: Jar) {
+    classifier('tests')
+    from sourceSets.test.output
+}
+
+signing {
+    if (project.hasProperty("signing.keyId")) {
+        sign publishing.publications
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = project.group
+            artifactId = _artifactId
+            version = project.version
+            artifact tasks.jar
+            artifact tasks.javadocsJar
+            artifact tasks.sourcesJar
+            artifact tasks.testsJar
+            pom {
+                name = 'nrtSearch Server'
+                description = 'GRPC lucene server using near-real-time replication'
+                url = 'https://github.com/Yelp/nrtsearch'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    // Adding all developers in alphabetical order
+                    developer {
+                        id = 'alok'
+                        name = 'Alok Mysore'
+                        email = 'alok@yelp.com'
+                    }
+                    developer {
+                        id = 'erikyang'
+                        name = 'Erik Yang'
+                        email = 'erikyang@yelp.com'
+                    }
+                    developer {
+                        id = 'karthik'
+                        name = 'Karthik Alle'
+                        email = 'karthik@yelp.com'
+                    }
+                    developer {
+                        id = 'sarthakn'
+                        name = 'Sarthak Nandi'
+                        email = 'sarthakn@yelp.com'
+                    }
+                    developer {
+                        id = 'umesh'
+                        name = 'Umesh Dangat'
+                        email = 'umesh@yelp.com'
+                    }
+                }
+
+                // Links to nrtSearch github
+                scm {
+                    connection = 'scm:git:git://github.com/Yelp/nrtsearch.git'
+                    developerConnection = 'scm:git:ssh://github.com/Yelp/nrtsearch.git'
+                    url = 'https://github.com/Yelp/nrtsearch'
+                }
+            }
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+                configurations.implementation.allDependencies.each {
+                    def dependencyNode = dependenciesNode.appendNode('dependency')
+                    dependencyNode.appendNode('groupId', it.group)
+                    dependencyNode.appendNode('artifactId', it.name)
+                    dependencyNode.appendNode('version', it.version)
+                }
+            }
+        }
+    }
+    repositories {
+        mavenCentral {
+            if (project.hasProperty("signing.keyId")) {
+                credentials {
+                    // The credentials are picked up from your gradle.properties file
+                    username ossrhUsername
+                    password ossrhPassword
+                }
+            }
+
+            def releasesRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+            def snapshotsRepoUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+        }
+    }
+}
+
+spotless {
+    java {
+        licenseHeaderFile 'license_header'
+        removeUnusedImports()
+        endWithNewline()
+        trimTrailingWhitespace()
+        googleJavaFormat()
+    }
+}
+
+// Inject properties file containing the project version into resources.
+// Used to get version info at runtime.
+task createProperties(dependsOn: processResources) {
+    doLast {
+        new File("$buildDir/resources/main/version.properties").withWriter { w ->
+            Properties p = new Properties()
+            p['version'] = project.version.toString()
+            p.store w, null
+        }
+    }
+}
+
+classes {
+    dependsOn createProperties
+}

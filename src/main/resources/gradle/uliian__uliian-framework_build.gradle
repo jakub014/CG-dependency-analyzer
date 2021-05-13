@@ -1,0 +1,85 @@
+buildscript {
+    ext {
+        kotlin_version = '1.4.10'
+        typescript_gen_version = '2.19.577'
+        guava_version = '29.0-jre'
+        mybatis_plus_version = "3.4.2"
+        global_version = '1.0.3'
+        aliyun_repository = 'http://maven.aliyun.com/nexus/content/groups/public/'
+        springboot_version = '2.4.3'
+        kotlin_jackson_module_version = '2.11.2'
+        swagger_version = '3.0.0'
+    }
+    repositories {
+        maven { url aliyun_repository }
+        mavenCentral()
+
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springboot_version}")
+        classpath("cz.habarta.typescript-generator:typescript-generator-gradle-plugin:$typescript_gen_version")
+        classpath "cz.habarta.typescript-generator:typescript-generator-spring:$typescript_gen_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlin_version}")
+    }
+}
+//plugins {
+//    id 'org.springframework.boot' version '2.3.3.RELEASE'
+//    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+//}
+
+allprojects {
+    apply plugin: 'kotlin'
+    apply plugin: 'kotlin-spring'
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'idea'
+//    apply plugin: 'io.spring.dependency-management'
+
+    group = 'com.uliian'
+    version = global_version
+    sourceCompatibility = '1.8'
+
+    test {
+        useJUnitPlatform()
+    }
+
+    compileKotlin {
+        kotlinOptions.jvmTarget = "1.8"
+    }
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = "1.8"
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url aliyun_repository }
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation group: 'org.jetbrains.kotlin', name: 'kotlin-test-junit5', version: kotlin_version
+//        testImplementation("org.junit.jupiter:junit-jupiter:$junit_verion")
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    }
+}
+
+subprojects {
+    if(!project.name.contains("demo")) {
+        apply from: "${project.rootDir}${File.separator}upload.gradle"
+    }
+    dependencies {
+        api "org.springframework.boot:spring-boot-starter-web:$springboot_version"
+        api('com.uliian:uliian-commons:1.5.3')
+        api "org.springframework.boot:spring-boot-starter-aop:$springboot_version"
+
+        api "com.google.guava:guava:$guava_version"
+        api "com.baomidou:mybatis-plus-boot-starter:$mybatis_plus_version"
+        testImplementation("org.springframework.boot:spring-boot-starter-test:$springboot_version") {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+        api "com.fasterxml.jackson.module:jackson-module-kotlin:$kotlin_jackson_module_version"
+    }
+}
+
+

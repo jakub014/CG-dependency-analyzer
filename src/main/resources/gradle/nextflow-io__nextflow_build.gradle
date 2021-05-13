@@ -1,0 +1,364 @@
+/*
+ * Copyright 2020-2021, Seqera Labs
+ * Copyright 2013-2019, Centre for Genomic Regulation (CRG)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+plugins {
+    id "io.codearte.nexus-staging" version "0.21.2"
+    id 'java'
+    id 'idea'
+}
+
+// Add ability to test with upcoming versions of Groovy
+def groovyVer = System.getenv('CI_GROOVY_VERSION')
+if (groovyVer) {
+    def repo = groovyVer.startsWith('com.github.apache:') ? 'https://jitpack.io' : 'https://oss.jfrog.org/oss-snapshot-local/'
+    logger.lifecycle "Overriden Groovy dependency to use $groovyVer - repository: $repo"
+    allprojects {
+        repositories {
+            maven { url repo }
+        }
+
+        configurations.all {
+            resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+                if (details.requested.group == 'org.codehaus.groovy') {
+                    if( groovyVer.contains(':') )
+                        details.useTarget(groovyVer)
+                    else
+                        details.useVersion(groovyVer)
+                    println ">> Overriding $details.requested with version: $groovyVer"
+                }
+            }
+        }
+    }
+}
+
+def projects(String...args) {
+    args.collect {project(it)}
+}
+
+group = 'io.nextflow'
+version = rootProject.file('VERSION').text.trim()
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-test-fixtures'
+    apply plugin: 'idea'
+    apply plugin: 'groovy'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    idea {
+        module.inheritOutputDirs = true
+    }
+
+    repositories {
+        mavenCentral()
+        maven { url 'https://repo.eclipse.org/content/groups/releases' }
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    }
+
+    configurations {
+        // see https://docs.gradle.org/4.1/userguide/dependency_management.html#sub:exclude_transitive_dependencies
+        all*.exclude group: 'org.codehaus.groovy', module: 'groovy-all'
+        all*.exclude group: 'org.codehaus.groovy', module: 'groovy-cli-picocli'
+        // groovydoc libs
+        groovyDoc.extendsFrom runtime
+    }
+
+    dependencies {
+        // see https://docs.gradle.org/4.1/userguide/dependency_management.html#sec:module_replacement
+        modules {
+            module("commons-logging:commons-logging") { replacedBy("org.slf4j:jcl-over-slf4j") }
+        }
+
+        // Documentation required libraries
+        groovyDoc 'org.fusesource.jansi:jansi:1.11'
+        groovyDoc "org.codehaus.groovy:groovy-groovydoc:3.0.7"
+        groovyDoc "org.codehaus.groovy:groovy-ant:3.0.7"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+    
+    // this is required due to this IDEA bug
+    // https://youtrack.jetbrains.com/issue/IDEA-129282
+    sourceSets {
+        main {
+            output.resourcesDir = 'build/classes/main'
+        }
+    }
+
+    // Disable strict javadoc checks
+    // See http://blog.joda.org/2014/02/turning-off-doclint-in-jdk-8-javadoc.html
+    if (JavaVersion.current().isJava8Compatible()) {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+
+    // patched as described here
+    // http://forums.gradle.org/gradle/topics/gradle_task_groovydoc_failing_with_noclassdeffounderror
+    tasks.withType(Groovydoc) {
+        groovyClasspath = project.configurations.groovyDoc
+        includes  = ["nextflow/**"]
+    }
+
+    // Required to run tests on Java 9 and higher in compatibility mode
+    if (JavaVersion.current() >= JavaVersion.VERSION_1_9) {
+        tasks.withType(Test) {
+            jvmArgs ([
+                    '--add-opens=java.base/java.lang=ALL-UNNAMED',
+                    '--add-opens=java.base/java.io=ALL-UNNAMED',
+                    '--add-opens=java.base/java.nio=ALL-UNNAMED',
+                    '--add-opens=java.base/java.util=ALL-UNNAMED',
+                    '--add-opens=java.base/sun.nio.ch=ALL-UNNAMED',
+                    '--add-opens=java.base/sun.net.www.protocol.http=ALL-UNNAMED',
+                    '--add-opens=java.base/sun.net.www.protocol.https=ALL-UNNAMED',
+                    '--add-opens=java.base/sun.net.www.protocol.ftp=ALL-UNNAMED',
+                    '--add-opens=java.base/sun.net.www.protocol.file=ALL-UNNAMED',
+                    '--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED',
+            ])
+        }
+    }
+}
+
+// disable jar for root project
+jar.enabled = false
+
+/*
+ * Update the build timestamp in the source source file
+ */
+task buildInfo { doLast {
+
+    def file0 = file('./modules/nf-commons/src/main/nextflow/Const.groovy')
+    def buildNum = 0
+    def src = file0.text
+    src.find(/APP_BUILDNUM *= *([0-9]*)/) { buildNum = it[1]?.toInteger()+1 }
+    src = src.replaceAll('APP_VER *= *"[0-9a-zA-Z_\\-\\.]+"', "APP_VER = \"${version}\"" as String)
+    src = src.replaceAll('APP_TIMESTAMP *= *[0-9]*', "APP_TIMESTAMP = ${System.currentTimeMillis()}" as String)
+    if( buildNum ) {
+        src = src.replaceAll('APP_BUILDNUM *= *[0-9]*', "APP_BUILDNUM = ${buildNum}" as String)
+    }
+    else {
+        println "WARN: Unable to find current build number"
+    }
+    file0.text = src
+
+    // -- update 'nextflow' wrapper
+    file0 = file('nextflow')
+    src = file0.text
+    src = src.replaceAll(/NXF_VER\=\$\{NXF_VER:-'.*'\}/, 'NXF_VER=\\${NXF_VER:-\'' + version + '\'}')
+    file0.text = src
+
+    // -- update sphynx
+    def major = version.split(/\./)[0..1].join('.')
+    file0 = file('docs/conf.py')
+    src = file0.text
+    src = src.replaceAll(/version *= *'[0-9a-zA-Z_\-\.]+'/, "version = '$major'" as String)
+    src = src.replaceAll(/release *= *'[0-9a-zA-Z_\-\.]+'/, "release = '$version'" as String)
+    file0.text = src
+
+    // -- update dockerfile
+    file0 = file('docker/Dockerfile')
+    src = file0.text
+    src = src.replaceAll(/releases\/v[0-9a-zA-Z_\-\.]+\//, "releases/v$version/" as String)
+    file0.text = src
+
+    // -- create plugins-info file
+    def plugins = []
+    new File(rootProject.rootDir, 'plugins')
+            .eachDir { if(it.name.startsWith('nf-')) plugins << project(":plugins:${it.name}") }
+
+    def meta = plugins .collect { "$it.name@$it.version" }
+    file('modules/nextflow/src/main/resources/META-INF/plugins-info.txt').text = meta.join('\n')
+}}
+
+
+/*
+ * Compile sources and copies all libs to target directory
+ */
+task compile {
+    dependsOn buildInfo
+    dependsOn allprojects.classes
+}
+
+def getRuntimeConfigs() {
+    def names = subprojects
+            .findAll { prj -> prj.name in ['nextflow','nf-commons','nf-https'] }
+            .collect { it.name }
+
+    FileCollection result = null
+    for( def it : names ) {
+        def cfg = project(it).configurations.getByName('runtime')
+        if( result==null )
+            result = cfg
+        else
+            result += cfg
+        // this include the module actual jar file
+        result = result + cfg.getOutgoing().getArtifacts().getFiles()
+    }
+    return result
+}
+
+/*
+ * Save the runtime classpath
+ */
+task exportClasspath {
+    dependsOn allprojects.jar
+    doLast {
+        def home = System.getProperty('user.home')
+        def all = getRuntimeConfigs()
+        def libs = all.collect { File file ->  /*println file.canonicalPath.replace(home, '$HOME');*/ file.canonicalPath;  }
+        file('.launch.classpath').text = libs.join(':')
+    }
+}
+
+ext.nexusUsername = project.findProperty('nexusUsername')
+ext.nexusPassword = project.findProperty('nexusPassword')
+ext.nexusFullName = project.findProperty('nexusFullName')
+ext.nexusEmail = project.findProperty('nexusEmail')
+
+// `signing.keyId` property needs to be defined in the `gradle.properties` file
+ext.enableSignArchives = project.findProperty('signing.keyId')
+
+ext.coreProjects = projects( ':nextflow', ':nf-commons', ':nf-httpfs' )
+
+configure(coreProjects) {
+    group = 'io.nextflow'
+    version = rootProject.file('VERSION').text.trim()
+}
+
+/*
+ * Maven central deployment
+ * http://central.sonatype.org/pages/gradle.html
+ */
+configure(coreProjects) {
+    apply plugin: 'maven'
+    apply plugin: 'signing'
+
+    task javadocJar(type: Jar) {
+        classifier = 'javadoc'
+        from configurations.groovyDoc
+    }
+
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    artifacts {
+        archives javadocJar, sourcesJar
+    }
+
+    signing {
+        sign configurations.archives
+    }
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                    authentication(userName: nexusUsername, password: nexusPassword)
+                }
+
+                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                    authentication(userName: nexusUsername, password: nexusPassword)
+                }
+
+                pom.project {
+                    name 'Nextflow'
+                    packaging 'jar'
+                    // optionally artifactId can be defined here
+                    description 'A DSL modelled around the UNIX pipe concept, that simplifies writing parallel and scalable pipelines in a portable manner'
+                    url 'http://www.nextflow.io'
+
+                    scm {
+                        connection 'scm:git:https://github.com/nextflow-io/nextflow'
+                        developerConnection 'scm:git:git@github.com:nextflow-io/nextflow.git'
+                        url 'https://github.com/nextflow-io/nextflow'
+                    }
+
+                    licenses {
+                        license {
+                            name 'Apache 2.0'
+                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id nexusUsername
+                            name nexusFullName
+                            email nexusEmail
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    signArchives.onlyIf { enableSignArchives }
+}
+
+
+String bytesToHex(byte[] bytes) {
+    StringBuffer result = new StringBuffer();
+    for (byte byt : bytes) result.append(Integer.toString((byt & 0xff) + 0x100, 16).substring(1));
+    return result.toString();
+}
+
+task makeDigest { doLast {
+    byte[] digest
+    String  str = file('nextflow').text
+    // create sha1
+    digest = java.security.MessageDigest.getInstance("SHA1").digest(str.getBytes())
+    file('nextflow.sha1').text = new BigInteger(1, digest).toString(16) + '\n'
+    // create sha-256
+    digest = java.security.MessageDigest.getInstance("SHA-256").digest(str.getBytes())
+    file('nextflow.sha256').text = bytesToHex(digest) + '\n'
+    // create md5
+    digest = java.security.MessageDigest.getInstance("MD5").digest(str.getBytes())
+    file('nextflow.md5').text = bytesToHex(digest) + '\n'
+}}
+
+
+task upload {
+    dependsOn compile
+    dependsOn makeDigest
+    dependsOn coreProjects.uploadArchives
+}
+
+/*
+ * Configure Nextflow staging plugin -- https://github.com/Codearte/gradle-nexus-staging-plugin
+ * It adds the tasks
+ * - closeRepository
+ * - releaseRepository
+ * - closeAndReleaseRepository
+ */
+nexusStaging {
+    packageGroup = 'io.nextflow'
+    delayBetweenRetriesInMillis = 10_000
+}
+
+if( System.env.BUILD_PACK ) {
+    apply from: 'packing.gradle'
+}
+

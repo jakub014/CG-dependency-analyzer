@@ -1,0 +1,106 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+buildscript {
+	repositories {
+		mavenLocal()
+		mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.9.0'
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url "https://mini2dx.org/maven/content/repositories/thirdparty" }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+if(project.hasProperty('ossrhUser') && project.hasProperty("release")) {
+	apply plugin: "io.codearte.nexus-staging"
+
+	nexusStaging {
+		username = ossrhUser
+		password = ossrhPassword
+	}
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group = 'org.mini2Dx'
+version = '1.1.0'
+description = 'mini2Dx gradle plugin for generating a MonoGame Content Builder project for mini2Dx assets'
+
+dependencies {
+	compile gradleApi()
+	compile localGroovy()
+
+	testCompile 'junit:junit:4.11'
+}
+
+task javadocJar(type: Jar) {
+	classifier = 'javadoc'
+	from javadoc
+}
+
+task sourcesJar(type: Jar) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives javadocJar, sourcesJar
+}
+
+// Maven Central publication
+if(project.hasProperty('ossrhUser')) {
+	signing {
+		sign configurations.archives
+	}
+	
+	uploadArchives {
+		repositories {
+			mavenDeployer {
+				// POM signature
+				beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+				// Target repository
+				repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+					authentication(userName: ossrhUser, password: ossrhPassword)
+				}
+				pom.project {
+					name project.name
+					description project.description
+					packaging 'jar'
+					url 'https://github.com/mini2Dx/gradle-mini2Dx-mgcb'
+
+					scm {
+						connection 'scm:git:https://github.com/mini2Dx/gradle-mini2Dx-mgcb.git'
+						developerConnection 'scm:git:git@github.com:mini2Dx/gradle-mini2Dx-mgcb.git'
+						url 'https://github.com/mini2Dx/gradle-mini2Dx-mgcb.git'
+					}
+
+					licenses {
+						license {
+							name 'Apache License 2.0'
+							url 'https://opensource.org/licenses/Apache-2.0'
+							distribution 'repo'
+						}
+					}
+
+					developers {
+						developer {
+							id = 'tomcashman'
+							name = 'Thomas Cashman'
+							email = 'thomascashman404@gmail.com'
+						}
+					}
+				}
+			}
+		}
+	}
+}

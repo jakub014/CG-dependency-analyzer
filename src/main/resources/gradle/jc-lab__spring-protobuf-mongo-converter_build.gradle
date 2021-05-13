@@ -1,0 +1,139 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.14'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'maven'
+    id 'maven-publish'
+    id 'com.jfrog.bintray' version '1.8.5'
+    id 'signing'
+    id 'com.google.protobuf' version '0.8.14'
+}
+
+group 'kr.jclab.spring'
+version '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    implementation('org.springframework.data:spring-data-mongodb:3.0.6.RELEASE')
+    implementation('org.springframework.boot:spring-boot-starter-data-mongodb:2.4.2')
+
+    // https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java
+    implementation('com.google.protobuf:protobuf-java:3.12.2')
+    // https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java-util
+    implementation('com.google.protobuf:protobuf-java-util:3.12.2')
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    implementation('com.google.code.gson:gson:2.8.6')
+}
+
+
+def pomConfig = {
+    licenses {
+        license {
+            name = 'The Apache Software License, Version 2.0'
+            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+            distribution = 'https://github.com/jc-lab/spring-protobuf-mongo-converter'
+        }
+    }
+    developers {
+        developer {
+            id = 'jc-lab'
+            name = 'Joseph Lee'
+            email = 'development@jc-lab.net'
+        }
+    }
+    scm {
+        url = 'https://github.com/jc-lab/spring-protobuf-mongo-converter.git'
+    }
+}
+
+task createPom  {
+    pom {
+        project pomConfig
+    }.writeTo("$buildDir/pom.xml")
+}
+
+jar {
+    into("META-INF/maven/$project.group/$project.name") {
+        dependsOn createPom
+        from("$buildDir/pom.xml")
+    }
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    archiveClassifier = "sources"
+}
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+
+    publications = ['mavenJava']
+
+    pkg {
+        repo = 'spring.boot'
+        name = 'spring-protobuf-mongo-converter'
+        userOrg = 'jc-lab'
+        licenses = ['Apache-2.0']
+        vcsUrl = "https://github.com/jc-lab/spring-protobuf-mongo-converter.git"
+
+        version {
+            name = project.version //Bintray logical version name
+        }
+    }
+}
+
+// Create the publication with the pom configuration:
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourceJar
+//            artifact javadocJar
+            groupId group
+            artifactId rootProject.name
+            version version
+            pom pomConfig
+        }
+    }
+}
+
+signing {
+    useGpgCmd()
+    sign publishing.publications.mavenJava
+}
+
+tasks.compileJava.dependsOn 'generateProto'
+
+protobuf {
+    protoc {
+        // The artifact spec for the Protobuf Compiler
+        artifact = 'com.google.protobuf:protoc:3.12.2'
+    }
+}
+
+sourceSets {
+    test {
+        proto {
+            srcDir 'src/test/protobuf'
+        }
+        java {
+            srcDirs 'build/generated/source/proto/test/java'
+        }
+    }
+}

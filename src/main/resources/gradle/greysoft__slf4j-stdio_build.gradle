@@ -1,0 +1,143 @@
+/*
+ * Copyright 2014-2021 Yusef Badri - All rights reserved.
+ * grey-slf4j-logstdio is distributed under the terms of the GNU Affero General Public License, Version 3 (AGPLv3).
+ */
+// To upload to Sonatype staging for Maven Central deployment:
+//     ./gradlew -PbuildVersion=0.0.1 -PrepoUser=myname -PrepoPassword=mypass -Psigning.gnupg.keyName=key_id -Psigning.gnupg.passphrase="blah blah" build uploadArchives
+// Older versions of signing plugin were based on GnuPG2 and required:
+//     -Psigning.keyId=mykeyid1 -Psigning.password=mykeypass1 -Psigning.secretKeyRingFile=myringpath
+// Note that all these properties can go in settings.gradle instead, or in
+// $HOME/.gradle/gradle.properties if we want to keep them out of Git.
+//
+// Nexus repository uploads:
+//     ./gradlew -PbuildVersion=0.0.1 -PrepoHost=localhost:8081 -PrepoUser=myname -PrepoPassword=mypass publish
+// Install in localhost Maven repository:
+//     ./gradlew publishToMavenLocal
+//
+// Can explicitly disable signing with: ./gradlew build -x signArchives
+// Clear PGP passphrase on Ubuntu: gpg-connect-agent reloadagent /bye
+//
+// jacocoTestReport task generates HTML report from test.exec binary, which is
+// automatically created by the ordinary build task.
+
+plugins {
+	id 'java-library'
+	id 'maven' //old Maven publishing plugin, required for uploadArchives
+	id 'maven-publish' //new Maven publishing plugin, for Nexus uploads
+	id 'signing'
+	id 'jacoco'
+	id 'eclipse'
+}
+
+allprojects {
+	group = "$buildGroup"
+	version = "$buildVersion"
+}
+
+ext.repoHost = project.findProperty('repoHost') ?: 'localhost:8081'
+ext.repoUser = project.findProperty('repoUser') ?: ''
+ext.repoPassword = project.findProperty('repoPassword') ?: ''
+ext.isReleaseVersion = !version.endsWith("-SNAPSHOT")
+
+def nexusRepoStem = "http://$repoHost/repository"
+def nexusRepoDownloads = "$nexusRepoStem/maven-public/"
+def nexusRepoReleases = "$nexusRepoStem/maven-releases/"
+def nexusRepoSnapshots = "$nexusRepoStem/maven-snapshots/"
+
+repositories {
+	mavenLocal()
+	maven {
+		name = "nexusrepo-download"
+		url "$nexusRepoDownloads"
+	}
+	jcenter()
+	mavenCentral()
+}
+
+dependencies {
+	api "org.slf4j:slf4j-api:$versionSLF4J"
+	implementation "com.fasterxml.jackson.core:jackson-databind:$versionJackson"
+
+	testImplementation "junit:junit:$versionJUNIT"
+	testImplementation "org.mockito:mockito-core:$versionMockito"
+}
+
+java {
+	withSourcesJar()
+	withJavadocJar()
+}
+
+artifacts {
+	archives javadocJar, sourcesJar
+}
+
+// This is for the publish task to deploy to a Nexus repository
+publishing {
+	publications {
+		GreyLibrary(MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
+		maven {
+			name 'nexusrepo-upload'
+			url = isReleaseVersion ? nexusRepoReleases : nexusRepoSnapshots
+			credentials {
+				username repoUser
+				password repoPassword
+			}
+		}
+	}
+}
+
+// This is for the uploadArchives task to deploy to Maven Central
+uploadArchives {
+	repositories {
+		mavenDeployer {
+			beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+			repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+				authentication(userName: repoUser, password: repoPassword)
+			}
+
+			snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+				authentication(userName: repoUser, password: repoPassword)
+			}
+
+			pom.project {
+				name 'grey-slf4j-logstdio'
+				packaging 'jar'
+				description 'SLF4J logger with environment-driven config'
+				url 'https://github.com/greysoft/slf4j-stdio'
+
+				scm {
+					connection 'scm:git:git://github.com/greysoft/slf4-stdio.git'
+					developerConnection 'scm:git:ssh://github.com/greysoft/slf4-stdio.git'
+					url 'https://github.com/greysoft/slf4j-stdio'
+				}
+
+				licenses {
+					license {
+						name 'GNU Affero General Public License v3.0'
+						url 'https://www.gnu.org/licenses/agpl-3.0.en.html'
+					}
+				}
+
+				developers {
+					developer {
+						name 'Yusef Badri'
+					}
+				}
+			}
+		}
+	}
+}
+
+signing {
+	useGpgCmd() //use GnuPG 2
+	sign configurations.archives
+}
+
+tasks.withType(Sign) {
+	onlyIf { project.findProperty('signing.gnupg.keyName') }
+}

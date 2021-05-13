@@ -1,0 +1,184 @@
+plugins {
+    id "java-library"
+    id "signing"
+    id "maven-publish"
+    id "io.freefair.lombok" version "5.3.0"
+    id "com.diffplug.spotless" version "5.8.2"
+    id 'com.adarshr.test-logger' version "2.1.1"
+    id 'me.champeau.mrjar'
+    id 'com.sinch.openapi.generator'
+}
+
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
+
+repositories {
+    mavenLocal()
+    jcenter()
+}
+
+publishing {
+    publications {
+        "$project.name"(MavenPublication) {
+            from components.java
+            pom {
+                name = project.name
+                description = 'Sinch Java SDK'
+                url = 'https://www.sinch.com'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://www.opensource.org/licenses/mit-license.php'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git@github.com:sinch/sinch-java.git'
+                    developerConnection = 'scm:git:git@github.com:sinch/sinch-java.git'
+                    url = 'https://github.com/sinch/sinch-java'
+                }
+                developers {
+                    developer {
+                        id = 'frekra'
+                        name = 'Fredrik Kratzer'
+                        email = 'fredrik.kratzer@sinch.com'
+                    }
+                    developer {
+                        id = 'adabia'
+                        name = 'Adam Białas'
+                        email = 'adam.bialas@sinch.com'
+                    }
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name "Sonatype"
+            def releaseRepo = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotRepo = "https://oss.sonatype.org/content/repositories/snapshots/"
+            url = isReleaseVersion ? releaseRepo : snapshotRepo
+            credentials {
+                username = project.findProperty('ossrhUsername')
+                password = project.findProperty('ossrhPassword')
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name "Sinch"
+            def repo = isReleaseVersion ? "releases" : "snapshots"
+            url = "https://nexus.int.clxnetworks.net/repository/clx-$repo-hosted"
+            credentials {
+                username = project.findProperty("clxRepoUser")
+                password = project.findProperty("clxRepoPassword")
+            }
+        }
+    }
+}
+
+signing {
+    required { isReleaseVersion && gradle.taskGraph.hasTask("publishAllPublicationsToSonatypeRepository") }
+    sign publishing.publications.getByName(project.name)
+}
+
+ext {
+    swaggerAnnotationsVersion = "1.5.22"
+    findbugsVersion = "3.0.2"
+    slf4jApiVersion = "1.7.30"
+    okhttpVersion = "4.9.0"
+    apacheHttpClientVersion = "5.0.3"
+    jacksonVersion = "2.11.4"
+    javaxValidationVersion = "2.0.1.Final"
+    wiremockVersion = "2.27.2"
+    assertjVersion = "3.19.0"
+    awaitilityVersion = "4.0.3"
+    mockitoVersion = "3.6.0"
+    junitVersion = "5.7.0"
+}
+
+dependencies {
+    // Required by swagger generated models
+    implementation "io.swagger:swagger-annotations:${swaggerAnnotationsVersion}"
+    implementation "com.google.code.findbugs:jsr305:${findbugsVersion}"
+    implementation "org.slf4j:slf4j-api:${slf4jApiVersion}"
+    implementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+    compileOnly "org.apache.httpcomponents.client5:httpclient5:${apacheHttpClientVersion}"
+
+    implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
+    implementation "javax.validation:validation-api:${javaxValidationVersion}"
+
+    testImplementation "com.github.tomakehurst:wiremock-jre8:${wiremockVersion}"
+    testImplementation "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+    testImplementation "org.apache.httpcomponents.client5:httpclient5:${apacheHttpClientVersion}"
+    testImplementation "org.assertj:assertj-core:${assertjVersion}"
+    testImplementation "org.awaitility:awaitility:${awaitilityVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testRuntimeOnly "org.slf4j:slf4j-simple:${slf4jApiVersion}"
+    testRuntimeOnly "com.squareup.okhttp3:okhttp:${okhttpVersion}"
+}
+
+tasks.withType(Test) {
+    systemProperties.putAll(
+            System.getProperties().findAll { it.key.startsWith("sinch") || it.key == 'ignoreTestTags' }
+    )
+}
+
+spotless {
+    java {
+        target project.fileTree(project.projectDir) {
+            include 'src/**/*.java'
+            exclude 'build/**/*.*'
+        }
+        googleJavaFormat()
+        removeUnusedImports()
+        trimTrailingWhitespace()
+    }
+}
+
+generateModelFromOpenApi {
+    modelDefinition {
+        apiName 'conversationapi'
+        url 'https://developers.sinch.com/openapi/5e8c97e796be52003d4ead78'
+        prefixesToRemove 'Type', 'V1'
+    }
+}
+
+multiReleaseJar {
+    addLanguageVersion 11
+}
+
+test {
+    useJUnitPlatform {
+        excludeTags getSystemProperties().get('ignoreTestTags') ? 'none()' : 'example'
+    }
+}
+
+testJava11() {
+    useJUnitPlatform {
+        excludeTags getSystemProperties().get('ignoreTestTags') ? 'none()' : 'example'
+    }
+}
+
+testlogger {
+    showFullStackTraces false
+    showStandardStreams true
+}
+
+task createVersionProperties(type: WriteProperties) {
+    outputFile file("$buildDir/resources/main/com/sinch/version.properties")
+    property "version", project.version.toString()
+}
+classes.dependsOn createVersionProperties
+
+task printVersionName {
+    doLast {
+        println project.version
+    }
+}

@@ -1,0 +1,207 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencyLocking {
+        lockAllConfigurations()
+    }
+}
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version 'latest.release'
+    id 'org.sonarqube' version 'latest.release'
+}
+
+allprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'jacoco'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+
+    version = '1.39.0-SNAPSHOT'
+
+    group = 'de.bwaldvogel'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    compileJava.options.encoding = 'UTF-8'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        components.all { ComponentMetadataDetails details ->
+            if (details.id.version =~ /(?i).+(-|\.)(CANDIDATE|RC|BETA|ALPHA|PR|M\d+).*/) {
+                details.status = 'milestone'
+            }
+        }
+    }
+
+    dependencyLocking {
+        lockAllConfigurations()
+    }
+
+    task resolveAndLockAll {
+        doFirst {
+            assert gradle.startParameter.writeDependencyLocks
+        }
+        doLast {
+            configurations.findAll {
+                // Add any custom filtering on the configurations to be resolved
+                it.canBeResolved
+            }.each { it.resolve() }
+        }
+    }
+}
+
+subprojects {
+    dependencies {
+        implementation group: 'org.slf4j', name: 'slf4j-api', version: 'latest.release'
+
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: 'latest.release'
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: 'latest.release'
+        testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: 'latest.release'
+        testImplementation group: 'org.assertj', name: 'assertj-core', version: 'latest.release'
+        testRuntimeOnly group: 'ch.qos.logback', name: 'logback-classic', version: 'latest.release'
+        testRuntimeOnly group: 'org.slf4j', name: 'jcl-over-slf4j', version: 'latest.release'
+    }
+
+    test {
+        useJUnitPlatform()
+
+        maxHeapSize = "256m"
+        systemProperties['io.netty.leakDetectionLevel'] = 'advanced'
+    }
+}
+
+ext {
+    title = 'mongo-java-server'
+    isReleaseVersion = !version.endsWith('SNAPSHOT')
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': title, 'Implementation-Version': archiveVersion
+    }
+}
+
+allprojects {
+    task sourceJar(type: Jar) {
+        archiveClassifier = "sources"
+        from sourceSets.main.allJava
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        archiveClassifier = "javadoc"
+        from javadoc.destinationDir
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                groupId = 'de.bwaldvogel'
+                artifactId = project.name
+                version = project.version
+                pom {
+                    name = title
+                    description = 'Fake implementation of MongoDB in Java that speaks the wire protocol'
+                    url = 'https://github.com/bwaldvogel/mongo-java-server'
+                    inceptionYear = '2012'
+
+                    licenses {
+                        license {
+                            name = 'The BSD License'
+                            url = 'http://www.opensource.org/licenses/bsd-license.php'
+                            distribution = 'repo'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'bwaldvogel'
+                            name = 'Benedikt Waldvogel'
+                            email = 'mail@bwaldvogel.de'
+                        }
+                    }
+                    scm {
+                        url = 'git@github.com:bwaldvogel/mongo-java-server.git'
+                        connection = 'scm:git:git@github.com:bwaldvogel/mongo-java-server.git'
+                        developerConnection = 'scm:git:git@github.com:bwaldvogel/mongo-java-server.git'
+                    }
+                }
+
+                from components.java
+
+                artifact sourceJar
+                artifact javadocJar
+
+                versionMapping {
+                    usage('java-api') {
+                        fromResolutionOf('runtimeClasspath')
+                    }
+                    usage('java-runtime') {
+                        fromResolutionResult()
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                url isReleaseVersion ? 'https://oss.sonatype.org/service/local/staging/deploy/maven2' : 'https://oss.sonatype.org/content/repositories/snapshots/'
+                credentials {
+                    username = project.hasProperty('nexusUsername') ? project.property('nexusUsername') : System.getenv('NEXUS_USERNAME')
+                    password = project.hasProperty('nexusPassword') ? project.property('nexusPassword') : System.getenv('NEXUS_PASSWORD')
+                }
+            }
+        }
+    }
+
+    signing {
+        useGpgCmd()
+        sign publishing.publications.mavenJava
+    }
+
+    tasks.withType(Sign) {
+        onlyIf { isReleaseVersion }
+    }
+
+}
+
+wrapper {
+    gradleVersion = "7.0"
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+task jacocoMerge(type: JacocoMerge) {
+    subprojects.each { subproject ->
+        executionData subproject.tasks.withType(Test)
+    }
+    doFirst {
+        executionData = files(executionData.findAll { it.exists() })
+    }
+}
+
+task jacocoRootReport(type: JacocoReport, group: 'Coverage reports') {
+    description = 'Generates an aggregate report from all subprojects'
+    dependsOn subprojects.test, jacocoMerge
+
+    additionalSourceDirs.from = files(subprojects.sourceSets.main.allSource.srcDirs)
+    sourceDirectories.from = files(subprojects.sourceSets.main.allSource.srcDirs)
+    classDirectories.from = files(subprojects.sourceSets.main.output)
+    executionData jacocoMerge.destinationFile
+
+    reports {
+        html.enabled = true // human readable
+        xml.enabled = true // required by coveralls
+    }
+}
+
+javadoc {
+    options.addBooleanOption('html5', true)
+}
+
+dependencies {
+    api project(':mongo-java-server-core')
+    api project(':mongo-java-server-memory-backend')
+}

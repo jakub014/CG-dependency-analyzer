@@ -1,0 +1,33 @@
+
+plugins {
+  id "io.codearte.nexus-staging" version "0.22.0"
+}
+
+allprojects {
+    apply plugin: 'java'
+//    group = 'org.iharu.bootstrap'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+    tasks.withType(JavaCompile) {  
+        options.encoding = "UTF-8"  
+    } 
+}
+
+subprojects {
+    ext {
+          junitVersion = "4.12"
+    } 
+    dependencies {
+        testCompile("junit:junit:${junitVersion}")
+    }
+}
+
+nexusStaging {
+    packageGroup = "org.iharu" //optional if packageGroup == project.getGroup()
+//    stagingProfileId = "" //when not defined will be got from server using "packageGroup"
+}

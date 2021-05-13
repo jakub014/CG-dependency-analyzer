@@ -1,0 +1,181 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.1'
+}
+
+group = GROUP
+version = VERSION
+description = DESCRIPTION
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+compileJava {
+    options.release = 8
+    options.encoding = 'UTF-8'
+}
+
+javadoc {
+    title "$POM_LIBRARY_NAME $version API Specification"
+    options.overview 'src/main/javadoc/overview.html'
+    options.addBooleanOption 'Xdoclint', true
+    options.addBooleanOption 'html5', true
+}
+
+jar {
+    into("META-INF/maven/$project.group/$project.name") {
+        from { generatePomFileForMavenPublication }
+        rename ".*", "pom.xml"
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+
+            pom {
+                name = POM_LIBRARY_NAME
+                description = POM_DESCRIPTION
+                url = POM_URL
+
+                licenses {
+                    license {
+                        name = POM_LICENSE_NAME
+                        url = POM_LICENSE_URL
+                    }
+                }
+
+                developers {
+                    developer {
+                        name = POM_DEVELOPER_NAME
+                        email = POM_DEVELOPER_EMAIL
+                        organization = POM_DEVELOPER_ORGANIZATION
+                        organizationUrl = POM_DEVELOPER_ORGANIZATION_URL
+                    }
+                }
+
+                scm {
+                    connection = "scm:git:${POM_URL}.git"
+                    developerConnection = "scm:git:${POM_URL}.git"
+                    url = POM_URL
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username ossrhUsername
+                password ossrhPassword
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.maven
+}plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.1'
+}
+
+group = GROUP
+version = VERSION
+description = DESCRIPTION
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+compileJava {
+    options.release = 8
+    options.encoding = 'UTF-8'
+}
+
+javadoc {
+    title "$POM_LIBRARY_NAME $version API Specification"
+    options.overview 'src/main/javadoc/overview.html'
+    options.addBooleanOption 'Xdoclint', true
+    options.addBooleanOption 'html5', true
+}
+
+jar {
+    into("META-INF/maven/$project.group/$project.name") {
+        from { generatePomFileForMavenPublication }
+        rename ".*", "pom.xml"
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+
+            pom {
+                name = POM_LIBRARY_NAME
+                description = POM_DESCRIPTION
+                url = POM_URL
+
+                licenses {
+                    license {
+                        name = POM_LICENSE_NAME
+                        url = POM_LICENSE_URL
+                    }
+                }
+
+                developers {
+                    developer {
+                        name = POM_DEVELOPER_NAME
+                        email = POM_DEVELOPER_EMAIL
+                        organization = POM_DEVELOPER_ORGANIZATION
+                        organizationUrl = POM_DEVELOPER_ORGANIZATION_URL
+                    }
+                }
+
+                scm {
+                    connection = "scm:git:${POM_URL}.git"
+                    developerConnection = "scm:git:${POM_URL}.git"
+                    url = POM_URL
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username ossrhUsername
+                password ossrhPassword
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.maven
+}

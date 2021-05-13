@@ -1,0 +1,114 @@
+buildscript {
+    repositories {
+    	mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven { url 'https://plugins.gradle.org/m2/' }
+		maven { url "https://oss.sonatype.org/service/local/repositories/releases/content/" }
+    }
+    dependencies {
+		classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.9.0'
+	}
+}
+
+if(project.hasProperty('ossrhUser') && project.hasProperty("release")) {
+	apply plugin: "io.codearte.nexus-staging"
+
+	nexusStaging {
+		packageGroup = 'org.mini2Dx'
+		username = ossrhUser
+		password = ossrhPassword
+	}
+}
+
+ext {
+	junitVersion="4.8.1"
+	jmockVersion="2.5.1"
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+	jcenter()
+	maven { url "https://oss.sonatype.org/service/local/repositories/releases/content/" }
+	maven { url 'https://maven.google.com' }
+}
+
+apply plugin: "signing"
+apply plugin: "maven"
+apply plugin: "java"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group = 'org.mini2Dx'
+version = "1.1.0"
+
+task sourcesJar(type: Jar) {
+	archiveClassifier = 'sources'
+	from sourceSets.main.allSource
+}
+		
+task javadocJar(type: Jar) {
+	archiveClassifier = 'javadoc'
+	from javadoc
+}
+		
+artifacts {
+	archives javadocJar, sourcesJar
+}
+
+dependencies {
+
+	testCompile "junit:junit:$junitVersion"
+	testCompile "org.jmock:jmock-junit4:$jmockVersion"
+	testCompile "org.jmock:jmock-legacy:$jmockVersion"
+}
+
+// Maven Central publication
+if(project.hasProperty('ossrhUser')) {
+	signing {
+		sign configurations.archives
+	}
+	
+	uploadArchives {
+		repositories {
+			mavenDeployer {
+				// POM signature
+				beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+				// Target repository
+				repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+					authentication(userName: ossrhUser, password: ossrhPassword)
+				}
+				pom.project {
+					name project.name
+					description project.description
+					packaging 'jar'
+					url 'https://github.com/mini2Dx/mini2Dx-lock-provider'
+
+					scm {
+						connection 'scm:git:https://github.com/mini2Dx/mini2Dx-lock-provider.git'
+						developerConnection 'scm:git:git@github.com:mini2Dx/mini2Dx-lock-provider.git'
+						url 'https://github.com/mini2Dx/mini2Dx-lock-provider.git'
+					}
+
+					licenses {
+						license {
+							name 'Apache License 2.0'
+							url 'https://opensource.org/licenses/Apache-2.0'
+							distribution 'repo'
+						}
+					}
+
+					developers {
+						developer {
+							id = 'tomcashman'
+							name = 'Thomas Cashman'
+							email = 'thomascashman404@gmail.com'
+						}
+					}
+				}
+			}
+		}
+	}
+}
