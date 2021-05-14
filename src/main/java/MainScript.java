@@ -61,9 +61,6 @@ public class MainScript {
                     String groupID = (String) obj.get("user");
                     ProjectType projectType = getProjectType(groupID, packageName);
 
-                    if (projectType == ProjectType.MAVEN) {
-                        continue;
-                    }
 
                     if (projectType == null) {
                         try {
