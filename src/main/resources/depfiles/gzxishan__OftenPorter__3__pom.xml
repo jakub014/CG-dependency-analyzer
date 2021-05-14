@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.xishankeji</groupId>
+        <artifactId>OftenPorter</artifactId>
+        <version>1.2.235</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>Porter-Bridge-Servlet</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Porter-Bridge-Servlet</name>
+    <description>对servlet方式的支持</description>
+    <url>https://github.com/gzxishan/OftenPorter</url>
+
+    <properties>
+        <commons-fileupload.version>1.4</commons-fileupload.version>
+        <project.jstl.version>1.2</project.jstl.version>
+        <project.taglibs.version>1.1.2</project.taglibs.version>
+        <!--        <project.jsoup.version>1.11.3</project.jsoup.version>-->
+        <project.jsoup.version>1.13.1</project.jsoup.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${project.jsoup.version}</version>
+        </dependency>
+
+        <!-- @Jsp默认加入的标签库 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${project.jstl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>${project.taglibs.version}</version>
+        </dependency>
+        <!--end-->
+
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>Porter-Core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons-fileupload.version}</version>
+            <optional>true</optional>
+        </dependency>
+
+    </dependencies>
+    <build>
+
+    </build>
+</project>

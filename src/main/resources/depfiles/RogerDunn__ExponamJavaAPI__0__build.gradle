@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'com.exponam'
+version '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+repositories {
+    mavenCentral()
+}
+
+apply from: "dependencies.gradle"
+
+dependencies {
+    testCompile libs.junit
+}

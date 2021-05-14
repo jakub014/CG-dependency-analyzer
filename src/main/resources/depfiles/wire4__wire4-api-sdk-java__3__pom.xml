@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>mx.wire4.sdk</groupId>
+        <artifactId>wire4-sdk</artifactId>
+        <version>1.1.0</version>
+        <relativePath>../</relativePath>
+    </parent>
+
+
+    <artifactId>wire4-api-sdk</artifactId>
+    <version>1.1.0</version>
+    <packaging>jar</packaging>
+
+    <name>Wire4 api sdk</name>
+    <description>Integrated Wire4 components</description>
+    <url>https://github.com/wire4/wire4-api-sdk-java</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>speiok.team</name>
+            <email>speiok.team@tcpip.tech</email>
+            <organization>wire4</organization>
+            <organizationUrl>https://wire4.mx/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/wire4/wire4-api-sdk-java.git</connection>
+        <developerConnection>scm:git:ssh://github.com:wire4/wire4-api-sdk-java.git</developerConnection>
+        <url>https://github.com/wire4/wire4-api-sdk-java/tree/master</url>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <skipTests>true</skipTests>
+        <nexus.tcpip.repository.url>http://nexus.tcpip.tech/nexus/content/repositories/releases/</nexus.tcpip.repository.url>
+        <nexus.tcpip.snapshot.url>http://nexus.tcpip.tech/nexus/content/repositories/snapshots/</nexus.tcpip.snapshot.url>
+        <nexus.openpay.repository.url>http://nexus.openpay.mx:8081/nexus/content/repositories/releases/</nexus.openpay.repository.url>
+        <nexus.openpay.snapshot.url>http://nexus.openpay.mx:8081/nexus/content/repositories/snapshots/</nexus.openpay.snapshot.url>
+    </properties>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>mx.wire4.sdk</groupId>
+            <artifactId>sdk-client</artifactId>
+            <version>1.1.0</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>mx.wire4.sdk</groupId>
+            <artifactId>authenticator</artifactId>
+            <version>1.1.0</version>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <minimizeJar>false</minimizeJar>
+                    <createDependencyReducedPom>true</createDependencyReducedPom>
+
+                    <filters>
+                        <filter>
+                            <artifact>mx.wire4.sdk:*</artifact>
+                            <includes>
+                                <include>**</include>
+                            </includes>
+                        </filter>
+                    </filters>
+
+                    <relocations>
+                        <relocation>
+                            <pattern>org.dmfs</pattern>
+                            <shadedPattern>shaded.dmfs</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>com.squareup.okhttp</pattern>
+                            <shadedPattern>shaded.okhttp</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>com.google.gson</pattern>
+                            <shadedPattern>shaded.go.gson</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>io.gsonfire</pattern>
+                            <shadedPattern>shaded.gsonfire</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>net.iharder</pattern>
+                            <shadedPattern>shaded.iharder</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>okio</pattern>
+                            <shadedPattern>shaded.okio</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>org.json</pattern>
+                            <shadedPattern>shaded.json</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>org.apache.commons</pattern>
+                            <shadedPattern>shaded.commons.apache</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>commons-codec</pattern>
+                            <shadedPattern>shaded.commons-codec</shadedPattern>
+                        </relocation>
+
+                        <relocation>
+                            <pattern>io.swagger</pattern>
+                            <shadedPattern>shaded.swagger</shadedPattern>
+                        </relocation>
+                    </relocations>
+
+                    <transformers>
+                        <!-- add Main-Class to manifest file -->
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>mx.wire4.auth.OAuthWire4</mainClass>
+                        </transformer>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.PluginXmlResourceTransformer"/>s
+                    </transformers>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

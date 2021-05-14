@@ -1,0 +1,10 @@
+dependencies {
+    testImplementation project(':io-vector')
+    testImplementation project(':io-vector-eps')
+    testImplementation project(':io-vector-pdf')
+    testImplementation project(':io-vector-svg')
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.7.0"
+    testImplementation "junit:junit:4.12"
+    testImplementation "com.google.zxing:javase:${project.property('zxing.version')}"
+    testImplementation "org.reflections:reflections:${project.property('reflections.version')}"
+}

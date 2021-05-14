@@ -1,0 +1,154 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation project(":jlineup-core")
+    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
+    implementation("org.apache.tomcat.embed:tomcat-embed-core:9.0.45")
+    implementation("de.otto.edison:edison-core:2.4.6")
+
+    //Update hibernate validator that comes with edison-core
+    implementation("org.hibernate.validator:hibernate-validator:6.2.0.Final")
+    //Update commons-codec
+    implementation("commons-codec:commons-codec:1.15")
+    //Update embedded tomcat
+    implementation("org.apache.tomcat.embed:tomcat-embed-core:9.0.45")
+
+    testCompile project(path: ":jlineup-core", configuration: 'testCompile')
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    testCompile("io.rest-assured:rest-assured:4.3.3")
+    testCompile("org.awaitility:awaitility:4.0.3")
+
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}"
+}
+
+configurations {
+    [apiElements, runtimeElements].each {
+        it.outgoing.artifacts.removeIf {
+            it.buildDependencies.getDependencies(null).contains(jar)
+        }
+        it.outgoing.artifact(bootJar)
+    }
+}
+
+tasks.distZip.enabled = false
+tasks.distTar.enabled = false
+
+tasks.bootDistZip {
+    archiveBaseName = project.archivesBaseName
+}
+
+tasks.bootDistTar {
+    archiveBaseName = project.archivesBaseName
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+        showStandardStreams = true
+    }
+}
+
+jar {
+    enabled = false
+}
+
+application {
+    mainClass.set("de.otto.jlineup.web.JLineupWebApplication")
+}
+
+bootJar {
+    enabled = true
+    mainClass = "de.otto.jlineup.web.JLineupWebApplication"
+    launchScript()
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from 'build/docs/javadoc'
+    archiveClassifier = 'javadoc'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    archiveClassifier = 'sources'
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+project.afterEvaluate {
+    tasks.withType(JavaCompile) {
+        def version = compat(sourceCompatibility)
+        project.logger.info("Configuring $name to use --release $version")
+        options.compilerArgs.addAll(['--release', version])
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'jlineup-web'
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'JLineup Web'
+                description = 'The web variant of JLineup'
+                url = 'https://github.com/otto-de/jlineup'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'MediaMarco'
+                        name = 'Marco Geweke'
+                        email = 'marco.geweke@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git@github.com:otto-de/jlineup.git'
+                    developerConnection = 'scm:git@github.com:otto-de/jlineup.git'
+                    url = 'https://github.com/otto-de/jlineup'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+            if (project.debugUpload) {
+                releasesRepoUrl = "$buildDir/repos/releases"
+                snapshotsRepoUrl = "$buildDir/repos/snapshots"
+            } else {
+                credentials {
+                    username = sonatypeUsername
+                    password = sonatypePassword
+                }
+            }
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}

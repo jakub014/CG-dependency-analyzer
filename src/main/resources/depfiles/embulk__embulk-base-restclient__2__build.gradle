@@ -1,0 +1,52 @@
+apply plugin: "java"
+apply plugin: "maven-publish"
+apply plugin: "org.embulk.embulk-plugins"
+
+group = "${rootProject.group}"
+version = "${rootProject.version}"
+description = "Loads records from Example."
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compileOnly "org.embulk:embulk-api:0.10.18"
+    compileOnly "org.embulk:embulk-spi:0.10.18"
+
+    compile(project(":")) {
+        exclude group: "org.msgpack", module: "msgpack-core"
+    }
+    compile("org.embulk:embulk-util-retryhelper-jetty93:0.8.0") {
+        exclude group: "org.slf4j", module: "slf4j-api"
+    }
+
+    testCompile "org.embulk:embulk-api:0.10.18"
+    testCompile "org.embulk:embulk-core:0.10.18"
+    testCompile "org.embulk:embulk-core:0.10.18:tests"
+    testCompile "org.embulk:embulk-deps:0.10.18"
+}
+
+embulkPlugin {
+    mainClass = "org.embulk.input.example_jetty93.ExampleJetty93InputPlugin"
+    category = "input"
+    type = "example_jetty93"
+    ignoreConflicts = [
+        [ group: "com.fasterxml.jackson.core", module: "jackson-annotations" ],
+        [ group: "com.fasterxml.jackson.core", module: "jackson-core" ],
+        [ group: "com.fasterxml.jackson.core", module: "jackson-databind" ],
+        [ group: "org.msgpack", module: "msgpack-core" ],
+    ]
+}
+
+gem {
+    authors = [ "Dai MIKURUBE" ]
+    email = [ "dmikurube@treasure-data.com" ]
+    summary = "Example input plugin for Embulk with jetty-client 9.3"
+    homepage = "https://github.com/embulk/embulk-base-restclient/tree/master/embulk-input-example_jetty93"
+    licenses = [ "Apache-2.0" ]
+}

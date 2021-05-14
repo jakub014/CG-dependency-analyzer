@@ -1,0 +1,89 @@
+import com.getstream.sdk.chat.Dependencies
+
+apply plugin: "com.github.ben-manes.versions"
+apply plugin: "org.jlleitschuh.gradle.ktlint"
+apply plugin: 'io.github.gradle-nexus.publish-plugin'
+apply plugin: 'binary-compatibility-validator'
+apply plugin: 'org.jetbrains.dokka'
+apply from: "${rootDir}/scripts/sample-app-versioner.gradle"
+
+buildscript {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath Dependencies.androidGradlePlugin
+        classpath Dependencies.kotlinGradlePlugin
+        classpath Dependencies.googleServicesPlugin
+        classpath Dependencies.androidMavenGradlePlugin
+        classpath Dependencies.androidJunit5GradlePlugin
+        classpath Dependencies.gitversionerPlugin
+        classpath Dependencies.firebasePlugin
+        classpath Dependencies.ktlintPlugin
+        classpath Dependencies.gradleVersionsPlugin
+        classpath Dependencies.navigationSafeArgsGradlePlugin
+        classpath Dependencies.gradleNexusPublishPlugin
+        classpath Dependencies.dokka
+        classpath Dependencies.kotlinBinaryValidator
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        mavenLocal()
+        jcenter() {
+            content {
+                // Remove when https://github.com/ongakuer/PhotoDraweeView/issues/81 is closed
+                includeModule("me.relex", "photodraweeview")
+            }
+        }
+        maven {
+            url "https://jitpack.io"
+            content {
+                includeModule("com.github.chrisbanes", "PhotoView")
+                includeModule("com.github.duanhong169", "drawabletoolbox")
+
+                // Remove when https://github.com/mrmike/Ok2Curl/issues/60 is closed
+                includeModule("com.github.mrmike", "ok2curl")
+
+                // Remove when https://github.com/brianwernick/ExoMedia/issues/723 is closed
+                includeModule("com.github.brianwernick", "ExoMedia")
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+dependencyUpdates {
+    rejectVersionIf {
+        Dependencies.isStable(it.currentVersion) && Dependencies.isNonStable(it.candidate.version)
+    }
+}
+
+apiValidation {
+    ignoredPackages += [
+            'com/getstream/sdk/chat/databinding',
+            'io/getstream/chat/android/ui/databinding',
+    ]
+
+    ignoredProjects += [
+            'stream-chat-android-docs',
+            'stream-chat-android-sample',
+            'stream-chat-android-ui-components-sample',
+            'stream-chat-android-test',
+    ]
+
+    nonPublicMarkers += [
+            'io.getstream.chat.android.core.internal.InternalStreamChatApi',
+    ]
+}
+
+apply from: "${rootDir}/scripts/publish-root.gradle"

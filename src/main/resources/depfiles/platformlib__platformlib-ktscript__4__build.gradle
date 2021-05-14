@@ -1,0 +1,44 @@
+plugins {
+    id 'application'
+    id 'maven-publish'
+}
+
+description ="Standalone application"
+
+application {
+    mainClass = 'com.platformlib.ktscript.application.KtScriptApplication'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs project(':platformlib-ktscript-app:platformlib-ktscript-boot-app').sourceSets.main.java.srcDirs
+        }
+   }
+}
+
+
+distributions {
+    main {
+        contents {
+            from(project(':platformlib-ktscript-app:platformlib-ktscript-boot-app').sourceSets.main.output.resourcesDir) {
+                into "lib"
+            }
+        }
+    }
+}
+
+publishing {
+    publications {
+        distributionPublication(MavenPublication) {
+            artifact(distZip) {
+                artifactId = 'platformlib-ktscript-app-distr'
+                extension = 'zip'
+            }
+            artifact(distTar) {
+                artifactId = 'platformlib-ktscript-app-dist'
+                extension = 'tar'
+            }
+        }
+    }
+}

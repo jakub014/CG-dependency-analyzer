@@ -1,0 +1,30 @@
+description = "Kettle addons"
+
+dependencies {
+	compile project(':ar4k-core')
+	compile('log4j:log4j:1.2.17')
+	compile (group: 'pentaho-kettle', name: 'kettle-core', version: '9.2.0.0-186'){
+                exclude group: 'javax.servlet', module: 'servlet-api'
+            }
+	compile (group: 'pentaho-kettle', name: 'kettle-engine', version: '9.1.0.0-295'){
+                exclude group: 'javax.servlet', module: 'servlet-api'
+            }
+	compile group: 'pentaho-kettle', name: 'pdi-salesforce-plugin', version: '7.1.0.1-34'
+	compile group: 'pentaho-kettle', name: 'kettle-sap-plugin', version: '7.1.0.32-246'
+	compile group: 'pentaho-kettle', name: 'kettle-db', version: '4.4.3.5-C183'
+	compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+	
+  // UNO
+    compile "org.openoffice:juh:4.1.2"
+    compile "org.openoffice:ridl:4.1.2"
+    compile "org.openoffice:unoil:4.1.2"
+    compile "org.openoffice:jurt:4.1.2"
+    compile "org.openoffice:officebean:4.1.2"
+
+
+
+}
+
+bootJar {
+	enabled = false
+}

@@ -1,0 +1,157 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.eclipse.dirigible</groupId>
+		<artifactId>dirigible-ide-parent</artifactId>
+		<version>5.11.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<name>IDE - UI - Parent</name>
+	<artifactId>dirigible-ide-ui-parent</artifactId>
+	<description>WebIDE Plugins</description>
+    <packaging>pom</packaging>
+
+	<scm>
+		<url>${content.scm.url}</url>
+		<connection>${content.scm.connection}</connection>
+		<developerConnection>${content.scm.developerConnection}</developerConnection>
+	</scm>
+	
+	<properties>
+		<content.repository.name>dirigiblelabs</content.repository.name>
+		<content.project.name>dirigiblelabs</content.project.name>
+
+		<content.scm.url>https://github.com/dirigiblelabs/${content.repository.name}</content.scm.url>
+		<content.scm.connection>scm:git:git://github.com/dirigiblelabs/${content.repository.name}.git</content.scm.connection>
+		<content.scm.developerConnection>scm:git:https://github.com/dirigiblelabs/${content.repository.name}</content.scm.developerConnection>
+
+		<content.scm.server>github</content.scm.server>
+		<content.scm.checkoutDirectory>target</content.scm.checkoutDirectory>
+		<content.source.directory>target/${content.project.name}</content.source.directory>
+		<content.output.directory>${basedir}/src/main/resources/${content.project.name}</content.output.directory>
+
+		<license.header.location>../../license-header.txt</license.header.location>
+	</properties>
+
+	<modules>
+		<!-- Grouping Modules -->
+		<module>ide-group-all</module>
+		<module>ide-group-javascript</module>
+		<module>ide-group-database</module>
+		<module>ide-group-cms</module>
+		
+		<!-- Plugin Modules -->
+		<module>ide-branding</module>
+		<module>ide-console</module>
+		<module>ide-core</module>
+		<module>ide-workbench</module>
+		<module>ide-database</module>
+		<module>ide-deploy-manager</module>
+		<module>ide-documents</module>
+		<module>ide-documents-ext-content-type-ms</module>
+		<module>ide-git</module>
+		<module>ide-preview</module>
+		<module>ide-repository</module>
+		<module>ide-swagger</module>
+		<module>ide-terminal</module>
+		<module>ide-workspace</module>
+		<module>ide-bpm</module>
+		<module>ide-schema</module>
+		<module>ide-entity</module>
+		<module>ide-monaco</module>
+		<module>ide-monaco-extensions</module>
+		<module>ide-debugger</module>
+		<module>ide-logs</module>
+		<module>ide-jobs</module>
+		<module>ide-extensions</module>
+		<module>ide-operations</module>
+		<module>ide-security</module>
+		<module>ide-listeners</module>
+		<module>ide-data-structures</module>
+		<module>ide-registry</module>
+		<module>ide-plugins</module>
+		<module>ide-discussions</module>
+		<module>ide-websockets</module>
+		<module>ide-form-builder</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>content</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<finalName>${project.artifactId}</finalName>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-clean-plugin</artifactId>
+						<version>${maven.clean.plugin.version}</version>
+						<configuration>
+							<filesets>
+								<fileset>
+									<directory>src/main/resources</directory>
+								</fileset>
+							</filesets>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-scm-plugin</artifactId>
+						<version>${maven.scm.plugin.version}</version>
+						<configuration>
+							<goals>checkout</goals>
+							<checkoutDirectory>${content.scm.checkoutDirectory}</checkoutDirectory>
+							<server>${content.scm.server}</server>
+						</configuration>
+						<executions>
+							<execution>
+								<id>generated-sources</id>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>checkout</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<version>${maven.resource.plugin.version}</version>
+						<executions>
+							<execution>
+								<id>copy-content-resources</id>
+								<phase>compile</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${content.output.directory}</outputDirectory>
+									<resources>
+										<resource>
+											<directory>${content.source.directory}</directory>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<debug>true</debug>
+					<debuglevel>lines,vars,source</debuglevel>
+				</configuration>
+			</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

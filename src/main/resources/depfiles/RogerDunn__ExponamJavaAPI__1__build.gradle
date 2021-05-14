@@ -1,0 +1,98 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+}
+
+repositories {
+    mavenCentral() 
+}
+
+group = 'com.exponam'
+version = '2.0.6'
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+dependencies {
+    compile files('libs/core-reader-1.0-SNAPSHOT.jar')
+    compile libs.guava
+    testCompile libs.junit
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'exponam-api'
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'Exponam public API'
+                description = 'Public Java API for accessing Exponam .BIG files'
+                url = 'https://github.com/RogerDunn/ExponamJavaAPI'
+                properties = [
+                        packaging: "jar"
+                ]
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'http://www.opensource.org/licenses/mit-license.php'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'ExponamPublisher'
+                        name = 'Exponam Engineering'
+                        email = '***info@exponam.com***'
+                        organization = 'Exponam, LLC'
+                        organizationUrl = 'https://www.exponam.com'
+                        timezone = 'America/New_York'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/RogerDunn/ExponamJavaAPI.git'
+                    developerConnection = 'scm:git:git://github.com/RogerDunn/ExponamJavaAPI.git'
+                    url = 'https://github.com/RogerDunn/ExponamJavaAPI'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            def releasesRepoUrl =  "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+            credentials {
+                username = ossrhUsername
+                password = ossrhPassword
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+jar {
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

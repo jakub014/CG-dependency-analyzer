@@ -1,0 +1,13 @@
+apply plugin: 'org.jetbrains.kotlin.jvm'
+
+archivesBaseName = 'sqldelight-sqlite-driver'
+
+dependencies {
+  api project(':drivers:jdbc-driver')
+
+  implementation deps.sqliteJdbc
+
+  testImplementation project(':drivers:driver-test')
+}
+
+apply from: "$rootDir/gradle/gradle-mvn-push.gradle"

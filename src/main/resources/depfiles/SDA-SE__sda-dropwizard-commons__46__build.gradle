@@ -1,0 +1,8 @@
+dependencies {
+  compileOnly 'io.swagger:swagger-annotations'
+  compileOnly 'io.swagger.core.v3:swagger-annotations'
+
+  testCompile 'junit:junit'
+  testCompile 'org.assertj:assertj-core'
+  testRuntimeOnly 'org.junit.vintage:junit-vintage-engine'
+}

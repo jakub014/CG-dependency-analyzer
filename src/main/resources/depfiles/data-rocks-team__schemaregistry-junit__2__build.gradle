@@ -1,0 +1,15 @@
+// Publishing
+apply from: "$rootProject.projectDir/maven-publish.gradle"
+
+dependencies {
+    api project(':schemaregistry-junit-core')
+
+    implementation "junit:junit:$junit4Version"
+
+    testImplementation project(':schemaregistry-junit-test:schemaregistry-junit-test-utils')
+
+    testImplementation "io.confluent:kafka-schema-registry:$confluentVersion"
+    testImplementation "io.confluent:kafka-schema-registry-client:$confluentVersion"
+
+    testImplementation "com.salesforce.kafka.test:kafka-junit4:$kafkaJunitVersion"
+}

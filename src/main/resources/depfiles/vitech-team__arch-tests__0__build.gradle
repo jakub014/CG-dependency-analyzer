@@ -1,0 +1,133 @@
+plugins {
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+
+    group 'com.vitechteam.archtests'
+    version '0.1'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '11'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation 'com.tngtech.archunit:archunit-junit5:0.14.1'
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier "sources"
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier "javadoc"
+        from javadoc.destinationDir
+    }
+
+    artifacts {
+        archives jar
+        archives sourcesJar
+        archives javadocJar
+    }
+
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/vitech-team/arch-tests")
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("GPR_USERNAME")
+                    password = project.findProperty("gpr.key") ?: System.getenv("GPR_TOKEN")
+                }
+            }
+            maven {
+                name = "MavenCentral"
+                url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+                credentials {
+                    username = project.findProperty("sonartype.username") ?: System.getenv("SONARTYPE_USERNAME")
+                    password = project.findProperty("sonartype.password") ?: System.getenv("SONARTYPE_PASSWORD")
+                }
+            }
+        }
+        publications {
+            gpr(MavenPublication) {
+                from components.java
+                artifact sourcesJar
+                artifact javadocJar
+                //TODO: investigate how to avoid duplications
+                pom {
+                    name = project.name
+                    description = project.description
+                    url = 'https://github.com/vitech-team/arch-tests'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            name = 'Valentyn Namisnyk'
+                            organization = 'VITech'
+                            organizationUrl = 'https://vitechteam.com/'
+                        }
+                        developer {
+                            name = 'Stepan Prokipchyn'
+                            organization = 'VITech'
+                            organizationUrl = 'https://vitechteam.com/'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com/vitech-team/arch-tests.git'
+                        developerConnection = 'scm:git:ssh://github.com:vitech-team/arch-tests.git'
+                        url = 'http://github.com/vitech-team/arch-tests/tree/main'
+                    }
+                }
+            }
+            mavenJava(MavenPublication) {
+                from components.java
+                artifact sourcesJar
+                artifact javadocJar
+                pom {
+                    name = project.name
+                    description = project.description
+                    url = 'https://github.com/vitech-team/arch-tests'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            name = 'Valentyn Namisnyk'
+                            organization = 'VITech'
+                            organizationUrl = 'https://vitechteam.com/'
+                        }
+                        developer {
+                            name = 'Stepan Prokipchyn'
+                            organization = 'VITech'
+                            organizationUrl = 'https://vitechteam.com/'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com/vitech-team/arch-tests.git'
+                        developerConnection = 'scm:git:ssh://github.com:vitech-team/arch-tests.git'
+                        url = 'http://github.com/vitech-team/arch-tests/tree/main'
+                    }
+                }
+            }
+        }
+        signing {
+            sign publishing.publications.gpr
+            sign publishing.publications.mavenJava
+        }
+    }
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.optum.sourcehawk</groupId>
+        <artifactId>sourcehawk-enforcer</artifactId>
+        <version>0.6.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>sourcehawk-enforcer-file</artifactId>
+    <name>Sourcehawk Enforcer File</name>
+    <description>Sourcehawk file enforcers</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>core</module>
+        <module>aot</module>
+        <module>common</module>
+        <module>docker</module>
+        <module>maven</module>
+        <module>registry</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-restricted-dependencies</id>
+                        <configuration>
+                            <rules>
+                                <bannedDependencies>
+                                    <includes combine.children="append">
+                                        <include>com.fasterxml.jackson.core:*:*:*:*</include>
+                                        <include>com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:*:*:*</include>
+                                        <include>org.apache.maven:maven-model:*:*:*</include>
+                                        <include>org.codehaus.plexus:plexus-utils:*:*:*</include>
+                                        <include>org.slf4j:slf4j-api:*:*:*</include>
+                                        <include>org.yaml:snakeyaml:*:*:*</include>
+                                    </includes>
+                                </bannedDependencies>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

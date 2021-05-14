@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright © 2020 Michael Lasmanis (michael@lasmanis.com)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>composites-reactor</artifactId>
+
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>com.lasmanis.maven.composites</groupId>
+        <artifactId>composites-parent</artifactId>
+        <version>${revision}.${changelist}</version>
+        <relativePath>composites-parent/pom.xml</relativePath>
+    </parent>
+
+    <name>Maven Composites</name>
+    <description>Set of Maven Composites to manage dependencies for Java builds</description>
+
+    <url>${baseurl}</url>
+
+    <scm>
+        <connection>${scmBase.connection}</connection>
+        <url>${scmBase.url}</url>
+        <developerConnection>${scmBase.developerConnection}</developerConnection>
+        <tag>${scmBase.tag}</tag>
+    </scm>
+
+    <distributionManagement>
+        <site>
+            <id>scm-publish</id>
+            <url>${scmBase.connection}</url>
+        </site>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.repaint.maven</groupId>
+                <artifactId>tiles-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <modules>
+        <module>composites-parent</module>
+        <module>database</module>
+        <module>dropwizard-base</module>
+        <module>immutables</module>
+        <module>unit-test</module>
+    </modules>
+</project>

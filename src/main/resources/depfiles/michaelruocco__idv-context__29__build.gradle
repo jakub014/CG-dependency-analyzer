@@ -1,0 +1,24 @@
+configurations {
+    testFixturesApi.setCanBeResolved(true)
+    testRuntimeOnly.exclude module: "slf4j-simple"
+}
+
+dependencies {
+    api project(":context-entities")
+
+    implementation project(":method-entities")
+    implementation project(":otp-entities")
+    implementation project(":identity-entities")
+    implementation project(":identity-use-cases")
+    implementation project(":lockout-use-cases")
+    implementation project(":method-use-cases")
+    implementation "com.github.michaelruocco:duration-logger:${durationLoggerVersion}"
+    implementation "com.github.michaelruocco:random-value-suppliers:${randomValueSuppliersVersion}"
+
+    testRuntimeOnly "ch.qos.logback:logback-classic:1.2.3"
+    testImplementation testFixtures(project(":context-entities"))
+    testImplementation testFixtures(project(":policy-entities"))
+    testImplementation testFixtures(project(":method-entities"))
+    testImplementation testFixtures(project(":otp-entities"))
+    testImplementation "uk.org.webcompere:system-stubs-jupiter:${systemStubsVersion}"
+}

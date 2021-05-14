@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.github.fangjinuo.sqlhelper.examples</groupId>
+        <artifactId>sqlhelper-examples</artifactId>
+        <version>3.5.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.fangjinuo.sqlhelper.examples.client</groupId>
+    <artifactId>sqlhelper-examples-client</artifactId>
+    <name>${groupId}:${artifactId}:${version}</name>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>sqlhelper-examples-client-feign</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.fangjinuo.sqlhelper.examples</groupId>
+            <artifactId>sqlhelper-examples-model</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

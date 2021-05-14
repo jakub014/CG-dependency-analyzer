@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.springframework.vault</groupId>
+	<artifactId>spring-vault-dependencies</artifactId>
+	<version>2.4.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>spring-vault-dependencies</name>
+	<description>Spring Vault Dependencies</description>
+
+	<url>https://projects.spring.io/spring-vault/</url>
+
+	<inceptionYear>2016</inceptionYear>
+
+	<organization>
+		<name>Pivotal Software, Inc.</name>
+		<url>https://www.spring.io</url>
+	</organization>
+
+	<scm>
+		<url>https://github.com/spring-projects/spring-vault</url>
+		<connection>scm:git:git://github.com/spring-projects/spring-vault.git</connection>
+		<developerConnection>
+			scm:git:ssh://git@github.com/spring-projects/spring-vault.git
+		</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/spring-projects/spring-vault/issues</url>
+	</issueManagement>
+
+	<ciManagement>
+		<system>Bamboo</system>
+		<url>https://build.spring.io/browse/SPRINGVAULT-VAULT</url>
+	</ciManagement>
+
+	<developers>
+		<developer>
+			<id>sgibb</id>
+			<name>Spencer Gibb</name>
+		</developer>
+		<developer>
+			<id>mpaluch</id>
+			<name>Mark Paluch</name>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+
+	<properties>
+		<httpclient.version>4.5.13</httpclient.version>
+		<httpcore.version>4.4.14</httpcore.version>
+		<jetty-reactive-httpclient.version>1.1.6</jetty-reactive-httpclient.version>
+		<netty.version>4.1.60.Final</netty.version>
+		<okhttp3.version>3.14.9</okhttp3.version>
+		<jackson-databind.version>2.12.2</jackson-databind.version>
+		<aws-java-sdk.version>1.11.975</aws-java-sdk.version>
+		<google-api-services-iam.version>v1-rev20210226-1.31.0</google-api-services-iam.version>
+		<google-cloud-iamcredentials.version>1.2.2</google-cloud-iamcredentials.version>
+		<google-auth-library-oauth2-http.version>0.22.2</google-auth-library-oauth2-http.version>
+		<bcpkix-jdk15on.version>1.68</bcpkix-jdk15on.version>
+	</properties>
+
+	<dependencyManagement>
+
+		<dependencies>
+
+			<!-- Spring Vault -->
+			<dependency>
+				<groupId>org.springframework.vault</groupId>
+				<artifactId>spring-vault-core</artifactId>
+				<version>2.4.0-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson-databind.version}</version>
+			</dependency>
+
+			<!-- HTTP Client Libraries -->
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
+				<optional>true</optional>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore</artifactId>
+				<version>${httpcore.version}</version>
+				<optional>true</optional>
+			</dependency>
+
+			<dependency>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-reactive-httpclient</artifactId>
+				<version>${jetty-reactive-httpclient.version}</version>
+				<optional>true</optional>
+			</dependency>
+
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-all</artifactId>
+				<version>${netty.version}</version>
+				<optional>true</optional>
+			</dependency>
+
+			<dependency>
+				<groupId>com.squareup.okhttp3</groupId>
+				<artifactId>okhttp</artifactId>
+				<version>${okhttp3.version}</version>
+				<optional>true</optional>
+			</dependency>
+
+			<!-- AWS SDK -->
+			<dependency>
+				<groupId>com.amazonaws</groupId>
+				<artifactId>aws-java-sdk-core</artifactId>
+				<version>${aws-java-sdk.version}</version>
+				<optional>true</optional>
+			</dependency>
+
+			<!-- GCP SDK -->
+			<dependency>
+				<groupId>com.google.apis</groupId>
+				<artifactId>google-api-services-iam</artifactId>
+				<version>${google-api-services-iam.version}</version>
+				<optional>true</optional>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.cloud</groupId>
+				<artifactId>google-cloud-iamcredentials</artifactId>
+				<version>${google-cloud-iamcredentials.version}</version>
+				<optional>true</optional>
+			</dependency>
+
+			<dependency>
+				<groupId>com.google.auth</groupId>
+				<artifactId>google-auth-library-oauth2-http</artifactId>
+				<version>${google-auth-library-oauth2-http.version}</version>
+				<optional>true</optional>
+			</dependency>
+
+			<!-- BouncyCastle -->
+
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcpkix-jdk15on</artifactId>
+				<version>${bcpkix-jdk15on.version}</version>
+				<optional>true</optional>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.1.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<phase>package</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<version>1.1.0</version>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+						<configuration>
+							<updatePomFile>true</updatePomFile>
+							<flattenMode>bom</flattenMode>
+							<pomElements>
+								<pluginManagement>keep</pluginManagement>
+								<properties>keep</properties>
+								<repositories>remove</repositories>
+							</pomElements>
+						</configuration>
+					</execution>
+					<execution>
+						<id>flatten-clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+
+			<id>milestone</id>
+
+			<distributionManagement>
+				<repository>
+					<id>repo.spring.io</id>
+					<name>Spring Milestone Repository</name>
+					<url>https://repo.spring.io/libs-milestone-local</url>
+				</repository>
+			</distributionManagement>
+
+		</profile>
+
+		<profile>
+			<id>distribute</id>
+
+			<properties>
+				<maven.install.skip>true</maven.install.skip>
+				<maven.deploy.skip>true</maven.deploy.skip>
+				<skipTests>true</skipTests>
+			</properties>
+		</profile>
+
+		<profile>
+
+			<id>central</id>
+
+			<distributionManagement>
+				<snapshotRepository>
+					<id>sonatype-nexus-snapshots</id>
+					<name>Sonatype Nexus Snapshots</name>
+					<url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+				</snapshotRepository>
+				<repository>
+					<id>sonatype-nexus-staging</id>
+					<name>Nexus Release Repository</name>
+					<url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
+					</url>
+				</repository>
+			</distributionManagement>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+
+		</profile>
+	</profiles>
+
+</project>

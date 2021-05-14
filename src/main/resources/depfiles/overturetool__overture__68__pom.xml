@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.overturetool.ide</groupId>
+    <artifactId>org.overture.ide.plugins</artifactId>
+    <version>3.0.3-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+  
+  <packaging>pom</packaging>
+
+  <groupId>org.overturetool.ide.plugins</groupId>
+  <artifactId>org.overture.ide.plugins.features</artifactId>
+  <name>Overture IDE Eclipse plugin features</name>
+  
+  <modules>
+    <module>coverageeditor</module>
+    <module>csk</module>
+    <module>combinatorialtesting</module>
+    <module>developerutils</module>
+    <module>latex</module>
+	<module>poviewer</module>
+    <module>quickinterpreter</module>
+    <module>uml2</module>
+	<!--module>probruntime moved to its own repo</module-->
+    <module>rttraceviewer</module>
+	<module>javagen</module>
+	<!--<module>isatrans</module>-->
+  </modules>
+
+</project>

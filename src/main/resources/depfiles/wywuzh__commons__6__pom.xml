@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>commons-static</artifactId>
+    <name>commons-static</name>
+    <packaging>pom</packaging>
+    <description>静态资源文件</description>
+
+    <parent>
+        <groupId>com.github.wywuzh</groupId>
+        <artifactId>commons-parent</artifactId>
+        <version>2.3.5.RELEASE</version>
+    </parent>
+
+    <modules>
+        <module>commons-static-assets</module>
+        <module>commons-static-jeesite4</module>
+        <module>commons-static-layui</module>
+        <module>commons-static-easyui</module>
+        <module>commons-static-adminlte</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>${webjars.jquery.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery-form</artifactId>
+            <version>${webjars.jquery-form.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>${webjars.bootstrap.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

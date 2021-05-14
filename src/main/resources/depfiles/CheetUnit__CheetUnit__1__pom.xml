@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright 2021 Gepardec IT Services GmbH and the CheetUnit contributors
+  ~ SPDX-License-Identifier: Apache-2.0
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.github.cheetunit</groupId>
+        <artifactId>cheetunit-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- release artifact -->
+    <artifactId>cheetunit-core</artifactId>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Core services for execution CheetUnit integration tests on the application server</description>
+    <url>https://cheetunit.github.io/CheetUnit/</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Egor Erofeev</name>
+            <email>egor.erofeev@gepardec.com</email>
+            <organization>Gepardec IT Services GmbH</organization>
+            <organizationUrl>https://www.gepardec.com/</organizationUrl>
+        </developer>
+        <developer>
+            <name>Patrick Holzer</name>
+            <email>patrick.holzer@gepardec.com</email>
+            <organization>Gepardec IT Services GmbH</organization>
+            <organizationUrl>https://www.gepardec.com/</organizationUrl>
+        </developer>
+        <developer>
+            <name>Christian Salmhofer</name>
+            <email>christian.salmhofer@gepardec.com</email>
+            <organization>Gepardec IT Services GmbH</organization>
+            <organizationUrl>https://www.gepardec.com/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:CheetUnit/CheetUnit.git</connection>
+        <developerConnection>scm:git:git@github.com:CheetUnit/CheetUnit.git</developerConnection>
+        <url>git@github.com:CheetUnit/CheetUnit</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${javaee.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.dozermapper</groupId>
+            <artifactId>dozer-core</artifactId>
+        </dependency>
+        <!-- test dependencies-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>

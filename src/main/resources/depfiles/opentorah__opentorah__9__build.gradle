@@ -1,0 +1,6 @@
+plugins {
+  id 'scala'
+  id 'org.opentorah.docbook'
+}
+
+apply from: '../configure.gradle'

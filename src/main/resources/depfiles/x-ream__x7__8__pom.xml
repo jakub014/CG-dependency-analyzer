@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>x7-parent</artifactId>
+        <groupId>io.xream.x7</groupId>
+        <version>2.8.0</version>
+    </parent>
+    <artifactId>x7-reyc</artifactId>
+    <description>http://x7.xream.io</description>
+    <url>http://x7.xream.io</url>
+
+    <properties>
+        <brave.version>3.9.0</brave.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.xream.x7</groupId>
+            <artifactId>x7-base</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.resilience4j/resilience4j-spring-boot2 -->
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-spring-boot2</artifactId>
+            <version>${resilience4j.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.github.resilience4j/resilience4j-retry -->
+        <dependency>
+            <groupId>io.github.resilience4j</groupId>
+            <artifactId>resilience4j-retry</artifactId>
+            <version>${resilience4j.version}</version>
+        </dependency>
+        
+    </dependencies>
+
+</project>

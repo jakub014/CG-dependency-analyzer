@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  wcm.io
+  %%
+  Copyright (C) 2014 wcm.io
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>io.wcm.maven</groupId>
+    <artifactId>io.wcm.maven.global-parent</artifactId>
+    <version>37</version>
+    <relativePath />
+  </parent>
+
+  <groupId>io.wcm.caravan.maven</groupId>
+  <artifactId>io.wcm.caravan.maven.caravan-global-parent</artifactId>
+  <version>14-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>io.wcm.caravan.maven.caravan-global-parent</name>
+  <description>Global parent for Maven artifact hierarchy for wcm.io Caravan projects. Defines plugins and general Maven settings.</description>
+  <url>https://caravan.wcm.io/</url>
+
+  <scm>
+    <connection>scm:git:https://github.com/wcm-io-caravan/caravan-tooling.git</connection>
+    <developerConnection>scm:git:https://github.com/wcm-io-caravan/caravan-tooling.git</developerConnection>
+    <url>https://github.com/wcm-io-caravan/caravan-tooling</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <properties>
+
+    <!-- Java version -->
+    <java.version>1.8</java.version>
+    <build.compiler.release>8</build.compiler.release>
+
+    <!-- Default launchpad parameters -->
+    <launchpad.url>http://localhost:8080</launchpad.url>
+    <launchpad.user>admin</launchpad.user>
+    <launchpad.password>admin</launchpad.password>
+
+    <!-- Plugin versions -->
+    <bnd.version>5.3.0</bnd.version>
+
+  </properties>
+
+  <dependencies>
+
+    <!-- OSGi annotations -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.annotation.bundle</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.annotation.versioning</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.component.annotations</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.metatype.annotations</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- Felix SCR DS annotations are deprecated, it is recommended to switch to OSGi annotations -->
+      <dependency>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>org.apache.felix.scr.annotations</artifactId>
+        <version>1.12.0</version>
+      </dependency>
+
+      <!-- OSGI (individual artifacts) -->
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.framework</artifactId>
+        <version>1.8.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.resource</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.service.component</artifactId>
+        <version>1.4.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.service.metatype</artifactId>
+        <version>1.3.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.service.cm</artifactId>
+        <version>1.6.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.service.event</artifactId>
+        <version>1.3.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.service.http</artifactId>
+        <version>1.2.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.service.http.whiteboard</artifactId>
+        <version>1.1.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.service.log</artifactId>
+        <version>1.3.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.util.tracker</artifactId>
+        <version>1.5.1</version>
+      </dependency>
+
+      <!-- OSGi annotations -->
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.annotation.bundle</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.annotation.versioning</artifactId>
+        <version>1.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.service.component.annotations</artifactId>
+        <version>1.4.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>org.osgi.service.metatype.annotations</artifactId>
+        <version>1.3.0</version>
+      </dependency>
+
+      <!-- OSGI (aggregated artifacts - it is recommended to use the individual artifacts instead) -->
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>osgi.core</artifactId>
+        <version>6.0.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.osgi</groupId>
+        <artifactId>osgi.cmpn</artifactId>
+        <version>6.0.0</version>
+      </dependency>
+
+    </dependencies>  
+  </dependencyManagement>
+
+  <build>
+    <extensions>
+
+      <!-- Add wcm.io file header to code templates -->
+      <extension>
+        <groupId>io.wcm.maven</groupId>
+        <artifactId>io.wcm.maven.global-build-tools-mixin</artifactId>
+        <version>1</version>
+      </extension>
+
+    </extensions>
+    <plugins>
+
+      <!-- Do not generate site (only for this pom) -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <inherited>false</inherited>
+        <configuration>
+          <skip>true</skip>
+          <skipDeploy>true</skipDeploy>
+        </configuration>
+      </plugin>
+
+      <!-- gitflow customization (only for this pom) -->
+      <plugin>
+        <groupId>com.amashchenko.maven.plugin</groupId>
+        <artifactId>gitflow-maven-plugin</artifactId>
+        <inherited>false</inherited>
+        <configuration>
+          <gitFlowConfig>
+            <releaseBranchPrefix>release/${project.artifactId}-</releaseBranchPrefix>
+            <hotfixBranchPrefix>hotfix/${project.artifactId}-</hotfixBranchPrefix>
+            <versionTagPrefix>${project.artifactId}-</versionTagPrefix>
+          </gitFlowConfig>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>external.atlassian.jgitflow</groupId>
+        <artifactId>jgitflow-maven-plugin</artifactId>
+        <inherited>false</inherited>
+        <configuration>
+          <!-- Prefix release numbers with artifactId for GIT repo with more than one released artifact -->
+          <flowInitContext>
+            <releaseBranchPrefix>release/${project.artifactId}-</releaseBranchPrefix>
+            <hotfixBranchPrefix>hotfix/${project.artifactId}-</hotfixBranchPrefix>
+            <versionTagPrefix>${project.artifactId}-</versionTagPrefix>
+          </flowInitContext>
+        </configuration>
+      </plugin>
+
+      <!-- Make sure Felix SCR Plugin is not included in build - maven-bundle-plugin with SCR plugin is used instead -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>ban-maven-scr-plugin</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <bannedPlugins>
+                  <excludes>
+                    <exclude>org.apache.felix:maven-scr-plugin</exclude>
+                  </excludes>
+                  <message>Please remove maven-scr-plugin from your POMs - Felix SCR annotations are now processed by maven-bundle-plugin with Felix SCR bnd plugin.</message>
+                </bannedPlugins>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+    <pluginManagement>
+      <plugins>
+
+        <plugin>
+          <groupId>biz.aQute.bnd</groupId>
+          <artifactId>bnd-maven-plugin</artifactId>
+          <version>${bnd.version}</version>
+          <configuration>
+            <bnd>
+              <!-- Add build number and timestamp -->
+              Scm-Revision: ${buildNumber} at ${timestamp}
+
+              <!-- Do not set Bundle-Developers -->
+              Bundle-Developers:
+
+              <!-- Do not set Bundle-DocURL because the maven auto-generated URLs are often not useful -->
+              Bundle-DocURL:
+
+              <!-- Export all versioned packages by default -->
+              -exportcontents: ${packages;VERSIONED}
+
+              <!-- Use "SNAPSHOT" suffix for snapshot bundle versions -->
+              -snapshot: SNAPSHOT
+
+              <!-- Remove Private-Package header as it may contain lists of all SLING-INF folders -->
+              -removeheaders: Private-Package
+
+              <!-- Suppress warnings in Eclipse about generate maven properties not available -->
+              -fixupmessages.buildNumber: 'No translation found for macro: buildNumber'
+              -fixupmessages.timestamp: 'No translation found for macro: timestamp'
+
+              <!-- reproducible builds (https://github.com/bndtools/bnd/issues/3521) -->
+              -noextraheaders: true
+
+              <!-- Do not create imports for java.* as this leads to failed builds with AEM cloud service -->
+              -noimportjava: true
+            </bnd>
+          </configuration>
+          <executions>
+            <execution>
+              <id>bnd-process</id>
+              <goals>
+                <goal>bnd-process</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>biz.aQute.bnd</groupId>
+          <artifactId>bnd-baseline-maven-plugin</artifactId>
+          <version>${bnd.version}</version>
+          <configuration>
+            <includeDistributionManagement>false</includeDistributionManagement>
+            <fullReport>true</fullReport>
+          </configuration>
+          <executions>
+            <execution>
+              <id>bnd-baseline</id>
+              <goals>
+                <goal>baseline</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.felix</groupId>
+          <artifactId>maven-bundle-plugin</artifactId>
+          <version>5.1.1</version>
+          <extensions>true</extensions>
+          <executions>
+            <!-- Configure extra execution of 'manifest' in process-classes phase to make sure SCR metadata is generated before unit test runs -->
+            <execution>
+              <id>scr-metadata</id>
+              <goals>
+                <goal>manifest</goal>
+              </goals>
+              <configuration>
+                <supportIncrementalBuild>true</supportIncrementalBuild>
+              </configuration>
+            </execution>
+          </executions>
+          <configuration>
+            <exportScr>true</exportScr>
+            <instructions>
+              <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+              <Bundle-Description>${project.description}</Bundle-Description>
+              <!-- Enable processing of OSGI DS component annotations -->
+              <_dsannotations>*</_dsannotations>
+              <!-- Enable processing of OSGI metatype annotations -->
+              <_metatypeannotations>*</_metatypeannotations>
+              <_plugin>
+                <!-- Support parsing of maven-scr-plugin annotations through the felix.scr.bnd plugin -->
+                org.apache.felix.scrplugin.bnd.SCRDescriptorBndPlugin;destdir=${project.build.outputDirectory}
+              </_plugin>
+            </instructions>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.felix</groupId>
+              <artifactId>org.apache.felix.scr.bnd</artifactId>
+              <version>1.9.6</version>
+            </dependency>
+            <dependency>
+              <groupId>org.apache.felix</groupId>
+              <artifactId>org.apache.felix.scr.annotations</artifactId>
+              <version>1.12.0</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.sling</groupId>
+          <artifactId>sling-maven-plugin</artifactId>
+          <version>2.4.2</version>
+          <!-- Default configuration for deploying bundles into running Launchpad instance -->
+          <configuration>
+            <slingUrl>${launchpad.url}/system/console</slingUrl>
+            <user>${launchpad.user}</user>
+            <password>${launchpad.password}</password>
+            <mountByFS>false</mountByFS>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>io.wcm.maven.plugins</groupId>
+          <artifactId>cq-maven-plugin</artifactId>
+          <version>1.1.2</version>
+          <configuration>
+            <slingPluginVersion>2.1.0</slingPluginVersion>
+            <slingConsoleUrl>${launchpad.url}/system/console</slingConsoleUrl>
+            <slingConsoleUser>${launchpad.user}</slingConsoleUser>
+            <slingConsolePassword>${launchpad.password}</slingConsolePassword>
+          </configuration>
+        </plugin>
+
+      </plugins>
+
+    </pluginManagement>
+
+  </build>
+
+  <profiles>
+
+    <!-- profile used for building releases and deployment to sonatype/maven central -->
+    <profile>
+      <id>release-profile</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <!-- sign the build -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <inherited>false</inherited>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- configure staging process at sonatype.-->
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <inherited>false</inherited>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <!-- Deployed artifacts should go to staging to be reviewed before publish -->
+              <autoReleaseAfterClose>false</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
+
+</project>

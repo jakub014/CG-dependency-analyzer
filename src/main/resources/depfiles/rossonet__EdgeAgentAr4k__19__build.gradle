@@ -1,0 +1,33 @@
+dependencies {
+	compile project(':ar4k-core')
+	compile project(':ar4k-ai')
+	compile project(':ar4k-seed')
+	compile group: 'com.vaadin', name: 'vaadin-material-theme'//, version: '5.0.2'
+	compile group: 'com.vaadin', name: 'vaadin-spring-boot-starter', version: '14.4.7'
+	compile group: 'com.vaadin', name: 'vaadin-icons-flow'//, version: '4.0.0'
+	compile group: 'com.vaadin', name: 'vaadin-grid-flow'//, version: '4..11'
+	compile group: 'com.vaadin', name: 'vaadin-app-layout-flow'//, version: '4.0.0'
+	compile group: 'com.vaadin', name: 'vaadin-split-layout-flow'//, version: '4.0.0'
+	compile group: 'com.vaadin', name: 'flow-client'//, version: '4.0.8'
+	compile group: 'com.flowingcode.addons', name: 'xterm-console', version: '1.0.2'
+	compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.12.1'
+	compile group: 'org.webjars', name: 'webjars-locator-core', version: '0.46'
+	compile group: 'com.vladsch.flexmark', name: 'flexmark-all', version: '0.62.2'
+	compile group: 'org.deeplearning4j', name: 'deeplearning4j-ui', version: '1.0.0-beta6'	
+	compile("org.springframework.boot:spring-boot-devtools")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "com.vaadin:vaadin-bom:14.4.7"
+    }
+}
+    
+description = "Vaadin integration component"
+
+bootJar {
+	enabled = false
+}
+
+
+

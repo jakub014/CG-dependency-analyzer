@@ -1,0 +1,132 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.overturetool</groupId>
+    <artifactId>ide</artifactId>
+    <version>3.0.3-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <packaging>eclipse-plugin</packaging>
+
+  <groupId>org.overturetool.ide</groupId>
+  <artifactId>org.overture.ide.help</artifactId>
+  <name>org.overture.ide.help</name>
+
+  <properties>
+    <example-packager.version>3.0.2</example-packager.version>
+    <repo.root>${project.basedir}/../..</repo.root>
+    <examples.root>${repo.root}/externals/docrepo/examples</examples.root>
+    <documentation.root>${repo.root}/externals/docrepo/documentation</documentation.root>
+  </properties>
+  
+  <build>
+    <resources>
+      <resource>
+        <directory>${documentation.root}/QuickOverviewVDMPPOperators</directory>
+        <targetPath>${project.basedir}/html</targetPath>
+        <filtering>false</filtering>
+        <includes>
+          <include>QuickOverviewofVDMOperators.pdf</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>${documentation.root}/UserGuideOvertureIDE</directory>
+        <targetPath>${project.basedir}/html</targetPath>
+        <filtering>false</filtering>
+        <includes>
+          <include>OvertureIDEUserGuide.pdf</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>${documentation.root}/VDM10LangMan</directory>
+        <targetPath>${project.basedir}/html</targetPath>
+        <filtering>false</filtering>
+        <includes>
+          <include>VDM10_lang_man.pdf</include>
+        </includes>
+      </resource>
+    </resources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.overturetool.build</groupId>
+        <artifactId>example-packager-plugin</artifactId>
+        <version>${example-packager.version}</version>
+        <configuration>
+          <outputDirectory>${project.basedir}/html</outputDirectory>
+          <outputPrefix>Example_package_</outputPrefix>
+          <slExamples>
+            <param>${examples.root}/VDMSL</param>
+          </slExamples>
+          <ppExamples>
+            <param>${examples.root}/VDM++</param>
+          </ppExamples>
+          <rtExamples>
+            <param>${examples.root}/VDMRT</param>
+          </rtExamples>
+          <vdmLibs>${examples.root}/libs/</vdmLibs>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>package-examples</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+
+    <pluginManagement>
+      <plugins>
+	<!--This plugin's configuration is used to store Eclipse m2e settings 
+	    only. It has no influence on the Maven build itself. -->
+	<plugin>
+	  <groupId>org.eclipse.m2e</groupId>
+	  <artifactId>lifecycle-mapping</artifactId>
+	  <version>1.0.0</version>
+	  <configuration>
+	    <lifecycleMappingMetadata>
+	      <pluginExecutions>
+		<pluginExecution>
+		  <pluginExecutionFilter>
+		    <groupId>org.overturetool.tools.maven</groupId>
+		    <artifactId>example-packager</artifactId>
+		    <versionRange>[1.0.1,)</versionRange>
+		    <goals>
+		      <goal>package-examples</goal>
+		    </goals>
+		  </pluginExecutionFilter>
+		  <action>
+		    <execute>
+		      <runOnIncremental>false</runOnIncremental>
+		    </execute>
+		  </action>
+		</pluginExecution>
+		<pluginExecution>
+			<pluginExecutionFilter>
+				<groupId>org.overturetool.build</groupId>
+				<artifactId>example-packager-plugin</artifactId>
+				<versionRange>[2.0.2,)</versionRange>
+				<goals>
+					<goal>package-examples</goal>
+				</goals>
+			</pluginExecutionFilter>
+			<action>
+				<ignore></ignore>
+			</action>
+		</pluginExecution>
+	      </pluginExecutions>
+	    </lifecycleMappingMetadata>
+	  </configuration>
+	</plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+</project>
+
+  
+

@@ -1,0 +1,117 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<parent>
+		<groupId>org.notima.generic.businessobjects.adapter</groupId>
+		<artifactId>businessObjectAdapters</artifactId>
+		<version>1.8.11-SNAPSHOT</version>
+	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>ublAdapter</artifactId>
+	<packaging>bundle</packaging>
+	<name>UBL for Business Objects</name>
+
+	<dependencyManagement>
+	
+		<dependencies>
+			<dependency>
+	  			<groupId>com.helger.ubl</groupId>
+	  			<artifactId>ph-ubl-parent-pom</artifactId>
+				  <version>6.3.0</version>
+	  			<type>pom</type>
+	  			<scope>import</scope>
+			</dependency>
+		</dependencies>
+	
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.helger.ubl</groupId>
+			<artifactId>ph-ubl21</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.helger.ubl</groupId>
+			<artifactId>ph-ubl21-codelists</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.phloc</groupId>
+			<artifactId>phloc-datetime</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>4.2.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-Activator>org.notima.generic.ubl.factory.Activator</Bundle-Activator>
+						<Export-Package>org.notima.generic.ubl.factory,
+										oasis.names.specification.*,
+										com.helger.*,
+										com.phloc.*,
+										org.hamcrest,
+										org.hamcrest.core</Export-Package>
+						<Import-Package>
+										org.notima.bg*,
+										!com.ibm*,
+										!com.sun.jdmk*,
+										!javax.jmdns*,
+										!javax.jms,
+										!javax.mail*,
+										!org.joda.convert,
+										!com.sun.activation.registries,
+										!com.helger.commons.exception.mock,
+										!com.phloc.commons.cleanup,
+										!com.sun.jna*,
+										!com.sun.xml.bind.marshaller,
+										!net.i2p.crypto.eddsa*,
+										!org.apache.mina*,
+										!org.apache.sshd.server.command,
+										!org.apache.tomcat.jni,
+										!org.bouncycastle*,
+										!org.glassfish.hk2.osgiresourcelocator,
+										!org.junit*,
+										!org.mozilla.universalchardet,
+										!javax.annotation,										
+										*
+										</Import-Package>
+						<Embed-Dependency>!ph-jaxb-pom|businessobjects|bankgiro-api,scope=compile|runtime</Embed-Dependency>
+						<Embed-Transitive>true</Embed-Transitive>
+						<Private-Package>
+							javax.xml.bind*
+						</Private-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

@@ -1,0 +1,10 @@
+dependencies {
+    api project(":policy-entities")
+    implementation "com.github.michaelruocco:file-loader:${fileLoaderVersion}"
+    implementation "com.github.michaelruocco:json-adapter:${jsonAdapterVersion}"
+    implementation "org.awaitility:awaitility:${awaitilityVersion}"
+
+    testImplementation testFixtures(project(":policy-entities"))
+    testImplementation "org.apache.commons:commons-collections4:${commonsCollectionsVersion}"
+    testImplementation "com.github.michaelruocco:duration-logger:${durationLoggerVersion}"
+}

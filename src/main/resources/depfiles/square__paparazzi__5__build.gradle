@@ -1,0 +1,104 @@
+plugins {
+  id 'maven-publish'
+  id 'signing'
+  id 'org.ajoberstar.grgit' version '4.1.0'
+}
+
+/**
+ * Clone AOSP's prebuilts repo to get a prebuilt layoutlib jar. This big repo that takes a long time to clone!
+ *
+ * https://android.googlesource.com/platform/prebuilts/studio/layoutlib/+/refs/tags/studio-3.2.1/PREBUILT
+ */
+task cloneLayoutlib() {
+  def repoDir = new File("$buildDir/prebuilts/studio/layoutlib")
+
+  doFirst {
+    if (!repoDir.exists()) {
+      logger.warn('Cloning prebuilt layoutlib: this make take a few minutes...')
+      grgit.clone {
+        dir = repoDir
+        uri = "https://android.googlesource.com/platform/prebuilts/studio/layoutlib"
+      }
+      logger.warn('Cloned prebuilt layoutlib.')
+    }
+
+    def repo = grgit.open {
+      dir = repoDir
+    }
+    repo.checkout {
+      // maps to this commit: https://android.googlesource.com/platform/prebuilts/studio/layoutlib/+/b169460c8473a1e87aafa01da881556682fa4f86
+      // which runs on JDK 11
+      branch = 'b169460'
+    }
+  }
+
+  ext.layoutlibJar = new File("$repoDir/data/layoutlib-jdk11.jar")
+}
+
+task sourcesJar(type: Jar) {
+  // TODO: fetch sources from the corresponding AOSP repos.
+  archiveClassifier = 'sources'
+}
+
+task javadocJar(type: Jar) {
+  archiveClassifier = 'javadoc'
+}
+
+/**
+ * Publish layoutlib.jar to Maven Central with Paparazzi coordinates.
+ */
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      groupId = 'app.cash.paparazzi'
+      artifactId = 'layoutlib-jdk11'
+      version = '4.0.0-alpha02-b169460'
+
+      pom {
+        name = "layoutlib"
+        description = "Android Studio's layoutlib, packaged for Paparazzi"
+        url = "https://github.com/cashapp/paparazzi/"
+        licenses {
+          license {
+            name = "The Apache Software License, Version 2.0"
+            url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+          }
+        }
+        developers {
+          developer {
+            id = "square"
+            name = "Square, Inc."
+          }
+        }
+        scm {
+          url = "https://github.com/cashapp/paparazzi/"
+          connection = "scm:git:git://github.com/cashapp/paparazzi.git"
+          developerConnection = "scm:git:ssh://git@github.com/cashapp/paparazzi.git"
+        }
+      }
+
+      artifact(cloneLayoutlib.layoutlibJar) {
+        extension "jar"
+        builtBy cloneLayoutlib
+      }
+
+      artifact javadocJar
+
+      artifact sourcesJar
+    }
+  }
+  repositories {
+    maven {
+      url project.findProperty("RELEASE_REPOSITORY_URL") ?:
+          "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+      credentials {
+        username = project.findProperty("SONATYPE_NEXUS_USERNAME")
+        password = project.findProperty("SONATYPE_NEXUS_PASSWORD")
+      }
+    }
+  }
+}
+
+signing {
+  sign publishing.publications.mavenJava
+}

@@ -1,0 +1,21 @@
+dependencies {
+    api project(":context-use-cases")
+    api project(":context-json")
+    api project(":otp-sim-swap-stub")
+
+    implementation project(":identity-config")
+    implementation project(":lockout-config")
+    implementation project(":method-use-cases")
+    implementation project(":policy-in-memory-repository")
+    implementation project(":context-in-memory-repository")
+    implementation project(":context-redis-repository")
+    implementation project(":context-mongo-repository")
+    implementation project(":policy-mongo-repository")
+    implementation project(":method-config")
+    implementation "com.github.michaelruocco:json-adapter:${jsonAdapterVersion}"
+    implementation "com.github.michaelruocco:random-value-suppliers:${randomValueSuppliersVersion}"
+    implementation "org.mongodb:mongo-java-driver:${mongoVersion}"
+    implementation("com.github.dalet-oss:mongobee:1.0.4") {
+        exclude module: "mongo-java-driver"
+    }
+}

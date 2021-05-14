@@ -1,0 +1,31 @@
+plugins {
+	id 'org.asciidoctor.convert' version '1.5.9.2'
+}
+
+repositories {
+	maven { url 'https://repo.spring.io/release' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	asciidoctor 'io.spring.asciidoctor:spring-asciidoctor-extensions:0.1.2.RELEASE'
+	testCompile project(':spring-restdocs-mockmvc')
+	testCompile project(':spring-restdocs-restassured')
+	testCompile project(':spring-restdocs-webtestclient')
+	testCompile 'io.rest-assured:rest-assured'
+	testCompile 'javax.validation:validation-api'
+	testCompile 'junit:junit'
+	testCompile 'org.testng:testng:6.9.10'
+	testCompile 'org.junit.jupiter:junit-jupiter-api'
+}
+
+tasks.findByPath("artifactoryPublish")?.enabled = false
+
+asciidoctor {
+	sources {
+		include 'index.adoc'
+	}
+	attributes	'revnumber': project.version,
+				'branch-or-tag': project.version.endsWith('SNAPSHOT') ? 'master': "v${project.version}"
+	inputs.files(sourceSets.test.java)
+}

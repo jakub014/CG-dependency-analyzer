@@ -1,0 +1,96 @@
+import groovy.transform.Canonical
+
+import static java.nio.charset.StandardCharsets.UTF_8
+
+plugins {
+  id "org.asciidoctor.convert" version "2.4.0"
+}
+
+dependencies {
+    asciidoctor 'org.asciidoctor:asciidoctorj-diagram:2.1.2'
+}
+
+task cleanUserGuide(type: Delete) {
+    delete 'userguide/html'
+}
+
+asciidoctor {
+    backends 'html'
+    attributes 'revnumber': project.version,
+            'source-highlighter': 'highlightjs',
+            'highlightjs-theme': 'mono-blue',
+            'stylesheet': 'archunit.css'
+    sourceDir file('userguide')
+    sources {
+        include '000_Index.adoc'
+    }
+    outputDir file('userguide')
+    requires = ['asciidoctor-diagram']
+
+}
+
+asciidoctorj {
+    version = '2.3.0'
+}
+
+asciidoctor.dependsOn cleanUserGuide
+
+task createUseCasesPage {
+    doLast {
+        def useCases = file('userguide/004_What_to_Check.adoc').text
+            .split(/(?m)^=== /).tail()
+            .collect { String section ->
+                String heading = section.lines().findFirst().get()
+                String[] sourceCodeSnippets = section.split(/(\[source,)|(\[plantuml,)/).tail()
+                    .collect { String snippet -> snippet.split(/(?m)^----$/)[1].trim() }
+
+                List<Snippet> snippets = sourceCodeSnippets.collate(2).collect { plantUmlAndJavaSnippetPair ->
+                    new Snippet(plantUmlSourceCode: plantUmlAndJavaSnippetPair[0], javaSourceCode: plantUmlAndJavaSnippetPair[1])
+                }
+                new UseCase(heading: heading, snippets: snippets)
+            }
+
+        file('_pages/use-cases.md').text = """
+---
+title: Use Cases
+layout: splash
+permalink: /use-cases
+---
+
+${useCases.collect {it.toMarkDown() }.join('\n')}
+""".stripLeading()
+    }
+}
+
+task renderUserGuide(dependsOn: [asciidoctor, createUseCasesPage])
+
+@Canonical
+class UseCase {
+    String heading
+    List<Snippet> snippets
+
+    String toMarkDown() {
+        """
+## ${heading}
+
+${snippets.collect { it.toMarkDown() }.join('\n') }
+        """.stripLeading()
+    }
+}
+
+@Canonical
+class Snippet {
+    String plantUmlSourceCode
+    String javaSourceCode
+
+    String toMarkDown() {
+        String plantUmlUrl = "http://www.plantuml.com/plantuml/svg/~h${plantUmlSourceCode.getBytes(UTF_8).encodeHex()}"
+        """
+![diagram](${plantUmlUrl})
+
+```
+${javaSourceCode}
+```
+        """.stripLeading()
+    }
+}

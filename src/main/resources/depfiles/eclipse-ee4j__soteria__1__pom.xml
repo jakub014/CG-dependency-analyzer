@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2015, 2020 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+       <groupId>org.glassfish.soteria</groupId>
+       <artifactId>parent</artifactId>
+       <version>2.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>jakarta.security.enterprise</artifactId>
+
+    <name>Soteria ${project.version}</name>
+    <description>Compatible Implementation for Jakarta Security API</description>
+
+    <build>
+        <plugins>
+            <!-- Creates the OSGi MANIFEST.MF file -->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>5.1.1</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>org.glassfish.jakarta.security.enterprise</Bundle-SymbolicName>
+                        <Bundle-Version>${project.version}</Bundle-Version>
+                        <Bundle-Name>Soteria Jakarta Security Implementation ${project.version}</Bundle-Name>
+                        <Bundle-Description>Eclipse Jakarta Security Implementation (jakarta.security/3.0) ${project.version}</Bundle-Description>                      
+                        
+                        <Specification-Title>Jakarta Security</Specification-Title>
+                        <Specification-Version>3.0</Specification-Version>
+                        
+                        <Implementation-Title>Soteria</Implementation-Title> 
+                        <Implementation-Version>${project.version}</Implementation-Version>
+                        <Implementation-Vendor>Eclipse</Implementation-Vendor> 
+                        <Implementation-Vendor-Id>org.glassfish</Implementation-Vendor-Id>
+                        
+                        <Extension-Name>jakarta.security.enterprise</Extension-Name>
+                        
+                        <Export-Package>
+                            org.glassfish.soteria.*
+                        </Export-Package>
+                        <Import-Package>
+                            !org.apache.tomee.catalina,!org.apache.tomee.catalina,!weblogic.security.jacc.simpleprovider,
+                            !weblogic.security.jacc,!org.glassfish.deployment.common,!org.glassfish.internal.api,
+                            !org.jboss.as.security.service,!org.apache.geronimo.security.jacc.mappingprovider,
+                            *
+                        </Import-Package>
+                    </instructions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>manifest</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- Adds the manifest file created by the org.apache.felix:maven-bundle-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                        <manifestEntries>
+                            <Automatic-Module-Name>org.glassfish.soteria</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

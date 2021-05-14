@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+  http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <packaging>jar</packaging>
+
+  <parent>
+    <groupId>io.github.ace-design</groupId>
+    <artifactId>inf5153.mesh</artifactId>
+    <version>1.0</version>
+  </parent>
+
+  <version>1.0</version>
+  <artifactId>inf5153.mesh.demo</artifactId>
+  <name>ACE :: UQAM :: Mesh :: Demonstration</name>
+
+  <properties>
+    <io.version>1.0</io.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.github.ace-design</groupId>
+      <artifactId>inf5153.mesh.io</artifactId>
+      <version>${io.version}</version>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>executable</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+              <archive>
+                <manifest>
+                  <mainClass>ca.uqam.ace.inf5153.mesh.demo.Demonstration</mainClass>
+                </manifest>
+              </archive>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+            </configuration>
+            <executions>
+              <execution>
+                <id>make-assembly</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>

@@ -1,0 +1,29 @@
+description 'RateLimitJ In-memory'
+
+project.ext.release = true
+
+dependencies {
+
+    api(
+            project(':ratelimitj-core'),
+    )
+
+    implementation(
+            libraries.slf4j,
+            'net.jodah:expiringmap:0.5.8',
+            'de.jkeylockmanager:jkeylockmanager:2.1.0',
+    )
+
+    compileOnly(
+            libraries.jsr305,
+    )
+
+    testImplementation(
+            project(':ratelimitj-test'),
+            libraries.assertj,
+            libraries.guava,
+            libraries.mockito,
+            libraries.logback,
+    )
+
+}

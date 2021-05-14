@@ -1,0 +1,57 @@
+import dependencies.Deps
+import dependencies.Versions
+import plugin.BuildSettingHelperPlugin
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'jacoco'
+apply plugin: BuildSettingHelperPlugin
+
+ext.moduleName = 'Kotpref auto initializer'
+ext.moduleDescription = "Auto initialization module for Kotpref"
+
+android {
+    compileSdkVersion Versions.targetSdk
+
+    defaultConfig {
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionName Versions.versionName
+    }
+    buildTypes {
+        debug {
+            testCoverageEnabled isCi
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        freeCompilerArgs += "-Xexplicit-api=strict"
+    }
+    jacoco {
+        version = Versions.jacoco
+    }
+}
+
+dependencies {
+    compileOnly Deps.Kotlin.stdlib
+    api project(":kotpref")
+
+    implementation Deps.AndroidX.startup
+
+    testImplementation Deps.Kotlin.stdlib
+    testImplementation Deps.junit
+    testImplementation Deps.robolectric
+}
+
+apply from: "${project.rootDir}/gradle/publish/publish.gradle"

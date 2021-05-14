@@ -1,0 +1,118 @@
+plugins {
+    id 'java'
+    id 'signing'
+    id 'maven-publish'
+    id 'jacoco'
+}
+
+compileJava {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+compileTestJava {
+    sourceCompatibility = JavaVersion.VERSION_11
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveClassifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = project.name
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = '@InjectResources core'
+                description = 'Core of @InjectResources'
+                url = 'https://github.com/hosuaby/inject-resources'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'hosuaby'
+                        name = 'Alexei KLENIN'
+                        email = 'alexei.klenin@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git@github.com:hosuaby/inject-resources.git'
+                    developerConnection = 'scm:git:git@github.com:hosuaby/inject-resources.git'
+                    url = 'https://github.com/hosuaby/inject-resources'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+            credentials {
+                username System.getenv('SONATYPE_USERNAME')
+                password System.getenv('SONATYPE_PASSWORD')
+            }
+        }
+    }
+}
+
+signing {
+    def signingKey = System.getenv('SIGNING_KEY')
+    useInMemoryPgpKeys(signingKey, '')
+    sign publishing.publications.mavenJava
+}
+
+def JUNIT_VERSION = System.getProperty('JUNIT_VERSION') ?: '5.7.1'
+def JACKSON_VERSION = System.getProperty('JACKSON_VERSION') ?: '2.10.5'
+def GSON_VERSION = System.getProperty('GSON_VERSION') ?: '2.8.6'
+
+dependencies {
+    compile group: 'org.jetbrains', name: 'annotations', version: '19.0.0'
+
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: JUNIT_VERSION
+
+    testImplementation project(':test-commons')
+    testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.14.0'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: JUNIT_VERSION
+    testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: JACKSON_VERSION
+    testImplementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: JACKSON_VERSION
+    testImplementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-properties', version: '2.11.0.rc1'
+    testImplementation group: 'com.google.code.gson', name: 'gson', version: GSON_VERSION
+    testImplementation group: 'org.apache.commons', name: 'commons-csv', version: '1.8'
+    testImplementation group: 'de.siegmar', name: 'fastcsv', version: '1.0.3'
+
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: JUNIT_VERSION
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}

@@ -1,0 +1,19 @@
+apply from: rootProject.file('publishing.gradle')
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 14 // setAllCaps(), 11 otherwise
+        targetSdkVersion 29
+    }
+}
+
+dependencies {
+    api project(':aws-android-sdk-auth-core')
+    api project(':aws-android-sdk-cognitoidentityprovider')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+}
+

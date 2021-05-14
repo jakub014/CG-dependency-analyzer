@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>jangaroo-compiler</artifactId>
+  <packaging>jar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>net.jangaroo</groupId>
+      <artifactId>jangaroo-compiler-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>net.jangaroo</groupId>
+      <artifactId>jangaroo-utils</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>edu.princeton.cup</groupId>
+      <artifactId>java-cup</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-configuration</groupId>
+      <artifactId>commons-configuration</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>args4j</groupId>
+      <artifactId>args4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.javascript</groupId>
+      <artifactId>closure-compiler</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  <parent>
+    <groupId>net.jangaroo</groupId>
+    <artifactId>jangaroo-parent</artifactId>
+    <version>4.0.78-SNAPSHOT</version>
+    <relativePath>../../jangaroo-parent/pom.xml</relativePath>
+  </parent>
+  <properties>
+    <generated.cup.sources.dir>${project.build.directory}/generated-sources/cup</generated.cup.sources.dir>
+    <cup.sources.dir>${basedir}/src/main/cup</cup.sources.dir>
+    <!-- the runtime API version the current jooc version relies on, included into the generated *.js files: -->
+    <jangaroo.runtime-api.version>0.8.0</jangaroo.runtime-api.version>
+  </properties>
+  <build>
+    <resources>
+      <resource>
+        <filtering>true</filtering>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>de.jflex</groupId>
+        <artifactId>maven-jflex-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <skeleton>src/main/jflex/skeleton.nested</skeleton>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>edu.princeton.cup</groupId>
+            <artifactId>java-cup</artifactId>
+            <version>10k</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>generate-parser</id>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <phase>generate-sources</phase>
+            <configuration>
+              <target>
+                <property name="cup.input.filename" value="joo.cup" />
+                <property name="cup.files.reldir" value="net/jangaroo/jooc" />
+                <property name="cup.output.dir" value="${generated.cup.sources.dir}/${cup.files.reldir}" />
+                <property name="cup.parser.classname" value="parser" />
+                <property name="cup.output.filename" value="${cup.output.dir}/${cup.parser.classname}.java" />
+                <mkdir dir="${cup.output.dir}" />
+                <!-- forked java process may hang otherwise?! -->
+                <delete file="${cup.output.filename}" />
+                <java classname="java_cup.Main" dir="${cup.output.dir}" failonerror="true" fork="true">
+                  <!-- arg value="-dump_states" /> -->
+                  <arg value="-interface" />
+                  <arg value="-expect" />
+                  <arg value="2" />
+                  <!--arg value="-dump"/-->
+                  <arg value="${cup.sources.dir}/${cup.files.reldir}/${cup.input.filename}" />
+                  <classpath>
+                    <path refid="maven.plugin.classpath" />
+                  </classpath>
+                </java>
+              </target>
+              <sourceRoot>${generated.cup.sources.dir}</sourceRoot>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>net/jangaroo/test/integration/**/*</exclude>
+          </excludes>
+          <systemProperties>
+            <property>
+              <name>net.jangaroo.jooc.test.source</name>
+              <value>${basedir}/target/test-classes</value>
+            </property>
+            <property>
+              <name>net.jangaroo.jooc.test.destination</name>
+              <value>${basedir}/target/temp/js</value>
+            </property>
+          </systemProperties>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>create-archives</id>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <attach>true</attach>
+              <classifier>jar-with-dependencies</classifier>
+              <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+              </descriptorRefs>
+              <archive>
+                <manifest>
+                  <mainClass>net.jangaroo.jooc.Jooc</mainClass>
+                  <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                </manifest>
+              </archive>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <name>Joo Compiler</name>
+</project>
+

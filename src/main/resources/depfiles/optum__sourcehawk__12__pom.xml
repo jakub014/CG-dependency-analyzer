@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>sourcehawk</artifactId>
+        <groupId>com.optum.sourcehawk</groupId>
+        <version>0.6.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>sourcehawk-cli</artifactId>
+    <name>Sourcehawk CLI</name>
+    <description>Sourcehawk CLI, entrypoint into CLI application</description>
+    <packaging>jar</packaging>
+
+    <properties>
+
+        <!-- CLI SETTINGS -->
+        <cli.name>${global.project.name}</cli.name>
+        <cli.class>com.optum.sourcehawk.cli.Sourcehawk</cli.class>
+
+        <!-- JACOCO OVERRIDES -->
+        <jacoco.coverage.minimum>0.94</jacoco.coverage.minimum> <!-- jacoco-maven-plugin -->
+
+        <!-- SONAR PROPERTIES -->
+        <sonar.exclusions>**/picocli/**/*.*</sonar.exclusions>
+        <sonar.coverage.exclusions>**/picocli/**/*.*</sonar.coverage.exclusions>
+        <sonar.cpd.exclusions>**/picocli/**/*.*</sonar.cpd.exclusions>
+
+        <!-- PICOCLI VERSION -->
+        <picocli.version>4.6.1</picocli.version>
+
+    </properties>
+
+    <dependencies>
+
+        <!-- THIRD-PARTY PROVIDED DEPENDENCIES -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- THIRD-PARTY RUNTIME DEPENDENCIES -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-nop</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- SOURCEHAWK COMPILE DEPENDENCIES -->
+        <dependency>
+            <groupId>com.optum.sourcehawk</groupId>
+            <artifactId>sourcehawk-exec</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- TEST DEPENDENCIES -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib-nodep</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mock-server</groupId>
+            <artifactId>mockserver-netty</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mock-server</groupId>
+            <artifactId>mockserver-client-java</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <pluginManagement>
+            <plugins>
+
+                <!-- CHECKSTYLE OVERRIDES -->
+                <plugin>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <configuration>
+                        <excludes combine.self="append">**/picocli/*.java</excludes>
+                    </configuration>
+                </plugin>
+
+                <!-- JAVADOC OVERRIDES -->
+                <plugin>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <configuration>
+                        <excludePackageNames>picocli</excludePackageNames>
+                    </configuration>
+                </plugin>
+
+                <!-- JACOCO OVERRIDES -->
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <configuration>
+                        <excludes combine.children="append">
+                            <exclude>**/picocli/*.*</exclude>
+                            <exclude>**/picocli/*$*.*</exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+
+            <!-- ADD PICOCLI ANNOTATION PROCESSING TO COMPILER -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths combine.children="append">
+                        <path>
+                            <groupId>info.picocli</groupId>
+                            <artifactId>picocli-codegen</artifactId>
+                            <version>${picocli.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                    <compilerArgs combine.children="append">
+                        <arg>-Aproject=${cli.name}</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+
+            <!-- FILTER RESOURCES TO INJECT MAVEN PROPERTIES INTO PLACEHOLDERS -->
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-resources</id>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- EXEC PROCESSORS AND SCRIPTS -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+
+                    <!-- GENERATE PICOCLI MANPAGE ASCIIDOCS (UNCOMMENT TO RE-GENERATE) -->
+                    <execution>
+                        <id>generate-manpage-asciidocs</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <includeProjectDependencies>true</includeProjectDependencies>
+                            <includePluginDependencies>true</includePluginDependencies>
+                            <mainClass>picocli.codegen.docgen.manpage.ManPageGenerator</mainClass>
+                            <arguments>
+                                <argument>--outdir=${project.build.directory}/generated-docs</argument>
+                                <argument>${cli.class}</argument>
+                                <argument>com.optum.sourcehawk.cli.ScanCommand</argument>
+                                <argument>com.optum.sourcehawk.cli.ValidateConfigCommand</argument>
+                                <argument>com.optum.sourcehawk.cli.FixCommand</argument>
+                                <argument>com.optum.sourcehawk.cli.FlattenConfigCommand</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>generate-bash-completion-script</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <includeProjectDependencies>true</includeProjectDependencies>
+                            <includePluginDependencies>true</includePluginDependencies>
+                            <mainClass>picocli.AutoComplete</mainClass>
+                            <systemProperties>
+                                <systemProperty>
+                                    <key>picocli.autocomplete.systemExitOnError</key>
+                                </systemProperty>
+                            </systemProperties>
+                            <arguments>
+                                <argument>--force</argument>
+                                <argument>--completionScript</argument>
+                                <argument>${project.build.directory}/${cli.name}-bash-completion.sh</argument>
+                                <argument>${cli.class}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>info.picocli</groupId>
+                        <artifactId>picocli-codegen</artifactId>
+                        <version>${picocli.version}</version>
+                        <type>jar</type>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-simple</artifactId>
+                        <version>${slf4j.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <!-- ATTACH BASH COMPLETION SCRIPT ARTIFACT-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-bash-completion-script-artifact</id>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>${project.build.directory}/${cli.name}-bash-completion.sh</file>
+                                    <classifier>bash-completion</classifier>
+                                    <type>sh</type>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- PROCESS THE MANPAGE ASCIIDOCS INTO HTML AND MANPAGE FORMATS -->
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generate-manpage-html</id>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                        <configuration>
+                            <attributes>
+                                <source-highlighter>coderay</source-highlighter>
+                            </attributes>
+                            <backend>html5</backend>
+                            <sourceDirectory>../cli/src/main/asciidoc</sourceDirectory>
+                            <sourceDocumentName>index.adoc</sourceDocumentName>
+                            <outputDirectory>${project.parent.basedir}/gh-pages</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-manpage</id>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                        <configuration>
+                            <attributes>
+                                <source-highlighter>coderay</source-highlighter>
+                            </attributes>
+                            <backend>manpage</backend>
+                            <sourceDirectory>${project.build.directory}/generated-docs</sourceDirectory>
+                            <outputDirectory>${project.parent.basedir}/gh-pages/manpages</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <attributes>
+                        <revnumber>${project.version}</revnumber>
+                    </attributes>
+                </configuration>
+            </plugin>
+
+            <!-- SHADE ALL DEPENDENCIES INTO EXECUTABLE FAT JAR FOR NATIVE IMAGE -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <configuration>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>${cli.class}</mainClass>
+                        </transformer>
+                    </transformers>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>create-native-image-jar</id>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <shadedClassifierName>native-image</shadedClassifierName>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <filters>
+                                <filter>
+                                    <artifact>com.fasterxml.jackson.dataformat:jackson-dataformat-yaml</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/services/com.fasterxml.jackson.core.ObjectCodec</exclude>
+                                        <exclude>META-INF/services/com.fasterxml.jackson.core.JsonFactory</exclude>
+                                    </excludes>
+                                </filter>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>licenses/*.*</exclude>
+                                        <exclude>module-info.class</exclude>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                        <exclude>META-INF/DEPENDENCIES</exclude>
+                                        <exclude>META-INF/LICENSE</exclude>
+                                        <exclude>META-INF/MANIFEST.MF</exclude>
+                                        <exclude>META-INF/NOTICE</exclude>
+                                        <exclude>META-INF/maven/**/pom.xml</exclude>
+                                        <exclude>META-INF/maven/**/pom.properties</exclude>
+                                        <exclude>META-INF/native/**/*.*</exclude>
+                                        <exclude>META-INF/versions/9/module-info.class</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+
+                    <!-- ENFORCE RESTRICTED DEPENDENCIES -->
+                    <execution>
+                        <id>enforce-restricted-dependencies</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <bannedDependencies>
+                                    <includes combine.children="append">
+                                        <include>com.fasterxml.jackson.core:*:*:*:*</include>
+                                        <include>com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:*:*</include>
+                                        <include>org.apache.maven:maven-model:*:*:*</include>
+                                        <include>org.codehaus.plexus:plexus-utils:*:*:*</include>
+                                        <include>org.slf4j:slf4j-api:*:*:*</include>
+                                        <include>org.slf4j:slf4j-nop:*:*:*</include>
+                                        <include>org.yaml:snakeyaml:*:*:*</include>
+                                    </includes>
+                                </bannedDependencies>
+                            </rules>
+                        </configuration>
+                    </execution>
+
+                    <!-- VERIFY GENERATED FILES -->
+                    <execution>
+                        <id>verify-generated-files</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireFilesExist>
+                                    <files>
+                                        <file>${project.build.directory}/${cli.name}-bash-completion.sh</file>
+                                        <file>${project.parent.basedir}/gh-pages/index.html</file>
+                                        <file>${project.parent.basedir}/gh-pages/stylesheets/sourcehawk.css</file>
+                                        <file>${project.parent.basedir}/gh-pages/manpages/sourcehawk.1</file>
+                                        <file>${project.parent.basedir}/gh-pages/manpages/scan.1</file>
+                                        <file>${project.parent.basedir}/gh-pages/manpages/validate-config.1</file>
+                                        <file>${project.parent.basedir}/gh-pages/manpages/fix.1</file>
+                                        <file>${project.parent.basedir}/gh-pages/manpages/flatten-config.1</file>
+                                    </files>
+                                </requireFilesExist>
+                            </rules>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+</project>

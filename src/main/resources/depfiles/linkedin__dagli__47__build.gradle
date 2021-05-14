@@ -1,0 +1,7 @@
+dependencies {
+  api project(':xgboost-core') // Dagli's transformer
+  api project.ext.dependencies.xgboost4j // XGBoost's central repository release (no bundled Windows DLL!)
+
+  annotationProcessor project(':annotation-processor')
+  compileOnly project(':annotation-processor')
+}

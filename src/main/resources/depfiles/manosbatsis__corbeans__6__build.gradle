@@ -1,0 +1,13 @@
+
+apply plugin: 'java-library'
+apply from: "${rootProject.projectDir}/gradle/published.gradle"
+apply plugin: 'kotlin-spring'
+
+dependencies {
+
+	api project(':corbeans-spring-boot-corda')
+	api "com.r3.businessnetworks:membership-service:$corda_solutions_version"
+	api "com.r3.businessnetworks:membership-service-contracts-and-states:$corda_solutions_version"
+	implementation("org.springframework.boot:spring-boot-autoconfigure:$spring_boot_version")
+
+}

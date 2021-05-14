@@ -1,0 +1,56 @@
+android {
+  packagingOptions {
+    exclude "META-INF/LICENSE"
+    exclude "META-INF/LICENSE.md"
+    exclude "META-INF/LICENSE-notice.md"
+
+    // The PDF library and Readium both provide this shared library. This will
+    // cause the build to fail because Gradle doesn"t know which one to pick.
+    pickFirst "lib/arm64-v8a/libc++_shared.so"
+    pickFirst "lib/armeabi-v7a/libc++_shared.so"
+    pickFirst "lib/x86/libc++_shared.so"
+  }
+}
+
+dependencies {
+  implementation project(":simplified-accounts-registry")
+  implementation project(":simplified-accounts-registry-api")
+  implementation project(":simplified-accounts-source-filebased")
+  implementation project(":simplified-analytics-api")
+  implementation project(":simplified-books-controller-api")
+  implementation project(":simplified-buildconfig-api")
+  implementation project(":simplified-migration-fake")
+  implementation project(":simplified-oauth")
+  implementation project(":simplified-services-api")
+  implementation project(":simplified-tests")
+  implementation project(":simplified-ui-catalog")
+  implementation project(":simplified-ui-errorpage")
+  implementation project(":simplified-ui-images")
+  implementation project(':simplified-ui-listeners-api')
+  implementation project(":simplified-ui-profiles")
+  implementation project(":simplified-ui-screen")
+  implementation project(":simplified-ui-settings")
+  implementation project(":simplified-ui-splash")
+  implementation project(":simplified-ui-theme")
+  implementation project(":simplified-ui-thread-api")
+  implementation project(":simplified-viewer-api")
+  implementation project(":simplified-viewer-audiobook")
+  implementation project(":simplified-viewer-epub-readium1")
+  implementation project(":simplified-viewer-pdf")
+  implementation project(':simplified-ui-navigation-tabs')
+
+  implementation libraries.androidx_appcompat
+  implementation libraries.androidx_constraintlayout
+  implementation libraries.androidx_legacy_support_v4
+  implementation libraries.androidx_lifecycle
+  implementation libraries.pandora_bottom_navigator
+  implementation libraries.google_material
+  implementation libraries.io7m_jfunctional
+  implementation libraries.io7m_junreachable
+  implementation libraries.kotlin_stdlib
+  implementation libraries.kotlin_reflect
+  implementation libraries.leak_canary
+  implementation libraries.logback_android
+  implementation libraries.mockito_android
+  implementation libraries.slf4j
+}

@@ -1,0 +1,254 @@
+<!--
+
+    Copyright DataStax, Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+      The following only applies to changes made to this file as part of YugaByte development.
+
+         Portions Copyright (c) YugaByte, Inc.
+
+      Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file
+      except in compliance with the License.  You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software distributed under the
+      License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+      either express or implied.  See the License for the specific language governing permissions
+      and limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.yugabyte</groupId>
+        <artifactId>cassandra-driver-tests-parent</artifactId>
+        <version>3.8.0-yb-8-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cassandra-driver-tests-osgi</artifactId>
+    <name>Java Driver for YugaByte DB Tests - OSGi</name>
+    <description>
+        A test for the Java Driver for YugaByte DB in an OSGi container.
+    </description>
+    <url>https://github.com/yugabyte/cassandra-java-driver</url>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.yugabyte</groupId>
+            <artifactId>cassandra-driver-core</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.github.jnr</groupId>
+                    <artifactId>jnr-ffi</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.github.jnr</groupId>
+                    <artifactId>jnr-posix</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yugabyte</groupId>
+            <artifactId>cassandra-driver-mapping</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yugabyte</groupId>
+            <artifactId>cassandra-driver-extras</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.framework</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yugabyte</groupId>
+            <artifactId>cassandra-driver-core</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.ops4j.pax.exam</groupId>
+            <artifactId>pax-exam</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.ops4j.pax.exam</groupId>
+            <artifactId>pax-exam-testng</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.ops4j.pax.exam</groupId>
+            <artifactId>pax-exam-container-forked</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.ops4j.pax.exam</groupId>
+            <artifactId>pax-exam-link-mvn</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.ops4j.pax.url</groupId>
+            <artifactId>pax-url-reference</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-exec</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+        <plugins>
+
+            <!--
+            this project has no unit tests;
+            this plugin is declared just so that Maven properties
+            get automatically passed to tests run with IntelliJ
+            -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <skip>${test.osgi.skip}</skip>
+                    <systemPropertyVariables>
+                        <cassandra.version>${cassandra.version}</cassandra.version>
+                        <!-- pull in declared version properties, this ensures we test with the same versions used by the driver -->
+                        <guava.version>${guava.version}</guava.version>
+                        <lz4.version>${lz4.version}</lz4.version>
+                        <snappy.version>${snappy.version}</snappy.version>
+                        <hdr.version>${hdr.version}</hdr.version>
+                        <netty.version>${netty.version}</netty.version>
+                        <slf4j.version>${slf4j.version}</slf4j.version>
+                        <logback.version>${logback.version}</logback.version>
+                        <metrics.version>${metrics.version}</metrics.version>
+                        <testng.version>${testng.version}</testng.version>
+                        <jsr353-api.version>${jsr353-api.version}</jsr353-api.version>
+                        <jackson.version>${jackson.version}</jackson.version>
+                        <jackson-databind.version>${jackson-databind.version}</jackson-databind.version>
+                        <ipprefix>${ipprefix}</ipprefix>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>com.datastax.driver.osgi</Bundle-SymbolicName>
+                        <Export-Package>com.datastax.driver.osgi.api,!com.datastax.driver.osgi.impl</Export-Package>
+                        <Bundle-Activator>com.datastax.driver.osgi.impl.Activator</Bundle-Activator>
+                        <_include>-osgi.bnd</_include>
+                    </instructions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>manifest</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git@github.com:YugaByte/cassandra-java-driver.git</connection>
+        <developerConnection>scm:git:git@github.com:YugaByte/cassandra-java-driver.git</developerConnection>
+        <url>https://github.com/yugabyte/cassandra-java-driver</url>
+        <tag>3.8.0-yb-1</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>YugaByte Development Team</name>
+            <email>info@yugabyte.com</email>
+            <organization>YugaByte, Inc.</organization>
+            <organizationUrl>https://www.yugabyte.com</organizationUrl>
+        </developer>
+    </developers>
+</project>
+

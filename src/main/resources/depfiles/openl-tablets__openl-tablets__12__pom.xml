@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.openl.rules</groupId>
+        <artifactId>org.openl.rules.ruleservice-pom</artifactId>
+        <version>5.24.2-SNAPSHOT</version>
+    </parent>
+    <artifactId>org.openl.rules.ruleservice.annotation</artifactId>
+    <packaging>jar</packaging>
+    <name>OpenL - RuleService - Core - Annotations</name>
+    <description>Common OpenL Rules Service Annotation</description>
+    <url>https://openl-tablets.org</url>
+    <dependencies>
+        <!-- Required for Java11 -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openl.rules</groupId>
+            <artifactId>org.openl.rules</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openl.rules</groupId>
+            <artifactId>org.openl.rules.variation</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>

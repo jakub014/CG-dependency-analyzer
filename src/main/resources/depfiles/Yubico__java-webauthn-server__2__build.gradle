@@ -1,0 +1,89 @@
+plugins {
+  id 'java-library'
+  id 'scala'
+  id 'info.solidsoft.pitest'
+  id 'io.github.cosmicsilence.scalafix'
+}
+
+description = 'Yubico WebAuthn server core API (fewer dependencies)'
+
+project.ext.publishMe = true
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+  api(platform(rootProject))
+
+  api(
+    project(':yubico-util'),
+  )
+
+  compileOnly(
+    platform(rootProject),
+    'org.bouncycastle:bcprov-jdk15on',
+  )
+
+  implementation(
+    'com.augustcellars.cose:cose-java',
+    'com.google.guava:guava',
+    'com.fasterxml.jackson.core:jackson-databind',
+    'com.upokecenter:cbor',
+    'org.apache.httpcomponents:httpclient',
+    'org.slf4j:slf4j-api',
+  )
+
+  testImplementation(
+    project(':yubico-util-scala'),
+    'com.fasterxml.jackson.datatype:jackson-datatype-jdk8',
+    'junit:junit',
+    'org.bouncycastle:bcpkix-jdk15on',
+    'org.bouncycastle:bcprov-jdk15on',
+    'org.mockito:mockito-core',
+    'org.scala-lang:scala-library',
+    'org.scalacheck:scalacheck_2.13',
+    'org.scalatest:scalatest_2.13',
+  )
+
+  testRuntimeOnly(
+    'ch.qos.logback:logback-classic',
+  )
+}
+
+jar {
+  manifest {
+    attributes([
+      'Specification-Title': 'Web Authentication: An API for accessing Public Key Credentials',
+      'Specification-Version': 'Level 1 Recommendation 2019-03-04',
+      'Specification-Vendor': 'World Wide Web Consortium',
+
+      'Specification-Url': 'https://www.w3.org/TR/2019/REC-webauthn-1-20190304/',
+      'Specification-Url-Latest': 'https://www.w3.org/TR/webauthn/',
+      'Specification-W3c-Status': 'recommendation',
+      'Specification-Release-Date': '2019-03-04',
+
+      'Implementation-Id': 'java-webauthn-server',
+      'Implementation-Title': 'Yubico Web Authentication server library',
+      'Implementation-Version': project.version,
+      'Implementation-Vendor': 'Yubico',
+      'Implementation-Source-Url': 'https://github.com/Yubico/java-webauthn-server',
+      'Git-Commit': getGitCommitOrUnknown(),
+    ])
+  }
+}
+
+pitest {
+  pitestVersion = '1.4.11'
+
+  timestampedReports = false
+  outputFormats = ['XML', 'HTML']
+
+  avoidCallsTo = [
+    'java.util.logging',
+    'org.apache.log4j',
+    'org.slf4j',
+    'org.apache.commons.logging',
+    'com.google.common.io.Closeables',
+  ]
+}
+

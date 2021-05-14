@@ -1,0 +1,6 @@
+dependencies {
+    api project(':autumn-rpc:autumn-rpc-core')
+    api project(':autumn-core')
+    implementation project(':autumn-http:autumn-http-server')
+    implementation 'org.ow2.asm:asm:7.1'
+}

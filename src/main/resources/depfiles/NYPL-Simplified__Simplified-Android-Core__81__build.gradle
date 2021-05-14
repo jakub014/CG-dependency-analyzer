@@ -1,0 +1,14 @@
+dependencies {
+  api project(":simplified-presentableerror-api")
+  api project(":simplified-reports")
+  api project(":simplified-taskrecorder-api")
+
+  implementation project(":simplified-android-ktx")
+
+  implementation libraries.androidx_appcompat
+  implementation libraries.androidx_constraintlayout
+  implementation libraries.androidx_recyclerview
+  implementation libraries.kotlin_stdlib
+  implementation libraries.kotlin_reflect
+  implementation libraries.slf4j
+}

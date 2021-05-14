@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>de.tum.ei.lkn.eces</groupId>
+        <artifactId>pre-master-pom</artifactId>
+        <version>1.0.21</version>
+    </parent>
+    <artifactId>master-pom</artifactId>
+    <version>1.0.21</version>
+    <packaging>pom</packaging>  <!-- To be able to set as parent pom -->
+
+    <modules>
+        <module>master-pom-test</module>
+    </modules>
+
+    <!-- Because the commons inherit from the master-pom and the master-pom
+         depends on the common, there is a loop problem. Hence, we define
+         a pre-master-pom from which the commons inherits and a master-pom
+         (which inherits from the pre-master-pom) which depends on the
+         commons project. Hence, the loop is removed. -->
+    <dependencies>
+        <dependency>
+            <groupId>de.tum.ei.lkn.eces</groupId>
+            <artifactId>master-pom-commons</artifactId>
+            <version>1.0.21</version>
+        </dependency>
+        <dependency>
+            <!-- The test jar of the commons is needed for tests because
+                 it contains the test categories. -->
+            <groupId>de.tum.ei.lkn.eces</groupId>
+            <artifactId>master-pom-commons</artifactId>
+            <version>1.0.21</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- Configuration for running the integration, performance and
+             unit tests at the right time. That is, unit tests are run during
+             "mvn test", "mvn install", "mvn deploy" and integration and
+             performance tests are run during "mvn integration-test, mvn install,
+             mvn deploy". -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>2.20</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <!-- see: https://stackoverflow.com/questions/53010200/maven-surefire-could-not-find-forkedbooter-class -->
+                    <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+                    <includes>
+                        <include>**/*.class</include>
+                    </includes>
+                    <excludedGroups>
+                        de.tum.ei.lkn.eces.commons.junitclasses.IntegrationTest.class,de.tum.ei.lkn.eces.commons.junitclasses.PerformanceTest.class
+                    </excludedGroups>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.20</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>2.20</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <!-- see: https://stackoverflow.com/questions/53010200/maven-surefire-could-not-find-forkedbooter-class -->
+                    <argLine>-XX:MaxPermSize=512m -Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+                    <groups>
+                        de.tum.ei.lkn.eces.commons.junitclasses.IntegrationTest.class,de.tum.ei.lkn.eces.commons.junitclasses.PerformanceTest.class
+                    </groups>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>**/*.class</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

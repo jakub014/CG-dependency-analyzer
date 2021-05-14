@@ -1,0 +1,105 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.15'
+  }
+}
+
+plugins {
+  id 'com.palantir.git-version' version '0.12.3'
+  id 'maven-publish'
+}
+
+subprojects {
+
+  apply plugin: 'java'
+  apply plugin: 'java-library'
+  apply plugin: 'eclipse'
+  apply plugin: "maven-publish"
+  apply plugin: 'signing'
+  apply plugin: 'com.google.protobuf'
+
+  version = '0.3.0'
+  group = 'io.github.agebe'
+
+  repositories {
+    jcenter()
+  }
+
+  // https://docs.gradle.org/current/userguide/publishing_maven.html#publishing_maven:complete_example
+  publishing {
+    repositories {
+      maven {
+        def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+        def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+        url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+        credentials {
+          username = project.findProperty("sonatype.user") ?: ''
+          password = project.findProperty("sonatype.password") ?: ''
+        }
+      }
+    }
+    publications {
+      maven(MavenPublication) {
+        from components.java
+        pom {
+          name = 'kvd'
+          description = 'key value database'
+          url = 'https://github.com/agebe/kvd'
+          licenses {
+            license {
+              name = 'The Apache License, Version 2.0'
+              url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+            }
+          }
+          developers {
+            developer {
+              id = 'agebe'
+              name = 'Andre Gebers'
+              email = 'andre.gebers@gmail.com'
+            }
+          }
+          scm {
+            connection = 'scm:git:git://github.com/agebe/kvd.git'
+            developerConnection = 'scm:git:ssh://github.com:agebe/kvd.git'
+            url = 'https://github.com/agebe/kvd/tree/main'
+          }
+        }
+      }
+    }
+  }
+
+  signing {
+    sign publishing.publications.maven
+  }
+
+  dependencies {
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
+  }
+
+  java {
+    withSourcesJar()
+    withJavadocJar()
+  }
+
+  jar {
+    manifest {
+      attributes(
+        'Implementation-Version': project.version,
+        'Implementation-Title': project.name,
+        'git-version': gitVersion())
+    }
+  }
+
+  javadoc {
+    options.links = ['https://docs.oracle.com/en/java/javase/11/docs/api/']
+  }
+
+  test {
+    useJUnitPlatform()
+  }
+
+}

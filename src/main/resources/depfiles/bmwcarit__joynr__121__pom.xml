@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<groupId>io.joynr</groupId>
+	<artifactId>javascript</artifactId>
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<name>${project.groupId}:${project.artifactId}</name>
+
+	<parent>
+		<groupId>io.joynr</groupId>
+		<artifactId>joynr</artifactId>
+		<version>1.16.0</version>
+	</parent>
+
+	<modules>
+		<module>libjoynr-js</module>
+	</modules>
+
+	<build>
+		<plugins>
+
+			<!-- for the build signature -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<id>createTimestamp</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>create-timestamp</goal>
+						</goals>
+						<configuration>
+							<timestampFormat>yyyyMMdd-HH:mm:ss</timestampFormat>
+							<timestampPropertyName>signature.timestamp</timestampPropertyName>
+						</configuration>
+					</execution>
+					<execution>
+						<id>createBuildSignature</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<doCheck>false</doCheck>
+					<doUpdate>false</doUpdate>
+				</configuration>
+			</plugin>
+
+			<!-- disable all war overlays, see http://maven.apache.org/plugins/maven-war-plugin/overlays.html -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<dependentWarIncludes></dependentWarIncludes>
+					<dependentWarExcludes>**</dependentWarExcludes>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<!-- disable checkstyle for javascript projects -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>buildnumber-maven-plugin</artifactId>
+										<versionRange>[1.2,)</versionRange>
+										<goals>
+											<goal>create-timestamp</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore/>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>com.phasebash.jsdoc</groupId>
+										<artifactId>jsdoc3-maven-plugin</artifactId>
+										<versionRange>[1.2.0,)</versionRange>
+										<goals>
+											<goal>jsdoc3</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore/>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+				<plugin>
+					<!-- in order to format your JavaScript code, you need to unpack the
+						config.xml using the maven-dependencies plugin, and include the
+						formatter-maven-plugin in the build settings of the sub-project
+					-->
+					<groupId>com.marvinformatics.formatter</groupId>
+					<artifactId>formatter-maven-plugin</artifactId>
+					<version>1.4.0</version>
+					<executions>
+						<execution>
+							<id>format-js-sources</id>
+							<goals>
+								<goal>format</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<lineEnding>KEEP</lineEnding>
+						<configJsFile>${project.build.directory}/build-resources/js-formatter/code-formatter-config.xml</configJsFile>
+						<configFile>${project.build.directory}/build-resources/js-formatter/code-formatter-config.xml</configFile>
+						<directories>
+							<directory>${basedir}/src/main/js</directory>
+							<directory>${basedir}/src/test/js</directory>
+						</directories>
+						<includes>
+							<include>**/*.js</include>
+						</includes>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>io.joynr.tools</groupId>
+							<artifactId>build-resources</artifactId>
+							<version>${project.version}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+				<!-- Skip deploy -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+	</build>
+
+</project>

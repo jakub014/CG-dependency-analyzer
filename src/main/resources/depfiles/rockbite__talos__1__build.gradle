@@ -1,0 +1,115 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7.1'
+    }
+}
+
+apply plugin: 'maven'
+apply plugin: 'nexus'
+
+
+dependencies {
+    api project(":runtimes:talos-libgdx")
+    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
+    implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
+    implementation "com.kotcrab.vis:vis-ui:$visuiVersion"
+    implementation "info.debatty:java-string-similarity:1.2.1"
+    implementation "com.github.Tom-Ski:spine-runtimes:3.9-8e40258"
+    implementation "org.yaml:snakeyaml:1.21"
+}
+
+sourceCompatibility = 1.8
+sourceSets.main.java.srcDirs = [ "src/" ]
+
+sourceSets.main.resources.srcDirs = ["assets"]
+
+project.ext.mainClassName = "com.talosvfx.talos.TalosLauncher"
+project.ext.assetsDir = new File("assets")
+
+
+task run(dependsOn: classes, type: JavaExec) {
+    main = project.mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    workingDir = project.assetsDir
+    ignoreExitValue = true
+
+    if (System.properties['os.name'].toLowerCase().contains('mac')) {
+        jvmArgs = ["-XstartOnFirstThread"]
+    }
+}
+
+task debug(dependsOn: classes, type: JavaExec) {
+    main = project.mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    workingDir = project.assetsDir
+    ignoreExitValue = true
+    debug = true
+
+    if (System.properties['os.name'].toLowerCase().contains('mac')) {
+        jvmArgs = ["-XstartOnFirstThread"]
+    }
+}
+
+task dist(type: Jar) {
+    manifest {
+        attributes 'Main-Class': project.mainClassName
+    }
+    from {
+        configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+}
+
+task distLegacyTest(type: Jar) {
+    manifest {
+        attributes 'Main-Class': "com.talosvfx.talos.test.LegacyCompareTest"
+    }
+    from {
+        configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+}
+
+dist.dependsOn classes
+
+
+
+modifyPom {
+    project {
+        name "Talos Editor"
+        description "Talos Editor"
+        url "https://github.com/rockbite/talos"
+        inceptionYear "2019"
+
+        scm {
+            url "https://github.com/rockbite/talos"
+            connection "scm:https://rockbite@github.com/rockbite/talos.git"
+            developerConnection "scm:git://github.com/rockbite/talos.git"
+        }
+
+        licenses {
+            license {
+                name "The Apache Software License, Version 2.0"
+                url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution "repo"
+            }
+        }
+
+        developers {
+            developer {
+                id "Tom-Ski"
+                name "Tom Wojciechowsk"
+            }
+            developer {
+                id "azakhary"
+                name "Avetis Zakharyan"
+            }
+        }
+    }
+}

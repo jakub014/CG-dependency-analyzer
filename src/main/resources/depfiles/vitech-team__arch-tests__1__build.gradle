@@ -1,0 +1,3 @@
+dependencies {
+    compile group: 'org.mapstruct', name: 'mapstruct', version: '1.4.1.Final'
+}

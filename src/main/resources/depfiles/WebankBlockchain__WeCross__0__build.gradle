@@ -1,0 +1,244 @@
+plugins {
+    id 'com.github.sherter.google-java-format' version '0.8'
+    id 'org.ajoberstar.grgit' version '4.0.1'
+}
+
+// Apply the java-library plugin to add support for Java Library
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'java'
+//apply plugin: 'war'
+apply plugin: 'jacoco'
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+}
+
+sourceCompatibility = '1.8'
+version = '1.1.1'
+
+task stubSourceJar(type: Jar) {
+    into 'com/webank/wecross/stub', { from 'src/main/java/com/webank/wecross/stub' }
+    into 'com/webank/wecross/exception', { from 'src/main/java/com/webank/wecross/exception' }
+    classifier = 'sources'
+}
+
+task stubJar(type: Jar) {
+    into 'com/webank/wecross/stub', { from 'build/classes/java/main/com/webank/wecross/stub' }
+    into 'com/webank/wecross/exception', { from 'build/classes/java/main/com/webank/wecross/exception' }
+}
+
+task javadocJar(type: Jar) {
+    // from javadoc
+    classifier = 'javadoc'
+}
+
+ext {
+    if (!project.hasProperty("NEXUS_USERNAME")) {
+        NEXUS_USERNAME="xxx"
+    }
+
+    if (!project.hasProperty("NEXUS_PASSWORD")) {
+        NEXUS_PASSWORD="xxx"
+    }
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.webank'
+            artifactId = 'wecross-java-stub'
+            from components.java
+            artifacts = [stubJar, stubSourceJar, javadocJar]
+
+            // https://docs.gradle.org/current/dsl/org.gradle.api.publish.maven.MavenPublication.html
+            pom {
+                name = "WeCross-Stub"
+                description = "Stub interface for WeCross"
+                url = "https://github.com/WebankBlockchain/WeCross"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "Shareong"
+                        name = "Shareong"
+                        email = "740310627@qq.com"
+                    }
+                }
+                scm {
+                    connection = "scm:git:git://github.com/WebankBlockchain/WeCross.git"
+                    developerConnection = "scm:git:ssh://github.com/WebankBlockchain/WeCross.git"
+                    url = "https://github.com/WebankBlockchain/WeCross"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+            credentials {
+                username = NEXUS_USERNAME
+                password = NEXUS_PASSWORD
+            }
+        }
+    }
+
+    signing {
+        sign publishing.publications.mavenJava
+    }
+}
+
+
+googleJavaFormat {
+    options style: 'AOSP'
+    source = sourceSets*.allJava
+    include '**/*.java'
+    exclude '**/temp/*.java'
+}
+
+verifyGoogleJavaFormat {
+    source = sourceSets*.allJava
+    include '**/*.java'
+    exclude '**/temp/*.java'
+}
+
+configurations.all {
+    exclude module: "spring-boot-starter-logging"
+    exclude module: "spring-boot-starter-web"
+    exclude group: 'io.netty', module: 'netty-all'
+}
+
+dependencies {
+    compile 'org.quartz-scheduler:quartz:2.3.2'
+    compile 'com.moandjiezana.toml:toml4j:0.7.2'
+    compile 'org.apache.commons:commons-lang3:3.11'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.11.2' // must not lower than 2.11.0 to support abi translate
+    compile 'org.springframework.boot:spring-boot-starter-log4j2:2.3.9.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-actuator:2.3.9.RELEASE'
+    compile 'org.springframework.boot:spring-boot-configuration-processor:2.3.9.RELEASE'
+    compile 'org.asynchttpclient:async-http-client:2.12.2'
+    compile 'org.bouncycastle:bcprov-jdk15on:1.60'
+    compile 'commons-codec:commons-codec:1.14'
+    compile 'javax.activation:activation:1.1.1'
+    compile 'org.fisco-bcos:tcnative:2.0.34.0'
+
+    compile group: 'io.netty', name: 'netty-buffer', version: '4.1.58.Final'
+    compile group: 'io.netty', name: 'netty-codec', version: '4.1.58.Final'
+    compile group: 'io.netty', name: 'netty-codec-http', version: '4.1.58.Final'
+    compile group: 'io.netty', name: 'netty-codec-http2', version: '4.1.58.Final'
+    compile group: 'io.netty', name: 'netty-common', version: '4.1.58.Final'
+    compile group: 'io.netty', name: 'netty-handler', version: '4.1.58.Final'
+    compile group: 'io.netty', name: 'netty-resolver', version: '4.1.58.Final'
+    compile group: 'io.netty', name: 'netty-transport', version: '4.1.58.Final'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.1.13.RELEASE'
+}
+
+sourceSets {
+    main {
+        resources {
+            exclude '/*'
+        }
+    }
+}
+
+jar {
+    destinationDir file('dist/apps')
+    archiveName project.name + "-" + project.version + '.jar'
+    exclude '**/*.toml'
+    exclude '**/*.xml'
+    exclude '**/*.properties'
+    exclude '**/*.yml'
+    exclude '**/*.crt'
+    exclude '**/*.key'
+
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'com.webank.wecross.Application'
+        )
+
+        try {
+            def repo = grgit.open(dir: file('.').canonicalPath)
+            if (repo != null) {
+                def date = new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                def branch = repo.branch.getCurrent().getName()
+                def commit = repo.head().getAbbreviatedId(40)
+
+                attributes(["Implementation-Timestamp": date,
+                            "Git-Branch"              : branch,
+                            "Git-Commit"              : commit
+                ])
+
+                logger.info("  Commit : ")
+                logger.info("  => date: {}", date)
+                logger.info("  => branch: {}", branch)
+                logger.info("  => commit: {}", commit)
+            }
+        } catch (Exception e) {
+            // logger.warn(' .git not exist, cannot found commit info')
+        }
+    }
+
+    doLast {
+        copy {
+            from file('src/main/resources/')
+            into 'dist/conf'
+        }
+        copy {
+            from configurations.runtime
+            into 'dist/lib'
+        }
+        copy {
+            from file('.').listFiles().findAll { File f -> (f.name.endsWith('.sh') || f.name.endsWith('.env')) }
+            into 'dist'
+        }
+        copy {
+            from file('scripts/')
+            into 'dist'
+        }
+        mkdir 'dist/plugin'
+    }
+}
+
+task makeStubJAR(type: org.gradle.api.tasks.bundling.Jar) {
+    baseName 'stub'
+    from 'build/classes/java/main/com/webank/wecross/stub'
+    from 'src/main/java/com/webank/wecross/stub'
+    into 'com/webank/wecross/stub/'
+
+    destinationDir file('dist/stub/')
+}
+
+test {
+    testLogging {
+                showStandardStreams = false
+                events "passed","skipped","failed"
+            }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}

@@ -1,0 +1,258 @@
+import java.text.SimpleDateFormat
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.standardout:bnd-platform:1.7.0'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'maven-publish'
+    id 'signing'
+    id 'nebula.release' version '13.0.0'
+}
+apply plugin: 'org.standardout.bnd-platform'
+apply plugin: 'p2-plugin'
+
+group 'org.contextmapper'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+if (!project.hasProperty('signing.secretKeyRingFile')) {
+    project.ext.'signing.secretKeyRingFile' = "${rootDir}/secret-key.gpg"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.graphstream', name: 'gs-core', version: graphstreamVersion
+    compile group: 'org.graphstream', name: 'gs-algo', version: graphstreamVersion
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: slf4jVersion
+    compile group: 'com.google.guava', name: 'guava', version: guavaVersion
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+    compile group: 'org.nlpub', name: 'watset', version: watsetVersion
+
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: jUnitVersion
+    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+    testImplementation group: 'org.hamcrest', name: 'hamcrest', version: hamcrestVersion
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allJava
+    archiveClassifier = 'sources'
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    archiveClassifier = 'javadoc'
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+    required { gradle.taskGraph.hasTask("publishMavenJavaPublicationToMavenLocal") || gradle.taskGraph.hasTask("publishMavenJavaPublicationToMavenRepository") }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            customizePom(pom)
+
+            artifactId = "${project.name}"
+            groupId = "${project.group}"
+            version = "${project.version}"
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+
+            pom.withXml {
+                def pomFile = file("${project.buildDir}/generated-pom.xml")
+                writeTo(pomFile)
+                def pomAscFile = signing.sign(pomFile).signatureFiles[0]
+                artifact(pomAscFile) {
+                    classifier = null
+                    extension = 'pom.asc'
+                }
+            }
+
+            signArchives.signatures.each { signature ->
+                artifact(signature) {
+                    def matcher = signature.file =~ /-(sources|javadoc)\.jar\.asc$/
+                    if (matcher.find()) {
+                        classifier = matcher.group(1)
+                    } else {
+                        classifier = null
+                    }
+                    extension = signature.type
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            def releasesRepoUrl = "${ossReleaseStagingRepository}"
+            def snapshotsRepoUrl = "${ossSnapshotRepository}"
+            url = project.version.toString().endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+            credentials {
+                username = System.getenv('OSSRH_USERNAME')
+                password = System.getenv('OSSRH_PASSWORD')
+            }
+        }
+    }
+}
+
+def customizePom(pom) {
+    pom.withXml {
+        def root = asNode()
+
+        // eliminate test-scoped dependencies
+        root.dependencies.removeAll { dep ->
+            dep.scope == "test"
+        }
+
+        root.children().last() + {
+            resolveStrategy = Closure.DELEGATE_FIRST
+
+            description 'The Service Cutter engine (https://github.com/ServiceCutter/ServiceCutter) provided as library which can be used in other applications to generate service decompositions.'
+            name 'Service Cutter Library'
+            url 'https://github.com/ContextMapper/service-cutter-library'
+            organization {
+                name 'Context Mapper'
+                url 'https://contextmapper.org/'
+            }
+            issueManagement {
+                system 'GitHub'
+                url 'https://github.com/ContextMapper/service-cutter-library/issues'
+            }
+            licenses {
+                license {
+                    name 'Apache License 2.0'
+                    url 'https://github.com/ContextMapper/service-cutter-library/blob/master/LICENSE'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                url 'https://github.com/ContextMapper/service-cutter-library'
+                connection 'scm:git:git://github.com/ContextMapper/service-cutter-library.git'
+                developerConnection 'scm:git:ssh://git@github.com:ContextMapper/service-cutter-library.git'
+            }
+            developers {
+                developer {
+                    name 'Michi Gysel'
+                    email 'mail@mgysel.ch'
+                }
+                developer {
+                    name 'Lukas Kölbener'
+                    email 'lukas@koelbeners.ch'
+                }
+                developer {
+                    name 'Stefan Kapferer'
+                    email 'stefan@contextmapper.org'
+                }
+            }
+        }
+    }
+}
+
+defaultTasks 'updateSiteZip'
+updateSiteZip.dependsOn clean
+build.finalizedBy(updateSiteZip)
+
+platform {
+
+    bundle "org.contextmapper:service-cutter-library:${version}", {
+        bnd {
+            symbolicName = 'org.contextmapper.servicecutter.library'
+            bundleName = 'service-cutter-library'
+            instruction 'Bundle-Vendor', 'Context Mapper'
+            version = version
+        }
+        exclude module: 'slf4j-api'
+        exclude module: 'slf4j-log4j12'
+        exclude module: 'log4j'
+        exclude module: 'jsr305'
+    }
+
+    bundle(group: 'org.graphstream', name: 'gs-core', version: graphstreamVersion) {
+        bnd {
+            instruction 'Import-Package', "!com.sun.net.httpserver,*"
+        }
+    }
+
+    bundle(group: 'com.lowagie', name: 'itext', version: '2.1.5') {
+        bnd {
+            instruction 'Import-Package', "!com.apple.mrj,!com.lowagie.toolbox,*"
+        }
+    }
+
+    bundle(group: 'org.nlpub', name: 'watset', version: watsetVersion) {
+        bnd {
+            instruction 'Import-Package', "!com.beust.jcommander,!net.razorvine.pickle,!net.razorvine.pickle.objects,*"
+        }
+    }
+
+    featureId 'org.contextmapper.servicecutter.feature'
+    featureName 'Service Cutter Library'
+    featureVersion project.version.toString().endsWith('SNAPSHOT') ? project.version.toString().replace("SNAPSHOT", "") + new SimpleDateFormat("YYYYMMddHHmmss").format(new Date()) : project.version.toString()
+    featureProvider 'Context Mapper'
+
+    categoryName 'Service Cutter Library'
+    categoryId 'org.contextmapper.servicecutter.library'
+
+    eclipseMirror 'https://ftp.fau.de/eclipse/technology/epp/downloads/release/2020-03/R/eclipse-java-2020-03-R-linux-gtk-x86_64.tar.gz'
+    downloadsDir new File(buildDir, 'eclipse')
+    useBndHashQualifiers false
+    useFeatureHashQualifiers false
+    defaultQualifier new SimpleDateFormat("YYYYMMddHHmmss").format(new Date())
+}
+
+publishP2Repo {
+    repoOwner = 'contextmapper'
+    repoName = project.version.toString().endsWith('SNAPSHOT') ? 'service-cutter-library-snapshots' : 'service-cutter-library-releases'
+    mainFeatureId = 'org.contextmapper.servicecutter.feature'
+    compositePackage = ''
+    subCompositeStrategy = 'MICRO'
+    apiUrl = 'https://contextmapper.jfrog.io'
+    apiKey = System.getenv('ARTIFACTORY_API_KEY')
+    user = System.getenv('ARTIFACTORY_USERNAME')
+}
+
+publish.finalizedBy(publishP2Repo)
+
+test {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+
+check.dependsOn jacocoTestReport
+
+model {
+    tasks.generatePomFileForMavenJavaPublication {
+        destination = file("$buildDir/generated-pom.xml")
+    }
+    tasks.publishMavenJavaPublicationToMavenLocal {
+        dependsOn project.tasks.signArchives
+    }
+    tasks.publishMavenJavaPublicationToMavenRepository {
+        dependsOn project.tasks.signArchives
+    }
+}

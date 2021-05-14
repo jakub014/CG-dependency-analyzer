@@ -1,0 +1,23 @@
+description = "Apereo CAS Metrics Support"
+dependencies {
+    implementation project(":core:cas-server-core-tickets-api")
+    implementation project(":core:cas-server-core-authentication-api")
+    implementation project(":core:cas-server-core-util-api")
+    implementation project(":core:cas-server-core-web-api")
+    implementation project(":core:cas-server-core-services")
+    implementation project(":core:cas-server-core-configuration-api")
+    implementation project(":core:cas-server-core-monitor")
+    
+    implementation libraries.mongo
+    implementation libraries.redis
+    implementation libraries.metrics
+    implementation libraries.influxdb
+    implementation libraries.squareup
+    implementation libraries.okhttp
+
+    implementation project(":support:cas-server-support-redis-core")
+    implementation project(":support:cas-server-support-mongo-core")
+    implementation project(":support:cas-server-support-influxdb-core")
+
+
+}

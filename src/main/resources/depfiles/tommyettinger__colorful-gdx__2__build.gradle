@@ -1,0 +1,34 @@
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+eclipse.project.name = project.name
+
+sourceSets.test.resources.srcDirs = [ file('src/test/resources').path ]
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+javadoc.destinationDir = file('../docs/colorful-pure/apidocs')
+javadoc.options.source("8")
+((StandardJavadocDocletOptions)javadoc.options).linkSource(true)
+((StandardJavadocDocletOptions)javadoc.options).noTimestamp(true)
+((StandardJavadocDocletOptions)javadoc.options).use(true)
+((StandardJavadocDocletOptions)javadoc.options).bottom("Copyright &#169; Tommy Ettinger 2020-2021. All rights reserved. Are you a copyright lawyer? If so, I want you to think, are you actually helping people, or just wasting their time? Maybe do some pro bono work for a cause that matters?")
+
+if(JavaVersion.current().isJava9Compatible()) {
+    allprojects {
+        tasks.withType(JavaCompile) {
+            options.release.set(8)
+        }
+    }
+}
+
+dependencies {
+    api "com.github.tommyettinger:jdkgdxds:$jdkgdxdsVersion"
+    testImplementation "junit:junit:4.13.1"
+}
+
+jar {
+    archiveBaseName.set(project.name)
+    manifest {
+        attributes 'Implementation-Title': projectName, 'Implementation-Version': archiveVersion
+    }
+}

@@ -1,0 +1,30 @@
+sonarqube {
+  properties {
+    property 'sonar.projectName', "${projectTitle} :: Markdown"
+  }
+}
+
+dependencies {
+  // please keep list ordered
+
+  compile 'commons-lang:commons-lang'
+  compile 'org.codehaus.sonar:sonar-channel'
+
+  testCompile 'ch.qos.logback:logback-classic'
+  testCompile 'junit:junit'
+  testCompile 'org.assertj:assertj-core'
+}
+
+artifactoryPublish.skip = false
+
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
+      if (release) {
+        artifact sourcesJar
+        artifact javadocJar
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+plugins {
+    id 'java-library'
+    id 'groovy-base'
+    id 'dev.fukgradleplugins.toolbox-publish'
+}
+
+description = 'Gradle runner kit API.'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withSourcesJar()
+    withJavadocJar()
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://repo.nokeedev.net/snapshots' }
+}
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    api 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation project(':gradle-fixtures-file-system')
+
+    testImplementation platform('org.spockframework:spock-bom:1.2-groovy-2.5')
+    testImplementation 'org.spockframework:spock-core'
+}
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+tasks.register('release') {
+    dependsOn('publish')
+}

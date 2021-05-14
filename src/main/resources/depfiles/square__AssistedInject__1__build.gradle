@@ -1,0 +1,20 @@
+apply plugin: 'java-library'
+apply plugin: 'org.jetbrains.kotlin.jvm'
+
+sourceCompatibility = JavaVersion.VERSION_1_6
+targetCompatibility = JavaVersion.VERSION_1_6
+
+dependencies {
+  compileOnly deps.android
+  // Annotations are exposed as 'api' because Dagger wants to read the @NonNull annotation on the
+  // @Inject constructor parameter if you are using its implicit binding.
+  api deps.androidxAnnotations
+  api deps.inject
+
+  testImplementation deps.kotlin
+  testImplementation deps.junit
+  testImplementation deps.robolectric
+  testImplementation deps.android
+}
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

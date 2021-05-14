@@ -1,0 +1,622 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.duracloud</groupId>
+  <artifactId>synctoolui</artifactId>
+  <packaging>war</packaging>
+  <version>7.0.0</version>
+  <name>DuraCloud Sync Tool</name>
+
+  <parent>
+    <artifactId>duracloud</artifactId>
+    <groupId>org.duracloud</groupId>
+    <version>7.0.0</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <properties>
+    <alternateArtifactId>duracloudsync</alternateArtifactId>
+    <unitTests>**/*Test.class</unitTests>
+    <seleniumTests>**/Test*.class</seleniumTests>
+    <skipITs>true</skipITs>
+    <skipUTs>false</skipUTs>
+    <jetty.port>8888</jetty.port>
+    <durcloud.defaultport>443</durcloud.defaultport>
+    <installbuilder.executable.path>/Applications/BitRock InstallBuilder Enterprise 19.12.0/bin/Builder.app/Contents/MacOS/installbuilder.sh
+    </installbuilder.executable.path>
+    <jre.unpack.dir>${project.build.directory}/jre</jre.unpack.dir>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>project.local</id>
+      <name>project</name>
+      <url>file:${project.basedir}/repo</url>
+    </repository>
+  </repositories>
+
+  <build>
+
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+      <resource>
+        <directory>src/main/install</directory>
+        <filtering>true</filtering>
+        <targetPath>${project.build.directory}/install</targetPath>
+      </resource>
+    </resources>
+
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
+
+    <plugins>
+
+      <!-- Turns off the tomcat deployment plugin -->
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <executions>
+          <execution>
+            <id>tomcat-deploy</id>
+            <phase>none</phase>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- jsps need to be precompiled. otherwise the executable jar
+      will choke on machines that are running on a JRE rather than JDK -->
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-jspc-maven-plugin</artifactId>
+        <version>${jetty.version}</version>
+        <executions>
+          <execution>
+            <id>jspc</id>
+            <goals>
+              <goal>jspc</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <webXml>${basedir}/target/web.xml</webXml>
+          <warSourceExcludes>**/*.jsp</warSourceExcludes>
+          <!-- Resolves classloader LinkageError by removing duplicate classes -->
+          <packagingExcludes>WEB-INF/lib/httpcore*.jar</packagingExcludes>
+          <webResources>
+            <resource>
+              <directory>src/main/webapp</directory>
+              <includes>
+                <include>**/*.jsp</include>
+              </includes>
+              <filtering>true</filtering>
+            </resource>
+          </webResources>
+          <overlays>
+            <overlay>
+              <groupId>org.duracloud</groupId>
+              <artifactId>jquery-war</artifactId>
+              <type>war</type>
+            </overlay>
+            <overlay>
+              <groupId>org.duracloud</groupId>
+              <artifactId>jquery-ui-war</artifactId>
+              <type>war</type>
+            </overlay>
+          </overlays>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+        </configuration>
+        <executions>
+          <execution>
+            <!-- This execution 'default-test' overrides the built-in default execution for the test phase.
+                 Thus unit tests aren't run when you running integration tests.
+                 It comes in handy when trying to debug a single integration test as you only need to attach
+                 your debugger once. -->
+            <id>default-test</id>
+            <configuration>
+              <skipTests>${skipTests}</skipTests>
+              <excludes>
+                <exclude>${seleniumTests}</exclude>
+              </excludes>
+              <includes>
+                <include>${unitTests}</include>
+              </includes>
+            </configuration>
+          </execution>
+          <execution>
+            <id>integrationtest</id>
+            <phase>integration-test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
+            <configuration>
+              <skipTests>${skipITs}</skipTests>
+              <excludes>
+                <exclude>${unitTests}</exclude>
+              </excludes>
+              <includes>
+                <include>${seleniumTests}</include>
+              </includes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>${jetty.version}</version>
+
+        <configuration>
+          <scanIntervalSeconds>10</scanIntervalSeconds>
+          <systemProperties>
+            <systemProperty>
+              <name>jetty.port</name>
+              <value>${jetty.port}</value>
+            </systemProperty>
+            <systemProperty>
+              <name>durcloud.defaultport</name>
+              <value>${durcloud.defaultport}</value>
+            </systemProperty>
+          </systemProperties>
+          <webApp>
+            <contextPath>/sync</contextPath>
+          </webApp>
+          <webAppConfig>
+            <unpackOverlays>true</unpackOverlays>
+          </webAppConfig>
+          <stopKey>foo</stopKey>
+          <stopPort>9999</stopPort>
+        </configuration>
+
+        <executions>
+          <execution>
+            <id>start-jetty</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>start</goal>
+            </goals>
+            <configuration>
+              <skip>${skipITs}</skip>
+              <scanIntervalSeconds>0</scanIntervalSeconds>
+              <daemon>true</daemon>
+              <systemProperties>
+                <systemProperty>
+                  <name>jetty.port</name>
+                  <value>${jetty.port}</value>
+                </systemProperty>
+                <systemProperty>
+                  <name>jsse.enableSNIExtension</name>
+                  <value>false</value>
+                </systemProperty>
+              </systemProperties>
+            </configuration>
+          </execution>
+          <execution>
+            <id>stop-jetty</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>stop</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.4.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <finalName>${alternateArtifactId}-${project.version}</finalName>
+              <appendAssemblyId>false</appendAssemblyId>
+              <archive>
+                <manifest>
+                  <mainClass>org.duracloud.syncui.SyncSelector</mainClass>
+                </manifest>
+              </archive>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>selenium-maven-plugin</artifactId>
+        <version>2.3</version>
+        <executions>
+          <execution>
+            <id>xvfb</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>xvfb</goal>
+            </goals>
+            <configuration>
+              <skip>${skipITs}</skip>
+            </configuration>
+          </execution>
+          <execution>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>start-server</goal>
+            </goals>
+            <configuration>
+              <background>true</background>
+              <skip>${skipITs}</skip>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.duracloud</groupId>
+      <artifactId>jquery-war</artifactId>
+      <type>war</type>
+      <version>1.7.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.duracloud</groupId>
+      <artifactId>jquery-ui-war</artifactId>
+      <type>war</type>
+      <version>1.8.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-server</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-annotations</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-jmx</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-webapp</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>apache-jsp</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>apache-jstl</artifactId>
+      <version>${jetty.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.webflow</groupId>
+      <artifactId>spring-webflow</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.webflow</groupId>
+      <artifactId>spring-binding</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-template</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-servlet</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-jsp</artifactId>
+    </dependency>
+
+    <!-- Hibernate validator dependencies -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.logging</groupId>
+      <artifactId>jboss-logging</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml</groupId>
+      <artifactId>classmate</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.duracloud</groupId>
+      <artifactId>common</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.duracloud</groupId>
+      <artifactId>synctool</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.duracloud</groupId>
+      <artifactId>syncoptimize</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.duracloud</groupId>
+      <artifactId>storeclient</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.easymock</groupId>
+      <artifactId>easymock</artifactId>
+    </dependency>
+
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>installers</id>
+      <build>
+        <plugins>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.2</version>
+            <executions>
+              <execution>
+                <id>unpack</id>
+                <phase>package<!-- or any other valid maven phase --></phase>
+                <goals>
+                  <goal>unpack-dependencies</goal>
+                </goals>
+                <configuration>
+                  <includeGroupIds>com.bitrock.installbuilder</includeGroupIds>
+                  <includeArtifactIds>jre</includeArtifactIds>
+                  <outputDirectory>
+                    ${jre.unpack.dir}
+                  </outputDirectory>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+
+              <execution>
+                <id>windows</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <configuration>
+                  <executable>${installbuilder.executable.path}</executable>
+                  <arguments>
+                    <argument>build</argument>
+                    <argument>${project.build.directory}/install/installbuilder.xml</argument>
+                    <argument>windows</argument>
+                    <argument>--setvars</argument>
+                    <argument>java_install_jre=0</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+
+              <execution>
+                <id>osx</id>
+                <!-- the osx installer without jre must be run in the verify phase
+                     in order to prevent it from being packed with the jre since
+                     installbuilder does not optionally allow inclusion of files
+                     using the <include /> directive.
+
+                     So I've placed a dummy java.xml file in src/main/install which
+                     satisfies installbuilder.xml but prevents jre from being packaged
+
+                      -->
+                <phase>verify</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <configuration>
+                  <executable>${installbuilder.executable.path}</executable>
+                  <arguments>
+                    <argument>build</argument>
+                    <argument>${project.build.directory}/install/installbuilder.xml</argument>
+                    <argument>osx</argument>
+                    <argument>--setvars</argument>
+                    <argument>java_install_jre=0</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+
+              <execution>
+                <id>linux</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <configuration>
+                  <executable>${installbuilder.executable.path}</executable>
+                  <arguments>
+                    <argument>build</argument>
+                    <argument>${project.build.directory}/install/installbuilder.xml</argument>
+                    <argument>linux</argument>
+                    <argument>--setvars</argument>
+                    <argument>java_install_jre=0</argument>
+                  </arguments>
+                </configuration>
+              </execution>
+
+            </executions>
+          </plugin>
+
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>2.3</version>
+            <executions>
+              <execution>
+                <id>pacakge</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+                <configuration>
+                  <finalName>${alternateArtifactId}-${project.version}</finalName>
+                  <appendAssemblyId>false</appendAssemblyId>
+                  <archive>
+                    <manifest>
+                      <mainClass>org.duracloud.syncui.SyncSelector</mainClass>
+                    </manifest>
+                  </archive>
+                </configuration>
+              </execution>
+              <execution>
+                <id>install</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+                <configuration>
+                  <appendAssemblyId>true</appendAssemblyId>
+                  <descriptors>
+                    <descriptor>src/main/install/osx-installer-zip.xml</descriptor>
+                  </descriptors>
+                  <finalName>${alternateArtifactId}-${project.version}</finalName>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>

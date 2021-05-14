@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+	
+  <parent>
+    <groupId>org.overturetool</groupId>
+    <artifactId>core</artifactId>
+    <version>3.0.3-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <groupId>org.overturetool.core</groupId>
+  <artifactId>typechecker</artifactId>
+  <name>The VDM Type Checker </name>
+
+  <dependencies>
+  
+  <dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+  
+    <dependency>
+      <groupId>org.overturetool.core</groupId>
+      <artifactId>ast</artifactId>
+      <version>${project.version}</version>
+    </dependency>		
+    <dependency>
+      <groupId>org.overturetool.core</groupId>
+      <artifactId>parser</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.overturetool.core</groupId>
+      <artifactId>testframework</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-surefire-plugin</artifactId>
+	<configuration>
+	  <includes>
+	    <include>**/*Test.java</include>
+	    <include>**/*Test?.java</include>
+	    <include>**/*TestSuite.java</include>
+	  </includes>
+	</configuration>
+      </plugin>
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+        </configuration>
+      </plugin>
+
+			  <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+           <configuration>
+              <excludes>
+                <exclude>**/ClassTypeChecker.java</exclude>
+<exclude>**/Environment.java</exclude>
+<exclude>**/FlatCheckedEnvironment.java</exclude>
+<exclude>**/FlatEnvironment.java</exclude>
+<exclude>**/ModuleEnvironment.java</exclude>
+<exclude>**/ModuleTypeChecker.java</exclude>
+<exclude>**/PrivateClassEnvironment.java</exclude>
+<exclude>**/PublicClassEnvironment.java</exclude>
+<exclude>**/TypeCheckException.java</exclude>
+<exclude>**/TypeChecker.java</exclude>
+<exclude>**/TypeComparator.java</exclude>
+              </excludes>
+        </configuration>
+        </plugin>
+    </plugins>
+  </build>
+</project>

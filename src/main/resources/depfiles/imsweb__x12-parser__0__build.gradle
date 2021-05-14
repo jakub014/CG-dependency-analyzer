@@ -1,0 +1,175 @@
+plugins {
+    id 'java-library'
+    id 'checkstyle'
+    id "com.github.spotbugs" version "4.7.1"
+    id 'maven-publish'
+    id 'signing'
+    id "io.codearte.nexus-staging" version "0.30.0"  // logs into Sonotype OSS and does a "Close" and "Release"
+    id 'com.adarshr.test-logger' version '3.0.0'
+    id "com.github.ben-manes.versions" version "0.38.0"
+    id 'org.sonatype.gradle.plugins.scan' version '2.0.9'
+}
+
+group = 'com.imsweb'
+version = '1.13'
+description = 'Java client library for parsing x12 files'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'                         // UTF-8 for all compilation tasks
+    options.compilerArgs << "-Xlint:all" << "-Werror"  // fail the build if there are compiler warnings
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    withJavadocJar()
+    withSourcesJar()
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    spotbugs 'com.github.spotbugs:spotbugs:4.2.3'
+
+    api 'com.thoughtworks.xstream:xstream:1.4.16'
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'commons-io:commons-io:2.8.0'
+    testImplementation 'org.jsoup:jsoup:1.13.1'
+}
+
+jar {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                'Implementation-Version': archiveVersion,
+                'Implementation-Vendor': group,
+                'Created-By': System.properties['java.vm.version'] + ' (' + System.properties['java.vm.vendor'] + ')',
+                'Built-By': System.getProperty('user.name'),
+                'Built-Date': new Date(),
+                'Built-JDK': System.getProperty('java.version'),
+                'Automatic-Module-Name': 'com.imsweb.x12'
+        )
+    }
+}
+
+checkstyle {
+    toolVersion '8.29'
+    configFile = file('config/checkstyle/checkstyle.xml')
+}
+
+spotbugs {
+    excludeFilter = file('config/spotbugs/spotbugs-exclude.xml')
+}
+
+// Nexus vulnerability scan (https://github.com/sonatype-nexus-community/scan-gradle-plugin)
+ossIndexAudit {
+    dependencyGraph = true
+    printBanner = false
+
+    // only set proxy if running outside of Github Actions
+    if (!System.getenv().GITHUB_ACTIONS) {
+        proxyConfiguration {
+            protocol = 'http'
+            host = 'webproxy-btp.imsweb.com'
+            port = 8080
+        }
+    }
+}
+check.dependsOn 'ossIndexAudit'
+
+// don't try to release a snapshot to a non-snapshot repository, that won't work anyway
+if (version.endsWith('-SNAPSHOT')) {
+    gradle.startParameter.excludedTaskNames += 'signMavenJavaPublication'
+    gradle.startParameter.excludedTaskNames += 'closeAndReleaseRepository'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'x12-parser'
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'X12 Parser'
+                description = 'A Java library for parsing X12 files, including ANSI 837'
+                url = 'https://github.com/imsweb/x12-parser'
+                inceptionYear = '2015'
+
+                licenses {
+                    license {
+                        name = 'A modified BSD License (BSD)'
+                        url = 'https://github.com/imsweb/x12-parser/blob/master/LICENSE'
+                        distribution = 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'AngelaszekD'
+                        name = 'David Angelaszek'
+                        email = 'AngelaszekD@imsweb.com'
+                    }
+                    developer {
+                        id = 'ctmay4'
+                        name = 'Chuck May'
+                        email = 'mayc@imsweb.com'
+                    }
+                }
+
+                scm {
+                    url = 'https://github.com/imsweb/x12-parser'
+                    connection = 'scm:https://github.com/imsweb/x12-parser.git'
+                    developerConnection = 'scm:git@github.com:imsweb/x12-parser.git'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+            credentials {
+                username = project.findProperty('nexusUsername') ?: ''
+                password = project.findProperty('nexusPassword') ?: ''
+            }
+        }
+    }
+}
+
+signing {
+    def signingKey = project.findProperty('signingKey') ?: ''
+    def signingPassword = project.findProperty('signingPassword') ?: ''
+
+    useInMemoryPgpKeys(signingKey, signingPassword)
+
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+// configure nexus staging plugin
+nexusStaging {
+    numberOfRetries = 50
+    delayBetweenRetriesInMillis = 5000
+}
+
+wrapper {
+    gradleVersion = '7.0.1'
+    distributionType = Wrapper.DistributionType.ALL
+}

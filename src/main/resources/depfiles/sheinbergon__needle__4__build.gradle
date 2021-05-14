@@ -1,0 +1,124 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+}
+
+dependencies {
+
+    implementation project(':needle-core')
+    testImplementation project(':needle-core').sourceSets.test.output
+
+    implementation 'net.bytebuddy:byte-buddy:1.10.14'
+
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.2'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.2'
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier 'javadoc'
+    from javadoc.destinationDir
+}
+
+jar {
+    enabled = false
+}
+
+afterEvaluate {
+
+    task copyAgent(dependsOn: shadowJar, type: Copy) {
+        from "$buildDir/libs/"
+        into "$buildDir/resources/test"
+        include "*.jar"
+    }
+
+    shadowJar {
+
+        archiveClassifier.set('')
+
+        from sourceSets.main.output
+
+        dependencies {
+            exclude(dependency('org.jetbrains.kotlin:.*:.*'))
+        }
+
+        manifest {
+            attributes(
+                    "Agent-Class": "org.sheinbergon.needle.agent.NeedleAgent",
+                    "Can-Redefine-Classes": true,
+                    "Can-Retransform-Classes": true,
+                    "Boot-Class-Path": archiveFileName.get(),
+                    "Premain-Class": "org.sheinbergon.needle.agent.NeedleAgent")
+        }
+
+        finalizedBy tasks.copyAgent
+    }
+
+    test {
+        forkEvery(1)
+        dependsOn tasks.copyAgent
+        systemProperties = [
+                "jdk.attach.allowAttachSelf": true,
+                "test.agent.jar.path"       : "/${tasks.shadowJar.archiveFileName.get()}"
+        ]
+    }
+
+    publish.dependsOn shadowJar
+    assemble.dependsOn shadowJar
+    build.dependsOn shadowJar
+    uploadArchives.dependsOn shadowJar
+}
+
+publishing {
+    publications {
+        agent(MavenPublication) {
+            project.shadow.component(it)
+            artifactId = "needle-agent"
+            artifact tasks.javadocJar
+            artifact tasks.sourcesJar
+            pom {
+                name = project.name
+                description = 'Feature-rich CPU affinity for the JVM - Affinity Setting Agent'
+                url = 'https://github.com/sheinbergon/needle'
+                inceptionYear = '2020'
+
+                licenses {
+                    license {
+                        name = 'Apache License 2.0'
+                        url = 'https://github.com/sheinbergon/needle/blob/master/LICENSE'
+                        distribution = 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'sheinbergon'
+                        name = 'Idan Sheinberg'
+                        email = 'ishinberg0@gmail.com'
+                    }
+                }
+
+                scm {
+                    url = 'https://github.com/sheinbergon/needle'
+                    connection = 'scm:https://github.com/sheinbergon/needle.git'
+                    developerConnection = 'scm:git@github.com:sheinbergon/needle.git'
+                }
+            }
+
+            repositories {
+                mavenLocal()
+                maven {
+                    name "oss-sonatype-nexus"
+                    url nexus.url
+                    credentials {
+                        username = nexus.username
+                        password = nexus.password
+                    }
+                }
+            }
+        }
+    }
+}

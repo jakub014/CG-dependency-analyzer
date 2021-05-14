@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>example</artifactId>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>io.toolisticon.beanbuilder</groupId>
+        <artifactId>example-parent</artifactId>
+        <version>1.3.6-SNAPSHOT</version>
+    </parent>
+
+    <name>example</name>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>io.toolisticon.beanbuilder</groupId>
+            <artifactId>beanbuilder-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration combine.self="append">
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>io.toolisticon.beanbuilder</groupId>
+                            <artifactId>beanbuilder-processor</artifactId>
+                            <version>${project.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <excludePackageNames>
+                        io.toolisticon.murks
+                    </excludePackageNames>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

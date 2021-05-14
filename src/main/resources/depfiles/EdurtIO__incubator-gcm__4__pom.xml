@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <artifactId>incubator-gcm</artifactId>
+        <groupId>io.edurt.gcm</groupId>
+        <version>1.2.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>example</artifactId>
+    <name>Gcm for Component Example</name>
+    <description>Code examples of components in gcm system!</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.edurt.gcm.framework</groupId>
+            <artifactId>gcm-framework-test</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.edurt.gcm.framework</groupId>
+            <artifactId>gcm-framework-configuration</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.edurt.gcm.storage</groupId>
+            <artifactId>gcm-storage-mysql</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.edurt.gcm.engine</groupId>
+            <artifactId>gcm-engine-clickhouse</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.edurt.gcm.storage</groupId>
+            <artifactId>gcm-storage-postgresql</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.edurt.gcm.engine</groupId>
+            <artifactId>gcm-engine-elasticsearch</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.edurt.gcm.engine</groupId>
+            <artifactId>gcm-engine-hive</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.edurt.gcm.engine</groupId>
+            <artifactId>gcm-engine-zookeeper</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

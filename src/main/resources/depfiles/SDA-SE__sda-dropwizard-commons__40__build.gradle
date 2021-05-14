@@ -1,0 +1,24 @@
+dependencies {
+  compile project(':sda-commons-server-dropwizard')
+
+  compile 'io.dropwizard:dropwizard-testing', {
+    /**
+     * Dropwizard comes with jakarta.servlet instead of javax.servlet.
+     * Both contain the same classes.
+     */
+    exclude group: 'javax.servlet', module: 'javax.servlet-api'
+  }
+  compile 'jakarta.servlet:jakarta.servlet-api'
+
+  compile 'junit:junit'
+  compile 'org.junit.jupiter:junit-jupiter-api'
+  compile 'org.hamcrest:hamcrest'
+  compile 'org.mockito:mockito-core'
+  compile 'org.assertj:assertj-core'
+  compile 'org.junit-pioneer:junit-pioneer'
+  compile 'org.junit.jupiter:junit-jupiter-params'
+  compile 'org.mockito:mockito-junit-jupiter'
+
+  runtimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+  runtimeOnly 'org.junit.vintage:junit-vintage-engine'
+}

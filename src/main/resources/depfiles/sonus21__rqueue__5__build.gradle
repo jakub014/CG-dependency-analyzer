@@ -1,0 +1,21 @@
+ext.projectDescription = 'Asynchronous and delayed task executor for spring boot framework'
+ext.name = 'Rqueue Spring Boot Java'
+buildscript {
+    apply from: "${rootDir}/gradle/code-signing.gradle"
+    apply from: "${rootDir}/gradle/packaging.gradle"
+    apply from: "${rootDir}/gradle/test-runner.gradle"
+}
+
+dependencies {
+    compile project(":rqueue-core")
+    compile "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}"
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: "${springBootVersion}", optional
+
+    testCompile project(":rqueue-spring-common-test")
+    testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+    testCompile "org.springframework.boot:spring-boot-starter-webflux:${springBootVersion}"
+    testCompile "org.springframework.boot:spring-boot-starter-data-redis-reactive:${springBootVersion}"
+    testCompile "org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}"
+    testCompile "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
+}

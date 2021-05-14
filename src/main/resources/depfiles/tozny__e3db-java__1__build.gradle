@@ -1,0 +1,83 @@
+/*
+ * TOZNY NON-COMMERCIAL LICENSE
+ *
+ * Tozny dual licenses this product. For commercial use, please contact
+ * info@tozny.com. For non-commercial use, the contents of this file are
+ * subject to the TOZNY NON-COMMERCIAL LICENSE (the "License") which
+ * permits use of the software only by government agencies, schools,
+ * universities, non-profit organizations or individuals on projects that
+ * do not receive external funding other than government research grants
+ * and contracts.  Any other use requires a commercial license. You may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at https://tozny.com/legal/non-commercial-license.
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+ * License for the specific language governing rights and limitations under
+ * the License. Portions of the software are Copyright (c) TOZNY LLC, 2018.
+ * All rights reserved.
+ *
+ */
+
+apply plugin: 'kotlin'
+apply plugin: 'java'
+
+
+dependencies {
+    compileOnly files('compileLibs/android-4.1.1.4.jar')
+
+    compileOnly project(':e3db-crypto-stub-plain')
+    compileOnly project(':e3db-crypto-stub-android')
+
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.retrofit2:converter-jackson:$retrofitVersion"
+    compile 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion"
+
+    implementation project(':e3db-crypto-interface')
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+evaluationDependsOn(':publish')
+
+javadoc {
+    outputs.upToDateWhen { false }
+    source = files(["${project(":e3db").projectDir}/src/main/java",
+                    "${project(":e3db-crypto-interface").projectDir}/src/main/java",
+                    "${project(":e3db-crypto-android").projectDir}/src/main/java",
+                    "${project(":e3db-crypto-plain").projectDir}/src/main/java"])
+
+    excludes = ['**/*.kt']
+    title = "E3DB API Client"
+    destinationDir = file("${rootDir}/docs/docs/${project(":publish").ext.version}")
+    options.noQualifiers "java.lang", "java.util"
+    classpath = files([project(":e3db").sourceSets.main.compileClasspath.files])
+}
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_jdk8_version"
+    }
+}
+repositories {
+    mavenCentral()
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}

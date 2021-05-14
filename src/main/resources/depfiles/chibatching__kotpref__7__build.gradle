@@ -1,0 +1,72 @@
+import dependencies.Deps
+import dependencies.Versions
+import plugin.BuildSettingHelperPlugin
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'jacoco'
+apply plugin: BuildSettingHelperPlugin
+
+ext.moduleName = 'Kotpref preference screen DSL'
+ext.moduleDescription = "Preference screen builder DSL with KotprefModel"
+
+android {
+    compileSdkVersion Versions.targetSdk
+
+    defaultConfig {
+        minSdkVersion Versions.minSdkWithSupportLibrary
+        targetSdkVersion Versions.targetSdk
+        versionName Versions.versionName
+
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+    buildTypes {
+        debug {
+            testCoverageEnabled isCi
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    testOptions {
+        unitTests {
+            all {
+                jacoco {
+                    includeNoLocationClasses = true
+                    excludes = ['jdk.internal.*']
+                }
+            }
+            includeAndroidResources = true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        freeCompilerArgs += "-Xexplicit-api=strict"
+    }
+    jacoco {
+        version = Versions.jacoco
+    }
+}
+
+dependencies {
+    compileOnly Deps.Kotlin.stdlib
+    api project(":kotpref")
+
+    implementation Deps.AndroidX.preference
+
+    testCompileOnly Deps.Kotlin.stdlib
+    testCompileOnly Deps.junit
+    testCompileOnly Deps.robolectric
+    testCompileOnly Deps.AndroidX.testCore
+    testCompileOnly Deps.truth
+}
+
+apply from: "${project.rootDir}/gradle/publish/publish.gradle"

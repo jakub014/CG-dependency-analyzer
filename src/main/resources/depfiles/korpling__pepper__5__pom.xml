@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>pepper-doc</artifactId>
+	<packaging>pom</packaging>
+	<parent>
+		<groupId>org.corpus-tools</groupId>
+		<artifactId>pepper</artifactId>
+		<relativePath>../pom.xml</relativePath>
+		<version>3.6.1-SNAPSHOT</version>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<site.path>doc-snapshot</site.path>
+		<!-- override in your settings -->
+		<siteMainDirectory>${user.home}</siteMainDirectory>
+		<scmPubCheckoutDirectory>\${siteMainDirectory}/pepper-content-scm</scmPubCheckoutDirectory>
+		<exec-maven-plugin.version>1.4.0</exec-maven-plugin.version>
+		<maven-project-info-reports-plugin.version>2.4</maven-project-info-reports-plugin.version>
+		<maven-scm-publish-plugin.version>1.1</maven-scm-publish-plugin.version>
+	</properties>
+	<build>
+		<plugins>
+			<!-- end: maven site plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins </groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<!-- In default version from parent, a failure occures: Failed to execute 
+					goal org.apache.maven.plugins:maven-resources-plugin:2.7:copy-resources (copy-filter-docbook) 
+					on project salt-doc: Mark invalid -->
+				<version>2.6</version>
+			</plugin>
+			<!-- end of docbook plugin -->
+		</plugins>
+
+		<!-- start doxygen -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>${maven-resources-plugin.version}</version>
+					<configuration>
+						<outputDirectory>${basedir}/target/doxygen-generated</outputDirectory>
+						<resources>
+							<resource>
+								<directory>src/main/doxygen/</directory>
+								<filtering>true</filtering>
+								<includes>
+									<include>**/*.md</include>
+									<include>**/*.html</include>
+									<include>**/*.xml</include>
+									<include>Doxyfile</include>
+								</includes>
+								<excludes>
+									<exclude>**/moduleDevelopers/dependencies.md</exclude>
+								</excludes>
+							</resource>
+							<resource>
+								<directory>src/main/doxygen/</directory>
+								<filtering>false</filtering>
+								<includes>
+									<include>**/moduleDevelopers/dependencies.md</include>
+								</includes>
+							</resource>
+						</resources>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-scm-publish-plugin</artifactId>
+					<version>${maven-scm-publish-plugin.version}</version>
+					<extensions>true</extensions>
+					<configuration>
+						<pubScmUrl>scm:git:ssh://git@github.com/korpling/pepper.git</pubScmUrl>
+						<scmBranch>gh-pages</scmBranch>
+						<content>${project.build.directory}/doxygen/</content>
+						<ignorePathsToDelete>
+							<path>doc</path>
+							<path>doc-snapshot</path>
+							<path>${site.path}</path>
+							<path>index.html</path>
+							<path>doxygen_sqlite3.db</path>
+							<path>.gitignore</path>
+							<path>p2</path>
+						</ignorePathsToDelete>
+						<tryUpdate>true</tryUpdate>
+						<checkoutDirectory>${scmPubCheckoutDirectory}</checkoutDirectory>
+						<checkinComment>update documentation for version
+							${project.version} (${site.path})
+							Original revision is
+							${buildNumber}.</checkinComment>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<!-- end doxygen -->
+	</build>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>${maven-project-info-reports-plugin.version}</version>
+				<configuration>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>index</report>
+							<report>summary</report>
+							<report>license</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<properties>
+				<site.path>doc</site.path>
+			</properties>
+		</profile>
+
+		<!-- preview releases still push their documentation to doc snapshot -->
+		<profile>
+			<id>preview</id>
+			<properties>
+				<site.path>${site.path}</site.path>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>doxygen</id>
+			<build>
+				<plugins>
+					<!-- make sure all paths are correct by replacing the properties -->
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>copy-resources</id>
+								<phase>generate-sources</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- use the filtered source files to actually generate the doxygen 
+						output -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>${exec-maven-plugin.version}</version>
+						<executions>
+							<execution>
+								<phase>compile</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<executable>doxygen</executable>
+							<workingDirectory>${project.build.directory}/doxygen/</workingDirectory>
+							<arguments>
+								<argument>${project.build.directory}/doxygen-generated/Doxyfile</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+
+					<!-- some doxygen versions don't delete the huge doxygen_sqlite3.db 
+						file -->
+					<plugin>
+						<artifactId>maven-clean-plugin</artifactId>
+						<version>${maven-clean-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>remove-doxygen-sqlitedb</id>
+								<phase>prepare-package</phase>
+								<goals>
+									<goal>clean</goal>
+								</goals>
+								<configuration>
+									<excludeDefaultDirectories>true</excludeDefaultDirectories>
+									<filesets>
+										<fileset>
+											<directory>${project.build.directory}/doxygen/</directory>
+											<includes>
+												<include>**/doxygen_sqlite3.db</include>
+											</includes>
+										</fileset>
+									</filesets>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- upload the generated documentation to GitHub -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-scm-publish-plugin</artifactId>
+						<version>${maven-scm-publish-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>scm-publish</id>
+								<phase>deploy</phase>
+								<goals>
+									<goal>publish-scm</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

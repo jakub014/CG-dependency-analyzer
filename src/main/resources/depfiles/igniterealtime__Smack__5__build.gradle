@@ -1,0 +1,14 @@
+description = """\
+Smack experimental extensions.
+Classes and methods for XEPs that are in status 'experimental' or that should
+otherwise carefully considered for deployment. The API may change even
+between patch versions."""
+
+dependencies {
+	api project(':smack-core')
+	api project(':smack-extensions')
+
+	implementation "org.hsluv:hsluv:0.2"
+
+	testFixturesApi(testFixtures(project(":smack-extensions")))
+}

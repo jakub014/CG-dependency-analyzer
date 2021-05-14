@@ -1,0 +1,125 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>sveaWebpayAdapter</artifactId>
+	<packaging>bundle</packaging>
+	<description>Converts Webpay Objects.</description>
+
+	<parent>
+		<artifactId>businessObjectAdapters</artifactId>
+		<version>1.8.11-SNAPSHOT</version>
+		<groupId>org.notima.generic.businessobjects.adapter</groupId>
+	</parent>
+
+	<name>Svea Webpay Business Objects Adapter</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+
+		<resources>
+			<resource>
+				<directory>src/test/resources</directory>
+				<excludes>
+					<exclude>config-test*</exclude>
+					<exclude>*.json</exclude>
+					<exclude>test-details.properties</exclude>
+				</excludes>
+			</resource>
+		</resources>
+
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>4.2.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-Activator>com.svea.businessobjects.Activator</Bundle-Activator>					
+						<Export-Package>
+							com.svea.webpay.common.auth,
+							com.svea.webpay.common.conv,
+							com.svea.webpay.common.reconciliation,
+							com.svea.webpay.common.reconciliation2,
+							com.svea.webpay.common.reconciliation.conv,
+							com.svea.webpayadmin,
+							com.svea.webpayadmin.report,
+							com.svea.webpay.paymentgw,
+							com.svea.webpay.paymentgw.entity,
+							com.svea.webpay.paymentgw.util,
+							com.svea.webpay.paymentgw.xmladapter,
+							com.svea.businessobjects,
+							com.svea.businessobjects.pmtadmin,
+							com.svea.businessobjects.sveaadmin,
+							com.svea.businessobjects.paymentgw
+						</Export-Package>
+		        		<Private-Package>
+        					org.apache.karaf.util.tracker,
+        					org.apache.karaf.util.tracker.annotation
+        				</Private-Package>
+						<Import-Package>
+										com.svea.webpayadminservice.client,
+										org.notima.api.webpay.pmtapi,
+										org.notima.api.webpay.pmtapi.entity,
+										org.notima.factoring,
+										org.notima.generic.businessobjects,
+										org.notima.generic.businessobjects.exception,
+										org.notima.generic.businessobjects.util,
+										org.notima.generic.ifacebusinessobjects,
+										org.slf4j,
+										org.notima.bg,
+										org.notima.bg.bgmax,
+										org.notima.bg.lb,
+										org.notima.tilisiirto,
+										com.google.gson,
+										com.google.gson.annotations,
+										javax.xml.ws,
+										javax.xml.namespace,
+			        					javax.xml.bind;version="[2.2,3)",
+			        					javax.xml.bind.annotation;version="[2.2,3)",
+										javax.xml.*,
+										javax.net.*,
+										javax.naming,
+										org.osgi.*
+										</Import-Package>
+						<Embed-Dependency>*;scope=compile|runtime;artifactId=!slf4j-api|slf4j-log4j12|log4j|businessobjects|bankgiro-api|webpayadminservice-client|pmt-admin-api|retrofit|converter-scalars|okhttp|okio|gson</Embed-Dependency>
+						<Embed-Transitive>true</Embed-Transitive>
+					</instructions>
+				</configuration>
+			</plugin>
+			
+		</plugins>
+	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.notima.api.webpay</groupId>
+			<artifactId>pmt-admin-api</artifactId>
+			<version>${pmt-admin-api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.svea</groupId>
+			<artifactId>webpayadmin-reports</artifactId>
+			<version>0.0.3</version>
+		</dependency>
+
+	</dependencies>
+
+</project>

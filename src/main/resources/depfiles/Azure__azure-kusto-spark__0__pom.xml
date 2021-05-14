@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.microsoft.azure.kusto</groupId>
+    <artifactId>azure-kusto-spark</artifactId>
+    <packaging>pom</packaging>
+    <version>${revision}</version>
+    <properties>
+        <revision>2.7.2</revision>
+
+        <!-- Spark dependencies -->
+        <scala.version.major>2.12</scala.version.major>
+        <scala.version.minor>11</scala.version.minor>
+        <specs2.version>3.6.5</specs2.version>
+        <spark.version.major>3.0</spark.version.major>
+        <spark.version.minor>1</spark.version.minor>
+
+        <!-- other dependencies -->
+        <kusto-sdk.version>2.7.0</kusto-sdk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.1.0</maven-javadoc-plugin.version>
+        <azure-storage.version>8.6.5</azure-storage.version>
+        <keyvault-secrets.version>4.1.5</keyvault-secrets.version>
+        <azure-identity.version>1.2.4</azure-identity.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
+        <fasterxml.jackson.version>[2.11.0,2.12.0)</fasterxml.jackson.version>
+        <slf4j.version>1.8.0-beta4</slf4j.version>
+        <joda-time.version>2.10.2</joda-time.version>
+        <json.version>20201115</json.version>
+    </properties>
+
+    <inceptionYear>2018</inceptionYear>
+    <scm>
+        <url>scm:git:https://github.com/Azure/azure-kusto-spark</url>
+        <connection>scm:git:https://github.com/Azure/azure-kusto-spark</connection>
+    </scm>
+    <url>https://github.com/Azure/azure-kusto-spark</url>
+    <licenses>
+        <license>
+            <name>Apache 2.0 License</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>microsoft</id>
+            <name>Microsoft</name>
+        </developer>
+    </developers>
+
+    <modules>
+        <module>connector</module>
+        <module>samples</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <configuration>
+                    <flattenMode>oss</flattenMode>
+                </configuration>
+                <executions>
+                    <!-- enable flattening -->
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <!-- ensure proper cleanup -->
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

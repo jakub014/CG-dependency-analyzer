@@ -1,0 +1,50 @@
+/*
+ * This file is part of the DITA Open Toolkit project.
+ *
+ * Copyright 2016 Jarno Elovirta
+ *
+ * See the accompanying LICENSE file for applicable license.
+ */
+
+plugins {
+    id 'io.miret.etienne.sass' version '1.1.1'
+}
+
+sass {
+    // dart-sass version to use:
+    version = '1.32.0'
+
+    // Directory where to install dart-sass:
+    directory = file ("${rootDir}/.gradle/sass")
+
+    // Base URL where to download dart-sass from:
+    baseUrl = 'https://github.com/sass/dart-sass/releases/download'
+}
+
+compileSass {
+    // Directory where to output generated CSS:
+    outputDir = project.file ("${projectDir}/css")
+
+    // Source directory containing sass to compile:
+    sourceDir = project.file ("${projectDir}/sass")
+
+    // Set the output style:
+    // Possible values are “expanded” and “compressed”, default is “expanded”.
+    style = expanded
+
+    // Don’t emit a @charset for CSS with non-ASCII chars (default to emit):
+    // noCharset ()
+
+    // When an error occurs, do not emit a stylesheet describing it:
+    // (Default to emit)
+    noErrorCss ()
+
+    // Watch sass files in sourceDir for changes
+    // watch ()
+
+    // Source map style:
+    //  - file: output source map in a separate file (default)
+    //  - embed: embed source map in CSS
+    //  - none: do not emit source map.
+    sourceMap = none
+}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>pl.matsuo</groupId>
+  <artifactId>matsuo-webapp</artifactId>
+  <packaging>war</packaging>
+
+  <parent>
+    <groupId>pl.matsuo</groupId>
+    <artifactId>matsuo-core-parent</artifactId>
+    <version>0.1.7-SNAPSHOT</version>
+  </parent>
+
+  <properties>
+    <generateReports>false</generateReports>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>pl.matsuo</groupId>
+      <artifactId>matsuo-web</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.2</version>
+        <executions>
+          <execution>
+            <phase>test</phase>
+            <goals>
+              <goal>exploded</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project>

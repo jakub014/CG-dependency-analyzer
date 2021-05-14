@@ -1,0 +1,9 @@
+description = """\
+SASL with Smack provided code
+Use Smack provided code for SASL."""
+
+dependencies {
+	api project(':smack-core')
+
+	testFixturesApi(testFixtures(project(":smack-core")))
+}

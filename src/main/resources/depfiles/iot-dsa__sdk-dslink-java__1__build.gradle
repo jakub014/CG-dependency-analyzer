@@ -1,0 +1,8 @@
+apply from: '../../bintray.gradle'
+
+description = 'SDK for the IoT DSA protocol'
+
+dependencies {
+    api project(':logging')
+    api project(':runtime_shared')
+}

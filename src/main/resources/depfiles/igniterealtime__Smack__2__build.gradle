@@ -1,0 +1,11 @@
+description = """\
+Smack IM.
+Classes and methods for XMPP-IM (RFC 6121):
+Roster, Chat and other functionality."""
+
+// Note that the test dependencies (junit, …) are inferred from the
+// sourceSet.test of the core subproject
+dependencies {
+	api project(':smack-core')
+	testImplementation(testFixtures(project(":smack-core")))
+}

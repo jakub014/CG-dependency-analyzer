@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.finarkein.auth</groupId>
+    <artifactId>finarkien-auth</artifactId>
+    <packaging>pom</packaging>
+    <version>0.3.0</version>
+
+    <name>Finarkein Auth</name>
+    <description>Auth library for Finarkein's Java API clients</description>
+    <url>http://github.com/finarkein/finarkein-auth</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Dheeraj Kumar</name>
+            <email>dheeraj@finarkein.com</email>
+            <organization>Finarkein Analytics Pvt. Ltd.</organization>
+            <organizationUrl>https://finarkein.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/finarkein/finarkein-auth.git</connection>
+        <developerConnection>scm:git:ssh://github.com:finarkein/finarkein-auth.git</developerConnection>
+        <url>https://github.com/finarkein/finarkein-auth/tree/main</url>
+    </scm>
+
+    <modules>
+        <module>credentials</module>
+        <module>oauth2</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <version.junit-jupiter>5.3.1</version.junit-jupiter>
+
+        <version.plugin-deploy>3.0.0-M1</version.plugin-deploy>
+        <version.plugin-versions>2.7</version.plugin-versions>
+        <version.plugin-source>3.2.1</version.plugin-source>
+        <version.plugin-javadoc>3.2.0</version.plugin-javadoc>
+        <version.plugin-gpg>1.6</version.plugin-gpg>
+        <version.plugin-gitflow>1.12.0</version.plugin-gitflow>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.finarkein.auth</groupId>
+                <artifactId>finarkein-auth-credentials</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.finarkein.auth</groupId>
+                <artifactId>finarkein-auth-oauth2</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${version.junit-jupiter}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${version.plugin-source}</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${version.plugin-javadoc}</version>
+                    <configuration>
+                        <source>8</source>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${version.plugin-gpg}</version>
+                    <executions>
+                        <execution>
+                            <id>sign-artifacts</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>sign</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${version.plugin-deploy}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${version.plugin-versions}</version>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.amashchenko.maven.plugin</groupId>
+                <artifactId>gitflow-maven-plugin</artifactId>
+                <version>${version.plugin-gitflow}</version>
+                <configuration>
+                    <gitFlowConfig>
+                        <productionBranch>main</productionBranch>
+                        <developmentBranch>develop</developmentBranch>
+                        <featureBranchPrefix>feature/</featureBranchPrefix>
+                        <releaseBranchPrefix>release/</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
+                        <supportBranchPrefix>support/</supportBranchPrefix>
+                        <origin>origin</origin>
+                    </gitFlowConfig>
+                    <tychoBuild>false</tychoBuild>
+                    <installProject>false</installProject>
+
+                    <!-- Remote Integration -->
+                    <fetchRemote>false</fetchRemote>
+                    <pushRemote>false</pushRemote>
+
+                    <!-- feature-* goals specific -->
+                    <skipFeatureVersion>true</skipFeatureVersion>
+                    <commitDevelopmentVersionAtStart>false</commitDevelopmentVersionAtStart>
+                    <useSnapshotInRelease>true</useSnapshotInRelease>
+
+                    <!-- release-* goals specific -->
+                    <allowSnapshots>false</allowSnapshots> <!-- fails if SNAPSHOT dependency in project -->
+
+                    <!-- release & release-finish specific -->
+                    <digitsOnlyDevVersion>false</digitsOnlyDevVersion> <!-- Removes 'SNAPSHOT' from version -->
+                    <!-- versionDigitToIncrement></versionDigitToIncrement --> <!-- Last Digit if empty -->
+
+                    <!-- release-* & hotfix-* goals specific -->
+                    <skipTag>false</skipTag> <!-- tag will be created -->
+
+                    <!-- hotfix-* goals -->
+                    <useSnapshotInHotfix>true</useSnapshotInHotfix>
+
+                    <!-- hotfix-finish goal -->
+                    <!-- to allow hotfixes to very old code that are not applicable to current development -->
+                    <skipMergeDevBranch>true</skipMergeDevBranch>
+                    <skipMergeProdBranch>true</skipMergeProdBranch>
+
+                    <!-- *-finish goals specific -->
+                    <keepBranch>false</keepBranch>
+                    <skipTestProject>false</skipTestProject>
+
+                    <commitMessages>
+                        <featureStartMessage>
+                            chore: Update versions for feature (@{featureName}) branch [skip ci]
+                        </featureStartMessage>
+                        <featureFinishMessage>
+                            chore: Update versions for development branch [skip ci]
+                        </featureFinishMessage>
+
+                        <hotfixStartMessage>Update versions for hotfix @{version}</hotfixStartMessage>
+                        <hotfixFinishMessage>Update for next development version @{version}</hotfixFinishMessage>
+                        <hotfixVersionUpdateMessage>Update to hotfix version @{version}</hotfixVersionUpdateMessage>
+
+                        <releaseStartMessage>
+                            chore: update versions for release @{version} [skip ci]
+                        </releaseStartMessage>
+                        <releaseFinishMessage>
+                            chore: update to next version @{version} [skip ci]
+                        </releaseFinishMessage>
+                        <releaseVersionUpdateMessage>
+                            chore: update for next development version @{version} [skip ci]
+                        </releaseVersionUpdateMessage>
+                        <!-- Default git merge commit message will be used if left empty or undefined. -->
+                        <!-- releaseFinishMergeMessage></releaseFinishMergeMessage -->
+
+                        <tagHotfixMessage>Tag hotfix</tagHotfixMessage>
+                        <tagReleaseMessage>Tag release</tagReleaseMessage>
+
+                        <!-- Migration Note: This was called <updateDevToAvoidConflitsMessage> in version 1.11.0, but has been deprecated in favour of the correctly spelt one below. -->
+                        <updateDevToAvoidConflictsMessage>
+                            Update develop to production version to avoid merge conflicts
+                        </updateDevToAvoidConflictsMessage>
+                        <updateDevBackPreMergeStateMessage>
+                            Update develop version back to pre-merge state
+                        </updateDevBackPreMergeStateMessage>
+
+                        <updateReleaseToAvoidConflictsMessage>
+                            Update release to hotfix version to avoid merge conflicts
+                        </updateReleaseToAvoidConflictsMessage>
+                        <updateReleaseBackPreMergeStateMessage>
+                            Update release version back to pre-merge state
+                        </updateReleaseBackPreMergeStateMessage>
+                    </commitMessages>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!-- Activate using the release property: mvn clean install -Prelease -->
+        <profile>
+            <id>release</id>
+            <activation>
+                <property>
+                    <name>release</name>
+                </property>
+            </activation>
+
+            <build>
+                <plugins>
+                    <!-- To generate sources -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                    </plugin>
+                    <!-- To generate javadoc -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                    </plugin>
+                    <!-- To sign the artifacts -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

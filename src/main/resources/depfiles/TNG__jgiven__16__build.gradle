@@ -1,0 +1,11 @@
+
+dependencies {
+    implementation project(':jgiven-core')
+    implementation project(':jgiven-junit')
+    implementation project(':jgiven-html5-report')
+    testImplementation "junit:junit:$junitVersion"
+}
+
+sourceCompatibility = targetCompatibility = 1.9
+
+test.finalizedBy jgivenHtml5Report

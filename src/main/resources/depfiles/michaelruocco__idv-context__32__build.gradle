@@ -1,0 +1,5 @@
+dependencies {
+    implementation project(":policy-redis-repository")
+    implementation project(":context-use-cases")
+    implementation "com.github.michaelruocco:json-adapter:${jsonAdapterVersion}"
+}

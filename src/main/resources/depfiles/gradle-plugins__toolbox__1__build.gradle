@@ -1,0 +1,103 @@
+import static dev.gradleplugins.GradleRuntimeCompatibility.*
+
+plugins {
+    id 'java-library'
+    id 'groovy' // for Spock framework
+    id 'dev.fukgradleplugins.toolbox-publish'
+    id 'java-test-fixtures'
+}
+
+description = "Gradle TestKit fixtures for fast and efficient Gradle plugin development."
+
+sourceSets {
+    spockSupport {
+        groovy {
+            srcDir 'src/spock/groovy'
+        }
+    }
+}
+
+java {
+    sourceCompatibility = minimumJavaVersionFor(minimumGradleVersion)
+    targetCompatibility = minimumJavaVersionFor(minimumGradleVersion)
+    withSourcesJar()
+    withJavadocJar()
+    registerFeature('spockSupport') {
+        usingSourceSet(sourceSets.spockSupport)
+        withSourcesJar()
+        withJavadocJar()
+    }
+}
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+    gradlePluginDevelopment()
+    maven { url = 'https://repo.nokeedev.net/snapshots' }
+}
+
+dependencies {
+    compileOnly gradleApi(minimumGradleVersion)
+
+    // TODO: For convenience until we fully migrate
+    api project(':gradle-runner-kit')
+    api testFixtures(project(':gradle-runner-kit'))
+
+    api 'com.google.guava:guava:28.2-jre'
+    implementation 'org.apache.commons:commons-lang3:3.9' // For StringUtils
+    implementation 'org.apache.ant:ant:1.9.13'
+    implementation 'org.ow2.asm:asm:6.0'
+    implementation 'commons-io:commons-io:2.6'
+    implementation 'junit:junit:4.12'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation project(':gradle-fixtures-file-system')
+
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    // TEST
+    testImplementation platform('org.spockframework:spock-bom:1.2-groovy-2.5')
+    testImplementation 'org.spockframework:spock-core'
+    testImplementation gradleApi(minimumGradleVersion)
+
+    // SPOCK SUPPORT
+    spockSupportApi testFixtures(project(':gradle-runner-kit'))
+    spockSupportApi project(':gradle-fixtures')
+    spockSupportApi project(':gradle-fixtures-source-elements')
+    spockSupportApi "org.codehaus.groovy:groovy-all:${groovyVersionOf(minimumGradleVersion)}"
+    spockSupportApi platform('org.spockframework:spock-bom:1.2-groovy-2.5')
+    spockSupportApi 'org.spockframework:spock-core'
+    spockSupportCompileOnly gradleApi(minimumGradleVersion) // Required because of the AbstractInstalledToolChainIntegrationSpec which is extremely tied to the internal of Gradle
+    spockSupportApi 'org.apache.commons:commons-lang3:3.10'
+    spockSupportImplementation project(':gradle-runner-kit')
+    spockSupportImplementation 'commons-io:commons-io:2.6'
+    spockSupportImplementation 'org.jsoup:jsoup:1.13.1'
+
+    spockSupportCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    spockSupportAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testFixturesApi testFixtures(project(':gradle-fixtures-file-system'))
+    testFixturesApi testFixtures(project(':gradle-runner-kit'))
+}
+
+tasks.named('test', Test) {
+    systemProperty('dev.gradleplugins.cwd', projectDir.absolutePath)
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from(components.java)
+        }
+    }
+    repositories {
+        maven {
+            name = 'LocalRepository'
+            url = file('../gradle-plugin-development/build/repository')
+        }
+    }
+}
+
+tasks.register('release') {
+    dependsOn('publishAllPublicationsToNokeeReleaseRepository')
+}

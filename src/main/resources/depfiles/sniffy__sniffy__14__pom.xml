@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>sniffy-parent</artifactId>
+        <groupId>io.sniffy</groupId>
+        <version>3.1.13-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>sniffy-integration-tests</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>sniffy-integration-tests-decrypt-tls</module>
+        <module>sniffy-integration-tests-decrypt-tls-vertx</module>
+        <module>sniffy-integration-tests-decrypt-tls-bc</module>
+        <module>sniffy-integration-tests-decrypt-tls-bc-before-sniffy</module>
+        <module>sniffy-integration-tests-spock</module>
+	    <module>sniffy-integration-tests-spring-boot</module>
+	    <module>sniffy-integration-tests-spring-boot-2</module>
+	    <module>sniffy-integration-tests-spring-kafka</module>
+	    <module>sniffy-integration-tests-tomcat</module>
+    </modules>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration combine.self="override">
+                            <rules>
+                                <DependencyConvergence />
+                                <ReactorModuleConvergence />
+                                <requireMavenVersion>
+                                    <version>(,2.1.0),(2.1.0,2.2.0),(2.2.0,)</version>
+                                    <message>Maven 2.1.0 and 2.2.0 produce incorrect GPG signatures and checksums
+                                        respectively.
+                                    </message>
+                                </requireMavenVersion>
+                            </rules>
+                            <fail>false</fail> <!-- no need to fail for integration tests -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.sonarsource.html</groupId>
+    <artifactId>html-its</artifactId>
+    <version>3.4.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>it-html-ruling</artifactId>
+
+  <name>SonarSource :: HTML :: ITs :: Ruling</name>
+  <inceptionYear>2013</inceptionYear>
+  <organization>
+    <name>SonarSource</name>
+    <url>http://www.sonarsource.com</url>
+  </organization>
+
+  <properties>
+    <license.name>AL2</license.name>
+    <webVersion>2.2-SNAPSHOT</webVersion>
+
+    <surefire.argLine>-server -Xmx512m</surefire.argLine>
+    <license.owner>SonarSource SA and Matthijs Galesloot</license.owner>
+    <license.mailto>sonarqube@googlegroups.com</license.mailto>
+    <gitRepositoryName>sonar-html</gitRepositoryName>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.sonarsource.orchestrator</groupId>
+      <artifactId>sonar-orchestrator</artifactId>
+      <version>${orchestrator.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${assertj.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.8.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.sonarsource.analyzer-commons</groupId>
+      <artifactId>sonar-analyzer-commons</artifactId>
+      <version>${analyzerCommons.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>

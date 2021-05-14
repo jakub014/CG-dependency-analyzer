@@ -1,0 +1,19 @@
+plugins {
+    id "java-test-fixtures"
+}
+
+dependencies {
+    api project(":identity-entities")
+
+    implementation project(":common-entities")
+    implementation project(":common-use-cases")
+    implementation "com.neovisionaries:nv-i18n:${neovisionariesVersion}"
+    implementation "com.github.michaelruocco:random-value-suppliers:${randomValueSuppliersVersion}"
+
+    testImplementation testFixtures(project(":common-entities"))
+
+    testFixturesApi testFixtures(project(":identity-entities"))
+    testFixturesRuntimeOnly "org.slf4j:slf4j-simple:${slf4jVersion}"
+    testFixturesCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testFixturesAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}

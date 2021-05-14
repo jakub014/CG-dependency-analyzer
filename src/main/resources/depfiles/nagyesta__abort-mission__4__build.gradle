@@ -1,0 +1,67 @@
+group = "${rootProject.group}.boosters"
+
+project.ext {
+    artifactDisplayName = "Abort Mission - TestNG Booster"
+    artifactDescription = "Booster module of Abort Mission adding TestNG bindings."
+}
+
+dependencies {
+    implementation project(":mission-control")
+    implementation "org.slf4j:slf4j-api:${rootProject.ext.slf4jApiVersion}"
+    implementation "org.testng:testng:${rootProject.ext.testNgVersion}"
+    testImplementation project(":boosters:testkit")
+    testImplementation "org.springframework.boot:spring-boot-starter:${rootProject.ext.testSpringBootVersion}"
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${rootProject.ext.testSpringBootVersion}") {
+        exclude group: "org.junit.jupiter"
+        exclude group: "org.junit.vintage"
+    }
+    testImplementation "org.testng:testng:${rootProject.ext.latestTestNgVersion}"
+}
+
+test {
+    useTestNG {
+        systemProperty("abort-mission.report.directory", file("${buildDir}/reports/abort-mission/"))
+        includeGroups('unit', 'integration')
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifactId = "abort.${project.name}"
+            pom {
+                name = "${project.artifactDisplayName}"
+                description = "${project.artifactDescription}"
+                url = rootProject.ext.repoUrl
+                licenses {
+                    license {
+                        name = rootProject.ext.licenseName
+                        url = rootProject.ext.licenseUrl
+                    }
+                }
+                developers {
+                    developer {
+                        id = rootProject.ext.maintainerId
+                        name = rootProject.ext.maintainerName
+                        url = rootProject.ext.maintainerUrl
+                    }
+                }
+                scm {
+                    connection = rootProject.ext.scmConnection
+                    developerConnection = rootProject.ext.scmConnection
+                    url = rootProject.ext.scmProjectUrl
+                }
+                withXml {
+                    asNode().dependencies.'*'.findAll() {
+                        it.scope.text() == 'runtime'
+                    }.each { it.scope*.value = 'compile' }
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}

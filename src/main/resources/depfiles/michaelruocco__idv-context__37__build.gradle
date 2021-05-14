@@ -1,0 +1,33 @@
+plugins {
+    id "java-test-fixtures"
+}
+
+dependencies {
+    implementation project(":activity-json")
+    implementation project(":common-json")
+    implementation project(":method-entities")
+    implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
+    implementation "com.github.michaelruocco:json-adapter:${jsonAdapterVersion}"
+    implementation "com.github.michaelruocco:json-masker:${jsonMaskerVersion}"
+    implementation "com.jayway.jsonpath:json-path:2.5.0"
+
+    testImplementation testFixtures(project(":method-entities"))
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+    testImplementation "net.javacrumbs.json-unit:json-unit-assertj:${jsonUnitAssertjVersion}"
+
+    testFixturesImplementation project(":method-entities")
+    testFixturesImplementation testFixtures(project(":method-entities"))
+    testFixturesImplementation project(":common-json")
+    testFixturesImplementation "com.github.michaelruocco:file-loader:${fileLoaderVersion}"
+    testFixturesImplementation "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+    testFixturesImplementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    testFixturesImplementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jacksonVersion}"
+    testFixturesImplementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
+    testFixturesImplementation "com.github.michaelruocco:json-adapter:${jsonAdapterVersion}"
+}
+
+apply from: rootProject.file("publish.gradle")

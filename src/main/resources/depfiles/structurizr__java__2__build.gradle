@@ -1,0 +1,22 @@
+dependencies {
+
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.5'
+
+    compile 'commons-logging:commons-logging:1.2'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.assertj:assertj-core:3.9.1'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+    test {
+        java {
+            srcDir 'test/unit'
+        }
+    }
+}

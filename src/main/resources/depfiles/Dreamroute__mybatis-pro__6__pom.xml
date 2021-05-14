@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.dreamroute</groupId>
+		<artifactId>mybatis-pro</artifactId>
+		<version>${revision}</version>
+	</parent>
+	<artifactId>mybatis-pro-boot-starter</artifactId>
+
+	<name>mybatis-pro</name>
+	<url>https://github.com/Dreamroute/${project.name}</url>
+	<scm>
+		<connection>${project.url}</connection>
+		<developerConnection>${project.url}</developerConnection>
+		<url>${project.url}</url>
+	</scm>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.github.dreamroute</groupId>
+			<artifactId>mybatis-pro-auto-configuration</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.dreamroute</groupId>
+			<artifactId>mybatis-pro-core</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.dreamroute</groupId>
+			<artifactId>mybatis-pro-service</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+<!--			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.8</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

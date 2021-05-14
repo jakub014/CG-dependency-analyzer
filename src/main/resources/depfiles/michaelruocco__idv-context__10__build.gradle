@@ -1,0 +1,30 @@
+plugins {
+    id "java-test-fixtures"
+}
+
+configurations {
+    testFixturesApi.setCanBeResolved(true)
+}
+
+dependencies {
+    api project(":identity-entities")
+    api project(":common-json")
+    api "com.github.michaelruocco:json-masker:${jsonMaskerVersion}"
+    api "com.jayway.jsonpath:json-path:${jsonPathVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jacksonVersion}"
+    implementation "com.github.michaelruocco:json-adapter:${jsonAdapterVersion}"
+    implementation "com.github.michaelruocco:string-utils:${mruocStringUtilsVersion}"
+    implementation "com.neovisionaries:nv-i18n:${neovisionariesVersion}"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+    testImplementation "net.javacrumbs.json-unit:json-unit-assertj:${jsonUnitAssertjVersion}"
+    testImplementation "com.github.michaelruocco:file-loader:${fileLoaderVersion}"
+
+    testFixturesApi testFixtures(project(":identity-entities"))
+    testFixturesApi testFixtures(project(":common-json"))
+    testFixturesImplementation "com.github.michaelruocco:file-loader:${fileLoaderVersion}"
+    testFixturesImplementation "com.neovisionaries:nv-i18n:${neovisionariesVersion}"
+}

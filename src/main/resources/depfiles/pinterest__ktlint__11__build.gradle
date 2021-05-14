@@ -1,0 +1,8 @@
+plugins {
+  id 'org.jetbrains.kotlin.jvm'
+  id 'ktlint-publication'
+}
+
+dependencies {
+  api project(':ktlint-core')
+}

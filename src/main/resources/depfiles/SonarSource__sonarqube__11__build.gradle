@@ -1,0 +1,64 @@
+sonarqube {
+  properties {
+    property 'sonar.projectName', "${projectTitle} :: Database Core"
+  }
+}
+
+dependencies {
+  // please keep the list grouped by configuration and ordered by name
+
+  compile 'ch.qos.logback:logback-classic'
+  compile 'ch.qos.logback:logback-core'
+  compile 'com.google.guava:guava'
+  compile 'commons-io:commons-io'
+  compile 'commons-lang:commons-lang'
+  compile 'org.apache.commons:commons-dbcp2'
+  compile 'org.mybatis:mybatis'
+  compile 'org.picocontainer:picocontainer'
+  compile 'org.slf4j:slf4j-api'
+  compile project(':server:sonar-process')
+  compile project(path: ':sonar-plugin-api', configuration: 'shadow')
+  compile project(':sonar-plugin-api-impl')
+
+  compileOnly 'com.google.code.findbugs:jsr305'
+
+  testCompile 'com.google.code.findbugs:jsr305'
+  testCompile 'com.h2database:h2'
+  testCompile 'com.microsoft.sqlserver:mssql-jdbc'
+  testCompile 'com.oracle.database.jdbc:ojdbc8'
+  testCompile 'com.tngtech.java:junit-dataprovider'
+  testCompile 'org.mockito:mockito-core'
+  testCompile 'org.postgresql:postgresql'
+  testCompile project(':sonar-testing-harness')
+
+  testRuntime 'com.h2database:h2'
+  testRuntime 'com.microsoft.sqlserver:mssql-jdbc'
+  testRuntime 'com.oracle.database.jdbc:ojdbc8'
+  testRuntime 'org.postgresql:postgresql'
+
+  testFixturesApi 'commons-dbutils:commons-dbutils'
+  testFixturesApi 'junit:junit'
+  testFixturesApi 'org.assertj:assertj-core'
+
+  testFixturesCompileOnly 'com.google.code.findbugs:jsr305'
+}
+
+test {
+  if (System.hasProperty('orchestrator.configUrl'))
+    systemProperty 'orchestrator.configUrl', System.getProperty('orchestrator.configUrl')
+}
+
+artifactoryPublish.skip = false
+
+// Used by core plugins
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
+      if (release) {
+        artifact sourcesJar
+        artifact javadocJar
+      }
+    }
+  }
+}

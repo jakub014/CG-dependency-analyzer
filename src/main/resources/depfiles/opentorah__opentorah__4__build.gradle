@@ -1,0 +1,17 @@
+plugins {
+  id 'java-library'
+  id 'scala'
+  id 'com.github.maiflai.scalatest'
+  id 'maven-publish'
+  id 'signing'
+}
+
+description = 'Jewish Texts'
+
+apply from: '../configure.gradle'
+
+dependencies {
+  api project(':opentorah-tei')
+
+  implementation project(':opentorah-base')
+}

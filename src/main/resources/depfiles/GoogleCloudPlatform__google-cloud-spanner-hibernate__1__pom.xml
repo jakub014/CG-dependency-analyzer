@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>google-cloud-spanner-hibernate</artifactId>
+		<groupId>com.google.cloud</groupId>
+		<version>1.5.1-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>Google Cloud Spanner Hibernate Sample Applications</name>
+	<artifactId>google-cloud-spanner-hibernate-samples</artifactId>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>basic-hibernate-sample</module>
+		<module>spring-data-jpa-sample</module>
+		<module>microprofile-jpa-sample</module>
+		<module>quarkus-jpa-sample</module>
+		<module>spanner-hibernate-codelab</module>
+		<module>basic-spanner-features-sample</module>
+	</modules>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<configuration>
+					<skipNexusStagingDeployMojo>true</skipNexusStagingDeployMojo>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

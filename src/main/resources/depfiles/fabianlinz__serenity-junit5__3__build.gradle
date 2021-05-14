@@ -1,0 +1,41 @@
+defaultTasks 'clean', 'test', 'aggregate'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'net.serenity-bdd.aggregator'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    testImplementation project(':serenity-junit5')
+    testImplementation "ch.qos.logback:logback-classic:${logbackVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junit5Version}"
+
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junit5Version}"
+
+    testCompile "org.assertj:assertj-core:${assertJVersion}"
+}
+
+test {
+    useJUnitPlatform {
+        if (project.hasProperty('includeTags')) {
+            includeTags project.getProperty('includeTags')
+        }
+    }
+    testLogging {
+        exceptionFormat = 'full'
+    }
+    testLogging.showStandardStreams = true
+    ignoreFailures = true
+}
+
+gradle.startParameter.continueOnFailure = true
+
+test.finalizedBy(aggregate)

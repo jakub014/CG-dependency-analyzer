@@ -1,0 +1,100 @@
+apply plugin: "java-library"
+apply plugin: "com.github.spotbugs"
+apply plugin: "checkstyle"
+apply plugin: "pmd"
+apply plugin: "jacoco"
+apply plugin: "io.freefair.lombok"
+apply plugin: "io.freefair.maven-optional"
+apply plugin: "io.freefair.maven-publish-java"
+
+description = 'JoinFaces AutoConfigure'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.autoconfigure')
+
+gradleLint.rules -= 'transitive-duplicate-dependency-class'
+
+dependencies {
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.springframework.boot:spring-boot-autoconfigure-processor'
+
+    api 'org.springframework.boot:spring-boot-autoconfigure'
+    implementation 'io.github.classgraph:classgraph'
+
+    optional 'org.springframework.boot:spring-boot-starter'
+    optional 'org.springframework:spring-web'
+    optional 'org.springframework.boot:spring-boot-starter-tomcat'
+    optional 'org.springframework.boot:spring-boot-starter-jetty'
+    optional 'org.springframework.boot:spring-boot-starter-undertow'
+    optional 'org.springframework.session:spring-session-core'
+    optional 'org.hibernate:hibernate-core'
+    optional 'org.springframework:spring-orm'
+    optional 'javax.enterprise:cdi-api'
+    optional 'org.jboss.weld.servlet:weld-servlet-core'
+    optional 'org.glassfish:jakarta.faces'
+    optional 'org.apache.myfaces.core:myfaces-impl'
+    optional 'org.omnifaces:omnifaces:1.14.1'
+    optional 'org.primefaces:primefaces'
+    optional 'org.icefaces:icefaces'
+    optional 'org.icefaces:icefaces-ace'
+    optional 'net.bootsfaces:bootsfaces'
+    optional 'de.beyondjava:angularFaces-core'
+    optional 'org.butterfaces:components'
+    optional 'com.github.albfernandez.richfaces:richfaces-a4j'
+    optional 'com.github.albfernandez.richfaces:richfaces'
+    optional 'commons-fileupload:commons-fileupload'
+    optional 'org.ocpsoft.rewrite:rewrite-servlet'
+    optional 'org.ocpsoft.rewrite:rewrite-integration-spring'
+    optional 'org.glassfish.jaxb:jaxb-runtime'
+    optional 'javax.activation:javax.activation-api'
+
+    optional 'com.github.adminfaces:admin-template'
+    optional 'com.github.adminfaces:admin-theme'
+    optional 'jakarta.ejb:jakarta.ejb-api'
+    
+    optional 'org.apache.myfaces.tobago:tobago-core'
+    optional 'org.apache.myfaces.tobago:tobago-theme-standard'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation project(':joinfaces-test')
+    testImplementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testRuntimeOnly 'org.ocpsoft.logging:logging-adapter-slf4j'
+}
+
+compileJava.inputs.files(processResources)
+
+test {
+    include "**/*Test.class"
+}
+
+configurations {
+    mojarraIntegTestRuntime
+    myfacesIntegTestRuntime
+
+    mojarraIntegTestRuntime.extendsFrom testRuntimeClasspath
+    myfacesIntegTestRuntime.extendsFrom testRuntimeClasspath
+
+    mojarraIntegTestRuntime.exclude group: 'org.apache.myfaces.core'
+    myfacesIntegTestRuntime.exclude group: 'org.glassfish', module: 'jakarta.faces'
+}
+
+task mojarraIntegTest(type: Test) {
+    include "**/*IT.class"
+    exclude "**/myfaces/**.class"
+    classpath = configurations.mojarraIntegTestRuntime + sourceSets.main.output + sourceSets.test.output
+    shouldRunAfter test
+}
+
+task myfacesIntegTest(type: Test) {
+    include "**/*IT.class"
+    exclude "**/mojarra/**.class"
+    classpath = configurations.myfacesIntegTestRuntime + sourceSets.main.output + sourceSets.test.output
+    shouldRunAfter test
+}
+
+check.dependsOn mojarraIntegTest
+check.dependsOn myfacesIntegTest
+
+jacocoTestReport.executionData mojarraIntegTest, myfacesIntegTest

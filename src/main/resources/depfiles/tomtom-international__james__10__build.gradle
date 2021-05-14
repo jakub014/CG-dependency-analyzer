@@ -1,0 +1,112 @@
+/*
+ * Copyright 2017 TomTom International B.V.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.9.RELEASE"
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.4.4")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':james-controller-webservice-client')
+
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-actuator')
+
+    testCompile group: 'org.spockframework', name: 'spock-core', version: versions.spock
+    testCompile group: 'org.awaitility', name: 'awaitility', version: versions.awaitility
+}
+
+test {
+    exclude '**/*'
+}
+
+task prepareConfiguration(type: Copy) {
+    from 'configurations/integration-test.yaml'
+    into 'build/configurations'
+    filter { it.replaceAll('@@projectVersion@@', project.version)}
+}
+
+task runAppWithJames(type: JvmRunWithJames, dependsOn: [ compileJava, ':james-agent:build', ':james-controller-webservice:build']) {
+    classpath = project.sourceSets.main.runtimeClasspath
+    appMain = 'com.tomtom.james.it.webservice.App'
+    jamesAgentJarPath = "../james-agent/build/libs/james-agent-${project.version}-all.jar"
+    jamesConfigurationPath = '../integration-test/build/configurations/integration-test.yaml'
+}
+
+task shutdownApp(type: ShutdownApp) {
+    port = 8008
+}
+
+task integrationTest(type: Test) {
+    dependsOn prepareConfiguration, runAppWithJames
+    testLogging.showStandardStreams = true
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+    }
+    finalizedBy shutdownApp
+    doFirst {
+        waitForWebservice(8008)
+    }
+
+    beforeTest { desc ->
+        println ""
+        println "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
+        println " START : " + desc
+        println "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
+        println ""
+    }
+
+    afterTest { desc, result ->
+        println ""
+        println "=========================================================================================================================================================================================="
+        println " FINISHED : " + result + " | " + desc
+        println "=========================================================================================================================================================================================="
+        println ""
+    }
+
+}
+integrationTest.outputs.upToDateWhen { false }
+
+def waitForWebservice(int port) {
+    def isWebserviceUp = false
+    20.times {
+        if (isWebserviceUp) return
+        try {
+            new URL("http://localhost:$port/status").text
+            println "Test app's webservice is up, starting test task"
+            isWebserviceUp = true
+        } catch (IOException e) {
+            println "Test app's webservice is down, next attempt in 1 second ($e)"
+            sleep(1000)
+        }
+    }
+}

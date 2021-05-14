@@ -1,0 +1,13 @@
+apply plugin: 'com.vanniktech.maven.publish'
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation project(':scarlet-core')
+    implementation libs.kotlin.stdlib
+
+    testImplementation project(':scarlet-test-utils')
+    testImplementation libs.junit
+    testImplementation libs.mockito
+    testImplementation libs.kotlin.reflect
+    testImplementation libs.assertJ
+}

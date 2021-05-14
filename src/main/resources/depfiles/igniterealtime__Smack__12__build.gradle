@@ -1,0 +1,9 @@
+description = """\
+SASL with javax.security.sasl
+Use javax.security.sasl for SASL."""
+
+dependencies {
+	api project(':smack-core')
+
+	testFixturesApi(testFixtures(project(":smack-core")))
+}

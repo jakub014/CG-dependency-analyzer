@@ -1,0 +1,22 @@
+apply plugin: "java-library"
+apply plugin: "kotlin"
+
+dependencies {
+    compileOnly deps.kotlin.stdLib
+    compileOnly deps.lint.checks
+    compileOnly deps.lint.api
+}
+
+jar {
+    manifest {
+        attributes("Lint-Registry-v2": "dev.enro.lint.EnroIssueRegistry")
+    }
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+sourceCompatibility = "8"
+targetCompatibility = "8"

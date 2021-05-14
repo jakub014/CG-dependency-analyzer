@@ -1,0 +1,371 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>se.idsec.signservice.commons</groupId>
+  <artifactId>signservice-bom</artifactId>
+  <packaging>pom</packaging>
+  <version>1.1.0</version>
+
+  <name>IDsec Solutions :: BOM for SignService</name>
+  <description>BOM for SignService</description>
+  <url>https://github.com/idsec-solutions/signservice-commons</url>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:https://github.com/idsec-solutions/signservice-commons.git</connection>
+    <developerConnection>scm:git:https://github.com/idsec-solutions/signservice-commons.git</developerConnection>
+    <url>https://github.com/idsec-solutions/signservice-commons/tree/master</url>
+  </scm>
+
+  <organization>
+    <name>IDsec Solutions AB</name>
+    <url>https://www.idsec.se</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <name>Martin Lindström</name>
+      <email>martin@idsec.se</email>
+      <organization>IDsec Solutions AB</organization>
+      <organizationUrl>https://www.idsec.se</organizationUrl>
+    </developer>
+
+    <developer>
+      <name>Stefan Santesson</name>
+      <email>stefan@idsec.se</email>
+      <organization>IDsec Solutions AB</organization>
+      <organizationUrl>https://www.idsec.se</organizationUrl>
+    </developer>
+  </developers>
+
+  <properties>
+    <jackson.version>2.10.0</jackson.version>
+    <opensaml.version>3.4.5</opensaml.version>
+    <pdfbox.version>2.0.17</pdfbox.version>
+    <bouncy-castle.version>1.65</bouncy-castle.version>
+    <slf4j.version>1.7.29</slf4j.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <name>Maven Central</name>
+      <url>https://repo1.maven.org/maven2/</url>
+    </repository>
+    <repository>
+      <id>shibboleth</id>
+      <name>Shibboleth Maven Repo</name>
+      <url>https://build.shibboleth.net/nexus/content/repositories/releases</url>
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+
+  <dependencyManagement>
+
+    <dependencies>
+
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.10</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-nop</artifactId>
+        <version>${slf4j.version}</version>
+        <scope>test</scope>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>${slf4j.version}</version>
+        <scope>test</scope>
+      </dependency>      
+
+      <!-- For annotation support (nullable, etc) -->
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>jsr305</artifactId>
+        <version>3.0.2</version>
+      </dependency>
+      
+      <!-- XML Security -->
+      <dependency>
+        <groupId>org.apache.santuario</groupId>
+        <artifactId>xmlsec</artifactId>
+        <version>2.1.4</version>
+      </dependency>
+
+      <!-- Jackson -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      
+      <!-- PDF Box -->
+      <dependency>
+        <groupId>org.apache.pdfbox</groupId>
+        <artifactId>pdfbox</artifactId>
+        <version>${pdfbox.version}</version>
+      </dependency>
+      
+      <!-- Commons IO -->
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.7</version>
+      </dependency>
+
+      <!-- JAXB -->
+      
+      <!-- To avoid dependency convergence errors ... -->
+      <dependency>
+        <groupId>org.jvnet.jaxb2_commons</groupId>
+        <artifactId>jaxb2-basics-runtime</artifactId>
+        <version>1.11.1</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>2.3.1</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>se.swedenconnect.schemas</groupId>
+        <artifactId>xmlsec-jaxb-workaround</artifactId>
+        <version>1.0.1</version>
+      </dependency>
+            
+      <dependency>
+        <groupId>se.swedenconnect.schemas</groupId>
+        <artifactId>saml-jaxb</artifactId>
+        <version>1.0.1</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>se.swedenconnect.schemas</groupId>
+        <artifactId>oasis-dss-jaxb</artifactId>
+        <version>1.0.1</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>se.swedenconnect.schemas</groupId>
+        <artifactId>etsi-xades-jaxb</artifactId>
+        <version>1.0.1</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>se.swedenconnect.schemas</groupId>
+        <artifactId>etsi-xades-ext-jaxb</artifactId>
+        <version>1.0.1</version>
+      </dependency>
+            
+      <dependency>
+        <groupId>se.swedenconnect.schemas.csig</groupId>
+        <artifactId>dss-ext11-jaxb</artifactId>
+        <version>1.0.3</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>se.swedenconnect.schemas.csig</groupId>
+        <artifactId>sap11-jaxb</artifactId>
+        <version>1.0.1</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>se.swedenconnect.schemas.cert</groupId>
+        <artifactId>authcontextinfo10-jaxb</artifactId>
+        <version>1.0.1</version>     
+      </dependency>
+      
+      <dependency>
+        <groupId>se.swedenconnect.schemas.cert</groupId>
+        <artifactId>ext-auth-info10-jaxb</artifactId>
+        <version>1.0.1</version>     
+      </dependency>
+      
+      <!-- Bouncy Castle -->
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcprov-jdk15on</artifactId>
+        <version>${bouncy-castle.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcpkix-jdk15on</artifactId>
+        <version>${bouncy-castle.version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcmail-jdk15on</artifactId>
+        <version>${bouncy-castle.version}</version>
+      </dependency>      
+
+      <!-- OpenSAML -->
+      <dependency>
+        <groupId>se.swedenconnect.opensaml</groupId>
+        <artifactId>opensaml-bom</artifactId>
+        <version>${opensaml.version}.R1</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>se.swedenconnect.opensaml</groupId>
+        <artifactId>opensaml-security-ext</artifactId>
+        <version>1.0.7</version>
+      </dependency>
+
+      <dependency>
+        <groupId>se.litsec.opensaml</groupId>
+        <artifactId>opensaml3-ext</artifactId>
+        <version>1.4.4</version>
+        <exclusions>
+          <exclusion>
+            <groupId>se.swedenconnect.opensaml</groupId>
+            <artifactId>opensaml-security-ext</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>se.litsec.opensaml.sweid</groupId>
+        <artifactId>swedish-eid-opensaml3</artifactId>
+        <version>1.3.2</version>
+        <exclusions>
+          <exclusion>
+            <groupId>se.swedenconnect.opensaml</groupId>
+            <artifactId>opensaml-security-ext</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>se.litsec.opensaml</groupId>
+            <artifactId>opensaml3-ext</artifactId>
+          </exclusion>
+          <!-- We're not using this, and it causes Maven problems right now ... -->
+          <exclusion>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+          </exclusion>          
+        </exclusions>
+      </dependency>
+
+      <!-- Misc -->
+      <dependency>
+        <groupId>joda-time</groupId>
+        <artifactId>joda-time</artifactId>
+        <version>2.9</version>
+      </dependency>
+
+      <!-- Test -->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.1</version>
+        <scope>test</scope>
+      </dependency>
+
+    </dependencies>
+
+  </dependencyManagement>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+
+      <build>
+        <plugins>
+
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.7</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>false</autoReleaseAfterClose>
+              <!-- 
+                Allows manual inspection of the staging repo before deploying it to the central repo. 
+                Use 'mvn nexus-staging:release -Prelease' to release and 'mvn nexus-staging:drop' to abort. 
+                -->
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+
+    </profile>
+  </profiles>
+
+</project>

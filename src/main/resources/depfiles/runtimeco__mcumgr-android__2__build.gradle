@@ -1,0 +1,50 @@
+/*
+ * Copyright (c) 2017-2018 Runtime Inc.
+ * Copyright (c) Intellinium SAS, 2014-present
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply from: rootProject.file('gradle/jacoco-android.gradle')
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 29
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            consumerProguardFiles 'mcumgr-core-proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8"
+
+    // Annotations
+    implementation 'org.jetbrains:annotations:16.0.1'
+
+    // Logging
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+
+    // Import CBOR parser
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.11.0'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.0'
+
+    // Test
+    testImplementation 'junit:junit:4.13'
+    testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
+}
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
