@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>tomkit</artifactId>
+        <groupId>io.github.yanhu32</groupId>
+        <version>1.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>tomkit-core</artifactId>
+    <version>1.0.5</version>
+    <packaging>jar</packaging>
+
+    <name>tomkit-core</name>
+    <description>
+        tomkit核心工具包
+    </description>
+    <url>https://github.com/yanhu32/tomkit/tree/main/tomkit-core</url>
+
+</project>

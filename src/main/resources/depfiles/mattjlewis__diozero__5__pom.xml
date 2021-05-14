@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.diozero</groupId>
+		<artifactId>diozero</artifactId>
+		<version>1.2.2</version>
+	</parent>
+
+	<name>Device I/O Zero - Firmata</name>
+	<artifactId>diozero-provider-firmata</artifactId>
+	<packaging>jar</packaging>
+	
+	<properties>
+		<firmata4j.version>2.3.8</firmata4j.version>
+	</properties>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.github.kurbatov</groupId>
+				<artifactId>firmata4j</artifactId>
+				<version>${firmata4j.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.kurbatov</groupId>
+			<artifactId>firmata4j</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>

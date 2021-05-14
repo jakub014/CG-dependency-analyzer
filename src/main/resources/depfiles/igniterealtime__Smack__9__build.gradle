@@ -1,0 +1,10 @@
+description = """\
+DNS SRV with minidns
+Use minidns for DNS SRV lookups. For platforms that don't provide the
+javax.naming API (e.g. Android)."""
+
+dependencies {
+	api project(':smack-core')
+	api "org.minidns:minidns-hla:$miniDnsVersion"
+	implementation "org.jxmpp:jxmpp-util-cache:$jxmppVersion"
+}

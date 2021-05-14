@@ -1,0 +1,58 @@
+group 'io.github.prashant-ramcharan'
+version '5.11.0'
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+ext {
+    cucumberVersion = '6.10.3'
+    testNGVersion = '7.1.0'
+    jacksonVersion = '2.11.3'
+    httpcomponentsVersion = '4.5.13'
+    extentreportVersion = '5.0.3'
+    mustacheVersion = '0.9.6'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile "io.cucumber:cucumber-core:$cucumberVersion"
+    compile "io.cucumber:cucumber-java:$cucumberVersion"
+    compile "io.cucumber:cucumber-java8:$cucumberVersion"
+    compile "io.cucumber:cucumber-junit:$cucumberVersion"
+    compile("io.cucumber:cucumber-testng:$cucumberVersion") {
+        exclude group: 'com.google.guava'
+        exclude group: 'org.testng'
+    }
+    compile "org.testng:testng:$testNGVersion"
+    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    compile "org.apache.httpcomponents:httpclient:$httpcomponentsVersion"
+    compile "org.apache.httpcomponents:httpmime:$httpcomponentsVersion"
+    compile "com.aventstack:extentreports:$extentreportVersion"
+    compile "com.github.spullara.mustache.java:compiler:$mustacheVersion"
+}
+
+task buildJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives buildJar
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact buildJar
+        }
+    }
+}

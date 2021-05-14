@@ -1,0 +1,131 @@
+apply plugin: "java"
+apply plugin: "maven"
+apply plugin: "signing"
+
+group = "com.glookast.commons"
+version = "3.1.2"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes "Implementation-Version": version
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url = "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+}
+
+dependencies {
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.8'
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.9.8'
+
+    compile 'com.glookast.commons:commons-base:2.0.1'
+    compile 'com.glookast.commons:commons-xml:1.0.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task javadocJar(type: Jar) {
+    classifier = "javadoc"
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = "sources"
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+task tagRelease(type: Exec) {
+    commandLine "git"
+    args "tag", "-a", "$version", "-m", "Created release $version"
+}
+
+task tagReleaseRemote(type: Exec) {
+    commandLine "git"
+    args "push", "origin", "$version"
+}
+
+task untagRelease(type: Exec) {
+    commandLine "git"
+    args "tag", "-d", "$version"
+}
+
+task untagReleaseRemote(type: Exec) {
+    commandLine "git"
+    args "push", "-d", "origin", "$version"
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name "commons-templates"
+                packaging "jar"
+                // optionally artifactId can be defined here
+                description "Common classes used for interfacing with Glookast Products"
+                url "http://github.com/glookast/commons-templates"
+
+                scm {
+                    connection "scm:git:git://github.com/glookast/commons-templates.git"
+                    developerConnection "scm:git:ssh://github.com:glookast/commons-templates.git"
+                    url "http://github.com/glookast/commons-templates/tree/master"
+                }
+
+                licenses {
+                    license {
+                        name "The Apache License, Version 2.0"
+                        url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+
+                developers {
+                    developer {
+                        id "joostrovers"
+                        name "Joost Rovers"
+                        email "joost.rovers@glookast.com"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.fasterxml.jackson.jr</groupId>
+    <artifactId>jackson-jr-parent</artifactId>
+    <version>3.0.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>jackson-jr-all</artifactId>
+  <name>jackson-jr-all</name>
+  <packaging>jar</packaging>
+  <description>"Uber" jar that contains all Jackson jr components as well as underlying Jackson core
+Streaming, in a single jar.
+</description>
+  <url>http://wiki.fasterxml.com/JacksonHome</url>
+
+  <properties>
+  </properties>
+
+  <dependencies>
+    <!-- Cross-module deps -->
+    <dependency>
+        <groupId>com.fasterxml.jackson.jr</groupId>
+        <artifactId>jackson-jr-objects</artifactId>
+        <version>${project.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.jr</groupId>
+        <artifactId>jackson-jr-stree</artifactId>
+        <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-shade-plugin</artifactId>
+      <configuration>
+        <createDependencyReducedPom>true</createDependencyReducedPom>
+        <filters>
+            <filter>
+                <artifact>*:*</artifact>
+                <excludes>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                    <!-- This is only needed to remove bogus placeholder class
+                         that we need to force packaging of src, javadoc jars,
+                         which Nexus requires (even though we don't really care)
+                      -->
+                    <exclude>jrall/*.class</exclude>
+                </excludes>
+            </filter>
+        </filters>
+        <!-- Also: let's relocate Jackson core stuff; this is to avoid any conflicts
+             between shaded version and proper non-shaded modules. If one wants original
+             packages, should just use non-uber-jar version anyways.
+
+             01-Dec-2015, tatu: earlier package "private" was used to prevent any accidental
+               IDE-provided import, but due to reported issues with IDEs, had to drop that idea.
+               So for now it's just "private_" and will have to do.
+          -->
+        <relocations>
+          <relocation>
+            <pattern>com.fasterxml.jackson.core</pattern>
+            <shadedPattern>com.fasterxml.jackson.jr.private_</shadedPattern>
+          </relocation>
+        </relocations>
+      </configuration>
+      <executions>
+        <execution>
+            <phase>package</phase>
+            <goals>
+                <goal>shade</goal>
+            </goals>
+            <configuration>
+                <createSourcesJar>true</createSourcesJar>
+            </configuration>
+        </execution>
+      </executions>
+    </plugin>
+
+      <!-- only need javadocs to keep Nexus happy -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+	<executions> 
+	  <execution> 
+            <phase>package</phase> 
+            <goals> 
+              <goal>jar</goal> 
+            </goals>
+            <configuration> 
+              <includeDependencySources>true</includeDependencySources> 
+              <dependencySourceIncludes> 
+		<dependencySourceInclude>com.fasterxml.jackson.jr:*</dependencySourceInclude> 
+              </dependencySourceIncludes> 
+              <excludePackageNames>com.fasterxml.jackson.jr.private_.*</excludePackageNames> 
+            </configuration> 
+	  </execution> 
+	</executions> 
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>

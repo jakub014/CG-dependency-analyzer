@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.diozero</groupId>
+		<artifactId>diozero</artifactId>
+		<version>1.2.2</version>
+	</parent>
+
+	<name>Device I/O Zero - Distribution</name>
+	<artifactId>diozero-distribution</artifactId>
+	<packaging>pom</packaging>
+
+	<!-- NOTE: These dependency declarations are only required to sort this 
+		project to the end of the line in the multi-module build. We need to ensure 
+		this distribution project builds AFTER all diozero modules -->
+	<dependencies>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-application</artifactId>
+			<version>${diozero.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-imu-devices</artifactId>
+			<version>${diozero.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-provider-bbbiolib</artifactId>
+			<version>${diozero.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-provider-firmata</artifactId>
+			<version>${diozero.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-provider-mmap</artifactId>
+			<version>${diozero.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-provider-mqtt</artifactId>
+			<version>${diozero.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-provider-pigpio</artifactId>
+			<version>${diozero.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-provider-voodoospark</artifactId>
+			<version>${diozero.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-remote-common</artifactId>
+			<version>${diozero.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-remote-server</artifactId>
+			<version>${diozero.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-provider-remote</artifactId>
+			<version>${diozero.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-ws281x-java</artifactId>
+			<version>${diozero.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.diozero</groupId>
+			<artifactId>diozero-sampleapps</artifactId>
+			<version>${diozero.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>distro-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>src/assembly/bin.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

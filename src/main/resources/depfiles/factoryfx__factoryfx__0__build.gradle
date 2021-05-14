@@ -1,0 +1,597 @@
+import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
+
+import java.nio.charset.StandardCharsets
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.6.2"
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0"
+    }
+}
+ext.platform = "win"
+
+
+apply plugin: 'idea'
+idea {
+    project {
+        languageLevel = 16
+        jdkName = '16'
+        targetBytecodeVersion = JavaVersion.VERSION_16
+        vcs = 'Git'
+    }
+}
+allprojects {
+    apply plugin: 'idea'
+    idea.module.outputDir file("out/production/classes") // //https://intellij-support.jetbrains.com/hc/en-us/community/posts/360000430279-Can-t-access-resource-with-Java-10?page=1#community_comment_360000102619
+}
+
+
+wrapper {
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+apply plugin: 'io.codearte.nexus-staging'
+nexusStaging {//https://github.com/Codearte/gradle-nexus-staging-plugin
+    username = ossrhUsername
+    password = ossrhPassword
+    packageGroup = 'io.github.factoryfx'
+    stagingProfileId = '78e9b0494c64ba'
+//    stagingRepositoryId = ??? requires external mechanism
+    numberOfRetries = 50
+}
+
+subprojects {
+    apply plugin: "com.github.spotbugs"
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+
+
+    if (!'benchmark'.equals(project.name)){//jmh does not work with module-info
+        compileJava {
+            inputs.property("moduleName", "io.github.factoryfx.$project.name")
+            doFirst {
+                options.compilerArgs = [
+                        '--module-path', classpath.asPath,
+                ]
+                classpath = files()
+            }
+        }
+//        java {
+//            modularity.inferModulePath = true
+//        }
+    }
+
+
+    task javadocJar(type: Jar) {
+        classifier = 'javadoc'
+        from javadoc
+    }
+    javadoc {
+        failOnError = false
+        doFirst {
+            options.encoding = StandardCharsets.UTF_8
+        }
+    }
+
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    artifacts {
+        archives javadocJar, sourcesJar
+    }
+
+    group = 'io.github.factoryfx'
+    version = '3.0.0-alpha0'
+
+    publishing {
+
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                artifact sourcesJar
+                artifact javadocJar
+                pom {
+                    name = 'factoryfx'
+                    packaging 'jar'
+                    description = 'factoryfx dependency injection framework'
+                    url = 'http://factoryfx.github.io/factoryfx'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'SCOOP Software'
+                            name = 'SCOOP Software'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git@github.com:factoryfx/factoryfx.git'
+                        developerConnection = 'scm:git@github.com:factoryfx/factoryfx.git'
+                        url = 'scm:git@github.com:factoryfx/factoryfx.git'
+                    }
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+                credentials {
+                    username = ossrhUsername
+                    password = ossrhPassword
+                }
+            }
+        }
+    }
+
+    if (project.hasProperty('secretKeyRingFileSourceURL')) {
+        signing {
+            sign publishing.publications.mavenJava
+        }
+        //workaround  to get key  file to the plugin
+
+        // task to fetch the GPG key to sign the JAR archives
+        // we put the key to build/secring.gpg where it will be picked up by the uploadArchives task of the nexus plugin
+
+        task fetchSecretKeyRingFile {
+            doLast {
+                def fileTarget = "build/secring.gpg"
+                def secretKeyRingFileSourceURL = project.getProperty("secretKeyRingFileSourceURL")
+                def secretKeyRingFileSourceURLAuthUsername = project.getProperty("secretKeyRingFileSourceURLAuthUsername")
+                def secretKeyRingFileSourceURLAuthPassword = project.getProperty("secretKeyRingFileSourceURLAuthPassword")
+                project.setProperty("signing.secretKeyRingFile", fileTarget)
+                file(fileTarget).getParentFile().mkdirs()
+                ant.get(src: secretKeyRingFileSourceURL, dest: fileTarget, username: secretKeyRingFileSourceURLAuthUsername, password: secretKeyRingFileSourceURLAuthPassword)
+            }
+        }
+        afterEvaluate {
+            // always fetch the GPG key before signing archives
+            tasks.signMavenJavaPublication.dependsOn fetchSecretKeyRingFile
+        }
+    }
+
+
+//    uploadArchives {
+//        repositories {
+//            mavenDeployer {
+//                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+//
+//                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//                    authentication(userName: ossrhUsername, password: ossrhPassword)
+//                }
+//
+//                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+//                    authentication(userName: ossrhUsername, password: ossrhPassword)
+//                }
+//
+//                pom.project {
+//                    name 'factoryfx'
+//                    packaging 'jar'
+//                    // optionally artifactId can be defined here
+//                    description 'factoryfx dependency injection framework'
+//                    url 'http://factoryfx.github.io/factoryfx'
+//
+//                    scm {
+//                        connection 'scm:git@github.com:factoryfx/factoryfx.git'
+//                        developerConnection 'scm:git@github.com:factoryfx/factoryfx.git'
+//                        url 'scm:git@github.com:factoryfx/factoryfx.git'
+//                    }
+//
+//                    licenses {
+//                        license {
+//                            name 'The Apache License, Version 2.0'
+//                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                        }
+//                    }
+//                    developers {
+//                        developer {
+//                            id 'SCOOP Software'
+//                            name 'SCOOP Software'
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+
+    repositories {
+        mavenCentral()
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_16
+    compileJava.options.encoding = StandardCharsets.UTF_8
+
+    dependencies {
+        api group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-beta4'
+        api (group: 'com.google.guava', name: 'guava', version: '28.1-jre'){
+            exclude module: "jsr305" // module conflict: https://blog.codefx.org/java/jsr-305-java-9/, https://github.com/google/guava/issues/2960
+        }
+        testImplementation group: 'org.mockito', name: 'mockito-core', version: '2.18.3'
+        testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.4.0'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    spotbugs {
+        toolVersion = '4.2.2'
+        ignoreFailures = true
+        excludeFilter = file("$rootProject.projectDir/findbugs/findbugs-exclude-filter.xml")
+    }
+
+    spotbugsTest {
+        enabled = false
+    }
+
+}
+
+project(':copperBridge') {
+    dependencies {
+        api project(":factory")
+        api (group: 'org.copper-engine', name: 'copper-coreengine', version: '5.3.0'){
+            exclude group: "javax.xml.bind"
+            exclude group: "javax.activation"
+
+        }
+        api (group: 'org.copper-engine', name: 'copper-ext', version: '5.3.0'){
+            exclude group: "javax.xml.bind"
+            exclude group: "javax.activation"
+        }
+
+        api group: 'jakarta.activation', name: 'jakarta.activation-api', version: '1.2.1'
+        api group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.2'
+
+        api group: 'org.ow2.asm', name: 'asm', version: '9.1'
+        api group: 'org.ow2.asm', name: 'asm-tree', version: '9.1'
+        api group: 'org.yaml', name: 'snakeyaml', version: '1.27'
+    }
+}
+
+project(':microserviceRestResource') {
+    dependencies {
+        api project(":jettyFactory")
+        api project(":microserviceRestCommon")
+        testImplementation project(":testfactories")
+    }
+}
+
+project(':microserviceRestClient') {
+    dependencies {
+        api  project(":factory")
+        api  project(":microserviceRestCommon")
+        api  (group: 'org.glassfish.jersey.ext', name: 'jersey-proxy-client', version: '2.28')
+        api  ('org.glassfish.jersey.core:jersey-client:2.28')
+        api  (group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: '2.12.0')
+    }
+
+}
+
+project(':microserviceRestCommon') {
+    dependencies {
+        api project(":factory")
+        api group: 'jakarta.ws.rs', name: 'jakarta.ws.rs-api', version: '2.1.2'
+        api group: 'jakarta.activation', name: 'jakarta.activation-api', version: '1.2.1'
+        api group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.2'
+    }
+}
+
+project(':microserviceRestIntegrationTest') {
+    publishMavenJavaPublicationToMavenRepository.enabled = false//don't publish
+    dependencies {
+        implementation project(":microserviceRestResource")
+        implementation project(":microserviceRestClient")
+        implementation (group: 'ch.qos.logback', name: 'logback-classic', version: '1.3.0-alpha4'){
+            exclude group: 'javax.activation'
+        }
+        implementation group: 'jakarta.activation', name: 'jakarta.activation-api', version: '1.2.1'
+    }
+}
+
+
+
+project(':factory') {
+    dependencies {
+        api  (group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.0')
+        api  (group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jdk8', version: '2.12.0')
+        api  (group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.12.0')
+        
+        testImplementation project(":testfactories")
+        testImplementation (group: 'ch.qos.logback', name: 'logback-classic', version: '1.3.0-alpha4'){
+            exclude group: 'javax.activation'
+        }
+        testImplementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.12.0'
+    }
+}
+
+project(':postgresqlStorage') {
+
+    dependencies {
+        api project(":factory")
+        api group: 'org.postgresql', name: 'postgresql', version: '42.2.19'
+        testImplementation 'ru.yandex.qatools.embed:postgresql-embedded:1.15'
+        testImplementation project(":testfactories")
+    }
+
+}
+
+project(':oracledbStorage') {
+    dependencies {
+        implementation project(":factory")
+        //still no oracle driver in mvn central
+        testImplementation group: 'com.h2database', name: 'h2', version: '1.4.196'
+        testImplementation project(":testfactories")
+    }
+
+}
+
+project(':jettyFactory') {
+    dependencies {
+        api  project(":factory")
+        api  (group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.31.v20200723')
+        api  (group: 'org.eclipse.jetty', name: 'jetty-servlet', version: '9.4.31.v20200723')
+        api  (group: 'org.eclipse.jetty', name: 'jetty-webapp', version: '9.4.31.v20200723')
+
+        api  group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.2'
+
+        api  (group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.28')
+        api  (group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: '2.12.0')
+        api  ('org.glassfish.jersey.containers:jersey-container-servlet-core:2.28')
+        api  ('org.glassfish.jersey.inject:jersey-hk2:2.28')
+
+        api  group: 'jakarta.annotation', name: 'jakarta.annotation-api', version: '1.3.4'
+
+        testImplementation (group: 'ch.qos.logback', name: 'logback-classic', version: '1.3.0-alpha4'){
+            exclude group: 'javax.activation'
+        }
+    }
+
+}
+
+
+project(':example') {
+
+    publishMavenJavaPublicationToMavenRepository.enabled = false//don't publish
+    dependencies {
+        implementation project(":javafxFactoryEditing")
+        implementation project(":jettyFactory")
+        implementation project(":microserviceRestResource")
+        implementation project(":factory")
+        implementation project(":domFactoryEditing")
+
+        implementation (group: 'ch.qos.logback', name: 'logback-classic', version: '1.3.0-alpha4'){
+            exclude group: 'javax.activation'
+        }
+        implementation group: 'jakarta.activation', name: 'jakarta.activation-api', version: '1.2.1'
+    }
+
+}
+
+
+project(':javafxFactoryEditing') {
+    dependencies {
+        api "org.openjfx:javafx-base:11.0.1:$platform"
+        api "org.openjfx:javafx-graphics:11.0.1:$platform"
+        api "org.openjfx:javafx-controls:11.0.1:$platform"
+        api "org.openjfx:javafx-web:11.0.1:$platform"
+        api "org.openjfx:javafx-fxml:11.0.1:$platform"
+        api "org.openjfx:javafx-media:11:$platform"
+
+        api group: 'org.controlsfx', name: 'controlsfx', version: '11.0.0'
+        api group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.6.10'
+
+        api project(":factory")
+        api project(":microserviceRestClient")
+
+        testImplementation project(":testfactories")
+        testImplementation (group: 'ch.qos.logback', name: 'logback-classic', version: '1.3.0-alpha4'){
+            exclude group: "javax.activation"
+        }
+        testImplementation group: 'jakarta.activation', name: 'jakarta.activation-api', version: '1.2.1'
+
+    }
+
+}
+
+project(':javafxDistributionServer') {
+    dependencies {
+        api project(":jettyFactory")
+        api project(":factory")
+        api group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-beta4'
+
+        testImplementation (group: 'ch.qos.logback', name: 'logback-classic', version: '1.3.0-alpha4'){
+            exclude group: "javax.activation"
+        }
+        testImplementation group: 'jakarta.activation', name: 'jakarta.activation-api', version: '1.2.1'
+    }
+
+}
+
+project(':javafxDistributionClient') {
+
+    dependencies {
+        api group: 'org.slf4j', name: 'slf4j-api', version: '1.8.0-beta4'
+        api (group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.0'){
+            exclude group: "javax.annotation"
+        }
+
+        api "org.openjfx:javafx-base:11.0.1:$platform"
+        api "org.openjfx:javafx-graphics:11.0.1:$platform"
+        api "org.openjfx:javafx-controls:11.0.1:$platform"
+        api "org.openjfx:javafx-web:11.0.1:$platform"
+        api "org.openjfx:javafx-fxml:11.0.1:$platform"
+
+
+        api (group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '2.28')
+        api (group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: '2.12.0'){
+            exclude group: "javax.annotation"
+        }
+        api ('org.glassfish.jersey.media:jersey-media-json-jackson:2.28')
+        api ('org.glassfish.jersey.inject:jersey-hk2:2.28')
+        api group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.2'
+    }
+
+}
+
+project(':testfactories') {
+    publishMavenJavaPublicationToMavenRepository.enabled = false//don't publish
+    dependencies {
+        implementation project(":factory")
+    }
+}
+
+project(':docu') {
+    publishMavenJavaPublicationToMavenRepository.enabled = false//don't publish
+    dependencies {
+        implementation project(":factory")
+        implementation project(":jettyFactory")
+        implementation project(':postgresqlStorage')
+
+        implementation project(':microserviceRestResource')
+        implementation project(':microserviceRestClient')
+        implementation project(':initializr')
+        implementation project(":domFactoryEditing")
+        
+        implementation group: 'io.dropwizard.metrics', name: 'metrics-jetty9', version: '4.1.18'
+        implementation 'ru.yandex.qatools.embed:postgresql-embedded:1.15'
+        implementation (group: 'ch.qos.logback', name: 'logback-classic', version: '1.3.0-alpha4'){
+            exclude group: 'javax.activation'
+        }
+        implementation group: 'jakarta.activation', name: 'jakarta.activation-api', version: '1.2.1'
+
+        implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.2'
+    }
+
+}
+
+project(':typescriptGenerator') {
+    dependencies {
+        api project(":factory")
+        testImplementation project(":testfactories")
+        testImplementation project(":jettyFactory")
+        testImplementation project(":domFactoryEditing")
+        testImplementation (group: 'ch.qos.logback', name: 'logback-classic', version: '1.3.0-alpha4'){
+            exclude group: 'javax.activation'
+        }
+    }
+
+    task generateTestCode(type: JavaExec) {
+        classpath = sourceSets.test.runtimeClasspath
+        main = 'io.github.factoryfx.factory.typescript.generator.data.TestGenerator'
+    }
+
+    task installNpm(type: Exec) {
+        dependsOn ':typescriptGenerator:generateTestCode'
+        workingDir "$projectDir/src/test/ts/"
+
+        if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
+            commandLine "npm.cmd", "install"
+        } else {
+            commandLine "npm", "install"
+        }
+    }
+
+    task typescriptTest(type: Exec) {
+        dependsOn ':typescriptGenerator:installNpm'
+        workingDir "$projectDir/src/test/ts/"
+
+        if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
+            commandLine "npm.cmd", "test"
+        } else {
+            commandLine "npm", "test"
+        }
+    }
+}
+
+project(':soapFactory') {
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+
+        api project(":factory")
+        api project(":jettyFactory")
+
+        api(group: 'org.eclipse.jetty', name: 'jetty-server', version: '9.4.31.v20200723') {
+            exclude group: "javax.annotation"
+        }
+        api group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.2'
+        api(group: 'com.sun.istack', name: 'istack-commons-runtime', version: '3.0.7') {
+            exclude group: 'javax.annotation'
+        }
+
+        api group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.2'
+
+        api(group: 'com.sun.xml.messaging.saaj', name: 'saaj-impl', version: '1.5.0') {
+            exclude group: 'javax.annotation'
+            exclude group: 'org.jvnet.mimepull'
+            exclude group: 'javax.activation'
+            exclude group: 'javax.xml.soap'
+        }
+
+
+        api group: 'jakarta.xml.ws', name: 'jakarta.xml.ws-api', version: '2.3.2'
+        api group: 'jakarta.annotation', name: 'jakarta.annotation-api', version: '1.3.4'
+        api group: 'jakarta.xml.soap', name: 'jakarta.xml.soap-api', version: '1.4.1'
+        api group: 'jakarta.jws', name: 'jakarta.jws-api', version: '1.1.1'
+    }
+}
+
+
+project(':initializr') {
+
+    dependencies {
+        api project(":factory")
+        api project(":jettyFactory")
+        api group: 'com.squareup', name: 'javapoet', version: '1.11.1'
+    }
+}
+
+project(':benchmark') {
+//        compileJava {
+//            inputs.property("moduleName", "")
+//            doFirst {
+//                options.compilerArgs = [
+//                        //'--module-path', classpath.asPath,
+//                        '--class-path', classpath.asPath,
+//                ]
+//                classpath = files()
+//            }
+//        }
+
+    publishMavenJavaPublicationToMavenRepository.enabled = false//don't publish
+    dependencies {
+        implementation project(":factory")
+        implementation project(":testfactories")
+
+        implementation group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: '1.21'
+        implementation group: 'org.openjdk.jmh', name: 'jmh-core', version: '1.21'
+    }
+}
+
+project(':domFactoryEditing') {
+    dependencies {
+        api project(":microserviceRestResource")
+        api project(":typescriptGenerator")
+        testImplementation (group: 'ch.qos.logback', name: 'logback-classic', version: '1.3.0-alpha4'){
+            exclude group: 'javax.activation'
+        }
+    }
+}
+    
+

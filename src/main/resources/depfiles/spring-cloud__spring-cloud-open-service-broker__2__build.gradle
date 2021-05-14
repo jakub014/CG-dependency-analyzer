@@ -1,0 +1,53 @@
+/*
+ * Copyright 2002-2021 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+description = "Spring Cloud Open Service Broker Core"
+
+dependencies {
+	// BOM imports - The versions used in these files will override any other versions found in the graph
+	implementation enforcedPlatform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+
+	compileOnly 'javax.servlet:javax.servlet-api'
+	api 'org.springframework:spring-context'
+	optionalApi 'org.springframework:spring-web'
+	optionalApi 'org.springframework:spring-webflux'
+	api 'io.projectreactor:reactor-core'
+	api 'com.fasterxml.jackson.core:jackson-databind'
+	api 'org.hibernate.validator:hibernate-validator'
+	api "commons-beanutils:commons-beanutils:${beanUtilsVersion}"
+	api 'org.slf4j:slf4j-api'
+	testImplementation 'org.springframework:spring-test'
+	testImplementation 'io.projectreactor:reactor-test'
+	testImplementation "io.projectreactor.tools:blockhound-junit-platform:${blockHoundVersion}"
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+	testImplementation 'org.junit.jupiter:junit-jupiter'
+	testImplementation 'org.assertj:assertj-core'
+	testImplementation 'org.hamcrest:hamcrest-library'
+	testImplementation 'org.mockito:mockito-core'
+	testImplementation 'org.mockito:mockito-junit-jupiter'
+	testImplementation 'com.jayway.jsonpath:json-path'
+	testImplementation "nl.jqno.equalsverifier:equalsverifier:${equalsVerifierVersion}"
+	testImplementation 'javax.servlet:javax.servlet-api'
+}
+
+configurations {
+	testOutput
+}
+
+artifacts {
+	testOutput testsJar
+}

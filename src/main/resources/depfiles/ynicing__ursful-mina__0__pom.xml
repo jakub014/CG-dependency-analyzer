@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.ursful.framework</groupId>
+  <artifactId>ursful-mina</artifactId>
+  <packaging>pom</packaging>
+  <version>3.0.3</version>
+
+  <description>MINA, message center.</description>
+  <modules>
+    <module>ursful-mina-core</module>
+    <module>ursful-mina-message</module>
+    <module>ursful-mina-test</module>
+  </modules>
+
+  <name>ursful-mina</name>
+  <url>https://ursful.com</url>
+
+  <licenses>
+    <license>
+      <name>The ApacheSoftware License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>ynicing</name>
+      <email>jlis@qq.com</email>
+    </developer>
+  </developers>
+
+  <scm>
+    <tag>master</tag>
+    <connection>https://github.com/ynicing/ursful-mina.git</connection>
+    <developerConnection>https://github.com/ynicing</developerConnection>
+    <url>https://github.com/ynicing/ursful-mina.git</url>
+  </scm>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+
+    <ursful.mina.version>1.0-SNAPSHOT</ursful.mina.version>
+    <mina.version>2.0.13</mina.version>
+    <mysql.version>5.1.38</mysql.version>
+    <slf4j.version>1.7.7</slf4j.version>
+    <log4j.version>1.2.17</log4j.version>
+    <ursful-mina.version>3.0.3</ursful-mina.version>
+
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.apache.mina</groupId>
+      <artifactId>mina-core</artifactId>
+      <version>${mina.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>${log4j.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${slf4j.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.1</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>2.4</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <configuration>
+                  <additionalJOption>${javadoc.opts}</additionalJOption>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+
+
+        </plugins>
+      </build>
+
+      <distributionManagement>
+        <repository>
+          <id>sonatype</id>
+          <url>
+            https://oss.sonatype.org/service/local/staging/deploy/maven2/
+          </url>
+        </repository>
+      </distributionManagement>
+    </profile>
+
+    <profile>
+      <id>disable-javadoc-doclint</id>
+      <activation>
+        <jdk>[1.8,)</jdk>
+      </activation>
+      <properties>
+        <javadoc.opts>-Xdoclint:none</javadoc.opts>
+      </properties>
+    </profile>
+  </profiles>
+</project>

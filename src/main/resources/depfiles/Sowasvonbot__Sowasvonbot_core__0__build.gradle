@@ -1,0 +1,117 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+    id 'maven'
+    id 'signing'
+}
+
+
+group 'com.github.sowasvonbot'
+version "0.0.6"
+
+archivesBaseName = "sowasvonbot-core"
+
+sourceCompatibility = 1.8
+
+mainClassName = 'main.Main'
+
+signing {
+    sign configurations.archives
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name 'm2-dv8tion'
+        url 'https://m2.dv8tion.net/releases'
+    }
+    jcenter()
+}
+
+
+run {
+    standardInput = System.in
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+dependencies {
+    compile ('net.dv8tion:JDA:4.2.1_253') {
+        exclude module: 'opus-java'
+    }
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.13.0'
+    compile group: 'org.json', name: 'json', version: '20190722'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'main.Main'
+    }
+}
+
+// Add Javadoc JAR and sources JAR to artifact
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+// Build, sign, and upload
+uploadArchives {
+    repositories {
+        mavenDeployer {
+
+            // Sign POM
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            // Destination
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            // Add required metadata to POM
+            pom.project {
+                name 'Sowasvonbot-core'
+                packaging 'jar'
+                description 'Core of my Discord-Bot.'
+                url 'https://github.com/Sowasvonbot/Sowasvonbot_core'
+
+                scm {
+                    connection 'scm:git:git://github.com/Sowasvonbot/Sowasvonbot_core.git'
+                    developerConnection 'scm:git:ssh://github.com/Sowasvonbot/Sowasvonbot_core.git'
+                    url 'https://github.com/Sowasvonbot/Sowasvonbot_core/tree/master'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'Sowasvonbot'
+                        name 'Tobias Kleinert'
+                        email 'tms.kleinert@gmx.de'
+                        organization 'Sowasvonbot'
+                        organizationUrl 'tk-industries.de'
+                    }
+                }
+            }
+        }
+    }
+}

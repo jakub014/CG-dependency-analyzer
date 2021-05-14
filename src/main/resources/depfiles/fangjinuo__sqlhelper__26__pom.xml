@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.github.fangjinuo.sqlhelper.examples</groupId>
+        <artifactId>sqlhelper-examples</artifactId>
+        <version>3.5.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.fangjinuo.sqlhelper.examples.service</groupId>
+    <artifactId>sqlhelper-examples-service</artifactId>
+    <name>${groupId}:${artifactId}:${version}</name>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>sqlhelper-examples-service-jfinal</module>
+        <module>sqlhelper-examples-service-mbg</module>
+        <module>sqlhelper-examples-service-tkmapper</module>
+        <module>sqlhelper-examples-service-apachedbutils</module>
+        <module>sqlhelper-examples-service-springjdbc</module>
+        <module>sqlhelper-examples-service-mybatis</module>
+        <module>sqlhelper-examples-service-mybatisplus_2x</module>
+        <module>sqlhelper-examples-service-mybatisplus_3x</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.fangjinuo.sqlhelper.examples</groupId>
+            <artifactId>sqlhelper-examples-model</artifactId>
+        </dependency>
+    </dependencies>
+</project>

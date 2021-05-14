@@ -1,0 +1,41 @@
+buildscript {
+  ext {
+    springBootVersion = '2.4.3'
+    sleuthVersion = '3.0.1'
+  }
+}
+
+plugins {
+  id 'java'
+  id 'org.springframework.boot' version "$springBootVersion"
+}
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(11)
+    vendor = JvmVendorSpec.ADOPTOPENJDK
+  }
+}
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
+dependencies {
+  implementation project(':api')
+  implementation 'com.google.protobuf:protobuf-java:3.12.0'
+  implementation "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+
+  annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+  runtime("org.springframework.cloud:spring-cloud-starter-sleuth:$sleuthVersion") {
+    exclude group: 'io.zipkin.brave', module: 'brave-instrumentation-jms'
+    exclude group: 'io.zipkin.brave', module: 'brave-instrumentation-kafka-clients'
+    exclude group: 'io.zipkin.brave', module: 'brave-instrumentation-kafka-streams'
+    exclude group: 'io.zipkin.brave', module: 'brave-instrumentation-messaging'
+    exclude group: 'io.zipkin.brave', module: 'brave-instrumentation-spring-rabbit'
+    exclude group: 'io.zipkin.brave', module: 'brave-instrumentation-mongodb'
+  }
+}

@@ -1,0 +1,166 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+import com.github.jengelman.gradle.plugins.shadow.transformers.ServiceFileTransformer
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id 'maven-publish'
+    id 'signing'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+ext {
+    jdbi3Version = '3.20.0'
+    prometheusVersion = '0.10.0'
+    testcontainersVersion = '1.15.2'
+    sentryVersion = '4.3.0'
+}
+
+dependencies {
+    compile project(':clients:java')
+    compile "io.dropwizard:dropwizard-core:${dropwizardVersion}"
+    compile "io.dropwizard:dropwizard-jdbi3:${dropwizardVersion}"
+    compile "io.dropwizard:dropwizard-json-logging:${dropwizardVersion}"
+    compile "io.dropwizard:dropwizard-http2:${dropwizardVersion}"
+    compile "io.dropwizard:dropwizard-assets:${dropwizardVersion}"
+    compile "io.prometheus:simpleclient:${prometheusVersion}"
+    compile "io.prometheus:simpleclient_dropwizard:${prometheusVersion}"
+    compile "io.prometheus:simpleclient_hotspot:${prometheusVersion}"
+    compile "io.prometheus:simpleclient_servlet:${prometheusVersion}"
+    compile "org.jdbi:jdbi3-core:${jdbi3Version}"
+    compile "org.jdbi:jdbi3-postgres:${jdbi3Version}"
+    compile "org.jdbi:jdbi3-sqlobject:${jdbi3Version}"
+    compile 'com.google.guava:guava:30.1-jre'
+    compile 'org.dhatim:dropwizard-sentry:2.0.20'
+    compile "io.sentry:sentry:${sentryVersion}"
+    compile 'org.flywaydb:flyway-core:6.5.7'
+    compile "org.postgresql:postgresql:${postgresqlVersion}"
+    compile 'com.graphql-java:graphql-java:16.2'
+    compile 'com.graphql-java-kickstart:graphql-java-servlet:11.1.0'
+
+    testCompile "io.dropwizard:dropwizard-testing:${dropwizardVersion}"
+    testCompile "org.jdbi:jdbi3-testing:${jdbi3Version}"
+    testCompile "org.junit.vintage:junit-vintage-engine:${junit5Version}"
+    testCompile "org.testcontainers:postgresql:${testcontainersVersion}"
+    testCompile "org.testcontainers:junit-jupiter:${testcontainersVersion}"
+}
+
+task testUnit(type: Test) {
+    useJUnitPlatform {
+        includeTags 'UnitTests'
+    }
+}
+
+task testIntegration(type: Test) {
+    useJUnitPlatform {
+        includeTags 'IntegrationTests'
+    }
+}
+
+task testDataAccess(type: Test) {
+    useJUnitPlatform {
+        includeTags 'DataAccessTests'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'io.github.marquezproject'
+            artifactId = 'marquez-api'
+
+            from components.java
+
+            artifact sourceJar
+            artifact javadocJar
+
+            pom {
+                name = 'marquez-api'
+                description = 'Collect, aggregate, and visualize a data ecosystem\'s metadata'
+                url = 'https://github.com/MarquezProject/marquez'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'marquezproject'
+                        name = 'Marquez Project'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/MarquezProject/marquez.git'
+                    developerConnection = 'scm:git:ssh://github.com:MarquezProject/marquez.git'
+                    url = 'https://github.com/MarquezProject/marquez'
+                }
+            }
+        }
+    }
+
+    processResources {
+        filter ReplaceTokens, tokens: [
+                "version": project.property("version")
+        ]
+    }
+
+    repositories {
+        maven {
+            url = 'https://oss.sonatype.org/service/local/staging/deploy/maven2'
+            credentials {
+                username = System.getenv('SONATYPE_NEXUS_USERNAME')
+                password = System.getenv('SONATYPE_NEXUS_PASSWORD')
+            }
+        }
+    }
+}
+
+signing {
+    required { isReleaseVersion }
+    def signingKey = findProperty("signingKey")
+    def signingPassword = findProperty("signingPassword")
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign publishing.publications.mavenJava
+}
+
+mainClassName = 'marquez.MarquezApp'
+
+shadowJar {
+    classifier = ''
+    transform(ServiceFileTransformer)
+    manifest {
+        attributes(
+                'Created-By': "Gradle ${gradle.gradleVersion}",
+                'Built-By': System.getProperty('user.name'),
+                'Build-Jdk': System.getProperty('java.version'),
+                'Implementation-Title': project.name,
+                'Implementation-Version': project.version,
+                'Main-Class': mainClassName)
+    }
+}
+
+runShadow {
+    args = ['server', '../marquez.yml']
+}

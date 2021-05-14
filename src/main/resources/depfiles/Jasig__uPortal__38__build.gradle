@@ -1,0 +1,34 @@
+description = "Apereo uPortal Security Permissions"
+
+ext {
+    generatedSourcesDir = file("${buildDir}/generated-sources/javac/main/java")
+}
+
+dependencies {
+    compile project(':uPortal-api:uPortal-api-internal')
+    compile project(':uPortal-content:uPortal-content-publishing')
+    compile project(':uPortal-io:uPortal-io-jaxb')
+    compile project(':uPortal-security:uPortal-security-core')
+    compile project(':uPortal-spring')
+
+    annotationProcessor "org.hibernate:hibernate-jpamodelgen:${hibernateJpamodelgenVersion}"
+}
+
+/*
+ * This section is the key to IDE integration.  IDE will look for source files in both...
+ *
+ *   - src/main/java
+ *   - build/generated-sources/javac/main/java
+ */
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+            srcDir generatedSourcesDir
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.annotationProcessorGeneratedSourcesDirectory = file(generatedSourcesDir)
+}

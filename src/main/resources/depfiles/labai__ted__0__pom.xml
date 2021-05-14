@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.labai</groupId>
+    <artifactId>ted-root</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>TED root (pom) project</name>
+
+    <modules>
+        <module>ted-driver</module>
+        <module>ted-ext/ted-scheduler</module>
+        <module>ted-ext/ted-spring-support</module>
+        <module>ted-samples/ted-sample1</module>
+        <module>ted-samples/ted-sample3</module>
+        <module>ted-samples/ted-sample4</module>
+        <module>ted-samples/ted-sample5</module>
+    </modules>
+
+</project>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.jkoolcloud.tnt4j.streams</groupId>
+        <artifactId>tnt4j-streams</artifactId>
+        <version>1.12.0-SNAPSHOT</version>
+    </parent>
+    <packaging>jar</packaging>
+
+    <artifactId>tnt4j-streams-msoffice</artifactId>
+
+    <properties>
+        <org.apache.poi.version>5.0.0</org.apache.poi.version>
+    </properties>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>../</directory>
+                <targetPath>META-INF</targetPath>
+                <includes>
+                    <include>LICENSE</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <!--<index>true</index>-->
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                        <manifestEntries>
+                            <Implementation-Vendor>${product.vendor}</Implementation-Vendor>
+                            <Implementation-Title>${product.name}</Implementation-Title>
+                            <Implementation-Version>${project.version}-${maven.build.timestamp}</Implementation-Version>
+                            <Main-Class>com.jkoolcloud.tnt4j.streams.StreamsAgent</Main-Class>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.jkoolcloud.tnt4j.streams</groupId>
+            <artifactId>tnt4j-streams-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${org.apache.poi.version}</version>
+            <exclusions>
+                <!-- We do not deal 2D graphical data anyway -->
+                <exclusion>
+                    <artifactId>graphics2d</artifactId>
+                    <groupId>de.rototor.pdfbox</groupId>
+                </exclusion>
+                <!-- We do not deal SVG graphical data anyway -->
+                <exclusion>
+                    <artifactId>batik-all</artifactId>
+                    <groupId>org.apache.xmlgraphics</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jkoolcloud.tnt4j.streams</groupId>
+            <artifactId>tnt4j-streams-core</artifactId>
+            <version>${project.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

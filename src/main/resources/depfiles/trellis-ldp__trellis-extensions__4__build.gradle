@@ -1,0 +1,67 @@
+plugins {
+    id 'io.quarkus' version "$quarkusVersion"
+}
+
+dependencies {
+    implementation platform("org.trellisldp:trellis-bom:$trellisVersion")
+    implementation platform("io.quarkus:quarkus-bom:$quarkusVersion")
+
+    implementation 'io.quarkus:quarkus-jsonb'
+    implementation 'io.quarkus:quarkus-resteasy'
+    implementation 'io.quarkus:quarkus-security'
+    implementation 'io.quarkus:quarkus-smallrye-health'
+    implementation 'io.quarkus:quarkus-smallrye-jwt'
+    implementation 'io.quarkus:quarkus-smallrye-metrics'
+    implementation 'io.quarkus:quarkus-smallrye-openapi'
+
+    // Trellis Application
+    implementation "org.trellisldp:trellis-app"
+    implementation "org.trellisldp:trellis-cdi"
+    implementation "org.trellisldp:trellis-http"
+
+    // Trellis authN/authZ
+    implementation "org.trellisldp:trellis-jwt"
+    implementation "org.trellisldp:trellis-webac"
+
+    // Trellis components
+    implementation "org.trellisldp:trellis-audit"
+    implementation "org.trellisldp:trellis-cache"
+    implementation "org.trellisldp:trellis-constraint"
+    implementation "org.trellisldp:trellis-jena"
+    implementation "org.trellisldp:trellis-namespace"
+    implementation "org.trellisldp:trellis-notification-jsonb"
+    implementation "org.trellisldp:trellis-rdfa"
+    implementation "org.trellisldp:trellis-vocabulary"
+
+    // Cassandra dependencies
+    implementation 'io.quarkus:quarkus-smallrye-reactive-messaging'
+    implementation "org.trellisldp:trellis-reactive"
+    implementation project(":trellis-cassandra")
+
+    // Other dependencies
+    implementation "com.github.spullara.mustache.java:compiler:$mustacheVersion"
+    implementation "com.google.guava:guava:$guavaVersion"
+    implementation "org.apache.jena:jena-arq:$jenaVersion"
+    implementation "org.apache.jena:jena-commonsrdf:$jenaVersion"
+    implementation "org.slf4j:slf4j-api:$slf4jVersion"
+
+    runtimeOnly "jakarta.activation:jakarta.activation-api:$activationApiVersion"
+    runtimeOnly "jakarta.xml.bind:jakarta.xml.bind-api:$jaxbApiVersion"
+
+    testImplementation "io.quarkus:quarkus-junit5"
+    testImplementation "io.rest-assured:rest-assured"
+    testImplementation "org.apache.commons:commons-text:$commonsTextVersion"
+    testImplementation "org.jboss.resteasy:resteasy-client"
+    testImplementation "org.trellisldp:trellis-test"
+}
+
+test {
+    systemProperty 'com.arjuna.ats.arjuna.objectstore.objectStoreDir', "$buildDir/data/ObjectStore"
+    systemProperty "trellis.test.cassandra", project.findProperty("trellis.test.cassandra") ?: System.getenv("TEST_CASSANDRA")
+    systemProperty "mp.jwt.verify.publickey.location", "https://www.trellisldp.org/tests/jwks.json"
+}
+
+sonarqube {
+    skipProject = true
+}
+

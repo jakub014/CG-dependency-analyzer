@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.siom79.japicmp</groupId>
+		<artifactId>japicmp-testbase</artifactId>
+		<version>0.15.4-SNAPSHOT</version>
+	</parent>
+	<artifactId>japicmp-test-maven-plugin-japicmp</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.github.siom79.japicmp</groupId>
+			<artifactId>japicmp-maven-plugin</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+	<properties>
+		<tools-jar>tools.jar</tools-jar>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.github.siom79.japicmp</groupId>
+				<artifactId>japicmp-maven-plugin</artifactId>
+				<version>${project.version}</version>
+				<configuration>
+					<oldVersion>
+						<dependency>
+							<groupId>com.github.siom79.japicmp</groupId>
+							<artifactId>japicmp</artifactId>
+							<version>0.6.0</version>
+						</dependency>
+					</oldVersion>
+					<newVersion>
+						<dependency>
+							<groupId>com.github.siom79.japicmp</groupId>
+							<artifactId>japicmp</artifactId>
+							<version>${project.version}</version>
+						</dependency>
+					</newVersion>
+					<parameter>
+						<onlyModified>true</onlyModified>
+						<breakBuildOnModifications>false</breakBuildOnModifications>
+						<includeSynthetic>true</includeSynthetic>
+					</parameter>
+					<dependencies>
+						<dependency>
+							<groupId>org.javassist</groupId>
+							<artifactId>javassist</artifactId>
+							<version>${javassist.version}</version>
+						</dependency>
+					</dependencies>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>cmp</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

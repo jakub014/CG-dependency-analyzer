@@ -1,0 +1,14 @@
+plugins {
+  id 'org.jetbrains.kotlin.jvm'
+  id 'ktlint-publication'
+}
+
+dependencies {
+  api deps.kotlin.compiler
+  api deps.ec4j
+
+  testImplementation deps.junit
+  testImplementation deps.assertj
+  testImplementation deps.jimfs
+  testImplementation project(":ktlint-ruleset-standard")
+}

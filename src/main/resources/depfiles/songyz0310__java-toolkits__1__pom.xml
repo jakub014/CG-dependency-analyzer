@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.songyz0310</groupId>
+		<artifactId>java-toolkits</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	<artifactId>java-toolkits-utility</artifactId>
+	<version>0.0.1</version>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:git:https://github.com/songyz0310/java-toolkits.git</connection>
+		<developerConnection>scm:git:https://github.com/songyz0310/java-toolkits.git</developerConnection>
+		<url>git:https://github.com/songyz0310/java-toolkits.git</url>
+	</scm>
+	<developers>
+		<developer>
+			<name>songyz</name>
+			<email>songyinzeng@gmail.com</email>
+			<organization>i1stcs</organization>
+		</developer>
+	</developers>
+	<dependencies>
+		<!-- log4j2 + slf4j -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+	</dependencies>
+	<properties>
+	</properties>
+</project>

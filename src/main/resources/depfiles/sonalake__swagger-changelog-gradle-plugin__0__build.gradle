@@ -1,0 +1,183 @@
+buildscript {
+  repositories {
+    jcenter()
+    maven { url "http://repo.spring.io/libs-release" }
+    mavenCentral()
+  }
+}
+
+plugins {
+  id 'java'
+  id 'com.github.kt3k.coveralls' version '2.10.1'
+  id 'java-gradle-plugin'
+  id 'com.gradle.plugin-publish' version '0.12.0'
+  id "io.freefair.lombok" version "4.1.6"
+}
+
+group = 'com.sonalake'
+version = '1.1.1'
+sourceCompatibility = '11'
+
+
+apply plugin: 'java-gradle-plugin'
+apply plugin: 'jacoco'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+// a parameter is defined if it's been passed in and isn't blank
+ext.isParameterDefined = { String paramName ->
+  return project.hasProperty(paramName) && !project.getProperties().get(paramName).toString().isBlank();
+}
+
+// some configs of interest to the developer
+// don't try to sign and release if we have the settings we care about
+ext.isForSigning = isParameterDefined("signing.keyId") && isParameterDefined("signing.password")
+// don't try to publish to OSSRH if there is no username/password
+ext.isForOssrhPublishing = isParameterDefined('ossrhUsername') && isParameterDefined('ossrhPassword')
+// is this a release or a snapshot
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
+// don't try to publish the gradle plugin if there is no key/secret
+ext.isForPluginPublishing = isParameterDefined('gradle.publish.key') && isParameterDefined('gradle.publish.secret')
+
+
+repositories {
+  jcenter()
+  mavenCentral()
+  maven { url "https://repo.spring.io/plugins-release/" }
+  maven { url "https://maven.geomajas.org/" }
+}
+
+configurations.all {
+  exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+}
+dependencies {
+
+  // I don't know why they don't just add this into java ;)
+  compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+
+  // used to get data from nexus, and turn results into POJOs
+  compile group: 'com.mashape.unirest', name: 'unirest-java', version: '1.4.9'
+  compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+  compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+
+
+  // diff the swagger jsons, and translate the MD to asciidoc
+  compile group: 'com.deepoove', name: 'swagger-diff', version: '1.2.1'
+  compile group: 'nl.jworks.markdown_to_asciidoc', name: 'markdown_to_asciidoc', version: '1.1'
+
+
+  // used to sort versions
+  compile 'se.sawano.java:alphanumeric-comparator:1.4.1'
+
+  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+  testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+  testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.3.1'
+
+  testCompile 'org.powermock:powermock-module-junit4:2.0.0'
+  testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.0'
+
+}
+
+jacocoTestReport {
+  reports {
+    html.enabled = true
+    xml.enabled = true
+    csv.enabled = false
+  }
+}
+test {
+  finalizedBy jacocoTestReport
+}
+
+task javadocJar(type: Jar) {
+  archiveClassifier = 'javadoc'
+  from javadoc
+}
+
+task sourcesJar(type: Jar) {
+  archiveClassifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+artifacts {
+  archives javadocJar, sourcesJar
+}
+
+pluginBundle {
+  website = 'https://github.com/sonalake/swagger-changelog-gradle-plugin'
+  vcsUrl = 'https://github.com/sonalake/swagger-changelog-gradle-plugin'
+  tags = ['asciidoc', 'swagger', 'nexus']
+}
+
+gradlePlugin {
+  plugins {
+    changeLogPlugin {
+      id = 'com.sonalake.swagger-changelog'
+      displayName = 'Swagger changelog'
+      description = 'Scans a nexus project for versions of swagger.json files, and produces an asciidoc changelog'
+      implementationClass = 'com.sonalake.swaggerlog.gradle.ChangelogPlugin'
+    }
+  }
+}
+
+
+signing {
+  sign configurations.archives
+}
+tasks.withType(Sign) {
+  onlyIf { isForSigning }
+}
+
+if (isForOssrhPublishing) {
+  uploadArchives {
+    repositories {
+      mavenDeployer {
+        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+        repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+          authentication(userName: ossrhUsername, password: ossrhPassword)
+        }
+
+        snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+          authentication(userName: ossrhUsername, password: ossrhPassword)
+        }
+
+        pom.project {
+          name = 'swagger-changelog-gradle-plugin'
+          packaging 'jar'
+          // optionally artifactId can be defined here
+          description 'Build an asciidoc swagger changelog from a nexus history'
+          url = 'https://github.com/sonalake/swagger-changelog-gradle-plugin'
+
+          scm {
+            connection = 'scm:git:git@github.com:sonalake/swagger-changelog-gradle-plugin.git'
+            developerConnection = 'scm:git:git@github.com:sonalake/swagger-changelog-gradle-plugin.git'
+            url = 'https://github.com/sonalake/swagger-changelog-gradle-plugin'
+          }
+
+          licenses {
+            license {
+              name 'The Apache License, Version 2.0'
+              url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+            }
+          }
+
+          developers {
+            developer {
+              id 'daniel-bray-sonalake'
+              name 'Daniel Bray'
+              email 'daniel.bray@sonatype.com'
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
+
+
+// we can only release final versions here
+publishPlugins {
+  onlyIf { isReleaseVersion && isForPluginPublishing }
+}

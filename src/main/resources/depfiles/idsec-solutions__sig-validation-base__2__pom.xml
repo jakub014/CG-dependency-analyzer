@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>cert-validation</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0.2</version>
+
+  <parent>
+    <artifactId>sigval-base-parent</artifactId>
+    <groupId>se.idsec.sigval.base</groupId>
+    <version>1.0.1</version>
+  </parent>
+
+  <name>IDsec Solutions :: Signature validation :: X.509 Certificate Validation</name>
+  <description>X.509 Certificate validation library</description>
+  <url>https://github.com/idsec-solutions/sig-validation-base</url>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:https://github.com/idsec-solutions/sig-validation-base.git</connection>
+    <developerConnection>scm:git:https://github.com/idsec-solutions/sig-validation-base.git</developerConnection>
+    <url>https://github.com/idsec-solutions/sig-validation-base/tree/master</url>
+  </scm>
+
+  <organization>
+    <name>IDsec Solutions AB</name>
+    <url>https://www.idsec.se</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <name>Martin Lindström</name>
+      <email>martin@idsec.se</email>
+      <organization>IDsec Solutions AB</organization>
+      <organizationUrl>https://www.idsec.se</organizationUrl>
+    </developer>
+
+    <developer>
+      <name>Stefan Santesson</name>
+      <email>stefan@idsec.se</email>
+      <organization>IDsec Solutions AB</organization>
+      <organizationUrl>https://www.idsec.se</organizationUrl>
+    </developer>
+  </developers>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.apache.santuario</groupId>
+      <artifactId>xmlsec</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>se.idsec.sigval.base</groupId>
+      <artifactId>cert-extensions</artifactId>
+      <version>1.0.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>se.idsec.signservice.commons</groupId>
+      <artifactId>signservice-commons</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcpkix-jdk15on</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <doctitle>Signature Validation - Certificate Validation - ${project.version}</doctitle>
+          <windowtitle>Signature Validation - Certificate Validation - ${project.version}</windowtitle>
+          <links>
+            <link>https://idsec-solutions.github.io/sig-validation-base/javadoc/cert-extensions/</link>
+          </links>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+
+</project>

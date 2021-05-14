@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.optum.sourcehawk</groupId>
+        <artifactId>sourcehawk-dist</artifactId>
+        <version>0.6.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>sourcehawk-dist-docker</artifactId>
+    <name>Sourcehawk Distributions Docker</name>
+    <description>Sourcehawk docker image</description>
+    <packaging>pom</packaging>
+
+    <properties>
+        <docker.tag>${project.version}</docker.tag>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.optum.sourcehawk</groupId>
+            <artifactId>sourcehawk-dist-linux</artifactId>
+            <version>${project.version}</version>
+            <classifier>x86_64</classifier>
+            <type>zip</type>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <!-- COPY NATIVE IMAGE EXECUTABLE -->
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-native-image</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.optum.sourcehawk</groupId>
+                                    <artifactId>sourcehawk-dist-linux</artifactId>
+                                    <classifier>x86_64</classifier>
+                                    <type>zip</type>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                    <destFileName>native-image</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- BUILD DOCKER IMAGE -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>build-and-tag</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <repository>${docker.repository}</repository>
+                            <tag>${docker.tag}</tag>
+                            <buildArgs>
+                                <NAME>${global.project.name}</NAME>
+                                <NATIVE_IMAGE_PATH>target/native-image</NATIVE_IMAGE_PATH>
+                            </buildArgs>
+                            <skipDockerInfo>true</skipDockerInfo>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- EXEC PROCESSORS AND SCRIPTS -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+
+                    <!-- VERIFY DOCKER IMAGE -->
+                    <execution>
+                        <id>verify-docker-run-version</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docker</executable>
+                            <arguments>
+                                <argument>run</argument>
+                                <argument>${docker.repository}:${docker.tag}</argument>
+                                <argument>--version</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>verify-docker-run-scan</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docker</executable>
+                            <workingDirectory>${maven.multiModuleProjectDirectory}</workingDirectory>
+                            <arguments>
+                                <argument>run</argument>
+                                <argument>-v</argument>
+                                <argument>${maven.multiModuleProjectDirectory}:/home/sourcehawk</argument>
+                                <argument>${docker.repository}:${docker.tag}</argument>
+                                <argument>scan</argument>
+                                <argument>-f</argument>
+                                <argument>JSON</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>docker-hub-push</id>
+            <activation>
+                <property>
+                    <name>ci.release</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>deploy-docker-image</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>${project.basedir}/scripts/push-docker-image-to-docker-hub.sh</executable>
+                                    <arguments>
+                                        <argument>${docker.repository}:${docker.tag}</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

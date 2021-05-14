@@ -1,0 +1,119 @@
+/*
+ * Thrifty
+ *
+ * Copyright (c) Microsoft Corporation
+ *
+ * All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * THIS CODE IS PROVIDED ON AN  *AS IS* BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING
+ * WITHOUT LIMITATION ANY IMPLIED WARRANTIES OR CONDITIONS OF TITLE,
+ * FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABLITY OR NON-INFRINGEMENT.
+ *
+ * See the Apache Version 2.0 License for specific language governing permissions and limitations under the License.
+ */
+
+apply plugin: 'kotlin'
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+dependencies {
+    implementation project(':thrifty-compiler')
+
+    testImplementation project(':thrifty-runtime')
+    testImplementation project(':thrifty-test-server')
+    testImplementation libraries.guava
+
+    testImplementation libraries.kotlin
+    testImplementation libraries.testing
+}
+
+sourceSets {
+    test {
+        java.srcDirs += ['build/generated-src/thrifty/java', 'build/generated-src/thrifty/kotlin']
+    }
+}
+
+shadowJar {
+    mergeServiceFiles {
+        exclude 'META-INF/services/*'
+    }
+}
+
+mainClassName = 'com.microsoft.thrifty.compiler.ThriftyCompiler'
+
+def compileTestThrift = tasks.register("compileTestThrift", JavaExec) { t ->
+    t.inputs.file("$projectDir/ClientThriftTest.thrift")
+    t.outputs.dir("$projectDir/build/generated-src/thrifty/java")
+
+    t.classpath shadowJar.archiveFile
+
+    args = [
+            "--out=$projectDir/build/generated-src/thrifty/java",
+            "$projectDir/ClientThriftTest.thrift"]
+}
+
+
+def kompileTestThrift = tasks.register("kompileTestThrift", JavaExec) { t ->
+    t.inputs.file("$projectDir/ClientThriftTest.thrift")
+    t.outputs.dir("$projectDir/build/generated-src/thrifty/kotlin")
+
+    t.classpath shadowJar.archiveFile
+
+    args = [
+            "--out=$projectDir/build/generated-src/thrifty/kotlin",
+            "--lang=kotlin",
+            "--kt-struct-builders",
+            "--map-type=java.util.LinkedHashMap",
+            "--set-type=java.util.LinkedHashSet",
+            "--list-type=java.util.ArrayList",
+            "$projectDir/ClientThriftTest.thrift"
+    ]
+}
+
+def kompileCoroutineTestThrift = tasks.register("kompileCoroutineTestThrift", JavaExec) { t ->
+    t.inputs.file("$projectDir/CoroutineClientTest.thrift")
+    t.outputs.dir("$projectDir/build/generated-src/thrifty/kotlin")
+
+    t.classpath shadowJar.archiveFile
+
+    args = [
+            "--out=$projectDir/build/generated-src/thrifty/kotlin",
+            "--lang=kotlin",
+            "--kt-coroutine-clients",
+            "--kt-file-per-type",
+            "$projectDir/CoroutineClientTest.thrift"
+    ]
+}
+
+def cleanTestCode = tasks.register("cleanTestCode", Delete) { t ->
+    t.delete compileTestThrift
+    t.delete kompileTestThrift
+    t.delete kompileCoroutineTestThrift
+}
+
+compileTestKotlin {
+    dependsOn compileTestThrift
+    dependsOn kompileTestThrift
+    dependsOn kompileCoroutineTestThrift
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs = ['-Xjvm-default=enable']
+    }
+}
+
+clean {
+    dependsOn cleanTestCode
+}
+
+compileTestJava {
+    dependsOn compileTestThrift
+    dependsOn kompileTestThrift
+}

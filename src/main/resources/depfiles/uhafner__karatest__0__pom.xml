@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>edu.hm.hafner</groupId>
+    <artifactId>codingstyle-pom</artifactId>
+    <version>2.0.3</version>
+    <relativePath />
+  </parent>
+
+  <artifactId>karatest</artifactId>
+  <version>3.3.2-SNAPSHOT</version>
+
+  <packaging>jar</packaging>
+
+  <name>Java project that tests GreenfootKara programs</name>
+  <description>Provides a framework to compile and test GreenfootKara programs.
+    It also integrates Maven and several static analysis tools.
+  </description>
+
+  <scm>
+    <connection>scm:git:git://github.com/uhafner/karatest.git</connection>
+    <developerConnection>scm:git:git@github.com:uhafner/karatest.git</developerConnection>
+    <url>https://github.com/uhafner/karatest</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <licenses>
+    <license>
+      <name>MIT license</name>
+      <comments>All source code is copyrighted by Ullrich Hafner and licensed under the MIT license.</comments>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Ullrich Hafner</name>
+      <id>uhafner</id>
+      <email>ullrich.hafner@hm.edu</email>
+      <organization>Munich University of Applied Sciences</organization>
+      <organizationUrl>https://www.hm.edu/en/index.en.html</organizationUrl>
+    </developer>
+  </developers>
+
+  <url>https://www.cs.hm.edu/die_fakultaet/ansprechpartner/professoren/hafner/index.de.html</url>
+
+  <properties>
+    <commons.lang.version>3.12.0</commons.lang.version>
+    <junit4.version>4.13.1</junit4.version>
+    <codingstyle.version>2.0.6</codingstyle.version>
+
+    <!-- Maven Plug-ins Configuration -->
+    <buildhelper.maven.plugin>3.2.0</buildhelper.maven.plugin>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>edu.hm.hafner</groupId>
+      <artifactId>codingstyle</artifactId>
+      <version>${codingstyle.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons.lang.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${assertj.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>etc</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Automatic-Module-Name>karatest</Automatic-Module-Name>
+            </manifestEntries>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
+            <configuration>
+              <includes>
+                <include>**/*AbstractTimeoutTest*</include>
+              </includes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/copied-assignments</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>scenarios</directory>
+                  <includes>
+                    <include>**/Assignment*.java</include>
+                  </includes>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>
+              <overwrite>true</overwrite>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>${buildhelper.maven.plugin}</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${project.build.directory}/copied-assignments</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>JunitKaraRunnerTest.java</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

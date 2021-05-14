@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+
+    dsh-archetype  dishevelled.org maven project archetype.
+    Copyright (c) 2007-2019 held jointly by the individual authors.
+
+    This library is free software; you can redistribute it and/or modify it
+    under the terms of the GNU Lesser General Public License as published
+    by the Free Software Foundation; either version 3 of the License, or (at
+    your option) any later version.
+
+    This library is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; with out even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+    License for more details.
+
+    You should have received a copy of the GNU Lesser General Public License
+    along with this library;  if not, write to the Free Software Foundation,
+    Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307  USA.
+
+    > http://www.fsf.org/licensing/licenses/lgpl.html
+    > http://www.opensource.org/licenses/lgpl-license.php
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.dishevelled</groupId>
+    <artifactId>dsh-parent</artifactId>
+    <version>19-SNAPSHOT</version>
+    <relativePath>../parent/pom.xml</relativePath>
+  </parent>
+  <artifactId>dsh-archetype</artifactId>
+  <packaging>jar</packaging>
+  <name>dishevelled.org archetype</name>
+  <version>1.4-SNAPSHOT</version>
+  <description>dishevelled.org maven project archetype.</description>
+  <url>http://www.dishevelled.org/archetype</url>
+  <inceptionYear>2007</inceptionYear>
+  <scm>
+    <connection>scm:git:git@github.com:heuermh/dishevelled.git</connection>
+    <developerConnection>scm:git:git@github.com:heuermh/dishevelled.git</developerConnection>
+    <url>git@github.com:heuermh/dishevelled.git</url>
+    <tag>HEAD</tag>
+  </scm>
+</project>

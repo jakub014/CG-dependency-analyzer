@@ -1,0 +1,31 @@
+description = 'WebServer "API" to write Web Services'
+
+sonarqube {
+  properties {
+    property 'sonar.projectName', "${projectTitle} :: WebServer :: WS"
+  }
+}
+
+dependencies {
+  // please keep the list grouped by configuration and ordered by name
+
+  compile 'com.google.guava:guava'
+  compile project(':sonar-core')
+  compile project(':server:sonar-webserver-api')
+  compile project(path: ':sonar-plugin-api', configuration: 'shadow')
+  compile project(':sonar-plugin-api-impl')
+  compile project(':sonar-ws')
+
+  compileOnly 'com.google.code.findbugs:jsr305'
+  compileOnly 'javax.servlet:javax.servlet-api'
+  compileOnly 'org.apache.tomcat.embed:tomcat-embed-core'
+
+  testCompile 'com.google.code.findbugs:jsr305'
+  testCompile 'javax.servlet:javax.servlet-api'
+  testCompile 'org.apache.tomcat.embed:tomcat-embed-core'
+  testCompile 'org.mockito:mockito-core'
+
+  testFixturesApi project(':sonar-testing-harness')
+
+  testFixturesCompileOnly 'com.google.code.findbugs:jsr305'
+}

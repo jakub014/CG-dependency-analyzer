@@ -1,0 +1,229 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.imixs.workflow</groupId>
+		<artifactId>imixs-signature</artifactId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>imixs-signature-service</artifactId>
+	<packaging>war</packaging>
+	<name>Imixs-Signature Microservice</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<custom.webResources>src/main/webapp</custom.webResources>
+		<root-context>/</root-context>
+	</properties>
+	<profiles>
+		<profile>
+			<!-- for local dev build... -->
+			<id>docker</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.8</version>
+						<executions>
+							<execution>
+								<phase>install</phase>
+								<configuration>
+
+									<target>
+										<exec executable="docker">
+											<arg value="build" />
+											<arg value="-t" />
+											<arg value="imixs/${project.artifactId}" />
+											<arg value="." />
+										</exec>
+									</target>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+			<id>debug</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.8</version>
+						<executions>
+							<execution>
+								<phase>install</phase>
+								<configuration>
+									<target>
+										<exec executable="docker">
+											<arg value="build" />
+											<arg value="-f" />
+											<arg value="./Dockerfile-wildfly-debug" />
+											<arg value="-t" />
+											<arg value="imixs/${project.artifactId}" />
+											<arg value="." />
+										</exec>
+									</target>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>		
+		
+		<profile>
+			<id>docker-hub</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.8</version>
+						<executions>
+							<execution>
+								<phase>install</phase>
+								<configuration>
+									<target>
+										<exec executable="docker">
+											<arg value="build" />
+											<arg value="-t" />
+											<arg value="imixs/${project.artifactId}:${project.version}" />
+											<arg value="./" />
+										</exec>
+										<exec executable="docker">
+											<arg value="push" />
+											<arg value="imixs/${project.artifactId}:${project.version}" />
+										</exec>
+									</target>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>docker-hub-latest</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.8</version>
+						<executions>
+							<execution>
+								<phase>install</phase>
+								<configuration>
+									<target>
+										<exec executable="docker">
+											<arg value="build" />
+											<arg value="-t" />
+											<arg value="imixs/${project.artifactId}" />
+											<arg value="./" />
+										</exec>
+										<exec executable="docker">
+											<arg value="push" />
+											<arg value="imixs/${project.artifactId}" />
+										</exec>
+									</target>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>		
+		
+	</profiles>
+
+
+	<build>
+
+		<resources>
+			<!-- enable resource filtering for multi language version -->
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<filtering>true</filtering>
+							<!-- this is relative to the pom.xml directory -->
+							<directory>src/main/webapp</directory>
+							<includes>
+								<include>**/WEB-INF/*</include>
+								<include>/src/main/resources/*</include>
+								<!-- include any other file types you want to filter -->
+							</includes>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<finalName>imixs-signature-service</finalName>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.imixs.workflow</groupId>
+			<artifactId>imixs-workflow-core</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		
+
+		<!-- Apache PDFBox -->
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>${apache.pdfbox.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+			<!--
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcmail-jdk15on</artifactId>
+				<version>1.67</version>
+				<scope>provided</scope>
+			</dependency>		
+-->		
+
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcpkix-jdk15on </artifactId>
+			<version>${bouncycastle.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+
+	</dependencies>
+</project>

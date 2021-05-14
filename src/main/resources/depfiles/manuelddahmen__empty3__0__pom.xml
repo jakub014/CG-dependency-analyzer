@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0">
+
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <name>Empty3</name>
+
+    <groupId>one.empty3</groupId>
+    <artifactId>empty3-library-3d</artifactId>
+    <version>2021.4.6-SNAPSHOT</version><!-- -SNAPSHOT -->
+    <description>3D rendering engine. Plus modelling. Expected glsl textures 3d and 2d rendering</description>
+    <packaging>jar</packaging>
+    <url>https://github.com/manuelddahmen/empty3</url>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <licenses>
+        <license>
+            <name>Gnu Gpl 3</name>
+            <url>http://www.fsf.org/licenses/gpl</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/manuelddahmen/empty3</url>
+        <connection>scm:git:git://github.com/manuelddahmen/empty3.git</connection>
+        <developerConnection>
+            scm:git:git://github.com/manuelddahmen/empty3.git
+        </developerConnection>
+    </scm>
+    <developers>
+        <developer>
+            <email>dathewolf@gmail.com</email>
+            <name>Manuel D Dahmen
+            </name>
+            <url>https://github.com/manuelddahmen</url>
+            <id>manuelddahmen</id>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
+    </properties>
+
+    <build>
+
+
+        <defaultGoal>deploy</defaultGoal>
+        <directory>${basedir}/target</directory>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <resources>
+            <resource>
+                <targetPath>${basedir}/target/classes</targetPath>
+                <filtering>false</filtering>
+                <directory>${basedir}/src/main/java</directory>
+                <includes>
+                    <include>**/*.*</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                    <exclude>**/*.html</exclude>
+                    <exclude>**/*.form</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+        <outputDirectory>${basedir}/target/classes</outputDirectory>
+        <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12.4</version>
+                <configuration>
+                    <skipTests>false</skipTests>
+                    <forkMode>once</forkMode>
+                    <argLine>-Xms2000m -Xmx2000m</argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+                    <archive>
+                        <manifestFile>META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.2</version>
+                <configuration>
+                    <showDeprecation>true</showDeprecation>
+                    <source>16</source>
+                    <target>16</target>
+                </configuration>
+
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <mainClass>tests2.TestObjTeapot<!--one.empty3.Run--></mainClass>
+                    <arguments>
+
+                        <!--<argument>class=tests2.ver.Serpentins</argument>-->
+                        <!-- <argument>class=tests2.texturevideo.PlanVideo</argument>-->
+                        <argument>class=one.empty3.Run</argument>
+                        <!--<argument>class=test3.TestVoronoi</argument>-->
+                        <!--                <argument>class=test3.waterfall_demo.Waterfall_Demo</argument>-->
+                        <!--  <argument>class=test3.QuadratureCercle</argument>-->
+                        <!-- <argument>class=test3.QuadratureCercle</argument>-->
+                        <argument>publish=false</argument>
+
+                        <argument>resx=640</argument>
+                        <argument>resy=480</argument>
+                        <argument>maxFrames=3000</argument>
+                        <argument>-Xms4000m</argument>
+                        <argument>-Xmx4000m</argument>
+                    </arguments>
+
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>javadoc</goal><!-- default jar -->
+                            <goal>jar</goal>
+                        </goals>
+
+                        <configuration>
+                            <doctitle>My API for ${project.name} ${project.version}
+                            </doctitle> <!-- Used by javadoc:javadoc goal -->
+                            <windowtitle>My API for ${project.name} ${project.version}
+                            </windowtitle> <!-- Used by javadoc:javadoc goal -->
+                        </configuration>
+
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib-maven</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <!-- here the phase you need -->
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/classes</outputDirectory>
+                            <resources>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+
+                <executions>
+                    <execution>
+                        <configuration>
+                            <keyname>22EE55E4</keyname><!--ED0DB26D5F0BDADD1CB2BC079B7BFF1322EE55E4-->
+                            <skip>true</skip>
+                        </configuration>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <!--<useAgent>false</useAgent>-->
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.12</version>
+                <configuration>
+                    <message>Creating site for ${project.version}</message>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>site</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+
+
+    <repositories>
+        <repository>
+            <id>mvnrepo</id>
+            <url>https://www.dcm4che.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>myrepo</id>
+            <url>https://empty3.one/downloads/maven</url>
+        </repository>
+        <repository>
+            <id>mvn-r</id>
+            <name>mvn r</name>
+            <url>http://mvnrepository.com/artifact</url>
+        </repository>
+        <repository>
+            <id>spring io</id>
+            <url>https://repo.spring.io/plugins-release/</url>
+        </repository>
+        <repository>
+            <id>maven-central</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>netbeans</id>
+            <url>http://bits.netbeans.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>jcentre bintray</id>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+        <repository>
+            <id>openimaj</id>
+            <url>http://maven.ecs.soton.ac.uk/content/repositories/openimaj-releases/</url>
+        </repository>
+    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jogamp.jogl</groupId>
+            <artifactId>jogl-all-main</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jogamp.jocl</groupId>
+            <artifactId>jocl-main</artifactId>
+            <version>2.0.2-rc12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jogamp.joal</groupId>
+            <artifactId>joal-main</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jogamp.gluegen</groupId>
+            <artifactId>gluegen-rt</artifactId>
+            <version>2.3.2</version>
+            <classifier>natives-windows-amd64</classifier>
+        </dependency>
+        <dependency>
+            <artifactId>joal</artifactId>
+            <groupId>org.jogamp.joal</groupId>
+            <type>jar</type>
+            <version>2.3.2</version>
+            <classifier>natives-windows-amd64</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.jogamp.gluegen</groupId>
+            <artifactId>gluegen-rt-main</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swing-layout</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>io.humble</groupId>
+            <artifactId>humble-video-all</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.humble</groupId>
+            <artifactId>humble-video-noarch</artifactId>
+            <version>0.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>jep</groupId>
+            <artifactId>jep</artifactId>
+            <version>2.24</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.jogamp.jogl/jogl -->
+        <dependency>
+            <groupId>org.jogamp.jogl</groupId>
+            <artifactId>jogl</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jogamp.jogl</groupId>
+            <artifactId>jogl-all</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.sarxos</groupId>
+            <artifactId>webcam-capture</artifactId>
+            <version>0.3.9</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-cli/commons-cli -->
+        <dependency>
+            <groupId>commons-cli</groupId>
+            <artifactId>commons-cli</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.badlogicgames.gdx/gdx -->
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx</artifactId>
+            <version>1.9.10</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/xuggle/xuggle-xuggler -->
+        <dependency>
+            <groupId>xuggle</groupId>
+            <artifactId>xuggle-xuggler</artifactId>
+            <version>5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.dexecutor</groupId>
+            <artifactId>dexecutor-core</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>one.empty3</groupId>
+            <artifactId>montemedia</artifactId>
+            <version>0.0.7-2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jcodec</groupId>
+            <artifactId>jcodec</artifactId>
+            <version>0.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jcodec</groupId>
+            <artifactId>jcodec-javase</artifactId>
+            <version>0.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.zakgof/velvet-video -->
+        <dependency>
+            <groupId>com.github.zakgof</groupId>
+            <artifactId>velvet-video</artifactId>
+            <version>0.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.netlib-java</groupId>
+            <artifactId>netlib-java</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+
+            <artifactId>video-processing</artifactId>
+
+            <groupId>org.openimaj</groupId>
+
+            <version>1.3.10</version>
+
+
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.openimaj/xuggle-video -->
+        <dependency>
+            <groupId>org.openimaj</groupId>
+            <artifactId>xuggle-video</artifactId>
+            <version>1.3.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.burningwave</groupId>
+            <artifactId>core</artifactId>
+            <version>8.20.4</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.vecmath/vecmath -->
+        <dependency>
+            <groupId>javax.vecmath</groupId>
+            <artifactId>vecmath</artifactId>
+            <version>1.5.2</version>
+        </dependency>
+    </dependencies>
+</project>

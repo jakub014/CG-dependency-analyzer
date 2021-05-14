@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- =======================================================================
+        Maven Project Configuration File
+
+        The Geotools Project
+            http://www.geotools.org/
+
+        Version: $Id: pom.xml 5203 2009-11-27 14:54:57Z daniele $
+     ======================================================================= -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.geotools</groupId>
+    <artifactId>plugin</artifactId>
+    <version>26-SNAPSHOT</version>
+  </parent>
+
+  <!-- =========================================================== -->
+  <!--     Module Description                                      -->
+  <!-- =========================================================== -->
+  <groupId>org.geotools</groupId>
+  <artifactId>gt-coverage-multidim</artifactId>
+  <packaging>pom</packaging>
+  <name>Coverage Multidimensional Module</name>
+
+  <description>Module for Coverage experiment and ND GeoTools plugins.</description>
+
+  <licenses>
+    <license>
+      <name>Lesser General Public License (LGPL)</name>
+      <url>http://www.gnu.org/copyleft/lesser.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <!-- =========================================================== -->
+  <!--     Developers and Contributors                             -->
+  <!-- =========================================================== -->
+  <developers>
+    <developer>
+      <id>danieler</id>
+      <name>Daniele Romagnoli</name>
+      <email>daniele.romagnoli@geo-solutions.it</email>
+      <organization>GeoSolutions</organization>
+      <roles>
+        <role>Module Maintainer</role>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>simboss</id>
+      <name>Simone Giannecchini</name>
+      <email>simone.giannecchini@geo-solutions.it</email>
+      <organization>GeoSolutions</organization>
+      <roles>
+        <role>Boss</role>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>afabiani</id>
+      <name>Alessio Fabiani</name>
+      <email>alessio.fabiani@geo-solutions.it</email>
+      <organization>GeoSolutions</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>nlagomarsini</id>
+      <name>Nicola Lagomarsini</name>
+      <email>nicola.lagomarsini@geo-solutions.it</email>
+      <organization>GeoSolutions</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+  </developers>
+
+  <!-- =========================================================== -->
+  <!--     Modules for the build in approximate dependency order   -->
+  <!-- =========================================================== -->
+  <modules>
+    <module>coverage-api</module>
+    <module>grib</module>
+    <module>netcdf</module>
+  </modules>
+
+  <repositories>
+    <repository>
+      <id>unidata</id>
+      <name>Unidata UCAR Libraries repository</name>
+      <url>https://artifacts.unidata.ucar.edu/content/repositories/unidata/</url>
+    </repository>
+  </repositories>
+</project>

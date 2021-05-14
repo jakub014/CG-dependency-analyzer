@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ant (https://github.com/hazendaz/ant)
+
+    Copyright 2011-2020 Hazendaz.
+
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of The Apache Software License,
+    Version 2.0 which accompanies this distribution, and is available at
+    https://www.apache.org/licenses/LICENSE-2.0.txt
+
+    Contributors:
+        Hazendaz (Jeremy Landis).
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.hazendaz</groupId>
+        <artifactId>base-parent</artifactId>
+        <version>28</version>
+        <relativePath />
+    </parent>
+
+    <groupId>com.github.hazendaz.ant</groupId>
+    <artifactId>apache-ant</artifactId>
+    <version>1.10.10-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>apache-ant</name>
+    <description>Distribution for Apache Ant</description>
+    <url>https://hazendaz.github.io/ant/</url>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>manual</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:ssh://git@github.com/hazendaz/ant.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/hazendaz/ant.git</developerConnection>
+        <url>https://github.com/hazendaz/ant</url>
+        <tag>HEAD</tag>
+    </scm>
+    <distributionManagement>
+        <site>
+            <id>gh-pages</id>
+            <name>Apache Ant Distribution Wrapper GitHub Pages</name>
+            <url>github:https://hazendaz.github.io/ant/</url>
+        </site>
+    </distributionManagement>
+
+    <properties>
+        <ant.version>1.10.10</ant.version>
+        <download-plugin.version>1.6.3</download-plugin.version>
+    </properties>
+
+    <dependencies>
+        <!-- Trick to have dependabot alert on updates to ant -->
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>${ant.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Download -->
+            <plugin>
+                <groupId>com.googlecode.maven-download-plugin</groupId>
+                <artifactId>download-maven-plugin</artifactId>
+                <version>${download-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wget</goal>
+                        </goals>
+                        <configuration>
+                            <url>https://www-us.apache.org/dist/ant/binaries/apache-ant-${ant.version}-bin.tar.gz</url>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Attach Artifact -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>${project.build.directory}/apache-ant-${ant.version}-bin.tar.gz</file>
+                                    <type>tar.gz</type>
+                                    <classifier>bin</classifier>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

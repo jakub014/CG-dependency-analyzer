@@ -1,0 +1,35 @@
+apply plugin: 'java-library'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    api project(':objectbox-java')
+    api 'io.reactivex.rxjava2:rxjava:2.2.18'
+
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier.set('javadoc')
+    from 'build/docs/javadoc'
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from sourceSets.main.allSource
+}
+
+// Set project-specific properties.
+publishing.publications {
+    mavenJava(MavenPublication) {
+        from components.java
+        artifact sourcesJar
+        artifact javadocJar
+        pom {
+            name = 'ObjectBox RxJava API'
+            description = 'RxJava extension for ObjectBox'
+        }
+    }
+}

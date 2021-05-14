@@ -1,0 +1,15 @@
+
+version = '0.1.0'
+
+jar {
+    enabled = true
+    baseName = 'java-swapping'
+//    classifier = ''
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart', 'Implementation-Version': version
+    }
+}
+
+dependencies {
+    
+}

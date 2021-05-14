@@ -1,0 +1,23 @@
+description = "IoT components OPCUA Eclipse Milo lib e 4diac"
+
+dependencies {
+	compile project(':ar4k-core')
+	// OPCUA
+	compile('org.eclipse.milo:sdk-client:0.5.3')
+	compile('org.eclipse.milo:stack-client:0.5.3')
+	compile('org.eclipse.milo:sdk-server:0.5.3')
+	compile('org.eclipse.milo:stack-server:0.5.3')
+	compile('org.eclipse.milo:sdk-core:0.5.3')
+	compile('org.eclipse.milo:stack-core:0.5.3')
+	compile group: 'org.eclipse.milo', name: 'dictionary-manager', version: '0.5.3'
+	compile group: 'org.eclipse.milo', name: 'dictionary-reader', version: '0.5.3'
+	compile group: 'org.eclipse.paho', name: 'org.eclipse.paho.client.mqttv3', version: '1.2.4'
+	// MODBUS
+	//compile group: 'com.infiniteautomation', name: 'modbus4j', version: '3.0.3'
+
+}
+
+bootJar {
+	enabled = false
+}
+

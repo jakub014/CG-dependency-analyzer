@@ -1,0 +1,163 @@
+buildscript {
+	repositories {
+		jcenter()
+		mavenCentral()
+	}
+}
+
+plugins {
+	id "java"
+	id "maven"
+	id 'maven-publish'
+	id "com.jfrog.bintray" version "1.7.3"
+	id 'pl.allegro.tech.build.axion-release' version '1.8.1'
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext.junit4Version = '4.12'
+
+scmVersion {
+	tag {
+		prefix = 'spring-social-partner-center'
+	}
+	checks {
+		uncommittedChanges = false
+	}
+	nextVersion {
+		suffix = 'rc'
+		separator = '-'
+	}
+	branchVersionIncrementer = [
+			'^release/patch/.*': 'incrementPatch',
+			'^release/minor/.*': 'incrementMinor',
+			'^release/major/.*': 'incrementMajor'
+	]
+}
+
+group 'io.github.springsocialmicrosoft'
+version = scmVersion.version
+
+dependencies {
+	compile(
+			[ group: 'org.springframework.social',		name: 'spring-social-core',		version: "1.1.4.RELEASE" ],
+			[ group: 'org.springframework.retry',		name: 'spring-retry', 			version: '1.1.2.RELEASE'],
+			[ group: "com.fasterxml.jackson.core",		name: "jackson-databind",		version: "2.6.7" ],
+			[ group: "com.fasterxml.jackson.datatype",	name: "jackson-datatype-jsr310",version: "2.6.7" ],
+			[ group: 'org.slf4j', 						name: 'slf4j-api',				version: "1.7.22"],
+			[ group: 'com.google.guava', 				name: 'guava', 					version: '21.0']
+
+	)
+	compile('org.apache.httpcomponents:httpclient:4.3.3') {
+		exclude group: 'commons-logging', module: 'commons-logging'
+	}
+	
+	compileOnly(
+			[group: 'org.projectlombok', 			name: 'lombok', 							version: '1.16.16']
+	)
+
+	testCompileOnly(
+			[group: 'org.projectlombok', 			name: 'lombok', 							version: '1.16.16']
+	)
+
+	testCompile(
+			[ group: "junit",							name: "junit",					version: "${junit4Version}"],
+			[ group: "com.github.tomakehurst",			name: "wiremock",				version: "2.4.1"],
+			[ group: 'org.assertj', 					name: 'assertj-core', 			version: '3.6.2'],
+			[ group: 'ch.qos.logback', 					name: 'logback-classic', 		version: '1.1.8'],
+			[ group: 'org.mockito',						name: 'mockito-core',			version: '2.7.22'],
+			[ group: 'commons-io', 						name: 'commons-io', 			version: '2.4']
+    )
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+	classifier = 'javadoc'
+	from javadoc.destinationDir
+}
+
+artifacts {
+	archives sourcesJar
+	archives javadocJar
+}
+
+bintray {
+	user = "${bintrayUser}"
+	key = "${bintrayKey}"
+	publications = ['mavenJava']
+	pkg {
+		repo = 'partnercenter'
+		name = project.name
+		userOrg = 'springsocialmicrosoft'
+		licenses = ['Apache-2.0']
+		vcsUrl = 'https://github.com/SpringSocialMicrosoft/spring-social-partnercenter.git'
+		publish = true
+		version {
+			name = scmVersion.version
+			released  = new Date()
+			vcsTag = "${scmVersion.tag.prefix}${scmVersion.tag.versionSeparator}${scmVersion.version}"
+			publicDownloadNumbers = true
+			gpg {
+				sign = true
+			}
+			mavenCentralSync {
+				sync = true
+				user = "${mavenCentralUser}"
+				password = "${mavenCentralPassword}"
+			}
+		}
+	}
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			version scmVersion.version
+			groupId group
+			artifactId 'spring-social-microsoft-partnercenter'
+			pom.withXml {
+				asNode().children().last() + {
+					resolveStrategy = Closure.DELEGATE_FIRST
+					name 'spring-social-microsoft-partnercenter'
+					description 'A provider extension for Spring Social to enable connectivity with Microsoft and an API binding for Microsoft\'s Partner Center API.'
+					url "https://github.com/SpringSocialMicrosoft/spring-social-partnercenter"
+					scm {
+						url "https://github.com/SpringSocialMicrosoft/spring-social-partnercenter.git"
+					}
+					licenses {
+						license {
+							name 'The Apache Software License, Version 2.0'
+							url 'http://www.apache.org/license/LICENSE-2.0.txt'
+							distribution 'repo'
+						}
+					}
+					developers {
+						developer {
+							id 'psmelser'
+							name 'Paul Smelser'
+							email 'paul.smelser@gmail.com'
+						}
+					}
+				}
+			}
+
+			artifact sourcesJar
+			artifact javadocJar
+			from components.java
+		}
+	}
+	repositories{
+		maven {
+			url "https://dl.bintray.com/springsocialmicrosoft/spring-social-microsoft/" }
+	}
+
+	task wrapper(type: Wrapper) {
+		gradleVersion = '4.3'
+	}
+}

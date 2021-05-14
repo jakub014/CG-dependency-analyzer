@@ -1,0 +1,36 @@
+plugins {
+    id "com.github.erdi.webdriver-binaries" version "2.4"
+}
+
+ext {
+    nimbusJoseJwtVersion = '9.9.3'
+    bouncyCastleVersion = '1.68'
+}
+
+dependencies {
+    api "io.micronaut:micronaut-http"
+    api "io.micronaut:micronaut-http-server"
+    api project(":security")
+    api "com.nimbusds:nimbus-jose-jwt:$nimbusJoseJwtVersion"
+
+    testImplementation "org.bouncycastle:bcpkix-jdk15on:$bouncyCastleVersion"
+    testImplementation "org.bouncycastle:bcprov-jdk15on:$bouncyCastleVersion"
+
+    testImplementation "io.micronaut:micronaut-http-client"
+    testAnnotationProcessor "io.micronaut:micronaut-inject-java"
+    testImplementation "io.micronaut:micronaut-http-server-netty"
+    testImplementation "io.micronaut:micronaut-multitenancy"
+    testImplementation "io.micronaut.views:micronaut-views-velocity"
+    testRuntimeOnly "org.apache.velocity:velocity-engine-core:2.3"
+}
+
+apply from: "${rootProject.projectDir}/gradle/geb.gradle"
+apply from: "${rootProject.projectDir}/gradle/webdriverbinaries.gradle"
+apply from: "${rootProject.projectDir}/gradle/testVerbose.gradle"
+
+test {
+    testLogging.showStandardStreams = true
+    testLogging.exceptionFormat = 'full'
+}
+
+//compileTestGroovy.groovyOptions.forkOptions.jvmArgs = ['-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005']

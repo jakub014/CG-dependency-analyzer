@@ -1,0 +1,99 @@
+import com.getstream.sdk.chat.Dependencies
+import com.getstream.sdk.chat.Configuration
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'de.mannodermaus.android-junit5'
+apply plugin: 'org.jlleitschuh.gradle.ktlint'
+
+ext {
+    PUBLISH_GROUP_ID = Configuration.artifactGroup
+    PUBLISH_VERSION = Configuration.versionName
+    PUBLISH_ARTIFACT_ID = 'stream-chat-android-ui-components'
+}
+
+apply from: "${rootDir}/scripts/publish-module.gradle"
+apply from: "${rootDir}/scripts/android.gradle"
+
+android {
+    defaultConfig {
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    resourcePrefix 'stream_ui_'
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            unitTests.returnDefaultValues = true
+            // Show the result of every unit test, even if it passes.
+            all {
+                testLogging {
+                    events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+                }
+            }
+        }
+    }
+
+    sourceSets {
+        all {
+            it.java.srcDir "src/$it.name/kotlin"
+        }
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        freeCompilerArgs += [
+                '-progressive',
+                '-Xexplicit-api=strict',
+                '-Xopt-in=kotlin.contracts.ExperimentalContracts',
+                '-Xopt-in=io.getstream.chat.android.core.internal.InternalStreamChatApi'
+        ]
+    }
+}
+
+dependencies {
+    api project(":stream-chat-android-ui-common")
+
+    implementation Dependencies.kotlinStdLib
+    implementation Dependencies.coroutinesCore
+    implementation Dependencies.androidxActivityKtx
+    implementation Dependencies.androidxAppCompat
+    implementation Dependencies.androidLegacySupport
+    implementation Dependencies.constraintLayout
+    implementation Dependencies.materialComponents
+    implementation Dependencies.fragmentKtx
+    implementation Dependencies.androidxViewPager2
+    implementation Dependencies.androidxCoreKtx
+    implementation Dependencies.lottie
+    implementation Dependencies.photoview
+    implementation Dependencies.coil
+    implementation Dependencies.coilGif
+    implementation Dependencies.coilVideo
+    implementation Dependencies.androidxStartup
+
+    // Markdown
+    implementation Dependencies.markwonCore
+    implementation Dependencies.markwonLinkify
+    implementation Dependencies.markwonextStrikethrough
+    implementation Dependencies.markwonImage
+
+    // Tests
+    testImplementation project(":stream-chat-android-test")
+
+    testImplementation Dependencies.junitJupiterApi
+    testImplementation Dependencies.junitJupiterParams
+    testRuntimeOnly Dependencies.junitJupiterEngine
+    testRuntimeOnly Dependencies.junitVintageEngine
+    testImplementation Dependencies.kluent
+    testImplementation Dependencies.mockitoKotlin
+    testImplementation Dependencies.truth
+}

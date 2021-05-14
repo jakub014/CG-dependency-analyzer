@@ -1,0 +1,198 @@
+import aQute.bnd.gradle.Bundle
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.hidetake:gradle-ssh-plugin:2.10.1'
+    }
+}
+
+plugins {
+    id 'pl.allegro.tech.build.axion-release' version '1.13.1'
+    id "nebula.provided-base" version "3.0.3"
+    id "net.ltgt.errorprone" version "1.2.1" apply false
+    id "biz.aQute.bnd.builder" version "$bndVersion"
+}
+
+apply plugin: 'java'
+apply plugin: 'java-library'
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+apply plugin: 'jacoco'
+apply plugin: 'signing'
+apply plugin: 'pl.allegro.tech.build.axion-release'
+apply plugin: 'nebula.optional-base'
+apply from: 'gradle/dist.gradle'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+//modularity.mixedJavaRelease 8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+//    errorprone "com.google.errorprone:error_prone_core:2.3.3"
+//    errorproneJavac "com.google.errorprone:javac:9+181-r4173-1"
+
+    api "org.slf4j:slf4j-api:$slf4jVersion",
+            "commons-codec:commons-codec:$commonsCodecVersion",
+            "org.apache.commons:commons-lang3:$commonsLangVersion",
+            "org.apache.commons:commons-collections4:$commonsCollectionsVersion",
+            'com.sun.mail:javax.mail:1.6.2'
+
+    // optional timezone caching..
+    implementation 'javax.cache:cache-api:1.1.1', optional
+
+    // optional groovy DSL for calendar builder..
+    implementation "org.codehaus.groovy:groovy:$groovyVersion", optional
+    implementation "org.codehaus.groovy:groovy-dateutil:$groovyVersion", optional
+
+    compileOnly "biz.aQute.bnd:biz.aQute.bndlib:$bndVersion"
+
+    testCompile "org.codehaus.groovy:groovy:$groovyVersion",
+            "org.slf4j:slf4j-log4j12:$slf4jVersion",
+            "org.ccil.cowan.tagsoup:tagsoup:$tagsoupVersion",
+            "org.cache2k:cache2k-jcache:$jcacheVersion",
+            "org.codehaus.groovy:groovy-xml:$groovyVersion"
+
+    // junit
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.7.1'
+
+    // groovy-test
+    testImplementation "org.codehaus.groovy:groovy-test:$groovyVersion"
+
+    // spock
+    testImplementation platform("org.spockframework:spock-bom:2.0-M4-groovy-3.0"),
+            "org.spockframework:spock-core"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled 'true' == jacoco_htmlReport
+    }
+}
+
+javadoc {
+    if (JavaVersion.current().isJava8Compatible()) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
+    options {
+        links 'https://docs.oracle.com/en/java/javase/11/docs/api/'
+    }
+}
+
+task bundle(type: Bundle) {
+    from sourceSets.main.output
+    bndfile = 'bnd.bnd'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier.set('javadoc')
+    from 'build/docs/javadoc'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    archiveClassifier.set('sources')
+}
+
+jar.enabled = false
+build.dependsOn bundle
+
+artifacts {
+    archives bundle
+    archives javadocJar
+    archives sourcesJar
+}
+
+configurations {
+    [apiElements, runtimeElements].each {
+        it.outgoing.artifacts.removeIf { it.buildDependencies.getDependencies(null).contains(jar) }
+        it.outgoing.artifact(bundle)
+    }
+}
+
+scmVersion {
+    tag {
+        prefix = 'ical4j-'
+        branchPrefix = ['ical4j-1.x-maintenance' : 'jdk14_ical4j']
+        branchPrefix = ['ical4j-2.x-maintenance' : 'jdk7_ical4j']
+    }
+    versionCreator 'versionWithBranch'
+    branchVersionCreator = ['master': 'simple']
+    branchVersionCreator = ['ical4j-1.x-maintenance': 'simple']
+    branchVersionCreator = ['ical4j-2.x-maintenance': 'simple']
+}
+
+group = 'org.mnode.ical4j'
+description = '''
+A Java library for reading and writing iCalendar (*.ics) files
+'''
+version = scmVersion.version
+
+ext {
+    isReleaseVersion = !version.endsWith("SNAPSHOT")
+}
+
+publishing {
+    publications {
+        ical4j(MavenPublication) {
+            from components.java
+            artifact javadocJar
+            artifact sourcesJar
+            pom.withXml {
+                asNode().appendNode('name', project.name)
+                asNode().appendNode('description', project.description)
+                asNode().appendNode('url', 'http://ical4j.github.io')
+
+                def scmNode = asNode().appendNode('scm')
+                scmNode.appendNode('url', 'https://github.com/ical4j/ical4j')
+                scmNode.appendNode('connection', 'scm:git@github.com:ical4j/ical4j.git')
+                scmNode.appendNode('developerConnection', 'scm:git@github.com:ical4j/ical4j.git')
+
+                def licenseNode = asNode().appendNode('licenses').appendNode('license')
+                licenseNode.appendNode('name', 'BSD-3-Clause')
+                licenseNode.appendNode('url', 'https://raw.githubusercontent.com/ical4j/ical4j/master/LICENSE.txt')
+                licenseNode.appendNode('distribution', 'repo')
+
+                def developerNode = asNode().appendNode('developers').appendNode('developer')
+                developerNode.appendNode('id', 'fortuna')
+                developerNode.appendNode('name', 'Ben Fortuna')
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "OSSRH"
+            url = !isReleaseVersion ? "https://oss.sonatype.org/content/repositories/snapshots/" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username = System.getenv("MAVEN_USERNAME")
+                password = System.getenv("MAVEN_PASSWORD")
+            }
+        }
+//        maven {
+//            name = "GitHubPackages"
+//            url = uri("https://maven.pkg.github.com/ical4j/ical4j")
+//            credentials {
+//                username = System.getenv("GPR_USERNAME")
+//                password = System.getenv("GPR_TOKEN")
+//            }
+//        }
+    }
+}
+
+signing {
+    required { isReleaseVersion }
+    sign publishing.publications.ical4j
+}

@@ -1,0 +1,220 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.optum.sourcehawk</groupId>
+        <artifactId>sourcehawk-jar-parent</artifactId>
+        <version>1.1.10</version>
+        <relativePath/>
+    </parent>
+
+    <artifactId>sourcehawk</artifactId>
+    <version>0.6.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Sourcehawk</name>
+    <description>Sourcehawk multi-module root</description>
+
+    <properties>
+
+        <!-- GLOBAL PROJECT -->
+        <global.project.url>https://optum.github.io/sourcehawk</global.project.url>
+        <global.project.license>GNU General Public License version 3</global.project.license>
+        <global.project.license.abbrev.deb>GPL-3</global.project.license.abbrev.deb>
+        <global.project.license.abbrev.rpm>GPLv3</global.project.license.abbrev.rpm>
+
+        <jacoco.coverage.minimum>0.97</jacoco.coverage.minimum> <!-- jacoco-maven-plugin -->
+
+        <!-- Versions -->
+        <slf4j.version>1.7.30</slf4j.version>
+
+        <!-- Sonar Configurations -->
+        <sonar.issue.ignore.multicriteria>e1</sonar.issue.ignore.multicriteria>
+        <sonar.issue.ignore.multicriteria.e1.ruleKey>squid:S106</sonar.issue.ignore.multicriteria.e1.ruleKey>
+        <sonar.issue.ignore.multicriteria.e1.resourceKey>**/*.java</sonar.issue.ignore.multicriteria.e1.resourceKey>
+
+    </properties>
+
+    <developers>
+        <developer>
+            <id>brianwyka</id>
+            <name>Brian Wyka}</name>
+            <email>brian.wyka@optum.com</email>
+            <organization>Optum</organization>
+            <roles>
+                <role>Project Lead</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>ctoestreich</id>
+            <name>Christian Oestreich</name>
+            <email>christian.oestreich@optum.com</email>
+            <organization>Optum</organization>
+            <roles>
+                <role>Project Lead</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <url>https://optum.githb.io/sourcehawk</url>
+
+    <scm>
+        <url>https://github.com/optum/sourcehawk</url>
+        <connection>scm:git:https://github.com/optum/sourcehawk.git</connection>
+        <developerConnection>scm:git:git@github.com:Optum/sourcehawk.git</developerConnection>
+    </scm>
+
+    <issueManagement>
+        <url>https://github.com/optum/sourcehawk/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>github</system>
+        <url>https://github.com/optum/sourcehawk/actions</url>
+    </ciManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-nop</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>2.11.4</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.spockframework</groupId>
+                <artifactId>spock-core</artifactId>
+                <version>2.0-M3-groovy-3.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.13.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>2.2</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib-nodep</artifactId>
+                <version>3.3.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mock-server</groupId>
+                <artifactId>mockserver-netty</artifactId>
+                <version>5.11.2</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.jayway.jsonpath</groupId>
+                        <artifactId>json-path</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.mock-server</groupId>
+                <artifactId>mockserver-client-java</artifactId>
+                <version>5.11.2</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>enforce-restricted-dependencies</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <configuration>
+                                <rules>
+                                    <bannedDependencies>
+                                        <message>Only certain dependencies are allowed!</message>
+                                        <excludes>
+                                            <!-- Ban all dependencies -->
+                                            <exclude>*</exclude>
+                                        </excludes>
+                                        <includes>
+                                            <include>com.fasterxml.jackson.core:*:*:*:*</include>
+                                            <include>com.optum.sourcehawk:*:*:*:*</include>
+                                            <include>*:*:*:*:provided</include>
+                                            <include>*:*:*:*:test</include>
+                                        </includes>
+                                    </bannedDependencies>
+                                </rules>
+                                <fail>true</fail>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <!-- MODULES: LISTED IN DEPENDENCY ORDER (TOP = BASE) -->
+    <modules>
+        <module>core</module>
+        <module>enforcer</module>
+        <module>exec</module>
+        <module>cli</module>
+        <module>bom</module>
+    </modules>
+
+    <profiles>
+        <profile>
+            <id>distributions-build</id>
+            <activation>
+                <property>
+                    <name>ci.build</name>
+                </property>
+            </activation>
+            <modules>
+                <module>distributions</module>
+            </modules>
+        </profile>
+    </profiles>
+
+</project>

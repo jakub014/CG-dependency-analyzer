@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>pepper-framework</artifactId>
+	<packaging>bundle</packaging>
+	<parent>
+
+		<groupId>org.corpus-tools</groupId>
+		<artifactId>pepper</artifactId>
+		<version>3.6.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<description>This project contains the core of Pepper.</description>
+
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<plugins>
+			<!-- start: copying of OSGI-INF -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>${maven-resources-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${serviceComponents}</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${serviceComponentsTarget}</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- end: copying of OSGI-INF -->
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>${maven-bundle-plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<manifestLocation>${META-INF}</manifestLocation>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<instructions>
+						<Bundle-Name>${project.artifactId}</Bundle-Name>
+						<Bundle-SymbolicName>${project.groupId}.${project.artifactId};singleton:=true</Bundle-SymbolicName>
+						<Bundle-Version>${project.version}</Bundle-Version>
+						<Bundle-RequiredExecutionEnvironment>JavaSE-${java.version}</Bundle-RequiredExecutionEnvironment>
+						<Import-Package>org.corpus_tools.pepper.common,org.corpus_tools.pepper.core,org.corpus_tools.pepper.exceptions,org.corpus_tools.pepper.modules,org.corpus_tools.pepper.testFramework,org.corpus_tools.salt;version="[${salt.version},4)", org.corpus_tools.salt.common;version="[${salt.version},4)", org.corpus_tools.salt.core;version="[${salt.version},4)", org.corpus_tools.salt.graph;version="[${salt.version},4)", org.corpus_tools.salt.util;version="[${salt.version},4)", org.corpus_tools.salt.util.internal;version="[${salt.version},4)",org.apache.commons.io;version=!,org.apache.commons.io.input;version=!,*</Import-Package>
+						<Export-Package>org.corpus_tools.pepper.*</Export-Package>
+						<Service-Component>${allServiceComponents}</Service-Component>
+						<Bundle-ClassPath>.,{maven-dependencies},lib/xmlunit-1.5.jar</Bundle-ClassPath>
+						<Include-Resource>{maven-resources}, LICENSE, NOTICE,
+							lib/xmlunit-1.5.jar=lib/xmlunit-1.5.jar</Include-Resource>
+					</instructions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${maven-assembly-plugin.version}</version>
+				<configuration>
+					<descriptors>
+						<descriptor>${assemblies.name}</descriptor>
+					</descriptors>
+					<appendAssemblyId>false</appendAssemblyId>
+					<finalName>${project.artifactId}-${project.version}</finalName>
+					<outputDirectory>target/distribution</outputDirectory>
+					<workDirectory>target/assembly/work</workDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>zip-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.felix</groupId>
+										<artifactId>
+											maven-scr-plugin
+										</artifactId>
+										<versionRange> [1.4.4,) </versionRange>
+										<goals>
+											<goal>scr</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

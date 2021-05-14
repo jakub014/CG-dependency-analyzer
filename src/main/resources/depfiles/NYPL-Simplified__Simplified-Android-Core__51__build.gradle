@@ -1,0 +1,10 @@
+dependencies {
+  api project(":simplified-books-registry-api")
+  api project(":simplified-profiles-api")
+  api project(":simplified-threads")
+
+  implementation libraries.androidx_core
+  implementation libraries.kotlin_stdlib
+  implementation libraries.kotlin_reflect
+  implementation libraries.slf4j
+}

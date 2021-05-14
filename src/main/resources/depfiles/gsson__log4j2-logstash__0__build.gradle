@@ -1,0 +1,449 @@
+plugins {
+    id 'com.github.ben-manes.versions'
+    id 'com.github.spotbugs' apply false
+}
+
+group 'se.fnord'
+version '0.8-SNAPSHOT'
+
+ext {
+    isTravis = System.getenv('TRAVIS') ? true : false
+    isRelease = !isTravis && !version.endsWith("SNAPSHOT")
+
+    releaseRepositoryUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+    snapshotRepositoryUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+
+    repositoryUrl = isRelease ? releaseRepositoryUrl : snapshotRepositoryUrl
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+configure(subprojects.findAll {it.name != 'log4j2-logstash-bom'}) {
+    apply plugin: 'java-library'
+    apply plugin: 'java-test-fixtures'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+    apply plugin: 'com.github.spotbugs'
+
+    group rootProject.group
+    version rootProject.version
+
+    java {
+        withJavadocJar()
+        withSourcesJar()
+    }
+
+    artifacts {
+        archives javadocJar, sourcesJar
+    }
+
+    sourceCompatibility = 11
+    targetCompatibility = 11
+
+    repositories {
+        mavenCentral()
+    }
+
+    spotbugs {
+        toolVersion = "${spotbugsVersion}"
+    }
+
+    spotbugsMain {
+        reports {
+            html.enabled true
+            xml.enabled false
+        }
+    }
+
+    spotbugsTest {
+        reports {
+            html.enabled true
+            xml.enabled false
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            failOnVersionConflict()
+        }
+    }
+
+    compileJava {
+        options.compilerArgs << "-Xlint:all,-processing" << "-Werror"
+    }
+
+    compileTestJava {
+        options.compilerArgs << "-Xlint:all,-processing" << "-Werror"
+    }
+
+    test {
+        useJUnitPlatform()
+        testLogging {
+            events = ['failed', 'skipped']
+        }
+    }
+
+    dependencies {
+        constraints {
+            testImplementation "net.javacrumbs.json-unit:json-unit:${jsonUnit}"
+            testImplementation "net.javacrumbs.json-unit:json-unit-fluent:${jsonUnit}"
+            testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+            testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+
+            api("com.github.spotbugs:spotbugs-annotations:${spotbugsVersion}")
+        }
+
+        implementation("com.github.spotbugs:spotbugs-annotations")
+
+        implementation(enforcedPlatform("io.projectreactor:reactor-bom:${reactorBomVersion}"))
+        testFixturesApi(enforcedPlatform("io.projectreactor:reactor-bom:${reactorBomVersion}"))
+
+        implementation(enforcedPlatform("org.springframework:spring-framework-bom:${springFrameworkBomVersion}"))
+        testFixturesApi(enforcedPlatform("org.springframework:spring-framework-bom:${springFrameworkBomVersion}"))
+
+        implementation(enforcedPlatform("org.apache.logging.log4j:log4j-bom:${log4j}"))
+        annotationProcessor(enforcedPlatform("org.apache.logging.log4j:log4j-bom:${log4j}"))
+        testFixturesApi(enforcedPlatform("org.apache.logging.log4j:log4j-bom:${log4j}"))
+
+        testImplementation(enforcedPlatform("com.fasterxml.jackson:jackson-bom:${jackson}"))
+        testFixturesApi(enforcedPlatform("com.fasterxml.jackson:jackson-bom:${jackson}"))
+
+        testImplementation(enforcedPlatform("org.junit:junit-bom:${junit5}"))
+        testFixturesApi(enforcedPlatform("org.junit:junit-bom:${junit5}"))
+    }
+}
+
+wrapper {
+    gradleVersion = "${gradleVersion}"
+}
+
+project(':log4j2-logstash-bom') {
+    apply plugin: 'java-platform'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+
+    group rootProject.group
+    version rootProject.version
+
+    dependencies {
+        constraints {
+            runtime project(":log4j2-logstash-layout")
+            runtime project(":logtags")
+            runtime project(":log4j2-logstash-taggedmessage")
+            runtime project(":log4j2-logstash-reactor")
+        }
+    }
+
+    tasks.withType(GenerateModuleMetadata) {
+        enabled = false
+    }
+
+    publishing {
+        publications {
+            bom(MavenPublication) {
+                from components.javaPlatform
+                withoutBuildIdentifier()
+
+                pom {
+                    name = project.name
+                    description = 'Bill of materials for log4j2-logstash projects'
+                    url = 'https://github.com/log4j2-logstash'
+                    packaging = 'pom'
+
+                    scm {
+                        url = 'scm:git:https://github.com/gsson/log4j2-logstash'
+                        connection = 'scm:git:git@github.com:/gsson/log4j2-logstash'
+                        developerConnection = 'scm:git:git@github.com:/gsson/log4j2-logstash'
+                    }
+
+                    licenses {
+                        license {
+                            name = 'Apache-2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            distribution = 'repo'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'gsson'
+                            name = 'Henrik Gustafsson'
+                        }
+                    }
+                }
+
+                repositories {
+                    maven {
+                        url = repositoryUrl
+                        credentials(PasswordCredentials)
+                    }
+                }
+            }
+        }
+    }
+
+    signing {
+        required { isRelease && gradle.taskGraph.hasTask(":log4j2-logstash-bom:publish") }
+        sign publishing.publications.bom
+    }
+}
+
+project(':logtags') {
+    dependencies {
+        testFixturesImplementation "org.junit.jupiter:junit-jupiter-api"
+
+        testImplementation "org.junit.jupiter:junit-jupiter-api"
+        testImplementation "org.junit.jupiter:junit-jupiter-params"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                withoutBuildIdentifier()
+                suppressPomMetadataWarningsFor('testFixturesApiElements')
+                suppressPomMetadataWarningsFor('testFixturesRuntimeElements')
+
+                pom {
+                    name = project.name
+                    description = 'Immutable tags structure'
+                    url = 'https://github.com/log4j2-logstash'
+                    packaging = 'jar'
+
+                    scm {
+                        url = 'scm:git:https://github.com/gsson/log4j2-logstash'
+                        connection = 'scm:git:git@github.com:/gsson/log4j2-logstash'
+                        developerConnection = 'scm:git:git@github.com:/gsson/log4j2-logstash'
+                    }
+
+                    licenses {
+                        license {
+                            name = 'Apache-2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            distribution = 'repo'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'gsson'
+                            name = 'Henrik Gustafsson'
+                        }
+                    }
+                }
+                repositories {
+                    maven {
+                        url = repositoryUrl
+                        credentials(PasswordCredentials)
+                    }
+                }
+            }
+        }
+    }
+
+    signing {
+        required { isRelease && gradle.taskGraph.hasTask(":logtags:publish") }
+        sign publishing.publications.mavenJava
+    }
+}
+
+project(':log4j2-logstash-taggedmessage') {
+    dependencies {
+        api "org.apache.logging.log4j:log4j-api"
+        api project(":logtags")
+
+        testImplementation testFixtures(project(":logtags"))
+        testImplementation "org.junit.jupiter:junit-jupiter-api"
+        testImplementation "org.junit.jupiter:junit-jupiter-params"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                withoutBuildIdentifier()
+
+                pom {
+                    name = project.name
+                    description = 'Tagged message type for Log4J2'
+                    url = 'https://github.com/log4j2-logstash'
+                    packaging = 'jar'
+
+                    scm {
+                        url = 'scm:git:https://github.com/gsson/log4j2-logstash'
+                        connection = 'scm:git:git@github.com:/gsson/log4j2-logstash'
+                        developerConnection = 'scm:git:git@github.com:/gsson/log4j2-logstash'
+                    }
+
+                    licenses {
+                        license {
+                            name = 'Apache-2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            distribution = 'repo'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'gsson'
+                            name = 'Henrik Gustafsson'
+                        }
+                    }
+                }
+                repositories {
+                    maven {
+                        url = repositoryUrl
+                        credentials(PasswordCredentials)
+                    }
+                }
+            }
+        }
+    }
+
+    signing {
+        required { isRelease && gradle.taskGraph.hasTask(":log4j2-logstash-taggedmessage:publish") }
+        sign publishing.publications.mavenJava
+    }
+}
+
+project(':log4j2-logstash-reactor') {
+    dependencies {
+        api "org.apache.logging.log4j:log4j-api"
+        api "io.projectreactor:reactor-core"
+        api project(':log4j2-logstash-taggedmessage')
+        api project(":logtags")
+
+        testImplementation testFixtures(project(":logtags"))
+        testImplementation "org.junit.jupiter:junit-jupiter-api"
+        testImplementation "org.junit.jupiter:junit-jupiter-params"
+        testImplementation "org.mockito:mockito-junit-jupiter"
+        testImplementation "org.mockito:mockito-core"
+
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+    }
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                withoutBuildIdentifier()
+                suppressPomMetadataWarningsFor('testFixturesApiElements')
+                suppressPomMetadataWarningsFor('testFixturesRuntimeElements')
+
+                pom {
+                    name = project.name
+                    description = 'Project Reactor signal loggers'
+                    url = 'https://github.com/log4j2-logstash'
+                    packaging = 'jar'
+
+                    scm {
+                        url = 'scm:git:https://github.com/gsson/log4j2-logstash'
+                        connection = 'scm:git:git@github.com:/gsson/log4j2-logstash'
+                        developerConnection = 'scm:git:git@github.com:/gsson/log4j2-logstash'
+                    }
+
+                    licenses {
+                        license {
+                            name = 'Apache-2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            distribution = 'repo'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'gsson'
+                            name = 'Henrik Gustafsson'
+                        }
+                    }
+                }
+                repositories {
+                    maven {
+                        url = repositoryUrl
+                        credentials(PasswordCredentials)
+                    }
+                }
+            }
+        }
+    }
+
+    signing {
+        required { isRelease && gradle.taskGraph.hasTask(":log4j2-logstash-reactor:publish") }
+        sign publishing.publications.mavenJava
+    }
+}
+
+
+project(':log4j2-logstash-layout') {
+    dependencies {
+        api "org.apache.logging.log4j:log4j-api"
+        api project(':log4j2-logstash-taggedmessage')
+        api project(":logtags")
+
+        implementation "org.apache.logging.log4j:log4j-core"
+        annotationProcessor "org.apache.logging.log4j:log4j-core"
+
+        testImplementation "org.junit.jupiter:junit-jupiter-api"
+        testImplementation "org.junit.jupiter:junit-jupiter-params"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+
+        testImplementation "com.fasterxml.jackson.core:jackson-core"
+        testImplementation "com.fasterxml.jackson.core:jackson-databind"
+        testImplementation "net.javacrumbs.json-unit:json-unit"
+        testImplementation "net.javacrumbs.json-unit:json-unit-fluent"
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+                withoutBuildIdentifier()
+                suppressPomMetadataWarningsFor('testFixturesApiElements')
+                suppressPomMetadataWarningsFor('testFixturesRuntimeElements')
+
+                pom {
+                    name = project.name
+                    description = 'Logstash json event layout for Log4J2'
+                    url = 'https://github.com/log4j2-logstash'
+                    packaging = 'jar'
+
+                    scm {
+                        url = 'scm:git:https://github.com/gsson/log4j2-logstash'
+                        connection = 'scm:git:git@github.com:/gsson/log4j2-logstash'
+                        developerConnection = 'scm:git:git@github.com:/gsson/log4j2-logstash'
+                    }
+
+                    licenses {
+                        license {
+                            name = 'Apache-2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            distribution = 'repo'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'gsson'
+                            name = 'Henrik Gustafsson'
+                        }
+                    }
+                }
+                repositories {
+                    maven {
+                        url = repositoryUrl
+                        credentials(PasswordCredentials)
+                    }
+                }
+            }
+        }
+    }
+
+    signing {
+        required { isRelease && gradle.taskGraph.hasTask(":log4j2-logstash-layout:publish") }
+        sign publishing.publications.mavenJava
+    }
+}

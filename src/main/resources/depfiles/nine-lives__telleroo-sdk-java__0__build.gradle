@@ -1,0 +1,151 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'signing'
+apply plugin: 'checkstyle'
+apply plugin: 'jacoco'
+apply from: "$rootDir/coverage.gradle"
+
+jacoco {
+  toolVersion = "0.8.2"
+}
+
+Properties versionProperties = new Properties();
+versionProperties.load(new File(rootDir, "src/main/resources/version.properties").newInputStream())
+version = versionProperties.getProperty("version")
+group = 'com.9ls'
+archivesBaseName = "telleroo-java-sdk"
+
+signing {
+    required { gradle.taskGraph.hasTask('uploadArchives') }
+    sign configurations.archives
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'joda-time:joda-time:2.10'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.6'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.9.6'
+
+    compile 'org.apache.httpcomponents:httpclient:4.5.6'
+    compile 'org.apache.httpcomponents:httpmime:4.5.6'
+
+    testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
+
+    checkstyle('com.puppycrawl.tools:checkstyle:7.4') // 8.12
+}
+
+checkstyle {
+    configFile = new File(rootDir, "config/checkstyle/checkstyle.xml")
+    showViolations = false
+}
+
+sourceSets {
+    integrationTest {
+        groovy {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/integration-test/groovy')
+        }
+        resources.srcDir file('src/integration-test/resources')
+    }
+}
+
+configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+test {
+    testLogging {
+        events "failed"
+        exceptionFormat "short"
+    }
+}
+
+task integrationTest(type: Test) {
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    outputs.upToDateWhen { false }
+
+    systemProperties = [
+            tellerooApiKey: System.getProperty('tellerooApiKey'),
+            tellerooEndpoint: System.getProperty('tellerooEndpoint')
+    ]
+
+    jacoco {
+        append = true
+        destinationFile = file("$buildDir/jacoco/test.exec")
+    }
+}
+
+check.dependsOn integrationTest
+integrationTest.mustRunAfter test
+
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}")
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from tasks.javadoc.destinationDir
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: project.hasProperty('ossrhUsername') ? ossrhUsername : '', password: project.hasProperty('ossrhPassword')? ossrhPassword : '')
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: (project.hasProperty('ossrhUsername') ? ossrhUsername : ''), password: (project.hasProperty('ossrhPassword')? ossrhPassword : ''))
+            }
+
+            pom.project {
+               name 'telleroo-java-sdk'
+               packaging 'jar'
+               description 'Telleroo API Client Java SDK'
+               url 'https://github.com/nine-lives/telleroo-sdk-java'
+
+               scm {
+                   url 'scm:git@github.com:nine-lives/telleroo-sdk-java.git'
+                   connection 'scm:git@github.com:nine-lives/telleroo-sdk-java.git'
+                   developerConnection 'scm:git@github.com:nine-lives/telleroo-sdk-java.git'
+               }
+
+               licenses {
+                   license {
+                       name 'The MIT License (MIT)'
+                       url 'https://raw.githubusercontent.com/nine-lives/telleroo-sdk-java/master/LICENSE'
+                       distribution 'repo'
+                   }
+               }
+
+               developers {
+                   developer {
+                       id 'mgsmith57'
+                       name 'Marc G. Smith'
+                       email 'marc@9ls.com'
+                   }
+               }
+           }
+        }
+    }
+}

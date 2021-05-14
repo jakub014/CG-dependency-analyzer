@@ -1,0 +1,10 @@
+description = """\
+Smack Jingle API.
+Warning: This API is beta, outdated and currenlty unmaintained."""
+
+dependencies {
+	api project(':smack-core')
+	api project(':smack-extensions')
+	api 'javax.media:jmf:2.1.1e'
+	api files('libs/jspeex-0.9.7-jfcom.jar', 'libs/jstun.jar', 'libs/Speex.jar')
+}

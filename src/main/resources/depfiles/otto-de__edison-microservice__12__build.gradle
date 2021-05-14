@@ -1,0 +1,20 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation project(":edison-core")
+    implementation project(":edison-togglz")
+    implementation project(":edison-mongo")
+
+    implementation libraries.mongodb_driver_core
+    implementation libraries.mongodb_driver_sync
+    testImplementation test_libraries.testcontainers_mongo
+    testImplementation test_libraries.testcontainers_junit
+
+    testImplementation project(":edison-testsupport")
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}

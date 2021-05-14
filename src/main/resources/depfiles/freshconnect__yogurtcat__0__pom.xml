@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.5.RELEASE</version>
+	</parent>
+	<groupId>com.github.freshconnect </groupId>
+	<artifactId>yogurtcat</artifactId>
+	<version>${revision}</version>
+	<packaging>pom</packaging>
+
+	<properties>
+    	<revision>0.0.4-RELEASE</revision>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<org.mapstruct.version>1.3.0.Final</org.mapstruct.version>
+		<lombok.version>1.18.6</lombok.version>
+	</properties>
+	<name>yogurtcat</name>
+
+	<!-- 开源签名证书 -->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+	<!-- 仓库信息 -->
+    <scm>
+        <connection>scm:git:git@github.com:freshconnect/yogurtcat.git</connection>
+        <developerConnection>scm:git:git@github.com:freshconnect/yogurtcat.git
+        </developerConnection>
+        <url>https://github.com/freshconnect/yogurtcat</url>
+    </scm>
+
+    <!-- 开发人员信息 -->
+    <developers>
+        <developer>
+            <name>Darren</name>
+            <email>780490696@qq.com</email>
+            <organization>https://github.com/freshconnect</organization>
+            <timezone>+8</timezone>
+        </developer>
+    </developers> 
+	
+	<!-- 发布管理信息 -->
+    <distributionManagement>
+        <repository>
+            <id>sonatype_snapshots</id>
+            <name>Nexus Release Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+        <snapshotRepository>
+            <id>sonatype_releases</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </snapshotRepository>
+    </distributionManagement>
+    
+  <modules>
+    <module>yogurtcat-server-parent</module>
+    <module>yogurtcat-server-common</module>
+  </modules>
+
+  <build>
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <!-- 这里的id必须要和全局配置中的release id 一致 -->
+                    <serverId>sonatype_releases</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <!-- 如果希望发布后自动执行close和release操作，此处可以调整为true -->
+                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
+            <!-- 生成java source.jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- 生成asc 校验文件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <!-- 必须和配置中的gpg校验id一致 -->
+                        <id>gpg</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

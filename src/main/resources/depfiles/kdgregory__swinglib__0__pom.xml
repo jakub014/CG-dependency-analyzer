@@ -1,0 +1,139 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.kdgregory.util</groupId>
+	<artifactId>swinglib</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0.0</version>
+
+	<name>swinglib</name>
+	<url>https://github.com/kdgregory/swinglib</url>
+
+	<description>
+		A collection of utility classes for Swing applications.
+	</description>
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>kdgregory</id>
+			<name>Keith D Gregory</name>
+			<url>https://www.kdgregory.com</url>
+		</developer>
+	</developers>
+
+
+    <scm>
+        <url>https://github.com/kdgregory/swinglib</url>
+        <connection>scm:git:https://github.com/kdgregory/swinglib.git</connection>
+        <developerConnection>scm:git:https://github.com/kdgregory/swinglib.git</developerConnection>
+    </scm>
+
+
+    <properties>
+        <jdk.version>1.8</jdk.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- yes, this is old, but it works and I see no need to update the tests -->
+        <junit.version>3.8.2</junit.version>
+
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
+        <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
+        <cobertura-plugin.version>2.7</cobertura-plugin.version>
+    </properties>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <compilerArgument>-g</compilerArgument>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <doclint>none</doclint>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>${maven-site-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <doclint>none</doclint>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>${cobertura-plugin.version}</version>
+                <configuration>
+                    <instrumentation>
+                        <excludes>
+                            <exclude>**/Test*.class</exclude>
+                            <exclude>**/AbstractTestCase.class</exclude>
+                        </excludes>
+                    </instrumentation>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>clean</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+
+    <distributionManagement>
+        <repository>
+            <id>build</id>
+            <name>Local Deployment Directory</name>
+            <url>file://${project.build.directory}/deploy</url>
+        </repository>
+    </distributionManagement>
+
+</project>

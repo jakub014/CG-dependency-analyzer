@@ -1,0 +1,27 @@
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':citeproc-java')
+
+    implementation 'de.undercouch:underline:1.0.0'
+    implementation 'org.jline:jline:3.16.0'
+
+    runtime 'org.citationstyles:styles:2.0.0'
+    runtime 'org.citationstyles:locales:2.0.0'
+}
+
+mainClassName = 'de.undercouch.citeproc.CSLTool'
+
+jar {
+    // include license into jar
+    from new File(project.rootDir, 'LICENSE.txt')
+}
+
+// rename start script
+startScripts {
+    applicationName = 'citeproc-java'
+}

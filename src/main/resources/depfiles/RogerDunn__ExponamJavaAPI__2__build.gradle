@@ -1,0 +1,19 @@
+ext {
+    versions = [
+            commons_io  : '2.6',        // Apache Commons IO library contains utility classes, stream implementations, file filters, file comparators, endian transformation classes, and much more.
+            guava       : '29.0-jre',   // Guava is a suite of core and expanded libraries that include utility classes, google's collections, io classes, and much much more
+            junit       : '4.12',       // JUnit is a unit testing framework for Java, created by Erich Gamma and Kent Beck
+            lang3       : '3.10',       // Apache Commons Lang, a package of Java utility classes for the classes that are in java.lang's hierarchy, or are considered to be so standard as to justify existence in java.lang
+            protobuf    : '3.0.0',      // Core Protocol Buffers library. Protocol Buffers are a way of encoding structured data in an efficient yet extensible format
+            slf4j       : '1.7.28',     // Logging
+    ]
+    libs = [
+            commons_io  : "commons-io:commons-io:$versions.commons_io",
+            guava       : "com.google.guava:guava:$versions.guava",
+            junit       : "junit:junit:$versions.junit",
+            lang3       : "org.apache.commons:commons-lang3:$versions.lang3",
+            protobuf    : "com.google.protobuf:protobuf-java:$versions.protobuf",
+            slf4j       : "org.slf4j:slf4j-api:$versions.slf4j",
+            slf4j_jdk14 : "org.slf4j:slf4j-jdk14:$versions.slf4j",
+    ]
+}

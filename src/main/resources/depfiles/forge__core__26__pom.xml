@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>org.jboss.forge.addon</groupId>
+      <artifactId>configuration-parent</artifactId>
+      <version>3.9.9-SNAPSHOT</version>
+   </parent>
+   <artifactId>configuration-impl</artifactId>
+   <name>Forge - Configuration Impl</name>
+   <dependencies>
+      <dependency>
+         <groupId>org.jboss.forge.furnace.container</groupId>
+         <artifactId>cdi-api</artifactId>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.jboss.forge.addon</groupId>
+         <artifactId>ui</artifactId>
+         <classifier>forge-addon</classifier>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.jboss.forge.addon</groupId>
+         <artifactId>configuration-api</artifactId>
+         <scope>provided</scope>
+      </dependency>
+      <dependency>
+         <groupId>commons-configuration</groupId>
+         <artifactId>commons-configuration</artifactId>
+         <version>1.10</version>
+      </dependency>
+      <!--  Used in XMLConfiguration -->
+      <dependency>
+         <groupId>commons-collections</groupId>
+         <artifactId>commons-collections</artifactId>
+         <version>3.2.2</version>
+      </dependency>
+   </dependencies>
+</project>

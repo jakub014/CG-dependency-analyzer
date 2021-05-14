@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.oracle.oci.sdk</groupId>
+    <artifactId>oci-java-sdk-addons</artifactId>
+    <version>1.36.4</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>oci-java-sdk-addons-resteasy-client-configurator</artifactId>
+  <name>Oracle Cloud Infrastructure SDK - RestEasyClientConfigurator</name>
+  <description>This project adds support for the RestEasyClientConfigurator for the Java SDK</description>
+  <url>https://docs.cloud.oracle.com/Content/API/SDKDocs/javasdk.htm</url>
+
+  <properties>
+    <resteasy.version>3.15.1.Final</resteasy.version>
+  </properties>
+
+
+  <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-client -->
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-client</artifactId>
+      <version>${resteasy.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.resteasy</groupId>
+      <artifactId>resteasy-jaxrs</artifactId>
+      <version>${resteasy.version}</version>
+    </dependency>
+
+    <!-- Resteasy-JaxRs transitive dependencies that are resolved to a newer version to fix
+        known security vulnerabilities -->
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>${apache-httpcomponents.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.oracle.oci.sdk</groupId>
+      <artifactId>oci-java-sdk-common</artifactId>
+      <version>1.36.4</version>
+    </dependency>
+  </dependencies>
+</project>

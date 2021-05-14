@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.openl.rules</groupId>
+        <artifactId>org.openl.rules.dev-pom</artifactId>
+        <version>5.24.2-SNAPSHOT</version>
+    </parent>
+    <groupId>org.openl</groupId>
+    <artifactId>org.openl.commons</artifactId>
+    <packaging>jar</packaging>
+    <name>OpenL - DEV - Commons</name>
+    <description>Common reusable components</description>
+    <url>https://openl-tablets.org</url>
+    <organization>
+        <name>OpenL Tablets</name>
+        <url>https://openl-tablets.org</url>
+    </organization>
+    <build>
+        <resources>
+            <resource>
+                <directory>src</directory>
+                <includes>
+                    <include>org/openl/info/openl.version.properties</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openl</groupId>
+            <artifactId>org.openl.rules.util</artifactId>
+        </dependency>
+        <!-- Required for Java11. -->
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <!--<scope>provided</scope>-->
+            <!-- Annotation classes are used in generated from Datatype Table classes.
+            To compile them without adding extra dependency in client's project "compile" scope is used -->
+        </dependency>
+    </dependencies>
+</project>

@@ -1,0 +1,159 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+plugins {
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.12.0'
+}
+
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+group = 'jp.ne.paypay'
+version = '1.0.3'
+
+
+
+repositories {
+    jcenter()
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'pmd'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+apply plugin: 'com.github.kt3k.coveralls'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+javadoc.options.encoding = 'UTF-8'
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: ['jp/ne/paypay/model/**', 'jp/ne/paypay/example/**'])
+        }))
+    }
+}
+
+def isDevBuild
+def isReleaseBuild
+
+if(hasProperty("release")) {
+    isReleaseBuild = true
+} else {
+    isDevBuild = true
+}
+
+install {
+    repositories.mavenInstaller {
+        pom.artifactId = 'paypayopa'
+    }
+}
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+task execute(type:JavaExec) {
+    main = System.getProperty('mainClass')
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+
+dependencies {
+    compile 'io.swagger:swagger-annotations:1.6.2'
+    compile 'com.squareup.okhttp:okhttp:2.7.5'
+    compile 'com.squareup.okhttp:logging-interceptor:2.7.5'
+    compile 'com.google.code.gson:gson:2.8.6'
+    compile ('com.auth0:java-jwt:3.15.0'){
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+    }
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+    compile 'org.apache.commons:commons-lang3:3.12.0'
+    // validation
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '7.0.1.Final'
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator-annotation-processor', version: '7.0.1.Final'
+    compile group: 'jakarta.el', name: 'jakarta.el-api', version: '4.0.0'
+    compile group: 'org.glassfish', name: 'jakarta.el', version: '4.0.1'
+
+    testCompile 'org.mockito:mockito-core:3.8.0'
+    testCompile("org.junit.jupiter:junit-jupiter-engine:5.7.1")
+    testCompile("org.junit.platform:junit-platform-runner:1.7.1")
+}
+pmd{
+    consoleOutput = true
+    toolVersion = "6.21.0"
+    rulePriority = 5
+    ignoreFailures = true
+    ruleSets = ["category/java/errorprone.xml"]
+}
+artifacts {
+    archives javadocJar, sourcesJar
+}
+//********* artifact signing *********
+if(isReleaseBuild) {
+    signing {
+        sign configurations.archives
+    }
+}
+
+uploadArchives {
+    repositories {
+        if (isDevBuild) {
+            mavenLocal()
+        }else{
+            mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                    authentication(userName: System.getenv("OSSRH_USERNAME"), password: System.getenv("OSSRH_TOKEN"))
+                }
+
+                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                    authentication(userName: System.getenv("OSSRH_USERNAME"), password: System.getenv("OSSRH_TOKEN"))
+                }
+
+                pom.project {
+                    name 'paypayopa'
+                    packaging 'jar'
+                    description 'PayPay OPA SDK'
+                    url 'https://github.com/paypay/paypayopa-sdk-java'
+
+                    scm {
+                        connection 'scm:git:git@github.com:paypay/paypayopa-sdk-java.git'
+                        developerConnection 'scm:git:git@github.com:paypay/paypayopa-sdk-java.git'
+                        url 'https://github.com/paypay/paypayopa-sdk-java'
+                    }
+
+                    licenses {
+                        license {
+                            name 'The Apache License, Version 2.0'
+                            url 'https://opensource.org/licenses/Apache-2.0'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id 'javidlulu'
+                            name 'Jaavid Ahmed'
+                            email 't-jaavidahmed.looloo@paypay-corp.co.jp'
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
+test {
+    useJUnitPlatform()
+}

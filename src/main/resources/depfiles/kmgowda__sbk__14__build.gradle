@@ -1,0 +1,15 @@
+plugins {
+    id 'java'
+}
+
+
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(":sbk-api")
+    implementation 'io.nats:jnats:2.6.7'
+}

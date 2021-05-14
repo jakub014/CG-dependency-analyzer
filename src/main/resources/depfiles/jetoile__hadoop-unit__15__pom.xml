@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>hadoop-unit</artifactId>
+        <groupId>fr.jetoile.hadoop</groupId>
+        <version>3.9-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>hadoop-unit-standalone</artifactId>
+
+    <properties>
+        <mavenVersion>3.5.0</mavenVersion>
+        <aetherVersion>1.1.0</aetherVersion>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>fr.jetoile.hadoop</groupId>
+            <artifactId>hadoop-unit-commons</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-embedder</artifactId>
+            <version>${mavenVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.aether</groupId>
+            <artifactId>aether-impl</artifactId>
+            <version>${aetherVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.aether</groupId>
+            <artifactId>aether-connector-basic</artifactId>
+            <version>${aetherVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.aether</groupId>
+            <artifactId>aether-transport-file</artifactId>
+            <version>${aetherVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.aether</groupId>
+            <artifactId>aether-transport-http</artifactId>
+            <version>${aetherVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-resolver-provider</artifactId>
+            <version>${mavenVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <targetPath>${project.build.directory}/filtered-resources</targetPath>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <executions>
+
+                    <execution>
+                        <id>hadoop-bootstrap</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>generate-daemons</goal>
+                        </goals>
+                        <configuration>
+                            <target>${project.build.directory}/appassembler-jsw</target>
+
+                            <repositoryLayout>flat</repositoryLayout>
+
+                            <configurationSourceDirectory>${project.build.directory}/filtered-resources</configurationSourceDirectory>
+                            <copyConfigurationDirectory>true</copyConfigurationDirectory>
+                            <configurationDirectory>conf</configurationDirectory>
+                            <logsDirectory>logs</logsDirectory>
+                            <useDaemonIdAsWrapperConfName>true</useDaemonIdAsWrapperConfName>
+
+                            <daemons>
+                                <daemon>
+                                    <id>hadoop-unit-standalone</id>
+                                    <mainClass>fr.jetoile.hadoopunit.HadoopStandaloneBootstrap</mainClass>
+                                    <commandLineArguments>
+                                    </commandLineArguments>
+                                    <platforms>
+                                        <platform>jsw</platform>
+                                    </platforms>
+                                    <generatorConfigurations>
+                                        <generatorConfiguration>
+                                            <generator>jsw</generator>
+                                            <includes>
+                                                <include>linux-x86-32</include>
+                                                <include>linux-x86-64</include>
+                                                <include>windows-x86-32</include>
+                                                <include>windows-x86-64</include>
+                                                <include>macosx-universal-64</include>
+                                            </includes>
+                                            <configuration>
+
+                                                <property>
+                                                    <name>configuration.directory.in.classpath.first</name>
+                                                    <value>conf</value>
+                                                </property>
+
+                                                <property>
+                                                    <name>wrapper.logfile.maxsize</name>
+                                                    <value>100m</value>
+                                                </property>
+
+                                            </configuration>
+                                        </generatorConfiguration>
+                                    </generatorConfigurations>
+                                    <jvmSettings>
+                                        <initialMemorySize>256M</initialMemorySize>
+                                        <maxMemorySize>2048M</maxMemorySize>
+                                        <systemProperties>
+                                            <systemProperty>com.sun.management.jmxremote</systemProperty>
+                                            <systemProperty>com.sun.management.jmxremote.port=8199</systemProperty>
+                                            <systemProperty>com.sun.management.jmxremote.authenticate=false
+                                            </systemProperty>
+                                            <systemProperty>com.sun.management.jmxremote.ssl=false</systemProperty>
+                                            <systemProperty>com.sun.management.jmxremote.local.only=false
+                                            </systemProperty>
+                                        </systemProperties>
+                                        <extraArguments>
+                                            <extraArgument>-Xdebug</extraArgument>
+                                            <extraArgument>
+                                                -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n
+                                            </extraArgument>
+                                            <extraArgument>-server</extraArgument>
+                                            <extraArgument>-XX:+HeapDumpOnOutOfMemoryError</extraArgument>
+                                        </extraArguments>
+                                    </jvmSettings>
+                                </daemon>
+                            </daemons>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <!-- Packaging -->
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptors>
+                        <descriptor>src/main/assembly/descriptor.xml</descriptor>
+                    </descriptors>
+                    <appendAssemblyId>false</appendAssemblyId>
+
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/docker</directory>
+                                    <includes>
+                                        <include>Dockerfile</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <configuration>
+                    <contextDirectory>${project.build.directory}</contextDirectory>
+                    <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+                    <forceCreation>true</forceCreation>
+                    <imageName>${artifactId}</imageName>
+                    <tag>${project.version}</tag>
+                    <repository>jetoile/hadoop-unit-standalone</repository>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>build-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>push-image</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

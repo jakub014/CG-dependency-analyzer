@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.vladimir-bukhtoyarov</groupId>
+        <artifactId>bucket4j-parent</artifactId>
+        <version>6.2.0</version>
+        <relativePath>../bucket4j-parent</relativePath>
+    </parent>
+
+    <name>bucket4j-coherence</name>
+    <description>Bucket4j integration with Coherence</description>
+    <artifactId>bucket4j-coherence</artifactId>
+
+    <properties>
+        <modular-name>coherence</modular-name>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.vladimir-bukhtoyarov</groupId>
+            <artifactId>bucket4j-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.vladimir-bukhtoyarov</groupId>
+            <artifactId>bucket4j-jcache</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>coherence</artifactId>
+            <version>12.2.1.0</version>
+            <scope>system</scope>
+            <!-- Point directly to jar from repository, because oracle does not provide maven distribution of coherence  -->
+            <systemPath>${project.basedir}/lib/cl.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>javax.cache</groupId>
+            <artifactId>cache-api</artifactId>
+            <version>${jcache.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.vladimir-bukhtoyarov</groupId>
+            <artifactId>bucket4j-core</artifactId>
+            <version>${project.version}</version>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.littlegrid</groupId>
+            <artifactId>littlegrid</artifactId>
+            <version>2.15.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>travis</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

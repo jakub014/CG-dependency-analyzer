@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Waffle (https://github.com/dblock/waffle)
+
+    Copyright (c) 2010-2016 Application Security, Inc.
+
+    All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse
+    Public License v1.0 which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html.
+
+    Contributors: Application Security, Inc.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.waffle</groupId>
+    <artifactId>waffle-launcher</artifactId>
+    <version>3.1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>waffle-launcher</name>
+    <description>Launcher POM for WAFFLE</description>
+    <url>https://waffle.github.io/waffle/</url>
+
+    <modules>
+        <module>Source/JNA</module>
+    </modules>
+
+    <distributionManagement>
+        <site>
+            <id>gh-pages-scm</id>
+            <name>Waffle GitHub Pages</name>
+            <url>scm:git:ssh://git@github.com/Waffle/waffle.git</url>
+        </site>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.9.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <overwrite>true</overwrite>
+                            <outputDirectory>${project.basedir}/Source/JNA/src/site/markdown</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>README.md</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

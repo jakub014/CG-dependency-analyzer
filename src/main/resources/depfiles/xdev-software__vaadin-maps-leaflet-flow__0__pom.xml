@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="https://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.xdev-software</groupId>
+	<artifactId>vaadin-maps-leaflet-flow-root</artifactId>
+	<version>1.0.7-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>vaadin-maps-leaflet-flow-root</name>
+
+	<inceptionYear>2019</inceptionYear>
+
+	<organization>
+		<name>XDEV Software</name>
+		<url>https://xdev-software.com</url>
+	</organization>
+
+	<modules>
+		<module>vaadin-maps-leaflet-flow</module>
+		<module>vaadin-maps-leaflet-flow-demo</module>
+	</modules>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+</project>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.semanticweb.yars</groupId>
+		<artifactId>nxparser</artifactId>
+		<version>3.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>nxparser-jax-rs</artifactId>
+	<packaging>jar</packaging>
+	<name>NxParser Readers/Writers for JAX-RS</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.semanticweb.yars</groupId>
+			<artifactId>nxparser-parsers</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.kohsuke.metainf-services</groupId>
+			<artifactId>metainf-services</artifactId>
+			<version>1.8</version>
+			<optional>true</optional>
+		</dependency>
+		<!-- <dependency> <groupId>org.glassfish.jersey.ext</groupId> <artifactId>jersey-metainf-services</artifactId>
+			<version>2.17</version> </dependency> -->
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-common</artifactId>
+			<version>2.27</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.semanticweb.yars</groupId>
+			<artifactId>
+				nxparser-parsers-external-jsonld-jsonld_java
+			</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.semarglproject</groupId>
+			<artifactId>semargl-rdf</artifactId>
+			<version>0.6.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.semanticweb.yars</groupId>
+			<artifactId>nxparser-utilities-uri</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+	</dependencies>
+
+	<description>JAX-RS is the Java API for RESTful Services, and Jersey its reference implementation. This module allows for reading and writing RDF in JAX-RS-code without manually parsing InputStreams, see the JavaDoc for examples.</description>
+</project>

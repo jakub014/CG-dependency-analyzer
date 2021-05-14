@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>ax-expression</artifactId>
+
+	<parent>
+		<groupId>com.g2forge.alexandria</groupId>
+		<artifactId>ax-project</artifactId>
+		<version>0.0.18-SNAPSHOT</version>
+		<relativePath>../ax-project/pom.xml</relativePath>
+	</parent>
+
+	<name>Alexandria Expression</name>
+	<description>A library for expressions and their evaluation. Includes a basic implementation for math.</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.g2forge.alexandria</groupId>
+			<artifactId>ax-adt</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.g2forge.alexandria</groupId>
+			<artifactId>ax-test</artifactId>
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+	</dependencies>
+</project>

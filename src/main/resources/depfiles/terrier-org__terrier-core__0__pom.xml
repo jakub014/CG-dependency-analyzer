@@ -1,0 +1,315 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.terrier</groupId>
+	<artifactId>terrier-platform</artifactId>
+	<version>5.5-SNAPSHOT</version>
+	<name>Terrier Information Retrieval Platform</name>
+	<description>Terrier IR platform</description>
+	<url>http://terrier.org</url>
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<year>2021</year>
+		<gpg.skip>true</gpg.skip>
+		<maven.javadoc.skip>true</maven.javadoc.skip>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+	</properties>
+
+	<organization>
+		<name>University of Glasgow</name>
+		<url>http://www.gla.ac.uk</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<url>https://github.com/terrierteam</url>
+			<organization>TerrierTeam, University of Glasgow</organization>
+			<organizationUrl>http://terrierteam.dcs.gla.ac.uk</organizationUrl>
+			<id>terrierteam</id>
+		</developer>
+	</developers>
+
+	<issueManagement>
+		<url>https://terrier.org/issues</url>
+		<system>jira</system>
+	</issueManagement>
+
+	<licenses>
+		<license>
+			<name>Mozilla Public License, Version 2.0</name>
+			<url>http://www.mozilla.org/MPL/2.0/index.txt</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>https://github.com/terrier-org/terrier-core</url>
+		<connection>scm:git:https://github.com/terrier-org/terrier-core.git</connection>
+		<developerConnection>scm:git:git@github.com:terrier-org/terrier-core.git</developerConnection>
+	</scm>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<modules>
+		<module>modules/retrieval-api</module>
+		<module>modules/rest-client</module>
+		<module>modules/index-api</module>
+		<module>modules/core</module>
+		<module>modules/batch-indexers</module>
+		<module>modules/batch-retrieval</module>
+		<module>modules/learning</module>
+		<module>modules/logging</module>
+		<module>modules/tests</module>
+		<module>modules/concurrent</module>
+		<module>modules/realtime</module>
+		<module>modules/rest-server</module>
+		<module>modules/assemblies</module>
+	</modules>
+
+
+	<build>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+
+
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>build-helper-maven-plugin</artifactId>
+										<!--  see https://stackoverflow.com/questions/47692731/cannot-parse-lifecycle-mapping-metadata-for-maven-project-cause-unrecognised -->
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>parse-version</goal>
+											<goal>add-source</goal>
+											<goal>maven-version</goal>
+											<goal>add-resource</goal>
+											<goal>add-test-resource</goal>
+											<goal>add-test-source</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute>
+											<runOnConfiguration>true</runOnConfiguration>
+											<runOnIncremental>true</runOnIncremental>
+										</execute>
+									</action>
+								</pluginExecution>
+
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-resources-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>resources</goal>
+											<goal>testResources</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute>
+											<runOnConfiguration>true</runOnConfiguration>
+											<runOnIncremental>false</runOnIncremental>
+										</execute>
+									</action>
+								</pluginExecution>
+
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-compiler-plugin</artifactId>
+										<versionRange>3.1</versionRange>
+										<goals>
+											<goal>testCompile</goal>
+											<goal>compile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											javacc-maven-plugin
+										</artifactId>
+										<versionRange>
+											[2.6,)
+										</versionRange>
+										<goals>
+											<goal>javacc</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+
+								<!-- copy-dependency plugin -->
+								<!-- http://stackoverflow.com/questions/26482070/using-maven-assembly-plugin-with-local-dependencies -->
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-dependency-plugin</artifactId>
+										<versionRange>2.6</versionRange>
+										<goals>
+											<goal>copy-dependencies</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+
+
+			<!-- require maven 3.3 at least -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>1.4.1</version>
+				<executions>
+					<execution>
+						<id>enforce-maven</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>3.3.9</version>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<fork>true</fork>
+					<source>11</source>
+					<target>11</target>
+					<compilerArgs>
+						<arg>-Xpkginfo:always</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>	
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>3.2.0</version>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+								<!-- <phase>package</phase> -->
+								<!-- <goals>
+									<goal>javadoc</goal>
+								</goals> -->
+								<configuration>
+									<author>true</author>
+									<bottom><![CDATA[ <a href='${project.parent.Url}'>${project.parent.Name}</a>${project.version}. Copyright &#169; 2004-${year}, <a href='http://www.gla.ac.uk/'>University of Glasgow</a> ]]></bottom>
+									<doctitle>${project.parent.Name} ${project.version} API</doctitle>
+									<use>true</use>
+									<version>true</version>
+                                    <source>8</source>
+									<windowtitle>${project.parent.Name} ${project.version} API</windowtitle>
+									<failOnError>false</failOnError>
+									<failOnWarnings>false</failOnWarnings>
+									<detectJavaApiLink>false</detectJavaApiLink>
+									<doclint>none</doclint> <!-- https://stackoverflow.com/questions/15886209/maven-is-not-working-in-java-8-when-javadoc-tags-are-incomplete#comment82738599_16743137 -->
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>2.2.1</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<!-- if this doesnt work on mac, do "export GPG_TTY=$(tty)" -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.5</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+
+		</profile>
+	</profiles>
+
+</project>

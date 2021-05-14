@@ -1,0 +1,243 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>terrier-platform</artifactId>
+		<groupId>org.terrier</groupId>
+		<version>5.5-SNAPSHOT</version>
+		<relativePath>../../</relativePath>
+	</parent>
+
+	<artifactId>terrier-assemblies</artifactId>
+
+	<dependencies>
+		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>terrier-retrieval-api</artifactId>
+			<version>${project.version}</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+
+                <dependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>terrier-index-api</artifactId>
+                        <version>${project.version}</version>
+                        <!-- <scope>provided</scope> -->
+                </dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>terrier-core</artifactId>
+			<version>${project.version}</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>terrier-batch-retrieval</artifactId>
+			<version>${project.version}</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>terrier-batch-indexers</artifactId>
+			<version>${project.version}</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+<!--
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>terrier-integer-compression</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+-->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>terrier-learning</artifactId>
+			<version>${project.version}</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+
+                <dependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>terrier-logging</artifactId>
+                        <version>${project.version}</version>
+                        <!-- <scope>provided</scope> -->
+                </dependency>
+
+
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>terrier-rest-client</artifactId>
+			<version>${project.version}</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>terrier-rest-server</artifactId>
+			<version>${project.version}</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>terrier-tests</artifactId>
+			<version>${project.version}</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>terrier-realtime</artifactId>
+			<version>${project.version}</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>terrier-concurrent</artifactId>
+			<version>${project.version}</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.2.0</version>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>javadoc</goal>
+						</goals>
+						<configuration>
+							<failOnError>false</failOnError>
+                                                        <failOnWarnings>false</failOnWarnings>
+							<includeDependencySources>true</includeDependencySources>
+							<dependencySourceExcludes>
+								<dependencySourceExclude>ch.qos.logback:*</dependencySourceExclude>
+							</dependencySourceExcludes>
+							<outputDirectory>${project.parent.basedir}/doc/</outputDirectory>
+							<reportOutputDirectory>${project.parent.basedir}/doc/</reportOutputDirectory>
+							<destDir>javadoc</destDir>
+							<author>true</author>
+							<source>8</source>
+							<bottom><![CDATA[ <a href='${project.parent.Url}'>${project.parent.Name}</a> ${project.version}. Copyright &#169; 2004-${year}, <a href='http://www.gla.ac.uk/'>University of Glasgow</a> ]]></bottom>
+							<doctitle>${project.parent.Name} ${project.version} API</doctitle>
+							<use>true</use>
+							<version>true</version>
+							<doclint>none</doclint>
+							<detectJavaApiLink>false</detectJavaApiLink>
+							<windowtitle>${project.parent.Name} ${project.parent.version} API</windowtitle>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<finalName>terrier-project-${project.version}</finalName>
+					<archive>
+						<manifest>
+							<mainClass>org.terrier.applications.CLITool</mainClass>
+						</manifest>
+					</archive>
+					<!-- <filters> <filter>**/logback.xml</filter> <filter>**\logback.xml</filter> 
+						</filters> -->
+				</configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+
+							<descriptors>
+								<descriptor>src/assembly/module-jar-with-dependencies.xml</descriptor>
+							</descriptors>
+
+						</configuration>
+					</execution>
+
+				</executions>
+			</plugin>
+			<!-- <descriptorRefs> <descriptorRef>jar-with-dependencies</descriptorRef> 
+				</descriptorRefs> -->
+
+
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>prepare-release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>3.2.0</version>
+						<configuration>
+							<finalName>terrier-project-${project.version}</finalName>
+							<archive>
+								<manifest>
+									<mainClass>org.terrier.applications.CLITool</mainClass>
+								</manifest>
+							</archive>
+							<filters>
+								<filter>**/logback.xml</filter>
+								<filter>**\logback.xml</filter>
+							</filters>
+						</configuration>
+						<executions>
+
+							<execution>
+								<!-- builds the tar files -->
+								<phase>package</phase> <!-- bind to the packaging phase -->
+								<id>srczips</id>
+								<goals>
+									<goal>single</goal>
+								</goals>
+								<configuration>
+									<tarLongFileMode>gnu</tarLongFileMode>
+									<descriptors>
+										<descriptor>src/assembly/src.xml</descriptor>
+									</descriptors>
+								</configuration>
+							</execution>
+
+							<execution>
+								<!-- builds the tar files -->
+								<phase>package</phase> <!-- bind to the packaging phase -->
+								<id>binzips</id>
+								<goals>
+									<goal>single</goal>
+								</goals>
+								<configuration>
+									<tarLongFileMode>gnu</tarLongFileMode>
+									<descriptors>
+										<descriptor>src/assembly/bin.xml</descriptor>
+									</descriptors>
+								</configuration>
+							</execution>
+
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

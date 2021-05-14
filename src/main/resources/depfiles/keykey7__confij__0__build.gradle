@@ -1,0 +1,238 @@
+buildscript {
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+}
+
+plugins {
+	id 'org.ajoberstar.reckon' version '0.13.0'
+	id 'com.github.ben-manes.versions' version '0.36.0' // task: dependencyUpdates
+	id 'org.sonarqube' version '3.1.1'
+	id 'org.asciidoctor.jvm.convert' version '3.3.0' apply false
+	id 'com.github.johnrengelman.shadow' version '6.1.0' apply false
+	id 'de.marcphilipp.nexus-publish' version '0.4.0' apply false
+	id 'io.codearte.nexus-staging' version '0.22.0' apply false
+}
+
+reckon {
+	scopeFromProp()
+	snapshotFromProp()
+}
+if (System.getenv('CI') == null) {
+	version = "0.0.0-SNAPSHOT"
+}
+task version {
+	doLast {
+		if (project.findProperty('reckon.stage')) {
+			println "to tag and release a new version '${version}' use:"
+			println "git tag -a '${version}' -m '${version}' && git push origin '${version}'"
+		} else {
+			println "current version is '${version}', to figure out the next version run:"
+			println "CI=true ./gradlew version -Preckon.stage=final -Preckon.scope=[major,minor,patch]"
+		}
+	}
+}
+reckonTagCreate.dependsOn "build"
+
+allprojects {
+	repositories {
+		mavenCentral()
+	}
+	group 'ch.kk7'
+	version rootProject.version
+}
+
+dependencyUpdates.resolutionStrategy {
+	componentSelection { rules ->
+		rules.all { ComponentSelection selection ->
+			if (['alpha', 'beta', 'cr', 'rc', 'm', 'preview', 'b', 'ea'].any { qualifier ->
+				selection.candidate.version ==~ /(?i).*[.-]$qualifier[.\d-+]*/
+			}) {
+				selection.reject('Release candidate')
+			}
+		}
+	}
+}
+
+subprojects {
+	apply plugin: 'java-library'
+
+	java {
+		sourceCompatibility = JavaVersion.VERSION_1_8
+		targetCompatibility = JavaVersion.VERSION_1_8
+		withSourcesJar()
+		withJavadocJar()
+	}
+
+	tasks.withType(JavaCompile) {
+		options.incremental = true
+	}
+
+	tasks.withType(AbstractArchiveTask) {
+		preserveFileTimestamps = false
+		reproducibleFileOrder = true
+	}
+
+	configurations.runtime {
+		resolutionStrategy {
+			failOnVersionConflict()
+			failOnNonReproducibleResolution()
+		}
+	}
+
+	javadoc.options.addStringOption('Xdoclint:none', '-quiet')
+
+	dependencies {
+		def autoServiceVersion = "1.0-rc7"
+		compileOnly "com.google.auto.service:auto-service:${autoServiceVersion}"
+		annotationProcessor "com.google.auto.service:auto-service:${autoServiceVersion}"
+		testCompileOnly "com.google.auto.service:auto-service:${autoServiceVersion}"
+		testAnnotationProcessor "com.google.auto.service:auto-service:${autoServiceVersion}"
+
+		def lombokVersion = "1.18.18"
+		compileOnly "org.projectlombok:lombok:${lombokVersion}"
+		annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+		testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+		testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+		def junitVersion = '5.7.1'
+		testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+		testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+		testImplementation "org.assertj:assertj-core:3.19.0"
+		testImplementation "com.github.stefanbirkner:system-lambda:1.2.0"
+		testImplementation "org.awaitility:awaitility:4.0.3"
+
+		testRuntimeOnly 'ch.qos.logback:logback-classic:1.2.3'
+	}
+
+	test {
+		useJUnitPlatform() // junit5 support
+		if (System.getenv('CI') != null) {
+			testLogging {
+				events "passed", "skipped", "failed"
+				exceptionFormat "full"
+			}
+		}
+	}
+	configurations { // allow test reuse
+		testOutput.extendsFrom(testImplementation)
+	}
+}
+
+// coverage
+subprojects {
+	apply plugin: 'jacoco'
+}
+
+apply plugin: 'base'
+apply plugin: 'jacoco'
+task jacocoMerge(type: JacocoMerge) {
+	subprojects.each { subproject ->
+		executionData subproject.tasks.withType(Test)
+	}
+	doFirst {
+		executionData = files(executionData.findAll { it.exists() })
+	}
+}
+
+task jacocoRootReport(type: JacocoReport, group: 'verification') {
+	description = 'Generates an aggregate report from all subprojects'
+	dependsOn subprojects.test, jacocoMerge
+
+	additionalSourceDirs.from(subprojects.sourceSets.main.allSource.srcDirs)
+	sourceDirectories.from(subprojects.sourceSets.main.allSource.srcDirs)
+	classDirectories.from(subprojects.sourceSets.main.output)
+	executionData jacocoMerge.destinationFile
+	reports.xml.enabled true
+	doLast {
+		logger.lifecycle("report at: " + reports.html.entryPoint.toURI())
+	}
+}
+
+allprojects {
+	sonarqube {
+		properties {
+			property 'sonar.host.url', 'https://sonarcloud.io'
+			property 'sonar.organization', 'keykey7-github'
+			property 'sonar.login', System.getenv('SONAR_TOKEN')
+			property 'sonar.coverage.jacoco.xmlReportPaths', jacocoRootReport.reports.xml.destination
+		}
+	}
+}
+// disable sonar analysis without secret (since secrets aren't availabe in PRs from forks)
+project.tasks['sonarqube'].enabled System.getenv('SONAR_TOKEN') != null
+project.tasks['sonarqube'].dependsOn jacocoRootReport
+
+// releases
+def isRemotePublish = System.getenv('CI') != null && System.getenv('SONATYPE_USERNAME') != null
+if (isRemotePublish) {
+	logger.lifecycle("remote publishing is enabled");
+	if (version.toString().endsWith("-SNAPSHOT")) {
+		task closeAndReleaseRepository {} // noop for snapshots
+	} else {
+		apply plugin: 'io.codearte.nexus-staging'
+		nexusStaging {
+			username = System.getenv('SONATYPE_USERNAME')
+			password = System.getenv('SONATYPE_PASSWORD')
+			numberOfRetries = 60
+			delayBetweenRetriesInMillis = 5000
+		}
+	}
+}
+subprojects {
+	if (sourceSets.main.allSource.isEmpty()) {
+		return // excluding test-only subprojects
+	}
+	apply plugin: 'maven-publish'
+	publishing {
+		publications {
+			java(MavenPublication) {
+				from components.java
+				pom {
+					def githubUrl = "https://github.com/keykey7/confij"
+					name = project.name
+					description = "A type-safe, strongly defined Java configuration library"
+					url = githubUrl
+					licenses {
+						license {
+							name = 'The Apache License, Version 2.0'
+							url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+						}
+					}
+					scm {
+						connection = "scm:git:${githubUrl}.git"
+						developerConnection = "scm:git:${githubUrl}.git"
+						url = githubUrl
+					}
+					developers {
+						developer {
+							id = 'keykey7'
+							name = 'keykey7'
+							email = 'noreply@kk7.ch'
+						}
+					}
+				}
+			}
+		}
+	}
+	if (isRemotePublish) {
+		apply plugin: 'de.marcphilipp.nexus-publish'
+		nexusPublishing {
+			repositories {
+				sonatype {
+					username = System.getenv('SONATYPE_USERNAME')
+					password = System.getenv('SONATYPE_PASSWORD')
+				}
+			}
+		}
+
+		apply plugin: 'signing'
+		signing {
+			def signingKey = System.getenv('SONATYPE_SIGNKEY')
+			def signingPassword = System.getenv('SONATYPE_SIGNPASS')
+			useInMemoryPgpKeys(signingKey, signingPassword)
+			sign publishing.publications.java
+		}
+	}
+}

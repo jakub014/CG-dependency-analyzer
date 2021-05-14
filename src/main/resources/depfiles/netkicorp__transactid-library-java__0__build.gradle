@@ -1,0 +1,272 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.3.50'
+    id 'jacoco'
+    id 'org.jetbrains.dokka' version '0.10.0'
+    id 'java'
+    id 'maven-publish'
+    id 'signing'
+}
+
+ext {
+    transactIdCoreVersion = "2.0.0-beta1"
+    dokkaVersion = "0.9.17"
+    protoVersion = "3.10.0"
+    bouncyCastleVersion = "1.67"
+    junitVersion = "5.3.1"
+    jacocoVersion = "0.8.6"
+    vaultDriverVersion = "5.1.0"
+    mockitoVersion = "3.4.6"
+    ktorVersion = "1.3.2"
+    jacksonVersion = "2.11.3"
+    kotlinReflectVersion = "1.3.70"
+
+    groupId = 'com.netki'
+    versionRelease = '2.0.0-beta1'
+    artifactId = 'transactid'
+}
+
+group "$groupId"
+version "$versionRelease"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation "com.netki:transactid-core:$transactIdCoreVersion"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinReflectVersion"
+    implementation "com.google.protobuf:protobuf-java:$protoVersion"
+
+    implementation "org.bouncycastle:bcprov-jdk15on:$bouncyCastleVersion"
+    implementation "org.bouncycastle:bcpkix-jdk15on:$bouncyCastleVersion"
+
+    implementation "org.jetbrains.dokka:dokka-android-gradle-plugin:$dokkaVersion"
+
+    implementation "com.bettercloud:vault-java-driver:$vaultDriverVersion"
+
+    implementation "io.ktor:ktor-client-okhttp:$ktorVersion"
+    implementation "io.ktor:ktor-client-json:$ktorVersion"
+    implementation "io.ktor:ktor-client-gson:$ktorVersion"
+    implementation "io.ktor:ktor-client-logging-jvm:$ktorVersion"
+
+    implementation "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+
+    testImplementation "io.ktor:ktor-client-mock:$ktorVersion"
+    testImplementation "io.ktor:ktor-client-mock-jvm:$ktorVersion"
+    testImplementation "io.ktor:ktor-client-mock-js:$ktorVersion"
+    testImplementation "io.ktor:ktor-client-mock-native:$ktorVersion"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+jacoco {
+    toolVersion = jacocoVersion
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/testCoverage")
+    }
+
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: [
+                            'com/netki/bip75/protocol/**',
+                            'com/netki/model/**'
+                    ])
+        })
+    }
+}
+
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/documentation"
+
+    configuration {
+        perPackageOption {
+            prefix = "kotlin.internal"
+            suppress = false
+        }
+    }
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'TransactId-SDK',
+                'Implementation-Version': version,
+                'Main-Class': 'com.netki.TransactId'
+    }
+    baseName = project.name
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+task sourceJar(type: Jar) {
+    classifier "sources"
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier "javadoc"
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives jar
+    archives sourceJar
+    archives javadocJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            customizePom(pom)
+            groupId = "$groupId"
+            artifactId = "$artifactId"
+            version = "$versionRelease"
+
+            from components.java
+
+            pom.withXml {
+                def pomFile = file("${project.buildDir}/generated-pom.xml")
+                writeTo(pomFile)
+                def pomAscFile = signing.sign(pomFile).signatureFiles[0]
+                artifact(pomAscFile) {
+                    classifier = null
+                    extension = 'pom.asc'
+                }
+            }
+
+            artifact(sourceJar) {
+                classifier = 'sources'
+            }
+
+            artifact(javadocJar) {
+                classifier = 'javadoc'
+            }
+
+            project.tasks.signArchives.signatureFiles.each {
+                artifact(it) {
+                    def matcher = it.file =~ /-(sources|javadoc)\.jar\.asc$/
+                    if (matcher.find()) {
+                        classifier = matcher.group(1)
+                    } else {
+                        classifier = null
+                    }
+                    extension = 'jar.asc'
+                }
+            }
+
+        }
+    }
+    repositories {
+        maven {
+            url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+            credentials {
+                username sonatypeUsername
+                password sonatypePassword
+            }
+        }
+    }
+}
+
+def customizePom(pom) {
+    pom.withXml {
+        def root = asNode()
+
+        root.dependencies.removeAll { dep ->
+            dep.scope == "test"
+        }
+
+        root.children().last() + {
+            resolveStrategy = Closure.DELEGATE_FIRST
+
+            description 'Transactid Java Library'
+            name 'Transactid Java Library'
+            url 'https://github.com/netkicorp/transactid-library-java'
+            organization {
+                name 'com.netki'
+                url 'https://netki.com'
+            }
+            issueManagement {
+                system 'GitHub'
+                url 'https://github.com/netkicorp/transactid-library-java/issues'
+            }
+            licenses {
+                license {
+                    name 'BSD 3-Clause'
+                    url 'https://github.com/netkicorp/transactid-library-java/blob/master/LICENSE'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                url 'https://github.com/netkicorp/transactid-library-java'
+                connection 'scm:git:git://github.com/netkicorp/transactid-library-java.git'
+                developerConnection 'scm:git:ssh://git@github.com:/netkicorp/transactid-library-java.git'
+            }
+            developers {
+                developer {
+                    name 'Netki Development'
+                }
+            }
+        }
+    }
+}
+
+model {
+    tasks.generatePomFileForMavenJavaPublication {
+        destination = file("$buildDir/generated-pom.xml")
+    }
+
+    tasks.publishMavenJavaPublicationToMavenLocal {
+        dependsOn project.tasks.signArchives
+    }
+
+    tasks.publishMavenJavaPublicationToMavenRepository {
+        dependsOn project.tasks.signArchives
+    }
+}
+
+tasks.withType(Test) {
+    testLogging {
+        events "skipped", "passed", "failed"
+        showStandardStreams false
+        showExceptions false
+        afterSuite { desc, result ->
+            if (!desc.parent) {
+                def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)"
+                def startItem = '|  ', endItem = '  |'
+                def repeatLength = startItem.length() + output.length() + endItem.length()
+                println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
+            }
+        }
+    }
+}

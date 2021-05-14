@@ -1,0 +1,159 @@
+<!--
+  ~ Copyright 2016, Yahoo Inc.
+  ~ Licensed under the Apache License, Version 2.0
+  ~ See LICENSE file in project root for terms.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>elide-datastore-parent-pom</artifactId>
+    <packaging>pom</packaging>
+    <name>Elide Data Store: Parent Pom</name>
+    <description>Parent pom for data stores</description>
+    <url>https://github.com/yahoo/elide</url>
+    <parent>
+        <groupId>com.yahoo.elide</groupId>
+        <artifactId>elide-parent-pom</artifactId>
+        <version>5.0.0-pr35-SNAPSHOT</version>
+    </parent>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Yahoo Inc.</name>
+            <url>https://github.com/yahoo</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <developerConnection>scm:git:ssh://git@github.com/yahoo/elide.git</developerConnection>
+        <url>https://github.com/yahoo/elide.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <parent.pom.dir>${project.basedir}/../..</parent.pom.dir>
+        <mysql.data.directory>${java.io.tmpdir}/mysql-data</mysql.data.directory>
+    </properties>
+
+    <modules>
+        <module>elide-datastore-aggregation</module>
+        <module>elide-datastore-hibernate</module>
+        <module>elide-datastore-hibernate5</module>
+        <module>elide-datastore-hibernate3</module>
+        <module>elide-datastore-jpa</module>
+        <module>elide-datastore-inmemorydb</module>
+        <module>elide-datastore-multiplex</module>
+        <module>elide-datastore-noop</module>
+        <module>elide-datastore-search</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.yahoo.elide</groupId>
+                <artifactId>elide-core</artifactId>
+                <version>5.0.0-pr35-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>5.4.3.Final</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <executions>
+                        <execution>
+                            <id>add-source-generate-sources</id>
+                            <phase>generate-sources</phase>
+                            <goals>
+                                <goal>add-source</goal>
+                            </goals>
+                            <configuration>
+                                <sources>
+                                    <source>target/generated-sources/antlr4</source>
+                                </sources>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>reserve-network-port-process-test-classes</id>
+                            <phase>process-test-classes</phase>
+                            <goals>
+                                <goal>reserve-network-port</goal>
+                            </goals>
+                            <configuration>
+                                <portNames>
+                                    <portName>restassured.port</portName>
+                                </portNames>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <configuration>
+                        <systemPropertyVariables>
+                            <restassured.port>${restassured.port}</restassured.port>
+                            <dataStoreHarness>${dataStoreHarness}</dataStoreHarness>
+                        </systemPropertyVariables>
+                        <includes>
+                            <include>%regex[.*IT.*]</include>
+                        </includes>
+                        <dependenciesToScan>com.yahoo.elide:elide-integration-tests</dependenciesToScan>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>integration-test</id>
+                            <goals>
+                                <goal>integration-test</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>verify</id>
+                            <goals>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

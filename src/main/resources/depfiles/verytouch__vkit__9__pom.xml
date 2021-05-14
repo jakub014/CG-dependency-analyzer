@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>vkit</artifactId>
+        <groupId>com.verytouch.vkit</groupId>
+        <version>2.2.0</version>
+    </parent>
+    <packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>starters</artifactId>
+    <modules>
+        <module>vkit-spring-boot-autoconfigure</module>
+        <module>ocr-spring-boot-starter</module>
+        <module>oss-spring-boot-starter</module>
+        <module>captcha-spring-boot-starter</module>
+        <module>alipay-spring-boot-starter</module>
+        <module>rbac-spring-boot-starter</module>
+    </modules>
+
+    <properties>
+        <tencent.api.version>4.0.11</tencent.api.version>
+        <jsonpath.version>2.5.0</jsonpath.version>
+        <minio.version>7.1.4</minio.version>
+        <ali.oss.version>3.12.0</ali.oss.version>
+        <ali.pay.version>4.13.45.ALL</ali.pay.version>
+        <oauth2.version>2.0.1.RELEASE</oauth2.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.verytouch.vkit</groupId>
+                <artifactId>common</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.verytouch.vkit</groupId>
+                <artifactId>vkit-spring-boot-autoconfigure</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+            <!-- 腾讯行为验证码 -->
+            <dependency>
+                <groupId>com.tencentcloudapi</groupId>
+                <artifactId>tencentcloud-sdk-java</artifactId>
+                <version>${tencent.api.version}</version>
+            </dependency>
+            <!-- 阿里ocr，依赖vkit-common包发http请求，jsonpath用来解析结果 -->
+            <dependency>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path</artifactId>
+                <version>${jsonpath.version}</version>
+            </dependency>
+            <!-- OSS，minio和阿里 -->
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${ali.oss.version}</version>
+            </dependency>
+            <!-- alipay -->
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>${ali.pay.version}</version>
+            </dependency>
+           <!-- rabc-->
+            <dependency>
+                <groupId>org.springframework.security.oauth.boot</groupId>
+                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+                <version>${oauth2.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

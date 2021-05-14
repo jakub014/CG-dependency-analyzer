@@ -1,0 +1,17 @@
+dependencies {
+    compileOnly "org.springframework.boot:spring-boot-cli:$springBootVersion", {
+        exclude group:'org.codehaus.groovy', module:'groovy'
+    }
+    api "org.codehaus.groovy:groovy:$groovyVersion"
+    api "org.springframework.boot:spring-boot-autoconfigure:$springBootVersion"
+    api project(":grails-datastore-gorm-hibernate5")
+
+    testImplementation "org.springframework.boot:spring-boot-cli:$springBootVersion", {
+        exclude group:'org.codehaus.groovy', module:'groovy'
+    }
+    testImplementation "org.spockframework:spock-core:$spockVersion"
+
+    testRuntimeOnly "org.apache.tomcat:tomcat-jdbc:$tomcatVersion"
+    testRuntimeOnly "org.apache.tomcat.embed:tomcat-embed-logging-log4j:8.5.2"
+    testRuntimeOnly "com.h2database:h2:$h2Version"
+}

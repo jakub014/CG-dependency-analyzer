@@ -1,0 +1,16 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+// Configs
+apply from: "$rootProject.projectDir/configs/common.gradle"
+apply from: "$rootProject.projectDir/configs/library-ktx.gradle"
+
+dependencies {
+    compileOnly Dependencies.kotlinStdLib
+
+    compileOnly Dependencies.andxAnnotation
+    compileOnly Dependencies.andxCore
+
+    compileOnly Dependencies.andxFragment
+    compileOnly Dependencies.material
+}

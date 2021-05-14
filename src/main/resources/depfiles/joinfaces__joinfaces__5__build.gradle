@@ -1,0 +1,31 @@
+apply plugin: "java-library"
+apply plugin: "com.github.spotbugs"
+apply plugin: "checkstyle"
+apply plugin: "jacoco"
+apply plugin: "io.freefair.lombok"
+apply plugin: "io.freefair.maven-optional"
+apply plugin: "io.freefair.maven-publish-java"
+
+description = 'Spring Security JSF Taglib'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.security.taglib')
+
+dependencies {
+    api('org.springframework.security:spring-security-taglibs') {
+        exclude group: 'org.springframework.security', module: 'spring-security-acl'
+    }
+
+    compileOnly 'jakarta.faces:jakarta.faces-api'
+    compileOnly 'jakarta.servlet:jakarta.servlet-api'
+    compileOnly 'jakarta.el:jakarta.el-api'
+
+    //For javadoc references
+    compileOnly 'org.springframework.webflow:spring-faces:2.5.1.RELEASE'
+
+    testImplementation project(':joinfaces-test')
+    testImplementation 'org.glassfish:jakarta.faces'
+    testImplementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}

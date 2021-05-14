@@ -1,0 +1,53 @@
+/**
+ * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ * @since 2021-01-16
+ */
+group(property("group"))
+version(property("version"))
+description(property("description"))
+
+apply plugin: "java"
+apply plugin: "idea"
+apply plugin: "signing"
+apply plugin: "java-library"
+apply plugin: "maven-publish"
+apply plugin: "com.bmuschko.nexus"
+apply plugin: "io.freefair.lombok"
+
+buildscript {
+    apply from: "gradle/version.gradle"
+
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+
+    dependencies {
+        classpath "com.bmuschko:gradle-nexus-plugin:${NEXUS_PLUGIN_VERSION}"
+        classpath "io.freefair.gradle:lombok-plugin:${LOMBOK_PLUGIN_VERSION}"
+    }
+}
+
+apply from: "gradle/testing.gradle"
+apply from: "gradle/publishing.gradle"
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
+}
+
+dependencies {
+    implementation("com.google.guava:guava:${GOOGLE_GUAVA_VERSION}")
+    implementation("commons-io:commons-io:${APACHE_COMMONS_IO_VERSION}")
+    implementation("com.univocity:univocity-parsers:${CSV_PARSER_VERSION}")
+    implementation("com.github.albfernandez:juniversalchardet:$JUNIVERSAL_CHARDET_VERSION")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${JUNIT5_JUPITER_VERSION}")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:${JUNIT5_JUPITER_VERSION}")
+}
+
+[compileJava, compileTestJava]*.sourceCompatibility = 1.8
+[compileJava, compileTestJava]*.targetCompatibility = 1.8
+[compileJava, compileTestJava]*.options.collect { options -> options.debug = true }
+[compileJava, compileTestJava]*.options.collect { options -> options.encoding = ENCODING }

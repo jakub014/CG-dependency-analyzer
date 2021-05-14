@@ -1,0 +1,17 @@
+plugins {
+    id 'bdk.java-common-conventions'
+}
+
+description = 'How to run multiple bot instances in //'
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    implementation project(':symphony-bdk-core')
+    implementation 'org.slf4j:slf4j-api'
+
+    implementation 'com.hazelcast:hazelcast:4.2'
+
+    runtimeOnly 'ch.qos.logback:logback-classic'
+}

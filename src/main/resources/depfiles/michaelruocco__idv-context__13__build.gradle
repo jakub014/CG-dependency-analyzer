@@ -1,0 +1,19 @@
+plugins {
+    id "org.unbroken-dome.test-sets" version "${testSetsPluginVersion}"
+}
+
+testSets {
+    integrationTest
+}
+
+dependencies {
+    api project(":identity-config")
+    api project(":identity-use-cases")
+    implementation project(":identity-external-find-stub-use-cases")
+    implementation project(":common-use-cases")
+    implementation testFixtures(project(":common-entities"))
+    implementation testFixtures(project(":identity-use-cases"))
+
+    integrationTestImplementation "com.neovisionaries:nv-i18n:${neovisionariesVersion}"
+    integrationTestImplementation "com.github.michaelruocco:duration-logger:${durationLoggerVersion}"
+}

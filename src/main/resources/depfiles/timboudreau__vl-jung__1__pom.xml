@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.mastfrog</groupId>
+        <artifactId>visual-library-jung</artifactId>
+        <version>2.3</version>
+    </parent>
+    <artifactId>vl-jung</artifactId>
+    <name>Visual Library + Jung</name>
+    <url>https://github.com:timboudreau/vl-jung</url>
+    <description>An alternative interactive UI for the JUNG graph library, which
+        uses NetBeans' excellent lightweight Visual Library component framework to simplify
+        creating interactive graph visualizations</description>
+    <scm>
+        <url>git@github.com:timboudreau/vl-jung.git</url>
+        <connection>scm:git:https://github.com:timboudreau/vl-jung.git</connection>
+        <developerConnection>git@github.com:timboudreau/vl-jung.git</developerConnection>
+    </scm>
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/timboudreau/vl-jung/issues</url>
+    </issueManagement>
+    <organization>
+        <name>Mastfrog Technologies</name>
+        <url>https://mastfrog.com</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>BSD-2-Clause</name>
+            <url>https://opensource.org/licenses/BSD-2-Clause</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>timboudreau</id>
+            <name>Tim Boudreau</name>
+            <url>https://timboudreau.com</url>
+            <email>tim+github@timboudreau.com</email>
+        </developer>
+    </developers>
+    <dependencies>
+        <dependency>
+            <groupId>net.sf.jung</groupId>
+            <artifactId>jung-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jung</groupId>
+            <artifactId>jung-graph-impl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jung</groupId>
+            <artifactId>jung-visualization</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-openide-util-lookup</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-netbeans-api-visual</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

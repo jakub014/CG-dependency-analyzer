@@ -1,0 +1,34 @@
+apply plugin: 'java'
+apply plugin: "com.google.protobuf"
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+       // https://mvnrepository.com/artifact/com.google.protobuf/protobuf-gradle-plugin
+       classpath group: 'com.google.protobuf', name: 'protobuf-gradle-plugin', version: protobufGradlePlugin
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(":sbk-api")
+    // https://mvnrepository.com/artifact/org.foundationdb/fdb-record-layer-core-pb3
+    compile group: 'org.foundationdb', name: 'fdb-record-layer-core-pb3', version: '2.8.110.0'
+}
+
+generateJavadoc {
+    // follow the package path , it should not be folder path.
+    // but dont use . (dot) in the path
+    exclude 'io/sbk/FdbRecord/FdbRecordLayerProto.java'
+}
+
+/*
+javadoc {
+    exclude 'io/sbk/FdbRecord/FdbRecordLayerProto.java'
+}
+*/

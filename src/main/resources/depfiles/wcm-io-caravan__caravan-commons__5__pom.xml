@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  #%L
+  wcm.io
+  %%
+  Copyright (C) 2014 wcm.io
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>io.wcm.caravan</groupId>
+    <artifactId>io.wcm.caravan.commons.parent</artifactId>
+    <version>1.2.1-SNAPSHOT</version>
+    <relativePath>../parent/pom.xml</relativePath>
+  </parent>
+
+  <groupId>io.wcm.caravan</groupId>
+  <artifactId>io.wcm.caravan.commons.jsonpath</artifactId>
+  <version>1.0.3-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+
+  <name>Commons JsonPath</name>
+  <description>Provides preconfigured JsonPath implementation.</description>
+  <url>${site.url}/${site.url.module.prefix}/</url>
+
+  <scm>
+    <connection>scm:git:https://github.com/wcm-io-caravan/caravan-commons.git</connection>
+    <developerConnection>scm:git:https://github.com/wcm-io-caravan/caravan-commons.git</developerConnection>
+    <url>https://github.com/wcm-io-caravan/caravan-commons</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <properties>
+    <site.url.module.prefix>commons/jsonpath</site.url.module.prefix>
+    <jsonpath.version>2.5.0</jsonpath.version>
+  </properties>
+
+  <dependencies>
+
+    <!-- OSGi -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.framework</artifactId>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path</artifactId>
+      <version>${jsonpath.version}</version>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>net.minidev</groupId>
+          <artifactId>asm</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <!-- Set scope to provided to ensure it is not included in the JAR file -->
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <configuration>
+          <instructions>
+            <!-- Do not inline jars, include as jar files -->
+            <Embed-Dependency>*;artifactId=!org.osgi.framework;scope=compile|runtime;inline=false</Embed-Dependency>
+            <Embed-Transitive>true</Embed-Transitive>
+            <!-- use _exportcontents instead of Export-Package to avoid conflict with Embed-Dependency an inline=true -->
+            <_exportcontents>
+              com.jayway.jsonpath;version=${jsonpath.version},
+              com.jayway.jsonpath.spi.*;version=${jsonpath.version}
+            </_exportcontents>
+            <Import-Package>
+              com.google.gson.*;resolution:=optional,
+              net.minidev.asm.*;resolution:=optional,
+              org.apache.tapestry5.*;resolution:=optional,
+              org.codehaus.jettison.*;resolution:=optional,
+              *
+            </Import-Package>
+            <Bundle-Activator>io.wcm.caravan.commons.jsonpath.impl.BundleActivator</Bundle-Activator>
+          </instructions>
+        </configuration>
+
+      </plugin>
+    </plugins>
+  </build>
+
+  <distributionManagement>
+    <site>
+      <id>${site.deploy.id}</id>
+      <url>${site.deploy.url}/${site.url.module.prefix}</url>
+    </site>
+  </distributionManagement>
+
+</project>

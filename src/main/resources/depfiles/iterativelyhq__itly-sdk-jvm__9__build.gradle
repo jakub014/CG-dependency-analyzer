@@ -1,0 +1,22 @@
+//import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+plugins {
+    id "application"
+    id "java"
+}
+
+application {
+    mainClassName = "ly.iterative.example.AppJava"
+}
+
+dependencies {
+    // FIXME: Find a way to include the local MPP sdk project as JVM
+    // FIXME: https://youtrack.jetbrains.com/issue/KT-30413
+    implementation("ly.iterative.itly:sdk-jvm:${examplesItlySdkVersion}")
+    implementation(project(":packages:plugin-iteratively"))
+    implementation(project(":packages:plugin-schema-validator"))
+    implementation(project(":packages:test-fixtures"))
+
+    testImplementation(project(":packages:test-fixtures"))
+    testImplementation("$mockWebServerImplementation")
+}

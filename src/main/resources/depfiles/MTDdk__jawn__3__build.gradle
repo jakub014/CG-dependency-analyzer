@@ -1,0 +1,18 @@
+plugins {
+  id 'java-library'
+}
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+
+  // Framework
+  api project(':jawn-core')
+	
+	//Template Engine
+	//StringTemplate
+	implementation('org.antlr:ST4:4.1')// { exclude module: 'antlr-runtime'}
+    
+}

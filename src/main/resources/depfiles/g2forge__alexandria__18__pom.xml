@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>ax-filesystem-test</artifactId>
+
+	<parent>
+		<groupId>com.g2forge.alexandria</groupId>
+		<artifactId>ax-project</artifactId>
+		<version>0.0.18-SNAPSHOT</version>
+		<relativePath>../ax-project/pom.xml</relativePath>
+	</parent>
+
+	<name>Alexandria Filesystem Test</name>
+	<description>A library for unit testing file systems.</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.g2forge.alexandria</groupId>
+			<artifactId>ax-filesystem</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.g2forge.alexandria</groupId>
+			<artifactId>ax-test</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
+	</dependencies>
+</project>

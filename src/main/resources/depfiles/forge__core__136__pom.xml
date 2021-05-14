@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ~ Copyright 2012 Red Hat, Inc. and/or its affiliates. ~ ~ Licensed under the Eclipse Public License version 1.0, available 
+   at ~ http://www.eclipse.org/legal/epl-v10.html -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+
+   <parent>
+      <groupId>org.jboss.forge</groupId>
+      <artifactId>forge-parent</artifactId>
+      <version>3.9.9-SNAPSHOT</version>
+      <relativePath>../pom.xml</relativePath>
+   </parent>
+
+   <artifactId>forge-distribution</artifactId>
+
+   <name>Forge - Distribution Build</name>
+   <packaging>pom</packaging>
+
+   <properties>
+      <angularjs.addon.version>2.1.7.Final</angularjs.addon.version>
+   </properties>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.jboss.forge.furnace</groupId>
+            <artifactId>furnace-maven-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>deploy-addons</id>
+                  <phase>prepare-package</phase>
+                  <goals>
+                     <goal>addon-install</goal>
+                  </goals>
+                  <inherited>false</inherited>
+                  <configuration>
+                     <addonRepository>${project.build.directory}/addons</addonRepository>
+                     <addonIds>
+                        <addonId>org.jboss.forge.addon:core,${project.version}</addonId>
+                        <addonId>org.jboss.forge.addon:angularjs,${angularjs.addon.version}</addonId>
+                     </addonIds>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>distribution</id>
+                  <phase>package</phase>
+                  <goals>
+                     <goal>single</goal>
+                  </goals>
+                  <configuration>
+                     <appendAssemblyId>false</appendAssemblyId>
+                     <descriptors>
+                        <descriptor>src/main/assembly/assembly.xml</descriptor>
+                     </descriptors>
+                     <finalName>${project.build.finalName}</finalName>
+                  </configuration>
+               </execution>
+               <execution>
+                  <id>distribution-offline</id>
+                  <phase>package</phase>
+                  <goals>
+                     <goal>single</goal>
+                  </goals>
+                  <configuration>
+                     <descriptors>
+                        <descriptor>src/main/assembly/assembly-offline.xml</descriptor>
+                     </descriptors>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+
+   <dependencies>
+
+      <!-- Build deps go here -->
+      <dependency>
+         <groupId>org.jboss.forge</groupId>
+         <artifactId>forge-bootstrap</artifactId>
+      </dependency>
+   </dependencies>
+
+   <profiles>
+      <profile>
+         <id>release</id>
+         <activation>
+            <property>
+               <name>release</name>
+               <value>true</value>
+            </property>
+         </activation>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>license-maven-plugin</artifactId>
+                  <inherited>false</inherited>
+                  <executions>
+                     <execution>
+                        <goals>
+                           <goal>download-licenses</goal>
+                        </goals>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                           <licensesOutputDirectory>
+                              ${project.build.directory}/docs/licenses
+                           </licensesOutputDirectory>
+                           <licensesOutputFile>
+                              ${project.build.directory}/docs/licenses/licenses.xml
+                           </licensesOutputFile>
+                        </configuration>
+                     </execution>
+                  </executions>
+               </plugin>
+               <plugin>
+                  <groupId>net.ju-n.maven.plugins</groupId>
+                  <artifactId>checksum-maven-plugin</artifactId>
+                  <version>1.2</version>
+                  <executions>
+                     <execution>
+                        <goals>
+                           <goal>artifacts</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+                  <configuration>
+                     <algorithms>
+                        <algorithm>SHA-256</algorithm>
+                     </algorithms>
+                  </configuration>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+   </profiles>
+</project>

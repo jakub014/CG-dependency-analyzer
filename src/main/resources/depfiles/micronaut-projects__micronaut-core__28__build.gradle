@@ -1,0 +1,60 @@
+ext {
+    shadowJarEnabled = true
+}
+dependencies {
+    annotationProcessor project(":inject-java")
+    annotationProcessor project(":graal")
+    api project(":http")
+    api project(':inject')
+    api project(':aop')
+    api project(':context')
+    api project(":core-reactive")
+    api dependencyVersion("validation")
+    api "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    api dependencyVersion("rxjava2")
+    api "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion"
+    api "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion"
+
+    compileOnly "org.graalvm.nativeimage:svm:$graalVersion"
+    compileOnly dependencyVersion("jcache")
+
+    compileOnly("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion") {
+        transitive = false
+    }
+    compileOnly("com.fasterxml.jackson.module:jackson-module-afterburner:$jacksonVersion") {
+        transitive = false
+    }
+    compileOnly("com.fasterxml.jackson.module:jackson-module-parameter-names:$jacksonVersion") {
+        transitive = false
+    }
+
+    compileOnly "org.apache.logging.log4j:log4j-core:2.14.1"
+    compileOnly 'org.glassfish:javax.el:3.0.1-b12'
+    compileOnly "com.github.ben-manes.caffeine:caffeine:$caffeineVersion"
+    compileOnly "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion"
+    compileOnly "org.jetbrains.kotlinx:kotlinx-coroutines-reactive:$kotlinCoroutinesVersion"
+    compileOnly "ch.qos.logback:logback-classic:1.2.3"
+    testImplementation "ch.qos.logback:logback-classic:1.2.3"
+
+    testAnnotationProcessor project(":inject-java")
+    testImplementation 'org.jsr107.ri:cache-ri-impl:1.1.1'
+    testImplementation dependencyVersion("jcache")
+    testImplementation project(":inject-java")
+    testImplementation project(":inject-java-test")
+    testImplementation project(":inject-groovy")
+    if (!JavaVersion.current().isJava9Compatible()) {
+        testImplementation files(org.gradle.internal.jvm.Jvm.current().toolsJar)
+    }
+    testImplementation "com.github.stefanbirkner:system-lambda:1.2.0"
+}
+
+//compileJava.options.fork = true
+//compileJava.options.forkOptions.jvmArgs = ['-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005']
+
+//compileTestGroovy.groovyOptions.forkOptions.jvmArgs = ['-Xdebug', '-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005']
+
+spotless {
+    java {
+        targetExclude '**/io/micronaut/scheduling/cron/CronExpression.java'
+    }
+}

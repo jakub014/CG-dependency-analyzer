@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.siom79.japicmp</groupId>
+		<artifactId>japicmp-base</artifactId>
+		<version>0.15.4-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>japicmp-testbase</artifactId>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>japicmp-test-v1</module>
+		<module>japicmp-test-v2</module>
+		<module>japicmp-test</module>
+		<module>japicmp-test-maven-plugin</module>
+		<module>japicmp-test-maven-plugin-guava</module>
+		<module>japicmp-test-maven-plugin-japicmp</module>
+		<module>japicmp-test-service-impl-base</module>
+		<module>japicmp-test-maven-plugin-classifier</module>
+		<module>japicmp-test2-v1</module>
+		<module>japicmp-test2-v2</module>
+		<module>japicmp-test-maven-plugin-pom-module</module>
+		<module>japicmp-test-vx-client</module>
+		<module>japicmp-test-maven-plugin-ignoremissingartifact</module>
+		<module>japicmp-test-maven-plugin-packaging</module>
+		<module>japicmp-test-maven-plugin-packaging-bundle</module>
+		<module>japicmp-test-maven-plugin-userproperty</module>
+		<module>japicmp-test-maven-plugin-post-analysis-script-artifact</module>
+		<module>japicmp-test-maven-plugin-post-analysis-script-artifact-test</module>
+		<module>japicmp-test-ant-task</module>
+	</modules>
+
+	<properties>
+		<maven.site.plugin.skip>true</maven.site.plugin.skip>
+		<maven.javadoc.skip>true</maven.javadoc.skip>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

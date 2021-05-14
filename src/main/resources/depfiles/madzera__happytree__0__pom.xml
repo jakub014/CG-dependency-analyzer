@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<!-- ############################## HappyTree ############################## -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema#instance"
+	xsi:schemaLocation=
+"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven#4.0.0.xsd">
+
+<!-- ############################### Header ################################ -->
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.madzera.happytree</groupId>
+	<artifactId>happytree</artifactId>
+	<version>1.0.0</version>
+	<name>happytree</name>
+	<description>
+		Java Object Model API to handle Java Objects in a tree structure. Be
+		able to transform a linear structure of objects with a tree behavior
+		into a real tree structure and handle them as if it were nodes in a
+		tree.
+	</description>
+	<url>https://happytreeapi.vercel.app/</url>
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+	<developers>
+    	<developer>
+      		<name>Diego Madson de Andrade Nóbrega</name>
+      		<email>diegomadson@msn.com</email>
+      		<organization>MadZera</organization>
+      		<organizationUrl>http://www.madzera.com</organizationUrl>
+    	</developer>
+  	</developers>
+<!-- ############################## Properties ############################# -->
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sonar.projectKey>madzera_happytree</sonar.projectKey>
+  		<sonar.organization>madzera</sonar.organization>
+  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	</properties>
+<!-- ################################ SCM ################################## -->
+	<scm>
+		<connection>scm:git:git://github.com/madzera/happytree.git</connection>
+		<developerConnection>scm:git:ssh://github.com:madzera/happytree.git
+		</developerConnection>
+		<url>http://github.com/madzera/happytree/tree/master</url>
+	</scm>
+<!-- ############################# DISTRIBUTION ############################ -->	
+	<distributionManagement>
+  		<snapshotRepository>
+   			<id>ossrh</id>
+   			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+  		</snapshotRepository>
+  		<repository>
+   			<id>ossrh</id>
+   			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/
+   			</url>
+  		</repository>
+ 	</distributionManagement>
+<!-- ############################# Dependencies ############################ -->
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+<!-- ############################## Build Conf ############################# -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-surefire-plugin</artifactId>
+        		<version>3.0.0-M5</version>
+        			<configuration>
+        				<test>HappyTreeTest.java</test>
+        			</configuration>
+      		</plugin>
+			<plugin>
+        		<groupId>org.codehaus.mojo</groupId>
+		        <artifactId>buildnumber-maven-plugin</artifactId>
+		        <version>1.4</version>
+        		<executions>
+          			<execution>
+            			<phase>validate</phase>
+            			<goals>
+              				<goal>create</goal>
+            			</goals>
+          			</execution>
+        		</executions>
+        		<configuration>
+          			<doCheck>false</doCheck>
+          			<doUpdate>false</doUpdate>
+          			<useLastCommittedRevision>true</useLastCommittedRevision>
+					<scmBranchPropertyName>buildVersion</scmBranchPropertyName>
+					<shortRevisionLength>5</shortRevisionLength>
+        		</configuration>
+      		</plugin>
+      		<plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>generate-code-coverage-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+<!-- ############################### OSSHR ################################# -->            
+            <plugin>
+		    	<groupId>org.apache.maven.plugins</groupId>
+		    	<artifactId>maven-source-plugin</artifactId>
+		    	<version>3.2.1</version>
+		    	<executions>
+		     		<execution>
+		      			<id>attach-sources</id>
+		      			<goals>
+		       				<goal>jar-no-fork</goal>
+		      			</goals>
+		     		</execution>
+		    	</executions>
+		   	</plugin>
+		   	<plugin>
+		    	<groupId>org.apache.maven.plugins</groupId>
+		    	<artifactId>maven-javadoc-plugin</artifactId>
+		    	<version>3.2.0</version>
+		    	<executions>
+		     		<execution>
+		      			<id>attach-javadocs</id>
+		      			<goals>
+		       				<goal>jar</goal>
+		      			</goals>
+		     		</execution>
+		    	</executions>
+<!-- ############## DUE TO A KNOW BUG: error: invalid entity ############### -->
+<!-- ######### https://bugs.openjdk.java.net/browse/JDK-8148480 ############ -->
+		    	<configuration>
+         			<additionalparam>-Xdoclint:none</additionalparam>
+         			<additionalOptions>-Xdoclint:none</additionalOptions>
+         			<additionalJOption>-Xdoclint:none</additionalJOption>
+      			</configuration>
+<!-- ############## DUE TO A KNOW BUG: error: invalid entity ############### -->
+<!-- ######### https://bugs.openjdk.java.net/browse/JDK-8148480 ############ -->
+		   	</plugin>
+		   	<plugin>
+		    	<groupId>org.apache.maven.plugins</groupId>
+		    	<artifactId>maven-gpg-plugin</artifactId>
+		    	<version>1.6</version>
+		    	<executions>
+		     		<execution>
+		      			<id>sign-artifacts</id>
+		      			<phase>verify</phase>
+		      			<goals>
+		       				<goal>sign</goal>
+		      			</goals>
+		     		</execution>
+		    	</executions>
+		   	</plugin>
+		</plugins>
+	</build>
+</project>

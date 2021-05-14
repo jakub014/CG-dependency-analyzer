@@ -1,0 +1,158 @@
+/**
+ * https://github.com/ngoanh2n/csv-comparator
+ * @author Ho Huu Ngoan (ngoanh2n@gmail.com)
+ * @since 1.0.0
+ */
+group group
+version version
+
+apply plugin: "java"
+apply plugin: "idea"
+apply plugin: "eclipse"
+apply plugin: "signing"
+apply plugin: "java-library"
+apply plugin: "maven-publish"
+apply plugin: "com.bmuschko.nexus"
+
+ext {
+    ENCODING                        = "UTF-8"
+    GUAVA_VERSION                   = "28.2-jre"
+    SLF4J_VERSION                   = "1.7.30"
+    CSV_PARSER_VERSION              = "2.8.4"
+    JUNIT5_JUPITER_VERSION          = "5.7.0"
+    JUNIVERSAL_CHARDET_VERSION      = "2.3.2"
+}
+
+[compileJava, compileTestJava]*.sourceCompatibility = 1.8
+[compileJava, compileTestJava]*.targetCompatibility = 1.8
+[compileJava, compileTestJava]*.options.collect { options -> options.debug = true }
+[compileJava, compileTestJava]*.options.collect { options -> options.encoding = ENCODING }
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
+}
+
+dependencies {
+    implementation("org.slf4j:slf4j-api:${SLF4J_VERSION}")
+    implementation("com.google.guava:guava:${GUAVA_VERSION}")
+    implementation("com.univocity:univocity-parsers:${CSV_PARSER_VERSION}")
+    implementation("com.github.albfernandez:juniversalchardet:$JUNIVERSAL_CHARDET_VERSION")
+    testImplementation("org.slf4j:slf4j-log4j12:${SLF4J_VERSION}")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${JUNIT5_JUPITER_VERSION}")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:${JUNIT5_JUPITER_VERSION}")
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.bmuschko:gradle-nexus-plugin:2.3.1"
+    }
+}
+
+tasks.withType(Test).all { testTask ->
+    testTask.systemProperties = [
+            "file.encoding": ENCODING
+    ]
+    testTask.testLogging.showStandardStreams = true
+    testTask.outputs.upToDateWhen { false }
+}
+
+tasks.withType(Test) {
+    /*
+    * Enable JUnit Platform (JUnit 5) support, default is JUnit
+    */
+    useJUnitPlatform() {
+        /*
+        * Filter by engines
+        */
+        includeEngines "junit-jupiter"
+        //excludeEngines 'junit-vintage'
+
+        /*
+        * Filter by tags
+        */
+        //includeTags 'fast', 'smoke'
+        //excludeTags 'slow', 'ci'
+    }
+
+    /*
+    * Make failing tests do not fail the task
+    */
+    ignoreFailures = false
+
+    /*
+    * To show standard out and standard error of the test JVM(s) on the console
+    */
+    testLogging.showStandardStreams = true
+
+    /*
+    *  Want to display the following test events
+    */
+    testLogging { events "passed", "skipped", "failed" }
+
+    /*
+    * To make the Gradle JVM system properties available to tests
+    */
+    systemProperties = System.getProperties() as Map<String, ?>
+}
+
+tasks.withType(Javadoc) {
+    options.addStringOption("Xdoclint:none", "-quiet")
+    options.addStringOption("encoding", ENCODING)
+    options.addStringOption("charSet", ENCODING)
+}
+
+modifyPom {
+    project {
+        inceptionYear "2019"
+        name "csv-comparator"
+        url "https://github.com/ngoanh2n/csv-comparator"
+        description "Utility for comparing and asserting CSV files in Java"
+
+        scm {
+            url "http://github.com/ngoanh2n/csv-comparator/tree/master"
+            connection "scm:git:git://github.com/ngoanh2n/csv-comparator.git"
+            developerConnection "scm:git:ssh://github.com/ngoanh2n/csv-comparator.git"
+        }
+
+        licenses {
+            license {
+                name "MIT"
+                url "https://opensource.org/licenses/MIT"
+            }
+        }
+
+        developers {
+            developer {
+                id "ngoanh2n"
+                name "Ho Huu Ngoan"
+                email "ngoanh2n@gmail.com"
+                organizationUrl "https://ngoanh2n.github.io"
+                roles {
+                    role "Owner"
+                    role "Developer"
+                }
+            }
+        }
+    }
+}
+
+extraArchive {
+    tests = true
+    sources = true
+    javadoc = true
+}
+
+nexus {
+    sign = true
+    repositoryUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+    snapshotRepositoryUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+}

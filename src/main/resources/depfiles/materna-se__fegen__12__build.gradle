@@ -1,0 +1,12 @@
+plugins {
+    id "base"
+    id "com.github.node-gradle.node" version "3.0.1"
+}
+
+npm_run_build {
+    dependsOn npmInstall
+}
+
+assemble {
+    dependsOn npm_run_build
+}

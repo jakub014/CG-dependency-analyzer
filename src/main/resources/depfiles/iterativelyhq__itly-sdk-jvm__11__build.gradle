@@ -1,0 +1,14 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+apply from: rootProject.file('gradle/publish-java.gradle')
+
+dependencies {
+    implementation(project(":packages:sdk-core"))
+    implementation(project(":packages:plugin-iteratively"))
+    implementation(project(":packages:plugin-schema-validator"))
+    implementation("$jUnitImplementation")
+    implementation("$okHttpImplementation")
+    implementation("$mockWebServerImplementation")
+}

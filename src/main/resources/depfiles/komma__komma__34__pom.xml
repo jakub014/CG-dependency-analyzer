@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>KOMMA: Editing Framework Feature</name>
+
+	<parent>
+		<groupId>net.enilink.komma</groupId>
+		<artifactId>komma-features</artifactId>
+		<version>1.6.0-SNAPSHOT</version>
+	</parent>
+
+	<scm>
+		<connection>${komma.scm.connection}</connection>
+		<developerConnection>${komma.scm.developerConnection}</developerConnection>
+		<url>${komma.scm.url}</url>
+	</scm>
+
+	<artifactId>net.enilink.komma.edit.feature</artifactId>
+	<packaging>pom</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.enilink.komma</groupId>
+			<artifactId>net.enilink.komma.edit</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.enilink.komma</groupId>
+			<artifactId>net.enilink.komma.rdfs.edit</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.enilink.komma</groupId>
+			<artifactId>net.enilink.komma.owl.edit</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.enilink.komma</groupId>
+			<artifactId>net.enilink.komma.workbench</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+	<modules>
+		<module>../../bundles/edit/net.enilink.komma.edit</module>
+		<module>../../bundles/edit/net.enilink.komma.owl.edit</module>
+		<module>../../bundles/edit/net.enilink.komma.rdfs.edit</module>
+		<module>../../bundles/edit/net.enilink.komma.workbench</module>
+	</modules>
+</project>

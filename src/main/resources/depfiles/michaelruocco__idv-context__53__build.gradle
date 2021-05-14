@@ -1,0 +1,133 @@
+buildscript {
+    ext {
+        springBootVersion = "2.4.5"
+    }
+}
+
+plugins {
+    id "org.unbroken-dome.test-sets" version "${testSetsPluginVersion}"
+    id "org.springframework.boot" version "${springBootVersion}"
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+    id "com.bmuschko.docker-remote-api" version "6.7.0"
+    id "com.avast.gradle.docker-compose" version "0.14.3"
+    id "com.moowork.node" version "1.3.1"
+    id "com.github.michaelruocco.gradle-postman-runner" version "0.1.3"
+}
+
+ext {
+    karateVersion = "1.0.1"
+    logbackJsonVersion = "0.1.5"
+
+    imageName = "michaelruocco/${project.name}"
+}
+
+testSets {
+    integrationTest
+}
+
+configurations {
+    runtimeOnly.exclude module: "slf4j-simple"
+    [apiElements, runtimeElements].each {
+        it.outgoing.artifacts.removeIf { it.buildDependencies.getDependencies(null).contains(jar) }
+        it.outgoing.artifact(bootJar)
+    }
+}
+
+repositories {
+    maven { url "https://oss.jfrog.org/artifactory/oss-snapshot-local" }
+}
+
+dependencies {
+    implementation project(":idv-context-plain-app")
+    implementation project(":identity-config")
+    implementation project(":lockout-config")
+    implementation project(":context-config")
+    implementation project(":identity-json")
+    implementation project(":method-config")
+    implementation project(":otp-config")
+    implementation project(":otp-sim-swap-stub-config")
+    implementation project(":push-notification-config")
+    implementation project(":lockout-json")
+    implementation project(":context-json")
+    implementation project(":method-json")
+    implementation project(":otp-json")
+    implementation project(":push-notification-json")
+    implementation project(":identity-external-find-stub-config")
+    implementation "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation "org.springframework.hateoas:spring-hateoas:1.3.0"
+    implementation "com.github.bohnman:squiggly-filter-jackson:1.3.18"
+    implementation "com.github.michaelruocco:spring-filters:0.1.12"
+    implementation "com.github.michaelruocco:string-utils:${mruocStringUtilsVersion}"
+    implementation "com.github.michaelruocco:json-adapter:${jsonAdapterVersion}"
+    implementation "com.github.michaelruocco:testing-clocks:${testingClocksVersion}"
+    implementation "com.github.michaelruocco:random-value-suppliers:${randomValueSuppliersVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind"
+    implementation "org.redisson:redisson:${redissionVersion}"
+    implementation "org.mongodb:mongo-java-driver:${mongoVersion}"
+    implementation("com.github.dalet-oss:mongobee:1.0.4") {
+        exclude module: "mongo-java-driver"
+    }
+    runtimeOnly "ch.qos.logback.contrib:logback-json-classic:${logbackJsonVersion}"
+    runtimeOnly "ch.qos.logback.contrib:logback-jackson:${logbackJsonVersion}"
+    runtimeOnly "net.logstash.logback:logstash-logback-encoder:6.6"
+    runtimeOnly "io.netty:netty-resolver-dns-native-macos:4.1.63.Final:osx-x86_64"
+
+    testImplementation testFixtures(project(":lockout-entities"))
+    testImplementation testFixtures(project(":context-entities"))
+
+    integrationTestImplementation "org.junit-pioneer:junit-pioneer:${junitPioneerVersion}"
+    integrationTestImplementation "com.intuit.karate:karate-core:${karateVersion}"
+    integrationTestImplementation "com.intuit.karate:karate-junit5:${karateVersion}"
+    integrationTestImplementation "org.awaitility:awaitility"
+    integrationTestImplementation "org.testcontainers:junit-jupiter:1.15.3"
+    integrationTestImplementation "uk.org.webcompere:system-stubs-jupiter:${systemStubsVersion}"
+    integrationTestImplementation "junit:junit"
+    integrationTestRuntimeOnly "com.intuit.karate:karate-apache:0.9.6"
+}
+
+springBoot {
+    buildInfo()
+}
+
+bootRun {
+    systemProperties = System.getProperties()
+    systemProperty "spring.profiles.active", System.properties.getOrDefault("spring.profiles.active", "stubbed,simple-logging")
+    systemProperty "server.port", System.properties.getOrDefault("server.port", "8081")
+    systemProperty "request.logging.enabled", System.properties.getOrDefault("request.logging.enabled", "true")
+    systemProperty "response.logging.enabled", System.properties.getOrDefault("response.logging.enabled", "true")
+}
+
+docker {
+    registryCredentials {
+        username.set(System.getenv("DOCKER_USERNAME"))
+        password.set(System.getenv("DOCKER_PASSWORD"))
+    }
+}
+
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
+
+task buildImage(type: DockerBuildImage) {
+    inputDir.set(file("."))
+    images.add("${imageName}:${version}")
+    buildArgs = ["VERSION": version]
+}
+
+task pushImage(type: DockerPushImage) {
+    images.set(buildImage.images)
+}
+
+dockerCompose {
+    startedServices = ['idv-context-spring-app']
+    environment.put 'APP_VERSION', version
+}
+
+postman {
+    collections = fileTree(dir: "postman", include: "*_collection.json")
+    environment = file("postman/idv-local.postman_environment.json")
+    stopOnError = true
+}
+
+apply from: rootProject.file("publish.gradle")

@@ -1,0 +1,36 @@
+android {
+  defaultConfig {
+    versionName = project.version
+    versionCode = calculateVersionCode(project)
+    setProperty("archivesBaseName", "vanilla")
+  }
+  sourceSets {
+    main {
+      if (project.hasProperty('org.librarysimplified.app.assets.vanilla')) {
+        assets.srcDirs +=
+          project.getProperty('org.librarysimplified.app.assets.vanilla')
+      }
+    }
+  }
+
+  flavorDimensions 'mode'
+
+  productFlavors {
+    vanilla {
+      dimension 'mode'
+    }
+    vanillaWithProfiles {
+      dimension 'mode'
+      applicationIdSuffix ".with_profiles"
+    }
+  }
+}
+
+dependencies {
+  implementation project(":simplified-main")
+  implementation project(":simplified-accounts-source-nyplregistry")
+  implementation project(":simplified-analytics-circulation")
+  annotationProcessor libraries.google_autovalue_processor
+
+  vanillaWithProfilesImplementation project(":simplified-accounts-source-filebased")
+}

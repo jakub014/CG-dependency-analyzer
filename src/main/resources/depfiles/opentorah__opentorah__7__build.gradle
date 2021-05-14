@@ -1,0 +1,41 @@
+plugins {
+  id 'java-library'
+  id 'scala'
+  id 'com.github.maiflai.scalatest'
+  id 'maven-publish'
+  id 'signing'
+  id 'com.google.cloud.tools.jib'
+  id 'org.podval.tools.cloudrun'
+}
+
+description = 'Archive Collector'
+
+ext.isService = true
+
+apply from: '../configure.gradle'
+
+dependencies {
+  implementation project(':opentorah-tei')
+  implementation project(':opentorah-site')
+  implementation project(':opentorah-base')
+
+  // pretty-printing now uses Dom to retain comments...
+  implementation "net.sf.saxon:Saxon-HE:$saxon10Version"
+
+  implementation "ch.qos.logback:logback-classic:$logbackVersion"
+
+  testImplementation "org.podval.tools:org.podval.tools.run:$podvalRunVersion"
+}
+
+jib.from.image = 'adoptopenjdk:11'
+jib.container.mainClass = 'org.opentorah.collector.Service'
+
+cloudRun.region = 'us-east4'
+deploy.dependsOn(cloudRunDeploy)
+
+task cloudRunLocalFromLocalStore(type: org.podval.tools.cloudrun.CloudRunPlugin.RunLocalTask)
+cloudRunLocalFromLocalStore.additionalOptions = [
+  // --volume?
+  '--mount', 'type=bind,source=/home/dub/OpenTorah/alter-rebbe.org/,target=/mnt/store/',
+  '--env'  , 'STORE=file:///mnt/store/'
+]

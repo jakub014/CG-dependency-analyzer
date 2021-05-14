@@ -1,0 +1,13 @@
+description = "IoT components serial communication"
+
+dependencies {
+	compile project(':ar4k-core')
+	// gestione seriale
+	compile 'com.fazecast:jSerialComm:2.5.0'
+	compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
+}
+
+bootJar {
+	enabled = false
+}
+

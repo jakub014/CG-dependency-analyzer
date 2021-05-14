@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>solr</artifactId>
+        <groupId>org.teiid.connectors</groupId>
+        <version>17.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>translator-solr</artifactId>
+    <name>Apache SOLR Translator</name>
+    <description>This translator provides access to Apache SOLR</description>
+    
+    <properties>
+	    <!-- 1. We declare some transitive dependencies that are needed in the wildfly module.
+	    -->
+	    <basepom.check.fail-dependency>false</basepom.check.fail-dependency>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.teiid</groupId>
+            <artifactId>teiid-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.teiid</groupId>
+            <artifactId>teiid-common-core</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>org.apache.solr</groupId>
+            <artifactId>solr-solrj</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.noggit</groupId>
+            <artifactId>noggit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+        </dependency>        
+        <dependency>
+            <groupId>org.teiid.connectors</groupId>
+            <artifactId>translator-jdbc</artifactId>
+        </dependency>         
+    </dependencies>
+
+    <build>
+        <outputDirectory>target/classes</outputDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>**/*.xml</exclude>
+                    <exclude>**/*.properties</exclude>
+                </excludes>
+            </resource>
+        </resources>
+    </build>
+</project>

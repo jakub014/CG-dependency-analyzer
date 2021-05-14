@@ -1,0 +1,694 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.wywuzh</groupId>
+	<artifactId>commons-parent</artifactId>
+	<version>2.3.5.RELEASE</version>
+	<name>commons-parent</name>
+	<packaging>pom</packaging>
+	<description>项目公共组件类库</description>
+	<url>http://git.oschina.net/wywuzh/commons</url>
+
+	<modules>
+		<module>commons-core</module>
+		<module>commons-pager</module>
+        <module>commons-jdbc</module>
+        <module>commons-mybatis-generator</module>
+        <module>commons-mybatis</module>
+        <module>commons-static</module>
+    </modules>
+
+	<developers>
+		<developer>
+			<name>wywuzh</name>
+			<email>wywuzh@163.com</email>
+			<url>http://git.oschina.net/wywuzh</url>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>git@github.com:wywuzh/commons.git</url>
+		<connection>scm:git:git@github.com:wywuzh/commons.git</connection>
+		<developerConnection>scm:git:git@github.com:wywuzh/commons.git</developerConnection>
+	</scm>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.3.5.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<!-- Maven默认识别 -->
+		<skipTest>true</skipTest>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<java.version>1.8</java.version>
+
+		<spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+
+		<json-lib.version>2.4</json-lib.version>
+		<fastjson.version>1.2.75</fastjson.version>
+		<dom4j.version>2.1.3</dom4j.version>
+
+		<commons-beanutils.version>1.9.4</commons-beanutils.version>
+		<commons-collections4.version>4.4</commons-collections4.version>
+		<commons-compress.version>1.20</commons-compress.version>
+		<commons-configuration.version>1.10</commons-configuration.version>
+		<commons-configuration2.version>2.7</commons-configuration2.version>
+		<commons-io.version>2.8.0</commons-io.version>
+		<commons-math3.version>3.6.1</commons-math3.version>
+		<commons-validator.version>1.7</commons-validator.version>
+		<guava.version>30.0-jre</guava.version>
+
+		<commons-fileupload.version>1.3.3</commons-fileupload.version>
+		<apache-poi.version>4.1.2</apache-poi.version>
+		<easyexcel.version>2.2.6</easyexcel.version>
+		<google-zxing.version>3.4.1</google-zxing.version>
+		<ma.glasnost.orika.version>1.5.4</ma.glasnost.orika.version>
+		<mapstruct.version>1.4.1.Final</mapstruct.version>
+		<UserAgentUtils.version>1.21</UserAgentUtils.version>
+        <jep.version>2.24</jep.version>
+		<apollo-client.version>1.7.0</apollo-client.version>
+
+		<mybatis-spring-boot.version>2.1.3</mybatis-spring-boot.version>
+		<mybatis-generator-core.version>1.3.7</mybatis-generator-core.version>
+		<mybatis-generator-plugin.version>1.3.8</mybatis-generator-plugin.version>
+		<pagehelper-spring-boot.version>1.3.0</pagehelper-spring-boot.version>
+		<mybatis-plus.version>3.4.1</mybatis-plus.version>
+		<druid.version>1.2.2</druid.version>
+
+		<spring-amqp.version>2.2.12.RELEASE</spring-amqp.version>
+		<spring-kafka.version>2.5.7.RELEASE</spring-kafka.version>
+		<dubbo.version>2.7.8</dubbo.version>
+		<shiro.version>1.7.0</shiro.version>
+
+		<webjars.jquery.version>3.5.1</webjars.jquery.version>
+		<webjars.jquery-ui.version>1.12.1</webjars.jquery-ui.version>
+		<webjars.jquery-form.version>4.2.2</webjars.jquery-form.version>
+		<webjars.bootstrap.version>3.4.1</webjars.bootstrap.version>
+		<webjars.bootstrap-datepicker.version>1.9.0</webjars.bootstrap-datepicker.version>
+		<webjars.bootstrap-daterangepicker.version>3.0.5</webjars.bootstrap-daterangepicker.version>
+		<webjars.bootstrap-slider.version>10.6.2</webjars.bootstrap-slider.version>
+		<webjars.bootstrap-timepicker.version>0.5.2</webjars.bootstrap-timepicker.version>
+		<webjars.chart.js.version>2.9.4</webjars.chart.js.version>
+		<webjars.ckeditor.version>18.0.0</webjars.ckeditor.version>
+		<webjars.select2.version>4.0.13</webjars.select2.version>
+		<webjars.font-awesome.version>5.15.1</webjars.font-awesome.version>
+		<webjars.layui.version>2.5.6</webjars.layui.version>
+		<webjars.AdminLTE.version>3.0.5</webjars.AdminLTE.version>
+	</properties>
+
+	<dependencies>
+		<!-- Spring Framework dependency -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>
+
+		<!-- Spring AOP -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+
+		<!-- mockito -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- JSON -->
+			<!-- json-lib是需要区分jdk版本的，pom.xml中的配置应加上<classifier>标签，如用jdk15： -->
+			<dependency>
+				<groupId>net.sf.json-lib</groupId>
+				<artifactId>json-lib</artifactId>
+				<version>${json-lib.version}</version>
+				<classifier>jdk15</classifier>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+			</dependency>
+
+			<!-- XML -->
+			<dependency>
+				<groupId>org.dom4j</groupId>
+				<artifactId>dom4j</artifactId>
+				<version>${dom4j.version}</version>
+			</dependency>
+
+			<!-- Import Apache plugins dependency START -->
+			<!-- Apache-commons -->
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>${commons-beanutils.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>${commons-collections4.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-compress</artifactId>
+				<version>${commons-compress.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-configuration</groupId>
+				<artifactId>commons-configuration</artifactId>
+				<version>${commons-configuration.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-configuration2</artifactId>
+				<version>${commons-configuration2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-math3</artifactId>
+				<version>${commons-math3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-validator</groupId>
+				<artifactId>commons-validator</artifactId>
+				<version>${commons-validator.version}</version>
+			</dependency>
+			<!-- Import Apache plugins dependency END -->
+
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version>${commons-fileupload.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>${apache-poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>${apache-poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>easyexcel</artifactId>
+				<version>${easyexcel.version}</version>
+			</dependency>
+
+			<!-- 二维码 zxing -->
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>core</artifactId>
+				<version>${google-zxing.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.zxing</groupId>
+				<artifactId>javase</artifactId>
+				<version>${google-zxing.version}</version>
+			</dependency>
+
+			<!-- 对象拷贝工具 -->
+			<dependency>
+				<groupId>ma.glasnost.orika</groupId>
+				<artifactId>orika-core</artifactId>
+				<version>${ma.glasnost.orika.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mapstruct</groupId>
+				<artifactId>mapstruct</artifactId>
+				<version>${mapstruct.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mapstruct</groupId>
+				<artifactId>mapstruct-processor</artifactId>
+				<version>${mapstruct.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mapstruct</groupId>
+				<artifactId>mapstruct-jdk8</artifactId>
+				<version>${mapstruct.version}</version>
+			</dependency>
+
+			<!-- User Agent获取浏览器信息 -->
+			<dependency>
+				<groupId>eu.bitwalker</groupId>
+				<artifactId>UserAgentUtils</artifactId>
+				<version>${UserAgentUtils.version}</version>
+			</dependency>
+
+			<!-- JEP：解析字符串数学公式 -->
+			<dependency>
+				<groupId>jep</groupId>
+				<artifactId>jep</artifactId>
+				<version>${jep.version}</version>
+			</dependency>
+
+
+			<!-- 配置中心 -->
+			<dependency>
+				<groupId>com.ctrip.framework.apollo</groupId>
+				<artifactId>apollo-client</artifactId>
+				<version>${apollo-client.version}</version>
+			</dependency>
+
+
+			<!-- Spring Boot Mybatis 依赖 -->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis-spring-boot.version}</version>
+			</dependency>
+			<!-- mybatis-generator 代码自动生成插件 -->
+			<dependency>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-core</artifactId>
+				<version>${mybatis-generator-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.itfsw</groupId>
+				<artifactId>mybatis-generator-plugin</artifactId>
+				<version>${mybatis-generator-plugin.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.pagehelper</groupId>
+				<artifactId>pagehelper-spring-boot-starter</artifactId>
+				<version>${pagehelper-spring-boot.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-boot-starter</artifactId>
+				<version>${mybatis-plus.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.baomidou</groupId>
+				<artifactId>mybatis-plus-generator</artifactId>
+				<version>${mybatis-plus.version}</version>
+			</dependency>
+
+			<!-- 数据库连接池 -->
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+
+
+			<!-- 分布式消息通信 -->
+			<dependency>
+				<groupId>org.springframework.amqp</groupId>
+				<artifactId>spring-rabbit</artifactId>
+				<version>${spring-amqp.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.kafka</groupId>
+				<artifactId>spring-kafka</artifactId>
+				<version>${spring-kafka.version}</version>
+			</dependency>
+
+
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-registry-zookeeper</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-registry-nacos</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+
+
+			<!-- Apache Shiro -->
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-spring</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-spring-boot-starter</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-spring-boot-web-starter</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-cas</artifactId>
+				<version>${shiro.version}</version>
+			</dependency>
+
+
+			<!-- 静态资源jar -->
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>jquery</artifactId>
+				<version>${webjars.jquery.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>jquery-ui</artifactId>
+				<version>${webjars.jquery-ui.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>jquery-form</artifactId>
+				<version>${webjars.jquery-form.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap</artifactId>
+				<version>${webjars.bootstrap.version}</version>
+			</dependency>
+			<!--<dependency>
+                <groupId>org.webjars.npm</groupId>
+                <artifactId>bootstrap-colorpicker</artifactId>
+                <version>3.2.0</version>
+            </dependency>-->
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-datepicker</artifactId>
+				<version>${webjars.bootstrap-datepicker.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap-daterangepicker -->
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-daterangepicker</artifactId>
+				<version>${webjars.bootstrap-daterangepicker.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars.npm</groupId>
+				<artifactId>bootstrap-slider</artifactId>
+				<version>${webjars.bootstrap-slider.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>bootstrap-timepicker</artifactId>
+				<version>${webjars.bootstrap-timepicker.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars.npm</groupId>
+				<artifactId>chart.js</artifactId>
+				<version>${webjars.chart.js.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>ckeditor</artifactId>
+				<version>${webjars.ckeditor.version}</version>
+			</dependency>
+			<!--<dependency>
+                <groupId>org.webjars.npm</groupId>
+                <artifactId>datatables.net</artifactId>
+                <version>1.10.22</version>
+                <scope>runtime</scope>
+            </dependency>-->
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>font-awesome</artifactId>
+				<version>${webjars.font-awesome.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>select2</artifactId>
+				<version>${webjars.select2.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>layui</artifactId>
+				<version>${webjars.layui.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>AdminLTE</artifactId>
+				<version>${webjars.AdminLTE.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<!-- 编译插件 -->
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<!-- 源代码编译版本 -->
+						<source>${java.version}</source>
+						<!-- 目标平台编译版本 一般而言，target与source是保持一致的，但是，有时候为了让程序能在其他版本的jdk中运行(对于低版本目标jdk，源代码中需要没有使用低版本jdk中不支持的语法)，会存在target不同于source的情况 -->
+						<target>${java.version}</target>
+						<!-- 字符集编码 -->
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<!-- 资源配置插件 xml、properties文件都是资源文件，编码的时候遇到中文总要进行转码，我们可以通过<encoding>${project.build.sourceEncoding}</encoding>配置来进行强制转码 -->
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<!-- Javadoc -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>attach-javadoc</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+							<configuration>
+								<doclint>none</doclint>
+							</configuration>
+						</execution>
+					</executions>
+					<configuration>
+						<show>public</show>
+						<charset>UTF-8</charset>
+						<encoding>UTF-8</encoding>
+						<docencoding>UTF-8</docencoding>
+						<links>
+							<link>http://docs.oracle.com/javase/7/docs/api</link>
+						</links>
+					</configuration>
+				</plugin>
+				<!-- GPG -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>1.6</version>
+					<executions>
+						<execution>
+							<phase>verify</phase>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<version>1.6.8</version>
+					<extensions>true</extensions>
+					<configuration>
+						<!-- settings.xml文件中的servers中设置的ID -->
+						<serverId>oss</serverId>
+						<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+						<!--
+						可以登录OSSRH去手动点击Release也可以自己本地执行命令：mvn nexus-staging:release
+						也可以删除：mvn nexus-staging:drop
+						-->
+						<autoReleaseAfterClose>true</autoReleaseAfterClose>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<!-- 资源配置插件 xml、properties文件都是资源文件，编码的时候遇到中文总要进行转码，我们可以通过<encoding>${project.build.sourceEncoding}</encoding>配置来进行强制转码 -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<!-- 编译插件 -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+			<!-- Javadoc -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<!-- 阿里云Maven私服 -->
+		<!--<repository>
+			<id>maven-ali</id>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
+		</repository>-->
+		<repository>
+			<id>nexus</id>
+			<url>http://139.129.93.153:8081/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+
+	<profiles>
+		<profile>
+			<id>nexus-deploy</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<distributionManagement>
+				<snapshotRepository>
+					<id>snapshots</id>
+					<name>Nexus Snapshot Repository</name>
+					<url>http://139.129.93.153:8081/nexus/content/repositories/snapshots/</url>
+				</snapshotRepository>
+				<repository>
+					<id>releases</id>
+					<name>Nexus Release Repository</name>
+					<url>http://139.129.93.153:8081/nexus/content/repositories/releases/</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+		<profile>
+			<id>oss-deploy</id>
+			<build>
+				<plugins>
+					<!-- GPG -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+					</plugin>
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+			<distributionManagement>
+				<snapshotRepository>
+					<id>oss</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+				</snapshotRepository>
+				<repository>
+					<id>oss</id>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+	</profiles>
+
+</project>

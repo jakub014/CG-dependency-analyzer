@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>commons-static-jeesite4</artifactId>
+    <name>commons-static-jeesite4</name>
+    <packaging>jar</packaging>
+    <description>JeeSite4 后台模板，基于JQuery、BootStrap3、AdminLTE进行封装。https://gitee.com/thinkgem/jeesite4</description>
+
+    <parent>
+        <groupId>com.github.wywuzh</groupId>
+        <artifactId>commons-static</artifactId>
+        <version>2.3.5.RELEASE</version>
+    </parent>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>cn.renlm.plugins</groupId>
+		<artifactId>MyPlugin-parent</artifactId>
+		<version>1.7.1</version>
+	</parent>
+
+	<artifactId>MyUtil</artifactId>
+	<name>${project.artifactId}</name>
+	<description>工具集</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.openhft</groupId>
+			<artifactId>compiler</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>fontbox</artifactId>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+</project>

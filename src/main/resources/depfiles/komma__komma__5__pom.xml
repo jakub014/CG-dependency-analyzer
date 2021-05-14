@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>KOMMA: RAP Feature</name>
+
+	<parent>
+		<groupId>net.enilink.komma</groupId>
+		<artifactId>komma-features</artifactId>
+		<version>1.6.0-SNAPSHOT</version>
+	</parent>
+
+	<scm>
+		<connection>${komma.scm.connection}</connection>
+		<developerConnection>${komma.scm.developerConnection}</developerConnection>
+		<url>${komma.scm.url}</url>
+	</scm>
+
+	<artifactId>net.enilink.komma.rap.feature</artifactId>
+	<packaging>pom</packaging>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.enilink.komma</groupId>
+			<artifactId>net.enilink.komma.common.ui</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.enilink.komma</groupId>
+			<artifactId>net.enilink.komma.edit.ui</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.enilink.komma</groupId>
+			<artifactId>net.enilink.komma.edit.ui.properties</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.enilink.komma</groupId>
+			<artifactId>net.enilink.komma.sparql.ui</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.enilink.komma</groupId>
+			<artifactId>net.enilink.commons.ui</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.enilink.komma</groupId>
+			<artifactId>net.enilink.komma.owl.editor</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+</project>

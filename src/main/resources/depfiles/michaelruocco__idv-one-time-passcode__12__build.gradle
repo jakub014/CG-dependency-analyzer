@@ -1,0 +1,6 @@
+dependencies {
+    implementation project(":entities")
+    implementation "com.github.michaelruocco.idv:otp-data-protector:${contextVersion}"
+
+    testImplementation testFixtures(project(":entities"))
+}

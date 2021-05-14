@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.jarvisframework</groupId>
+        <artifactId>jarvis-framework-tool</artifactId>
+        <version>1.0.5.RELEASE</version>
+    </parent>
+
+    <artifactId>jarvis-tool-http</artifactId>
+    <name>${project.artifactId}</name>
+    <description>Jarvis框架工具类库</description>
+    <url>https://github.com/jarvisframework/jarvis-framework-tool</url>
+
+    <properties>
+        <servlet.version>2.5</servlet.version>
+        <string-web.version>5.2.7.RELEASE</string-web.version>
+        <fastjson.version>1.2.62</fastjson.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${string-web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jarvisframework</groupId>
+            <artifactId>jarvis-tool-core</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

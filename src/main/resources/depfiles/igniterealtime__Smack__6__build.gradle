@@ -1,0 +1,7 @@
+description = """\
+Smack GUI debugger.
+Inspect the exchanged XMPP stanzas."""
+
+dependencies {
+	api project(':smack-core')
+}

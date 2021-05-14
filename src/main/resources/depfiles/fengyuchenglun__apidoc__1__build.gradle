@@ -1,0 +1,9 @@
+dependencies {
+    compile rootProject.ext.dependence.javaparserSymbolSolverCoreLib
+    compile rootProject.ext.dependence.jacksondatabindLib
+    compile rootProject.ext.dependence.asciidoctorjLib
+    compile rootProject.ext.dependence.freemarkerLib
+    compile rootProject.ext.dependence.guavaLib
+    compile rootProject.ext.dependence.commonsLang3Lib
+    compile rootProject.ext.dependence.commonsCollections4Lib
+}

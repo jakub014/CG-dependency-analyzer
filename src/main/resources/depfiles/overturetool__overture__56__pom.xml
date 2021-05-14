@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.overturetool</groupId>
+    <artifactId>ide</artifactId>
+    <version>3.0.3-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <packaging>pom</packaging>
+
+  <groupId>org.overturetool.ide</groupId>
+  <artifactId>org.overture.ide.plugins</artifactId>
+  <name>Overture IDE core plugins GUI</name>
+  <description>Providing GUI for all integrated core plugins</description>
+
+  <modules>
+    <module>coverageeditor</module>
+    <module>csk</module>
+    <module>quickinterpreter</module>
+    <module>externaleditor</module>
+    <module>latex</module>
+    <module>poviewer</module>
+    <module>combinatorialtesting</module>
+    <module>developerutils</module>
+    <module>uml2</module>
+    <module>rttraceviewer</module>
+	<module>javagen</module>
+	<!--module>prob-runtime moved to its own repo </module-->
+	<!--<module>isatrans</module>-->
+    <!-- features last -->
+    <module>features</module>
+  </modules>
+  
+  <profiles>
+    <profile>
+      <!-- This profile enabled UI tests. Must not be enabled if running on terminal server with no UI -->
+      <id>ui-tests</id>
+      <activation>
+	<activeByDefault>false</activeByDefault>
+      </activation>
+      <modules>
+        <module>uml2.tests</module>
+      </modules>
+    </profile>
+  </profiles>
+</project>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>raven-commons-parent</artifactId>
+        <groupId>io.github.raven-source</groupId>
+        <version>3.0.2</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>raven-spring-commons</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+
+        <spring-boot.version>2.2.4.RELEASE</spring-boot.version>
+        <spring-context.version>5.0.11.RELEASE</spring-context.version>
+
+        <raven-serializer.version>3.0.0</raven-serializer.version>
+        <io.swagger.version>1.6.1</io.swagger.version>
+        <springfox-swagger.version>2.9.2</springfox-swagger.version>
+
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>io.github.raven-source</groupId>
+            <artifactId>raven-serializer-withJackson</artifactId>
+            <version>${raven-serializer.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.raven-source</groupId>
+            <artifactId>raven-commons</artifactId>
+            <version>${raven-commons.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <dependencyManagement>
+
+        <dependencies>
+
+            <!-- Spring Dependencies Start -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- swagger Dependencies Start -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox-swagger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox-swagger.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${io.swagger.version}</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+
+</project>

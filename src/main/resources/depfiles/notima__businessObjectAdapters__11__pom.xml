@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.notima.generic.businessobjects.adapter</groupId>
+    <artifactId>businessObjectAdapters</artifactId>
+    <version>1.8.11-SNAPSHOT</version>
+  </parent>
+  <artifactId>jasperFonts</artifactId>
+  <packaging>bundle</packaging>
+  <name>Jasper Fonts</name>
+  <description>Fonts for Jasper Report Adapter	</description>
+  
+	<build>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.ttf</include>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+		</resources>
+
+		<plugins>
+			
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>4.2.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Export-Package>org.notima.fonts</Export-Package>
+        				<Fragment-Host>net.sf.jasperreports.engine</Fragment-Host>
+					</instructions>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<organization>
+		<name>Notima System Integration AB</name>
+		<url>https://github.com/notima</url>
+	</organization>
+	<scm>
+		<url>https://github.com/notima/businessObjectAdapters/jasperFonts</url>
+		<connection>scm:git:git://github.com/notima/businessObjectAdapters.git</connection>
+		<developerConnection>Daniel Tamm</developerConnection>
+	</scm>
+	<issueManagement>
+  	<url>https://github.com/notima/businessObjectAdapters/issues</url>
+  	<system>Github Issues</system>
+  </issueManagement>
+  <inceptionYear>2020</inceptionYear>
+  <url>https://github.com/notima/businessObjectAdapters/jasperReportAdapter</url>
+  
+  	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+  
+	<developers>
+		<developer>
+			<name>Daniel Tamm</name>
+			<email>daniel@notima.se</email>
+			<organization>Notima System Integration AB</organization>
+			<organizationUrl>https://github.com/notima</organizationUrl>
+		</developer>
+	</developers>
+  
+  
+</project>

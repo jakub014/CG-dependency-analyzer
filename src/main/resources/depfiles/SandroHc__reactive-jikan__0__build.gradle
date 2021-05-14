@@ -1,0 +1,130 @@
+plugins {
+    id 'java-library'
+    id 'jacoco'
+    id 'maven-publish'
+    id 'signing'
+}
+
+group 'net.sandrohc'
+version '1.0.1'
+
+ext.isReleaseVersion = !version.endsWith('SNAPSHOT')
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    withJavadocJar()
+    withSourcesJar()
+}
+
+jar {
+    manifest {
+        attributes(
+                'Implementation-Title': 'reactive-jikan',
+                'Implementation-Version': project.version
+        )
+    }
+}
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Project Reactor
+    api 'io.projectreactor.netty:reactor-netty:1.0.5'
+
+    // Jackson (JSON serializer)
+    api 'com.fasterxml.jackson.core:jackson-databind:2.12.2'
+    api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.2'
+
+    // Logging
+    api 'org.slf4j:slf4j-api:2.0.0-alpha1'
+
+    // Tests
+    testRuntime 'org.slf4j:slf4j-simple:2.0.0-alpha1'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
+    testImplementation 'org.mock-server:mockserver-client-java:5.11.2'
+    testImplementation 'org.mock-server:mockserver-netty:5.11.2'
+    testImplementation 'io.projectreactor:reactor-test:3.4.4'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.enabled true
+    }
+}
+
+tasks.withType(JavaCompile) {
+    // force UTF-8 encoding on Windows machines
+    options.encoding = 'UTF-8'
+}
+
+
+publishing {
+    repositories {
+        maven {
+            def releaseRepo = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotRepo = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            url = isReleaseVersion ? releaseRepo : snapshotRepo
+            credentials {
+                username = project.hasProperty('ossrhUsername') ? ossrhUsername : 'unk'
+                password = project.hasProperty('ossrhPassword') ? ossrhPassword : 'unk'
+            }
+        }
+    }
+
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            pom {
+                name = 'Reactive Jikan'
+                description = 'API wrapper for Jikan - an unofficial MyAnimeList API - with the power of Project Reactor and reactive streams. ⚡'
+                url = 'https://github.com/SandroHc/reactive-jikan'
+                licenses {
+                    license {
+                        name = 'GNU Lesser General Public License v2.1'
+                        url = 'https://gnu.org/licenses/old-licenses/lgpl-2.1.en.html'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'SandroHc'
+                        name = 'Sandro Marques'
+                        email = 'sandro123iv@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/SandroHc/reactive-jikan.git'
+                    developerConnection = 'scm:git:ssh://github.com/SandroHc/reactive-jikan.git'
+                    url = 'https://github.com/SandroHc/reactive-jikan'
+                }
+                issueManagement {
+                    system = 'GitHub'
+                    url = 'https://github.com/SandroHc/reactive-jikan/issues'
+                }
+            }
+        }
+    }
+}
+
+signing {
+    useGpgCmd()
+    sign publishing.publications.maven
+}
+tasks.withType(Sign) {
+    onlyIf { isReleaseVersion && project.hasProperty('ossrhUsername') }
+}

@@ -1,0 +1,177 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.notima</groupId>
+  <artifactId>siefilelib</artifactId>
+  <packaging>bundle</packaging>
+  <version>1.0.4</version>
+  <name>SIE-file library</name>
+  <description>Java library to manage (read/write) SIE-files.
+SIE is an open standard for accounting information in Sweden.
+www.sie.se</description>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+
+  <licenses>
+  	<license>
+  		<name>GNU General Public Licence</name>
+  		<url>http://www.gnu.org/licenses/gpl.html</url>
+  		<distribution>repo</distribution>
+  	</license>
+  </licenses>
+
+  <scm>
+  	<developerConnection>Daniel Tamm</developerConnection>
+  	<connection>scm:git:git://github.com/notima/siefilelib.git</connection>
+  	<url>https://github.com/notima/siefilelib</url>
+  </scm>
+  
+  <organization>
+  	<name>Notima System Integration AB</name>
+  	<url>https://github.com/notima</url>
+  </organization>
+  <issueManagement>
+  	<url>https://github.com/notima/siefilelib/issues</url>
+  	<system>GitHub</system>
+  </issueManagement>
+
+  <inceptionYear>2012</inceptionYear>
+  <url>https://github.com/notima/siefilelib</url>
+
+	<developers>
+		<developer>
+			<name>Daniel Tamm</name>
+			<email>daniel@notima.se</email>
+			<organization>Notima System Integration AB</organization>
+			<organizationUrl>https://github.com/notima</organizationUrl>
+		</developer>
+	</developers>
+
+  <dependencies>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.13.1</version>
+  	</dependency>
+  </dependencies>
+
+	
+	<build>
+		<resources>
+			<resource>
+				<directory>**</directory>
+				<excludes>
+					<exclude>*.si</exclude>
+				</excludes>
+			</resource>
+		</resources>
+	
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>4.2.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Export-Package>
+							org.notima.sie,
+							org.notima.sie.converter
+						</Export-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>false</autoReleaseAfterClose>
+					<stagingProgressTimeoutMinutes>10</stagingProgressTimeoutMinutes>
+					<keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
+					<keepStagingRepositoryOnFailure>true</keepStagingRepositoryOnFailure>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.1</version>
+				<configuration>
+					<includes>
+						<include>**/AllTests.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+	</build>
+
+
+</project>

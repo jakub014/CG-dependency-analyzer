@@ -1,0 +1,11 @@
+apply plugin: 'com.vanniktech.maven.publish'
+apply plugin: 'kotlin'
+apply plugin: 'java-library'
+
+dependencies {
+    api libs.reactiveStreams
+    implementation libs.kotlin.stdlib
+
+    testImplementation libs.junit
+    testImplementation libs.assertJ
+}

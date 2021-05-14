@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>example-usecase</artifactId>
+    <packaging>bundle</packaging>
+
+    <parent>
+        <groupId>io.toolisticon.annotationprocessortoolkit</groupId>
+        <artifactId>example-parent</artifactId>
+        <version>0.14.6-SNAPSHOT</version>
+    </parent>
+
+    <name>example-usecase</name>
+
+
+    <dependencies>
+
+        <dependency>
+            <groupId>io.toolisticon.annotationprocessortoolkit</groupId>
+            <artifactId>example-annotations</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.toolisticon.annotationprocessortoolkit</groupId>
+            <artifactId>example-annotationprocessor</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
+    </dependencies>
+
+
+</project>

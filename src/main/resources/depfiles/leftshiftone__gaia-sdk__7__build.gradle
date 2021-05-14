@@ -1,0 +1,46 @@
+task clean() {
+    doLast {
+        execute(["yarn", "clean"])
+    }
+}
+
+task installDependencies() {
+    doLast {
+        execute(["yarn", "install"])
+    }
+}
+
+//task test() {
+//    doLast {
+//        execute(["yarn", "test"])
+//        execute(["yarn", "test-node"])
+//    }
+//}
+
+task assemble() {
+    doLast {
+        execute(["yarn", "build"])
+    }
+}
+
+task build() {
+    dependsOn assemble
+}
+
+task publish() {
+    doLast {
+        execute(["npm", "set", "registry", "https://registry.npmjs.org/"])
+        execute(["npm", "set", "//registry.npmjs.org/:_authToken", System.getenv("NPM_TOKEN")])
+        execute(["npm", "publish", "--access", "public"])
+    }
+}
+publish.dependsOn assemble
+
+private void execute(List<String> command) {
+    logger.debug("Executing command '${command.join(" ")}'")
+    def process = new ProcessBuilder(command).directory(projectDir).start()
+    process.consumeProcessOutput(System.out, System.err)
+    process.waitFor()
+    if (process.exitValue() != 0) throw new RuntimeException("Command failed with code ${process.exitValue()}")
+    logger.debug("Executed command '${command.join(" ")}'")
+}

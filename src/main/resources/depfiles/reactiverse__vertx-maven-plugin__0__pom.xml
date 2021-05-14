@@ -1,0 +1,631 @@
+<!--
+  ~
+  ~   Copyright (c) 2016-2018 Red Hat, Inc.
+  ~
+  ~   Red Hat licenses this file to you under the Apache License, version
+  ~   2.0 (the "License"); you may not use this file except in compliance
+  ~   with the License.  You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~   Unless required by applicable law or agreed to in writing, software
+  ~   distributed under the License is distributed on an "AS IS" BASIS,
+  ~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+  ~   implied.  See the License for the specific language governing
+  ~   permissions and limitations under the License.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.reactiverse</groupId>
+    <artifactId>vertx-maven-plugin</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>maven-plugin</packaging>
+
+    <name>A Maven Plugin for Eclipse Vert.x</name>
+    <description>A plugin to allow package, start, stop, run of Eclipse Vert.x applications</description>
+
+    <url>https://github.com/reactiverse/vertx-maven-plugin</url>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/reactiverse/vertx-maven-plugin/issues/</url>
+    </issueManagement>
+
+    <developers>
+        <developer>
+            <id>kameshsampath</id>
+            <name>Kamesh Sampath</name>
+            <email>kamesh.sampath@hotmail.com</email>
+            <roles>
+                <role>Plugin Developer</role>
+            </roles>
+            <timezone>+5:30</timezone>
+        </developer>
+    </developers>
+
+    <contributors>
+        <contributor>
+            <name>Ronald Huß</name>
+            <email>protected</email>
+            <roles>
+                <role>Patch Contributor</role>
+            </roles>
+        </contributor>
+        <contributor>
+            <name>Clement Escoffier</name>
+            <email>protected</email>
+            <roles>
+                <role>Contributor</role>
+            </roles>
+        </contributor>
+        <contributor>
+            <name>Thomas Segismont</name>
+            <email>protected</email>
+            <roles>
+                <role>Contributor</role>
+            </roles>
+        </contributor>
+    </contributors>
+
+    <licenses>
+        <license>
+            <name>Apache License 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/reactiverse/vertx-maven-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:reactiverse/vertx-maven-plugin</developerConnection>
+        <url>https://github.com/reactiverse/vertx-maven-plugin</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>bintray</id>
+            <name>reactiverse-releases</name>
+            <url>https://api.bintray.com/maven/reactiverse/releases/io.reactiverse:vertx-maven-plugin/;publish=1;override=1</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Current plugin version -->
+        <reactiverse.vertx.plugin.version>${project.version}</reactiverse.vertx.plugin.version>
+
+        <!-- maven-compiler-plugin -->
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+
+        <!-- Plugin versions -->
+        <maven-invoker-plugin.version>3.2.2</maven-invoker-plugin.version>
+        <maven-plugin-plugin.version>3.6.1</maven-plugin-plugin.version>
+        <maven-plugin-api.version>3.8.1</maven-plugin-api.version>
+
+        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <asciidoctor-maven-plugin.version>2.1.0</asciidoctor-maven-plugin.version>
+        <asciidoctorj.version>2.5.1</asciidoctorj.version>
+        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+
+        <!-- Compile dependency versions -->
+        <plexus-utils.version>3.3.0</plexus-utils.version>
+        <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
+        <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
+        <maven-project-info-reports-plugin.version>3.1.1</maven-project-info-reports-plugin.version>
+        <commons-io.version>2.8.0</commons-io.version>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <mojo-executor.version>2.3.1</mojo-executor.version>
+        <snakeyaml.version>1.28</snakeyaml.version>
+        <org.json.version>20210307</org.json.version>
+        <shrinkwrap.version>1.2.6</shrinkwrap.version>
+
+        <!-- Test dependency versions -->
+        <vertx-core.version>4.0.3</vertx-core.version>
+        <assertj-core.version>3.19.0</assertj-core.version>
+        <junit.version>4.13.2</junit.version>
+        <maven-verifier.version>1.7.2</maven-verifier.version>
+        <awaitility.version>1.7.0</awaitility.version>
+        <maven-scm-plugin.version>1.11.2</maven-scm-plugin.version>
+        <maven-scm-publish-plugin.version>3.1.0</maven-scm-publish-plugin.version>
+        <org.eclipse.jgit.version>5.11.0.202103091610-r</org.eclipse.jgit.version>
+        <jacoco.version>0.8.6</jacoco.version>
+        <sonar-jacoco-listeners.version>5.14.0.18788</sonar-jacoco-listeners.version>
+        <sonar-maven.version>3.8.0.2131</sonar-maven.version>
+
+
+        <skipTests>false</skipTests>
+        <jackson-databind.version>2.12.3</jackson-databind.version>
+
+        <doc.outputDirectory>${project.build.directory}/generated-docs</doc.outputDirectory>
+        <doc.goals>generate-resources asciidoctor:process-asciidoc</doc.goals>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.maven.scm</groupId>
+                <artifactId>maven-scm</artifactId>
+                <version>${maven-scm-plugin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>${maven-plugin-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>${maven-plugin-plugin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-utils</artifactId>
+            <version>${plexus-utils.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jvnet.winp</groupId>
+            <artifactId>winp</artifactId>
+            <version>1.28</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>${maven-plugin-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${org.json.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency>
+
+        <!-- Mojo Utils-->
+        <dependency>
+            <groupId>org.twdata.maven</groupId>
+            <artifactId>mojo-executor</artifactId>
+            <version>${mojo-executor.version}</version>
+        </dependency>
+
+        <!-- Artifact Resolution -->
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-aether-provider</artifactId>
+            <version>${maven-aether-provider.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snakeyaml.version}</version>
+        </dependency>
+
+        <!-- Packaging and Other Archiving Utilities -->
+
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-api</artifactId>
+            <version>${shrinkwrap.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-spi</artifactId>
+            <version>${shrinkwrap.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-impl-base</artifactId>
+            <version>${shrinkwrap.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId> <!-- to merge plugins binary files -->
+            <version>2.14.1</version>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- SCM Providers-->
+        <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-manager-plexus</artifactId>
+        </dependency>
+
+        <!--  Only Git and SVN are by default added as plugin deps, others developers will declare it as neded  -->
+
+        <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-provider-gitexe</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-provider-svnexe</artifactId>
+        </dependency>
+        <!--  end providers declaration  -->
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.31</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.shared</groupId>
+            <artifactId>maven-common-artifact-filters</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+
+        <!-- user prompt -->
+        <dependency>
+            <groupId>jline</groupId>
+            <artifactId>jline</artifactId>
+            <version>2.14.6</version>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.9.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+            <version>${vertx-core.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.shared</groupId>
+            <artifactId>maven-verifier</artifactId>
+            <version>${maven-verifier.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jayway.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>${awaitility.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.shared</groupId>
+            <artifactId>maven-invoker</artifactId>
+            <version>2.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- SCM Metadata Integration Tests -->
+        <dependency>
+            <groupId>org.eclipse.jgit</groupId>
+            <artifactId>org.eclipse.jgit</artifactId>
+            <version>${org.eclipse.jgit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.plexus</groupId>
+                <artifactId>plexus-component-metadata</artifactId>
+                <version>2.1.0</version>
+                <configuration>
+                    <staticMetadataDirectory>${basedir}/target/filtered-resources/META-INF/plexus</staticMetadataDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate-metadata</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>${maven-plugin-plugin.version}</version>
+                <configuration>
+                    <goalPrefix>vertx</goalPrefix>
+                    <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>help-goal</id>
+                        <goals>
+                            <goal>helpmojo</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release,doc-html</releaseProfiles>
+                    <goals>${doc.goals} deploy scm-publish:publish-scm</goals>
+                    <arguments>-DskipTests</arguments>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                    <developmentVersion>1.0-SNAPSHOT</developmentVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+	            <plugin>
+	                <groupId>org.apache.maven.plugins</groupId>
+	                <artifactId>maven-compiler-plugin</artifactId>
+	                <version>${maven-compiler-plugin.version}</version>
+	            </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven-failsafe-plugin.version}</version>
+                    <configuration>
+                        <includes>
+                            <include>**/*IT.java</include>
+                        </includes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-failsafe-plugin.version}</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/IT*.java</exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>illegal-access</id>
+            <activation>
+                <jdk>[9,)</jdk>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-failsafe-plugin</artifactId>
+                            <version>${maven-failsafe-plugin.version}</version>
+                            <configuration>
+                                <argLine>--illegal-access=permit</argLine>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+        <profile>
+            <id>run-its</id>
+            <activation>
+                <property>
+                    <name>withIts</name>
+                </property>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-failsafe-plugin</artifactId>
+                            <version>${maven-failsafe-plugin.version}</version>
+                            <configuration>
+                                <systemPropertyVariables>
+                                    <!--suppress MavenModelInspection -->
+                                    <maven.home>${maven.home}</maven.home>
+                                </systemPropertyVariables>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-invoker-plugin</artifactId>
+                            <version>${maven-invoker-plugin.version}</version>
+                            <configuration>
+                                <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+                                <cloneClean>true</cloneClean>
+                                <settingsFile>src/it/settings.xml</settingsFile>
+                                <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
+                                <postBuildHookScript>verify</postBuildHookScript>
+                                <addTestClassPath>true</addTestClassPath>
+                                <skipInvocation>${skipTests}</skipInvocation>
+                                <streamLogs>true</streamLogs>
+                                <invokerPropertiesFile>invoker.properties</invokerPropertiesFile>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>integration-test</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>verify</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-invoker-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>integration-tests</id>
+                                <goals>
+                                    <goal>install</goal>
+                                    <goal>integration-test</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>verify</id>
+                                <goals>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>doc-html</id>
+            <activation>
+                <property>
+                    <name>withDocs</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoctor-maven-plugin</artifactId>
+                        <version>${asciidoctor-maven-plugin.version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.asciidoctor</groupId>
+                                <artifactId>asciidoctorj</artifactId>
+                                <version>${asciidoctorj.version}</version>
+                            </dependency>
+                        </dependencies>
+                        <configuration>
+                            <sourceDirectory>src/main/asciidoc</sourceDirectory>
+                            <attributes>
+                                <icons>font</icons>
+                                <pagenums />
+                                <version>${project.version}</version>
+                                <idprefix />
+                                <idseparator>-</idseparator>
+                                <toc>left</toc>
+                            </attributes>
+                            <backend>html</backend>
+                            <sourceHighlighter>highlightjs</sourceHighlighter>
+                            <outputDirectory>${doc.outputDirectory}</outputDirectory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+                <defaultGoal>${doc.goals}</defaultGoal>
+            </build>
+        </profile>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${maven-source-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-scm-publish-plugin</artifactId>
+                        <version>${maven-scm-publish-plugin.version}</version>
+                        <configuration>
+                            <pubScmUrl>${project.scm.developerConnection}</pubScmUrl>
+                            <scmBranch>gh-pages</scmBranch>
+                            <content>${doc.outputDirectory}</content>
+                            <include>index.html</include>
+                            <checkinComment>Release ${project.version}</checkinComment>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

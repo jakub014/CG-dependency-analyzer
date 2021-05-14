@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright 2020 Google LLC
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.google.cloud.broker</groupId>
+        <artifactId>broker-parent</artifactId>
+        <version>0.10.5</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>broker-core</artifactId>
+
+    <name>Core components for the GCP Token Broker server and extensions</name>
+
+    <dependencies>
+      <dependency>
+        <groupId>com.typesafe</groupId>
+        <artifactId>config</artifactId>
+        <version>${com.typesafe.config.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>io.grpc</groupId>
+          <artifactId>grpc-protobuf</artifactId>
+          <version>${io.grpc.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.auth</groupId>
+        <artifactId>google-auth-library-oauth2-http</artifactId>
+        <version>${google-auth-library-oauth2-http.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.api-client</groupId>
+        <artifactId>google-api-client</artifactId>
+        <version>${google.api.client.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.cloud</groupId>
+        <artifactId>google-cloud-storage</artifactId>
+        <version>${google-cloud-storage.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.cloud</groupId>
+        <artifactId>google-cloud-secretmanager</artifactId>
+        <version>${google-cloud-secretmanager.version}</version>
+      </dependency>
+
+      <!-- For logging -->
+      <dependency>
+        <groupId>ch.qos.logback.contrib</groupId>
+        <artifactId>logback-json-classic</artifactId>
+        <version>${ch.qos.logback.contrib.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback.contrib</groupId>
+        <artifactId>logback-jackson</artifactId>
+        <version>${ch.qos.logback.contrib.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>net.logstash.logback</groupId>
+        <artifactId>logstash-logback-encoder</artifactId>
+        <version>${logstash-logback-encoder.version}</version>
+      </dependency>
+
+
+      <!-- For local cache -->
+      <dependency>
+        <groupId>net.jodah</groupId>
+        <artifactId>expiringmap</artifactId>
+        <version>${net.jodah.expiringmap.version}</version>
+      </dependency>
+
+      <!-- For cache serialization/deserialization -->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson-databind.version}</version>
+      </dependency>
+
+      <!-- For the Jinja-based user mapping rules -->
+      <dependency>
+        <groupId>com.hubspot.jinjava</groupId>
+        <artifactId>jinjava</artifactId>
+        <version>${jinjava.version}</version>
+      </dependency>
+
+      <!-- Testing dependencies -->
+      <dependency>
+        <groupId>org.apache.kerby</groupId>
+        <artifactId>kerb-simplekdc</artifactId>
+        <version>${org.apache.kerby.version}</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven-assembly-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Allow some testing classes (e.g. SettingsOverride, FakeKDC) to be imported in other modules' tests. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

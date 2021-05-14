@@ -1,0 +1,11 @@
+dependencies {
+  api project(":simplified-books-api")
+  api project(":simplified-taskrecorder-api")
+
+  api libraries.rxjava2
+
+  implementation libraries.slf4j
+
+  compileOnly libraries.google_autovalue
+  annotationProcessor libraries.google_autovalue_processor
+}

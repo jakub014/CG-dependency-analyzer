@@ -1,0 +1,43 @@
+
+/*
+Copyright 2015-2019 Futeh Kao
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+dependencies {
+    compile project(':common')
+
+    compile "org.ow2.asm:asm:${asmVersion}"
+    compile "org.ow2.asm:asm-commons:${asmVersion}"
+    compile "org.ow2.asm:asm-analysis:${asmVersion}"
+    compile "org.ow2.asm:asm-util:${asmVersion}"
+    compile "org.reactivestreams:reactive-streams:${reactiveStreamsVersion}"
+
+    compile ("com.github.jnr:jnr-ffi:${jnrffiVersion}") {
+        exclude group: 'org.ow2.asm'
+    }
+
+    compile("com.datastax.oss:java-driver-mapper-processor:${cassandraDriver4Version}") {
+        exclude group: 'org.slf4j'
+        exclude group: 'com.github.jnr'
+        exclude group: 'org.apache.tinkerpop', module: 'gremlin-core'
+        exclude group: 'org.apache.tinkerpop', module: 'tinkergraph-gremlin'
+    }
+
+    // annotationProcessor group: 'com.datastax.oss', name: 'java-driver-mapper-processor', version: "$cassandraDriver4Version"
+
+    testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+    testCompile "org.junit.platform:junit-platform-launcher:${junitPlatformLauncherVersion}"
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
+}

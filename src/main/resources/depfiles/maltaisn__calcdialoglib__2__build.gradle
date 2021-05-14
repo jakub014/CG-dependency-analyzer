@@ -1,0 +1,35 @@
+plugins {
+    id "com.android.library"
+    id "com.github.dcendents.android-maven"
+    id "com.jfrog.bintray"
+    id "com.github.breadmoirai.github-release"
+}
+
+ext {
+    // Auto generate version code based on version name
+    libVersionCode = libVersion.split(/\./).collect { it.padLeft(2, "0") }.sum().toInteger()
+    allLicenses = [license]
+}
+
+android {
+    compileSdkVersion setup.compileSdk
+    buildToolsVersion setup.buildTools
+    defaultConfig {
+        minSdkVersion setup.minSdk
+        targetSdkVersion setup.targetSdk
+        versionCode libVersionCode
+        versionName libVersion
+    }
+}
+
+dependencies {
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+
+    testImplementation "junit:junit:$junitVersion"
+}
+
+tasks.withType(Javadoc).all { enabled = false }
+
+apply from: "publishing.gradle"

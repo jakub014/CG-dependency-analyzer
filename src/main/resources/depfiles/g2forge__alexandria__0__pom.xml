@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>alexandria</artifactId>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>com.g2forge.alexandria</groupId>
+		<artifactId>ax-project</artifactId>
+		<version>0.0.18-SNAPSHOT</version>
+		<relativePath>ax-project/pom.xml</relativePath>
+	</parent>
+
+	<name>Alexandria</name>
+	<description>A standard library of commonly used Java code.</description>
+
+	<modules>
+		<module>ax-root</module>
+		<module>ax-project</module>
+		<module>ax-java</module>
+		<module>ax-log-api</module>
+		<module>ax-log</module>
+		<module>ax-analysis</module>
+		<module>ax-test</module>
+		<module>ax-environment</module>
+		<module>ax-reflection</module>
+		<module>ax-type</module>
+		<module>ax-adt</module>
+		<module>ax-compiler</module>
+		<module>ax-expression</module>
+		<module>ax-service</module>
+		<module>ax-wizard</module>
+		<module>ax-command</module>
+		<module>ax-filesystem</module>
+		<module>ax-filesystem-test</module>
+		<module>ax-filesystem-memory</module>
+		<module>ax-fsm</module>
+		<module>ax-fsm-test</module>
+		<module>ax-media</module>
+		<module>ax-parse</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<modules>
+				<module>ax-annotations</module>
+			</modules>
+		</profile>
+	</profiles>
+</project>

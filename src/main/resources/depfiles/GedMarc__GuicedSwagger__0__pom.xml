@@ -1,0 +1,72 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.guicedee</groupId>
+        <artifactId>guicedee-projects</artifactId>
+        <version>0.0.0_0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.guicedee.servlets</groupId>
+    <artifactId>guiced-openapi</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Guiced Swagger</name>
+    <description>Loads Swagger with Guice
+    </description>
+    <url>https://github.com/GedMarc/GuicedSwagger</url>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.guicedee.servlets</groupId>
+            <artifactId>guiced-rest-services</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.guicedee.services</groupId>
+            <artifactId>swagger</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.guicedee.services</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.guicedee.services</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <scm>
+        <url>https://github.com/GedMarc/GuicedSwagger.git</url>
+    </scm>
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/GedMarc/GuicedSwagger/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>TeamCity</system>
+        <url>http://jwebmp.com/teamcity</url>
+    </ciManagement>
+
+    <profiles>
+        <profile>
+            <id>jdk8</id>
+            <activation>
+                <jdk>8</jdk>
+            </activation>
+            <properties>
+                <skipTests>true</skipTests>
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

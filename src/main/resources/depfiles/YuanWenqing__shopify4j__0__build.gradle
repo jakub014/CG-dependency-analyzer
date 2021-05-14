@@ -1,0 +1,121 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        final String depRepo = rootProject.hasProperty("repo") ? rootProject.property("repo") : "nexus"
+        switch (depRepo) {
+            case "aliyun":
+                maven {
+                    name "alimaven"
+                    url "http://maven.aliyun.com/nexus/content/groups/public/"
+                }
+                break
+            case "central":
+                mavenCentral()
+                gradlePluginPortal()
+                break
+            case "nexus":
+            default:
+                maven {
+                    name "nexus"
+                    url property("nexus.repo.url")
+                    credentials {
+                        username property("nexus.username")
+                        password property("nexus.password")
+                    }
+                }
+                break
+        }
+    }
+    dependencies {
+        // http://ajoberstar.org/grgit/grgit-reference.html
+        classpath "org.ajoberstar.grgit:grgit-gradle:$grgitGradleVersion"
+    }
+}
+
+// git version
+apply plugin: "org.ajoberstar.grgit"
+int commits = grgit.log().size()
+version = "1.1"
+String pubRepo = rootProject.hasProperty("pub") ? rootProject.property("pub") : "nexus"
+if (pubRepo != "oss") {
+    version = "${version}.${commits}"
+}
+if (!project.hasProperty("release")) {
+    String branch = grgit.branch.current().name
+    String prefix = branch.replace("/", "-")
+    String abbreviatedId = grgit.head().abbreviatedId
+    version = "${prefix}-${version}.${abbreviatedId}"
+}
+println("version=$version")
+
+// project setting
+subprojects {
+    group = "xyz.codemeans.shopify4j"
+    version = rootProject.version
+
+    repositories {
+        mavenLocal()
+        final String depRepo = rootProject.hasProperty("repo") ? rootProject.property("repo") : "nexus"
+        switch (depRepo) {
+            case "aliyun":
+                maven {
+                    name "alimaven"
+                    url "http://maven.aliyun.com/nexus/content/groups/public/"
+                }
+                break
+            case "central":
+                mavenCentral()
+                gradlePluginPortal()
+                break
+            case "nexus":
+            default:
+                maven {
+                    name "nexus"
+                    url property("nexus.repo.url")
+                    credentials {
+                        username property("nexus.username")
+                        password property("nexus.password")
+                    }
+                }
+                break
+        }
+    }
+
+    apply plugin: "java"
+    apply plugin: "java-library"
+
+    // artifacts
+    jar.doLast {
+        println "jar: ${archivePath}"
+    }
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        from sourceSets.main.allJava
+        classifier = 'sources'
+        doLast {
+            println "sources: ${archivePath}"
+        }
+    }
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+        doLast {
+            println "sources: ${archivePath}"
+        }
+    }
+    tasks.withType(Javadoc).all {
+        options.tags = [ "date", "author" ]
+        options.addStringOption('Xdoclint:none', '-quiet')
+//        enabled = false
+    }
+
+    apply plugin: "jacoco"
+    jacocoTestReport.dependsOn(test)
+    jacocoTestReport.doLast {
+        println jacocoTestReport.reports.html.entryPoint
+    }
+
+    test.doLast {
+        println test.reports.html.entryPoint
+    }
+
+}

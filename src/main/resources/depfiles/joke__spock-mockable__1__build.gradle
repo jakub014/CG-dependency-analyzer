@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.0'
+}
+
+dependencies {
+    testImplementation platform('org.codehaus.groovy:groovy-bom:3.0.8')
+    testImplementation platform('org.spockframework:spock-bom:2.0-M5-groovy-3.0')
+
+    testImplementation 'org.spockframework:spock-core'
+    testImplementation project(':spock-mockable')
+}
+
+test {
+    forkEvery 1
+    useJUnitPlatform()
+}

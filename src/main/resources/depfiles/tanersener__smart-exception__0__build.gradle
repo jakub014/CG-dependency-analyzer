@@ -1,0 +1,98 @@
+import java.text.SimpleDateFormat
+
+buildscript {
+    repositories {
+        google()
+    }
+}
+
+subprojects {
+    apply plugin: 'java-library'
+
+    group = 'com.arthenica'
+    version = '0.1.0'
+
+    task sourcesJar(type: Jar) {
+        archiveClassifier.set('sources')
+        from sourceSets.main.java.srcDirs
+        manifest {
+            attributes(
+                    'Built-By': System.getProperty('user.name'),
+                    'Build-Timestamp': new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ").format(new Date()),
+                    'Created-By': "Gradle ${gradle.gradleVersion}",
+                    'Build-Jdk': System.getProperty('java.version')
+            )
+        }
+    }
+
+    jar {
+        buildDir = 'target'
+        manifest {
+            attributes(
+                    'Built-By': System.getProperty('user.name'),
+                    'Build-Timestamp': new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSZ").format(new Date()),
+                    'Created-By': "Gradle ${gradle.gradleVersion}",
+                    'Build-Jdk': System.getProperty('java.version')
+            )
+        }
+    }
+
+    test {
+        testLogging {
+            events "passed", "skipped", "failed"
+            showExceptions true
+            showCauses true
+            showStackTraces true
+            afterSuite { desc, result ->
+                if (!desc.parent) {
+                    def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)"
+                    def startItem = '|  ', endItem = '  |'
+                    def repeatLength = startItem.length() + output.length() + endItem.length()
+                    println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
+                }
+            }
+        }
+    }
+
+    ext {
+        cxfVersion = '3.3.6'
+        springBootVersion = '2.2.6.RELEASE'
+        mockitoVersion = '3.3.3'
+        slf4jVersion = '1.7.30'
+        logbackVersion = '1.2.3'
+        junitVersion = '4.13'
+
+        // release properties
+        bintrayRepo = 'maven'
+        publishedGroupId = 'com.arthenica'
+        siteUrl = 'https://github.com/tanersener/smart-exception'
+        issueTrackerUrl = 'https://github.com/tanersener/smart-exception/issues'
+        gitUrl = 'https://github.com/tanersener/smart-exception.git'
+        developerId = 'tanersener'
+        developerName = 'Taner Sener'
+        developerEmail = 'tanersener@gmail.com'
+        licenseName = 'The 3-Clause BSD License'
+        licenseUrl = 'https://opensource.org/licenses/BSD-3-Clause'
+        allLicenses = ["BSD 3-Clause"]
+    }
+
+    dependencies {
+        testImplementation 'org.apache.cxf:cxf-rt-rs-client:' + cxfVersion
+        testImplementation 'org.apache.cxf:cxf-rt-transports-http-hc:' + cxfVersion
+        testImplementation('org.springframework.boot:spring-boot-starter-test:' + springBootVersion) {
+            exclude group: 'org.junit.jupiter', module: 'junit-jupiter'
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+            exclude group: 'org.mockito', module: 'mockito-junit-jupiter'
+        }
+        testImplementation 'org.springframework.boot:spring-boot-starter-web:' + springBootVersion
+        testImplementation 'org.mockito:mockito-core:' + mockitoVersion
+        testImplementation 'org.slf4j:slf4j-api:' + slf4jVersion
+        testImplementation 'ch.qos.logback:logback-classic:' + logbackVersion
+        testImplementation 'junit:junit:' + junitVersion
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+}

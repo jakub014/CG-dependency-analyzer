@@ -1,0 +1,156 @@
+buildscript {
+    repositories { 
+        mavenLocal() 
+        mavenCentral()
+        jcenter()
+    }
+    
+    dependencies {
+        classpath 'net.researchgate:gradle-release:2.6.0'
+    }
+}
+
+plugins { 
+    id 'io.franzbecker.gradle-lombok' version '1.14'
+    id "io.spring.dependency-management" version "1.0.7.RELEASE" 
+    id "com.github.kt3k.coveralls" version "2.8.1" 
+    id "org.owasp.dependencycheck" version "3.1.2"
+    id "org.ajoberstar.grgit" version "2.0.1"
+    id "com.jfrog.bintray" version "1.7.3"
+}
+
+ext { springBootVersion = '2.2.2.RELEASE' }
+
+apply plugin: 'java-library'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'jacoco'
+
+description = """Base service module containing entities, interfaces and helpers."""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+    baseName = 'service-base'
+}
+
+group = "edu.kit.datamanager"
+
+repositories {
+    mavenLocal()   
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    api("org.springframework.boot:spring-boot-starter-amqp")
+    api("org.springframework.boot:spring-boot-starter-web")
+    api("org.springframework.boot:spring-boot-starter-security")
+    api("org.springframework.boot:spring-boot-starter-actuator")
+    api("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    api("org.springdoc:springdoc-openapi-ui:1.2.31")
+    api("org.springdoc:springdoc-openapi-data-rest:1.2.31")
+    api("org.springdoc:springdoc-openapi-webmvc-core:1.2.31")
+
+    api("com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.9.1")
+    api("com.fasterxml.jackson.module:jackson-module-afterburner:2.7.1")
+    api("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.5")
+    api("com.fasterxml.jackson.datatype:jackson-datatype-joda:2.4.0")
+   
+    api("net.sf.dozer:dozer:5.5.1")
+
+    api("io.jsonwebtoken:jjwt:0.9.1")
+
+    api("com.github.fge:json-patch:1.9")
+   
+    api("org.apache.commons:commons-lang3:3.6")
+    api("commons-validator:commons-validator:1.6")
+    api("commons-io:commons-io:2.5")
+    api('org.apache.httpcomponents:httpclient:4.5.6')
+    api('commons-codec:commons-codec:1.7')
+    api('org.javers:javers-spring-boot-starter-sql:5.8.8')
+    //compile("dnsjava:dnsjava:2.1.8")
+     
+    api("org.apache.commons:commons-collections4:4.1")
+   
+    api("org.slf4j:slf4j-api:1.7.25")
+    api("ch.qos.logback:logback-classic:1.2.3")
+
+    //Java 11 Support 
+    compile('javax.xml.bind:jaxb-api:2.3.1')
+    compile('com.sun.xml.bind:jaxb-core:2.3.0.1')
+    compile('com.sun.xml.bind:jaxb-impl:2.3.0.1')
+    api('javax.activation:activation:1.1.1')
+    api('org.javassist:javassist:3.23.1-GA')
+   
+    //test
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("junit:junit:4.12")
+    testImplementation("org.mockito:mockito-core:2.23.4")
+    testImplementation("org.powermock:powermock-module-junit4:2.0.2")
+    testImplementation("org.powermock:powermock-api-mockito2:2.0.2")
+}
+
+lombok {
+    version = '1.18.10'
+    sha256 = ""
+}
+
+if (project.hasProperty('deploy')) {
+    println 'Using deploy profile for building ' + project.getName()
+    apply from: 'gradle/profile-deploy.gradle'
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+}
+
+tasks.withType(Test) {
+    testLogging {
+        events 'started', 'passed'
+    }
+}
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+    
+    afterEvaluate {
+        //exclude some classes/package from code coverage report
+        classDirectories.setFrom(files(classDirectories.files.collect {
+                    fileTree(dir: it, exclude: [\
+                                //pure entity package currently not needed
+            'org/datacite/**', \
+                   'org/purl/**', \
+                            //performance tests
+            'edu/kit/datamanager/perf/**', \
+                            //remove AuthenticationHelper tests due to mocking -> code coverage cannot be determined
+                            //'edu/kit/datamanager/util/AuthenticationHelper*',
+                            //deprecated stuff
+            'edu/kit/datamanager/util/DCTransformationHelper*',
+                  'edu/kit/datamanager/dao/ByExampleSpecification*',
+                  'edu/kit/datamanager/controller/hateoas/**',
+                            //exceptions 
+            'edu/kit/datamanager/exceptions/**',
+                  'edu/kit/datamanager/service/impl/RabbitMQMessagingService*',
+                  'edu/kit/datamanager/configuration/**',
+                  'edu/kit/datamanager/service/IGenericService*'
+                        ])
+                }))
+    }
+}
+
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}

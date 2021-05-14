@@ -1,0 +1,99 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.notima.generic.businessobjects.adapter</groupId>
+		<artifactId>businessObjectAdapters</artifactId>
+		<version>1.8.11-SNAPSHOT</version>
+	</parent>
+	<artifactId>excelAdapter</artifactId>
+	<packaging>bundle</packaging>
+	<name>Excel Adapter</name>
+	<description>Converts to and from Excel and other spreadsheet formats</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>${apache.poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${apache.poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml-schemas</artifactId>
+			<version>${apache.poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>
+				org.notima.generic.businessobjects.adapter
+			</groupId>
+			<artifactId>adapterTools</artifactId>
+			<version>${version}</version>
+			<type>bundle</type>
+		</dependency>
+	</dependencies>
+
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>4.2.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-Activator>org.notima.businessobjects.adapter.excel.Activator</Bundle-Activator>
+						<Export-Package>org.notima.businessobjects.adapter.excel*,
+							org.apache.poi*
+						</Export-Package>
+						<Private-Package>
+							org.apache.karaf.util.tracker,
+							org.apache.karaf.util.tracker.annotation
+						</Private-Package>
+						<Karaf-Commands>org.notima.businessobjects.adapter.excel.command*</Karaf-Commands>
+						<Import-Package>
+										org.notima.generic.businessobjects,
+										org.notima.generic.businessobjects.exception,
+										org.notima.generic.businessobjects.util,
+										org.notima.generic.ifacebusinessobjects,
+										org.notima.businessobjects.adapter.tools,
+										org.notima.businessobjects.adapter.tools.table,
+										org.slf4j,
+										org.notima.bg,
+										org.notima.bg.bgmax,
+										org.notima.bg.lb,
+										org.notima.tilisiirto,
+										com.google.gson,
+										com.google.gson.annotations,
+										javax.xml.ws,
+										javax.xml.namespace,
+			        					javax.xml.bind;version="[2.2,3)",
+			        					javax.xml.bind.annotation;version="[2.2,3)",
+										javax.xml.*,
+										javax.net.*,
+										javax.naming,
+										org.apache.karaf.shell.api.action,
+										org.apache.karaf.shell.api.action.lifecycle,
+										org.apache.karaf.shell.api.console,
+										org.apache.karaf.shell.support.completers,
+										org.apache.karaf.shell.support.table,
+										org.osgi.*
+						</Import-Package>
+						<Embed-Dependency>*;scope=compile|runtime;artifactId=!slf4j-api|slf4j-log4j12|log4j|businessobjects|bankgiro-api|webpayadminservice-client|pmt-admin-api|retrofit|converter-scalars|okhttp|okio|gson</Embed-Dependency>
+						<Embed-Transitive>true</Embed-Transitive>
+					</instructions>
+				</configuration>
+			</plugin>
+
+
+		</plugins>
+	</build>
+
+</project>

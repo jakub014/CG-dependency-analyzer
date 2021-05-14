@@ -1,0 +1,76 @@
+apply plugin: 'org.jetbrains.kotlin.jvm'
+apply plugin: 'org.jetbrains.kotlin.kapt'
+apply plugin: 'org.jetbrains.dokka'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+dependencies {
+  api deps.layoutlib
+  api deps.tools.common
+  api deps.tools.layoutlib
+  api deps.tools.sdkcommon
+  api deps.kxml2
+  api deps.junit
+  api deps.androidx.annotations
+  api deps.guava
+  api deps.kotlinx.coroutines.core
+  api deps.okio
+  implementation deps.moshi.core
+  implementation deps.moshi.adapters
+  kapt deps.moshi.kotlinCodegen
+  implementation deps.jcodec.core
+  implementation deps.jcodec.javase
+  implementation project(':paparazzi-agent')
+
+  testImplementation deps.assertj
+}
+
+tasks.named("dokka").configure {
+  outputDirectory = "$rootDir/docs/0.x"
+  outputFormat = 'gfm'
+  reportUndocumented = false
+  skipDeprecated = true
+  jdkVersion = 8
+  packageOptions {
+    prefix = "app.cash.paparazzi.internal"
+    suppress = true
+  }
+}
+
+apply from: "$rootDir/gradle/gradle-mvn-push.gradle"
+
+def generateTestConfig = tasks.register("generateTestConfig") {
+  def resources = "$buildDir/intermediates/paparazzi/resources.txt"
+  outputs.file(resources)
+
+  doLast {
+    File configFile = new File(resources)
+    configFile.withWriter('utf-8') { writer ->
+      writer.writeLine("app.cash.paparazzi")
+      writer.writeLine(".")
+      writer.writeLine("29")
+      def androidHome = System.getenv("ANDROID_SDK_ROOT")
+          ?: System.getenv("ANDROID_HOME")
+          ?: "$userHome/Library/Android/sdk"
+      writer.writeLine("${androidHome}/platforms/android-29/")
+      writer.writeLine(".")
+    }
+  }
+}
+
+tasks.withType(Test).configureEach {
+  dependsOn(generateTestConfig)
+  systemProperty(
+      "paparazzi.test.resources",
+      generateTestConfig.map { it.outputs.files.singleFile }.get().path
+  )
+  testLogging {
+    events 'passed', 'failed', 'skipped', 'standardOut', 'standardError'
+    exceptionFormat 'FULL'
+    showCauses true
+    showExceptions true
+    showStackTraces true
+    showStandardStreams true
+  }
+}

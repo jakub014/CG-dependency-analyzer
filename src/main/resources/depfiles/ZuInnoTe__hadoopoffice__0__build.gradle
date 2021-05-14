@@ -1,0 +1,15 @@
+allprojects {
+  apply plugin: 'eclipse'
+
+  buildscript {
+    repositories {
+        mavenCentral()
+ 
+    }
+ 
+}
+ 
+}
+
+subprojects {
+}
