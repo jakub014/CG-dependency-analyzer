@@ -1,0 +1,45 @@
+dependencies {
+    compile project(':hermes-api')
+    compile project(':hermes-common')
+    compile project(':hermes-consumers')
+
+    compile group: 'org.glassfish.jersey.core', name: 'jersey-client', version: versions.jersey
+    compile group: 'org.glassfish.jersey.ext', name: 'jersey-proxy-client', version: versions.jersey
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
+    compile(group: 'org.apache.kafka', name: 'kafka_2.11', version: versions.kafka) {
+        exclude group: 'javax.jms'
+        exclude group: 'com.sun.jdmk'
+        exclude group: 'com.sun.jmx'
+        exclude group: 'net.sf.jopt-simple'
+        exclude module: 'slf4j-log4j12'
+        exclude module: 'log4j'
+    }
+    compile group: 'com.github.tomakehurst', name: 'wiremock-standalone', version: versions.wiremock
+    compile (group: 'org.apache.curator', name: 'curator-test', version: versions.curator) {
+        exclude module: 'slf4j-log4j12'
+        exclude module: 'log4j'
+    }
+    compile (group: 'org.apache.curator', name: 'curator-client', version: versions.curator) {
+        exclude module: 'slf4j-log4j12'
+        exclude module: 'log4j'
+    }
+    compile (group: 'org.apache.curator', name: 'curator-recipes', version: versions.curator) {
+        exclude module: 'slf4j-log4j12'
+        exclude module: 'log4j'
+    }
+    compile group: 'com.google.code.findbugs', name: 'annotations', version: '3.0.0'
+    compile group: 'com.jayway.awaitility', name: 'awaitility', version: '1.6.1'
+    compile group: 'org.assertj', name: 'assertj-core', version: '3.3.0'
+    compile group: 'net.javacrumbs.json-unit', name: 'json-unit-fluent', version: '1.5.5'
+    compile group: 'junit', name: 'junit', version: '4.11'
+    compile group: 'org.testng', name: 'testng', version: '6.8.8'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+    compile group: 'com.jayway.jsonpath', name: 'json-path', version: '2.5.0'
+
+    compile group: 'org.apache.oltu.oauth2', name: 'org.apache.oltu.oauth2.authzserver', version: '1.0.2'
+    compile group: 'org.apache.oltu.oauth2', name: 'org.apache.oltu.oauth2.resourceserver', version: '1.0.2'
+    compile group: 'io.undertow', name: 'undertow-servlet', version: versions.undertow
+
+    testCompile group: 'org.apache.oltu.oauth2', name: 'org.apache.oltu.oauth2.client', version: '1.0.2'
+    testCompile group: 'org.spockframework', name: 'spock-core', version: versions.spock
+}

@@ -1,0 +1,143 @@
+/*
+ *  Copyright (c) 2020 Raffael Herzog
+ *
+ *  Permission is hereby granted, free of charge, to any person obtaining a copy
+ *  of this software and associated documentation files (the "Software"), to
+ *  deal in the Software without restriction, including without limitation the
+ *  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ *  sell copies of the Software, and to permit persons to whom the Software is
+ *  furnished to do so, subject to the following conditions:
+ *
+ *  The above copyright notice and this permission notice shall be included in
+ *  all copies or substantial portions of the Software.
+ *
+ *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ *  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ *  IN THE SOFTWARE.
+ */
+
+apply plugin: 'org.jetbrains.intellij'
+
+noMaven()
+tasks.registerJacoco.enabled = false
+
+dependencies {
+  implementation project(':tools:model')
+}
+
+def sandboxDir = 'idea-sandbox'
+
+intellij {
+  pluginName = 'ch.raffael.meldioc'
+  version = '202.8194.7' // 2020.2.4
+  updateSinceUntilBuild = false
+  type = 'IC'
+  plugins = [
+      'java', 'Groovy', 'gradle'
+  ]
+
+  sandboxDirectory = "$sandboxDir/idea"
+
+  //plugins = ['Groovy']
+}
+
+
+
+def mainIconsDir = file("$buildDir/generated/resources/icons/main")
+//noinspection UnnecessaryQualifiedReference
+task extractIcons(type: local.ExtractIconsTask) {
+  sourceFile = file('src/main/icons/all-icons.svg')
+  outputDir = file("$mainIconsDir/ch/raffael/meldioc/idea")
+
+  icons = [
+      'feature'                 : ['T Feature'],
+      'configuration'           : ['T Configuration'],
+      'provision'               : ['M Provision'],
+      'mount'                   : ['M Mount 2'],
+      'extension-point-acceptor': ['T Extension Point Acceptor'],
+      'extension-point'         : ['M Extension Point'],
+      'parameter'               : ['M Parameter 2'],
+      'setup'                   : ['M Setup']
+  ]
+}
+processResources.dependsOn extractIcons
+sourceSets.main.resources.srcDir mainIconsDir
+
+//noinspection GroovyAssignabilityCheck
+task syncTestProject(type: Sync, group: 'intellij') {
+  destinationDir = file("$sandboxDir/test-project")
+
+  includeEmptyDirs = false
+  preserve {
+    include '**'
+  }
+
+  from(rootProject.projectDir) {
+    include '*', 'gradle/**', 'buildSrc/**', '.idea/codeStyles/**',
+            'library/**/src/**', 'shared-rt/**/src/**', 'usecases/**/src/**'
+    exclude 'settings.gradle', '**/idea-sandbox/**', '.gitignore', 'java.gradle'
+  }
+  from(rootProject.projectDir) {
+    include 'library/**/build.gradle', 'usecases/**/build.gradle', 'shared-rt/**/build.gradle', 'java.gradle'
+    filter {line ->
+      if (line =~ /\bproject\s*\(\s*':(annotations|util|logging|tools)/ ) return null
+      return line
+    }
+  }
+  into('test-cases/src/main/java') {
+    from project(':tools:processor').file('src/test/cases')
+    from(project(':tools:processor').file('src/test/groovy')) {
+      include '**/Marker.groovy'
+    }
+  }
+
+  doLast {
+    file("$sandboxDir/test-project/settings.gradle").text =
+        """include 'shared-rt:log4j-config',
+  'library:base', 'library:codec', 'library:http-undertow',
+  'usecases:hello-http',
+  'test-cases'"""
+    def appendStr = new StringWriter()
+    //noinspection GroovyAssignabilityCheck
+    def append = new PrintWriter(appendStr)
+    append.println "ext.enableMeld = { dependencies { "
+    [':tools:model', ':tools:processor', ':annotations', ':util'].each {
+      append.println "  annotationProcessor files('${project(it).jar.archivePath}')"
+    }
+    append.println '  annotationProcessor dependencySets.vavr'
+    //noinspection GroovyAssignabilityCheck
+    project(':tools:processor').dependencySets.javapoet[0].with {
+      append.println "  annotationProcessor '$it.group:$it.name:$it.version'"
+    }
+    append.println '}}'
+    append.println "ext.enableImmutables = { dependencies { "
+    append.println '  annotationProcessor dependencySets.immutablesProc'
+    append.println "  annotationProcessor files('${project(':util:immutables-proc').jar.archivePath}')"
+    append.println '  compileOnly dependencySets.immutables'
+    append.println '}}'
+    append.println """dependencies {"""
+    append.println """  implementation dependencySets.vavr"""
+    [':annotations', ':util', ':logging'].each {
+      append.println """  implementation files('${project(it).jar.archivePath}')"""
+    }
+    append.println '  implementation dependencySets.slf4j'
+    append.println '  implementation dependencySets.log4j'
+    append.println "  implementation dependencySets.tsconfig"
+    append.println """}"""
+    append.close()
+    file("$sandboxDir/test-project/java.gradle").append("\n\n$appendStr")
+    file("$sandboxDir/test-project/test-cases/build.gradle").text = """enableMeld()
+sourceSets.main.java.exclude '**/*'
+"""
+  }
+
+}
+
+idea.module {
+  excludeDirs += file(sandboxDir)
+  excludeDirs += file('src/main/icons')
+}

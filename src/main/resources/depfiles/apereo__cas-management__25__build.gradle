@@ -1,0 +1,12 @@
+description "Apereo CAS Management Support Search"
+
+dependencies {
+    implementation libraries.lucene
+    
+    api project(":api:cas-mgmt-api-core")
+    api project(":api:cas-mgmt-api-configuration")
+    
+    implementation project(":core:cas-mgmt-core")
+    implementation project(":core:cas-mgmt-core-util");
+    implementation project(":core:cas-mgmt-core-authentication")
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>io.activej</groupId>
+    <artifactId>examples</artifactId>
+    <version>4.3-SNAPSHOT</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>examples-promise</artifactId>
+  <name>Examples : Core : Promise</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.activej</groupId>
+      <artifactId>activej-promise</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.activej</groupId>
+      <artifactId>activej-bytebuf</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>AsyncFileServiceExample</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>AsyncFileServiceExample</mainClass>
+            </configuration>
+          </execution>
+          <execution>
+            <id>PromiseAdvancedExample</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>PromiseAdvancedExample</mainClass>
+            </configuration>
+          </execution>
+          <execution>
+            <id>PromiseChainExample</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>PromiseChainExample</mainClass>
+            </configuration>
+          </execution>
+          <execution>
+            <id>PromisesExample</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>PromisesExample</mainClass>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

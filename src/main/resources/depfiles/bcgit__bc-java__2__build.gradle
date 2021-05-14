@@ -1,0 +1,28 @@
+dependencies {
+    compile project(':core')
+    compile project(':pkix')
+    compile project(':prov')
+
+    compile group: 'javax.mail', name: 'mail', version: '1.4'
+}
+
+jar.baseName = "bcmail-$vmrange"
+
+task sourcesJar(type: Jar) {
+  baseName = jar.baseName
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  baseName = jar.baseName
+  classifier = 'javadoc'
+  from javadoc.destinationDir
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}
+

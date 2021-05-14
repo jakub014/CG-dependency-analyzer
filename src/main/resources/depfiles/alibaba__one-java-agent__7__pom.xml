@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.alibaba.oneagent</groupId>
+        <artifactId>one-java-agent-parent</artifactId>
+        <version>0.0.2-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>one-java-agent</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.oneagent</groupId>
+            <artifactId>one-java-agent-spy</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.oneagent</groupId>
+            <artifactId>one-java-agent-plugin</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>bytekit-instrument-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>bytekit-core</artifactId>
+        </dependency>
+<!--         <dependency>
+            <groupId>org.benf</groupId>
+            <artifactId>cfr</artifactId>
+            <version>0.150</version>
+        </dependency> -->
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.zeroturnaround</groupId>
+            <artifactId>zt-exec</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy-agent</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>one-java-agent</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <encoding>UTF-8</encoding>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-shade-plugin</artifactId>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Premain-Class>com.alibaba.oneagent.BootstrapAgent</Premain-Class>
+                                        <Agent-Class>com.alibaba.oneagent.BootstrapAgent</Agent-Class>
+                                        <Can-Redefine-Classes>true</Can-Redefine-Classes>
+                                        <Can-Retransform-Classes>true</Can-Retransform-Classes>
+                                        <Specification-Title>${project.name}</Specification-Title>
+                                        <Specification-Version>${project.version}</Specification-Version>
+                                        <Implementation-Title>${project.name}</Implementation-Title>
+                                        <Implementation-Version>${project.version}</Implementation-Version>
+                                    </manifestEntries>
+                                </transformer>
+                            </transformers>
+                            <createSourcesJar>true</createSourcesJar>
+                            <shadeSourcesContent>true</shadeSourcesContent>
+                            <artifactSet>
+                            </artifactSet>
+                            <relocations>
+                                <relocation>
+                                    <pattern>org.slf4j</pattern>
+                                    <shadedPattern>${oneagent.deps.package}.org.slf4j</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>ch.qos.logback</pattern>
+                                    <shadedPattern>${oneagent.deps.package}.ch.qos.logback</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>logback.configurationFile</pattern>
+                                    <shadedPattern>oneagent.logback.configurationFile</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>logback.xml</pattern>
+                                    <shadedPattern>oneagent-logback.xml</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>logback-test.xml</pattern>
+                                    <shadedPattern>oneagent-logback-test.xml</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>logback.groovy</pattern>
+                                    <shadedPattern>oneagent-logback.groovy</shadedPattern>
+                                </relocation>
+                            </relocations>
+                            <filters>
+                                <filter>
+                                    <artifact>*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/services/javax.servlet.ServletContainerInitializer</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <configuration>
+                            <tasks>
+                                <!-- add spy jar into one-java-agent.jar -->
+                                <zip destfile="${project.build.directory}/one-java-agent2.jar">
+                                    <zipfileset src="${project.build.directory}/one-java-agent.jar" />
+                                    <fileset dir="${project.build.directory}/../../one-java-agent-spy/target" includes="one-java-agent-spy.jar" />
+                                </zip>
+                                <move file="${project.build.directory}/one-java-agent2.jar" tofile="${project.build.directory}/one-java-agent.jar" />
+                                <zip destfile="${project.build.directory}/oneagent@${project.version}.zip">
+                                    <fileset dir="${project.build.directory}" includes="one-java-agent.jar" />
+                                </zip>
+                                <!-- for test -->
+                                <unzip src="${project.build.directory}/oneagent@${project.version}.zip" dest="${project.build.directory}/oneagent">
+                                </unzip>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <!-- add spy jar into one-java-agent.jar -->
+                                        <zip destfile="${project.build.directory}/one-java-agent2.jar">
+                                            <zipfileset src="${project.build.directory}/one-java-agent.jar" />
+                                            <fileset dir="${project.build.directory}/../../one-java-agent-spy/target" includes="one-java-agent-spy.jar" />
+                                        </zip>
+                                        <move file="${project.build.directory}/one-java-agent2.jar" tofile="${project.build.directory}/one-java-agent.jar" />
+                                        <zip destfile="${project.build.directory}/oneagent@${project.version}.zip">
+                                            <fileset dir="${project.build.directory}" includes="one-java-agent.jar" />
+                                        </zip>
+                                        <!-- for test -->
+                                        <unzip src="${project.build.directory}/oneagent@${project.version}.zip" dest="${project.build.directory}/oneagent">
+                                        </unzip>
+                                        <delete dir="${user.home}/oneagent/core/oneagent@${project.version}">
+                                        </delete>
+                                        <unzip src="${project.build.directory}/oneagent@${project.version}.zip" dest="${user.home}/oneagent/core/oneagent@${project.version}">
+                                        </unzip>
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

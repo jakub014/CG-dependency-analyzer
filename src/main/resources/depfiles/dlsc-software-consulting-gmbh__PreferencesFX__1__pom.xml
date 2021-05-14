@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.dlsc.preferencesfx</groupId>
+    <artifactId>preferencesfx-core</artifactId>
+.    <version>11.8.0</version>
+    <packaging>jar</packaging>
+
+    <name>PreferencesFX</name>
+    <description>A framework for quickly creating a UI for setting application
+        preferences.
+    </description>
+    <url>https://github.com/dlsc-software-consulting-gmbh/PreferencesFX</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/dlsc-software-consulting-gmbh/PreferencesFX</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Francois Martin</name>
+        </developer>
+        <developer>
+            <name>Marco Sanfratello</name>
+        </developer>
+        <developer>
+            <name>Dirk Lemmermann</name>
+            <url>http://www.dlsc.com</url>
+            <organization>DLSC Software &amp; Consulting</organization>
+        </developer>
+    </developers>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-dlsc-oss-repository</id>
+            <name>dlsc-oss-repository</name>
+            <url>
+                https://api.bintray.com/maven/dlsc-oss/repository/PreferencesFX/;publish=1
+            </url>
+        </repository>
+    </distributionManagement>
+
+    <repositories>
+
+        <repository>
+            <id>bintray-dlsc-oss-repository</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/dlsc-oss/repository</url>
+        </repository>
+        <repository>
+            <id>jcenter</id>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+
+    </repositories>
+
+    <properties>
+        <checkstyle.path>../config/checkstyle/checkstyle.xml</checkstyle.path>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <ikonli.version>12.2.0</ikonli.version>
+        <javafx.version>16</javafx.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <target>11</target>
+                    <source>11</source>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <failOnError>true</failOnError>
+                    <failOnWarnings>false</failOnWarnings>
+                    <force>true</force>
+                    <windowtitle>PreferencesFX API</windowtitle>
+                    <additionalJOptions>
+                        <additionalJOption>-J-Djavafx.javadoc=true</additionalJOption>
+                        <additionalJOption>-html5</additionalJOption>
+                    </additionalJOptions>
+                    <docfilessubdirs>true</docfilessubdirs>
+                    <tags>
+                        <tag>
+                            <name>defaultValue</name>
+                            <placement>a</placement>
+                            <head>Default Value:</head>
+                        </tag>
+                        <tag>
+                            <name>apiNote</name>
+                            <placement>a</placement>
+                            <head>API Note:</head>
+                        </tag>
+                        <tag>
+                            <name>implSpec</name>
+                            <placement>a</placement>
+                            <head>Implementation Requirements:</head>
+                        </tag>
+                        <tag>
+                            <name>implNote</name>
+                            <placement>a</placement>
+                            <head>Implementation Note:</head>
+                        </tag>
+                    </tags>
+                    <sourceFileExcludes>
+                        <sourceFileExclude>**\/\module-info.java</sourceFileExclude>
+                    </sourceFileExcludes>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.ow2.asm</groupId>
+                        <artifactId>asm</artifactId>
+                        <version>7.2</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>make-docs
+
+                        </id> <!-- this is used for inheritance merges -->
+                        <phase>package
+                        </phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- JUnit Tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <!-- Only Java 9+ -->
+                <configuration>
+                    <forkCount>0</forkCount>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>11.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dlsc.formsfx</groupId>
+            <artifactId>formsfx-core</artifactId>
+            <version>11.4.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-core</artifactId>
+            <version>${ikonli.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-javafx</artifactId>
+            <version>${ikonli.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-material-pack</artifactId>
+            <version>${ikonli.version}</version>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.28</version>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.9.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

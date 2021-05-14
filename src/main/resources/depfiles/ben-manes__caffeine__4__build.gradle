@@ -1,0 +1,96 @@
+/** Cache simulator using tracing data and a family of eviction policy options. */
+import net.ltgt.gradle.errorprone.CheckSeverity
+
+apply from: "${rootDir}/gradle/autoValue.gradle"
+apply plugin:'application'
+
+mainClassName = 'com.github.benmanes.caffeine.cache.simulator.Simulator'
+
+dependencies {
+  implementation project(':caffeine')
+
+  implementation libraries.xz
+  implementation libraries.ohc
+  implementation libraries.akka
+  implementation libraries.ycsb
+  implementation libraries.zstd
+  implementation libraries.guava
+  implementation libraries.stream
+  implementation libraries.tcache
+  implementation libraries.cache2k
+  implementation libraries.picocli
+  implementation libraries.ehcache3
+  implementation libraries.fastutil
+  implementation libraries.slf4jNop
+  implementation libraries.commonsIo
+  implementation libraries.fastfilter
+  implementation libraries.flipTables
+  implementation libraries.expiringMap
+  implementation libraries.commonsLang3
+  implementation libraries.commonsMath3
+  implementation libraries.elasticSearch
+  implementation libraries.commonsCompress
+  implementation libraries.univocityParsers
+
+  testImplementation testLibraries.testng
+}
+
+compileJava {
+  modularity.inferModulePath = false
+}
+
+test {
+  useTestNG()
+}
+
+// JMH zip archive overlaps with the application's
+if (!(gradle.startParameter.taskNames ==~ /.*uploadArchives.*/)) {
+  apply from: "${rootDir}/gradle/jmh.gradle"
+
+  jmh {
+    benchmarkMode = ['avgt']
+    warmupIterations = 1
+    iterations = 3
+  }
+}
+
+sonarqube {
+  skipProject = true
+}
+
+jar.manifest {
+  attributes 'Bundle-SymbolicName': 'com.github.benmanes.caffeine.simulator'
+  attributes 'Automatic-Module-Name': 'com.github.benmanes.caffeine.simulator'
+}
+
+tasks.withType(JavaCompile) {
+  options.errorprone.nullaway {
+    severity = CheckSeverity.OFF
+  }
+}
+
+tasks.withType(Javadoc) {
+  options.addStringOption('Xdoclint:none', '-quiet')
+}
+
+run {
+  systemProperties System.properties.findAll {
+    it.getKey().startsWith('akka') || it.getKey().startsWith('caffeine')
+  }
+  jvmArgs '-XX:+UseParallelGC', '-Xmx4g'
+}
+
+task rewrite(type: JavaExec) {
+  main = 'com.github.benmanes.caffeine.cache.simulator.parser.Rewriter'
+  classpath = sourceSets.main.runtimeClasspath
+
+  def arguments = ['inputFormat', 'inputFiles', 'outputFile', 'outputFormat']
+  for (def argument : arguments) {
+    if (project.hasProperty(argument)) {
+      args "--${argument}", project.property(argument)
+    }
+  }
+  if (args.isEmpty()) {
+    args '--help'
+  }
+}

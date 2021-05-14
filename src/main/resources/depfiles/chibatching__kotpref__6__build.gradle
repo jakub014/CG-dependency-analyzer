@@ -1,0 +1,76 @@
+import dependencies.Deps
+import dependencies.Versions
+import plugin.BuildSettingHelperPlugin
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'jacoco'
+apply plugin: BuildSettingHelperPlugin
+
+ext.moduleName = 'Kotpref LiveData support'
+ext.moduleDescription = "Observe SharedPreferences changes as LiveData"
+
+android {
+    compileSdkVersion Versions.targetSdk
+
+    defaultConfig {
+        minSdkVersion Versions.minSdkWithSupportLibrary
+        targetSdkVersion Versions.targetSdk
+        versionName Versions.versionName
+    }
+    buildTypes {
+        debug {
+            testCoverageEnabled isCi
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+    testOptions {
+        unitTests {
+            all {
+                jacoco {
+                    includeNoLocationClasses = true
+                    excludes = ['jdk.internal.*']
+                }
+            }
+            includeAndroidResources = true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        freeCompilerArgs += "-Xexplicit-api=strict"
+    }
+    jacoco {
+        version = Versions.jacoco
+    }
+}
+
+dependencies {
+    compileOnly Deps.Kotlin.stdlib
+    api project(":kotpref")
+
+    compileOnly Deps.Arch.liveData
+
+    testImplementation project(":gson-support")
+    testImplementation project(":enum-support")
+    testImplementation Deps.Kotlin.stdlib
+    testImplementation Deps.Arch.liveData
+    testImplementation Deps.Arch.runtime
+    testImplementation Deps.gson
+    testImplementation Deps.junit
+    testImplementation Deps.robolectric
+    testImplementation Deps.AndroidX.testCore
+    testImplementation Deps.mockk
+    testImplementation Deps.truth
+}
+
+apply from: "${project.rootDir}/gradle/publish/publish.gradle"

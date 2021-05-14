@@ -1,0 +1,6 @@
+description "Aperep CAS Management API Configuration"
+
+dependencies {
+        api libraries.casServer.configuration
+        api libraries.casServer.utilApi
+}

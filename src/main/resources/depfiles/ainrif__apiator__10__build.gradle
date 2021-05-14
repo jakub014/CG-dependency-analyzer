@@ -1,0 +1,6 @@
+ext.deployParams = [description: 'Micronaut specific classes support plugin for Apiator JSON Renderer']
+apply from: "$rootDir/gradle/deploy.gradle"
+
+dependencies {
+    api project(':renderer:core-json-renderer:plugin:spi-plugin-core-json-renderer')
+}

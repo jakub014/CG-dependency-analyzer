@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.bogdanovmn.common</groupId>
+        <artifactId>common</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <groupId>com.github.bogdanovmn.common.spring</groupId>
+    <artifactId>common-spring</artifactId>
+    <version>${revision}</version>
+    <packaging>jar</packaging>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+
+    <name>java-common-spring</name>
+    <description>Java common library (spring)</description>
+    <url>http://github.com/bogdanovmn/java-common</url>
+    <developers>
+        <developer>
+            <name>Mikhail N Bogdanov</name>
+            <email>bogdanovmn@gmail.com</email>
+            <organization>Open source</organization>
+            <organizationUrl>http://github.com/bogdanovmn/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/bogdanovmn/java-common.git</connection>
+        <developerConnection>scm:git:ssh://github.com/bogdanovmn/java-common.git</developerConnection>
+        <url>http://github.com/bogdanovmn/java-common</url>
+    </scm>
+</project>

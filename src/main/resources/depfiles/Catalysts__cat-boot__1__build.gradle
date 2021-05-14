@@ -1,0 +1,22 @@
+apply plugin: 'java'
+apply plugin: 'propdeps'
+apply plugin: 'propdeps-maven'
+apply plugin: 'propdeps-idea'
+
+dependencies {
+    testCompile 'commons-logging:commons-logging'
+
+    provided 'javax.servlet:javax.servlet-api'
+
+    testCompile 'junit:junit'
+
+    compile 'net.bull.javamelody:javamelody-core'
+
+    testCompile 'org.springframework:spring-test'
+
+    compile 'org.springframework.boot:spring-boot'
+    compile 'org.springframework.boot:spring-boot-autoconfigure'
+    optional 'org.springframework.boot:spring-boot-configuration-processor'
+}
+
+compileJava.dependsOn(processResources)

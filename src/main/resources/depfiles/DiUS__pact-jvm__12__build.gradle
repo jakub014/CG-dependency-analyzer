@@ -1,0 +1,69 @@
+dependencies {
+  api project(":provider")
+  compile 'org.apache.maven:maven-plugin-api:3.6.0',
+    'org.apache.maven.plugin-tools:maven-plugin-annotations:3.6.0'
+  compile 'org.apache.maven:maven-core:3.6.0'
+  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+  compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+  implementation 'com.github.ajalt:mordant:1.2.1'
+
+  testImplementation "junit:junit:${project.junitVersion}"
+  testRuntime "org.junit.vintage:junit-vintage-engine:${project.junit5Version}"
+  testCompile "org.codehaus.groovy:groovy:${project.groovyVersion}"
+  testCompile "org.codehaus.groovy:groovy-nio:${project.groovyVersion}"
+  testCompile('org.spockframework:spock-core:2.0-M4-groovy-3.0') {
+    exclude group: 'org.codehaus.groovy'
+  }
+  testRuntime "net.bytebuddy:byte-buddy:${project.bytebuddyVersion}"
+  testRuntime 'org.objenesis:objenesis:3.1'
+}
+
+import org.apache.tools.ant.taskdefs.condition.Os
+def isWindows() {
+    Os.isFamily(Os.FAMILY_WINDOWS)
+}
+
+task generatePom(type: GenerateMavenPom, dependsOn: [":provider:publishToMavenLocal",
+                                                     ':core:model:publishToMavenLocal',
+                                                     ':core:matchers:publishToMavenLocal',
+                                                     ':core:pactbroker:publishToMavenLocal',
+                                                     ':core:support:publishToMavenLocal']) {
+    destination = file("${buildDir}/poms/pom.xml")
+    pom = publishMavenPublicationPublicationToMavenLocal.publication.pom
+    pom.packaging = 'maven-plugin'
+    pom.withXml {
+        def buildNode = asNode().appendNode('build')
+        buildNode.appendNode('directory', buildDir)
+        buildNode.appendNode('outputDirectory', "$buildDir/classes/kotlin/main")
+        //add and configure the maven-plugin-plugin so that we can use the shortened 'pact' prefix
+        //https://maven.apache.org/guides/introduction/introduction-to-plugin-prefix-mapping.html
+        def pluginNode = buildNode.appendNode('plugins').appendNode('plugin')
+        pluginNode.appendNode('artifactId', 'maven-plugin-plugin')
+        pluginNode.appendNode('version', project.mavenPluginPluginVersion)
+        pluginNode.appendNode('configuration').appendNode('goalPrefix', 'pact')
+
+      def repository = asNode().appendNode('repositories').appendNode('repository')
+      repository.appendNode('id', 'jcenter')
+      repository.appendNode('name', 'jcenter')
+      repository.appendNode('url', 'https://jcenter.bintray.com')
+    }
+}
+
+if (System.env.CI != 'true') {
+  task pluginDescriptor(type: Exec, dependsOn: generatePom) {
+    if (isWindows()) {
+      commandLine 'mvn.bat', '-f', "${buildDir}/poms/pom.xml", '--settings',
+        'src/main/resources/settings.xml', '-e', '-B', 'org.apache.maven.plugins:maven-plugin-plugin:3.6.0:descriptor'
+    } else {
+      commandLine 'sh', '-c', "mvn -f ${buildDir}/poms/pom.xml --settings src/main/resources/settings.xml -e -B org.apache.maven.plugins:maven-plugin-plugin:3.6.0:descriptor"
+    }
+
+      doLast {
+        final pluginDescriptor = file("${project.compileKotlin.destinationDir}/META-INF/maven/plugin.xml")
+        assert pluginDescriptor.file, "[$pluginDescriptor.canonicalPath] was not created"
+      }
+  }
+
+  pluginDescriptor.shouldRunAfter project.jar
+  project.jar.dependsOn pluginDescriptor
+}

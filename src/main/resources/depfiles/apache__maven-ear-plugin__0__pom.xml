@@ -1,0 +1,365 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one
+  or more contributor license agreements. See the NOTICE file
+  distributed with this work for additional information
+  regarding copyright ownership. The ASF licenses this file
+  to you under the Apache License, Version 2.0 (the
+  "License"); you may not use this file except in compliance
+  with the License. You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing,
+  software distributed under the License is distributed on an
+  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  KIND, either express or implied. See the License for the
+  specific language governing permissions and limitations
+  under the License.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>maven-plugins</artifactId>
+    <groupId>org.apache.maven.plugins</groupId>
+    <version>34</version>
+    <relativePath />
+  </parent>
+
+  <artifactId>maven-ear-plugin</artifactId>
+  <version>3.2.1-SNAPSHOT</version>
+  <packaging>maven-plugin</packaging>
+
+  <name>Apache Maven EAR Plugin</name>
+  <description>Generates a J2EE Enterprise Archive (EAR) file.</description>
+
+  <prerequisites>
+    <maven>${mavenVersion}</maven>
+  </prerequisites>
+
+  <scm>
+    <connection>scm:git:https://gitbox.apache.org/repos/asf/maven-ear-plugin.git</connection>
+    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/maven-ear-plugin.git</developerConnection>
+    <url>https://github.com/apache/maven-ear-plugin/tree/${project.scm.tag}</url>
+    <tag>HEAD</tag>
+  </scm>
+  <issueManagement>
+    <system>JIRA</system>
+    <url>https://issues.apache.org/jira/browse/MEAR</url>
+  </issueManagement>
+  <ciManagement>
+    <system>Jenkins</system>
+    <url>https://ci-builds.apache.org/job/Maven/job/maven-box/job/maven-ear-plugin/</url>
+  </ciManagement>
+  <distributionManagement>
+    <site>
+      <id>apache.website</id>
+      <url>scm:svn:https://svn.apache.org/repos/asf/maven/website/components/${maven.site.path}</url>
+    </site>
+  </distributionManagement>
+
+  <contributors>
+    <contributor>
+      <name>Guillaume Boucherie</name>
+    </contributor>
+    <contributor>
+      <name>Fred Bricon</name>
+    </contributor>
+    <contributor>
+      <name>Steve Moyer</name>
+    </contributor>
+    <contributor>
+      <name>Seth Rife</name>
+    </contributor>
+    <contributor>
+      <name>Laszlo Varadi</name>
+    </contributor>
+  </contributors>
+
+  <properties>
+    <mavenArchiverVersion>3.5.1</mavenArchiverVersion>
+    <mavenFilteringVersion>3.2.0</mavenFilteringVersion>
+    <mavenVersion>3.1.1</mavenVersion>
+    <javaVersion>7</javaVersion>
+    <surefire.version>2.22.2</surefire.version>
+    <mavenWarPluginVersion>3.3.1</mavenWarPluginVersion>
+    <mavenCompilerPluginVersion>2.5.1</mavenCompilerPluginVersion>
+    <mavenEjbPluginVersion>3.1.0</mavenEjbPluginVersion>
+    <mavenRarPluginVersion>2.4</mavenRarPluginVersion>
+    <mavenJarPluginVersion>3.2.0</mavenJarPluginVersion>
+    <jbossPackagingPluginVersion>2.2</jbossPackagingPluginVersion>
+    <invoker.skip>false</invoker.skip>
+    <invoker.install.skip>${invoker.skip}</invoker.install.skip>
+    <invoker.it.skip>${invoker.skip}</invoker.it.skip>
+    <invoker.cloneClean>true</invoker.cloneClean>
+    <mavenPluginToolsVersion>3.6.0</mavenPluginToolsVersion><!-- required for Java 11 generated Mojo -->
+    <checkstyle.violation.ignore>ParameterNumber,MethodLength</checkstyle.violation.ignore>
+    <project.build.outputTimestamp>2020-12-30T10:47:20Z</project.build.outputTimestamp>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>${mavenVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-artifact</artifactId>
+      <version>${mavenVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-core</artifactId>
+      <version>${mavenVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-archiver</artifactId>
+      <version>${mavenArchiverVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugin-tools</groupId>
+      <artifactId>maven-plugin-annotations</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-archiver</artifactId>
+      <version>4.2.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-utils</artifactId>
+      <version>3.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-io</artifactId>
+      <version>3.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-filtering</artifactId>
+      <version>${mavenFilteringVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-interpolation</artifactId>
+      <version>1.26</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-mapping</artifactId>
+      <version>3.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-shared-utils</artifactId>
+      <version>3.3.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-verifier</artifactId>
+      <version>1.6</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.6</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>xmlunit</groupId>
+      <artifactId>xmlunit</artifactId>
+      <version>1.6</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/filtered-resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/pom.xml</include>
+        </includes>
+      </testResource>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>false</filtering>
+        <excludes>
+          <exclude>**/pom.xml</exclude>
+        </excludes>
+      </testResource>
+      <testResource>
+        <directory>src/test/filtered-resources</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.rat</groupId>
+          <artifactId>apache-rat-plugin</artifactId>
+          <configuration>
+            <excludes combine.children="append">
+              <!--
+                ! The manifest specification does not describe any method for writing comments into the manifest.
+              -->
+              <exclude>src/test/resources/projects/project-015/src/main/application/META-INF/MANIFEST.MF</exclude>
+              <exclude>src/test/resources/projects/project-016/src/main/ear/MANIFEST.MF</exclude>
+              <!--
+                ! Added the following excludes cause they have been reported as wrong.
+                ! https://issues.apache.org/jira/browse/RAT-187
+              -->
+              <exclude>src/test/resources/m2repo/eartest/har-sample-one/1.0/har-sample-one-1.0.har</exclude>
+              <exclude>src/test/resources/m2repo/eartest/sar-sample-one/1.0/sar-sample-one-1.0.sar</exclude>
+              <!--
+                ! DTDs from other sources - do not add our own license header.
+              -->
+              <exclude>src/test/resources/dtd/application_1_3.dtd</exclude>
+              <exclude>src/test/resources/dtd/jboss-app_3_2.dtd</exclude>
+              <exclude>src/test/resources/dtd/jboss-app_4_0.dtd</exclude>
+              <exclude>src/test/resources/dtd/jboss-app_4_2.dtd</exclude>
+              <exclude>src/test/resources/dtd/jboss-app_5_0.dtd</exclude>
+              <!--
+                ! Within the checksum files no additional data is allowed
+              -->
+              <exclude>src/test/resources/m2snapshots/eartest/jar-sample-one/1.0-SNAPSHOT/jar-sample-one-1.0-20150825.210557-91.jar.sha1</exclude>
+              <exclude>src/test/resources/m2snapshots/eartest/jar-sample-one/1.0-SNAPSHOT/jar-sample-one-1.0-20150825.210557-91.pom.sha1</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.9.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.1.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>3.0.0-M3</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.2.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <escapeString>\</escapeString>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+
+    <profile>
+      <id>run-its</id>
+      <properties>
+        <localRepositoryPath>${project.build.testOutputDirectory}/m2repo</localRepositoryPath>
+        <localSnapshotRepositoryPath>${project.build.testOutputDirectory}/m2snapshots</localSnapshotRepositoryPath>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-invoker-plugin</artifactId>
+            <configuration>
+              <streamLogs>false</streamLogs>
+              <!-- NOTE: Must be synced with the repo path used by AbstractEarPluginIT -->
+              <localRepositoryPath>${localRepositoryPath}</localRepositoryPath>
+              <goals>
+                <goal>clean</goal>
+                <goal>package</goal>
+              </goals>
+              <extraArtifacts>
+                <extraArtifact>org.apache.maven.plugins:maven-war-plugin:${mavenWarPluginVersion}:jar</extraArtifact>
+                <extraArtifact>org.apache.maven.plugins:maven-compiler-plugin:${mavenCompilerPluginVersion}:jar</extraArtifact>
+                <extraArtifact>org.apache.maven.plugins:maven-ejb-plugin:${mavenEjbPluginVersion}:jar</extraArtifact>
+                <extraArtifact>org.apache.maven.plugins:maven-rar-plugin:${mavenRarPluginVersion}:jar</extraArtifact>
+                <extraArtifact>org.apache.maven.plugins:maven-jar-plugin:${mavenJarPluginVersion}:jar</extraArtifact>
+                <extraArtifact>org.codehaus.mojo:jboss-packaging-maven-plugin:${jbossPackagingPluginVersion}:jar</extraArtifact>
+              </extraArtifacts>
+              <skipInstallation>${invoker.install.skip}</skipInstallation>
+              <skipInvocation>${invoker.it.skip}</skipInvocation>
+              <cloneClean>${invoker.cloneClean}</cloneClean>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+                <configuration>
+                  <systemPropertyVariables combine.children="append">
+                    <maven.home>${maven.home}</maven.home>
+                    <userlocalRepository>${settings.localRepository}</userlocalRepository>
+                    <localRepositoryPath>${localRepositoryPath}</localRepositoryPath>
+                    <java.io.tmpdir>${project.build.directory}</java.io.tmpdir>
+                    <basedirectory>${basedir}</basedirectory>
+                  </systemPropertyVariables>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>java11</id>
+      <activation>
+        <jdk>[11,)</jdk>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>3.8.1</version>
+              <configuration>
+                <showDeprecation>true</showDeprecation>
+                <release>${javaVersion}</release>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+  </profiles>
+</project>

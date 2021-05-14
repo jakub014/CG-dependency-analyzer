@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ch.ninecode.cim</groupId>
+        <artifactId>CIMJDBC</artifactId>
+        <relativePath>../pom.xml</relativePath>
+        <version>2.12-3.0.1-5.1.1</version>
+    </parent>
+    <artifactId>CIMClientJDBC</artifactId>
+    <name>${project.artifactId}</name>
+    <description>Sample JDBC access to CIMServerJDBC</description>
+    <inceptionYear>2017</inceptionYear>
+    <url>https://github.com/derrickoswald/CIMSpark/tree/master/CIMJDBC/CIMServerJDBC</url>
+
+    <properties>
+        <!-- need to hold back until we find a Java 11 version of hive-jdbc -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <version.dependency.hive-jdbc>3.1.2</version.dependency.hive-jdbc>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-jdbc</artifactId>
+            <version>${version.dependency.hive-jdbc}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jdk.tools</artifactId>
+                    <groupId>jdk.tools</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <plugins>
+            <!-- assembly for stand-alone program -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${version.dependency.maven-assembly-plugin}</version>
+                <configuration>
+                    <finalName>CIMClientJDBC-${project.version}</finalName>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>ch.ninecode.cim.CIMClientJDBC</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>${version.dependency.scala-maven-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <!-- fake phase trick to avoid trying to attach scaladocs -->
+                        <phase>noexecute</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${version.dependency.maven-deploy-plugin}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

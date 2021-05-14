@@ -1,0 +1,37 @@
+plugins {
+    id 'java-library'
+}
+
+ext {
+    versionJose4j = '0.7.2'
+    versionJunitJupiter = '5.7.0'
+    versionNetty = '4.1.52.Final'
+    versionSlf4j = '1.7.30'
+}
+
+dependencies {
+    implementation "io.netty:netty-all:$versionNetty"
+    implementation "org.bitbucket.b_c:jose4j:$versionJose4j"
+    api "org.slf4j:slf4j-api:$versionSlf4j"
+
+    testImplementation "org.junit.jupiter:junit-jupiter:$versionJunitJupiter"
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'FAILED', 'SKIPPED'
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            pom {
+                name = 'Arrowhead Kalix: Base Library'
+                description = 'Basic abstractions and utilities for creating ' +
+                        'and interacting with Arrowhead Framework systems.'
+            }
+        }
+    }
+}

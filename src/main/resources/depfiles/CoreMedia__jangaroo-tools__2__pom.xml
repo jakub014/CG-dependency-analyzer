@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>jangaroo-tools-api</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+    <module>jangaroo-utils</module>
+    <module>jangaroo-compiler-api</module>
+    <module>exml-compiler-api</module>
+  </modules>
+  <parent>
+    <groupId>net.jangaroo</groupId>
+    <artifactId>jangaroo-parent</artifactId>
+    <version>4.0.78-SNAPSHOT</version>
+    <relativePath>../jangaroo-parent/pom.xml</relativePath>
+  </parent>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <name>Jangaroo Tools APIs</name>
+  <url>http://repo.jangaroo.net/site/jangaroo-api</url>
+</project>
+

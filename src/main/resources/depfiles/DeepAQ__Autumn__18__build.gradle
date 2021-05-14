@@ -1,0 +1,6 @@
+description 'MyBatis integration for Autumn'
+
+dependencies {
+    api project(':autumn-core')
+    compileOnly 'org.mybatis:mybatis:3.5.0'
+}

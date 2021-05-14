@@ -1,0 +1,171 @@
+buildscript {
+	repositories {
+		mavenLocal()
+		jcenter()
+	}
+	dependencies {
+	}
+}
+
+plugins {
+	id "com.jfrog.bintray" version "1.8.5"
+}
+
+apply plugin: 'java-library'
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+apply plugin: 'idea'
+
+group = 'com.bertramlabs.plugins'
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+ext.isReleaseVersion = !version.endsWith('SNAPSHOT')
+
+
+repositories {
+	jcenter()
+	mavenCentral()
+}
+
+configurations {
+	provided
+	doc.extendsFrom(runtime)
+}
+
+sourceSets {
+	main {
+		compileClasspath += configurations.provided
+		groovy.srcDirs   += ['src/main/java']
+		java.srcDirs      = []
+	}
+}
+
+groovydoc {
+	docTitle "Asset Pipeline Core"
+	windowTitle "Asset Pipeline For the JVM API Doc"
+	groovyClasspath = configurations.doc
+	classpath = configurations.runtime
+	// Links to external Javadoc, currently only the J2SE links are working properly 
+  	link('http://download.oracle.com/javase/8/docs/api/', 'java.', 'org.xml', 'javax.', 'org.xml.') 
+  	link('http://groovy.codehaus.org/api/',  'groovy.', 'org.codehaus.groovy.') 
+}
+
+dependencies {
+	implementation    'org.codehaus.groovy:groovy:2.4.19'
+	implementation    'org.codehaus.groovy:groovy-json:2.4.19'
+	implementation    'org.codehaus.groovy:groovy-templates:2.4.19'
+	doc         'org.codehaus.groovy:groovy-all:2.4.19'
+	doc         'org.fusesource.jansi:jansi:1.11'
+	api     'org.mozilla:rhino:1.7R4'
+	compileOnly     'com.google.javascript:closure-compiler-unshaded:v20210106'
+	api 'org.slf4j:slf4j-api:1.7.28'
+	//api   'log4j:log4j:1.2.16'
+	testImplementation project(':asset-pipeline-classpath-test')
+	testImplementation 'org.codehaus.groovy:groovy-all:2.4.19'
+	testImplementation 'org.spockframework:spock-core:1.3-groovy-2.4'
+	testRuntimeOnly 'org.slf4j:slf4j-simple:1.7.28'
+}
+
+publishing {
+	publications {
+		maven(MavenPublication) {
+			artifactId 'asset-pipeline-core'
+			pom.withXml {
+				asNode().children().last() + {
+					resolveStrategy = Closure.DELEGATE_FIRST
+					name 'asset-pipeline-core'
+					description 'JVM Asset Pipeline library for serving static web assets, bundling, minifying, and extensibility for transpiling.'
+					url 'https://github.com/bertramdev/asset-pipeline-core'
+					scm {
+						url 'https://github.com/bertramdev/asset-pipeline-core'
+						connection 'scm:https://bertramdev@github.com/bertramdev/asset-pipeline-core.git'
+						developerConnection 'scm:git://github.com/bertramdev/asset-pipeline-core.git'
+					}
+					licenses {
+						license {
+							name 'The Apache Software License, Version 2.0'
+							url 'http://www.apache.org/license/LICENSE-2.0.txt'
+							distribution 'repo'
+						}
+					}
+					developers {
+						developer {
+							id 'davydotcom'
+							name 'David Estes'
+							email 'davydotcom@gmail.com'
+						}
+					}
+				}
+			}
+			from components.java
+			afterEvaluate {
+			artifact sourcesJar
+			artifact javadocJar
+}
+		}
+	}
+
+	repositories {
+		maven {
+			credentials {
+				username project.properties.get('artifactoryPublishUsername')
+				password project.properties.get('artifactoryPublishPassword')
+			}
+			url 'https://repo.grails.org/grails/libs-snapshots-local/'
+		}
+	}
+}
+
+bintray {
+	if(project.hasProperty('bintrayUser')) {
+		user = bintrayUser
+		key = bintrayKey
+	}
+    publish=true
+	publications = ['maven']
+	pkg {
+		repo = 'asset-pipeline'
+		userOrg = 'bertramlabs'
+		name = 'asset-pipeline-core'
+		licenses = ['Apache-2.0']
+        version {
+            if (project.hasProperty('mavenUser')) {
+                mavenCentralSync {
+                    sync = true //Optional (true by default). Determines whether to sync the version to Maven Central.
+                    user = mavenUser //OSS user token
+                    password = mavenPassword //OSS user password
+                    close = '1'
+                    //Optional property. By default the staging repository is closed and artifacts are released to Maven Central. You can optionally turn this behaviour off (by puting 0 as value) and release the version manually.
+                }
+            }
+        }
+	}
+}
+
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+	classifier = 'javadoc'
+	from 'build/docs/javadoc'
+}
+
+task sourcesJar(type: Jar) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+task(console, dependsOn: 'classes', type: JavaExec) {
+  main = 'groovy.ui.Console'
+  classpath = sourceSets.main.runtimeClasspath
+}
+
+
+test {
+	testLogging {
+		exceptionFormat = 'full'
+		showStandardStreams = true
+	}
+}
+
+
+bintrayUpload.dependsOn build, sourcesJar, javadocJar

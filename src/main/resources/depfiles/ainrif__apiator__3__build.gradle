@@ -1,0 +1,10 @@
+ext.deployParams = [description: 'Provider of Jax-RS integration for Apiator']
+apply from: "$rootDir/gradle/deploy.gradle"
+
+dependencies {
+    compileOnly "javax.ws.rs:javax.ws.rs-api:${versions.jaxrsApi}"
+
+    implementation project(':core')
+
+    testImplementation project(':test:jax-rs-model-test')
+}

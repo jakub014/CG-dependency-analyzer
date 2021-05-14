@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.axway.iron</groupId>
+        <artifactId>iron</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>iron-inttest</artifactId>
+    <name>${project.artifactId}</name>
+    <description>Iron sample project</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.axway.iron</groupId>
+            <artifactId>iron-api</artifactId>
+        </dependency>
+
+        <!-- test dependency -->
+        <dependency>
+            <groupId>io.axway.iron</groupId>
+            <artifactId>iron-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.axway.iron</groupId>
+            <artifactId>iron-spi-aws</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.axway.iron</groupId>
+            <artifactId>iron-spi-chronicle</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.axway.iron</groupId>
+            <artifactId>iron-spi-jackson</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Kafka SPI test dependencies-->
+        <dependency>
+            <groupId>io.axway.iron</groupId>
+            <artifactId>iron-spi-kafka</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.11</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>localstack</id>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>
+                            src/test/resources
+                        </directory>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
+</project>

@@ -1,0 +1,4 @@
+dependencies {
+    api project(':mongo-java-server-core')
+    testImplementation project(':mongo-java-server-test-common')
+}
