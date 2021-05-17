@@ -1,0 +1,7 @@
+kumuluzee-health
+https://github.com/kumuluz/kumuluzee-health
+Vulnerable dependency: org.apache.httpcomponents:httpclient
+
+___fasten://mvn!kumuluzee-health$master/com.kumuluz.ee.health.checks/ElasticSearchHealthCheck.call()%2Forg.eclipse.microprofile.health%2FHealthCheckResponse
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+
