@@ -19,6 +19,9 @@ import org.json.simple.parser.ParseException;
 
 public class MainScript {
 
+    private static final Long TIMESTAMP_MAY_2020 = 1589454523000l;
+    private static final Long TIMESTAMP_FEBRUARY_2021 = 1613308674000l;
+
     private static ProjectType getProjectType(String groupID, String packageName) {
         String pomName = groupID + "__" + packageName + "_pom.xml";
         String pomPath = "src/main/resources/poms/" + pomName;
@@ -40,19 +43,23 @@ public class MainScript {
 
         System.out.println(data.size());
 
-        final int startFrom = 184;
+        final int startFrom = 1837;
         int counter = 0;
 
         String filePath = "analysisResults/analysed-repos-gradle.txt";
         File file = new File(filePath);
         file.createNewFile();
 
+
         for (Object o : data) {
             counter++;
             if (counter > startFrom) {
                 JSONObject obj = (JSONObject) o;
 
-                if (10 <= (Long) obj.get("stars")) {
+                Long lastUpdated = (Long) obj.get("lastUpdated");
+
+                //if (10 <= (Long) obj.get("stars")) {
+                if (TIMESTAMP_FEBRUARY_2021 < lastUpdated) {
                     System.out.println("START ANALYSIS ON PROJECT NO." + counter);
 
                     JSONObject apiResponse = (JSONObject) obj.get("fullresponse");
@@ -153,7 +160,7 @@ public class MainScript {
             }
 
             MavenCoordinate[] toBeFilled = new MavenCoordinate[coordList.size()];
-            VulnerabilityTracer.traceProjectVulnerabilities(new File(jarPath), coordList.toArray(toBeFilled), repositoryName, link);
+            VulnerabilityTracer.traceProjectVulnerabilities(new File(jarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch);
         } finally {
             FileUtils.deleteDirectory(new File(repositoryName));
         }
