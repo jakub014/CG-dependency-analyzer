@@ -1,0 +1,96 @@
+group 'io.lindstrom'
+version '0.9'
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+ext.moduleName = 'io.lindstrom.mpd'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.9.5'
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.1")
+    testCompile("org.junit.jupiter:junit-jupiter-params:5.5.1")
+    testCompile 'org.xmlunit:xmlunit-matchers:2.4.0'
+    testCompile 'org.apache.commons:commons-lang3:3.6'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+archivesBaseName = "mpd-parser"
+
+if (project.hasProperty('ossrhUsername')) {
+    signing {
+        sign configurations.archives
+    }
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                    authentication(userName: ossrhUsername, password: ossrhPassword)
+                }
+
+                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                    authentication(userName: ossrhUsername, password: ossrhPassword)
+                }
+
+                pom.project {
+                    name 'mpd-parser'
+                    packaging 'jar'
+                    artifactId 'mpd-parser'
+                    description 'DASH MPD parser'
+                    url 'https://github.com/carlanton/mpd-tools'
+
+                    scm {
+                        connection 'scm:git:https://github.com/carlanton/mpd-tools.git'
+                        developerConnection 'scm:git:git@github.com:carlanton/mpd-tools.git'
+                        url 'https://github.com/carlanton/mpd-tools.git'
+                    }
+
+                    licenses {
+                        license {
+                            name 'MIT License'
+                            url 'https://github.com/carlanton/mpd-tools/blob/master/LICENSE'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id 'antonlindstrom'
+                            name 'Anton Lindström'
+                            email 'carlantonlindstrom@gmail.com'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

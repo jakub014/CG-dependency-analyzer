@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.erudika</groupId>
+		<artifactId>para-parent</artifactId>
+		<version>1.39.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>para-client</artifactId>
+	<packaging>jar</packaging>
+	<name>para-client</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.erudika</groupId>
+			<artifactId>para-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- JERSEY -->
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>${jerseyVer}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-common</artifactId>
+			<version>${jerseyVer}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.inject</groupId>
+			<artifactId>jersey-hk2</artifactId>
+			<version>${jerseyVer}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.connectors</groupId>
+			<artifactId>jersey-grizzly-connector</artifactId>
+			<version>${jerseyVer}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>validate-server</id>
+						<phase>validate</phase>
+						<configuration>
+							<skip>${skipTests}</skip>
+							<configLocation>../para-core/src/main/resources/checkstyle.xml</configLocation>
+							<encoding>UTF-8</encoding>
+							<consoleOutput>true</consoleOutput>
+							<failsOnError>true</failsOnError>
+							<linkXRef>false</linkXRef>
+						</configuration>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>javadocs</id>
+						<goals>
+							<goal>javadoc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<source>1.8</source>
+					<stylesheetfile>../para-core/src/main/javadoc/stylesheet.css</stylesheetfile>
+					<show>public</show>
+					<aggregate>true</aggregate>
+					<quiet>true</quiet>
+					<docfilessubdirs>true</docfilessubdirs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

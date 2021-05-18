@@ -1,0 +1,53 @@
+//
+configurations {
+    ktscript
+    log4j   { exclude group: 'org.slf4j', module: 'slf4j-api' }
+    logback { exclude group: 'org.slf4j', module: 'slf4j-api' }
+}
+
+dependencies {
+    ktscript project(':platformlib-ktscript-core')
+
+    logback (group: 'ch.qos.logback', name: 'logback-classic', version: project['logback.version'])
+    logback group: 'org.slf4j', name: 'log4j-over-slf4j', version: project['slf4j.version']
+    logback group: 'org.slf4j', name: 'jcl-over-slf4j', version: project['slf4j.version']
+    logback group: 'org.slf4j', name: 'jul-to-slf4j', version: project['slf4j.version']
+
+    log4j platform("org.apache.logging.log4j:log4j-bom:${project['log4j.version']}")
+    log4j 'org.apache.logging.log4j:log4j-core'
+    log4j 'org.apache.logging.log4j:log4j-1.2-api'
+    log4j 'org.apache.logging.log4j:log4j-jcl'
+    log4j 'org.apache.logging.log4j:log4j-slf4j-impl'
+    log4j 'org.apache.logging.log4j:log4j-jul'
+}
+
+task libsContentDependencies {
+    def dstFile = file("$buildDir/ktscript-libraries.txt")
+    outputs.file(dstFile)
+    doFirst {
+        dstFile.write("ktscript=" + configurations.ktscript.files.collect { it.name }.join(',') + \
+                      "\nlogback=" + configurations.logback.files.collect { it.name }.join(',') + \
+                      "\nlog4j=" + configurations.log4j.files.collect { it.name }.join(','))
+    }
+}
+
+processResources {
+    from libsContentDependencies
+    from (configurations.ktscript) {
+        into "ktscript-libs"
+    }
+    from (configurations.logback) {
+        into "ktscript-libs/loggers/logback"
+    }
+    from (configurations.log4j) {
+        into "ktscript-libs/loggers/log4j"
+    }
+}
+
+jar {
+  manifest {
+    attributes(
+      'Main-Class': 'com.platformlib.ktscript.application.KtScriptApplication'
+    )
+  }
+}

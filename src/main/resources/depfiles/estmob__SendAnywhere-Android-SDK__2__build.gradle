@@ -1,0 +1,71 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+    }
+}
+
+plugins {
+    id "com.jfrog.bintray" version "1.7"
+}
+
+apply plugin: 'com.android.library'
+
+static def date() {
+    TimeZone.default = TimeZone.getTimeZone('UTC')
+    return new Date()
+}
+
+static def buildVersionName() {
+    Calendar cal = Calendar.instance
+    cal.time = date()
+    int year = (cal.get(Calendar.YEAR) % 100) - 10
+    int month = cal.get(Calendar.MONTH) + 1
+    int day = cal.get(Calendar.DAY_OF_MONTH)
+
+    return String.format("%s.%s.%s", year, month, day)
+}
+
+static def buildVersionCode() {
+    def now = date()
+    def seconds = (int) (now.time / 1000)
+    return (int) (seconds / 3600)
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 30
+
+        versionName buildVersionName()
+        versionCode buildVersionCode()
+
+        consumerProguardFiles 'consumer-proguard-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api ('com.estmob.android:sendanywhere-core:11.1.22@aar')
+    implementation "com.google.android.gms:play-services-ads-identifier:$rootProject.ext.version_play_ads_identifier"
+    implementation "androidx.documentfile:documentfile:$rootProject.ext.version_documentfile"
+    implementation("com.squareup.okhttp3:okhttp") { version {
+        strictly "$rootProject.ext.version_okhttp"
+    }}
+    implementation "org.apache.httpcomponents:httpcore:$rootProject.ext.version_httpcore"
+    implementation 'androidx.annotation:annotation:1.1.0'
+}
+
+apply from: 'gradle-jcenter-push.gradle'
+

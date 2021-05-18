@@ -1,0 +1,31 @@
+apply plugin: "jacoco"
+
+jacoco {
+    toolVersion = "0.8.1"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.9
+            }
+        }
+    }
+}
+
+dependencies {
+    compile project(':ndbench-aws')
+    compile project(':ndbench-dynamodb-plugins')
+    compile 'com.amazonaws:amazon-dax-client:1.0.200704.0'
+    testCompile group: 'com.netflix.archaius', name: 'archaius2-guice', version: '2.1.11'
+    testCompile 'com.netflix.governator:governator-test-junit:[1.15.3,)'
+}

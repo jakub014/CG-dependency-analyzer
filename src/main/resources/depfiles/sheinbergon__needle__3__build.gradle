@@ -1,0 +1,70 @@
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+dependencies {
+    api project(':needle-core')
+    testImplementation project(':needle-core').sourceSets.test.output
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier 'javadoc'
+    from javadoc.destinationDir
+}
+
+publishing {
+    publications {
+        concurrent(MavenPublication) {
+            artifactId = "needle-concurrent"
+            from components.java
+            artifact tasks.javadocJar
+            artifact tasks.sourcesJar
+            pom {
+                name = project.name
+                description = 'Feature-rich CPU affinity for the JVM - Concurrent extensions'
+                url = 'https://github.com/sheinbergon/needle'
+                inceptionYear = '2020'
+
+                licenses {
+                    license {
+                        name = 'Apache License 2.0'
+                        url = 'https://github.com/sheinbergon/needle/blob/master/LICENSE'
+                        distribution = 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'sheinbergon'
+                        name = 'Idan Sheinberg'
+                        email = 'ishinberg0@gmail.com'
+                    }
+                }
+
+                scm {
+                    url = 'https://github.com/sheinbergon/needle'
+                    connection = 'scm:https://github.com/sheinbergon/needle.git'
+                    developerConnection = 'scm:git@github.com:sheinbergon/needle.git'
+                }
+            }
+
+            repositories {
+                mavenLocal()
+                maven {
+                    name "oss-sonatype-nexus"
+                    url nexus.url
+                    credentials {
+                        username = nexus.username
+                        password = nexus.password
+                    }
+                }
+            }
+        }
+    }
+}

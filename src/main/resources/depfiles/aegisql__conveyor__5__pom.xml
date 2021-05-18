@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.aegisql.persistence</groupId>
+		<artifactId>conveyor-persistence</artifactId>
+		<version>1.5.3-SNAPSHOT</version>
+	</parent>
+	<groupId>com.aegisql.conveyor-persistence-jdbc</groupId>
+	<artifactId>conveyor-persistence-jdbc</artifactId>
+	<version>1.5.3-SNAPSHOT</version>
+	<name>conveyor-persistence-jdbc</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.aegisql.persistence</groupId>
+			<artifactId>conveyor-persistence-core</artifactId>
+			<version>1.5.3-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aegisql</groupId>
+			<artifactId>conveyor-parallel</artifactId>
+			<version>1.5.3-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>[10.15,11.00)</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derbyclient</artifactId>
+			<version>[10.15,11.00)</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>[8.0,9.0)</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>[42.0,43.0)</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>[3.25,4.0)</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
+		<dependency>
+			<groupId>org.mariadb.jdbc</groupId>
+			<artifactId>mariadb-java-client</artifactId>
+			<version>[2.4.0,3.0.0)</version>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+</project>

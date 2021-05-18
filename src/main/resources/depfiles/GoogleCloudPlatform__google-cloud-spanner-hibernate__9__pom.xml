@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>google-cloud-spanner-hibernate</artifactId>
+    <groupId>com.google.cloud</groupId>
+    <version>1.5.1-SNAPSHOT</version>
+  </parent>
+
+  <properties>
+    <apache.lang.version>3.12.0</apache.lang.version>
+  </properties>
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>google-cloud-spanner-hibernate-dialect</artifactId>
+  <name>Google Cloud Spanner Dialect for Hibernate ORM</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.cloud</groupId>
+      <artifactId>google-cloud-spanner-jdbc</artifactId>
+    </dependency>
+
+    <!-- Used for reflection utilities -->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${apache.lang.version}</version>
+    </dependency>
+  </dependencies>
+</project>

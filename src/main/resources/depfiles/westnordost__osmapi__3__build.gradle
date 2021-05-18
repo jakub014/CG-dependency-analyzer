@@ -1,0 +1,8 @@
+archivesBaseName = "osmapi-map"
+version = map_version
+description = 'Client for the OSM API 0.6 - Getting map data, querying single elements and their relations toward each other and uploading changes in changesets, getting the history and specific versions of elements'
+
+dependencies {
+    compile "de.westnordost:osmapi-core:$core_version"
+    testCompile "de.westnordost:osmapi-changesets:$changesets_version"
+}

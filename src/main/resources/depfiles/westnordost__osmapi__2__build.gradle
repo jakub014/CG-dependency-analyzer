@@ -1,0 +1,8 @@
+archivesBaseName = "osmapi-changesets"
+version = changesets_version
+description = 'Client for the OSM API 0.6 - Finding changesets, changeset discussion, subscription and data'
+
+dependencies {
+    compile "de.westnordost:osmapi-core:$core_version"
+    compile "de.westnordost:osmapi-map:$map_version"
+}

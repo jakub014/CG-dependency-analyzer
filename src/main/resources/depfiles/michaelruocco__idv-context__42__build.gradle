@@ -1,0 +1,31 @@
+plugins {
+    id "java-test-fixtures"
+}
+
+configurations {
+    testFixturesApi.setCanBeResolved(true)
+}
+
+dependencies {
+    api project(":method-json")
+    implementation project(":method-entities")
+    implementation project(":otp-entities")
+    implementation project(":common-json")
+    implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
+    implementation "com.github.michaelruocco:json-adapter:${jsonAdapterVersion}"
+    implementation "com.neovisionaries:nv-i18n:${neovisionariesVersion}"
+
+    testImplementation testFixtures(project(":otp-entities"))
+    testImplementation "net.javacrumbs.json-unit:json-unit-assertj:${jsonUnitAssertjVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+
+    testFixturesImplementation "com.github.michaelruocco:file-loader:${fileLoaderVersion}"
+    testFixturesCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testFixturesAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+apply from: rootProject.file("publish.gradle")

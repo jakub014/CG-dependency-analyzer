@@ -1,0 +1,21 @@
+plugins {
+  id 'java-library'
+}
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  // Framework
+  api project(':jawn-core')
+  
+  // Connection pool
+  implementation 'com.zaxxer:HikariCP:4.0.2'
+  
+  
+  
+  // DB Driver for testing
+  testImplementation 'org.postgresql:postgresql:42.2.8'
+}
+

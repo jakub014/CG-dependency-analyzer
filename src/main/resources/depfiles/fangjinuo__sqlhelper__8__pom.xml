@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.github.fangjinuo.sqlhelper</groupId>
+        <artifactId>sqlhelper</artifactId>
+        <version>3.5.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <description>
+        Supports mango (an ORM framework)
+    </description>
+    <artifactId>sqlhelper-mango</artifactId>
+    <name>${groupId}:${artifactId}:${version}</name>
+    <dependencies>
+        <dependency>
+            <groupId>org.jfaster</groupId>
+            <artifactId>mango</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.fangjinuo.sqlhelper</groupId>
+            <artifactId>sqlhelper-dialect</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

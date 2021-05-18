@@ -1,0 +1,125 @@
+<!--
+
+       © Copyright 2016 IBM Corp.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+           http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.github.mfpdev</groupId>
+  <artifactId>mfp-adapters-swagger-codegen</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+  <name>MobileFirst Adapter Swagger-Codegen Extension</name>
+  <description>
+  	This module provides a swagger-codegen language extension for JAXRS to enable quick and 
+    easy hosting of ReST services described using Open API specs.
+  </description>
+  <url>https://github.com/mfpdev/mfp-advanced-adapters-samples/tree/development/mfp-adapters-swagger-codegen</url>
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <name>Venkatakrishnan</name>
+      <email>svkrish@in.ibm.com</email>
+      <organization>IBM</organization>
+      <organizationUrl>http://www.ibm.com</organizationUrl>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git@github.com:mfpdev/mfp-advanced-adapters-samples.git</connection>
+    <developerConnection>scm:git:git@github.com:mfpdev/mfp-advanced-adapters-samples.git</developerConnection>
+    <url>git@github.com:mfpdev/mfp-advanced-adapters-samples.git</url>
+  </scm>
+  <prerequisites>
+    <maven>2.2.0</maven>
+  </prerequisites>
+  <build>
+  	<plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.12</version>
+        <configuration>
+          <systemProperties>
+            <property>
+              <name>loggerPath</name>
+              <value>conf/log4j.properties</value>
+            </property>
+          </systemProperties>
+          <argLine>-Xms512m -Xmx1500m</argLine>
+          <parallel>methods</parallel>
+          <forkMode>pertest</forkMode>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>add_sources</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/main/java</source>
+              </sources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>add_test_sources</id>
+            <phase>generate-test-sources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/test/java</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-codegen</artifactId>
+      <version>${swagger-codegen-version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+  <properties>
+    <swagger-codegen-version>2.1.6</swagger-codegen-version>
+    <maven-plugin-version>1.0.0</maven-plugin-version>
+    <junit-version>4.8.1</junit-version>
+  </properties>
+</project>

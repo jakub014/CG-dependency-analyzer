@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.geotools</groupId>
+    <artifactId>app-schema</artifactId>
+    <version>26-SNAPSHOT</version>
+  </parent>
+
+  <groupId>org.geotools</groupId>
+  <artifactId>gt-sample-data-access</artifactId>
+  <name>Sample DataAccess</name>
+
+  <description>DataAccess for testing complex feature integration without introducing app-schema dependency.</description>
+
+  <developers>
+    <developer>
+      <id>nmco</id>
+      <name>Nuno Oliveira</name>
+      <email>nuno.oliveira@geo-solutions.it</email>
+      <organization>GeoSolutions</organization>
+      <roles>
+        <role>Module Maintainer</role>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>fernandor777</id>
+      <name>Fernando Mino</name>
+      <email>fernando.mino@geo-solutions.it</email>
+      <organization>GeoSolutions</organization>
+      <roles>
+        <role>Module Maintainer</role>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>bencaradocdavies</id>
+      <name>Ben Caradoc-Davies</name>
+      <email>ben@transient.nz</email>
+      <organization>Transient Software Limited</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+      <timezone>Pacific/Auckland</timezone>
+    </developer>
+  </developers>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.geotools.xsd</groupId>
+      <artifactId>gt-xsd-gml3</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+
+</project>

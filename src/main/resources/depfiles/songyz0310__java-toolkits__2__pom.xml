@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.songyz0310</groupId>
+		<artifactId>java-toolkits</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	<artifactId>java-toolkits-file</artifactId>
+	<version>0.0.1</version>
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:git:https://github.com/songyz0310/java-toolkits.git</connection>
+		<developerConnection>scm:git:https://github.com/songyz0310/java-toolkits.git</developerConnection>
+		<url>git:https://github.com/songyz0310/java-toolkits.git</url>
+	</scm>
+	<developers>
+		<developer>
+			<name>songyz</name>
+			<email>songyinzeng@gmail.com</email>
+			<organization>i1stcs</organization>
+		</developer>
+	</developers>
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.songyz0310</groupId>
+			<artifactId>java-toolkits-utility</artifactId>
+			<version>${toolkits-utility.version}</version>
+		</dependency>
+	</dependencies>
+	<properties>
+		<toolkits-utility.version>1.0.1-SNAPSHOT</toolkits-utility.version>
+	</properties>
+</project>

@@ -1,0 +1,51 @@
+import org.apache.tools.ant.filters.*
+
+plugins {
+  id 'java'
+  id 'war'
+}
+
+configurations {
+  langResources
+}
+
+dependencies {
+  implementation "com.fasterxml.jackson.core:jackson-databind"
+  implementation(project(':dcs:model'))
+
+  [
+    ":core",
+    ":lang:polish",
+    ":lang:lucene"
+  ].each { prj ->
+    implementation(project(prj))
+    langResources project(path: prj, configuration: 'langResources')
+  }
+
+  compileOnly "org.slf4j:slf4j-api"
+
+  testImplementation "org.mockito:mockito-core"
+  testImplementation "org.apache.logging.log4j:log4j-slf4j18-impl"
+}
+
+// Exclude slf4j from any dependency, it should be provided as part of the container.
+configurations.implementation.dependencies.each { module ->
+  module.exclude group: 'org.slf4j'
+}
+
+war {
+  def antPrj = new org.apache.tools.ant.Project()
+  antPrj.setProperty("project.version", project.version)
+  inputs.property("injected.project.version", project.version)
+
+  filesMatching(["**/dcs.yaml"], {
+    filteringCharset = 'UTF-8'
+    filter(ExpandProperties, project: antPrj)
+    filter(FixCrLfFilter, eol: FixCrLfFilter.CrLf.newInstance("lf"))
+  })
+
+  from(configurations.langResources, {
+    into "resources"
+  })
+}
+

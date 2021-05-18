@@ -1,0 +1,14 @@
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass.set('com.ainrif.acorn.AcornCli')
+}
+
+dependencies {
+    implementation project(':core')
+
+    implementation 'info.picocli:picocli'
+    implementation 'org.slf4j:slf4j-simple'
+}

@@ -1,0 +1,5 @@
+dependencies {
+    annotationProcessor project(":inject-java")
+    api project(":function")
+    api project(":http-client")
+}

@@ -1,0 +1,45 @@
+archivesBaseName = "gax"
+
+// TODO: Populate this from dependencies.properties version property (for proper Gradle-Bazel sync)
+project.version = "1.64.1-SNAPSHOT" // {x-version-update:gax:current}
+
+dependencies {
+  compile libraries['maven.com_google_guava_guava'],
+    libraries['maven.com_google_code_findbugs_jsr305'],
+    libraries['maven.org_threeten_threetenbp'],
+    libraries['maven.com_google_auth_google_auth_library_oauth2_http'],
+    libraries['maven.com_google_api_api_common'],
+    libraries['maven.io_opencensus_opencensus_api']
+
+  compileOnly libraries['maven.com_google_auto_value_auto_value']
+
+  testCompile libraries['maven.junit_junit'],
+    libraries['maven.org_mockito_mockito_core'],
+    libraries['maven.com_google_truth_truth'],
+    libraries['maven.com_google_auto_value_auto_value']
+
+  apt libraries['maven.com_google_auto_value_auto_value']
+
+  shadowNoGuava libraries['maven.com_google_guava_guava']
+}
+
+ext.generatedOutputDir = file("${buildDir}/generated-resources")
+task generateProjectProperties {
+  ext.outputFile = file("${generatedOutputDir}/dependencies.properties")
+  outputs.file(outputFile)
+  doLast {
+    outputFile.text = "version.gax=${project.version}"
+  }
+}
+sourceSets.main.output.dir generatedOutputDir, builtBy: generateProjectProperties
+
+jar {
+  manifest {
+    attributes 'Specification-Title': project.name,
+      'Specification-Version': project.version,
+      'Specification-Vendor': libraryVendor,
+      'Implementation-Title': project.name,
+      'Implementation-Version': project.version,
+      'Implementation-Vendor': libraryVendor
+  }
+}

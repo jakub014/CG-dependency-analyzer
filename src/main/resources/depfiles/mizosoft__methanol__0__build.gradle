@@ -1,0 +1,402 @@
+// TODO get 1.8.0 from main upstream when released
+buildscript {
+  repositories {
+    maven { url "https://jitpack.io" }
+    mavenCentral()
+  }
+  dependencies {
+    classpath "com.github.beryx:gradle-modules-plugin:1.8.0-rc4"
+  }
+}
+
+plugins {
+  id 'org.checkerframework' version '0.5.20' apply false
+//  id 'org.javamodularity.moduleplugin' version '1.7.0' apply false
+  id 'net.ltgt.errorprone' version '2.0.1' apply false
+  id 'net.ltgt.nullaway' version '1.1.0' apply false
+  id 'jacoco'
+  id 'com.github.kt3k.coveralls' version '2.12.0'
+  id 'com.github.ben-manes.versions' version '0.38.0'
+  id 'io.github.gradle-nexus.publish-plugin' version '1.0.0'
+}
+
+ext {
+  versions = [
+      'junitJupiter'    : '5.7.0',
+      'junitPlatform'   : '1.7.0',
+      'reactiveStreams' : '1.0.3',
+      'checkerFramework': '3.12.0',
+      'gson'            : '2.8.6',
+      'jackson'         : '2.12.3',
+      'protobuf'        : '3.12.2',
+      'errorprone'      : '2.6.0',
+      'brotliDec'       : '0.1.2',
+      'okhttp'          : '5.0.0-alpha.2',
+      'jmh'             : '1.29',
+      'jacoco'          : '0.8.5',
+      'reactor'         : '3.4.5',
+      'nullAway'        : '0.7.9',
+      'jaxb'            : '2.3.1',
+      'jaxbRuntime'     : '2.7.6',
+      'jsoup'           : '1.13.1',
+      'testng'          : '7.4.0',
+      'junitParams'     : '5.7.0',
+      'jimfs'           : '1.2',
+      'assertj'         : '3.19.0',
+      'awaitability'    : '4.0.3',
+      'hamcrest'        : '2.2'
+  ]
+
+  deps = [
+      'junitApi'               : "org.junit.jupiter:junit-jupiter-api:${versions.junitJupiter}",
+      'junitEngine'            : "org.junit.jupiter:junit-jupiter-engine:${versions.junitJupiter}",
+      'junitPlatformLauncher'  : "org.junit.platform:junit-platform-launcher:${versions.junitPlatform}",
+      'reactiveStreamsTckFlow' : "org.reactivestreams:reactive-streams-tck-flow:${versions.reactiveStreams}",
+      'checkerFramework'       : "org.checkerframework:checker:${versions.checkerFramework}",
+      'checkerFrameworkQual'   : "org.checkerframework:checker-qual:${versions.checkerFramework}",
+      'gson'                   : "com.google.code.gson:gson:${versions.gson}",
+      'jacksonDatabind'        : "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}",
+      'protobufJava'           : "com.google.protobuf:protobuf-java:${versions.protobuf}",
+      'protobufCompiler'       : "com.google.protobuf:protoc:${versions.protobuf}",
+      'errorprone'             : "com.google.errorprone:error_prone_core:${versions.errorprone}",
+      'errorproneAnnotations'  : "com.google.errorprone:error_prone_annotations:${versions.errorprone}",
+      'brotliDec'              : "org.brotli:dec:${versions.brotliDec}",
+      'mockWebServer'          : "com.squareup.okhttp3:mockwebserver3:${versions.okhttp}",
+      'reactiveStreams'        : "org.reactivestreams:reactive-streams:${versions.reactiveStreams}",
+      'reactiveStreamsExamples': "org.reactivestreams:reactive-streams-examples:${versions.reactiveStreams}",
+      'jmhCore'                : "org.openjdk.jmh:jmh-core:$versions.jmh",
+      'jmhAnnotationProcessor' : "org.openjdk.jmh:jmh-generator-annprocess:$versions.jmh",
+      'okhttpTls'              : "com.squareup.okhttp3:okhttp-tls:${versions.okhttp}",
+      'reactorCore'            : "io.projectreactor:reactor-core:${versions.reactor}",
+      'nullAway'               : "com.uber.nullaway:nullaway:${versions.nullAway}",
+      'jaxbApi'                : "javax.xml.bind:jaxb-api:${versions.jaxb}",
+      'jaxbRuntime'            : "org.eclipse.persistence:org.eclipse.persistence.moxy:${versions.jaxbRuntime}",
+      'jsoup'                  : "org.jsoup:jsoup:${versions.jsoup}",
+      'testng'                 : "org.testng:testng:${versions.testng}",
+      'junitParams'            : "org.junit.jupiter:junit-jupiter-params:${versions.junitParams}",
+      'jimfs'                  : "com.google.jimfs:jimfs:${versions.jimfs}",
+      'assertj'                : "org.assertj:assertj-core:${versions.assertj}",
+      'awaitability'           : "org.awaitility:awaitility:${versions.awaitability}",
+      'hamcrest'               : "org.hamcrest:hamcrest:${versions.hamcrest}"
+  ]
+
+  isJavaProject = { project ->
+    !(project.name in ['methanol-parent', 'brotli-jni'])
+  }
+
+  isPublished = { project ->
+    project.name in [
+        'methanol',
+        'methanol-benchmarks',
+        'methanol-brotli',
+        'methanol-gson',
+        'methanol-jackson',
+        'methanol-jackson-flux',
+        'methanol-jaxb',
+        'methanol-protobuf',
+        'methanol-testutils'
+    ]
+  }
+
+  // Project has tests that contribute to coverage?
+  contributesToTests = { project ->
+    project.name in [
+        'methanol',
+        'methanol-blackbox',
+        'methanol-brotli',
+        'methanol-gson',
+        'methanol-jackson',
+        'methanol-jackson-flux',
+        'methanol-jaxb',
+        'methanol-protobuf'
+    ]
+  }
+
+  // Project is included in coverage report?
+  contributesToCoverageReport = { project ->
+    isPublished(project) && project.name != 'methanol-benchmarks'
+  }
+
+  getArtifactId = { project ->
+    if (!isPublished(project)) return null
+
+    return project.name == 'methanol-benchmarks' ? 'benchmarks' : project.name
+  }
+}
+
+allprojects {
+  group = 'com.github.mizosoft.methanol'
+  ext.artifactId = getArtifactId(project)
+  version = '1.5.0-SNAPSHOT'
+
+  repositories {
+    mavenCentral()
+  }
+
+  jacoco {
+    toolVersion = versions.jacoco
+  }
+}
+
+subprojects { subproject ->
+  if (!isJavaProject(subproject)) return
+
+  apply plugin: 'java-library'
+  apply plugin: 'org.checkerframework'
+  apply plugin: 'org.javamodularity.moduleplugin'
+  apply plugin: 'net.ltgt.errorprone'
+  apply plugin: 'net.ltgt.nullaway'
+  apply plugin: 'idea'
+  apply plugin: 'jacoco'
+
+  sourceCompatibility = JavaVersion.VERSION_11
+
+  dependencies {
+    compileOnly deps.checkerFrameworkQual
+    compileOnly deps.errorproneAnnotations
+    checkerFramework deps.checkerFramework
+    errorprone deps.errorprone
+    errorprone deps.nullAway
+
+    testCompileOnly deps.checkerFrameworkQual
+    testCompileOnly deps.errorproneAnnotations
+    testImplementation deps.junitApi
+    testRuntimeOnly deps.junitEngine
+
+    // TODO start incorporating AssertJ & awaitability in tests
+    testImplementation deps.assertj
+    testImplementation deps.awaitability
+    testImplementation deps.hamcrest
+  }
+
+  // Add helper extensions for modular subprojects
+  if (subproject.extensions.findByName('moduleName')) {
+    configure(extensions) {
+      add('addReads') { task, targetModule ->
+        configure(task) {
+          moduleOptions {
+            def module = moduleName as String
+            addModules += [module, targetModule]
+            addReads.merge(module, targetModule) { v1, v2 -> "$v1,$v2" as String }
+          }
+        }
+      }
+
+      add('addOpens') { task, openedPackage, targetModule ->
+        configure(task) {
+          moduleOptions {
+            addModules += [targetModule]
+            def opensExpr = "$moduleName/$openedPackage" as String;
+            addOpens.merge(opensExpr, targetModule) { v1, v2 -> "$v1,$v2" as String }
+          }
+        }
+      }
+    }
+  }
+
+  checkerFramework {
+    excludeTests = true
+    if (project.hasProperty('enableCheckerframework')) {
+      checkers = [
+          'org.checkerframework.checker.nullness.NullnessChecker'
+      ]
+    }
+  }
+
+  tasks.withType(JavaCompile) {
+    options.encoding = 'utf-8'
+    options.errorprone {
+      enabled = subproject.hasProperty('enableErrorprone')
+
+      nullaway {
+        annotatedPackages.add('com.github.mizosoft.methanol')
+        excludedFieldAnnotations = ['org.checkerframework.checker.nullness.qual.MonotonicNonNull']
+      }
+    }
+  }
+
+  compileTestJava {
+    options.errorprone.enabled = false
+  }
+
+  javadoc {
+    options {
+      links 'https://docs.oracle.com/en/java/javase/11/docs/api/'
+      addBooleanOption('Xdoclint:-missing', true)
+    }
+  }
+
+  tasks.withType(Test) {
+    testLogging {
+      showStandardStreams = true
+      exceptionFormat = 'full'
+    }
+  }
+
+  test {
+    useJUnitPlatform()
+    testLogging {
+      events 'skipped', 'failed'
+      exceptionFormat 'full'
+      showCauses true
+    }
+  }
+}
+
+nexusPublishing {
+  repositories {
+    sonatype {
+      username = project.findProperty('nexusUsername')
+      password = project.findProperty('nexusPassword')
+    }
+  }
+}
+
+subprojects { subproject ->
+  if (!isPublished(subproject)) return
+
+  apply plugin: 'maven-publish'
+  apply plugin: 'signing'
+
+  publishing {
+    java {
+      withSourcesJar()
+      withJavadocJar()
+    }
+
+    publications {
+      maven(MavenPublication) {
+        artifactId = project.ext.artifactId
+        from components.java
+
+        pom {
+          name = project.name
+          description = 'Lightweight HTTP extensions for Java'
+          url = 'https://github.com/mizosoft/methanol'
+          inceptionYear = '2019'
+
+          scm {
+            url = 'https://github.com/mizosoft/methanol'
+            connection = 'scm:git:https://github.com/mizosoft/methanol.git'
+            developerConnection = 'scm:git:ssh://git@github.com/mizosoft/methanol.git'
+          }
+
+          developers {
+            developer {
+              id = 'mizosoft'
+              name = 'Moataz Abdelnasser'
+              email = 'moataz.nasser20@gmail.com'
+              url = 'https://github.com/mizosoft'
+            }
+          }
+
+          licenses {
+            license {
+              name = 'MIT license'
+              url = 'https://opensource.org/licenses/MIT'
+            }
+          }
+        }
+      }
+    }
+  }
+
+  signing {
+    // Workaround for https://github.com/gradle/gradle/issues/11387
+    required { false }
+
+    def signingKeyId = project.findProperty("signingKeyId")
+    def signingKey = project.findProperty("signingKey")
+    def signingPassword = project.findProperty("signingPassword")
+    useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+    sign publishing.publications.maven
+  }
+}
+
+task jacocoMerge(type: JacocoMerge) {
+  subprojects.each { subproject ->
+    if (contributesToTests(subproject)) {
+      executionData subproject.tasks.withType(Test)
+    }
+  }
+}
+
+task jacocoRootReport(type: JacocoReport) {
+  dependsOn jacocoMerge
+  executionData jacocoMerge.destinationFile
+  subprojects.each { subproject ->
+    if (contributesToCoverageReport(subproject)) {
+      additionalSourceDirs.from subproject.sourceSets.main.allSource.srcDirs
+      sourceDirectories.from subproject.sourceSets.main.allSource.srcDirs
+      classDirectories.from subproject.sourceSets.main.output
+    }
+  }
+  reports {
+    xml.enabled true
+    html.enabled true
+    csv.enabled false
+  }
+}
+
+coveralls {
+  jacocoReportPath = jacocoRootReport.reports.xml.outputLocation
+  subprojects.each { subproject ->
+    if (contributesToCoverageReport(subproject)) {
+      sourceDirs += subproject.sourceSets.main.allSource.srcDirs.flatten()
+    }
+  }
+}
+
+tasks.coveralls {
+  dependsOn jacocoRootReport
+  onlyIf { System.getenv().GITHUB_ACTIONS }
+}
+
+/** This task generates an aggregate Javadoc for all published modules (except benchmarks). */
+task rootJavadoc(type: Javadoc) {
+  def lazyModulePath = files() // --module-path
+  def moduleSrcPaths = [:] // --module-source-path for multi-module compilation
+  subprojects { subproject ->
+    if (isPublished(subproject) && subproject != project(':methanol-benchmarks')) {
+      source subproject.sourceSets.main.allJava
+      afterEvaluate {
+        lazyModulePath.from subproject.sourceSets.main.compileClasspath
+        if (subproject.extensions.findByName('moduleName')) {
+          moduleSrcPaths[subproject.moduleName] = subproject.file('src/main/java')
+        }
+      }
+    }
+  }
+
+  options {
+    links 'https://docs.oracle.com/en/java/javase/16/docs/api/'
+    addBooleanOption('Xdoclint:-missing', true)
+    addStringOption('doctitle', "Methanol ${project.version} API")
+    addStringOption('windowtitle', "Methanol ${project.version} API")
+  }
+
+  destinationDir = file("${project.buildDir}/docs/javadoc")
+
+  doFirst {
+    // Must be run in JDK12+ as the specific form of --module-source-path
+    // is used because module names don't match containing directory names
+    // https://bugs.java.com/bugdatabase/view_bug.do?bug_id=8208608
+    if (!JavaVersion.current().isJava12Compatible()) {
+      throw new GradleException('JDK 12 or later is required for multimodule Javadoc');
+    }
+
+    // these would otherwise be in gradlew.projectsEvaluated {} but it complains
+    options {
+      modulePath lazyModulePath.files.toList()
+      addMultilineStringsOption('-module-source-path').with {
+        value = moduleSrcPaths.collect { entry ->
+          "${entry.key}=${entry.value}" as String
+        }
+      }
+    }
+  }
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}

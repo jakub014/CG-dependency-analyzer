@@ -1,0 +1,97 @@
+apply plugin: "io.spring.dependency-management"
+apply plugin: "signing"
+
+dependencies {
+    // jms
+    implementation("javax.jms:jms:${jmsVersion}")
+
+    // depend project
+    implementation(project(":weevent-client"))
+
+    // log for test
+    testImplementation("org.apache.logging.log4j:log4j-slf4j-impl:${log4jVersion}")
+}
+
+jar {
+    destinationDir file("dist/apps")
+    archiveName project.name + "-" + version + ".jar"
+
+    exclude "**/*.xml"
+    exclude "**/*.properties"
+
+    doLast {
+        copy {
+            from file("src/main/resources/")
+            into "dist/conf"
+        }
+        copy {
+            from configurations.runtime
+            into "dist/lib"
+        }
+        copy {
+            from file("build/libs/")
+            into "dist/apps"
+        }
+    }
+}
+
+// for upload to maven
+task sourcesJar(type: Jar) {
+    classifier = "sources"
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = "javadoc"
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives jar
+    archives sourcesJar
+    archives javadocJar
+}
+
+/*
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: sonatypeUsername, password: sonatypePassword)
+            }
+            pom.project {
+                name project.name
+                packaging 'jar'
+                description 'The Java jms sdk for WeEvent.'
+                url 'https://github.com/WeBankFinTech/WeEvent'
+                scm {
+                    url 'scm:git@github.com:WeBankFinTech/WeEvent.git'
+                    connection 'scm:git@github.com:WeBankFinTech/WeEvent.git'
+                    developerConnection 'git@github.com:WeBankFinTech/WeEvent.git'
+                }
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'weevent'
+                        name 'weevent'
+                        email 'weevent@webank.com'
+                    }
+                }
+            }
+        }
+    }
+}
+signing {
+    required { gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}*/

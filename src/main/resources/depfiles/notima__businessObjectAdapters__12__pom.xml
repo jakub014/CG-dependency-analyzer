@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<parent>
+		<groupId>org.notima.generic.businessobjects.adapter</groupId>
+		<artifactId>businessObjectAdapters</artifactId>
+		<version>1.8.11-SNAPSHOT</version>
+	</parent>
+	
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>emailAdapter</artifactId>
+	<packaging>bundle</packaging>
+	<name>Email Sender</name>
+	
+	<dependencyManagement>
+	
+		<dependencies>
+		
+	  		<dependency>
+	  			<groupId>me.sniggle</groupId>
+	  			<artifactId>simple-pgp-java</artifactId>
+	  			<version>0.1.0</version>
+	  		</dependency>
+		
+		</dependencies>
+	
+	</dependencyManagement>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>
+				org.notima.generic.businessobjects.adapter
+			</groupId>
+			<artifactId>adapterTools</artifactId>
+			<version>${version}</version>
+			<type>bundle</type>
+		</dependency>
+        
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
+		</dependency>  
+		
+		<dependency>
+			<groupId>me.sniggle</groupId>
+			<artifactId>simple-pgp-java</artifactId>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>4.2.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-Activator>org.notima.generic.pgp.Activator</Bundle-Activator>	
+						<Private-Package>
+							sun.security.util
+						</Private-Package>	
+						<Export-Package>
+							org.notima.generic.pgp.*,
+							me.sniggle.pgp.crypt.*,
+						</Export-Package>
+						<Import-Package>
+							org.notima.generic.businessobjects,
+							org.notima.generic.businessobjects.exception,
+							org.notima.generic.businessobjects.util,
+							org.notima.generic.ifacebusinessobjects,
+							org.notima.businessobjects.adapter.tools,
+							org.notima.businessobjects.adapter.tools.table,
+							org.slf4j,
+							org.notima.bg,
+							org.notima.bg.bgmax,
+							org.notima.bg.lb,
+							org.notima.tilisiirto,
+							com.google.gson,
+							com.google.gson.annotations,
+							javax.xml.ws,
+							javax.xml.namespace,
+							javax.xml.bind;version="[2.2,3)",
+							javax.xml.bind.annotation;version="[2.2,3)",
+							javax.xml.*,
+							javax.net.*,
+							javax.naming,
+							org.apache.karaf.shell.api.action,
+							org.apache.karaf.shell.api.action.lifecycle,
+							org.apache.karaf.shell.api.console,
+							org.apache.karaf.shell.support.completers,
+							org.apache.karaf.shell.support.table,
+							org.osgi.*,*
+						</Import-Package>
+						<Embed-Dependency>*;scope=compile|runtime;
+						artifactId=!slf4j-api|slf4j-log4j12|org.apache.felix.utils|org.apache.karaf.jaas.boot|org.apache.karaf.shell.core|org.apache.karaf.util|log4j|businessobjects|bankgiro-api|sshd-core|threeten-jaxb-core|jline|javax.persistence-api|jakarta.activation-api|jakarta.xml.bind-api</Embed-Dependency>
+						<Embed-Transitive>true</Embed-Transitive>
+        				<Karaf-Commands>org.notima.generic.pgp.command*</Karaf-Commands>
+					</instructions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			
+		</plugins>
+	</build>
+
+</project>

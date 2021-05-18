@@ -1,0 +1,81 @@
+/*
+ * Copyright © 2018-2019 Apple Inc. and the ServiceTalk project authors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: "io.servicetalk.servicetalk-gradle-plugin-internal-core"
+apply plugin: "java-platform"
+
+rootProject.subprojects.findAll { !it.name.contains("bom") && !it.name.contains("examples") }.each {
+  dependencies.constraints.add("api", it)
+}
+
+// Keep publishing and signing configuration in sync with ServiceTalkLibraryPlugin.groovy from
+// servicetalk-gradle-plugin-internal
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      // publish POM
+      from components.javaPlatform
+      pom {
+        name = project.name
+        description = 'A networking framework that evolves with your application'
+        url = 'https://servicetalk.io'
+        licenses {
+          license {
+            name = 'The Apache License, Version 2.0'
+            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+          }
+        }
+        developers {
+          developer {
+            id = 'servicetalk-project-authors'
+            name = 'ServiceTalk project authors'
+            email = 'servicetalk-oss@group.apple.com'
+          }
+        }
+        scm {
+          connection = 'scm:git:git://github.com/apple/servicetalk.git'
+          developerConnection = 'scm:git:ssh://github.com:apple/servicetalk.git'
+          url = 'https://github.com/apple/servicetalk'
+        }
+      }
+    }
+  }
+
+  if (!repositories) {
+    repositories {
+      maven {
+        name = "sonatype"
+        def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+        def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+        url = project.isReleaseBuild ? releasesRepoUrl : snapshotsRepoUrl
+        credentials {
+          username = System.getenv("SONATYPE_USER")
+          password = System.getenv("SONATYPE_TOKEN")
+        }
+      }
+    }
+  }
+}
+
+if (!!findProperty("signingKey") && !!findProperty("signingPassword")) {
+  pluginManager.apply("signing")
+  signing {
+    def signingKey = findProperty("signingKey")
+    def signingPassword = findProperty("signingPassword")
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign publishing.publications.mavenJava
+  }
+}

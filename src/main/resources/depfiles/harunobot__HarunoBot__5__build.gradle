@@ -1,0 +1,42 @@
+plugins {
+    id 'java-library'
+}
+
+archivesBaseName = 'haruno-database-support'
+version = "0.1-beta"
+description = 'Haruno Database Support'
+
+jar {
+    enabled = true
+    baseName = archivesBaseName
+//    classifier = ''
+    manifest {
+        attributes 'Implementation-Title': 'Haruno Database Support', 'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url "https://repo1.maven.org/maven2/"
+    }
+}
+
+test {
+    useJUnit()
+}
+
+//https://github.com/howmanybots/onebot/blob/master/v11/specs/README.md
+
+dependencies {
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+    
+//    api 'org.postgresql:postgresql:42.2.18'
+    api 'javax.validation:validation-api:2.0.1.Final'
+    api 'com.vladmihalcea:hibernate-types-52:2.10.0'
+    api 'org.hibernate:hibernate-hikaricp:5.4.20.Final'
+    
+}
+
+

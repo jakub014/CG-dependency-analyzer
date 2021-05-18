@@ -1,0 +1,17 @@
+sourceSets {
+    
+    main {
+        java {
+            srcDirs 'src'
+        }
+        //compileClasspath = configurations.compileOnly
+    }
+     
+}
+
+dependencies {
+	//compile project(':bboss-ticket')
+}
+
+
+ 

@@ -1,0 +1,6 @@
+dependencies {
+    implementation project(":push-notification-entities")
+    implementation project(":method-use-cases")
+}
+
+apply from: rootProject.file("publish.gradle")

@@ -1,0 +1,64 @@
+import org.gradle.internal.jvm.Jvm
+
+plugins {
+  id 'com.github.johnrengelman.shadow' version '5.2.0'
+  id 'java-library'
+  id 'maven-publish'
+}
+
+//<editor-fold desc="ShadowJar configuration">
+// disable default jar tasks
+configurations.runtimeOnly.artifacts.removeAll { it.archiveTask.is jar }
+tasks.getByName('jar').enabled = false
+// create extra configuration for shaded dependencies, so they're not included in the pom
+def shadedConfig = configurations.create('compileShaded')
+configurations.compileOnly.extendsFrom(shadedConfig)
+shadowJar {
+  minimize()
+  archiveClassifier.set('')
+  configurations = [shadedConfig]
+  relocate 'com.google.auto.common', 'autovaluemoshi.shaded.com.google.auto.common'
+  relocate 'com.google.common', 'autovaluemoshi.shaded.com.google.common'
+  relocate 'com.google.thirdparty', 'autovaluemoshi.shaded.com.google.thirdparty'
+  exclude 'afu/**'
+  exclude 'org/**'
+  exclude 'com/google/errorprone/annotations/**'
+  exclude 'com/google/j2objc/annotations/**'
+  exclude 'javax/**'
+  exclude 'META-INF/maven/**'
+}
+artifacts {
+  runtime shadowJar
+  archives shadowJar
+}
+//</editor-fold>
+
+sourceCompatibility = versions.java
+targetCompatibility = versions.java
+
+dependencies {
+  annotationProcessor libraries.incapProcessor
+  annotationProcessor libraries.autoService
+  annotationProcessor libraries.autoValue
+  compileOnly libraries.incap
+  compileOnly libraries.autoService
+
+  api libraries.autoValue
+  api libraries.autoValueAnnotations
+  api project(':auto-value-moshi-runtime')
+  compileShaded libraries.guava
+  compileShaded libraries.autoCommon
+  implementation libraries.javaPoet
+  implementation libraries.moshi
+
+  testImplementation libraries.junit
+  testImplementation libraries.truth
+  testImplementation libraries.compileTesting
+  if (!Jvm.current().javaVersion.isJava9Compatible()) {
+    // Only necessary for JDK <9
+    // https://github.com/google/compile-testing/issues/28#issuecomment-69204681
+    testImplementation files(Jvm.current().getToolsJar())
+  }
+}
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

@@ -1,0 +1,110 @@
+/*
+ * Copyright 2002-2020 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+plugins {
+	id 'org.asciidoctor.jvm.pdf'
+	id 'org.asciidoctor.jvm.convert'
+}
+
+description = "Spring Cloud App Broker Documentation"
+
+configurations {
+	docs
+}
+
+dependencies {
+	implementation enforcedPlatform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+	implementation project(":spring-cloud-app-broker-core")
+	implementation "org.springframework.boot:spring-boot-starter"
+	implementation "org.springframework.boot:spring-boot-starter-data-r2dbc"
+	implementation "org.springframework.boot:spring-boot-starter-security"
+	implementation "org.springframework.boot:spring-boot-starter-tomcat"
+	implementation "io.projectreactor:reactor-core"
+	implementation "io.r2dbc:r2dbc-h2:0.8.0.RELEASE"
+
+	docs "io.spring.docresources:spring-doc-resources:0.2.1.RELEASE@zip"
+}
+
+javadoc {
+	enabled = false
+}
+
+task prepareAsciidocBuild(type: Sync) {
+	dependsOn configurations.docs
+	// copy doc resources
+	from {
+		configurations.docs.collect { zipTree(it) }
+	}
+	// and doc sources
+	from "src/docs/asciidoc"
+	// to a temporary build directory
+	into "$buildDir/asciidoc"
+}
+
+asciidoctorPdf {
+	dependsOn prepareAsciidocBuild
+	baseDirFollowsSourceFile()
+
+	asciidoctorj {
+		sourceDir "$buildDir/asciidoc"
+		inputs.dir(sourceDir)
+		sources {
+			include 'index.adoc'
+		}
+		options doctype: 'book'
+		attributes 'icons': 'font',
+		'sectanchors': '',
+		'sectnums': '',
+		'toc': '',
+		'source-highlighter' : 'coderay',
+		revnumber: project.version,
+		'project-version': project.version
+	}
+}
+
+asciidoctor {
+	dependsOn asciidoctorPdf
+  	baseDirFollowsSourceFile()
+	sourceDir = file("$buildDir/asciidoc")
+	sources {
+		include '*.adoc'
+	}
+	resources {
+		from(sourceDir) {
+			include 'images/*', 'css/**', 'js/**'
+		}
+	}
+	logDocuments = true
+	options doctype: 'book', eruby: 'erubis'
+	attributes 'revnumber': project.version,
+			'spring-version': project.version,
+			'branch-or-tag': project.version.endsWith('SNAPSHOT') ? 'main' : "v${project.version}",
+			'icons': 'font',
+			'idprefix': '',
+			'idseparator': '-',
+			docinfo: 'shared',
+			sectanchors: '',
+			sectnums: '',
+			stylesdir: "css/",
+			stylesheet: 'spring.css',
+			'linkcss': true,
+			'nofooter': true,
+			'allow-uri-read': '',
+			'source-highlighter': 'highlight.js',
+			'highlightjsdir': 'js/highlight',
+			'highlightjs-theme': 'github',
+			'project-version': project.version
+}

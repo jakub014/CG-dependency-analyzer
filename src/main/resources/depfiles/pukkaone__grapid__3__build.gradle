@@ -1,0 +1,45 @@
+plugins {
+  id 'organization.library-convention'
+}
+
+description = 'Maven plugin that translates GraphQL schema to Java source code'
+
+ext {
+  mavenVersion = '3.6.1'
+}
+
+dependencies {
+  implementation project(':grapid-compiler')
+  compileOnly "org.apache.maven:maven-plugin-api:${mavenVersion}"
+  compileOnly "org.apache.maven.plugin-tools:maven-plugin-annotations:${mavenVersion}"
+  implementation 'org.apache.maven.shared:file-management:3.0.0'
+}
+
+publishing {
+  publications {
+    library {
+      pom {
+        packaging = 'maven-plugin'
+        withXml {
+          asNode()
+              .appendNode('build')
+                  .appendNode('outputDirectory', 'classes/java/main')
+        }
+      }
+    }
+  }
+}
+
+model {
+  tasks.generatePomFileForLibraryPublication {
+    destination = file("${buildDir}/pom.xml")
+  }
+}
+
+task generatePluginDescriptor(type: Exec) {
+  dependsOn generatePomFileForLibraryPublication
+  workingDir buildDir
+  commandLine "${rootDir}/mvnw", '--batch-mode', '--errors', "org.apache.maven.plugins:maven-plugin-plugin:${mavenVersion}:descriptor"
+}
+
+jar.dependsOn(generatePluginDescriptor)

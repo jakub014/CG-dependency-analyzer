@@ -1,0 +1,30 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>jobs-base</artifactId>
+		<groupId>se.l4.jobs</groupId>
+		<version>0.4.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+
+	<artifactId>jobs-api</artifactId>
+	<name>${project.artifactId}</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>se.l4.commons</groupId>
+			<artifactId>commons-serialization</artifactId>
+			<version>${commons-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.cronutils</groupId>
+			<artifactId>cron-utils</artifactId>
+			<version>9.0.2</version>
+		</dependency>
+	</dependencies>
+</project>

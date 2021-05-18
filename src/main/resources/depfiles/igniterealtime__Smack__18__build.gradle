@@ -1,0 +1,28 @@
+description = """\
+Smack for Android.
+All the required dependencies to run Smack on Android.
+Usually you want to add additional dependencies like smack-tcp,
+smack-extensions and smack-experimental."""
+
+// Note that the test dependencies (junit, …) are inferred from the
+// sourceSet.test of the core subproject
+dependencies {
+	implementation project(':smack-xmlparser-xpp3')
+	// Depend on minidns-android21 as optional dependency, even if may
+	// not need it. Can't hurt to have it in the programm path with
+	// the correct MiniDNS version as it won't hurt even if the
+	// Android version is smaller then 21. Note that we deliberatly do
+	// not add this to smack-minidns, as this dependency may also be
+	// used in non-Android projects.
+	implementation "org.minidns:minidns-android21:$miniDnsVersion"
+
+	// androidProjects lists all projects that are checked to compile against android.jar
+	// Filter out the optional Smack dependencies from androidProjects
+	(androidProjects - androidOptionalProjects)
+	.each { project ->
+		api project
+	}
+
+	// Add the Android jar to the Eclipse .classpath.
+	compileClasspath files(androidBootClasspath)
+}

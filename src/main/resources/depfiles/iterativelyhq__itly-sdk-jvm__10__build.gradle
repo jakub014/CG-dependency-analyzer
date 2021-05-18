@@ -1,0 +1,37 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+plugins {
+    id "application"
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+application {
+    mainClassName = "ly.iterative.example.AppKotlin"
+}
+
+dependencies {
+    // FIXME: Find a way to include the local MPP sdk project as JVM
+    // FIXME: https://youtrack.jetbrains.com/issue/KT-30413
+    implementation("ly.iterative.itly:sdk-jvm:${examplesItlySdkVersion}")
+//    implementation(project(":packages:sdk"))
+//    includeBuild(":packages:sdk-jvm")
+    // tag::app_dependencies[]
+//    implementation "ly.iterative.itly:sdk-jvm:${itlySdkVersion}"
+    // end::app_dependencies[]
+
+    implementation(project(":packages:plugin-iteratively"))
+    implementation(project(":packages:plugin-schema-validator"))
+    implementation(project(":packages:test-fixtures"))
+
+    testImplementation(project(":packages:test-fixtures"))
+    testImplementation("$mockWebServerImplementation")
+}
+
+// config JVM target to 1.8 for kotlin compilation tasks
+tasks.withType(KotlinCompile) {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+//test {
+//    testLogging.showStandardStreams = true
+//}

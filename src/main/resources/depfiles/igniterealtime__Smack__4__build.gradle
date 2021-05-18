@@ -1,0 +1,15 @@
+description = """\
+Smack extensions.
+Classes and methods that implement support for the various XMPP XEPs
+(Multi-User Chat, PubSub, …) and other XMPP extensions."""
+
+// Note that the test dependencies (junit, …) are inferred from the
+// sourceSet.test of the core subproject
+dependencies {
+	api project(':smack-core')
+	// Some implementations need APIs provided by smack-im,
+	// e.g. message delivery receipts the roster
+	api project(':smack-im')
+	testFixturesApi(testFixtures(project(":smack-core")))
+	//testCompile project(path: ":smack-core", configuration: "testRuntime")
+}

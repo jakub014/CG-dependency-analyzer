@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>io.github.raven-source</groupId>
+        <artifactId>raven-commons-parent</artifactId>
+        <version>3.0.2</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <description>raven-commons-data-spring-convert</description>
+    <url>https://github.com/Raven-Source/raven-commons-java</url>
+
+    <artifactId>raven-commons-data-spring-convert</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.raven-source</groupId>
+            <artifactId>raven-commons</artifactId>
+            <version>${raven-commons.version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.vwkit</groupId>
+        <artifactId>matrix-module-dependencies</artifactId>
+        <version>${revision}</version>
+        <relativePath>../matrix-module-dependencies</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>matrix-module-freemarker-starter</artifactId>
+    <name>matrix-module-freemarker-starter</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.vwkit</groupId>
+            <artifactId>matrix-module-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vwkit</groupId>
+            <artifactId>matrix-module-based-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+    </dependencies>
+</project>

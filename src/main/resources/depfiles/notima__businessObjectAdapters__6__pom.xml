@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.notima.generic.businessobjects.adapter</groupId>
+    <artifactId>businessObjectAdapters</artifactId>
+    <version>1.8.11-SNAPSHOT</version>
+  </parent>
+  <artifactId>sieAdapter</artifactId>
+  <packaging>bundle</packaging>
+  <name>SIE Adapter</name>
+  <description>SIE-file adapter</description>
+  
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>org.notima</groupId>
+  		<artifactId>siefilelib</artifactId>
+  		<version>${siefilelib.version}</version>
+  	</dependency>
+  </dependencies>
+  
+  	<build>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.1</version>
+				<configuration>
+					<includes>
+						<include>**/AllTests.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>4.2.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-Activator>org.notima.businessobjects.adapter.sie.Activator</Bundle-Activator>
+						<Export-Package>org.notima.businessobjects.adapter.sie.*
+										</Export-Package>
+		        		<Private-Package>
+        					org.apache.karaf.util.tracker,
+        					org.apache.karaf.util.tracker.annotation
+        				</Private-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+  
+  
+</project>

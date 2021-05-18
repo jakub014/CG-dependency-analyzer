@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright © 2020 Michael Lasmanis (michael@lasmanis.com)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.lasmanis.maven.composites</groupId>
+    <artifactId>composites-parent</artifactId>
+    <version>${revision}.${changelist}</version>
+
+    <packaging>pom</packaging>
+
+    <name>Maven Composites - Parent POM</name>
+    <description>Set of Maven Composites to manage dependencies for Java builds</description>
+    <inceptionYear>2020</inceptionYear>
+
+    <properties>
+        <revision>0.0</revision>
+        <changelist>0-SNAPSHOT</changelist>
+
+        <repository.name>lasmanis-maven-composites</repository.name>
+
+        <!-- plugins/extensions -->
+        <tiles-maven.version>2.19</tiles-maven.version>
+        <lasmanis-maven-tiles.version>0.0.87</lasmanis-maven-tiles.version>
+
+        <!-- dependencies -->
+
+        <assertj.version>3.18.1</assertj.version>
+        <caffeine.version>2.8.8</caffeine.version>
+        <checker-qual.version>3.8.0</checker-qual.version>
+        <classmate.version>1.5.1</classmate.version>
+        <commons-lang3.version>3.11</commons-lang3.version>
+        <dropwizard-core.version>2.0.18</dropwizard-core.version>
+        <dropwizard-metrics.version>4.1.17</dropwizard-metrics.version>
+        <dropwizard-swagger.version>2.0.0-1</dropwizard-swagger.version>
+        <error_prone_annotations.version>2.4.0</error_prone_annotations.version>
+        <guava.version>30.1-jre</guava.version>
+        <hibernate-validator.version>6.1.7.Final</hibernate-validator.version>
+        <immutables.version>2.8.2</immutables.version>
+        <jackson-annotations.version>2.10.5</jackson-annotations.version>
+        <jackson-databind.version>2.10.5.1</jackson-databind.version>
+        <jackson-dataformat-yaml.version>2.10.5</jackson-dataformat-yaml.version>
+        <jakarta.annotation-api.version>1.3.5</jakarta.annotation-api.version>
+        <jakarts.ws.rs-api.version>2.1.6</jakarts.ws.rs-api.version>
+        <jakarta.validation-api.version>2.0.2</jakarta.validation-api.version>
+        <javassist.version>3.27.0-GA</javassist.version>
+        <jdbi.version>3.18.0</jdbi.version>
+        <jersey.version>2.32</jersey.version>
+        <jersey-media-multipart.version>2.29.1</jersey-media-multipart.version>
+        <joda-time.version>2.10.9</joda-time.version>
+        <jsr305.version>3.0.2</jsr305.version>
+        <junit.version>4.13.1</junit.version>
+        <mockito.version>3.6.28</mockito.version>
+        <mysql.version>8.0.23</mysql.version>
+        <slf4j.version>1.7.30</slf4j.version>
+        <swagger-annotations.version>1.6.0</swagger-annotations.version>
+
+
+    </properties>
+
+    <url>${baseurl}/${project.artifactId}</url>
+
+    <scm>
+        <connection>${scmBase.connection}/${project.artifactId}</connection>
+        <url>${scmBase.url}/${project.artifactId}</url>
+        <developerConnection>${scmBase.developerConnection}/${project.artifactId}</developerConnection>
+        <tag>${scmBase.tag}</tag>
+    </scm>
+
+    <distributionManagement>
+        <site>
+            <id>scm-publish</id>
+            <url>${scmBase.connection}/${project.artifactId}</url>
+        </site>
+    </distributionManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>io.repaint.maven</groupId>
+                    <artifactId>tiles-maven-plugin</artifactId>
+                    <version>${tiles-maven.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <tiles>
+                            <tile>com.lasmanis.maven.tiles:core-set-ossrh:${lasmanis-maven-tiles.version}</tile>
+                        </tiles>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>io.repaint.maven</groupId>
+                <artifactId>tiles-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

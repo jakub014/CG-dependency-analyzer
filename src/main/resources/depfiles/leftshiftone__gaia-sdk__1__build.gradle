@@ -1,0 +1,98 @@
+import groovy.util.Node
+import org.gradle.api.publish.maven.MavenPublication
+import org.gradle.api.tasks.bundling.Jar
+
+apply plugin: "java"
+apply plugin: "one.leftshift.asteria-docs"
+apply plugin: "one.leftshift.asteria-publish"
+apply plugin: "org.jetbrains.dokka"
+apply plugin: "signing"
+
+asteriaDocs {
+    documents = ["index.adoc"]
+}
+
+sourceSets {
+    docs {
+        java {
+            srcDir "src/docs/asciidoc"
+        }
+        resources {
+            srcDir "src/docs/resources"
+        }
+    }
+}
+
+asteriaPublish {
+    enableBranchSnapshotRepositories = true
+}
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = "javadoc"
+    outputDirectory = "${buildDir}/dokkaJavadoc"
+}
+task javadocJar(type: Jar) {
+    from dokkaJavadoc
+    classifier "javadoc"
+}
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier "sources"
+}
+artifacts {
+    archives javadocJar, sourcesJar
+}
+publishing {
+    publications {
+        release(MavenPublication) {
+            artifactId = project.name
+            from components.java
+            artifact sourceJar
+            artifact javadocJar
+            pom.withXml {
+                Node root = asNode()
+                root.appendNode("name", "GAIA SDK")
+                root.appendNode("description", "GAIA SDK is an open source software library in order to interact with the GAIA API.")
+                root.appendNode("url", "https://github.com/leftshiftone/gaia-sdk")
+
+                Node licenses = root.appendNode("licenses")
+                Node license = licenses.appendNode("license")
+                license.appendNode("name", "MIT")
+                license.appendNode("url", "https://github.com/leftshiftone/gaia-sdk/blob/master/LICENSE")
+
+                Node developers = root.appendNode("developers")
+                Node developer = developers.appendNode("developer")
+                developer.appendNode("id", "leftshiftone")
+                developer.appendNode("name", "Leftshift One")
+                developer.appendNode("email", "contact@leftshift.one")
+                developer.appendNode("organization", "Leftshift One Software GmbH")
+                developer.appendNode("organizationUrl", "https://www.leftshift.one")
+
+                Node scm = root.appendNode("scm")
+                scm.appendNode("connection", "scm:git:git://github.com/leftshiftone/gaia-sdk.git")
+                scm.appendNode("developerConnection", "scm:git:ssh://github.com:leftshiftone/gaia-sdk.git")
+                scm.appendNode("url", "https://github.com/leftshiftone/gaia-sdk")
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "sonatype"
+            url = version.toString().endsWith("SNAPSHOT") ? "https://s01.oss.sonatype.org/content/repositories/snapshots" : "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username System.getenv("OSSRH_LOGIN_NAME")
+                password System.getenv("OSSRH_LOGIN_PASSWORD")
+            }
+        }
+    }
+}
+ext."signing.keyId" = System.getenv("OSSRH_SIGN_KEY_ID")
+ext."signing.password" = System.getenv("OSSRH_SIGN_KEY_PASSWORD")
+ext."signing.secretKeyRingFile" = System.getenv("OSSRH_SIGN_KEY_PATH")
+signing {
+    sign publishing.publications
+}
+
+if (System.getenv("CI") == null || System.getenv("CI") != "true") {
+    rootProject.tasks.release.dependsOn tasks.generateLock
+    rootProject.tasks.release.dependsOn tasks.saveLock
+}

@@ -1,0 +1,27 @@
+ext.PROJECT_NAME = 'Jdroid Java Web App - Facebook'
+description = 'Facebook integration'
+
+apply plugin: 'com.jdroidtools.java.library'
+
+configurations.all {
+	// check for updates every build
+	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+buildscript {
+	dependencies {
+		classpath(BuildLibs.JDROID_GRADLE_JAVA_PLUGIN)
+	}
+}
+
+dependencies {
+
+	// Jdroid dependencies
+	implementation project(":jdroid-java-webapp-core")
+
+	// Facebook
+	api(Libs.RESTFB)
+
+	testImplementation(Libs.JUNIT)
+	testImplementation(Libs.MOCKITO)
+}

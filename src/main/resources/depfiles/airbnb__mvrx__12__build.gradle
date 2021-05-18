@@ -1,0 +1,57 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+apply plugin: "kotlin-kapt"
+
+android {
+    defaultConfig {
+        applicationId "com.airbnb.sample"
+        multiDexEnabled true
+        versionCode 1
+        versionName "0.0.1"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-project.pro"
+        }
+    }
+
+    viewBinding {
+        enabled = true
+    }
+}
+
+
+dependencies {
+    kapt AnnotationProcessors.epoxy
+    kapt AnnotationProcessors.moshi
+
+    implementation project(":mvrx")
+    implementation project(':mvrx-mocking')
+    // In real apps this should be debugImplementation so that the launcher isn't included in production!
+    implementation project(':launcher')
+
+    implementation Libraries.appcompat
+    implementation Libraries.constraintlayout
+    implementation(Libraries.epoxy) { exclude group: "com.android.support" }
+    implementation Libraries.koin
+    implementation Libraries.lifecycleCommon
+    implementation Libraries.moshi
+    implementation Libraries.moshiKotlin
+    implementation Libraries.multidex
+    implementation Libraries.navigationFragmentKtx
+    implementation Libraries.navigationUiKtx
+    implementation Libraries.recyclerview
+    implementation Libraries.retrofit
+    implementation Libraries.retrofitMoshi
+    implementation Libraries.retrofitRxJava
+    implementation Libraries.rxAndroid
+    implementation Libraries.rxJava
+
+    testImplementation TestLibraries.junit
+}

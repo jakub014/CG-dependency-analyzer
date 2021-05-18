@@ -1,0 +1,14 @@
+apply plugin: 'application'
+
+mainClassName = 'org.dsa.iot.requester.Main'
+
+dependencies {
+    api project(':dslink')
+}
+
+run {
+    args System.getProperty("exec.args", "").split() + "-d" + "../dslink.json"
+    workingDir project.buildDir
+}
+
+applicationDistribution.from new File(project.projectDir, "/dslink.json")

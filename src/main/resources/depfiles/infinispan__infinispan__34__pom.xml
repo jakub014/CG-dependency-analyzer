@@ -1,0 +1,264 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <modelVersion>4.0.0</modelVersion>
+
+   <parent>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-server-parent</artifactId>
+      <version>13.0.0-SNAPSHOT</version>
+      <relativePath>../pom.xml</relativePath>
+   </parent>
+
+   <artifactId>infinispan-server-rest</artifactId>
+   <name>Infinispan REST Server</name>
+   <description>REST interface for Infinispan</description>
+
+   <properties>
+      <certificate.dname>CN=HotRod_1,OU=Infinispan,O=JBoss,L=Red Hat,ST=World,C=WW</certificate.dname>
+   </properties>
+
+   <dependencies>
+      <dependency>
+         <groupId>org.eclipse.microprofile.config</groupId>
+         <artifactId>microprofile-config-api</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>io.smallrye.config</groupId>
+         <artifactId>smallrye-config</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.eclipse.microprofile.metrics</groupId>
+         <artifactId>microprofile-metrics-api</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>io.smallrye</groupId>
+         <artifactId>smallrye-metrics</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.infinispan</groupId>
+         <artifactId>infinispan-server-core</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.infinispan</groupId>
+         <artifactId>infinispan-clustered-counter</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.infinispan</groupId>
+         <artifactId>infinispan-remote-query-server</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.kohsuke.metainf-services</groupId>
+         <artifactId>metainf-services</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.infinispan</groupId>
+         <artifactId>infinispan-tasks</artifactId>
+         <optional>true</optional>
+      </dependency>
+
+      <dependency>
+         <groupId>org.infinispan</groupId>
+         <artifactId>infinispan-scripting</artifactId>
+         <optional>true</optional>
+      </dependency>
+
+      <dependency>
+         <groupId>org.apache.logging.log4j</groupId>
+         <artifactId>log4j-core</artifactId>
+         <optional>true</optional>
+      </dependency>
+
+      <dependency>
+         <groupId>io.projectreactor.tools</groupId>
+         <artifactId>blockhound</artifactId>
+         <optional>true</optional>
+      </dependency>
+
+       <!-- and now for unit and integration tests -->
+      <dependency>
+         <groupId>org.infinispan</groupId>
+         <artifactId>infinispan-server-core</artifactId>
+         <type>test-jar</type>
+         <scope>test</scope>
+      </dependency>
+
+       <dependency>
+           <groupId>org.infinispan.protostream</groupId>
+           <artifactId>protostream</artifactId>
+           <scope>test</scope>
+       </dependency>
+
+      <dependency>
+         <groupId>org.infinispan.protostream</groupId>
+         <artifactId>protostream-processor</artifactId>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>org.infinispan</groupId>
+         <artifactId>infinispan-tasks</artifactId>
+         <version>${project.version}</version>
+         <type>test-jar</type>
+         <scope>test</scope>
+      </dependency>
+
+       <dependency>
+         <groupId>org.testng</groupId>
+         <artifactId>testng</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.antlr</groupId>
+         <artifactId>antlr-runtime</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>io.netty</groupId>
+         <artifactId>netty-codec-http</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>io.netty</groupId>
+         <artifactId>netty-codec-http2</artifactId>
+      </dependency>
+      <dependency>
+         <groupId>org.wildfly.openssl</groupId>
+         <artifactId>wildfly-openssl</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.assertj</groupId>
+         <artifactId>assertj-core</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.mockito</groupId>
+         <artifactId>mockito-core</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.openjdk.jmh</groupId>
+         <artifactId>jmh-core</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.infinispan</groupId>
+         <artifactId>infinispan-cachestore-jdbc</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.openjdk.jmh</groupId>
+         <artifactId>jmh-generator-annprocess</artifactId>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>org.infinispan</groupId>
+         <artifactId>infinispan-client-rest</artifactId>
+         <scope>test</scope>
+      </dependency>
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+               <!-- we also pack WEB-INF/classes separately so JDG can use infinispan-server-rest-x.y.z-classes.jar
+                    to build a custom server war rather than use the war generated here -->
+               <attachClasses>true</attachClasses>
+            </configuration>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>create-certificates</id>
+                  <phase>process-test-resources</phase>
+                  <goals>
+                     <goal>run</goal>
+                  </goals>
+                  <configuration>
+                     <target>
+                        <macrodef name="keytool">
+                           <attribute name="command"/>
+                           <element name="args"/>
+                           <sequential>
+                              <exec executable="${server.jvm}/bin/keytool">
+                                 <arg value="@{command}"/>
+                                 <!-- common arguments -->
+                                 <arg value="-validity"/>
+                                 <arg value="365"/>
+                                 <arg value="-keyalg"/>
+                                 <arg value="RSA"/>
+                                 <arg value="-keysize"/>
+                                 <arg value="2048"/>
+                                 <arg value="-noprompt"/>
+                                 <arg value="-storepass"/>
+                                 <arg value="secret"/>
+                                 <arg value="-keypass"/>
+                                 <arg value="secret"/>
+                                 <arg value="-storetype"/>
+                                 <arg value="pkcs12"/>
+                                 <!-- additional arguments -->
+                                 <args/>
+                              </exec>
+                           </sequential>
+                        </macrodef>
+                        <delete quiet="true">
+                           <fileset dir="${project.build.testOutputDirectory}" includes="*.jks,*.csr,*.cer,*.p12"/>
+                        </delete>
+                        <echo message="Generate the CA certificate"/>
+                        <keytool command="-genkeypair">
+                           <args>
+                              <arg value="-alias"/>
+                              <arg value="default"/>
+                              <arg value="-dname"/>
+                              <arg value="${certificate.dname}"/>
+                              <arg value="-keystore"/>
+                              <arg value="${project.build.testOutputDirectory}/server.p12"/>
+                           </args>
+                        </keytool>
+                        <keytool command="-importkeystore">
+                           <args>
+                              <arg value="-srckeystore"/>
+                              <arg value="${project.build.testOutputDirectory}/server.p12"/>
+                              <arg value="-srcstorepass"/>
+                              <arg value="secret"/>
+                              <arg value="-srcstoretype"/>
+                              <arg value="pkcs12"/>
+                              <arg value="-destkeystore"/>
+                              <arg value="${project.build.testOutputDirectory}/client.p12"/>
+                              <arg value="-deststorepass"/>
+                              <arg value="secret"/>
+                              <arg value="-deststoretype"/>
+                              <arg value="pkcs12"/>
+                           </args>
+                        </keytool>
+                     </target>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+               <dependenciesToScan>
+                  <!-- TestNGSuiteChecksTest -->
+                  <dependency>org.infinispan:infinispan-commons-test</dependency>
+               </dependenciesToScan>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+</project>

@@ -1,0 +1,176 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ch.ninecode.cim</groupId>
+        <artifactId>CIMSpark</artifactId>
+        <relativePath>../pom.xml</relativePath>
+        <version>2.12-3.0.1-5.1.1</version>
+    </parent>
+    <artifactId>CIMTool</artifactId>
+    <name>${project.artifactId}</name>
+    <description>Extract CIM model from Enterprise Architect EAP file</description>
+    <inceptionYear>2017</inceptionYear>
+    <url>https://github.com/derrickoswald/CIMSpark/tree/master/CIMTool</url>
+
+    <properties>
+        <version.dependency.jackcess>2.1.10</version.dependency.jackcess>
+        <version.dependency.jena>3.4.0</version.dependency.jena>
+        <version.dependency.commons-logging>1.2</version.dependency.commons-logging>
+        <version.dependency.slf4j>1.7.26</version.dependency.slf4j>
+        <version.dependency.commons-lang>2.6</version.dependency.commons-lang>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${version.dependency.scalalibrary}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.healthmarketscience.jackcess</groupId>
+            <artifactId>jackcess</artifactId>
+            <version>${version.dependency.jackcess}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.scopt</groupId>
+            <artifactId>scopt_${version.dependency.scala}</artifactId>
+            <version>${version.dependency.scopt}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+           <groupId>org.apache.jena</groupId>
+           <artifactId>apache-jena-libs</artifactId>
+           <type>pom</type>
+           <version>${version.dependency.jena}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${version.dependency.commons-logging}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${version.dependency.slf4j}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${version.dependency.commons-lang}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_${version.dependency.scala}</artifactId>
+            <version>${version.dependency.scalatest}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${version.dependency.junit}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/scala</sourceDirectory>
+        <testSourceDirectory>src/test/scala</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <!-- disable surefire -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${version.dependency.maven-surefire-plugin}</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest-maven-plugin</artifactId>
+                <version>${version.dependency.scalatest-maven-plugin}</version>
+                <configuration>
+                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+                    <junitxml>.</junitxml>
+                    <filereports>CIMToolSuite.txt</filereports>
+                    <suites>ch.ninecode.cim.tool.CIMToolSuite</suites>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- do not include application.properties in jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${version.dependency.maven-jar-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <configuration>
+                            <excludes>
+                                <exclude>application.properties</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- assembly for stand-alone program -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${version.dependency.maven-assembly-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>make-cimtool-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>CIMTool-${project.parent.version}</finalName>
+                            <descriptors>
+                                <descriptor>src/assembly/assembly.xml</descriptor>
+                            </descriptors>
+                            <archive>
+                                <manifest>
+                                    <mainClass>ch.ninecode.cim.tool.CIMTool</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${version.dependency.maven-deploy-plugin}</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

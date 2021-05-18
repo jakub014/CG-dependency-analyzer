@@ -1,0 +1,12 @@
+description = 'JSF Spring Boot Starter'
+jar.manifest.attributes('Automatic-Module-Name': 'joinfaces.starter.jsf')
+
+dependencies {
+    api project(':joinfaces-autoconfigure')
+
+    api 'org.springframework.boot:spring-boot-starter'
+    api 'org.springframework:spring-web'
+
+    api project(':joinfaces-starters:tomcat-spring-boot-starter')
+    api project(':joinfaces-starters:mojarra-spring-boot-starter')
+}

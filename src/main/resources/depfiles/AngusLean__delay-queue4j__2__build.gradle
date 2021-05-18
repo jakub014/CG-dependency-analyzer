@@ -1,0 +1,15 @@
+plugins {
+    id 'java'
+}
+
+group 'cn.anguslean'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter:2.2.5.RELEASE'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

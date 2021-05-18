@@ -1,0 +1,161 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<name>ThreatConnect Apps</name>
+	<description>The core implementation for Apps</description>
+	<url>https://github.com/ThreatConnect-Inc/threatconnect-java</url>
+
+	<parent>
+		<groupId>com.threatconnect</groupId>
+		<artifactId>sdk</artifactId>
+		<version>2.12.2</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.threatconnect.app</groupId>
+	<artifactId>threatconnect-app</artifactId>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>apps-core</module>
+		<module>services-core</module>
+		<module>playbooks-core</module>
+		<module>playbooks-services</module>
+		<module>playbooks-test</module>
+		<module>apps-util</module>
+	</modules>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Danny Tineo</name>
+			<email>integrations@threatconnect.com</email>
+			<organization>ThreatConnect</organization>
+			<organizationUrl>https://www.threatconnect.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Mitchell Turner</name>
+			<email>integrations@threatconnect.com</email>
+			<organization>ThreatConnect</organization>
+			<organizationUrl>https://www.threatconnect.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Greg Marut</name>
+			<email>integrations@threatconnect.com</email>
+			<organization>ThreatConnect</organization>
+			<organizationUrl>https://www.threatconnect.com</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<url>https://github.com/ThreatConnect-Inc/threatconnect-java</url>
+		<connection>scm:git:git@github.com:ThreatConnect-Inc/threatconnect-java.git</connection>
+		<developerConnection>scm:git:git@github.com:ThreatConnect-Inc/threatconnect-java.git</developerConnection>
+	</scm>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<github.global.server>github</github.global.server>
+
+		<main.basedir>${project.basedir}</main.basedir>
+
+		<!-- Dependency Versions -->
+		<version.commons-io>2.4</version.commons-io>
+		<version.commons-lang>3.4</version.commons-lang>
+		<log4j.version>2.6.1</log4j.version>
+		<version.apache-http>4.4.1</version.apache-http>
+		<version.apache-commons>3.6</version.apache-commons>
+		<version.jedis>2.9.0</version.jedis>
+		<version.jackson>2.9.10.3</version.jackson>
+
+		<!-- Test Dependency Versions -->
+		<version.junit>4.12</version.junit>
+		<version.test-beangen>2.5-RELEASE</version.test-beangen>
+	</properties>
+
+	<dependencies>
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${version.junit}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>sign</id>
+			<build>
+				<plugins>
+					<!--GPG Signing -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<!-- javadoc -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<show>public</show>
+					<failOnError>true</failOnError>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- sources -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

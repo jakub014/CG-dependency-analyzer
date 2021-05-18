@@ -1,0 +1,12 @@
+plugins {
+  id 'org.jetbrains.kotlin.jvm'
+  id 'ktlint-publication'
+}
+
+dependencies {
+  implementation project(':ktlint-core')
+
+  testImplementation project(':ktlint-test')
+  testImplementation deps.junit
+  testImplementation deps.assertj
+}

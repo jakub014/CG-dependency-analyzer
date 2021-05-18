@@ -1,0 +1,13 @@
+apply plugin: 'java-library'
+
+configurations {
+  langResources
+}
+
+dependencies {
+  implementation project(':core')
+  implementation project(':lang:lucene')
+  implementation "org.apache.lucene:lucene-analyzers-kuromoji"
+
+  langResources fileTree(dir: 'src/main/resources', includes: langResourcePatterns)
+}

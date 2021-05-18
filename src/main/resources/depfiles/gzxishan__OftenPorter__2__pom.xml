@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.xishankeji</groupId>
+        <artifactId>OftenPorter</artifactId>
+        <version>1.2.235</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>Porter-DB</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Porter-DB</name>
+    <description>数据库持久层模块，支持Mybatis等,支持注解式的JDBC事务</description>
+    <url>https://github.com/gzxishan/OftenPorter</url>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>Porter-Core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${project.h2.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--<plugin>-->
+            <!--<groupId>net.orfjackal.retrolambda</groupId>-->
+            <!--<artifactId>retrolambda-maven-plugin</artifactId>-->
+            <!--</plugin>-->
+        </plugins>
+    </build>
+
+</project>

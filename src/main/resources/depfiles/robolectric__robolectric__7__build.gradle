@@ -1,0 +1,15 @@
+import org.robolectric.gradle.DeployedRoboJavaModulePlugin
+import org.robolectric.gradle.RoboJavaModulePlugin
+
+apply plugin: RoboJavaModulePlugin
+apply plugin: DeployedRoboJavaModulePlugin
+
+dependencies {
+    api project(":pluginapi")
+    api project(":utils")
+    api "com.google.guava:guava:27.0.1-jre"
+
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+    testImplementation "com.google.truth:truth:${truthVersion}"
+}

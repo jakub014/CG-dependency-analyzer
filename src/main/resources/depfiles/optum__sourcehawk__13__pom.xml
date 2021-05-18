@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.optum.sourcehawk</groupId>
+        <artifactId>sourcehawk</artifactId>
+        <version>0.6.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>sourcehawk-bom</artifactId>
+    <name>Sourcehawk BOM</name>
+    <description>Sourcehawk Bill of Materials</description>
+    <packaging>pom</packaging>
+
+    <properties>
+        <bom.version>${project.version}</bom.version>
+        <flatten.mode>bom</flatten.mode>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.optum.sourcehawk</groupId>
+                <artifactId>sourcehawk-core</artifactId>
+                <version>${bom.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.optum.sourcehawk</groupId>
+                <artifactId>sourcehawk-enforcer-common</artifactId>
+                <version>${bom.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.optum.sourcehawk</groupId>
+                <artifactId>sourcehawk-enforcer-core</artifactId>
+                <version>${bom.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.optum.sourcehawk</groupId>
+                <artifactId>sourcehawk-enforcer-docker</artifactId>
+                <version>${bom.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.optum.sourcehawk</groupId>
+                <artifactId>sourcehawk-enforcer-maven</artifactId>
+                <version>${bom.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.optum.sourcehawk</groupId>
+                <artifactId>sourcehawk-exec</artifactId>
+                <version>${bom.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.optum.sourcehawk</groupId>
+                <artifactId>sourcehawk-cli</artifactId>
+                <version>${bom.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.optum.sourcehawk</groupId>
+                <artifactId>sourcehawk-cli</artifactId>
+                <version>${bom.version}</version>
+                <classifier>native-image</classifier>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

@@ -1,0 +1,33 @@
+description = "Apereo uPortal i18n"
+
+ext {
+    generatedSourcesDir = file("${buildDir}/generated-sources/javac/main/java")
+}
+
+dependencies {
+    compile project(':uPortal-rdbm')
+
+    compile "org.slf4j:log4j-over-slf4j:${slf4jVersion}"
+
+    annotationProcessor "org.hibernate:hibernate-jpamodelgen:${hibernateJpamodelgenVersion}"
+    compileOnly "${servletApiDependency}"
+}
+
+/*
+ * This section is the key to IDE integration.  IDE will look for source files in both...
+ *
+ *   - src/main/java
+ *   - build/generated-sources/javac/main/java
+ */
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+            srcDir generatedSourcesDir
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.annotationProcessorGeneratedSourcesDirectory = file(generatedSourcesDir)
+}

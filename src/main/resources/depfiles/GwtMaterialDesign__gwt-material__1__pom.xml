@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>gwt-material-parent</artifactId>
+        <groupId>com.github.gwtmaterialdesign</groupId>
+        <version>2.5.0-rc1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>gwt-material</artifactId>
+    <packaging>gwt-lib</packaging>
+
+    <name>Gwt Material</name>
+    <description>A Material Design look and feel for GWT Applications</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.gwtmaterialdesign</groupId>
+            <artifactId>gwt-material-jquery</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <version>${gwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-dev</artifactId>
+            <version>${gwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.htmlunit</groupId>
+            <artifactId>htmlunit</artifactId>
+            <version>${htmlunit.version}</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+        <repository>
+            <id>sonatype-nexus-snapshot</id>
+            <name>Sonatype Nexus snapshot repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
+
+    <!-- TODO Update the testing -->
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/**.java</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <!--
+				The integration-test phase runs after regular test phase (but before verify/install).
+				We use this to our advantage to peak at the compiled output from the GWTTestSuite
+				 -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.plugin}</version>
+                <configuration>
+                    <includes>
+                        <include>**/*.class</include>
+                    </includes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>net.ltgt.gwt.maven</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <version>${tbroyer.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <moduleName>gwt.material.design.GwtMaterialWithJQuery</moduleName>
+                    <style>OBFUSCATED</style>
+                    <logLevel>INFO</logLevel>
+                    <sourceLevel>1.8</sourceLevel>
+                    <jvmArgs>
+                        <jvmArg>-Xmx1g</jvmArg>
+                        <jvmArg>-Xms1g</jvmArg>
+                        <jvmArg>-XX:CompileThreshold=7000</jvmArg>
+                    </jvmArgs>
+                    <optimize>9</optimize>
+                    <compilerArgs>
+                        <compilerArg>-compileReport</compilerArg>
+                        <compilerArg>-XcompilerMetrics</compilerArg>
+                    </compilerArgs>
+                    <skipModule>true</skipModule>
+                    <classpathScope>compile+runtime</classpathScope>
+                    <failOnError>true</failOnError>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-test</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <!--
+							Because we expressly disable asserts in tests to avoid a compiler bug, we also must run surefire manually
+							on the JRE tests
+							 -->
+                            <excludes>
+                                <exclude>**/ui/**.java</exclude>
+                            </excludes>
+                            <includes>
+                                <!--<include>**/MixinTestSuite.java</include>-->
+                                <include>**/MaterialWidgetTestSuite.java</include>
+                            </includes>
+                            <!-- disable JVM asserts, but enable JS asserts for tests -->
+                            <enableAssertions>false</enableAssertions>
+                            <testArgs>
+                                <testArg>-checkAssertions</testArg>
+                            </testArgs>
+                            <style>OBFUSCATED</style>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

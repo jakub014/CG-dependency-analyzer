@@ -1,0 +1,69 @@
+apply plugin: 'org.jetbrains.kotlin.jvm'
+apply plugin: 'java-gradle-plugin'
+
+gradlePlugin {
+  plugins {
+    paparazzi {
+      id = 'app.cash.paparazzi'
+      implementationClass = 'app.cash.paparazzi.gradle.PaparazziPlugin'
+    }
+  }
+}
+
+dependencies {
+  compileOnly gradleApi()
+  implementation deps.plugins.kotlin
+  implementation deps.plugins.android
+
+  testImplementation deps.junit
+  testImplementation deps.truth
+}
+
+sourceSets {
+  main.java.srcDir 'src/generated/kotlin'
+}
+
+def generateVersion = tasks.register("pluginVersion") {
+  def outputDir = file('src/generated/kotlin')
+
+  inputs.property 'version', version
+  outputs.dir outputDir
+
+  doLast {
+    def versionFile = file("${outputDir}/app/cash/paparazzi/Version.kt")
+    versionFile.parentFile.mkdirs()
+    versionFile.text = """// Generated file. Do not edit!
+package app.cash.paparazzi
+const val VERSION = "${project.version}"
+"""
+  }
+}
+
+tasks.named('compileKotlin').configure {
+  it.dependsOn(generateVersion)
+}
+
+test {
+  dependsOn(":paparazzi:installLocally")
+  dependsOn(":paparazzi-agent:installLocally")
+
+  testLogging {
+    events 'passed', 'failed', 'skipped'
+    exceptionFormat 'full'
+    showExceptions true
+    showStackTraces true
+    showCauses true
+  }
+}
+
+apply from: "$rootDir/gradle/gradle-mvn-push.gradle"
+
+// When cleaning this project, we also want to clean the test projects.
+tasks.named("clean").configure { cleaner ->
+  cleaner.doFirst {
+    project.file('src/test/projects').eachFile { root ->
+      new File(root, '.gradle').deleteDir()
+      new File(root, 'build').deleteDir()
+    }
+  }
+}

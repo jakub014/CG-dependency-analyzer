@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.mobidevelop.robovm</groupId>
+        <artifactId>robovm-parent</artifactId>
+        <version>2.3.13-SNAPSHOT</version>
+        <relativePath>../../</relativePath>
+    </parent>
+
+    <properties>
+        <robovm.version>${project.version}</robovm.version>
+    </properties>
+
+    <artifactId>robovm-maven-parent</artifactId>
+    <name>RoboVM Maven</name>
+    <packaging>pom</packaging>
+
+    <url>https://github.com/MobiVM/robovm</url>
+    <description>
+        Maven support for RoboVM
+    </description>
+    <inceptionYear>2013</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/MobiVM/robovm</url>
+        <connection>scm:git:git://github.com/MobiVM/robovm.git</connection>
+        <developerConnection>scm:git:git@github.com:mobidevelop/robovm.git</developerConnection>
+      <tag>HEAD</tag>
+  </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/MobiVM/robovm/issues</url>
+    </issueManagement>
+
+    <modules>
+        <module>plugin</module>
+        <module>surefire</module>
+    </modules>
+
+</project>

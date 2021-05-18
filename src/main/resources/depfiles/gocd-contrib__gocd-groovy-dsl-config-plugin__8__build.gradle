@@ -1,0 +1,83 @@
+/*
+ * Copyright 2021 ThoughtWorks, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: 'groovy'
+
+configurations {
+  extractedAtTopLevel
+}
+
+dependencies {
+  implementation project(':cli')
+  implementation project(':dsl')
+  implementation project(':dsl-validation')
+  implementation project(':groovy-export')
+  implementation project(':json')
+  implementation project(':resolvers')
+  implementation project(':util')
+  implementation project.deps.groovy
+
+  extractedAtTopLevel project(':jar-class-loader')
+
+  implementation project.deps.jacksonAnnotations
+  implementation project.deps.jacksonDatabind
+  implementation project.deps.ant
+  implementation project.deps.commonsLang
+  implementation project.deps.guava
+  implementation project.deps.validateApi
+
+  annotationProcessor project.deps.hibernateValidatorAnnotationProcessor
+
+  compileOnly project.deps.pluginApi
+
+  testRuntimeOnly project.deps.junitJupiterEngine
+  testImplementation project.deps.junitJupiterApi
+  testImplementation project.deps.junitJupiterParams
+  testImplementation project.deps.groovy
+  testImplementation project.deps.groovyJson
+  testImplementation project.deps.mockito
+  testImplementation project.deps.jsonFluent
+}
+
+sourceSets {
+  main.compileClasspath += project.configurations.compileClasspath
+}
+
+jar {
+  dependsOn project.configurations.extractedAtTopLevel
+
+  manifest {
+    attributes 'Main-Class': 'com.thoughtworks.gocd.Boot'
+    attributes 'GoCD-Main-Class': 'cd.go.contrib.plugins.configrepo.groovy.cli.Main'
+  }
+
+  from(configurations.runtimeClasspath) {
+    into "lib/"
+  }
+
+  // This is useful for debugging
+  from(sourceSets.main.java) {
+    into "/"
+  }
+
+  from(project.configurations.extractedAtTopLevel.collect { it.isDirectory() ? it : zipTree(it) }) {
+    into("/")
+  }
+}
+
+test {
+  useJUnitPlatform()
+}

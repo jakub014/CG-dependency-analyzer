@@ -1,0 +1,126 @@
+plugins {
+    id 'java-platform'
+}
+
+group projectGroupId
+version projectVersion
+
+
+apply plugin: 'maven-publish'
+
+boolean micronautSnapshot = rootProject.version.toString().endsWith("-SNAPSHOT")
+
+def excludedProjects = [
+        "benchmarks",
+        "inject-test-utils",
+        "test-suite",
+        "test-suite-groovy",
+        "test-suite-helper",
+        "test-suite-kotlin",
+        "test-utils"
+]
+
+publishing {
+    afterEvaluate {
+        publications {
+            maven(MavenPublication) {
+                artifactId("micronaut-bom")
+                from components.javaPlatform
+
+                pom.withXml {
+                    def xml = asNode()
+
+                    xml.children().find {
+                        it.name().localPart == 'packaging'
+                    } + pomInfo
+
+                    for(dep in dependencyVersions) {
+                        setBomVersion(dep, xml)
+                    }
+                    for(dep in bomVersions) {
+                        setBomVersion(dep, xml)
+                    }
+                }
+            }
+        }
+    }
+}
+
+private void setBomVersion(Map.Entry<Object, Object> dep, xml) {
+    String property = "\${${dep.key}.version}"
+    def info = dep.value
+    def version = info.version
+    def group = info.group
+    if (group && version) {
+        def modules = []
+        if (info.name) {
+            modules << info.name
+        }
+        if (info.modules) {
+            modules.addAll(info.modules)
+        }
+        for (module in modules) {
+
+            def pomDep = xml.dependencyManagement.dependencies.dependency.find {
+                it.artifactId.text() == module &&
+                        it.groupId.text() == group
+            }
+            if (pomDep != null) {
+                pomDep.version.first().setValue(property)
+            }
+        }
+
+    }
+}
+
+ext.extraPomInfo = {
+    delegate.properties {
+        for(dep in dependencyVersions) {
+            "${dep.key}.version"(dep.value.version)
+        }
+        for(dep in bomVersions) {
+            "${dep.key}.version"(dep.value.version)
+        }
+    }
+}
+javaPlatform {
+    allowDependencies()
+}
+dependencies {
+    for (dep in bomVersions) {
+        def info = dep.value
+        def versionExpr = info.version
+        api platform("$info.group:$info.name:$versionExpr")
+    }
+
+    constraints {
+        for (Project p : rootProject.subprojects) {
+            if (!p.subprojects.empty) continue
+            if (p.name.contains("bom")) continue
+            if (excludedProjects.contains(p.name)) continue
+
+            api "$p.group:micronaut-$p.name:$p.version"
+        }
+
+        for (dep in dependencyVersions) {
+            def info = dep.value
+            // don't include snapshots
+            if (info.version.toString().endsWith("-SNAPSHOT") && !micronautSnapshot) {
+                continue
+            }
+
+            def versionExpr = dep.value.version
+
+            if (info.name) {
+                api "$info.group:$info.name:$versionExpr"
+            }
+            if (info.modules) {
+                for (m in info.modules) {
+                    api "$info.group:$m:$versionExpr"
+                }
+            }
+        }
+    }
+}
+
+apply plugin: "io.micronaut.build.internal.publishing"

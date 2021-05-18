@@ -1,0 +1,7 @@
+dependencies {
+    api "io.micronaut:micronaut-inject:$micronautVersion"
+    compileOnly "io.micronaut:micronaut-runtime:$micronautVersion"
+
+    testImplementation "io.micronaut:micronaut-inject-groovy"
+    testImplementation "io.micronaut:micronaut-runtime:$micronautVersion"
+}

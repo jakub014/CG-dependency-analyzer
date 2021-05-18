@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ The copyright of this file belongs to Feedzai. The file cannot be
+  ~ reproduced in whole or in part, stored in a retrieval system,
+  ~ transmitted in any form, or by any means electronic, mechanical,
+  ~ photocopying, or otherwise, without the prior permission of the owner.
+  ~
+  ~ (c) 2020 Feedzai, Strictly Confidential
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.feedzai.openml.lightgbm</groupId>
+    <artifactId>lightgbm-lib</artifactId>
+    <version>3.0.1-with_model_locale_fix_for_java_and_streaming</version>
+
+    <packaging>jar</packaging>
+    <name>Openml LightGBM lib</name>
+    <description>
+        LightGBM build for Java generated with make-lightgbm.
+    </description>
+    <url>https://github.com/feedzai/make-lightgbm</url>
+
+    <properties>
+        <!-- Microsoft hasn't merged our model-locale-fix patch yet. -->
+        <!--<lightgbm.repo.url>https://github.com/microsoft/LightGBM</lightgbm.repo.url>-->
+        <lightgbm.repo.url>https://github.com/feedzai/LightGBM.git</lightgbm.repo.url>
+        <lightgbmlib.version>3.0.1-with_model_locale_fix_for_java_and_streaming</lightgbmlib.version>
+        <lightgbm.version>v3.0.1-with_model_locale_fix_for_java_and_streaming</lightgbm.version>
+    </properties>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>make-lightgbm/build/</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>*.so</include>
+                    <include>*.so.1.0.0</include>
+                </includes>
+            </resource>
+            <resource>
+                <filtering>false</filtering>
+                <directory>make-lightgbm/resources/copy_to_build</directory>
+                <includes>
+                    <include>libopenmp.licence</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <!-- Build LightGBM shared libraries + lightgbmlib Java package (.jar + .pom) -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <!-- this should happen before maven-antrun-plugin -->
+                        <phase>generate-sources</phase>
+                        <id>generate-lightgbm-build</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${project.basedir}/make.sh</executable>
+                            <workingDirectory>${project.basedir}</workingDirectory>
+                            <arguments>
+                                <argument>${lightgbm.repo.url}</argument>
+                                <argument>${lightgbm.version}</argument>
+                                <argument>${lightgbmlib.version}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <!-- this should happen after exec-maven-plugin -->
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <tasks>
+                                <echo message="unzipping file" />
+                                <unzip src="${basedir}/make-lightgbm/build/lightgbmlib.jar" dest="${project.build.directory}/classes" />
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <!-- skip deployment because lightgbm-lib is already included in uber jar -->
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

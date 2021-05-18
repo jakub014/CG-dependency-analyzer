@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>ax-project</artifactId>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>com.g2forge.alexandria</groupId>
+		<artifactId>ax-root</artifactId>
+		<version>0.0.18-SNAPSHOT</version>
+		<relativePath>../ax-root/pom.xml</relativePath>
+	</parent>
+
+	<name>Alexandria Project</name>
+	<description>Parent project for most of the code in Alexandria. Note that while g2forge repositories always have a "xx-project", Alexandria also has "ax-root" due to the need to avoid circular dependencies of this base library.</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.g2forge.alexandria</groupId>
+			<artifactId>ax-java</artifactId>
+			<version>0.0.18-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.g2forge.alexandria</groupId>
+			<artifactId>ax-test</artifactId>
+			<version>0.0.18-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

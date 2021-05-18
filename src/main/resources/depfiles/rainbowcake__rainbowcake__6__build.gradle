@@ -1,0 +1,27 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+dependencies {
+    implementation project(':rainbow-cake-core')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api 'com.jakewharton.timber:timber:4.7.1'
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        freeCompilerArgs += [
+                '-progressive',
+                '-Xexplicit-api=strict',
+        ]
+    }
+}
+
+/////////////////  Publishing  /////////////////
+
+ext {
+    PUBLISH_GROUP_ID = 'co.zsmb'
+    PUBLISH_ARTIFACT_ID = 'rainbow-cake-timber'
+    PUBLISH_VERSION = rainbowcake_version
+}
+
+apply from: "${rootProject.projectDir}/scripts/publish-mavencentral.gradle"

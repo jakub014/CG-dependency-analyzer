@@ -1,0 +1,11 @@
+description = """\
+Smack legacy extensions.
+Usually XEPs in the state 'retracted', 'rejected', 'deprecated',
+'obsolete' or in a long standing 'deferred' state."""
+
+dependencies {
+	api project(':smack-core')
+	api project(':smack-extensions')
+
+	testFixturesApi(testFixtures(project(":smack-core")))
+}

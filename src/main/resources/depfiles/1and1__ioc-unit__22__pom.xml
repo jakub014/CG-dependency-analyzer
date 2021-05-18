@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.oneandone.ioc-unit</groupId>
+    <artifactId>ioc-unit-dep-impls</artifactId>
+    <version>2.0.40-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>ioc-unit-dependencies</name>
+    <description>used to create dependency modules, not used as parent pom</description>
+
+    <modules>
+        <module>ioc-unit-jpa-hibernate5</module>
+        <module>ioc-unit-jms-mockrunner</module>
+        <module>ioc-unit-jms-rabbitmq</module>
+        <module>ioc-unit-jms-activemq</module>
+        <module>ioc-unit-jms-artemisactivemq</module>
+        <!--module>ioc-unit-jta-narayana</module-->
+    </modules>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+

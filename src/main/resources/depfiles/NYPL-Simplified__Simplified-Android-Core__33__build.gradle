@@ -1,0 +1,23 @@
+android {
+  buildFeatures {
+    viewBinding = true
+  }
+}
+
+dependencies {
+  implementation libraries.androidx_legacy_support_v4
+  implementation libraries.slf4j
+  implementation libraries.androidx_activity
+  implementation libraries.androidx_appcompat
+  implementation libraries.androidx_constraintlayout
+  implementation libraries.androidx_navigation_fragment
+  implementation libraries.androidx_navigation_ui
+  implementation libraries.kotlin_stdlib
+  implementation libraries.kotlin_reflect
+  implementation libraries.kotlin_reflect
+  implementation libraries.joda_time
+  implementation libraries.moshi
+  implementation libraries.retrofit2
+  implementation libraries.retrofit2_moshi
+  implementation libraries.okhttp3_logging_interceptor
+}

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.pustefixframework</groupId>
+    <artifactId>pustefixframework</artifactId>
+    <version>0.23.1-SNAPSHOT</version>
+  </parent>
+
+  <groupId>org.pustefixframework</groupId>
+  <artifactId>pustefix-samples</artifactId>
+  <version>0.23.1-SNAPSHOT</version>
+
+  <packaging>pom</packaging>
+  <name>Pustefix Samples</name>
+  <modules>
+    <module>pustefix-hangman</module>
+    <module>pustefix-numberguess</module>
+    <module>pustefix-sample-basic</module>
+    <module>pustefix-sample1</module>
+    <module>pustefix-samplebank</module>
+    <module>pustefix-testsuite</module>
+    <module>pustefix-webservice</module>
+    <module>sample-modules</module>
+    <module>moduletest</module>
+    <module>pustefix-i18n</module>
+    <module>pustefix-cditest</module>
+    <module>pustefix-mvctest</module>
+  </modules>
+
+  <properties>
+    <cargo.debug.jvmargs />
+    <cargo.live.jvmargs />
+  </properties>
+
+  <build>
+    <plugins>
+      <!--
+      <plugin>
+        <groupId>org.pustefixframework.maven.plugins</groupId>
+        <artifactId>pustefix-validator-plugin</artifactId>
+        <version>0.21.0-SNAPSHOT</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>validate</goal>
+            </goals>
+            <configuration>
+              <configDir>src</configDir>
+              <recursive>true</recursive>
+              <cacheEntities>true</cacheEntities>
+              <failOnWarning>true</failOnWarning>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <id>tomcatconf</id>
+            <phase>prepare-package</phase>
+            <configuration>
+              <target>
+                <mkdir dir="${project.build.directory}/addtomcatconf" />
+                <echo file="${project.build.directory}/addtomcatconf/context.xml"><![CDATA[<?xml version='1.0' encoding='utf-8'?>
+<Context cookies="true" useHttpOnly="true">
+  <Parameter name="mode" value="${pustefix.mode}" override="false" />
+  <Manager pathname="" />
+</Context>
+]]></echo>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <path>/</path>
+          <contextFile>${project.build.directory}/addtomcatconf/context.xml</contextFile>
+          <warDirectory>${war.dir}</warDirectory>
+          <uriEncoding>UTF-8</uriEncoding>
+          <useSeparateTomcatClassLoader>true</useSeparateTomcatClassLoader>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.cargo</groupId>
+        <artifactId>cargo-maven2-plugin</artifactId>
+        <version>1.7.2</version>
+        <configuration>
+          <container>
+            <containerId>tomcat9x</containerId>
+            <artifactInstaller>
+              <groupId>org.apache.tomcat</groupId>
+              <artifactId>tomcat</artifactId>
+              <version>9.0.22</version>
+            </artifactInstaller>
+          </container>
+          <configuration>
+            <type>standalone</type>
+            <home>${project.build.directory}/tomcat</home>
+            <properties>
+              <cargo.servlet.port>8080</cargo.servlet.port>
+              <cargo.tomcat.uriencoding>UTF-8</cargo.tomcat.uriencoding>
+              <cargo.logging>low</cargo.logging>
+              <cargo.start.jvmargs>${cargo.debug.jvmargs} ${cargo.live.jvmargs}</cargo.start.jvmargs>
+            </properties>
+            <configfiles>
+              <configfile>
+                <file>${project.build.directory}/addtomcatconf/context.xml</file>
+                <todir>conf</todir>
+                <tofile>context.xml</tofile>
+              </configfile>
+            </configfiles>
+          </configuration>
+          <deployables>
+            <deployable>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>${project.artifactId}</artifactId>
+              <type>war</type>
+              <properties>
+                <context>/</context>
+              </properties>
+            </deployable>
+          </deployables>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.pustefixframework.maven.plugins</groupId>
+        <artifactId>pustefix-tomcat-plugin</artifactId>
+        <version>0.23.1-SNAPSHOT</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>cargo-debug</id>
+      <properties>
+        <cargo.debug.jvmargs>
+          -Xdebug
+          -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
+          -Xnoagent
+          -Djava.compiler=NONE
+        </cargo.debug.jvmargs>
+      </properties>
+    </profile>
+    <profile>
+      <id>cargo-live</id>
+      <activation>
+        <property>
+          <name>pustefix.liveroot</name>
+        </property>
+      </activation>
+      <properties>
+      <cargo.live.jvmargs>
+        -Dpustefix.liveroot=${pustefix.liveroot}
+      </cargo.live.jvmargs>
+      </properties>
+    </profile>
+  </profiles>
+
+</project>

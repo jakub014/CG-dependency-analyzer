@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot.experimental</groupId>
+		<artifactId>spring-boot-thin-launcher-parent</artifactId>
+		<version>1.0.27.BUILD-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>spring-boot-thin-gradle-plugin</artifactId>
+	<packaging>jar</packaging>
+
+	<name>Spring Boot Thin Gradle</name>
+	<description>Grade plugin for Spring Boot Thin Launcher</description>
+
+	<properties>
+		<gradle.version>2.9</gradle.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-loader-tools</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot.experimental</groupId>
+			<artifactId>spring-boot-thin-layout</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<!-- Provided -->
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy</artifactId>
+			<scope>provided</scope>
+			<version>2.4.21</version>
+		</dependency>
+		<dependency>
+			<groupId>org.gradle</groupId>
+			<artifactId>gradle-core</artifactId>
+			<scope>provided</scope>
+			<version>${gradle.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.gradle</groupId>
+			<artifactId>gradle-platform-jvm</artifactId>
+			<scope>provided</scope>
+			<version>${gradle.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.gradle</groupId>
+			<artifactId>gradle-base-services</artifactId>
+			<scope>provided</scope>
+			<version>${gradle.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.gradle</groupId>
+			<artifactId>gradle-plugins</artifactId>
+			<scope>provided</scope>
+			<version>${gradle.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.gradle</groupId>
+			<artifactId>gradle-maven</artifactId>
+			<scope>provided</scope>
+			<version>3.5</version>
+		</dependency>
+		<dependency>
+			<groupId>io.spring.gradle</groupId>
+			<artifactId>dependency-management-plugin</artifactId>
+			<scope>provided</scope>
+			<version>1.0.4.RELEASE</version>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<!-- Pushes plugin to Bintray -->
+			<id>bintray</id>
+			<distributionManagement>
+				<repository>
+					<id>bintray-spring</id>
+					<url>https://api.bintray.com/maven/spring/jars/spring-boot-thin/;publish=1</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+	</profiles>
+
+</project>

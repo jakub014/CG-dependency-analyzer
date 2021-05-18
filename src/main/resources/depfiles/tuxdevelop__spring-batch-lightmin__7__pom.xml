@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>spring-batch-lightmin</artifactId>
+        <groupId>org.tuxdevelop</groupId>
+        <version>2.2.2-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>spring-batch-lightmin-client</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>spring-batch-lightmin-client-core</module>
+        <module>spring-batch-lightmin-client-discovery-consul</module>
+        <module>spring-batch-lightmin-client-discovery-eureka</module>
+        <module>spring-batch-lightmin-client-discovery-core</module>
+        <module>spring-batch-lightmin-client-classic</module>
+    </modules>
+
+</project>

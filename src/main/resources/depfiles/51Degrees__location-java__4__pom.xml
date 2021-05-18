@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>pipeline.geo-location</artifactId>
+        <groupId>com.51degrees</groupId>
+        <version>4.2.5-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>geo-location.examples</artifactId>
+    <name>51Degrees :: Geo Location :: Examples</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>geo-location</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>device-detection</artifactId>
+            <version>4.2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>pipeline.engines</artifactId>
+            <version>${pipeline.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    <build>
+    <plugins>
+		<plugin>
+   		<groupId>org.apache.maven.plugins</groupId>
+  		<artifactId>maven-compiler-plugin</artifactId>
+  		<version>3.8.1</version>
+		<configuration>
+				<showWarnings>true</showWarnings>
+				<compilerArgs>
+						<arg>-Werror</arg>
+						<arg>-Xlint:all,-options,-try</arg>
+		</compilerArgs>
+		</configuration>
+        </plugin>	
+        </plugins>
+    </build>
+    <licenses>
+        <license>
+            <name>European Union Public License 1.2</name>
+            <url>https://opensource.org/licenses/EUPL-1.2</url>
+        </license>
+    </licenses>
+    
+</project>

@@ -1,0 +1,114 @@
+import com.getstream.sdk.chat.Dependencies
+import com.getstream.sdk.chat.Configuration
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'org.jlleitschuh.gradle.ktlint'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: "de.mannodermaus.android-junit5"
+
+ext {
+    PUBLISH_GROUP_ID = Configuration.artifactGroup
+    PUBLISH_VERSION = Configuration.versionName
+    PUBLISH_ARTIFACT_ID = 'stream-chat-android-client'
+}
+
+apply from: "${rootDir}/scripts/publish-module.gradle"
+apply from: "${rootDir}/scripts/android.gradle"
+
+
+android {
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'STREAM_CHAT_VERSION', "\"$version\""
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            consumerProguardFiles 'consumer-proguard-rules.pro'
+        }
+        debug {
+            testCoverageEnabled true
+            consumerProguardFiles 'consumer-proguard-rules.pro'
+        }
+    }
+
+    resourcePrefix 'stream_'
+
+    lintOptions {
+        xmlReport false
+    }
+
+    testOptions.unitTests {
+        returnDefaultValues = true
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        freeCompilerArgs += [
+                '-progressive',
+                '-Xexplicit-api=strict',
+                '-Xopt-in=io.getstream.chat.android.core.internal.InternalStreamChatApi',
+        ]
+    }
+}
+
+dependencies {
+    api project(':stream-chat-android-core')
+
+    implementation Dependencies.kotlinStdLib
+    implementation Dependencies.kotlinReflect
+
+    implementation Dependencies.androidxAppCompat
+    implementation Dependencies.androidxCoreKtx
+    implementation Dependencies.androidxLifecycleExtensions
+    implementation Dependencies.constraintLayout
+    implementation Dependencies.coroutinesCore
+    implementation Dependencies.coroutinesAndroid
+    implementation Dependencies.firebaseMessaging
+    implementation Dependencies.retrofit
+    implementation Dependencies.gson
+    implementation Dependencies.retrofitGsonConverter
+    implementation Dependencies.moshi
+    implementation Dependencies.retrofitMoshiConverter
+    kapt Dependencies.moshiCodegen
+    implementation Dependencies.okhttpLoggingInterceptor
+    implementation Dependencies.ok2curl
+    debugImplementation Dependencies.flipper
+    debugImplementation Dependencies.flipperNetwork
+    debugImplementation Dependencies.flipperLoader
+
+    // Tests
+    testImplementation project(':stream-chat-android-test')
+    testImplementation Dependencies.androidxTestJunit
+    testImplementation Dependencies.junitJupiterApi
+    testImplementation Dependencies.junitJupiterParams
+    testRuntimeOnly Dependencies.junitJupiterEngine
+    testRuntimeOnly Dependencies.junitVintageEngine
+
+    testImplementation Dependencies.assertj
+    testImplementation(Dependencies.awaitility) {
+        exclude group: "org.hamcrest", module: "hamcrest"
+    }
+    testImplementation Dependencies.json
+    testImplementation Dependencies.kluent
+    testImplementation Dependencies.truth
+    testImplementation Dependencies.kfixture
+    testImplementation Dependencies.mockito
+    testImplementation Dependencies.mockitoKotlin
+    testImplementation Dependencies.okhttpMockWebserver
+    testImplementation Dependencies.robolectric
+
+    // Instrumentation tests
+    androidTestImplementation Dependencies.assertj
+    androidTestImplementation(Dependencies.awaitility) {
+        exclude group: "org.hamcrest", module: "hamcrest"
+    }
+    androidTestImplementation Dependencies.junit4
+    androidTestImplementation Dependencies.espressoCore
+    androidTestImplementation Dependencies.androidxTestJunit
+}

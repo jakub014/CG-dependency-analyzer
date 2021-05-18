@@ -1,0 +1,110 @@
+<!--
+  #%L
+  %%
+  Copyright (C) 2011 - 2017 BMW Car IT GmbH
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>tests</artifactId>
+	<name>${project.groupId}:${project.artifactId}</name>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>io.joynr</groupId>
+		<artifactId>joynr</artifactId>
+		<version>1.16.0</version>
+	</parent>
+
+	<modules>
+		<module>test-base</module>
+		<module>performance-test</module>
+		<module>performance-test-jee</module>
+		<module>pt-java</module>
+		<module>robustness-test</module>
+		<module>robustness-test-env</module>
+		<module>robustness-test-base</module>
+		<module>inter-language-test</module>
+		<module>inter-language-test-jee</module>
+		<module>system-integration-test</module>
+		<module>standalone-pt</module>
+		<module>graceful-shutdown-test</module>
+		<module>joynr-hivemq-shared-subscriptions</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>spotbugs</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.spotbugs</groupId>
+						<artifactId>spotbugs-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>copy-backend-services-jee</id>
+							<phase>none</phase>
+							<goals>
+								<goal>copy</goal>
+							</goals>
+							<configuration>
+								<artifactItems>
+									<artifactItem>
+										<groupId>io.joynr.java.backend-services</groupId>
+										<artifactId>discovery-directory-jee</artifactId>
+										<version>${project.version}</version>
+										<type>war</type>
+										<outputDirectory>${project.build.directory}</outputDirectory>
+										<destFileName>discovery-jee.war</destFileName>
+									</artifactItem>
+								</artifactItems>
+								<overWriteReleases>false</overWriteReleases>
+								<overWriteSnapshots>true</overWriteSnapshots>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
+				<!-- Skip deploy -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>net.revelc.code.formatter</groupId>
+				<artifactId>formatter-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>

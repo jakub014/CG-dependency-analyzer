@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- Copyright Contributors to the ODPi Egeria project. -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>open-metadata-fvt</artifactId>
+        <groupId>org.odpi.egeria</groupId>
+        <version>2.10-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <scm>
+        <connection>scm:git:git://github.com/odpi/egeria.git</connection>
+        <developerConnection>scm:git:ssh://github.com/odpi/egeria.git</developerConnection>
+        <url>http://github.com/odpi/egeria/tree/master</url>
+    </scm>
+
+    <name>OMAS FV and SV Tests</name>
+    <description>
+        The open metadata access services test module contains Functional Verification Test (FVT) and System
+        Verification Test (SVT) resources.
+    </description>
+
+    <artifactId>access-services-fvt</artifactId>
+
+    <packaging>pom</packaging>
+    <modules>
+        <module>asset-consumer-fvt</module>
+        <module>asset-manager-fvt</module>
+        <module>asset-owner-fvt</module>
+        <module>data-engine-fvt</module>
+        <module>data-manager-fvt</module>
+        <module>digital-architecture-fvt</module>
+        <module>subject-area-fvt</module>
+    </modules>
+
+</project>

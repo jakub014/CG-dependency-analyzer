@@ -1,0 +1,19 @@
+// Publishing
+apply from: "$rootProject.projectDir/maven-publish.gradle"
+
+dependencies {
+    // SchemaRegistry is not leak into users classpath to allow the test DSL to support multiple
+    // versions at the same time
+    compileOnly "io.confluent:kafka-schema-registry:$confluentVersion"
+    compileOnly "io.confluent:kafka-schema-registry-client:$confluentVersion"
+
+    implementation "org.apache.curator:curator-test:$apacheCuratorVersion"
+
+    // SchemaRegistry is configured compileOnly and therefore it needs to be added again while testing
+    testImplementation "io.confluent:kafka-schema-registry:$confluentVersion"
+    testImplementation "io.confluent:kafka-schema-registry-client:$confluentVersion"
+
+    testImplementation "com.salesforce.kafka.test:kafka-junit5:$kafkaJunitVersion"
+    testImplementation "org.testcontainers:testcontainers:$testcontainersVersion"
+    testImplementation "org.testcontainers:junit-jupiter:$testcontainersVersion"
+}

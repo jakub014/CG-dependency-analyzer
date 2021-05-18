@@ -1,0 +1,82 @@
+plugins {
+    id 'java-library'
+    id 'groovy-base'
+    id 'java-test-fixtures'
+    id 'dev.fukgradleplugins.toolbox-publish'
+}
+
+description = 'Gradle runner kit implementation for Gradle wrapper executor.'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withSourcesJar()
+    withJavadocJar()
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://repo.nokeedev.net/snapshot' }
+}
+
+// Caveman dependency shading
+def shadedConfiguration = configurations.create('shaded') { transitive = false }
+configurations.compileOnly.extendsFrom(shadedConfiguration)
+configurations.testImplementation.extendsFrom(shadedConfiguration)
+tasks.named('jar', Jar) { task ->
+    task.from({ shadedConfiguration.files.collect { zipTree(it) } })
+}
+
+dependencies {
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    //region Until we release coreExec as part of Grava
+    shaded "dev.nokee:coreExec:${nokeeCoreExecVersion}"
+    shaded "dev.nokee:coreUtils:${nokeeCoreExecVersion}"
+    def commonsExecVersion = '1.3'
+    def guavaVersion = '28.2-jre'
+    def commonsLangVersion = '3.9'
+    def commonsIoVersion = '2.6'
+    implementation "org.apache.commons:commons-exec:${commonsExecVersion}"
+    implementation "com.google.guava:guava:${guavaVersion}"
+    implementation "commons-io:commons-io:${commonsIoVersion}"
+    implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
+    //endregion
+
+    api project(':gradle-runner-kit-api')
+    api(project(':gradle-runner-kit-impl')) { because 'we need the common executor classes' }
+    implementation project(':gradle-fixtures-file-system')
+    implementation 'org.apache.commons:commons-lang3:3.9'
+
+    testImplementation platform('org.spockframework:spock-bom:1.2-groovy-2.5')
+    testImplementation 'org.spockframework:spock-core'
+    testImplementation testFixtures(project(':gradle-fixtures-file-system'))
+
+    testFixturesImplementation project(':gradle-fixtures-file-system')
+}
+
+def createWrapper = tasks.register('createWrapper', Wrapper) {
+    it.jarFile = layout.buildDirectory.file('wrapper-support/gradle/wrapper/gradle-wrapper.jar')
+    it.scriptFile = layout.buildDirectory.file('wrapper-support/gradlew')
+}
+
+tasks.processTestFixturesResources {
+    from(createWrapper) {
+        into('dev/gradleplugins/fixtures/runnerkit/wrapper')
+    }
+}
+
+tasks.named('javadoc') { enabled = false }
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+tasks.register('release') {
+    dependsOn('publish')
+}

@@ -1,0 +1,17 @@
+dependencies {
+  api project(':methanol')
+  api deps.jacksonDatabind
+
+  testImplementation project(':methanol-testutils')
+}
+
+compileJava {
+  // suppress exporting to module unresolvable on compilation
+  options.compilerArgs += '-Xlint:-module'
+}
+
+[compileTestJava, test].each { task ->
+  addReads(task, 'methanol.testutils')
+}
+
+addOpens(test, 'com.github.mizosoft.methanol.adapter.jackson', 'com.fasterxml.jackson.databind')

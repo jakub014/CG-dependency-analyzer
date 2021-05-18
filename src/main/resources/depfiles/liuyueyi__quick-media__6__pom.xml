@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>svg-plugin</artifactId>
+        <groupId>com.github.liuyueyi.media</groupId>
+        <version>2.6.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>svg-core</artifactId>
+    <version>2.6.0</version>
+
+    <scm>
+        <connection>scm:git:https://github.com/liuyueyi/quick-media.git</connection>
+        <developerConnection>scm:git:https://github.com/liuyueyi/quick-media.git</developerConnection>
+        <url>https://github.com/liuyueyi/quick-media</url>
+    </scm>
+
+    <description>render svg to image</description>
+    <developers>
+        <developer>
+            <name>YiHui</name>
+            <email>bangzewu@126.com</email>
+            <url>http://blog.hhui.top</url>
+        </developer>
+    </developers>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.github.liuyueyi.media</groupId>
+            <artifactId>batik-codec-fix</artifactId>
+            <version>2.6.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!--日志-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <!--日志-->
+
+
+        <!--svg render dependency-->
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-anim</artifactId>
+            <version>${batik.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-transcoder</artifactId>
+            <version>${batik.version}</version>
+        </dependency>
+    </dependencies>
+
+
+
+</project>

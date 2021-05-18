@@ -1,0 +1,5 @@
+dependencies {
+    api "org.apache.pdfbox:pdfbox:${project.property('pdfbox.version')}"
+    testImplementation "org.jfree:jfreechart:${project.property('jfreechart.version')}"
+    testImplementation "org.apache.xmlgraphics:batik-swing:${project.property('batik.version')}"
+}

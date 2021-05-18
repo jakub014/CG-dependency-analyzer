@@ -1,0 +1,18 @@
+dependencies {
+  api project(':simplified-accounts-api')
+  api project(':simplified-accounts-registry-api')
+  api project(':simplified-accounts-source-spi')
+
+  api libraries.google_guava
+  api libraries.io7m_jfunctional
+  api libraries.joda_time
+  api libraries.nypl_drm_core
+  api libraries.rxjava2
+
+  implementation libraries.kotlin_stdlib
+  implementation libraries.kotlin_reflect
+  implementation libraries.slf4j
+
+  compileOnly libraries.google_autovalue
+  annotationProcessor libraries.google_autovalue_processor
+}

@@ -1,0 +1,3 @@
+dependencies {
+    api project(":autumn-http:autumn-http-common")
+}

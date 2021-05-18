@@ -1,0 +1,7 @@
+apply from: 'libs.gradle'
+
+dependencies {
+	api project(':iplass-core')
+	api project(':iplass-web')
+	api project(':iplass-gem')
+}

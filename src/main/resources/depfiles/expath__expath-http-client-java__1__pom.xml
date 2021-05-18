@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>org.expath</groupId>
+        <artifactId>expath-parent</artifactId>
+        <version>1.4.0</version>
+        <relativePath />
+    </parent>
+    
+    <groupId>org.expath.http.client</groupId>
+    <artifactId>http-client-parent</artifactId>
+    <version>1.4.2-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    
+    <name>EXPath HTTP Client POM</name>
+    <description>The base POM for all EXPath HTTP Client modules.</description>
+
+    <scm>
+        <connection>scm:git:https://github.com/expath/expath-http-client-java.git</connection>
+        <developerConnection>scm:git:https://github.com/expath/expath-http-client-java.git</developerConnection>
+        <url>scm:git:https://github.com/expath/expath-http-client-java.git</url>
+      <tag>HEAD</tag>
+  </scm>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.3.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.expath.tools</groupId>
+                <artifactId>tools-java</artifactId>
+                <version>0.7.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>4.4.14</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>4.5.13</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
+</project>

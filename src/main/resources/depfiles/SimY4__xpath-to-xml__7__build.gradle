@@ -1,0 +1,24 @@
+ext.moduleName = 'com.github.simych.xpath.jdom'
+
+apply from: rootProject.file('gradle/benchmark-jmh.gradle')
+
+dependencies {
+    api project(':xpath-to-xml-core')
+
+    implementation 'org.jdom:jdom2'
+
+    testImplementation project(':xpath-to-xml-test')
+    testImplementation 'jaxen:jaxen'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.assertj:assertj-core'
+}
+
+compileJava {
+    options.compilerArgs << '--module-path' << classpath.asPath << '-Xlint:-requires-automatic'
+    classpath = files()
+}
+
+javadoc {
+    options.modulePath += classpath
+    classpath = files()
+}

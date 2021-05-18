@@ -1,0 +1,19 @@
+if (!hasProperty('mainClass')) {
+    ext.mainClass = ''
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+            srcDir '../jme3-bullet/src/common/java'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.github.stephengold:jbullet:1.0.1'
+    compile 'javax.vecmath:vecmath:1.5.2'
+    compile project(':jme3-core')
+    compile project(':jme3-terrain')
+}

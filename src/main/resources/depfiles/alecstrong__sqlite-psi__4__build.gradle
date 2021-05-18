@@ -1,0 +1,17 @@
+plugins {
+  id 'org.jetbrains.intellij' version '0.7.2'
+}
+
+intellij {
+  version dep.intellij
+}
+
+apply plugin: 'kotlin'
+
+sourceSets {
+  main.java.srcDir "src/generated/kotlin"
+}
+
+dependencies {
+  implementation project(":sample-core")
+}

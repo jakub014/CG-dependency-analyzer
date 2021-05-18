@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.bull.javamelody</groupId>
+	<artifactId>javamelody-collector-server</artifactId>
+	<version>1.88.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>JavaMelody - Collector server</name>
+	<description>Optional centralized collector server for Java Melody</description>
+	<url>https://github.com/javamelody/javamelody/wiki</url>
+	<licenses>
+		<license>
+			<name>ASL</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Emeric Vernat</name>
+			<email>evernat@free.fr</email>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:git@github.com:javamelody/javamelody.git</connection>
+		<developerConnection>scm:git:git@github.com:javamelody/javamelody.git</developerConnection>
+		<url>https://github.com/javamelody/javamelody</url>
+		<tag>HEAD</tag>
+	</scm>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>javamelody-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<!-- mêmes dépendances que dans build.xml, même si le war produit par le 
+			packaging maven n'est pas exactement le même que le vrai war produit par 
+			build.xml -->
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+			<version>2.1.7</version>
+			<exclusions>
+				<exclusion>
+					<groupId>bouncycastle</groupId>
+					<artifactId>bcmail-jdk14</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>bouncycastle</groupId>
+					<artifactId>bcprov-jdk14</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>bctsp-jdk14</artifactId>
+					<groupId>bouncycastle</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.26</version>
+		</dependency>
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.16</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.6</version>
+		</dependency>
+		<!-- AWS CloudWatch dependencies to send metrics to CloudWatch (about 4.5 
+			MB) -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-cloudwatch</artifactId>
+			<version>1.11.136</version>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.11.136</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.3</version>
+				<configuration>
+					<overlays>
+						<overlay>
+							<id>javamelody-core-overlay</id>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>javamelody-core</artifactId>
+							<type>jar</type>
+							<includes>
+								<include>LICENSE</include>
+								<include>JAVAMELODY-VERSION.properties</include>
+								<!-- Main-Class to launch as "java -jar javamelody-xxx.war" with 
+									Winstone -->
+								<include>net/bull/javamelody/Main.class</include>
+							</includes>
+						</overlay>
+					</overlays>
+					<archive>
+						<manifestEntries>
+							<Implementation-Title>${project.name}</Implementation-Title>
+							<Implementation-Version>${project.version}</Implementation-Version>
+							<Implementation-Vendor>Emeric Vernat</Implementation-Vendor>
+
+							<!-- Main-Class to launch as "java -jar javamelody-xxx.war" with Winstone -->
+							<Main-Class>net.bull.javamelody.Main</Main-Class>
+							<!-- Override user.name in Built-By -->
+							<Built-By>Emeric Vernat</Built-By>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<!-- Use "mvn jetty:run-exploded" -->
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<configuration>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<connectors>
+						<connector
+							implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+							<port>8080</port>
+							<maxIdleTime>60000</maxIdleTime>
+						</connector>
+					</connectors>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

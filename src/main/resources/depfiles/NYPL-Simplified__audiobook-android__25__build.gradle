@@ -1,0 +1,9 @@
+dependencies {
+  api project(':org.librarysimplified.audiobook.api')
+
+  implementation libraries.androidXAppCompat
+  implementation libraries.androidXRecyclerView
+  implementation libraries.kotlinStdlib
+  implementation libraries.kotlinReflect
+  implementation libraries.slf4j
+}

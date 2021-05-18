@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>pepper-lib</artifactId>
+	<packaging>jar</packaging>
+	<parent>
+		<groupId>org.corpus-tools</groupId>
+		<artifactId>pepper</artifactId>
+		<version>3.6.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>org.corpus-tools</groupId>
+			<artifactId>pepper-framework</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>org.corpus-tools</groupId>
+			<artifactId>pepper-framework</artifactId>
+			<version>${project.version}</version>
+			<scope>compile</scope>
+			<type>zip</type>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.platform</groupId>
+			<artifactId>org.eclipse.osgi</artifactId>
+			<version>${org.eclipse.osgi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.13</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.0.13</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.janino</groupId>
+			<artifactId>janino</artifactId>
+			<version>2.7.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-api</artifactId>
+			<version>${org.eclipse.aether.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-util</artifactId>
+			<version>${org.eclipse.aether.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-impl</artifactId>
+			<version>${org.eclipse.aether.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-connector-basic</artifactId>
+			<version>${org.eclipse.aether.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-transport-file</artifactId>
+			<version>${org.eclipse.aether.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-transport-http</artifactId>
+			<version>${org.eclipse.aether.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-transport-wagon</artifactId>
+			<version>${org.eclipse.aether.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-aether-provider</artifactId>
+			<version>3.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.wagon</groupId>
+			<artifactId>wagon-provider-api</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.aether</groupId>
+			<artifactId>aether-spi</artifactId>
+			<version>${org.eclipse.aether.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient-osgi</artifactId>
+			<version>4.2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore-osgi</artifactId>
+			<version>4.2.5</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.eclipse.platform</groupId>
+		    <artifactId>org.eclipse.equinox.util</artifactId>
+		    <version>1.1.300</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.eclipse.platform</groupId>
+		    <artifactId>org.eclipse.equinox.ds</artifactId>
+		    <version>1.6.200</version>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.util.promise</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.util.function</artifactId>
+			<version>1.1.0</version>
+		</dependency>
+		<dependency>
+			<!-- Necessary to run Salt upto version 2.10.1 (unfortunatly version from 
+				2.10.1 produce a class incompatibility error) -->
+			<groupId>org.eclipse.core</groupId>
+			<artifactId>runtime</artifactId>
+			<version>3.10.0-v20140318-2214</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<!-- copies readme.txt and version.txt from resource folder and substitutes 
+				maven variables with values -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<!-- here the phase you need -->
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources/</directory>
+									<includes>
+										<include>version.txt</include>
+										<include>readme.txt</include>
+									</includes>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<!-- a plugin to clean the project when calling mvn clean -->
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>${maven-clean-plugin.version}</version>
+				<configuration>
+					<!-- removes META-INF and OSGI-INF, lib and plugins -->
+					<filesets>
+						<fileset>
+							<directory>${basedir}</directory>
+							<includes>
+								<include>plugins/**</include>
+								<include>lib/**</include>
+								<include>conf/dep/**</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-antrun-plugin</artifactId> 
+				<version>1.8</version> <executions> <execution> <phase>process-resources</phase> 
+				<configuration> <tasks> <copy file="${project.build.outputDirectory}/version.txt" toFile="${basedir}" overwrite="true" /> </tasks> </configuration> <goals> 
+				<goal>run</goal> </goals> </execution> </executions> </plugin> -->
+			<plugin>
+				<!-- The aim of this assambly is to create a /plugin and /lib folder 
+					containing all dependencies which are necessary to start Pepper in pepper-lib. -->
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${maven-assembly-plugin.version}</version>
+
+				<executions>
+					<execution>
+						<!-- This execution resolves all dependencies given by pepper-lib project 
+							and copies them to the plugins or lib folder. This is a preparation step 
+							to create a distribution and to run the project in IDE like Eclipse. -->
+						<id>plugin-assembly</id> <!-- this is used for inheritance merges -->
+						<phase>package</phase> <!-- bind to the packaging phase -->
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<descriptors>
+								<descriptor>src/assemble/assembly_plugin.xml</descriptor>
+							</descriptors>
+							<outputDirectory>${basedir}</outputDirectory>
+							<finalName>./</finalName>
+						</configuration>
+					</execution>
+					<execution>
+						<!-- This execution creates a distribution by copying all resources, 
+							libs, scripts etc. to the right place and zips the whole bunch -->
+						<id>distribution-assembly</id>
+						<configuration>
+							<descriptors>
+								<descriptor>${assemblies.name}</descriptor>
+							</descriptors>
+							<appendAssemblyId>false</appendAssemblyId>
+							<finalName>${project.groupId}.pepper.${project.artifactId}_${project.version}</finalName>
+							<outputDirectory>target/distribution</outputDirectory>
+							<workDirectory>target/assembly/work</workDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- <plugin> <artifactId>maven-assembly-plugin</artifactId> <version>${maven-assembly-plugin.version}</version> 
+				<configuration> <descriptors> <descriptor>${assemblies.name}</descriptor> 
+				</descriptors> <appendAssemblyId>false</appendAssemblyId> <finalName>${project.groupId}.pepper.${project.artifactId}_${project.version}</finalName> 
+				<outputDirectory>target/distribution</outputDirectory> <workDirectory>target/assembly/work</workDirectory> 
+				</configuration> </plugin> -->
+			<!-- start: Creation of jar file -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven-jar-plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>org.corpus_tools.pepper.pepperStarter.PepperStarter</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<!-- end: Creation of jar file -->
+		</plugins>
+	</build>
+</project>

@@ -1,0 +1,7 @@
+group = 'org.eclipse.xtend'
+
+dependencies {
+	compile project(':org.eclipse.xtext.xbase.lib')
+	compile project(':org.eclipse.xtend.lib')
+	compile 'junit:junit'
+}

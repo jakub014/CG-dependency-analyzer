@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '26.0.3'
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 22
+        versionCode 3
+        versionName "2.2.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    maven {
+        url 'https://download.01.org/crosswalk/releases/crosswalk/android/maven2'
+    }
+}
+
+dependencies {
+    compileOnly(project(':library')) {
+        exclude group: 'com.android.support'
+    }
+    compileOnly('org.xwalk:xwalk_core_library:22.52.561.4') {
+        exclude group: 'com.android.support'
+    }
+}

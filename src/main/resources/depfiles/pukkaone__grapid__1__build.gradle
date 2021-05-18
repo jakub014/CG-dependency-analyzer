@@ -1,0 +1,20 @@
+plugins {
+  id 'organization.library-convention'
+}
+
+description = 'GraphQL server core library'
+
+ext {
+  autoServiceVersion = '1.0'
+}
+
+dependencies {
+  implementation 'com.fasterxml.jackson.core:jackson-databind'
+  annotationProcessor "com.google.auto.service:auto-service:${autoServiceVersion}"
+  compileOnly "com.google.auto.service:auto-service:${autoServiceVersion}"
+  api 'com.graphql-java:graphql-java:16.2'
+  api 'javax.annotation:javax.annotation-api'
+  api 'javax.inject:javax.inject:1'
+  implementation 'org.springframework:spring-context'
+  implementation 'org.springframework:spring-web'
+}

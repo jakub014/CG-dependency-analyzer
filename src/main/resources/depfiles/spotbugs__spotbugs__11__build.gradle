@@ -1,0 +1,39 @@
+apply from: "$rootDir/gradle/checkstyle.gradle"
+apply from: "$rootDir/gradle/javadoc.gradle"
+apply from: "$rootDir/gradle/maven.gradle"
+
+dependencies {
+  compileOnly project(':spotbugs')
+  compileOnly 'org.junit.jupiter:junit-jupiter-api'
+  implementation project(':test-harness-core')
+  testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+  testImplementation project(':spotbugs')
+  testImplementation 'org.junit.jupiter:junit-jupiter-api'
+}
+
+tasks.named('javadoc', Javadoc).configure {
+  options.with {
+    tags = ['Test']
+  }
+}
+
+java {
+  withJavadocJar()
+  withSourcesJar()
+}
+
+test {
+  useJUnitPlatform()
+}
+
+publishing.publications.maven {
+  pom {
+    name = 'JUnit 5 Test Harness for SpotBugs Plugin'
+    description = 'A test harness library for SpotBugs plugin developers to test on JUnit 5'
+  }
+}
+
+// Module name should be reverse-DNS (com.github.spotbugs) just like package name
+// http://blog.joda.org/2017/04/java-se-9-jpms-module-naming.html
+ext.moduleName = 'com.github.spotbugs.test.jupiter'
+apply from: "$rootDir/gradle/jigsaw.gradle"
