@@ -10,6 +10,8 @@ require "dependabot/update_checkers"
 require "dependabot/file_updaters"
 require "dependabot/pull_request_creator"
 require "dependabot/omnibus"
+require_relative "JSONParse"
+
 
 # GitHub credentials with write permission to the repo you want to update
 # (so that you can create a new branch, commit and pull request).
@@ -19,7 +21,7 @@ credentials =
     "type" => "git_source",
     "host" => "github.com",
     "username" => "x-access-token",
-    "password" => ""
+    "password" => "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"
   }]
 
 # Full name of the GitHub repo you want to create pull requests for.
@@ -48,12 +50,7 @@ directory = "/"
 # - docker
 # - terraform
 package_manager = "maven"
-advisories = '[{
-  "dependency-name":"com.fasterxml.jackson.core:jackson-databind",
-  "patched-versions":[],
-  "unaffected-versions":[],
-  "affected-versions":["2.0.0","2.0.0-RC1","2.0.0-RC2","2.0.0-RC3","2.0.1","2.0.2","2.0.4","2.0.5","2.0.6","2.1.0","2.1.1","2.1.2","2.1.3","2.1.4","2.1.5","2.10.0","2.10.0.pr1","2.10.0.pr2","2.10.0.pr3","2.10.1","2.10.2","2.2.0","2.2.0-rc1","2.2.1","2.2.2","2.2.3","2.2.4","2.3.0","2.3.0-rc1","2.3.1","2.3.2","2.3.3","2.3.4","2.3.5","2.4.0","2.4.0-rc1","2.4.0-rc2","2.4.0-rc3","2.4.1","2.4.1.1","2.4.1.2","2.4.1.3","2.4.2","2.4.3","2.4.4","2.4.5","2.4.5.1","2.4.6","2.5.0","2.5.0-rc1","2.5.1","2.5.2","2.5.3","2.5.5","2.6.0","2.6.0-rc1","2.6.0-rc2","2.6.0-rc3","2.6.0-rc4","2.6.1","2.6.2","2.6.3","2.6.4","2.6.5","2.6.6","2.6.7","2.6.7.1","2.6.7.2","2.6.7.3","2.7.0","2.7.0-rc1","2.7.0-rc2","2.7.0-rc3","2.7.1","2.7.1-1","2.7.2","2.7.3","2.7.4","2.7.5","2.7.6","2.7.7","2.7.8","2.7.9","2.7.9.1","2.7.9.2","2.7.9.3","2.7.9.4","2.7.9.5","2.7.9.6","2.8.0","2.8.0.rc1","2.8.0.rc2","2.8.1","2.8.10","2.8.11","2.8.11.1","2.8.11.2","2.8.11.3","2.8.11.4","2.8.2","2.8.3","2.8.4","2.8.5","2.8.6","2.8.7","2.8.8","2.8.8","2.8.8.1","2.8.9","2.9.0","2.9.0.pr1","2.9.0.pr2","2.9.0.pr3","2.9.0.pr4","2.9.1","2.9.10","2.9.10.1","2.9.10.2","2.9.2","2.9.3","2.9.4","2.9.5","2.9.6","2.9.7","2.9.8","2.9.9","2.9.9.1","2.9.9.2","2.9.9.3"]
-}]'
+
 
 counter = 0
 repos_file = File.open("vuln_repos.txt").read
@@ -104,22 +101,28 @@ repos_file.each_line do |line|
 
     dependencies = parser.parse
     dep_counter = 0
+    vulnDepsList = returnVulnList()
     for dep in dependencies do
       #########################################
       # Get update details for the dependency #
       #########################################
-#       advisories = [Dependabot::SecurityAdvisory.new(
-#         dependency_name: "com.fasterxml.jackson.core:jackson-databind",
-#         package_manager: "maven",
-#         vulnerable_versions: ["2.0.0","2.0.0-RC1","2.0.0-RC2","2.0.0-RC3","2.0.1","2.0.2","2.0.4","2.0.5","2.0.6","2.1.0","2.1.1","2.1.2","2.1.3","2.1.4","2.1.5","2.10.0","2.10.0.pr1","2.10.0.pr2","2.10.0.pr3","2.10.1","2.10.2","2.2.0","2.2.0-rc1","2.2.1","2.2.2","2.2.3","2.2.4","2.3.0","2.3.0-rc1","2.3.1","2.3.2","2.3.3","2.3.4","2.3.5","2.4.0","2.4.0-rc1","2.4.0-rc2","2.4.0-rc3","2.4.1","2.4.1.1","2.4.1.2","2.4.1.3","2.4.2","2.4.3","2.4.4","2.4.5","2.4.5.1","2.4.6","2.5.0","2.5.0-rc1","2.5.1","2.5.2","2.5.3","2.5.5","2.6.0","2.6.0-rc1","2.6.0-rc2","2.6.0-rc3","2.6.0-rc4","2.6.1","2.6.2","2.6.3","2.6.4","2.6.5","2.6.6","2.6.7","2.6.7.1","2.6.7.2","2.6.7.3","2.7.0","2.7.0-rc1","2.7.0-rc2","2.7.0-rc3","2.7.1","2.7.1-1","2.7.2","2.7.3","2.7.4","2.7.5","2.7.6","2.7.7","2.7.8","2.7.9","2.7.9.1","2.7.9.2","2.7.9.3","2.7.9.4","2.7.9.5","2.7.9.6","2.8.0","2.8.0.rc1","2.8.0.rc2","2.8.1","2.8.10","2.8.11","2.8.11.1","2.8.11.2","2.8.11.3","2.8.11.4","2.8.2","2.8.3","2.8.4","2.8.5","2.8.6","2.8.7","2.8.8","2.8.8","2.8.8.1","2.8.9","2.9.0","2.9.0.pr1","2.9.0.pr2","2.9.0.pr3","2.9.0.pr4","2.9.1","2.9.10","2.9.10.1","2.9.10.2","2.9.2","2.9.3","2.9.4","2.9.5","2.9.6","2.9.7","2.9.8","2.9.9","2.9.9.1","2.9.9.2","2.9.9.3"]
-#       )]
+      advisories = Array.new
+      for vuln in vulnDepsList do
+        if "#{vuln.dep_gid}:#{vuln.dep_aid}" == dep.name
+            advisories << Dependabot::SecurityAdvisory.new(
+                dependency_name: "#{vuln.dep_gid}:#{vuln.dep_aid}",
+                package_manager: "maven",
+                vulnerable_versions: vuln.dep_version
+                )
+        end
+      end
       checker = Dependabot::UpdateCheckers.for_package_manager(package_manager).new(
         dependency: dep,
         dependency_files: files,
         credentials: credentials,
-#        security_advisories: advisories
+        security_advisories: advisories
       )
-      puts "dep: #{dep_counter}"
+      puts "dep: #{dep_counter} #{dep.name}"
       dep_counter = dep_counter + 1
       puts "vulnerable: #{checker.vulnerable?}"
       puts checker.lowest_security_fix_version

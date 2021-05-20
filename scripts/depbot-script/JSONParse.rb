@@ -31,25 +31,27 @@ def getPurls(purl)
 
 end
 
-def getVulns(vuln) 
+def getVulns(vuln)
     purls = vuln.fetch("vulnerable_purls")
     versions = Array.new
     purls.each { |purl| versions << getPurls(purl) }
     versions
 end
 
-def getDependencies(key, data_hash) 
+def getDependencies(key, data_hash)
     allVersions = Array.new
     dep = data_hash.fetch(key)
     dep.each { |vuln| allVersions = (getVulns(vuln) | allVersions) }
     info1 = key.split(":",2)
     dep23 = Dependency.new(info1[0], info1[1], allVersions)
-    
+
 end
 
 keys.each { |key| getDependencies(key, data_hash) }
 
-dependencyList = Dependency.all_instances
+def returnVulnList()
+    dependencyList = Dependency.all_instances
+end
 
 
 
