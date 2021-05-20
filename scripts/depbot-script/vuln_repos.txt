@@ -1,1 +1,1 @@
-JesusFreke/smali
+checkmarx-ltd/cx-config-provider

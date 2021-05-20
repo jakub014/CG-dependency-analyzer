@@ -125,9 +125,22 @@ repos_file.each_line do |line|
       puts "dep: #{dep_counter} #{dep.name}"
       dep_counter = dep_counter + 1
       puts "vulnerable: #{checker.vulnerable?}"
-      puts checker.lowest_security_fix_version
-      #checker.can_update?(requirements_to_unlock: :own)
-      #updated_deps = checker.updated_dependencies(requirements_to_unlock: :own)
+      checker.can_update?(requirements_to_unlock: :own)
+      updated_deps = checker.updated_dependencies(requirements_to_unlock: :own)
+      puts "fix-version: #{checker.lowest_security_fix_version}"
+
+      #####################################
+      # Generate updated dependency files #
+      #####################################
+      updater = Dependabot::FileUpdaters.for_package_manager(package_manager).new(
+        dependencies: updated_deps,
+        dependency_files: files,
+        credentials: credentials,
+      )
+
+      updated_files = updater.updated_dependency_files
+
+      #puts "#{updated_files[0].content}"
     end
   else
     puts "Fetcher nil"
