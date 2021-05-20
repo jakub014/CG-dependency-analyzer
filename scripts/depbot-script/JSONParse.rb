@@ -19,7 +19,7 @@ class Dependency
     end
  end
 
-file = File.read('pkg_cves.json')
+file = File.read('../../src/main/resources/pkg_cves.json')
 
 data_hash = JSON.parse(file)
 
