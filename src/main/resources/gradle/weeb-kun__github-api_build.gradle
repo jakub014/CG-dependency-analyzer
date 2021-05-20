@@ -1,0 +1,107 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'com.jfrog.bintray' version '1.8.5'
+    id 'signing'
+}
+
+group 'com.github.weeb-kun'
+version '0.0.3'
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            pom {
+                name = 'github-api'
+                description = 'java api wrapper for the Github V3 API.'
+                url = 'https://github.com/weeb-kun/github-api'
+                licenses {
+                    license {
+                        name = 'Apcha License V2'
+                        url = 'http://apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'weebkun'
+                        name = 'weeb kun'
+                        email = '2002umpa@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/weeb-kun/github-api.git'
+                    developerConnection = 'scm:git:https://github.com/weeb-kun/github-api.git'
+                    url = 'scm:git:https://github.com/weeb-kun/github-api'
+                }
+            }
+            from components.java
+            groupId 'com.github.weeb-kun'
+            artifactId 'github-api'
+            version '0.0.3'
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'ossrh'
+            url = version.contains("SNAPSHOT") ? 'https://oss.sonatype.org/content/repositories/snapshots' : 'https://oss.sonatype.org/service/local/staging/deploy/maven2'
+            credentials {
+                username = 'weebkun'
+                password = System.getenv('sonatypePw')
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.library
+}
+
+bintray {
+    user = 'weebkun'
+    key = System.getenv('bintrayKey')
+    publications = ['library']
+    filesSpec {
+        from("${buildDir}/libs") {
+            include "*-${version}.jar.asc"
+            include "*-${version}-javadoc.jar.asc"
+            include "*-${version}-sources.jar.asc"
+        }
+        from("${buildDir}/publications/library") {
+            include 'pom-default.xml.asc'
+            rename 'pom-default.xml.asc', "github-api-${project.version}.pom.asc"
+        }
+        into "${project.group.replaceAll(/\./, '/')}/github-api/${project.version}"
+    }
+    pkg {
+        repo = 'weeb-kun'
+        name = 'github-api'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/weeb-kun/github-api'
+        version {
+            name = '0.0.3'
+            vcsTag = 'v0.0.3'
+        }
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:28.2-jre'
+    implementation 'com.squareup.moshi:moshi:1.11.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'org.kamranzafar:jtar:2.3'
+    implementation 'org.apache.commons:commons-compress:1.20'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.github.weeb-kun:list-utils:1.1.0-alpha'
+}

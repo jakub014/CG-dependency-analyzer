@@ -1,0 +1,62 @@
+import dependencies.Deps
+import dependencies.Versions
+
+apply plugin: 'org.jetbrains.dokka'
+
+buildscript {
+
+    ext.versionName = Versions.versionName
+    ext.groupName = 'com.chibatching.kotpref'
+
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath Deps.androidGradlePlugin
+        classpath Deps.Kotlin.gradlePlugin
+        classpath Deps.dokkaGradlePlugin
+    }
+}
+
+repositories {
+    jcenter()
+    google()
+}
+
+subprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+}
+
+wrapper {
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+task replaceVersionInReadme {
+    doLast {
+        ant.replaceregexp(match: 'com\\.chibatching\\.kotpref:(.+):([0-9\\.]+)', replace: "com.chibatching.kotpref:\\1:${Versions.versionName}", flags: 'g') {
+            fileset(dir: project.projectDir, includes: 'README.md')
+        }
+        ant.replaceregexp(match: 'androidx\\.lifecycle:lifecycle-livedata:([0-9\\.]+)', replace: "androidx.lifecycle:lifecycle-livedata:${Versions.AndroidX.liveData}", flags: 'g') {
+            fileset(dir: project.projectDir, includes: 'README.md')
+        }
+        ant.replaceregexp(match: 'com\\.google\\.code\\.gson:gson:([0-9\\.]+)', replace: "com.google.code.gson:gson:${Versions.gson}", flags: 'g') {
+            fileset(dir: project.projectDir, includes: 'README.md')
+        }
+        ant.replaceregexp(match: 'kotlin-([0-9\\.]+)-blue\\.svg', replace: "kotlin-${Versions.kotlin}-blue.svg", flags: 'g') {
+            fileset(dir: project.projectDir, includes: 'README.md')
+        }
+    }
+}
+
+tasks.named("dokkaHtmlMultiModule") {
+    outputDirectory.set(file("docs/api"))
+    dependsOn cleanApiDocs
+}
+
+task cleanApiDocs(type: Delete) {
+    delete 'docs/api'
+}

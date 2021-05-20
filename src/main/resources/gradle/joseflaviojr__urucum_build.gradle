@@ -1,0 +1,191 @@
+//------------------------------------------------------
+
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+    id 'eclipse'
+    id 'idea'
+}
+
+//------------------------------------------------------
+
+String nome      = 'Urucum'
+String descricao = 'Classes e métodos frequentemente utilizados no desenvolvimento com linguagem Java.'
+
+group   = 'com.joseflavio'
+version = '1.0-A16'
+
+//------------------------------------------------------
+
+float  javaVersao  = 1.8
+String codificacao = 'UTF-8'
+
+sourceCompatibility = javaVersao
+targetCompatibility = javaVersao
+
+tasks.withType(JavaCompile) {
+    options.encoding = codificacao
+}
+
+//------------------------------------------------------
+
+repositories {
+    mavenCentral()
+}
+
+//------------------------------------------------------
+
+dependencies {
+    implementation fileTree(dir:'lib', include:['*.jar'])
+    implementation 'com.ibm.icu:icu4j:68.2'
+    api 'org.json:json:20201115'
+    api 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
+    implementation 'com.sun.activation:javax.activation:1.2.0'
+    testImplementation 'junit:junit:4.13'
+}
+
+//------------------------------------------------------
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': nome,
+                   'Implementation-Version': archiveVersion,
+                   'Class-Path': configurations.runtimeClasspath.collect{ it.getName() }.join(' ')
+    }
+}
+
+//------------------------------------------------------
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+//------------------------------------------------------
+
+javadoc {
+    if( JavaVersion.current().isJava9Compatible() ){
+        options.addBooleanOption('html5', true)
+    }
+}
+
+//------------------------------------------------------
+
+task copiarDeps(type: Copy) {
+    from configurations.runtimeClasspath
+    into "$buildDir/deps"
+}
+
+//------------------------------------------------------
+
+publishing {
+
+    repositories {
+        maven {
+
+            def releasesURL  = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+            def snapshotsURL = 'https://oss.sonatype.org/content/repositories/snapshots/'
+            
+            url = version.endsWith('SNAPSHOT') ? snapshotsURL : releasesURL
+
+            credentials {
+                username = 'xxxxxx'
+                password = 'xxxxxx'
+            }
+
+        }
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+
+            from components.java
+
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+
+            pom {
+                
+                name        = nome
+                description = descricao
+                url         = 'http://joseflavio.com/urucum'
+
+                licenses {
+                    license {
+                        name = 'GNU Lesser General Public License, Version 3'
+                        url  = 'http://www.gnu.org/licenses/lgpl.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id    = 'joseflaviojr'
+                        name  = 'José Flávio de Souza Dias Júnior'
+                        email = 'email@joseflavio.com'
+                    }
+                }
+
+                scm {
+                    connection          = 'scm:git:ssh:git@github.com/joseflaviojr/urucum.git'
+                    developerConnection = 'scm:git:ssh:git@github.com/joseflaviojr/urucum.git'
+                    url                 = 'https://github.com/joseflaviojr/urucum.git'
+                }
+
+            }
+        }
+
+    }
+
+}
+
+//------------------------------------------------------
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+//------------------------------------------------------
+
+eclipse {
+    project {
+        name    = rootProject.name
+        comment = descricao
+    }
+    jdt {
+        sourceCompatibility = javaVersao
+        targetCompatibility = javaVersao
+    }
+}
+
+eclipseJdt {
+    doLast {
+        file('.settings/org.eclipse.core.resources.prefs').text =
+            'eclipse.preferences.version=1\nencoding/<project>=' + codificacao
+    }
+}
+
+//------------------------------------------------------
+
+idea {
+    project {
+        languageLevel = new org.gradle.plugins.ide.idea.model.IdeaLanguageLevel(javaVersao)
+        jdkName = '' + javaVersao
+        vcs = 'Git'
+        ipr {
+            withXml {
+                def projeto  = it.asNode()
+                def encoding = projeto.component.find { it.@name == 'Encoding' }
+                encoding.appendNode('file', [url: 'PROJECT', charset: codificacao])
+            }
+        }
+    }
+}
+
+//------------------------------------------------------

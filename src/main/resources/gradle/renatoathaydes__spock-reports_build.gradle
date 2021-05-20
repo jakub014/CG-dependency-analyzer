@@ -1,0 +1,141 @@
+plugins {
+    id 'java-library'
+    id 'groovy'
+    id 'idea'
+    id 'maven-publish'
+    id 'signing'
+}
+
+defaultTasks 'check'
+
+group = 'com.athaydes'
+version = "2.0-RC4"
+description = 'This project is a global extension for Spock to create test (or, in Spock terms, Specifications) reports.'
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+def groovyVersion = '3.0.6'
+def spockVersion = '2.0-M5-groovy-3.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api "org.codehaus.groovy:groovy:${groovyVersion}"
+    implementation "org.codehaus.groovy:groovy-xml:${groovyVersion}"
+    implementation "org.codehaus.groovy:groovy-json:${groovyVersion}"
+    implementation "org.codehaus.groovy:groovy-templates:${groovyVersion}"
+    api "org.spockframework:spock-core:${spockVersion}", {
+        exclude group: 'org.codehaus.groovy'
+    }
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+    testImplementation platform( 'org.junit:junit-bom:5.7.0' )
+    testImplementation 'org.junit.platform:junit-platform-testkit'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation "org.codehaus.groovy:groovy-test:${groovyVersion}"
+    testImplementation "cglib:cglib-nodep:3.3.0"
+    testImplementation "org.slf4j:slf4j-simple:1.7.30"
+}
+
+test {
+    useJUnitPlatform()
+
+    maxParallelForks = 4
+    exclude '**/*FakeTest.class', '**/UnrolledSpec.class', '**/SpecIncludingExtraInfo.class'
+    systemProperty 'project.buildDir', project.buildDir
+    systemProperty 'org.slf4j.simpleLogger.defaultLogLevel', 'debug'
+    testLogging.showStandardStreams = true
+    beforeTest { descriptor ->
+        logger.lifecycle( "Running test: " + descriptor )
+    }
+    testLogging {
+        events "failed"
+        exceptionFormat "full"
+        showStackTraces = true
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                "Implementation-Title": "Athaydes-Spock-Reports",
+                "Implementation-Version": version,
+                "Automatic-Module-Name": 'com.athaydes.spock.reports' )
+    }
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+javadoc {
+    if ( JavaVersion.current().isJava9Compatible() ) {
+        options.addBooleanOption( 'html5', true )
+    }
+}
+
+def getProjectProperty = { String propertyName ->
+    project.properties[ propertyName ]
+}
+
+publishing {
+    publications {
+        mavenJava( MavenPublication ) {
+            artifactId = 'spock-reports'
+            from components.java
+            versionMapping {
+                usage( 'java-api' ) {
+                    fromResolutionOf( 'runtimeClasspath' )
+                }
+                usage( 'java-runtime' ) {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                inceptionYear = '2013'
+                name = project.name
+                packaging = 'jar'
+                description = project.description
+
+                url = 'https://github.com/renatoathaydes/spock-reports'
+
+                scm {
+                    connection = 'git@github.com:renatoathaydes/spock-reports.git'
+                    developerConnection = 'git@github.com:renatoathaydes/spock-reports.git'
+                    url = 'https://github.com/renatoathaydes/spock-reports'
+                }
+
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'renatoathaydes'
+                        name = 'Renato Athaydes'
+                        email = 'renato@athaydes.com'
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            credentials {
+                username getProjectProperty( 'ossrhUsername' )?.toString()
+                password getProjectProperty( 'ossrhPassword' )?.toString()
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}

@@ -1,0 +1,104 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+defaultTasks 'jar'
+
+archivesBaseName = 'fjage-sentuator'
+group = 'com.github.org-arl'
+version = new File('VERSION').text.trim()
+
+targetCompatibility = 1.8
+sourceCompatibility = 1.8
+
+repositories {
+    maven { url 'https://oss.sonatype.org/content/groups/public' }
+    mavenCentral()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+
+dependencies {
+  compile 'org.codehaus.groovy:groovy:2.5.9'
+  compile 'com.github.org-arl:fjage:1.9.0'
+  testCompile 'junit:junit:4.12'
+  testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+}
+
+compileGroovy {
+  options.compilerArgs << "-Xlint:all"
+  options.compilerArgs << "-Xlint:-options"
+}
+
+jar {
+  manifest {
+    attributes 'Build-Owner': System.getenv().USER, 'Build-Timestamp': new Date().format('d-MM-yyyy_HH:mm:ss'), 'Build-Version': version
+  }
+}
+
+groovydoc {
+  destinationDir = file("docs")
+}
+
+////// tasks for MavenCentral deployment
+
+task javadocJar(type: Jar, dependsOn: groovydoc) {
+  classifier = 'javadoc'
+  from groovydoc.destinationDir
+}
+
+task sourcesJar(type: Jar) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+artifacts {
+  archives jar
+  archives javadocJar
+  archives sourcesJar
+}
+
+signing {
+  sign configurations.archives
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      beforeDeployment {
+        MavenDeployment deployment -> signing.signPom(deployment)
+      }
+      if (project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
+        snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+          authentication(userName: sonatypeUsername, password: sonatypePassword)
+        }
+        repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+          authentication(userName: sonatypeUsername, password: sonatypePassword)
+        }
+      }
+      pom.project {
+        name archivesBaseName
+        packaging 'jar'
+        description 'Sentuator framework for fjage'
+        url 'http://github.com/org-arl/fjage-sentuator'
+        scm {
+          url 'http://github.com/org-arl/fjage-sentuator'
+          connection 'scm:git:git://github.com/org-arl/fjage-sentuator.git'
+          developerConnection 'scm:git:git@github.com:org-arl/fjage-sentuator.git'
+        }
+        licenses {
+          license {
+            name '3-clause BSD License'
+            url 'https://github.com/org-arl/fjage-sentuator/blob/master/LICENSE'
+            distribution 'repo'
+          }
+        }
+        developers {
+          developer {
+            id 'mchitre'
+            name 'Mandar Chitre'
+          }
+        }
+      }
+    }
+  }
+}

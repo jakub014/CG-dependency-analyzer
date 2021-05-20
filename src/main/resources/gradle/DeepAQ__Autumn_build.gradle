@@ -1,0 +1,57 @@
+allprojects {
+    group 'cn.imaq'
+    version '2020.10'
+}
+
+subprojects {
+    apply plugin: 'java-library'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:+'
+        annotationProcessor 'org.projectlombok:lombok:+'
+        testCompileOnly 'org.projectlombok:lombok:+'
+        testAnnotationProcessor 'org.projectlombok:lombok:+'
+        implementation 'org.slf4j:slf4j-api:1.7.26'
+        testImplementation 'junit:junit:4.12'
+        testImplementation 'org.testng:testng:6.14.3'
+    }
+
+    test {
+        useTestNG()
+    }
+}allprojects {
+    group 'cn.imaq'
+    version '2020.10'
+}
+
+subprojects {
+    apply plugin: 'java-library'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:+'
+        annotationProcessor 'org.projectlombok:lombok:+'
+        testCompileOnly 'org.projectlombok:lombok:+'
+        testAnnotationProcessor 'org.projectlombok:lombok:+'
+        implementation 'org.slf4j:slf4j-api:1.7.26'
+        testImplementation 'junit:junit:4.12'
+        testImplementation 'org.testng:testng:6.14.3'
+    }
+
+    test {
+        useTestNG()
+    }
+}

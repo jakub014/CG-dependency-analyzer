@@ -1,0 +1,117 @@
+plugins {
+    id 'groovy'
+    id 'java'
+    id 'maven'
+    id "maven-publish"
+    id 'signing'
+}
+
+group 'com.github.wyy0117'
+version '2.0.3'
+
+sourceCompatibility = 1.8
+
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.5.8', ext: 'pom'
+
+    // https://mvnrepository.com/artifact/io.rest-assured/spring-mock-mvc
+    compile group: 'io.rest-assured', name: 'spring-mock-mvc', version: '4.1.2'
+
+    compile group: 'junit', name: 'junit', version: '4.12'
+
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+
+    // https://mvnrepository.com/artifact/org.freemarker/freemarker
+    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
+
+
+}
+
+compileTestJava {
+    options.compilerArgs << '-parameters'
+}
+
+//包含源码
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    classifier = 'javadoc'
+}
+
+publishing {
+
+    // 定义发布什么
+    publications {
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId project.name
+            version project.version
+            from components.java
+            //配置上传源码
+            artifact sourceJar
+            artifact javadocJar
+            pom {
+                // 构件名称
+                // 区别于artifactId，可以理解为artifactName
+                name = project.name
+                // 构件描述
+                description = 'generate controller test code'
+                // 构件主页
+                url = 'https://github.com/wyy0117/gencontrollertest'
+                // 许可证名称和地址
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                // 开发者信息
+                developers {
+                    developer {
+                        name = 'wyy0117'
+                        email = project.findProperty("email")
+                    }
+                }
+                // 版本控制仓库地址
+                scm {
+                    url = 'https://github.com/wyy0117/gencontrollertest'
+                    connection = 'scm:git:git://github.com/wyy0117/gencontrollertest.git'
+                    developerConnection = 'scm:git:ssh://git@github.com:wyy0117/gencontrollertest.git'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username = project.findProperty("username")
+                password = project.findProperty("password")
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    // 防止本地打开中文乱码
+    options.addStringOption("charset", "UTF-8")
+}

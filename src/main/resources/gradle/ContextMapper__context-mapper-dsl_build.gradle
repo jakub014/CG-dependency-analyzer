@@ -1,0 +1,80 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath 'org.xtext:xtext-gradle-plugin:2.0.8'
+	}
+}
+
+def pomXml = new XmlSlurper().parse('pom.xml')
+
+subprojects {
+	ext.xtextVersion = '2.23.0'
+	repositories {
+		jcenter()
+	}
+	
+	apply plugin: 'java'
+	apply plugin: 'maven-publish'
+	apply plugin: 'org.xtext.xtend'
+	apply from: "${rootDir}/gradle/source-layout.gradle"
+	apply from: "${rootDir}/gradle/maven-deployment.gradle"
+	apply plugin: 'eclipse'
+	apply plugin: 'jacoco'
+	
+	group = 'org.contextmapper'
+	version = pomXml.version
+			
+	sourceCompatibility = '1.8'
+	targetCompatibility = '1.8'
+	
+	configurations.all {
+		exclude group: 'asm'
+	}
+	
+    if (!project.hasProperty('signing.secretKeyRingFile')) {
+        project.ext.'signing.secretKeyRingFile' = "${rootDir}/secret-key.gpg"
+    }
+}
+buildscript {
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath 'org.xtext:xtext-gradle-plugin:2.0.8'
+	}
+}
+
+def pomXml = new XmlSlurper().parse('pom.xml')
+
+subprojects {
+	ext.xtextVersion = '2.23.0'
+	repositories {
+		jcenter()
+	}
+	
+	apply plugin: 'java'
+	apply plugin: 'maven-publish'
+	apply plugin: 'org.xtext.xtend'
+	apply from: "${rootDir}/gradle/source-layout.gradle"
+	apply from: "${rootDir}/gradle/maven-deployment.gradle"
+	apply plugin: 'eclipse'
+	apply plugin: 'jacoco'
+	
+	group = 'org.contextmapper'
+	version = pomXml.version
+			
+	sourceCompatibility = '1.8'
+	targetCompatibility = '1.8'
+	
+	configurations.all {
+		exclude group: 'asm'
+	}
+	
+    if (!project.hasProperty('signing.secretKeyRingFile')) {
+        project.ext.'signing.secretKeyRingFile' = "${rootDir}/secret-key.gpg"
+    }
+}

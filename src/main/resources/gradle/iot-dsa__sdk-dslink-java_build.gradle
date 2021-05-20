@@ -1,0 +1,35 @@
+plugins {
+    id 'com.jfrog.bintray' version '1.8.4' apply false
+}
+
+subprojects {
+    apply plugin: 'findbugs'
+    apply plugin: 'java-library'
+    apply plugin: 'maven'
+
+    version = '0.24.2'
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+
+    dependencies {
+        compileOnly 'com.google.code.findbugs:annotations:[3.0.1,)'
+        testImplementation 'junit:junit:[4.12,)'
+    }
+
+    tasks.withType(FindBugs) {
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+    }
+}
+
+wrapper {
+    gradleVersion = '5.6.4'
+}
+

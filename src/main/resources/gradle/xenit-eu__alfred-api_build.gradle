@@ -1,0 +1,95 @@
+def bundleClassPath(configuration) {
+    def list = ['.']
+    configuration.each {
+        list += 'lib/' + it.name
+    }
+    return list.join(',')
+}
+
+def includeResource(configuration) {
+    def list = []
+    configuration.each {
+        //We have to replace the backslashes with forward slashes because on windows the path will just be unseparated.
+        //For example when you have path "C\:Users\Someone\.gradle\caches" it will become "C\:UsersSomeone.gradlecaches"
+        def normalizedPath = it.path.replace("\\", "/")
+        list += 'lib/' + it.name + "=" + normalizedPath
+    }
+    return list.join(',')
+}
+
+def getVersionQualifier(String branch_name) {
+    if(branch_name.startsWith('release'))
+        return ''
+    if(branch_name == 'master')
+        return '-SNAPSHOT'
+    return '-' + branch_name + '-SNAPSHOT'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://maven.alfresco.com/nexus/content/groups/public"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+}
+
+ext {
+    versionWithoutQualifier = '2.7.2'
+
+    jackson_version = '2.6.3'
+    swagger_version = "1.5.7"
+    de_version = "2.0.5"
+
+    http_core_version = "4.3.3"
+    http_version = "4.3.4"
+
+    alfresco_50_version = "5.0.d"
+    alfresco_51_version = "5.1.f"
+    alfresco_52_version = "5.2.f"
+    alfresco_60_version = "6.0"
+    alfresco_61_version = "6.1"
+    alfresco_62_version = "6.2"
+
+    // The introduction of hit highlights in search 52 required general versions bump to 5.2.f
+    // Additionally, an explicit dependency on the data-model was required, however
+    // alfresco-data-model might have a different version number than the main war it's included in
+    // ref: https://bitbucket.org/xenit/alfresco-bom/src/master/repo/eu/xenit/alfresco/ for the bom of vanilla alfresco
+    alfresco_50_dm_version = "5.0.d"
+    alfresco_51_dm_version = "5.1.f"
+    alfresco_52_dm_version = "6.16"
+    alfresco_60_dm_version = "8.9"
+    alfresco_61_dm_version = "8.25.1"
+    alfresco_62_dm_version = "8.50.18"
+
+    care4alfVersion = '2.3.0'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven'
+
+    group = 'eu.xenit.apix'
+    version = versionWithoutQualifier + getVersionQualifier(System.env.BRANCH_NAME ?: 'local')
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+        maven { url "https://artifacts.alfresco.com/nexus/content/groups/public" }
+        maven { url "https://repo.springsource.org/release" }
+        // This private repository provides Xenit with Alfresco enterprise artefacts.
+        // External developers should replace it with their own library repository.
+        maven {
+            name 'Xenit artifactory libs-release'
+            url 'https://artifactory.xenit.eu/artifactory/libs-release'
+            credentials {
+                username property("eu.xenit.artifactory.username")
+                password property("eu.xenit.artifactory.password")
+            }
+        }
+    }
+}

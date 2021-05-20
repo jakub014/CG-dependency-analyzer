@@ -1,0 +1,428 @@
+import java.util.concurrent.ConcurrentHashMap
+
+/*
+ * Copyright 2002-2020 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+plugins {
+	id "io.spring.nohttp"
+	id 'distribution'
+	id 'jacoco'
+}
+
+ext {
+	javadocLinks = [
+		"https://docs.oracle.com/javase/8/docs/api/",
+		"https://docs.spring.io/spring/docs/${springFrameworkVersion}/javadoc-api/"
+	] as String[]
+}
+
+description = "Spring Cloud App Broker"
+
+allprojects {
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/release" }
+		if (version =~ /((-M|-RC)[0-9]+|-SNAPSHOT)$/) {
+			maven { url "https://repo.spring.io/milestone" }
+		}
+		if (version.endsWith('-SNAPSHOT')) {
+			maven { url "https://repo.spring.io/snapshot" }
+		}
+	}
+
+	afterEvaluate { project ->
+		if (project.description == null || project.description.isEmpty()) {
+			throw new InvalidUserDataException("A project description is required for publishing to maven central")
+		}
+	}
+}
+
+configure(javaProjects) {
+	apply plugin: 'java-library'
+
+	task allDependencyInsight(type: DependencyInsightReportTask)
+	task dependencyReport(type: DependencyReportTask)
+
+	java {
+		sourceCompatibility = JavaVersion.VERSION_1_8
+		targetCompatibility = JavaVersion.VERSION_1_8
+	}
+
+	[compileJava, compileTestJava]*.options*.encoding = "UTF-8"
+	[compileJava, compileTestJava]*.options*.compilerArgs = [
+		"-Xlint:serial",
+		"-Xlint:varargs",
+		"-Xlint:cast",
+		"-Xlint:classfile",
+		"-Xlint:dep-ann",
+		"-Xlint:divzero",
+		"-Xlint:empty",
+		"-Xlint:finally",
+		"-Xlint:overrides",
+		"-Xlint:path",
+		"-Xlint:-processing",
+		"-Xlint:static",
+		"-Xlint:try",
+		"-Xlint:fallthrough",
+		"-Xlint:rawtypes",
+		"-Xlint:deprecation",
+		"-Xlint:unchecked",
+		"-Xlint:-options",
+		"-Werror"
+	]
+
+	tasks.withType(Test).forEach { Test task ->
+		task.with {
+			// enable JUnit 5
+			useJUnitPlatform()
+			scanForTestClasses = true
+			group = "verification"
+
+			testLogging {
+				exceptionFormat = "full"
+				events = ["passed", "skipped", "failed"]
+				showStandardStreams = !project.onlyShowStandardStreamsOnTestFailure
+			}
+
+			if (project.onlyShowStandardStreamsOnTestFailure) {
+				Map<String, StringBuilder> testOutput = new ConcurrentHashMap<>()
+
+				onOutput { TestDescriptor descriptor, TestOutputEvent event ->
+					testOutput.compute(descriptor.displayName, { k, v ->
+						v == null ? new StringBuilder(event.message) : v.append(event.message)
+					})
+				}
+
+				afterTest { TestDescriptor descriptor, TestResult result ->
+					if (result.resultType == TestResult.ResultType.FAILURE && testOutput.containsKey(descriptor.displayName)) {
+						logger.lifecycle("\n\n${testOutput.get(descriptor.displayName)}")
+						testOutput.remove(descriptor.displayName)
+					}
+				}
+			}
+
+			// print failed tests after the execution
+			def failedTests = []
+			afterTest { test, result ->
+				if (result.resultType == TestResult.ResultType.FAILURE) {
+					failedTests << test
+				}
+			}
+
+			// create a summary after the execution
+			afterSuite { desc, result ->
+				if (!desc.parent) {
+					println "\nTest result: ${result.resultType}"
+					println "Test summary: ${result.testCount} tests, " +
+						"${result.successfulTestCount} succeeded, " +
+						"${result.failedTestCount} failed, " +
+						"${result.skippedTestCount} skipped"
+
+					failedTests.each { test -> println "FAILED test: ${test.className} > ${test.name}" }
+				}
+			}
+		}
+	}
+
+	configurations {
+		compileOnly.defaultDependencies { dependencies ->
+			dependencies.add project.dependencies.create("org.immutables:value:${immutablesVersion}")
+		}
+		testCompileOnly.extendsFrom(compileOnly)
+	}
+}
+
+configure(testProjects) {
+	javadoc {
+		enabled = false
+	}
+}
+
+configure(libraryProjects) {
+	java {
+		withJavadocJar()
+		withSourcesJar()
+	}
+
+	jar {
+		manifest.attributes["Created-By"] = "${System.getProperty("java.version")} (${System.getProperty("java.specification.vendor")})"
+		manifest.attributes["Implementation-Title"] = project.name
+		manifest.attributes["Implementation-Version"] = project.version
+
+		from("${rootProject.projectDir}/src/dist") {
+			include "license.txt"
+			include "notice.txt"
+			into "META-INF"
+			expand(copyright: new Date().format("yyyy"), version: project.version)
+		}
+	}
+
+	javadoc {
+		description = "Generates project-level javadoc for use in -javadoc jar"
+
+		options.memberLevel = JavadocMemberLevel.PROTECTED
+		options.author = true
+		options.header = project.name
+		options.links(javadocLinks)
+		options.addStringOption('Xdoclint:none', '-quiet')
+	}
+
+	sourcesJar {
+		duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+		archiveClassifier.set "sources"
+		from sourceSets.main.allJava
+	}
+
+	javadocJar {
+		duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+		archiveClassifier.set "javadoc"
+		from javadoc
+	}
+}
+
+configure(staticAnalysisProjects) {
+	apply plugin: "checkstyle"
+	apply plugin: "pmd"
+	apply plugin: "jacoco"
+
+	checkstyle {
+		configFile = file("${project.rootDir}/src/checkstyle/checkstyle.xml")
+		toolVersion = "${checkstyleVersion}"
+		showViolations = true
+	}
+	checkstyleMain {
+		source = "src/main/java"
+	}
+	checkstyleTest {
+		source = "src/test/java"
+	}
+
+	pmd {
+		toolVersion = "${pmdVersion}"
+		consoleOutput = true
+	}
+	pmdMain {
+		ruleSets = []
+		ruleSetFiles = files("${project.rootDir}/src/pmd/pmdRuleSet.xml")
+		source = "src/main/java"
+	}
+	pmdTest {
+		ruleSets = []
+		ruleSetFiles = files("${project.rootDir}/src/pmd/pmdTestRuleSet.xml")
+		source = "src/test/java"
+	}
+}
+
+configure(publishedProjects) {
+	apply plugin: 'maven-publish'
+
+	publishing {
+		repositories {
+			maven {
+				url = project.properties.getOrDefault('publicationRepository', "${System.getenv('HOME')}/.m2/repository")
+			}
+		}
+		publications {
+			mavenJava(MavenPublication) {
+				suppressAllPomMetadataWarnings()
+				from components.findByName('java')
+				pom {
+					afterEvaluate {
+						name = project.description
+						description = project.description
+					}
+					packaging = starterProjects.contains(project) ? "pom" : null
+					url = "https://spring.io/projects/spring-cloud-app-broker"
+					organization {
+						name = "Pivotal Software, Inc."
+						url = "https://www.spring.io"
+					}
+					licenses {
+						license {
+							name = "The Apache Software License, Version 2.0"
+							url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+							distribution = "repo"
+						}
+					}
+					scm {
+						url = "https://github.com/spring-cloud/spring-cloud-app-broker"
+						connection = "scm:git:https://github.com/spring-cloud/spring-cloud-app-broker.git"
+						developerConnection = "scm:git:https://github.com/spring-cloud/spring-cloud-app-broker.git"
+					}
+					issueManagement {
+						system = "GitHub"
+						url = "https://github.com/spring-cloud/spring-cloud-app-broker/issues"
+					}
+					developers {
+						developer {
+							id = "sfrederick"
+							name = "Scott Frederick"
+							email = "sfrederick@pivotal.io"
+						}
+						developer {
+							id = "royclarkson"
+							name = "Roy Clarkson"
+							email = "rclarkson@pivotal.io"
+						}
+					}
+					withXml {
+						def pomNode = asNode()
+						def dependencyManagementNode = pomNode.get('dependencyManagement')
+						if (dependencyManagementNode) pomNode.remove(dependencyManagementNode)
+					}
+				}
+
+				// Published pom will use fully-qualified dependency versions and no BOMs
+				versionMapping {
+					usage('java-api') {
+						fromResolutionOf('runtimeClasspath')
+					}
+					usage('java-runtime') {
+						fromResolutionResult()
+					}
+				}
+			}
+		}
+	}
+}
+
+task api(type: Javadoc) {
+	group = "Documentation"
+	description = "Generates aggregated Javadoc API documentation."
+	title = "${rootProject.description} ${version} API"
+	options.memberLevel = JavadocMemberLevel.PROTECTED
+	options.author = true
+	options.header = rootProject.description
+	options.links(javadocLinks)
+	options.addStringOption('Xdoclint:none', '-quiet')
+
+	source libraryProjects.collect { project ->
+		project.sourceSets.main.allJava
+	}
+
+	classpath = files(libraryProjects.collect { project ->
+		project.sourceSets.main.compileClasspath
+	})
+
+	maxMemory = "1024m"
+	destinationDir = new File(buildDir, "api")
+}
+
+distributions {
+	def documentation = copySpec {
+		into('reference') {
+			from(project.tasks.findByPath(':spring-cloud-app-broker-docs:asciidoctor'),
+				project.tasks.findByPath(':spring-cloud-app-broker-docs:asciidoctorPdf'))
+		}
+		into('api') { from api }
+	}
+
+	docs {
+		contents {
+			duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+			with documentation
+			into '/'
+		}
+	}
+
+	main {
+		contents {
+			duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+			into('docs') { with documentation }
+			libraryProjects.each { Project subproject ->
+				into ("libs") {
+					from subproject.jar
+					if (subproject.tasks.findByPath("sourcesJar")) {
+						from subproject.sourcesJar
+					}
+					if (subproject.tasks.findByPath("javadocJar")) {
+						from subproject.javadocJar
+					}
+				}
+			}
+		}
+	}
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			artifact docsDistZip {
+				classifier 'docs'
+			}
+		}
+	}
+}
+
+task codeCoverageReport(type: JacocoReport) {
+	dependsOn staticAnalysisProjects*.test
+
+	executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+	staticAnalysisProjects.each { subproject ->
+		if (testProjects.contains(subproject)) {
+			// Work-around for issue with jacoco and multiple-release jar files
+			// (like Log4J 2.10 and above)
+			// see https://github.com/jacoco/jacoco/issues/407
+			getSourceDirectories().from(subproject.sourceSets.main.java)
+			getClassDirectories().from(subproject.sourceSets.main.output.classesDirs)
+		} else {
+			sourceSets subproject.sourceSets.main
+		}
+	}
+
+	reports {
+		xml.enabled true
+		xml.destination new File("${buildDir}/reports/jacoco/report.xml")
+		html.enabled false
+		csv.enabled false
+	}
+}
+
+wrapper {
+	gradleVersion = "6.5.1"
+}
+
+def getDocumentationProjects() {
+	[project(":spring-cloud-app-broker-docs")] as Set
+}
+
+def getJavaProjects() {
+	subprojects
+}
+
+def getStaticAnalysisProjects() {
+	javaProjects - documentationProjects
+}
+
+def getTestProjects() {
+	[project(":spring-cloud-app-broker-integration-tests"),
+	 project(":spring-cloud-app-broker-acceptance-tests")] as Set
+}
+
+def getStarterProjects() {
+	[project(":spring-cloud-starter-app-broker"),
+	 project(":spring-cloud-starter-app-broker-cloudfoundry"),
+	 project(":spring-cloud-starter-app-broker-logging")] as Set
+}
+
+def getLibraryProjects() {
+	javaProjects - documentationProjects - starterProjects - testProjects
+}
+
+def getPublishedProjects() {
+	libraryProjects + starterProjects + rootProject
+}

@@ -1,0 +1,117 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'signing'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withJavadocJar()
+    withSourcesJar()
+}
+
+group 'io.github.eaxdev'
+archivesBaseName = 'jsonresume-validator'
+version = System.getenv('RELEASE_VERSION') ?: "0.0.1"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.projectlombok:lombok:1.18.10'
+    annotationProcessor 'org.hibernate.validator:hibernate-validator-annotation-processor:6.1.1.Final'
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.1.1.Final'
+    compile group: 'org.glassfish', name: 'javax.el', version: '3.0.1-b08'
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.10.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    from sourceSets.main.output
+    from sourceSets.main.allJava
+}
+
+signing {
+    sign publishing.publications
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            customizePom(pom)
+            groupId group
+            artifactId archivesBaseName
+            version version
+
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            if (project.hasProperty('sonatypeUsername') && project.hasProperty('sonatypePassword')) {
+                credentials {
+                    username sonatypeUsername
+                    password sonatypePassword
+                }
+            }
+        }
+    }
+}
+
+def customizePom(pom) {
+    pom.withXml {
+        def root = asNode()
+
+        root.dependencies.removeAll { dep ->
+            dep.scope == "test"
+        }
+
+        root.children().last() + {
+            resolveStrategy = DELEGATE_FIRST
+
+            description 'Java library to validate JsonResume by schema: https://jsonresume.org/schema/'
+            name 'JsonResume Validator'
+            url 'https://github.com/eaxdev/Java-JsonResume-Validator'
+            organization {
+                name 'com.github.eaxdev'
+                url 'https://github.com/eaxdev'
+            }
+            issueManagement {
+                system 'GitHub'
+                url 'https://github.com/eaxdev/Java-JsonResume-Validator/issues'
+            }
+            licenses {
+                license {
+                    name 'MIT License'
+                    url 'https://raw.githubusercontent.com/eaxdev/Java-JsonResume-Validator/master/LICENSE'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                url 'https://github.com/eaxdev/Java-JsonResume-Validator'
+                connection 'scm:https://github.com/eaxdev/Java-JsonResume-Validator.git'
+                developerConnection 'scm:git://github.com/eaxdev/Java-JsonResume-Validator.git'
+            }
+            developers {
+                developer {
+                    id 'eaxdev'
+                    name 'RomanSA'
+                    email 'eaxdev@ya.ru'
+                }
+            }
+        }
+    }
+}

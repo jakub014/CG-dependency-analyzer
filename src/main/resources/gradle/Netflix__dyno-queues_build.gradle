@@ -1,0 +1,86 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url = 'https://plugins.gradle.org/m2'
+        }
+    }
+    
+    dependencies {
+        classpath 'com.netflix.nebula:gradle-aggregate-javadocs-plugin:3.0.1'
+        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:4.0.1'
+    }
+}
+
+plugins {
+    id 'nebula.netflixoss' version '9.1.0'
+}
+
+// Establish version and status
+ext.githubProjectName = rootProject.name // Change if github project name is not the same as the root project's name
+
+apply plugin: 'project-report'
+
+subprojects {
+    apply plugin: 'nebula.netflixoss'
+    apply plugin: 'java'
+    apply plugin: 'project-report'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+
+        // oss-candidate for -rc.* verions:
+        maven {
+            url  "https://dl.bintray.com/netflixoss/oss-candidate"
+        }
+    }
+    
+    group = "com.netflix.${githubProjectName}"
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url = 'https://plugins.gradle.org/m2'
+        }
+    }
+    
+    dependencies {
+        classpath 'com.netflix.nebula:gradle-aggregate-javadocs-plugin:3.0.1'
+        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:4.0.1'
+    }
+}
+
+plugins {
+    id 'nebula.netflixoss' version '9.1.0'
+}
+
+// Establish version and status
+ext.githubProjectName = rootProject.name // Change if github project name is not the same as the root project's name
+
+apply plugin: 'project-report'
+
+subprojects {
+    apply plugin: 'nebula.netflixoss'
+    apply plugin: 'java'
+    apply plugin: 'project-report'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+
+        // oss-candidate for -rc.* verions:
+        maven {
+            url  "https://dl.bintray.com/netflixoss/oss-candidate"
+        }
+    }
+    
+    group = "com.netflix.${githubProjectName}"
+}
+

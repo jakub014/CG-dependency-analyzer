@@ -1,0 +1,170 @@
+plugins {
+    id "io.freefair.lombok" version "4.1.6"
+}
+
+group 'au.com.skytix'
+version '1.0.31'
+
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+    
+}
+
+task sourceJar(type: Jar) {
+    classifier "sources"
+    from sourceSets.main.allJava
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier "javadoc"
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives jar
+    archives sourceJar
+    archives javadocJar
+}
+
+dependencies {
+    compile group: 'org.apache.mesos', name: 'mesos', version: '1.9.0'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
+    compile group: 'au.com.skytix', name: 'mesos-scheduler-client', version: '1.0.10'
+
+    compile group: 'io.github.openfeign', name: 'feign-core', version: '11.0'
+    compile group: 'io.github.openfeign', name: 'feign-jackson', version: '11.0'
+
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+    compile group: 'com.googlecode.protobuf-java-format', name: 'protobuf-java-format', version: '1.4'
+
+    compile group: 'io.micrometer', name: 'micrometer-core', version: '1.5.1'
+
+    compile group: 'javax.activation', name: 'activation', version: '1.1.1'
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.4.0-b180830.0359'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+signing {
+    sign configurations.archives
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            customizePom(pom)
+            groupId 'au.com.skytix'
+            artifactId 'velocity-scheduler'
+            version version
+
+            from components.java
+
+            // create the sign pom artifact
+            pom.withXml {
+                def pomFile = file("${project.buildDir}/generated-pom.xml")
+                writeTo(pomFile)
+                def pomAscFile = signing.sign(pomFile).signatureFiles[0]
+                artifact(pomAscFile) {
+                    classifier = null
+                    extension = 'pom.asc'
+                }
+            }
+
+            artifact(sourceJar) {
+                classifier = 'sources'
+            }
+            artifact(javadocJar) {
+                classifier = 'javadoc'
+            }
+
+            // create the signed artifacts
+            project.tasks.signArchives.signatureFiles.each {
+                artifact(it) {
+                    def matcher = it.file =~ /-(sources|javadoc)\.jar\.asc$/
+                    if (matcher.find()) {
+                        classifier = matcher.group(1)
+                    } else {
+                        classifier = null
+                    }
+                    extension = 'jar.asc'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            credentials {
+                username sonatypeUsername
+                password sonatypePassword
+            }
+        }
+    }
+}
+
+def customizePom(pom) {
+    pom.withXml {
+        def root = asNode()
+
+        // eliminate test-scoped dependencies (no need in maven central POMs)
+        root.dependencies.removeAll { dep ->
+            dep.scope == "test"
+        }
+
+        // add all items necessary for maven central publication
+        root.children().last() + {
+            resolveStrategy = Closure.DELEGATE_FIRST
+
+            description 'Velocity Mesos Task Scheduler'
+            name 'velocity-scheduler'
+            url 'https://github.com/skytix-dev/velocity-scheduler'
+            organization {
+                name 'com.skytix'
+                url 'https://github.com/skytix-dev'
+            }
+            issueManagement {
+                system 'GitHub'
+                url 'https://github.com/skytix-dev/velocity-scheduler/issues'
+            }
+            licenses {
+                license {
+                    name 'Apache License 2.0'
+                    url 'https://github.com/skytix-dev/velocity-scheduler/blob/master/LICENCE'
+                    distribution 'repo'
+                }
+            }
+            scm {
+                url 'https://github.com/skytix-dev/velocity-scheduler'
+                connection 'scm:git:git://github.com/skytix-dev/velocity-scheduler.git'
+                developerConnection 'scm:git:ssh://git@github.com:skytix-dev/velocity-scheduler.git'
+            }
+            developers {
+                developer {
+                    name 'Marc Dergacz'
+                }
+            }
+        }
+    }
+}
+
+model {
+    tasks.generatePomFileForMavenJavaPublication {
+        destination = file("$buildDir/generated-pom.xml")
+    }
+    tasks.publishMavenJavaPublicationToMavenLocal {
+        dependsOn project.tasks.signArchives
+    }
+    tasks.publishMavenJavaPublicationToMavenRepository {
+        dependsOn project.tasks.signArchives
+    }
+}
+

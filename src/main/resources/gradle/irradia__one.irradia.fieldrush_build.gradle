@@ -1,0 +1,389 @@
+/*
+ * Copyright © 2021 <code@irradia.one> http://www.irradia.one
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+ * SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
+ * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ */
+
+buildscript {
+  if ("$gradle.gradleVersion" != "6.7") {
+    throw new GradleException("Gradle version 6.7 is required (received $gradle.gradleVersion)")
+  }
+
+  apply from: file("$rootDir/build_libraries.gradle")
+
+  repositories {
+    mavenCentral()
+    google()
+    jcenter()
+  }
+
+  dependencies {
+    classpath "biz.aQute.bnd:biz.aQute.bnd.gradle:5.3.0"
+    classpath "com.android.tools.build:gradle:4.1.3"
+    classpath "com.vanniktech:gradle-android-junit-jacoco-plugin:0.16.0"
+    classpath "de.undercouch:gradle-download-task:4.1.1"
+    classpath "digital.wup:android-maven-publish:3.6.3"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+  }
+}
+
+plugins {
+  id "com.github.ben-manes.versions" version "0.38.0"
+  id "com.vanniktech.android.junit.jacoco" version "0.16.0"
+  id "digital.wup.android-maven-publish" version "3.6.3"
+  id "ru.vyarus.animalsniffer" version "1.5.3"
+}
+
+ext {
+  androidBuildToolsVersion = "28.0.3"
+  androidCompileSDKVersion = 28
+  androidMinimumSDKVersion = 21
+  androidTargetSDKVersion = 28
+
+  if (!project.hasProperty("mavenCentralUsername")) {
+    logger.warn("No mavenCentralUsername property specified: Using an empty value")
+    mavenCentralUsername = ""
+  }
+  if (!project.hasProperty("mavenCentralPassword")) {
+    logger.warn("No mavenCentralPassword property specified: Using an empty value")
+    mavenCentralPassword = ""
+  }
+
+  if (project.hasProperty("one.irradia.directory.publish")) {
+    useDirectoryPublishPath = project.property("one.irradia.directory.publish")
+    useDirectoryPublish = true
+    logger.warn("one.irradia.directory.publish is set: We will publish artifacts to ${useDirectoryPublishPath}")
+  } else {
+    logger.warn("one.irradia.directory.publish is not set: We will not publish artifacts to a custom directory")
+    useDirectoryPublish = false
+    useDirectoryPublishPath = null
+  }
+}
+
+apply plugin: "com.vanniktech.android.junit.jacoco"
+apply plugin: "de.undercouch.download"
+
+allprojects {
+  group = project.ext["GROUP"]
+  version = project.ext["VERSION_NAME"]
+
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+      name "Sonatype Snapshots"
+      url "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+    jcenter()
+    google()
+  }
+}
+
+subprojects { project ->
+
+  def scandoVersion = "0.0.5"
+  def scandoSHA256 = "d1e6e57a791363d2a6e9930a15b779fb45855006f5ee7e0119286652ccad7827"
+  def scandoSource = "https://repo1.maven.org/maven2/com/io7m/scando/com.io7m.scando.cmdline/${scandoVersion}/com.io7m.scando.cmdline-${scandoVersion}-main.jar"
+  def scandoBinDir = "${project.buildDir}/bin/"
+  def scandoTarget = "${scandoBinDir}/scando.jar"
+
+  afterEvaluate {
+    task scandoMakeDirectories() {
+      mkdir "${scandoBinDir}"
+    }
+
+    task scandoDownload(type: Download, dependsOn: scandoMakeDirectories) {
+      src scandoSource
+      dest scandoTarget
+      overwrite true
+    }
+
+    task scandoDownloadVerify(type: Verify, dependsOn: scandoDownload) {
+      src scandoTarget
+      checksum scandoSHA256
+      algorithm 'SHA-256'
+    }
+  }
+
+  switch (POM_PACKAGING) {
+    case "jar":
+      logger.info("Configuring ${project} (${POM_PACKAGING}) as jar project")
+
+      apply plugin: "java"
+      apply plugin: "java-library"
+      apply plugin: "kotlin"
+
+      java {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+      }
+
+      /*
+       * Apply the Animal Sniffer plugin to check that code is Android compatible.
+       */
+
+      apply plugin: "ru.vyarus.animalsniffer"
+
+      dependencies {
+        signature "org.codehaus.mojo.signature:java16:1.1@signature"
+        signature "net.sf.androidscents.signature:android-api-level-14:4.0_r4@signature"
+      }
+
+      /*
+       * Build an OSGi bundle.
+       */
+
+      apply plugin: "biz.aQute.bnd.builder"
+
+      jar {
+        bnd """
+Automatic-Module-Name: ${POM_AUTOMATIC_MODULE_NAME}
+
+-removeheaders: Bnd-LastModified, Tool, Private-Package
+"""
+      }
+      break
+
+    case "apk":
+      logger.info("Configuring ${project} (${POM_PACKAGING}) as Android application project")
+
+      apply plugin: "com.android.application"
+      apply plugin: "kotlin-android"
+
+      android {
+        compileSdkVersion androidCompileSDKVersion
+        buildToolsVersion androidBuildToolsVersion
+
+        defaultConfig {
+          minSdkVersion androidMinimumSDKVersion
+          targetSdkVersion androidTargetSDKVersion
+          testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        }
+        compileOptions {
+          sourceCompatibility JavaVersion.VERSION_1_8
+          targetCompatibility JavaVersion.VERSION_1_8
+        }
+        testOptions {
+          execution "ANDROID_TEST_ORCHESTRATOR"
+          animationsDisabled = true
+        }
+      }
+      break
+
+    case "aar":
+      logger.info("Configuring ${project} (${POM_PACKAGING}) as Android library project")
+
+      apply plugin: "com.android.library"
+      apply plugin: "kotlin-android"
+
+      android {
+        compileSdkVersion androidCompileSDKVersion
+        buildToolsVersion androidBuildToolsVersion
+
+        defaultConfig {
+          minSdkVersion androidMinimumSDKVersion
+          targetSdkVersion androidTargetSDKVersion
+          testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        }
+        compileOptions {
+          sourceCompatibility JavaVersion.VERSION_1_8
+          targetCompatibility JavaVersion.VERSION_1_8
+        }
+        testOptions {
+          execution "ANDROID_TEST_ORCHESTRATOR"
+          animationsDisabled = true
+        }
+      }
+      break
+
+    default:
+      throw new IllegalStateException(
+        "Unrecognized packaging type ${POM_PACKAGING} for ${project}")
+  }
+
+  /*
+   * Add semantic versioning tasks.
+   */
+
+  switch (POM_PACKAGING) {
+    case "jar":
+      afterEvaluate {
+        task scandoAnalyze(type: Exec, dependsOn: [scandoDownloadVerify, assemble]) {
+          def oldGroup = "${project.group}".replace('.', '/')
+          def oldPath = "${oldGroup}/${POM_ARTIFACT_ID}/${VERSION_NAME_PREVIOUS}/${POM_ARTIFACT_ID}-${VERSION_NAME_PREVIOUS}.${POM_PACKAGING}"
+          def oldUrl = "https://repo1.maven.org/maven2/${oldPath}"
+
+          commandLine = [
+            "java",
+            "-jar",
+            scandoTarget,
+            "--excludeList",
+            "${project.rootDir}/VERSIONING.txt",
+            "--oldJarUri",
+            "${oldUrl}",
+            "--oldJarVersion",
+            "${VERSION_NAME_PREVIOUS}",
+            "--ignoreMissingOld",
+            "--newJar",
+            "${buildDir}/libs/${POM_ARTIFACT_ID}-${VERSION_NAME}.${POM_PACKAGING}",
+            "--newJarVersion",
+            "${VERSION_NAME}",
+            "--textReport",
+            "${project.buildDir}/scando-report.txt",
+            "--htmlReport",
+            "${project.buildDir}/scando-report.html"
+          ]
+        }
+
+        task verifySemanticVersioning(dependsOn: [scandoAnalyze]) {
+
+        }
+      }
+      break
+
+    case "aar":
+      afterEvaluate {
+        task scandoAnalyze(type: Exec, dependsOn: [scandoDownloadVerify, assemble]) {
+          def oldGroup = "${project.group}".replace('.', '/')
+          def oldPath = "${oldGroup}/${POM_ARTIFACT_ID}/${VERSION_NAME_PREVIOUS}/${POM_ARTIFACT_ID}-${VERSION_NAME_PREVIOUS}.${POM_PACKAGING}"
+          def oldUrl = "https://repo1.maven.org/maven2/${oldPath}"
+
+          commandLine = [
+            "java",
+            "-jar",
+            scandoTarget,
+            "--excludeList",
+            "${project.rootDir}/VERSIONING.txt",
+            "--oldJarUri",
+            "${oldUrl}",
+            "--oldJarVersion",
+            "${VERSION_NAME_PREVIOUS}",
+            "--ignoreMissingOld",
+            "--newJar",
+            "${buildDir}/outputs/${POM_PACKAGING}/${POM_ARTIFACT_ID}-debug.${POM_PACKAGING}",
+            "--newJarVersion",
+            "${VERSION_NAME}",
+            "--textReport",
+            "${project.buildDir}/scando-report.txt",
+            "--htmlReport",
+            "${project.buildDir}/scando-report.html"
+          ]
+        }
+
+        task verifySemanticVersioning(dependsOn: [scandoAnalyze]) {
+
+        }
+      }
+      break
+
+    default:
+      break
+  }
+
+  task javadocsJar(type: Jar) {
+    classifier = "javadoc"
+  }
+
+  task sourcesJar(type: Jar) {
+    classifier = "sources"
+    from "src/main/java", "src/main/resources"
+  }
+
+  apply plugin: "digital.wup.android-maven-publish"
+  apply plugin: "signing"
+
+  publishing {
+    publications {
+      basicJar(MavenPublication) {
+
+        switch (POM_PACKAGING) {
+          case "jar":
+            from components.java
+            break
+
+          case "aar":
+            from components.android
+            break
+        }
+
+        artifact sourcesJar
+        artifact javadocsJar
+
+        pom {
+          artifactId = POM_ARTIFACT_ID
+          name = POM_NAME
+          packaging = POM_PACKAGING
+          description = POM_DESCRIPTION
+          url = POM_URL
+
+          scm {
+            connection = POM_SCM_CONNECTION
+            developerConnection = POM_SCM_DEV_CONNECTION
+            url = POM_SCM_URL
+          }
+
+          licenses {
+            license {
+              name = POM_LICENCE_NAME
+              url = POM_LICENCE_URL
+            }
+          }
+
+          developers {
+            developer {
+              id = POM_DEVELOPER_ID
+              name = POM_DEVELOPER_NAME
+              email = POM_DEVELOPER_EMAIL
+              url = POM_DEVELOPER_URL
+            }
+          }
+        }
+      }
+    }
+
+    repositories {
+      if (useDirectoryPublish) {
+        logger.info("using ${useDirectoryPublishPath} for publication")
+
+        maven {
+          name = "Directory"
+          url = "file://${useDirectoryPublishPath}"
+        }
+      }
+
+      if ("${VERSION_NAME}".endsWith("-SNAPSHOT")) {
+        logger.info("enabling Sonatype Snapshots publishing repository")
+
+        maven {
+          name = "centralSnapshots"
+          url = "https://oss.sonatype.org/content/repositories/snapshots/"
+          credentials(PasswordCredentials) {
+            username mavenCentralUsername
+            password mavenCentralPassword
+          }
+        }
+      }
+    }
+  }
+
+  signing {
+    useGpgCmd()
+    sign publishing.publications.basicJar
+  }
+}
+
+apply from: file("$rootDir/build_ktlint.gradle")
+
+subprojects {
+  assemble.dependsOn ktlint
+}

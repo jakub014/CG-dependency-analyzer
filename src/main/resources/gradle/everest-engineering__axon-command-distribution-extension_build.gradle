@@ -1,0 +1,82 @@
+plugins {
+    id 'com.palantir.git-version' version '0.12.3'
+    id 'idea'
+    id 'io.freefair.lombok' version '5.1.1'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java-library'
+    id 'maven-publish'
+    id 'signing'
+    id 'org.sonarqube' version '3.1.1'
+    id 'jacoco'
+}
+
+apply plugin: 'io.freefair.lombok'
+
+group = 'engineering.everest.axon'
+sourceCompatibility = '1.11'
+
+def gitTagVersion = versionDetails()
+version = gitTagVersion.commitDistance == 0
+        ? gitTagVersion.lastTag
+        : "${gitTagVersion.lastTag}+${gitTagVersion.commitDistance}-SNAPSHOT"
+
+ext {
+    axonVersion = '4.4.5'
+    ehCacheVersion = '3.9.0'
+    hazelcastKubernetesVersion = '2.0.2'
+    hazelcastVersion = '4.0.3'
+    javaXCacheVersion = '1.1.1'
+    kubernetesClientVersion = '10.0.0'
+    springBootVersion = '2.4.0'
+
+    junitVersion = '5.7.0'
+    mockitoVersion = '3.5.15'
+    systemLambdaVersion = '1.1.1'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+    }
+}
+
+dependencies {
+    api 'org.springframework.boot:spring-boot-actuator'
+    api "com.hazelcast:hazelcast:${hazelcastVersion}"
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation "javax.cache:cache-api:${javaXCacheVersion}"
+    implementation "org.ehcache:ehcache:${ehCacheVersion}"
+    implementation "org.axonframework:axon-modelling:${axonVersion}"
+    implementation "com.hazelcast:hazelcast-kubernetes:${hazelcastKubernetesVersion}"
+    implementation "io.kubernetes:client-java:${kubernetesClientVersion}"
+
+    testImplementation 'org.springframework:spring-test'
+    testImplementation "org.junit.jupiter:junit-jupiter:${junitVersion}"
+    testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+    testImplementation "com.github.stefanbirkner:system-lambda:${systemLambdaVersion}"
+}
+
+java {
+    java {
+        withJavadocJar()
+        withSourcesJar()
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+lombok {
+    version = '1.18.16'
+    generateLombokConfig.enabled = false
+    config['lombok.addLombokGeneratedAnnotation'] = 'true'
+}
+
+apply from: 'publishing.gradle'
+apply from: 'sonar.gradle'

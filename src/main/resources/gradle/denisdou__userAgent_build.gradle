@@ -1,0 +1,115 @@
+plugins {
+    id 'java'
+    id 'maven-publish'  // 添加插件
+    id 'signing'  // 签名插件
+}
+
+group = 'com.github.denisdou'
+version = '1.0.1'
+sourceCompatibility = '1.8'
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    [compileJava]*.options*.encoding = 'UTF-8'
+}
+compileTestJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    [compileTestJava]*.options*.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.yaml', name: 'snakeyaml', version: '1.27'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier = "sources"
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    classifier = 'javadoc'
+}
+
+
+publishing {
+    publications {
+        // 这一个推送项目名称，mavenJava 相当于是一个 task name
+        mavenJava(MavenPublication) {
+            groupId project.group
+            artifactId project.name
+            version "${version}"
+            from components.java
+            artifact sourceJar
+            artifact javadocJar
+
+            // 添加 pom 相关信息
+            // https://docs.gradle.org/current/dsl/org.gradle.api.publish.maven.MavenPublication.html
+            pom {
+                name = "useragent"
+                description = "The libary of useragent parser, using to parse infomation of browser,os,device and net version and so on. This version of parser contains much of special useragent of chinese feature."
+                url = "https://github.com/denisdou/userAgent"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    // 添加开发者描述，这个id不知道是什么
+                    developer {
+                        id = "denisdou"
+                        name = "denisdou"
+                        email = "402550833@qq.com"
+                    }
+                }
+                // 添加你的 git 仓库 信息
+                scm {
+                    connection = "scm:git:https://github.com/denisdou/userAgent.git"
+                    developerConnection = "scm:git:https://github.com/denisdou/userAgent.git"
+                    url = "https://github.com/denisdou/userAgent"
+                }
+            }
+        }
+    }
+    repositories {
+        // 添加一个远程仓库地址
+        // releases 仓库
+        maven {
+            // 在对 task 中会生成对应的名称 publishMavenJavaPublicationToxxx
+            // 后面的 xxx 就是你这里的名称，表示你要把jar 上传到这个仓库中
+            name 'marsRepository'  // 为你这个仓库起名
+            url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+            credentials {
+                username = "${NEXUS_USERNAME}"  // 之前在 sonatype 注册的账户名
+                password = "${NEXUS_PASSWORD}" // 对应的密码
+            }
+        }
+        // snapshots 仓库
+        maven {
+            name = 'marsSnapshotRepository'
+            url = 'https://oss.sonatype.org/content/repositories/snapshots/'
+            credentials {
+                username = "${NEXUS_USERNAME}"
+                password = "${NEXUS_PASSWORD}"
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    // <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    // 防止本地打开中文乱码
+    options.addStringOption("charset", "UTF-8")
+}
