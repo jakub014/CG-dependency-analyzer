@@ -81,7 +81,6 @@ public class RepositoryUtil {
     }
 
     private static boolean buildMavenProject(String pomXMLPath) {
-        // Run mvn clean install to build jar of project.
         InvocationRequest request = new DefaultInvocationRequest();
         request.setPomFile(new File(pomXMLPath));
         // Run `mvn package -Dmaven.test.skip=true`. Last part of command skips run of tests
@@ -98,9 +97,12 @@ public class RepositoryUtil {
         return false;
     }
 
-    private static void buildGradleProject(String repositoryName, String defaultBranch) {
+    private static void buildGradleProject(String repositoryName, String defaultBranch, String relativeDirectoryPath) {
         try {
             String path = repositoryName + "/" + repositoryName + "-" + defaultBranch;
+            if (!relativeDirectoryPath.equals("/")) {
+                path += relativeDirectoryPath;
+            }
             File repoDir = new File(path);
             Process process = Runtime.getRuntime().exec("bash gradlew assemble", null, repoDir.getAbsoluteFile());
 
@@ -124,40 +126,43 @@ public class RepositoryUtil {
         }
     }
 
-    private static void buildRepositoryJAR(String repositoryName, String defaultBranch, ProjectType projectType) {
+    private static void buildRepositoryJAR(ProjectInfo projectInfo) {
+        String repositoryName = projectInfo.getRepository();
+        String defaultBranch = projectInfo.getDefaultBranch();
+        ProjectType projectType = projectInfo.getProjectType();
+
         // Check whether pom.xml file exists in project
         if (projectType != null) {
             if (projectType == ProjectType.MAVEN) {
-                String pomXMLPath = repositoryName + "/" + repositoryName + "-" + defaultBranch + "/pom.xml";
+                String pomXMLPath = repositoryName + "/" + repositoryName + "-" + defaultBranch;
+                if (projectInfo.isInnerProject()) {
+                    pomXMLPath += projectInfo.getRelativeDepFilePath();
+                } else {
+                    pomXMLPath += "/pom.xml";
+                }
                 buildMavenProject(pomXMLPath);
             } else {
-                buildGradleProject(repositoryName, defaultBranch);
+                buildGradleProject(repositoryName, defaultBranch, projectInfo.getRelativeDirectoryPath());
             }
         }
         // No known dependency file in project.
     }
 
-    private static ProjectType getProjectType(String repositoryName, String defaultBranch) {
-        String basePath = repositoryName + "/" + repositoryName + "-" + defaultBranch;
-        String pomXMLPath = basePath + "/pom.xml";
-        String buildGradlePath = basePath + "/build.gradle";
+    private static String getJarPath(ProjectInfo projectInfo) throws JarNotFoundException {
+        String repositoryName = projectInfo.getRepository();
+        String defaultBranch = projectInfo.getDefaultBranch();
+        ProjectType projectType = projectInfo.getProjectType();
 
-        // Check whether pom.xml file exists in project
-        if (new File(pomXMLPath).exists()) {
-            return ProjectType.MAVEN;
-        } else if (new File(buildGradlePath).exists()) {
-            return ProjectType.GRADLE;
-        }
-        return null;
-    }
-
-    private static String getJarPath(String repositoryName, String defaultBranch, ProjectType projectType) throws JarNotFoundException {
         if (projectType != null) {
-            String repositoryTargetPath;
+            String repositoryTargetPath = repositoryName + "/" + repositoryName + "-" + defaultBranch;
+            if (projectInfo.isInnerProject()) {
+                String relativeDirPath = projectInfo.getRelativeDirectoryPath();
+                if (!relativeDirPath.equals("/")) repositoryTargetPath += relativeDirPath;
+            }
             if (projectType == ProjectType.MAVEN) {
-                repositoryTargetPath = repositoryName + "/" + repositoryName + "-" + defaultBranch + "/target";
+                repositoryTargetPath += "/target";
             } else {
-                repositoryTargetPath = repositoryName + "/" + repositoryName + "-" + defaultBranch + "/build/libs";
+                repositoryTargetPath += "/build/libs";
             }
             File[] files = new File(repositoryTargetPath).listFiles();
 
@@ -172,14 +177,17 @@ public class RepositoryUtil {
         throw new JarNotFoundException("Jar file not found for repository " + repositoryName);
     }
 
-    public static String getRepositoryJAR(String repositoryName, String defaultBranch, ProjectType projectType) throws JarNotFoundException {
-        buildRepositoryJAR(repositoryName, defaultBranch, projectType);
-        return getJarPath(repositoryName, defaultBranch, projectType);
+    public static String getRepositoryJAR(ProjectInfo projectInfo) throws JarNotFoundException {
+        buildRepositoryJAR(projectInfo);
+        return getJarPath(projectInfo);
     }
 
-    public static void main(String[] args) {
-        Pair pair = getRepoAndLink("https://github.com/adobe/target-java-sdk");
-        downloadRepository(pair.getRight(), pair.getLeft(), "main");
-        buildGradleProject(pair.getLeft(), "main");
-    }
+//    public static void main(String[] args) {
+//        //Pair pair = getRepoAndLink("https://github.com/adobe/target-java-sdk");
+//        ProjectInfo projectInfo = new ProjectInfo(
+//
+//        );
+//        downloadRepository(pair.getRight(), pair.getLeft(), "main");
+//        buildGradleProject(pair.getLeft(), "main");
+//    }
 }

@@ -27,14 +27,12 @@ public class BuildGradleAnalyzer {
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
-            String output = "";
             while ((line = reader.readLine()) != null) {
                 String[] depDetails = line.split(":");
                 System.out.println(Arrays.toString(depDetails));
                 if (depDetails.length == 3) {
                     listOfDeps.add(new Dependency(depDetails[0], depDetails[1], depDetails[2]));
                 }
-                output += line + "\n";
             }
 
             int exitVal = process.waitFor();
