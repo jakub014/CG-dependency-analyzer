@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.shaneking</groupId>
+    <artifactId>org.shaneking</artifactId>
+    <version>0.15.1</version>
+    <relativePath>../org.shaneking</relativePath>
+  </parent>
+
+  <artifactId>org.shaneking.skava</artifactId>
+  <version>${project.parent.version}</version>
+  <packaging>jar</packaging>
+
+  <name>Java for ShaneKing</name>
+  <description>Java For ShaneKing</description>
+  <url>https://github.com/ShaneKing/org.shaneking.skava</url>
+  <inceptionYear>2011-2020</inceptionYear>
+
+  <organization>
+    <name>Azolla</name>
+    <url>https://github.com/Azolla</url>
+  </organization>
+  <licenses>
+    <license>
+      <name>Apache-2.0</name>
+      <url>https://opensource.org/licenses/Apache-2.0</url>
+      <distribution>repo</distribution>
+      <comments>ShaneKing is released under Apache-2.0 License.</comments>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>ShaneKing</id>
+      <name>ShaneKing</name>
+      <email>github@azolla.org</email>
+      <url>https://github.com/ShaneKing</url>
+      <organization>Azolla</organization>
+      <organizationUrl>https://github.com/Azolla</organizationUrl>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>+8</timezone>
+      <properties>
+        <dept>No</dept>
+      </properties>
+    </developer>
+  </developers>
+  <contributors>
+    <contributor>
+      <name>Maogu</name>
+      <email>git@azolla.org</email>
+      <url>https://github.com/Maogu</url>
+      <organization>Azolla</organization>
+      <organizationUrl>https://github.com/Azolla</organizationUrl>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>+8</timezone>
+      <properties>
+        <dept>No</dept>
+      </properties>
+    </contributor>
+  </contributors>
+
+  <scm>
+    <connection>scm:git:git@github.com:ShaneKing/org.shaneking.skava.git</connection>
+    <developerConnection>scm:git:git@github.com:ShaneKing/org.shaneking.skava.git</developerConnection>
+    <url>git@github.com:ShaneKing/org.shaneking.skava.git</url>
+  </scm>
+  <issueManagement>
+    <system>Github</system>
+    <url>https://github.com/ShaneKing/org.shaneking.skava/issues</url>
+  </issueManagement>
+  <ciManagement>
+    <system>Travis-CI</system>
+    <url>https://travis-ci.org/ShaneKing/org.shaneking.skava</url>
+  </ciManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

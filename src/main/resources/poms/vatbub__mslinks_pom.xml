@@ -1,0 +1,177 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-vatbub-fokprojectsReleases</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/vatbub/fokprojectsReleases</url>
+        </repository>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>bintray</name>
+            <url>https://jcenter.bintray.com</url>
+        </repository>
+        <repository>
+            <snapshots />
+            <id>snapshots</id>
+            <name>libs-snapshot</name>
+            <url>https://oss.jfrog.org/artifactory/libs-snapshot</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>bintray-plugins</name>
+            <url>https://jcenter.bintray.com</url>
+        </pluginRepository>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>fokprojects-releases-plugins</id>
+            <name>fokprojects-releases-plugins</name>
+            <url>https://dl.bintray.com/vatbub/fokprojectsReleases/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>codehaus-snapshots</id>
+            <url>https://nexus.codehaus.org/snapshots</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <parent>
+        <groupId>com.github.vatbub</groupId>
+        <artifactId>parentPom</artifactId>
+        <version>2.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>mslinks</artifactId>
+    <version>1.0.7-SNAPSHOT</version>
+    <name>FOKProjects MSLinks</name>
+    <description>Java library for parsing and creating Windows shortcut files</description>
+    <inceptionYear>2016</inceptionYear>
+    <url>https://github.com/vatbub/mslinks</url>
+
+    <developers>
+        <developer>
+            <id>fkammel</id>
+            <name>Frederik Kammel</name>
+            <email>vatbub123@googlemail.com</email>
+            <url>https://fokprojects.mo-mar.de/</url>
+            <timezone>Europe/Berlin</timezone>
+        </developer>
+        <developer>
+            <id>blackoverlord666</id>
+            <name>BlackOverlord666</name>
+            <email>vatbub123+empty@googlemail.com</email>
+            <url>https://github.com/BlackOverlord666</url>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:vatbub/mslinks.git</connection>
+        <url>https://github.com/vatbub/mslinks</url>
+        <developerConnection>scm:git:git@github.com:vatbub/mslinks.git</developerConnection>
+        <tag>testRelease</tag>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/vatbub/mslinks/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>Travis CI</system>
+        <url>https://travis-ci.org/vatbub/mslinks</url>
+    </ciManagement>
+
+    <properties>
+        <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+        <gitRepoName>mslinks</gitRepoName>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>10</source>
+                    <target>10</target>
+                    <release>10</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-replacer-plugin</groupId>
+                <artifactId>replacer</artifactId>
+                <version>1.5.3</version>
+                <executions>
+                    <execution>
+                        <id>inject-version</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                        <configuration>
+                            <file>${basedir}/src/main/java/mslinks/ShellLink.java</file>
+                            <token>project.version</token>
+                            <value>${project.version}</value>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>revert-version-injection</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>replace</goal>
+                        </goals>
+                        <configuration>
+                            <file>${basedir}/src/main/java/mslinks/ShellLink.java</file>
+                            <token>${project.version}</token>
+                            <value>project.version</value>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <licenseName>apache_v2</licenseName>
+                    <excludes>
+                        <exclude>**/*.json</exclude>
+                    </excludes>
+                    <inceptionYear>2015</inceptionYear>
+                    <organizationName>Dmitrii Shamrikov, Frederik Kammel</organizationName>
+                    <projectName>https://github.com/vatbub/mslinks</projectName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

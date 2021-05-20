@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.keim-hs-esslingen.efs</groupId>
+        <artifactId>efs-parent</artifactId>
+        <version>2.0.3</version>
+        <relativePath /> <!-- skip parent lookup in parent directory. -->
+    </parent>
+	
+    <groupId>com.github.keim-hs-esslingen.efs</groupId>
+    <artifactId>middleware-core</artifactId>
+    <version>3.3.2-SNAPSHOT</version>
+    
+    <name>Middleware Core</name>
+    <description>The middleware-library with core functionalities of the EFS project.</description>
+    <url>https://github.com/keim-hs-esslingen/efs-middleware-core</url>
+    
+    <scm>
+        <connection>scm:git:https://github.com/keim-hs-esslingen/efs-middleware-core.git</connection>
+        <developerConnection>scm:git:https://github.com/keim-hs-esslingen/efs-middleware-core.git</developerConnection>
+        <url>https://github.com/keim-hs-esslingen/efs-middleware-core</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+    
+    <developers>
+        <developer>
+            <name>Ben Oesch</name>
+            <email>ben.oesch@hs-esslingen.de</email>
+            <organization>Hochschule Esslingen</organization>
+            <organizationUrl>https://www.hs-esslingen.de</organizationUrl>
+        </developer>
+    </developers>
+
+    <properties>
+        <java.version>11</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.keim-hs-esslingen.spring</groupId>
+            <artifactId>request</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.keim-hs-esslingen.efs</groupId>
+            <artifactId>mobility-commons</artifactId>
+            <version>3.3.2-SNAPSHOT</version>
+        </dependency>
+		
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>        
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>de/hsesslingen/keim/efs/middleware/common/**</exclude>
+                        <exclude>de/hsesslingen/keim/efs/middleware/booking/**</exclude>
+                        <exclude>de/hsesslingen/keim/efs/middleware/planning/**</exclude>
+                        <exclude>de/hsesslingen/keim/efs/middleware/consumer/OptionsRequest.class</exclude>
+                        <exclude>de/hsesslingen/keim/efs/middleware/exception/**</exclude>
+                        <exclude>de/hsesslingen/keim/efs/middleware/apis/security/DefaultCredentialsFactory.class</exclude>
+                        <exclude>de/hsesslingen/keim/efs/middleware/config/actuator/**</exclude>
+                        <exclude>de/hsesslingen/keim/efs/middleware/controller/IConsumerApi.class</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <configuration>
+                    <tagNameFormat>Release-@{project.version}</tagNameFormat>
+                    <releaseProfiles>release</releaseProfiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+	
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <profiles>
+        <profile>
+            <!-- This profile contains plugins that are necessary for a deploy and release to the maven central repository. -->
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- Generate SRC-jar when building. -->
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <!-- Generate javadoc-jar when building. -->
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <configuration>
+                            <doclint>none</doclint>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <!-- Sign builded jars for deployment -->
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>  
+</project>

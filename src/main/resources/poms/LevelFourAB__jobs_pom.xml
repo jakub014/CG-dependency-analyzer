@@ -1,0 +1,307 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>se.l4.jobs</groupId>
+	<artifactId>jobs-base</artifactId>
+	<version>0.4.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>Job Runner</name>
+
+	<url>https://github.com/LevelFourAB/jobs</url>
+
+	<description>
+		Utilities for job queueing and running.
+	</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<commons-version>1.2.1</commons-version>
+		<slf4j-version>1.8.0-beta4</slf4j-version>
+	</properties>
+
+	<modules>
+		<module>jobs-api</module>
+		<module>jobs-engine</module>
+
+		<module>jobs-backend-silo</module>
+	</modules>
+
+	<!-- License -->
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.carrotsearch.randomizedtesting</groupId>
+			<artifactId>randomizedtesting-runner</artifactId>
+			<version>2.7.4</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<!-- Managed dependencies used by several projects -->
+	<dependencyManagement>
+		<dependencies>
+		</dependencies>
+	</dependencyManagement>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<executions>
+					<execution>
+						<id>default-compile</id>
+						<configuration>
+							<!-- compile everything to ensure module-info contains right entries -->
+							<release>9</release>
+						</configuration>
+					</execution>
+					<execution>
+						<id>base-compile</id>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+						<!-- recompile everything for target VM except the module-info.java -->
+						<configuration>
+							<excludes>
+								<exclude>module-info.java</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+				</executions>
+				<!-- defaults for compile and testCompile -->
+				<configuration>
+					<!-- Only required when JAVA_HOME isn't at least Java 9 and when haven't configured the maven-toolchains-plugin -->
+					<jdkToolchain>
+						<version>8</version>
+					</jdkToolchain>
+					<release>8</release>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>3.1.12.2</version>
+
+				<dependencies>
+					<dependency>
+						<groupId>com.github.spotbugs</groupId>
+						<artifactId>spotbugs</artifactId>
+						<version>4.0.3</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<effort>max</effort>
+					<failOnError>false</failOnError>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.revapi</groupId>
+				<artifactId>revapi-maven-plugin</artifactId>
+				<version>0.11.5</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.revapi</groupId>
+						<artifactId>revapi-java</artifactId>
+						<version>0.21.0</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<reportSeverity>nonBreaking</reportSeverity>
+					<failSeverity>breaking</failSeverity>
+
+					<analysisConfiguration>
+						<revapi.java>
+							<filter>
+								<packages>
+									<regex>true</regex>
+									<include>
+										<item>se\.l4\..*</item>
+									</include>
+									<exclude>
+										<item>.*\.impl(\..+)?</item>
+										<item>.*\.internal(\..+)?</item>
+									</exclude>
+								</packages>
+							</filter>
+						</revapi.java>
+
+						<revapi.semver.ignore>
+							<enabled>true</enabled>
+							<versionIncreaseAllows>
+								<major>breaking</major>
+								<minor>nonBreaking</minor>
+								<patch>equivalent</patch>
+							</versionIncreaseAllows>
+							<passThroughDifferences>
+								<item>java.class.nonPublicPartOfAPI</item>
+							</passThroughDifferences>
+						</revapi.semver.ignore>>
+
+						<revapi.ignore>
+							<item>
+								<code>java.annotation.added</code>
+								<annotationType>edu.umd.cs.findbugs.annotations.NonNull</annotationType>
+								<justification>SpotBugs annotations are for bug finding and not code generation</justification>
+							</item>
+
+							<item>
+								<code>java.annotation.added</code>
+								<annotationType>edu.umd.cs.findbugs.annotations.Nullable</annotationType>
+								<justification>SpotBugs annotations are for bug finding and not code generation</justification>
+							</item>
+
+							<item>
+								<code>java.annotation.added</code>
+								<annotationType>edu.umd.cs.findbugs.annotations.UnknownNullness</annotationType>
+								<justification>SpotBugs annotations are for bug finding and not code generation</justification>
+							</item>
+
+							<item>
+								<code>java.annotation.added</code>
+								<annotationType>edu.umd.cs.findbugs.annotations.CheckReturnValue</annotationType>
+								<justification>SpotBugs annotations are for bug finding and not code generation</justification>
+							</item>
+
+							<item>
+								<code>java.annotation.added</code>
+								<annotationType>edu.umd.cs.findbugs.annotations.SuppressFBWarnings</annotationType>
+								<justification>SpotBugs annotations are for bug finding and not code generation</justification>
+							</item>
+						</revapi.ignore>
+					</analysisConfiguration>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>3.2.1</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>3.2.0</version>
+						<configuration>
+							<doclint>none</doclint>
+							<source>8</source>
+						</configuration>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.8</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<scm>
+		<connection>scm:git:git@github.com:LevelFourAB/jobs.git</connection>
+		<url>git@github.com:LevelFourAB/jobs.git</url>
+		<developerConnection>scm:git:git@github.com:LevelFourAB/jobs.git</developerConnection>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>aholstenson</id>
+			<name>Andreas Holstenson</name>
+			<email>a@holstenson.se</email>
+		</developer>
+	</developers>
+</project>

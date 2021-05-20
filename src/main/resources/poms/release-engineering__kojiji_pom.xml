@@ -1,0 +1,473 @@
+<!--
+
+    Copyright (C) 2015 Red Hat, Inc. (jcasey@redhat.com)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.redhat.rcm</groupId>
+        <artifactId>redhat-releng-tools</artifactId>
+        <version>3</version>
+    </parent>
+
+    <groupId>com.redhat.red.build</groupId>
+    <artifactId>kojiji</artifactId>
+    <version>2.15-SNAPSHOT</version>
+
+    <name>Kojiji</name>
+    <description>Koji Java Interface</description>
+    <url>https://github.com/release-engineering/kojiji</url>
+
+    <scm>
+        <connection>scm:git:https://github.com/release-engineering/kojiji</connection>
+        <developerConnection>scm:git:https://github.com/release-engineering/kojiji</developerConnection>
+        <url>https://github.com/release-engineering/kojiji</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+        <enforcer.skip>true</enforcer.skip>
+        <javaVersion>1.8</javaVersion>
+        <jhttpcVersion>1.6</jhttpcVersion>
+        <rwxVersion>2.3</rwxVersion>
+        <httpcVersion>4.4</httpcVersion>
+        <atlasVersion>1.0.0</atlasVersion>
+        <mockitoVersion>2.7.20</mockitoVersion>
+        <kerbyVersion>2.0.1</kerbyVersion>
+        <o11yphantVersion>1.0</o11yphantVersion>
+
+        <dbImage>postgres:9.4</dbImage>
+        <hubImage>docker.io/buildchimp/koji-dojo-hub:dev</hubImage>
+
+        <dbWaitFor>database system is ready to accept connections</dbWaitFor>
+        <hubWaitFor>Starting HTTPd</hubWaitFor>
+
+        <download.logs>false</download.logs>
+
+        <dockerNetwork>default</dockerNetwork>
+        <dockerNetworkMode>bridge</dockerNetworkMode>
+        <dockerStartTimeout>300000</dockerStartTimeout>
+
+        <koji-hub-http-port>80</koji-hub-http-port>
+        <koji-hub-https-port>443</koji-hub-https-port>
+
+        <docker.container.koji-hub.ip>localhost</docker.container.koji-hub.ip>
+        <docker.container.koji-hub.net.ci-network.ip>localhost</docker.container.koji-hub.net.ci-network.ip>
+        <koji-hub-address>${docker.container.koji-hub.ip}</koji-hub-address>
+
+        <plugin.jacoco.version>0.8.3</plugin.jacoco.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.commonjava.boms</groupId>
+                <artifactId>web-commons-bom</artifactId>
+                <version>24</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.commonjava.rwx</groupId>
+                <artifactId>rwx</artifactId>
+                <version>${rwxVersion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.commonjava.util</groupId>
+                <artifactId>jhttpc</artifactId>
+                <version>${jhttpcVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.commonjava.atlas</groupId>
+                <artifactId>atlas-identities</artifactId>
+                <version>${atlasVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.commonjava.atlas</groupId>
+                <artifactId>atlas-npm-identities</artifactId>
+                <version>${atlasVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockitoVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.kerby</groupId>
+                <artifactId>kerb-client</artifactId>
+                <version>${kerbyVersion}</version>
+            </dependency>
+
+            <!-- metrics support-->
+            <dependency>
+                <groupId>org.commonjava.util</groupId>
+                <artifactId>o11yphant-metrics-api</artifactId>
+                <version>${o11yphantVersion}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.commonjava.rwx</groupId>
+            <artifactId>rwx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.commonjava.util</groupId>
+            <artifactId>jhttpc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.commonjava.atlas</groupId>
+            <artifactId>atlas-identities</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.commonjava.atlas</groupId>
+            <artifactId>atlas-npm-identities</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-model</artifactId>
+            <version>3.1.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-model-builder</artifactId>
+            <version>3.1.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.kerby</groupId>
+            <artifactId>kerb-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.commonjava.util</groupId>
+            <artifactId>o11yphant-metrics-api</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${plugin.jacoco.version}</version>
+                    <!-- Broken for sonarqube! -->
+                    <!--<version>0.7.5.201505241946</version>-->
+                    <executions>
+                        <execution>
+                            <id>prepare</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                                <goal>prepare-agent-integration</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>merge</id>
+                            <goals>
+                                <goal>merge</goal>
+                            </goals>
+                            <phase>post-integration-test</phase>
+                            <configuration>
+                                <fileSets>
+                                    <fileSet implementation="org.apache.maven.shared.model.fileset.FileSet">
+                                        <directory>${project.build.directory}</directory>
+                                        <includes>
+                                            <include>jacoco*.exec</include>
+                                        </includes>
+                                    </fileSet>
+                                </fileSets>
+                                <destFile>${project.build.directory}/jacoco-merged.exec</destFile>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>report</id>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                            <configuration>
+                                <dataFile>${project.build.directory}/jacoco-merged.exec</dataFile>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>0.15.16</version>
+                    <configuration>
+                        <images>
+                            <image>
+                                <alias>koji-db</alias>
+                                <name>${dbImage}</name>
+                                <run>
+                                    <env>
+                                        <POSTGRES_DB>koji</POSTGRES_DB>
+                                        <POSTGRES_USER>koji</POSTGRES_USER>
+                                        <POSTGRES_PASSWORD>mypassword</POSTGRES_PASSWORD>
+                                    </env>
+                                    <wait>
+                                        <log>${dbWaitFor}</log>
+                                        <time>${dockerStartTimeout}</time>
+                                    </wait>
+                                    <log>
+                                        <file>${project.build.directory}/koji-db.log</file>
+                                    </log>
+                                    <network>
+                                        <mode>${dockerNetworkMode}</mode>
+                                        <name>${dockerNetwork}</name>
+                                        <alias>koji-db</alias>
+                                    </network>
+                                </run>
+                            </image>
+                            <image>
+                                <alias>koji-hub</alias>
+                                <name>${hubImage}</name>
+                                <run>
+                                    <wait>
+                                        <log>${hubWaitFor}</log>
+                                        <time>${dockerStartTimeout}</time>
+                                    </wait>
+                                    <links>
+                                        <link>koji-db:koji-db</link>
+                                    </links>
+                                    <ports>
+                                        <port>${koji-hub-http-port}:80</port>
+                                        <port>${koji-hub-https-port}:443</port>
+                                    </ports>
+                                    <log>
+                                        <file>${project.build.directory}/koji-hub.log</file>
+                                    </log>
+                                    <network>
+                                        <mode>${dockerNetworkMode}</mode>
+                                        <name>${dockerNetwork}</name>
+                                        <alias>koji-hub</alias>
+                                    </network>
+                                </run>
+                            </image>
+                        </images>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>docker-maint</id>
+                            <goals>
+                                <goal>start</goal>
+                                <goal>stop</goal>
+                                <goal>remove</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.8</version>
+                    <executions>
+                        <execution>
+                            <id>record-docker-properties</id>
+                            <goals>
+                                <goal>run</goal>
+                            </goals>
+                            <phase>pre-integration-test</phase>
+                            <configuration>
+                                <target>
+                                    <!--suppress MavenModelInspection -->
+                                    <echo file="${project.build.directory}/docker.properties">
+                                        <![CDATA[
+download.logs=${download.logs}
+project.build.directory=${project.build.directory}
+
+docker.containers.koji-hub.ports.80/tcp.host=${koji-hub-address}
+docker.containers.koji-hub.ports.443/tcp.host=${koji-hub-address}
+docker.containers.koji-hub.ports.80/tcp.port=${koji-hub-http-port}
+docker.containers.koji-hub.ports.443/tcp.port=${koji-hub-https-port}
+
+#javax.net.debug=ssl:handshake:verbose
+]]>
+                                    </echo>
+                                </target>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.19</version>
+                    <executions>
+                        <execution>
+                            <id>functional-tests</id>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                            <configuration>
+                                <includes>
+                                    <include>**/*IT.java</include>
+                                    <!-- <include>**/ImportBuildConnectionStressIT.java</include> -->
+                                </includes>
+                                <forkCount>4</forkCount>
+                                <forkedProcessTimeoutInSeconds>500</forkedProcessTimeoutInSeconds>
+                                <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                                <systemPropertiesFile>${project.build.directory}/docker.properties</systemPropertiesFile>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.5.1</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <encoding>UTF-8</encoding>
+                        <generatedSourcesDirectory>${project.build.directory}/generated-sources/
+                        </generatedSourcesDirectory>
+                        <annotationProcessors>
+                            <annotationProcessor>
+                                org.commonjava.rwx.core.AnnoProcessor
+                            </annotationProcessor>
+                        </annotationProcessors>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.7.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>ci</id>
+            <properties>
+                <dockerNetworkMode>custom</dockerNetworkMode>
+                <dockerNetwork>ci-network</dockerNetwork>
+                <koji-hub-http-port>80</koji-hub-http-port>
+                <koji-hub-https-port>443</koji-hub-https-port>
+                <koji-hub-address>${docker.container.koji-hub.net.ci-network.ip}</koji-hub-address>
+            </properties>
+        </profile>
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

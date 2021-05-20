@@ -1,0 +1,353 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+							 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.github.pandafw</groupId>
+	<artifactId>panda</artifactId>
+	<packaging>pom</packaging>
+	<version>1.8.1-SNAPSHOT</version>
+
+	<name>Panda Framework</name>
+	<description>Panda Framework is a Java development framework, it can help you quickly create a WEB application.</description>
+	<url>https://github.com/pandafw/panda/</url>
+
+	<licenses>
+		<license>
+			<name>Apache 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<modules>
+		<module>panda-core</module>
+		<module>panda-docs</module>
+		<module>panda-html</module>
+		<module>panda-gear</module>
+		<module>panda-gems</module>
+		<module>panda-gems-admin</module>
+		<module>panda-gems-bundle-property</module>
+		<module>panda-gems-bundle-resource</module>
+		<module>panda-gems-bundle-template</module>
+		<module>panda-gems-files</module>
+		<module>panda-gems-media</module>
+		<module>panda-gems-pages</module>
+		<module>panda-gems-tager</module>
+		<module>panda-gems-users</module>
+		<module>panda-gaes</module>
+		<module>panda-cgen</module>
+		<module>panda-glue</module>
+		<module>panda-nets</module>
+		<module>panda-tube-freshdesk</module>
+		<module>panda-tube-gcloud</module>
+		<module>panda-tube-sendgrid</module>
+		<module>panda-tube-wordpress</module>
+		<module>panda-tube-zendesk</module>
+		<module>panda-roid</module>
+		<module>panda-archtype-webapp</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdk.version>1.8</jdk.version>
+		<freemarker.version>2.3.30</freemarker.version>
+		<lucene.version>7.7.2</lucene.version>
+		<gaeapi.version>1.9.76</gaeapi.version>
+		<gaegcs.version>0.8</gaegcs.version>
+		<poi.version>4.1.0</poi.version>
+		<derby.version>10.14.2.0</derby.version>
+		<h2db.version>1.4.199</h2db.version>
+		<hsqldb.version>2.5.0</hsqldb.version>
+		<mariadb.version>2.4.3</mariadb.version>
+		<mongodb.version>3.11.0</mongodb.version>
+		<mysql.version>8.0.17</mysql.version>
+		<postgresql.version>42.2.6</postgresql.version>
+		<sqlite.version>3.28.0</sqlite.version>
+		<servlet.api.version>4.0.1</servlet.api.version>
+		<servlet.jsp.version>2.3.3</servlet.jsp.version>
+		<websocket.version>1.1</websocket.version>
+		<tomcat.version>9.0.27.1</tomcat.version>
+		<jetty.version>9.4.32.v20200930</jetty.version>
+		<gpg.skip>true</gpg.skip>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>third</id>
+			<url>https://pandafw.github.io/repos/third/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<directory>${project.basedir}/out</directory>
+
+		<pluginManagement>
+			<plugins>
+				<!-- set JDK compiler level -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.7.0</version>
+					<configuration>
+						<source>${jdk.version}</source>
+						<target>${jdk.version}</target>
+					</configuration>
+				</plugin>
+
+				<!-- eclipse -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>2.10</version>
+					<configuration>
+						<downloadSources>true</downloadSources>
+						<downloadJavadocs>true</downloadJavadocs>
+					</configuration>
+				</plugin>
+
+				<!-- site -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.7.1</version>
+				</plugin>
+
+				<!-- resources -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.1.0</version>
+				</plugin>
+
+				<!-- source:jar -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>3.0.1</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				
+				<!-- javadoc:jar -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>3.1.1</version>
+					<configuration>
+						<quiet>true</quiet>
+						<doclint>none</doclint>
+						<sourcepath>${project.basedir}/src/main/java;${project.basedir}/src/gen/java</sourcepath>
+					</configuration>
+					<executions>
+						<execution>
+							<id>attach-javadoc</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				
+				<!-- build helper -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>3.0.0</version>
+				</plugin>
+
+				<!-- git commit id -->
+				<plugin>
+					<groupId>pl.project13.maven</groupId>
+					<artifactId>git-commit-id-plugin</artifactId>
+					<version>2.2.4</version>
+					<executions>
+						<execution>
+							<id>get-the-git-infos</id>
+							<goals>
+								<goal>revision</goal>
+							</goals>
+							<phase>initialize</phase>
+						</execution>
+					</executions>
+					<configuration>
+						<failOnNoGitDirectory>true</failOnNoGitDirectory>
+					</configuration>
+				</plugin>
+
+				<!-- jar -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.1.0</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+							</manifest>
+							<manifestEntries>
+								<Implementation-Revision>${git.commit.id.abbrev}</Implementation-Revision>
+							</manifestEntries>
+						</archive>
+					</configuration>
+				</plugin>
+
+				<!-- war -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.2.2</version>
+				</plugin>
+
+				<!-- antrun -->
+				<plugin>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.8</version>
+				</plugin>
+
+				<!-- junit test -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.22.0</version>
+					<configuration>
+						<useSystemClassLoader>false</useSystemClassLoader>
+						<testFailureIgnore>false</testFailureIgnore>
+					</configuration>
+				</plugin>
+
+				<!-- coverage report -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId>
+					<version>2.7</version>
+					<configuration>
+						<formats>
+							<format>html</format>
+							<format>xml</format>
+						</formats>
+						<check/>
+					</configuration>
+				</plugin>
+
+				<!-- sonatype release -->
+				<plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<version>1.6.8</version>
+					<extensions>true</extensions>
+					<configuration>
+						<serverId>ossrh</serverId>
+						<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+						<autoReleaseAfterClose>true</autoReleaseAfterClose>
+					</configuration>
+				</plugin>
+
+				<!-- gpg sign -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>1.6</version>
+					<executions>
+						<execution>
+							<id>sign-artifacts</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<reporting>
+		<plugins>
+			<!-- junit test report -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.21.0</version>
+			</plugin>
+
+			<!-- coverage report -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<formats>
+						<format>html</format>
+						<format>xml</format>
+					</formats>
+					<check/>
+				</configuration>
+			</plugin>
+
+			<!-- javadoc report -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.1.1</version>
+				<configuration>
+					<quiet>true</quiet>
+					<doclint>none</doclint>
+					<sourcepath>${project.basedir}/src/main/java;${project.basedir}/src/gen/java</sourcepath>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<id>default</id>
+						<reports>
+							<report>javadoc</report>
+							<report>test-javadoc</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<scm>
+		<connection>scm:git:https://github.com/pandafw/panda.git</connection>
+		<developerConnection>scm:git:https://github.com/pandafw/panda.git</developerConnection>
+		<url>https://github.com/pandafw/panda</url>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>yf.frank.wang</id>
+			<name>Frank Wang</name>
+			<email>yf.frank.wang@outlook.com</email>
+		</developer>
+	</developers>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+</project>

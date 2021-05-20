@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2014-2021 Philip Helger (www.helger.com)
+    philip[at]helger[dot]com
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.helger</groupId>
+    <artifactId>parent-pom</artifactId>
+    <version>1.11.3</version>
+  </parent>
+  <groupId>com.helger.erechnung.gv.at</groupId>
+  <artifactId>webservice-client</artifactId>
+  <version>3.2.4-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+  <name>webservice-client</name>
+  <description>Utility library that provides support for sending eInvoices to the Austrian Government (e-Rechnung.gv.at) by using the Webservice interface</description>
+  <url>https://github.com/phax/erechnung.gv.at-webservice-client</url>
+  <inceptionYear>2014</inceptionYear>
+
+  <licenses>
+    <license>
+      <name>Apache 2</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:git@github.com:phax/erechnung.gv.at-webservice-client.git</connection>
+    <developerConnection>scm:git:git@github.com:phax/erechnung.gv.at-webservice-client.git</developerConnection>
+    <url>http://github.com/phax/erechnung.gv.at-webservice-client</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <organization>
+    <name>Philip Helger</name>
+    <url>http://www.helger.com</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <id>philip</id>
+      <name>Philip Helger</name>
+      <email>ph(at)helger.com</email>
+      <url>http://www.helger.com</url>
+    </developer>
+  </developers>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.helger.commons</groupId>
+        <artifactId>ph-commons-parent-pom</artifactId>
+        <version>10.1.1</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.helger.commons</groupId>
+      <artifactId>ph-commons</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.helger.commons</groupId>
+      <artifactId>ph-xml</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.helger.commons</groupId>
+      <artifactId>ph-jaxb</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.helger.commons</groupId>
+      <artifactId>ph-jaxb-adapter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.helger.commons</groupId>
+      <artifactId>ph-wsclient</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.helger.commons</groupId>
+      <artifactId>ph-config</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml.ws</groupId>
+      <artifactId>jaxws-rt</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Automatic-Module-Name>com.helger.erechnung.erb</Automatic-Module-Name>
+            <Export-Package>com.helger.erechnung.erb.*,
+              at.gv.brz.eproc.erb.ws.documentupload._20121205,
+              at.gv.brz.eproc.erb.ws.invoicedelivery._201306,
+              at.gv.brz.eproc.erb.ws.invoicedeliverycallback._201305,
+              at.gv.brz.schema.eproc.invoice_uploadstatus_1_0</Export-Package>
+            <Import-Package>!javax.annotation.*,*</Import-Package>
+          </instructions>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>**/LICENSE</exclude>
+            <exclude>**/NOTICE</exclude>
+            <exclude>**/*.txt</exclude>
+            <exclude>src/main/resources/WEB-INF/wsdl/**</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.sun.xml.ws</groupId>
+        <artifactId>jaxws-maven-plugin</artifactId>
+        <version>2.3.3</version>
+        <executions>
+          <execution>
+            <id>wsimport120</id>
+            <goals>
+              <goal>wsimport</goal>
+            </goals>
+            <configuration>
+              <wsdlFiles>
+                <wsdlFile>document-upload-1.2.0.wsdl</wsdlFile>
+              </wsdlFiles>
+              <wsdlLocation>/WEB-INF/wsdl/document-upload-1.2.0.wsdl</wsdlLocation>
+            </configuration>
+          </execution>
+          <execution>
+            <id>wsimport200</id>
+            <goals>
+              <goal>wsimport</goal>
+            </goals>
+            <configuration>
+              <wsdlFiles>
+                <wsdlFile>erb-invoicedelivery-200.wsdl</wsdlFile>
+              </wsdlFiles>
+              <wsdlLocation>/WEB-INF/wsdl/erb-invoicedelivery-200.wsdl</wsdlLocation>
+            </configuration>
+          </execution>
+          <execution>
+            <id>wsinvoicedeliverycallback100</id>
+            <goals>
+              <goal>wsimport</goal>
+            </goals>
+            <configuration>
+              <wsdlFiles>
+                <wsdlFile>erb-invoicedelivery-callback-100.wsdl</wsdlFile>
+              </wsdlFiles>
+              <wsdlLocation>/WEB-INF/wsdl/erb-invoicedelivery-callback-100.wsdl</wsdlLocation>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <bindingDirectory>src/main/jaxb</bindingDirectory>
+          <bindingFiles>
+            <bindingFile>bindings.xjb</bindingFile>
+          </bindingFiles>
+          <wsdlDirectory>src/main/resources/WEB-INF/wsdl</wsdlDirectory>
+          <xnocompile>true</xnocompile>
+          <args>
+            <arg>-ph-csu</arg>
+          </args>
+          <xjcArgs>
+            <xjcArg>-no-header</xjcArg>
+            <xjcArg>-Xph-default-locale</xjcArg>
+            <xjcArg>en_US</xjcArg>
+            <xjcArg>-Xph-annotate</xjcArg>
+            <xjcArg>-Xph-fields-private</xjcArg>
+            <xjcArg>-Xph-code-quality</xjcArg>
+            <xjcArg>-Xph-implements</xjcArg>
+            <xjcArg>java.io.Serializable</xjcArg>
+            <xjcArg>-Xph-equalshashcode</xjcArg>
+            <xjcArg>-Xph-tostring</xjcArg>
+            <xjcArg>-Xph-list-extension</xjcArg>
+            <xjcArg>-Xph-offset-dt-extension</xjcArg>
+          </xjcArgs>
+          <!-- Required to work with a JDK 1.8 and/or Maven &gt; 3.0.4 -->
+          <vmArgs>
+            <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+          </vmArgs>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.helger</groupId>
+            <artifactId>ph-jaxb22-plugin</artifactId>
+            <version>2.3.3.3</version>
+          </dependency>
+          <dependency>
+            <groupId>com.helger</groupId>
+            <artifactId>ph-wsimport-plugin</artifactId>
+            <version>2.3.3.2</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <doclint>none</doclint>
+          <source>8</source>
+        </configuration>
+      </plugin> 
+    </plugins>
+  </build>    
+</project>

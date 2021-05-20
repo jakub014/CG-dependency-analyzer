@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.eduworks</groupId>
+    <artifactId>ew</artifactId>
+    <version>5.16.2</version>
+    <packaging>pom</packaging>
+
+    <name>Eduworks Open Source</name>
+    <description>LEVR is a web service framework that allows you to write and publish complex web services quickly and
+        in a variety of domain-specific languages.
+    </description>
+    <url>https://github.com/Eduworks/ew</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <organization>
+        <name>Eduworks Corporation</name>
+        <url>http://www.eduworks.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>Copyright 2008-2016 Eduworks Corporation</comments>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:svn:https://github.com/Eduworks/ew</connection>
+        <url>https://github.com/Eduworks/ew</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <developers>
+        <developer>
+            <name>Ronald "Fritz" Ray</name>
+            <email>fritz.ray@eduworks.com</email>
+            <organization>Eduworks Corporation</organization>
+            <organizationUrl>http://www.eduworks.com</organizationUrl>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>PST</timezone>
+        </developer>
+        <developer>
+            <name>Devlin Junker</name>
+            <email>devlin.junker@eduworks.com</email>
+            <organization>Eduworks Corporation (Retired)</organization>
+            <organizationUrl>http://www.eduworks.com</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>PST</timezone>
+        </developer>
+    </developers>
+
+    <dependencies>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <module>ew.common</module>
+        <module>ew.threading</module>
+        <module>ew.db.mapdb</module>
+        <module>ew.db.couchdb</module>
+        <module>ew.image</module>
+        <module>ew.ontology</module>
+        <module>ew.levr.core</module>
+        <module>ew.levr.base</module>
+        <module>ew.levr.db.sql</module>
+        <module>ew.levr.db.couchbase</module>
+        <module>ew.levr.db.couchdb</module>
+        <module>ew.levr.db.mapdb</module>
+        <module>ew.levr.distributed</module>
+        <module>ew.levr.net</module>
+        <module>ew.levr.ontology</module>
+        <module>ew.levr.security</module>
+        <module>ew.levr.service.paypal</module>
+        <module>ew.levr.service.dropbox</module>
+        <module>ew.levr.code</module>
+        <module>ew.levr.service.solr</module>
+        <module>ew.levr.lang.english</module>
+        <module>ew.levr.db.skyrepo</module>
+        <module>ew.levr.ebac.skyid</module>
+        <module>ew.levr.rdf</module>
+    </modules>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <sourceFileExcludes>
+                                <exclude>**/Cruncher*.java</exclude>
+                            </sourceFileExcludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.eduworks</groupId>
+                <artifactId>levr-codegen-maven-plugin</artifactId>
+                <version>SNAPSHOT</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>

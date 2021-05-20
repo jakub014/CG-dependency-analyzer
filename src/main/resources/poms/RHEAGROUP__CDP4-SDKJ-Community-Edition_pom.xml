@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.rheagroup</groupId>
+    <artifactId>cdp4-sdk4j-parent</artifactId>
+    <version>3.0.0</version>
+    <relativePath>./parent/pom.xml</relativePath>
+  </parent>
+
+  <artifactId>cdp4-sdk4j</artifactId>
+  <name>CDP4 SDK Java Implementation Project</name>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>cdp4common</module>
+    <module>parent</module>
+    <module>cdp4dal</module>
+    <module>cdp4servicesdal</module>
+    <module>cdp4jsonserializer</module>
+    <module>cdp4wspdal</module>
+    <module>cdp4jsonfiledal</module>
+    <module>cdp4requirementsverification</module>
+  </modules>
+</project>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.eacg</groupId>
+    <artifactId>ecs-java-client</artifactId>
+    <version>0.3.2</version>
+    <packaging>jar</packaging>
+
+    <name>ecs-java-client</name>
+    <description>EACG Code Scan java client. A java library to transfer dependency information to ECS-Server via its REST-Api.</description>
+    <url>https://github.com/eacg-gmbh/ecs-java-client</url>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://raw.githubusercontent.com/eacg-gmbh/ecs-mvn-plugin/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>EACG, Enterprise Architecture Consulting Group GmbH</name>
+        <url>https://www.eacg.de/</url>
+    </organization>
+
+    <scm>
+        <url>https://github.com/eacg-gmbh/ecs-java-client.git</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Gerhard Dickescheid</name>
+            <id>gdd</id>
+            <organization>EACG, Enterprise Architecture Consulting Group GmbH</organization>
+            <organizationUrl>https://www.eacg.de/</organizationUrl>
+        </developer>
+        <developer>
+            <name>Grigory Markin</name>
+            <id>gmn</id>
+            <organization>EACG, Enterprise Architecture Consulting Group GmbH</organization>
+            <organizationUrl>https://www.eacg.de/</organizationUrl>
+        </developer>
+    </developers>
+
+    <properties>
+        <maven.version>3.1.1</maven.version>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+        <version.org.jboss.resteasy>3.8.0.Final</version.org.jboss.resteasy>
+        <version.org.apache.httpcomponents.httpclient>4.5.9</version.org.apache.httpcomponents.httpclient>
+        <version.org.apache.httpcomponents.httpcore>4.4.11</version.org.apache.httpcomponents.httpcore>
+        <version.com.sun.xml.bind.jaxb>2.3.2</version.com.sun.xml.bind.jaxb>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.3</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jaxrs</artifactId>
+            <version>${version.org.jboss.resteasy}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <version>${version.org.jboss.resteasy}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-jackson-provider</artifactId>
+            <version>${version.org.jboss.resteasy}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>${version.org.apache.httpcomponents.httpcore}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${version.org.apache.httpcomponents.httpclient}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.23.4</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Java 11 compatibility deps -->
+<!--         <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <version>${version.com.sun.xml.bind.jaxb}</version>            
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>            
+        </dependency> -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <release>11</release>
+                </configuration>
+            </plugin>
+
+            <!-- expose new plexus components -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+                <configuration>
+<!--                     <skip>true</skip> -->
+                </configuration>
+            </plugin>
+            <!-- attach sources-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- create javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration> 
+                    <source>8</source>
+                </configuration> 
+            </plugin>
+            <!-- ecs scan -->
+            <plugin>
+                <groupId>de.eacg</groupId>
+                <artifactId>ecs-mvn-plugin</artifactId>
+                <version>0.2.1</version>
+                <configuration>
+                    <skip>true</skip>
+                    <credentials>~/.ecsrc.json</credentials>
+                    <projectName>ecs-java-client</projectName>
+                    <skipTransfer>false</skipTransfer>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>dependency-scan</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>dependency-scan</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

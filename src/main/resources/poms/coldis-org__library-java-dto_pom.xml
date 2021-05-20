@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.coldis</groupId>
+		<artifactId>configuration</artifactId>
+		<version>0.0.51</version>
+	</parent>
+
+	<groupId>org.coldis.library</groupId>
+	<artifactId>dto</artifactId>
+	<version>0.0.14-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>DTO utilities</name>
+	<description>Core Java DTO utilities.</description>
+	<url>http://coldis.org/project/library/java-dto</url>
+	<licenses>
+		<license>
+			<name>GPL</name>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<email>me@rvcoutinho.com</email>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.config.source.test.compile.annotationProcessors>org.coldis.library.dto.DtoGenerator</project.config.source.test.compile.annotationProcessors>
+		<project.config.source.main.aspect.phase>none</project.config.source.main.aspect.phase>
+		<project.config.source.test.aspect.phase>none</project.config.source.test.aspect.phase>
+	</properties>
+
+	<scm>
+		<url>https://github.com/coldis-org/library-java-dto</url>
+		<connection>scm:git:https://github.com/coldis-org/library-java-dto.git</connection>
+		<developerConnection>scm:git:git@github.com:coldis-org/library-java-dto.git</developerConnection>
+		<tag>dto-0.0.12</tag>
+	</scm>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.coldis.library</groupId>
+			<artifactId>core</artifactId>
+			<version>0.0.29</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.coldis.library</groupId>
+			<artifactId>test</artifactId>
+			<version>0.0.8</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+</project>

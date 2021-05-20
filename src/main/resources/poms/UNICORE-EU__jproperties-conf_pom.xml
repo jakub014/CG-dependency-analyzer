@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>eu.unicore</groupId>
+	<artifactId>jproperties-conf</artifactId>
+	<packaging>jar</packaging>
+	<version>1.1.1-SNAPSHOT</version>
+	<description>App configuration framework based on Java Properties</description>
+	<name>jproperties-conf</name>
+	<url>https://github.com/UNICORE-EU/jproperties-conf</url>
+	
+	<properties>
+	        <log4j.version>2.13.3</log4j.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
+
+	<scm>
+		<connection>scm:git:git://github.com/UNICORE-EU/jproperties-conf.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/UNICORE-EU/jproperties-conf.git</developerConnection>
+		<url>https://github.com/UNICORE-EU/jproperties-conf</url>
+		<tag>HEAD</tag>
+	</scm>
+	
+	<licenses>
+		<license>
+			<name>BSD</name>
+			<url>https://opensource.org/licenses/BSD-3-Clause</url>
+		</license>
+	</licenses>
+	
+	<developers>
+		<developer>
+			<name>Krzysztof Benedyczak</name>
+			<organization>Bixbit</organization>
+			<organizationUrl>https://unity-idm.eu</organizationUrl>
+		</developer>
+		<developer>
+			<name>Bernd Schuller</name>
+			<email>bschuller at users.sourceforge.net</email>
+			<organization>Research Center Juelich</organization>
+			<organizationUrl>http://www.fz-juelich.de/jsc</organizationUrl>
+		</developer>
+	</developers>
+
+	<dependencies>
+	       <dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.7</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<additionalJOption>-Xdoclint:none</additionalJOption>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>sonatype-nexus-staging</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

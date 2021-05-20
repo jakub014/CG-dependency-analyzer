@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This file is part of Eclipse Steady.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    SPDX-License-Identifier: Apache-2.0
+    SPDX-FileCopyrightText: Copyright (c) 2018-2020 SAP SE or an SAP affiliate company and Eclipse Steady contributors
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.eclipse.steady</groupId>
+	<artifactId>root</artifactId>
+	<version>3.2.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>Eclipse Steady</name>
+	<description>Analyses your Java and Python applications for open-source dependencies with known vulnerabilities, using both static analysis and testing to determine code context and usage for greater accuracy.</description>
+
+	<!-- From url to distMgmt: Identical for root, rest-backend and rest-lib-utils -->
+	<url>https://eclipse.github.io/steady/</url>
+	<inceptionYear>2018</inceptionYear>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<organization>
+		<name>Eclipse Steady</name>
+		<url>https://projects.eclipse.org/projects/technology.steady</url>
+	</organization>
+	<developers>
+		<developer>
+			<id>plate</id>
+			<name>Henrik Plate</name>
+			<email>henrik.plate@sap.com</email>
+			<organization>SAP SE</organization>
+			<organizationUrl>http://www.sap.com</organizationUrl>
+		</developer>
+		<developer>
+			<id>ponta</id>
+			<name>Serena Elisa Ponta</name>
+			<email>serena.ponta@sap.com</email>
+			<organization>SAP SE</organization>
+			<organizationUrl>http://www.sap.com</organizationUrl>
+		</developer>
+		<developer>
+			<id>sabetta</id>
+			<name>Antonino Sabetta</name>
+			<email>antonino.sabetta@sap.com</email>
+			<organization>SAP SE</organization>
+			<organizationUrl>http://www.sap.com</organizationUrl>
+		</developer>
+		<developer>
+			<id>dangremont</id>
+			<name>Cedric Dangremont</name>
+			<email>cedric.dangremont@sap.com</email>
+			<organization>SAP SE</organization>
+			<organizationUrl>http://www.sap.com</organizationUrl>
+		</developer>
+		<developer>
+			<id>pezze</id>
+			<name>Alessandro Pezze</name>
+		</developer>
+		<developer>
+			<id>patil</id>
+			<name>Sumeet Patil</name>
+			<email>sumeet.patil@sap.com</email>
+			<organization>SAP SE</organization>
+			<organizationUrl>http://www.sap.com</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:git://github.com/eclipse/steady.git</connection>
+		<developerConnection>scm:git:ssh://github.com:sap/eclipse/steady.git</developerConnection>
+		<url>https://github.com/eclipse/steady/tree/master</url>
+	</scm>
+	<issueManagement>
+		<url>https://github.com/eclipse/steady/issues</url>
+		<system>GitHub</system>
+	</issueManagement>
+	<!-- To deploy snaphots to Maven Central: Call deploy w/o profiles javadoc
+		and release, but with -Dsnapshots.repo=https://oss.sonatype.org/content/repositories/snapshots -->
+	<!-- To deploy to Eclipse's Nexus: Call deploy w/o profiles javadoc and
+		release, but with -D<snapshots|releases>.repo.id=repo.eclipse.org -D<snapshots|releases>.repo=https://repo.eclipse.org/content/repositories/steady-<snapshots|releases>/ -->
+	<distributionManagement>
+		<snapshotRepository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>${snapshots.repo.id}</id>
+			<name>snapshots</name>
+			<url>${snapshots.repo}</url>
+		</snapshotRepository>
+		<repository>
+			<id>${releases.repo.id}</id>
+			<name>releases</name>
+			<url>${releases.repo}</url>
+		</repository>
+	</distributionManagement>
+
+	<properties>
+		<!-- Leave at 1.7, otherwise the agent may not work with older applications -->
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.showWarnings>true</maven.compiler.showWarnings>
+		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+		<maven.compiler.skipMultiThreadWarning>true</maven.compiler.skipMultiThreadWarning>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- Deployment to Maven Central is configured in release profile, other
+			deployment targets must be provided as system property (no defaults, see
+			distributionProfile) -->
+		<snapshots.repo.id>build.snapshots.repo</snapshots.repo.id>
+		<releases.repo.id>build.releases.repo</releases.repo.id>
+		<snapshots.repo></snapshots.repo>
+		<releases.repo></releases.repo>
+
+		<!-- Repos used for resolving dependencies, specify as system property
+			(-D) to change the defaults -->
+		<gradle.repo>https://maven.google.com/</gradle.repo>
+
+		<!-- Skip certain plugins by default, change for all childs to be installed & deployed -->
+		<maven.deploy.skip>true</maven.deploy.skip>
+		
+		<!-- Used by several plugins, to make builds reproducible -->
+		<project.build.outputTimestamp>2020-11-02T12:14:00Z</project.build.outputTimestamp>
+	</properties>
+
+	<modules>
+		<!-- Shared across all modules -->
+		<module>shared</module>
+
+		<!-- Framework and base classes for lang-specific analysis -->
+		<module>lang</module>
+
+		<!-- Language-specific analysis -->
+		<module>lang-java</module>
+		<module>lang-java-reach</module>
+		<module>lang-java-reach-wala</module>
+		<module>lang-java-reach-soot</module>
+		<module>lang-python</module>
+
+		<!-- Analysis of security patches and libraries -->
+		<module>repo-client</module>
+		<module>patch-analyzer</module>
+		<module>patch-lib-analyzer</module>
+		<module>kb-importer</module>
+
+		<!-- Allow the scanning of applications -->
+		<module>cli-scanner</module>
+		<module>plugin-maven</module>
+
+		<!-- Web frontends -->
+		<module>frontend-apps</module>
+		<module>frontend-bugs</module>
+
+		<!-- REST services -->
+		<module>rest-lib-utils</module>
+		<module>rest-backend</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>gradle</id>
+			<modules>
+				<module>plugin-gradle</module>
+			</modules>
+			<repositories>
+				<repository>
+					<id>gradle</id>
+					<url>${gradle.repo}</url>
+				</repository>
+			</repositories>
+		</profile>
+
+		<!-- Activate when deploying to the Central Repo. Also see https://central.sonatype.org/pages/apache-maven.html#nexus-staging-maven-plugin-for-deployment-and-release -->
+		<profile>
+			<id>javadoc</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>3.2.0</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!--  Run the following to fix all JavaDoc: "mvn -DdefaultAuthor=SAP -X -DfixTags=param,return,throws -P gradle clean compile org.apache.maven.plugins:maven-javadoc-plugin:3.1.1:fix"
+					The tag 'links' results in an exception in module lang-java.-->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>3.2.0</version>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- Activate when deploying to the Central Repo. Also see https://central.sonatype.org/pages/apache-maven.html#nexus-staging-maven-plugin-for-deployment-and-release -->
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.5</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- Deploy to the Central Repository according to https://central.sonatype.org/pages/apache-maven.html#nexus-staging-maven-plugin-for-deployment-and-release. -->
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>1.6.8</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
+
+	<!-- Dependencies common to all child projects -->
+	<dependencies>
+		<!-- Good overview about annotation alternatives: http://stackoverflow.com/questions/4963300/which-notnull-java-annotation-should-i-use -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.14.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.14.1</version>
+		</dependency>
+		<dependency>
+  			<groupId>com.github.spotbugs</groupId>
+  			<artifactId>spotbugs-annotations</artifactId>
+  			<version>4.1.3</version>
+		</dependency>
+	</dependencies>
+
+	<!-- Use the same versions across all child projects -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>4.5.13</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-cli</groupId>
+				<artifactId>commons-cli</artifactId>
+				<version>1.4</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-configuration</groupId>
+				<artifactId>commons-configuration</artifactId>
+				<version>1.10</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<version>3.2.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.7</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-compress</artifactId>
+				<version>1.20</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version>1.9.4</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>2.8.6</version>
+			</dependency>
+			<dependency>
+				<groupId>org.javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version>3.27.0-GA</version>
+			</dependency>
+			<dependency>
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr4-runtime</artifactId>
+				<version>4.9.2</version>
+			</dependency>
+
+			<!-- Versions of 'com.fasterxml.jackson.core' artifacts should be identical -->
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>2.9.10</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.9.10.8</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>2.9.10</version>
+			</dependency>
+
+			<!-- Versions of 'org.apache.maven' artifacts should be identical -->
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-core</artifactId>
+				<version>3.8.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-model</artifactId>
+				<version>3.8.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-plugin-api</artifactId>
+				<version>3.8.1</version>
+			</dependency>
+
+			<!-- Test deps -->
+			<dependency>
+				<groupId>com.xebialabs.restito</groupId>
+				<artifactId>restito</artifactId>
+				<version>0.9.4</version>
+			</dependency>
+			<dependency>
+				<groupId>com.jayway.restassured</groupId>
+				<artifactId>rest-assured</artifactId>
+				<version>2.9.0</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+
+			<!-- Flattens the pom.xml files included in artifacts,
+			cf. https://www.mojohaus.org/flatten-maven-plugin/plugin-info.html -->
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>flatten-maven-plugin</artifactId>
+			    <version>1.2.2</version>
+			    <executions>
+			    	<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+						<configuration>
+							<flattenMode>clean</flattenMode>
+						</configuration>
+					</execution>
+					<execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Install 3rd party not available on Maven Cenral, required by lang-java and rest-lib-utils -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-install-plugin</artifactId>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>install-changedistiller</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+						<configuration>
+							<groupId>ch.uzh.ifi.seal</groupId>
+							<artifactId>changedistiller</artifactId>
+							<version>0.0.4</version>
+							<packaging>jar</packaging>
+							<file>${basedir}/lib/changedistiller-0.0.4-SNAPSHOT.jar</file>
+						</configuration>
+					</execution>
+					<execution>
+						<id>install-dependency-finder</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>install-file</goal>
+						</goals>
+						<!-- https://github.com/jeantessier/dependency-finder, BSD-license @ https://github.com/jeantessier/dependency-finder/blob/master/license.txt -->
+						<configuration>
+							<groupId>com.jeantessier</groupId>
+							<artifactId>dependency-finder</artifactId>
+							<version>1.2.1-beta5</version>
+							<packaging>jar</packaging>
+							<file>${basedir}/lib/dependency-finder-1.2.1-beta5.jar</file>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Skip for parent project, cf. pluginManagement section -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>none</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Show whether there are newer versions available, run fully-qualified
+				with 'mvn -DallowMajorUpdates=false -DprocessDependencyManagement=false org.codehaus.mojo:versions-maven-plugin:2.7:display-dependency-updates' -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+					<!-- Bound to lifecycle phase validate -->
+					<execution>
+						<id>check-version</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>display-dependency-updates</goal>
+							<goal>display-property-updates</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<processDependencyManagement>false</processDependencyManagement>
+					<allowMajorUpdates>false</allowMajorUpdates>
+				</configuration>
+			</plugin>
+
+			<!-- Run with 'mvn -Dproject.name="Eclipse Steady" license:format -P gradle' -->
+			<!-- https://github.com/mycila/license-maven-plugin -->
+			<plugin>
+			    <groupId>com.mycila</groupId>
+			    <artifactId>license-maven-plugin</artifactId>
+			    <version>3.0</version>
+			    <configuration>
+                    <header>copyright-license-header-template.txt</header>
+			        <properties>
+            			<owner>SAP SE or an SAP affiliate company and Eclipse Steady contributors</owner>
+                    </properties>
+			        <excludes>
+			            <exclude>LICENSES/**</exclude>
+			            <exclude>.reuse/**</exclude>
+			            <exclude>**/.pydevproject</exclude>
+			            <exclude>**/.dockerignore</exclude>
+			            <exclude>**/.gitattributes</exclude>
+			            <exclude>**/.xsaccess</exclude>
+			            <exclude>**/.xsapp</exclude>
+			            <exclude>**/requirements.txt</exclude>
+			            <exclude>**/NOTICE.txt</exclude>
+			            <exclude>**/LICENSE.txt</exclude>
+			            <exclude>**/README.md</exclude>
+			            <exclude>**/CONTRIBUTING.md</exclude>
+			            <exclude>**/CONTRIBUTORS.md</exclude>
+			            <exclude>**/findbugs-exclude.xml</exclude>
+			            <exclude>**/findbugs-include.xml</exclude>
+			            <exclude>**/src/test/resources/**</exclude>
+			            <exclude>**/log4j.properties</exclude>
+			            <exclude>**/*.g4</exclude>
+			            <exclude>**/*.tokens</exclude>
+			            <exclude>**/*.log</exclude>
+			            <exclude>**/.travis/**</exclude>
+			            <exclude>**/kubernetes/**</exclude>
+			            <exclude>**/docker/**</exclude>
+			            <exclude>**/docs/**</exclude>
+			            <exclude>**/.github/**</exclude>
+			            <exclude>**/gradle-wrapper.*</exclude>
+			            <exclude>**/.gradle/**</exclude>
+			            <exclude>**/.gradle_home/**</exclude>
+			            <exclude>**/*.gradle</exclude>
+			            <exclude>**/gradlew.bat</exclude>
+			            <exclude>**/gradlew</exclude>
+			            <exclude>**/src/it/settings.xml</exclude>
+			            <exclude>**/src/main/webapp/helpers/pqueue.js</exclude>
+			            <exclude>**/src/main/webapp/helpers/transpiled/pqueueES5.js</exclude>
+			            <exclude>**/src/main/resources/db/migration/*.sql</exclude>
+			        </excludes>
+			    </configuration>
+			</plugin>
+
+			<!-- Successor of Findbugs, run fully-qualified with 'mvn -Dspotbugs.excludeFilterFile=findbugs-exclude.xml
+				-Dspotbugs.includeFilterFile=findbugs-include.xml -Dspotbugs.failOnError=false -P gradle
+				com.github.spotbugs:spotbugs-maven-plugin:4.0.4:check' -->
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>4.0.4</version>
+				<configuration>
+					<failOnError>false</failOnError>
+					<threshold>Medium</threshold>
+					<excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
+					<includeFilterFile>findbugs-include.xml</includeFilterFile>
+					<omitVisitors></omitVisitors>
+				</configuration>
+			</plugin>
+
+			<!-- Make build info available to all modules -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<doCheck>false</doCheck>
+					<doUpdate>false</doUpdate>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.5</version>
+				<configuration>
+					<excludes>
+						<!-- Exclude ANTLR generated classes -->
+						<!-- See here: http://stackoverflow.com/questions/27799419/maven-jacoco-configuration-exclude-classes-packages-from-report-not-working -->
+						<exclude>**/antlr/Java*.*</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-prepare-agent</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+						</configuration>
+					</execution>
+					<execution>
+						<id>default-report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+						</configuration>
+					</execution>
+					<execution>
+						<id>default-check</id>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<rule>
+									<element>CLASS</element>
+									<excludes>
+										<exclude>*Test</exclude>
+									</excludes>
+									<limits>
+										<limit>
+											<counter>LINE</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0%</minimum>
+										</limit>
+									</limits>
+								</rule>
+								<!-- implementation is needed only for Maven 2 -->
+								<!-- rule implementation="org.jacoco.maven.RuleConfiguration">
+									<element>BUNDLE</element>
+									<limits>
+										<limit implementation="org.jacoco.report.check.Limit">
+											<counter>COMPLEXITY</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.00</minimum>
+										</limit>
+									</limits>
+								</rule-->
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<!-- Add support for multi release JARs (required by log4j2) -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.2.0</version>
+					<configuration>
+						<archive>
+							<manifestEntries>
+								<Multi-Release>true</Multi-Release>
+							</manifestEntries>
+						</archive>
+					</configuration>
+				</plugin>
+
+				<!-- Include LICENSE and NOTICE in all JARs (ESF requirement)
+					Note: Symlink LICENSE must NOT to be created with Cygwin, and can only be copied with plugin versions <= 2.7, cf.
+					https://issues.apache.org/jira/browse/MRESOURCES-237
+					https://stackoverflow.com/questions/40346225/maven-resources-plugin-symbolic-link-handling -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.7</version>
+					<executions>
+						<execution>
+							<id>copy-resources</id>
+							<phase>validate</phase>
+							<goals>
+								<goal>copy-resources</goal>
+							</goals>
+							<configuration>
+								<outputDirectory>${project.build.outputDirectory}/META-INF</outputDirectory>
+								<resources>
+									<resource>
+										<!-- Note: Only works for 1st level childs of this parent -->
+										<directory>${project.basedir}/..</directory>
+										<includes>
+											<include>LICENSE</include>
+											<include>NOTICE</include>
+										</includes>
+									</resource>
+								</resources>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
+				<!-- Actual 3rd party libs configured in *-init modules -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+
+				<plugin>
+			        <groupId>com.google.cloud.tools</groupId>
+			        <artifactId>jib-maven-plugin</artifactId>
+			    	<version>1.7.0</version>
+			    </plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.9.1</version>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.maven.wagon</groupId>
+							<artifactId>wagon-file</artifactId>
+							<version>3.4.1</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>com.google.code.maven-replacer-plugin</groupId>
+					<artifactId>replacer</artifactId>
+					<version>1.5.3</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.3.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>3.2.4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>3.3.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.22.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-failsafe-plugin</artifactId>
+					<version>2.22.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.antlr</groupId>
+					<artifactId>antlr4-maven-plugin</artifactId>
+					<version>4.7.2</version>
+					<executions>
+						<execution>
+							<id>generate-antlr4</id>
+							<goals>
+								<goal>antlr4</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.8</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

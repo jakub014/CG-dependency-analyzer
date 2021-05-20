@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.groupbyinc</groupId>
+    <artifactId>parent-oss</artifactId>
+    <version>38</version>
+    <relativePath />
+  </parent>
+
+  <artifactId>api-java-flux</artifactId>
+  <version>3.1.1-SNAPSHOT</version>
+
+  <packaging>jar</packaging>
+
+  <name>GroupBy - API - Java</name>
+  <description>${project.name}</description>
+
+  <scm>
+    <url>https://github.com/groupby/api-java</url>
+    <connection>scm:git:git@github.com:groupby/api-java.git</connection>
+    <developerConnection>scm:git:git@github.com:groupby/api-java.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <properties>
+
+    <!-- # Build params-->
+    <project.build.jdkVersion>1.6</project.build.jdkVersion>
+    <repo.upload.retryAttempts>3</repo.upload.retryAttempts>
+
+    <!-- ### Versions -->
+    <groupbyinc.common.version>190</groupbyinc.common.version>
+    <api.servlet.version>2.5</api.servlet.version>
+    <api.jsp.version>2.2</api.jsp.version>
+    <junit.version>4.12</junit.version>
+    <cloning.util.version>1.9.2</cloning.util.version>
+    <jregex.version>1.2_01</jregex.version>
+
+    <!-- ### Test -->
+    <test.threadLocal>true</test.threadLocal>
+    <test.threadCount>4</test.threadCount>
+    <test.parallel>classesAndMethods</test.parallel>
+    <test.log4j.statuslogger.level>OFF</test.log4j.statuslogger.level>
+    <test.junit.additionalArgs>
+      -Dfile.encoding=${project.build.sourceEncoding}
+      -Dorg.apache.logging.log4j.simplelog.StatusLogger.level=${test.log4j.statuslogger.level}
+      -DthreadLocal=${test.threadLocal}
+    </test.junit.additionalArgs>
+
+    <test.integration.groups>com.groupbyinc.common.test.IntegrationTest</test.integration.groups>
+
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>common</artifactId>
+        <version>${groupbyinc.common.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <dependencies>
+
+    <!-- ### GroupBy -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>common-api</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>common-jackson</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>common-http</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>common-util</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>common-logging</artifactId>
+      <type>pom</type>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>common-security</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <!-- ### Servlet/JSP/JSTL -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>${api.servlet.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>${api.jsp.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- ### Test -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>common-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.httpunit</groupId>
+      <artifactId>httpunit</artifactId>
+      <version>1.7.3</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>xerces</groupId>
+          <artifactId>xercesImpl</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xercesImpl</artifactId>
+      <version>2.12.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+
+    <defaultGoal>clean install</defaultGoal>
+
+    <pluginManagement>
+
+      <plugins>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <configuration>
+            <quiet>true</quiet>
+            <doclint>all,-html</doclint>
+            <tags>
+              <tag>
+                <name>internal</name>
+                <placement>a</placement>
+              </tag>
+            </tags>
+          </configuration>
+        </plugin>
+
+      </plugins>
+
+    </pluginManagement>
+
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <shadeTestJar>true</shadeTestJar>
+              <shadedArtifactAttached>true</shadedArtifactAttached>
+              <shadedClassifierName>uber</shadedClassifierName>
+              <createSourcesJar>true</createSourcesJar>
+              <createDependencyReducedPom>true</createDependencyReducedPom>
+              <dependencyReducedPomLocation>${project.build.directory}/${project.build.finalName}.pom</dependencyReducedPomLocation>
+              <artifactSet>
+                <includes>
+                  <include>${project.groupId}:*</include>
+                </includes>
+              </artifactSet>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <!-- excludes for preventing OSGi bundles from complaining -->
+                  <excludes>
+                    <exclude>com/groupbyinc/common/apache/commons/logging/impl/Avalon*</exclude>
+                    <exclude>com/groupbyinc/common/apache/commons/logging/impl/LogKit*</exclude>
+                    <exclude>com/groupbyinc/common/apache/commons/logging/impl/Log4J*</exclude>
+                  </excludes>
+                </filter>
+                <filter>
+                  <artifact>${project.groupId}:${project.parent.artifactId}-common</artifact>
+                  <includes>
+                    <include>com/groupbyinc/**</include>
+                    <include>META-INF/commerce.tld</include>
+                  </includes>
+                </filter>
+              </filters>
+              <transformers>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                  <manifestEntries>
+                    <Archive-Type>Uber JAR</Archive-Type>
+                  </manifestEntries>
+                </transformer>
+                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+              </transformers>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <finalName>api-java-flux-${project.version}</finalName>
+          <descriptors>
+            <descriptor>bin.xml</descriptor>
+          </descriptors>
+        </configuration>
+        <executions>
+          <execution>
+            <id>create-compressed-packages</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>6</source>
+          <target>6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+
+  </build>
+
+  <repositories>
+
+    <repository>
+      <id>sonatype-releases</id>
+      <name>Sonatype - Releases</name>
+      <url>https://oss.sonatype.org/content/repositories/releases/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+
+  </repositories>
+
+  <pluginRepositories>
+
+    <pluginRepository>
+      <id>sonatype-releases</id>
+      <name>Sonatype - Releases</name>
+      <url>https://oss.sonatype.org/content/repositories/releases/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+
+  </pluginRepositories>
+
+  <distributionManagement>
+
+    <repository>
+      <id>ossrh</id>
+      <name>Sonatype OSS - Releases</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+
+    <snapshotRepository>
+      <id>ossrh</id>
+      <name>Sonatype OSS - Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </snapshotRepository>
+
+  </distributionManagement>
+
+</project>

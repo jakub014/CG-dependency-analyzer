@@ -1,0 +1,464 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.a-langer</groupId>
+    <artifactId>shiro-ext</artifactId>
+    <version>0.0.3-SNAPSHOT</version>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Extension for Apache Shiro</description>
+    <url>https://github.com/a-langer/shiro-ext</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>manual</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>a-langer</id>
+            <name>Alexey Langer</name>
+            <email>langeress@gmail.com</email>
+            <url>https://www.linkedin.com/in/a-langer</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git@github.com:a-langer/shiro-ext.git</connection>
+        <developerConnection>git@github.com:a-langer/shiro-ext.git</developerConnection>
+        <url>https://github.com/a-langer/shiro-ext</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+    </repositories>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
+        <maven.jar.plugin.version>3.2.0</maven.jar.plugin.version>
+        <maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
+        <maven.source.plugin.version>3.2.1</maven.source.plugin.version>
+        <maven.javadoc.plugin.version>3.2.0</maven.javadoc.plugin.version>
+        <maven.surefire.plugin.version>3.0.0-M4</maven.surefire.plugin.version>
+        <formatter.maven.plugin.version>2.11.0</formatter.maven.plugin.version>
+        <nexus.staging.maven.plugin.version>1.6.8</nexus.staging.maven.plugin.version>
+        <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
+        <maven.assembly.plugin.version>3.3.0</maven.assembly.plugin.version>
+        <shiro.version>1.7.1</shiro.version>
+        <commons.logging.version>1.2</commons.logging.version>
+        <javax.servlet.version>3.1.0</javax.servlet.version>
+        <logback.version>1.2.3</logback.version>
+        <junit.jupiter.engine.version>5.6.2</junit.jupiter.engine.version>
+        <mockito.version>3.3.3</mockito.version>
+        <spring.test.version>5.2.6.RELEASE</spring.test.version>
+        <embedded.ldap.junit.version>0.8.1</embedded.ldap.junit.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <meminitial>64m</meminitial>
+                    <maxmem>128m</maxmem>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <optimize>true</optimize>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <!-- mvn clean package -DskipTests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.jar.plugin.version}</version>
+                <configuration>
+                    <excludePomFiles>true</excludePomFiles>
+                    <archive>
+                        <manifestEntries>
+                            <version>${project.version}</version>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>${maven.assembly.plugin.version}</version>
+                <configuration>
+                    <excludePomFiles>true</excludePomFiles>
+                    <archive>
+                        <manifestEntries>
+                            <version>${project.version}</version>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                        </manifestEntries>
+                    </archive>
+                    <descriptors>
+                        <descriptor>jar-with-deps-with-exclude.xml</descriptor> 
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- mvn clean test -Dsurefire.skipAfterFailureCount=1 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <configuration>
+                    <trimStackTrace>false</trimStackTrace>
+                    <skipTests>true</skipTests>
+                    <failIfNoTests>false</failIfNoTests>
+                    <reuseForks>true</reuseForks>
+                    <forkCount>1</forkCount>
+                    <systemPropertyVariables>
+                        <logback.configurationFile>${project.basedir}/logback.xml</logback.configurationFile>
+                    </systemPropertyVariables>
+                </configuration>
+                <executions>
+                    <!-- mvn surefire:test@shiro-ldap-realm -Durl=ldap://corp.company.com:389 -Dusername=userLogin -Dpassword=userPassword -->
+                    <execution>
+                        <id>shiro-ldap-realm</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                            <systemPropertyVariables>
+                                <javax.net.ssl.trustStore>${user.home}/keystore.jks</javax.net.ssl.trustStore>
+                            </systemPropertyVariables>
+                            <includes>
+                                <include>**/ActiveDirectoryRealmTest.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>shiro-filters</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                            <systemPropertyVariables>
+                                <config>
+                                [main]
+                                iniRealm.authorizationCachingEnabled = true
+
+                                sessionManager = org.apache.shiro.web.session.mgt.DefaultWebSessionManager
+                                sessionManager.sessionIdUrlRewritingEnabled = false
+                                sessionManager.globalSessionTimeout = 1800000
+                                sessionManager.sessionIdCookie.name = JSESSIONID
+
+                                authcStrategy   = org.apache.shiro.authc.pam.FirstSuccessfulStrategy
+                                authcStrategy.stopAfterFirstSuccess = true
+                                authcListener   = com.github.alanger.shiroext.authc.AttributeAuthenticationListener
+                                cacheManager    = org.apache.shiro.cache.MemoryConstrainedCacheManager
+                                rememberMe      = org.apache.shiro.web.mgt.CookieRememberMeManager
+                                realmAuthorizer = com.github.alanger.shiroext.authz.AssignedRealmAuthorizer
+
+                                securityManager = org.apache.shiro.web.mgt.DefaultWebSecurityManager
+                                securityManager.sessionManager = $sessionManager
+                                securityManager.authenticator.authenticationStrategy = $authcStrategy
+                                securityManager.authenticator.authenticationListeners = $authcListener
+                                securityManager.cacheManager = $cacheManager
+                                securityManager.rememberMeManager = $rememberMe
+                                securityManager.authorizer = $realmAuthorizer
+                                securityManager.realms = $iniRealm
+
+                                [users]
+                                admin = admin,admin,user,AppAdmin
+                                user = user,user,AppUser
+
+                                [roles]
+                                admin = *
+                                user = app:*
+
+                                [filters]
+                                authc      = com.github.alanger.shiroext.web.FormAuthcFilter
+                                authc.usernameParam       = j_username
+                                authc.passwordParam       = j_password
+                                authc.loginUrl            = /login
+                                authc.successUrl          = /loginSuccess
+                                basic      = com.github.alanger.shiroext.web.BasicAuthcFilter
+                                basicSilent = com.github.alanger.shiroext.web.BasicAuthcFilter
+                                basicSilent.silent = true
+                                logout     = com.github.alanger.shiroext.web.LogoutAuthcFilter
+                                roles      = com.github.alanger.shiroext.web.RolesAuthzFilter
+                                roles.unauthorizedUrl     = /loginError
+                                roles.loginUrl            = /login
+                                role       = com.github.alanger.shiroext.web.RoleAuthzFilter
+                                perms      = com.github.alanger.shiroext.web.PermissionsAuthzFilter
+                                perms.unauthorizedUrl     = /loginError
+                                perms.loginUrl            = /login
+                                perm       = com.github.alanger.shiroext.web.PermissionAuthzFilter
+
+                                [urls]
+                                /basic     = basic
+                                /basicSilent = basicSilent, authc
+                                /login     = authc
+                                /logout    = logout
+                                /rolesOnly = roles[admin,user]
+                                /roles     = basic, roles[admin,user]
+                                /role      = basic, role[admin,user]
+                                /permsOnly = perms[adm,app]
+                                /perms     = basic, perms[adm,app]
+                                /perm      = basic, perm[adm,app]
+                                /**        = authc
+                                </config>
+                            </systemPropertyVariables>
+                            <includes>
+                                <include>**/FormAuthcFilterTest.java</include>
+                                <include>**/BasicAuthcFilterTest.java</include>
+                                <include>**/LogoutAuthcFilterTest.java</include>
+                                <include>**/RolesAuthzFilterTest.java</include>
+                                <include>**/PermissionsAuthzFilterTest.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>script-processed</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                            <systemPropertyVariables>
+                                <init-script-text>servletConfig.addInitParameter("init-parameter", "init-value")</init-script-text>
+                                <invoke-script-text>response.getOutputStream().print("text1")</invoke-script-text>
+                                <destroy-script-text>servletConfig.addInitParameter("destroy-parameter", "destroy-value")</destroy-script-text>
+                            </systemPropertyVariables>
+                            <includes>
+                                <include>**/ScriptProcessedServletTest.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>script-processed-servlet</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                            <systemPropertyVariables>
+                                <invoke-script-text>
+                                    var config;
+                                    function init(servletConfig) {
+                                        servletConfig.addInitParameter("init-parameter", "init-value");
+                                        config = servletConfig;
+                                    }
+                                    function service(request, response) {
+                                        response.getOutputStream().print("text1");
+                                    }
+                                    function destroy() {
+                                        config.addInitParameter("destroy-parameter", "destroy-value");
+                                    }
+                                </invoke-script-text>
+                                <is-servlet>true</is-servlet>
+                            </systemPropertyVariables>
+                            <includes>
+                                <include>**/ScriptProcessedServletTest.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                    <!-- mvn surefire:test@mutable-request-wrapper -Dsurefire.skipAfterFailureCount=1 -->
+                    <execution>
+                        <id>mutable-request-wrapper</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skipTests>false</skipTests>
+                            <includes>
+                                <include>**/MutableRequestWrapperTest.java</include>
+                                <include>**/MultiReadRequestWrapperTest.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- mvn clean verify -Possrh -DskipTests -->
+    <profiles>
+        <profile>
+            <id>ossrh</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${maven.source.plugin.version}</version>
+                        <configuration></configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>net.revelc.code.formatter</groupId>
+                        <artifactId>formatter-maven-plugin</artifactId>
+                        <version>${formatter.maven.plugin.version}</version>
+                        <configuration>
+                            <_configFile>${project.basedir}/google-code-style.xml</_configFile>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>format-code</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>format</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven.javadoc.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${nexus.staging.maven.plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven.gpg.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+            <version>${shiro.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons.logging.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet.version}</version>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.engine.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit.jupiter.engine.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.test.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.test.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.test.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.zapodot</groupId>
+            <artifactId>embedded-ldap-junit</artifactId>
+            <version>${embedded.ldap.junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

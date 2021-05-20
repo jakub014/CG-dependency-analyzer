@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.sonarsource.parent</groupId>
+    <artifactId>parent</artifactId>
+    <version>59.0.29</version>
+  </parent>
+
+  <groupId>org.sonarsource.html</groupId>
+  <artifactId>html</artifactId>
+  <version>3.5.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>SonarSource :: HTML</name>
+
+  <url>http://redirect.sonarsource.com/plugins/web.html</url>
+
+  <inceptionYear>2010</inceptionYear>
+  <organization>
+    <name>SonarSource and Matthijs Galesloot</name>
+  </organization>
+  <developers>
+    <developer>
+      <id>mgalesloot</id>
+      <name>Matthijs Galesloot</name>
+      <email>matthijs@codehaus.org</email>
+    </developer>
+    <developer>
+      <id>fabemn</id>
+      <name>Fabrice Bellingard</name>
+      <organization>SonarSource</organization>
+    </developer>
+    <developer>
+      <id>dbolkensteyn</id>
+      <name>Dinesh Bolkensteyn</name>
+      <organization>SonarSource</organization>
+    </developer>
+  </developers>
+
+  <modules>
+    <module>sonar-html-plugin</module>
+  </modules>
+
+  <scm>
+    <connection>scm:git:git@github.com:SonarSource/sonar-html.git</connection>
+    <developerConnection>scm:git:git@github.com:SonarSource/sonar-html.git</developerConnection>
+    <url>https://github.com/SonarSource/sonar-html</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <issueManagement>
+    <system>JIRA</system>
+    <url>https://jira.sonarsource.com/browse/SONARHTML</url>
+  </issueManagement>
+
+  <properties>
+    <revision>3.5-SNAPSHOT</revision>
+    <license.name>AL2</license.name>
+    <license.owner>SonarSource SA and Matthijs Galesloot</license.owner>
+    <license.mailto>sonarqube@googlegroups.com</license.mailto>
+    <gitRepositoryName>sonar-html</gitRepositoryName>
+
+    <orchestrator.version>3.35.0.2707</orchestrator.version>
+    <junit.version>4.12</junit.version>
+    <sslr.version>1.24.0.633</sslr.version>
+    <assertj.version>3.17.2</assertj.version>
+    <analyzerCommons.version>1.14.1.690</analyzerCommons.version>
+
+    <artifactsToPublish>${project.groupId}:sonar-html-plugin:jar</artifactsToPublish>
+    <maven.compiler.release>8</maven.compiler.release>
+  </properties>
+
+  <profiles>
+    <profile>
+      <id>its</id>
+      <modules>
+        <module>its</module>
+      </modules>
+    </profile>
+  </profiles>
+
+</project>

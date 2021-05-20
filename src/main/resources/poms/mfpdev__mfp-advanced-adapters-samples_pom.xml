@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       © Copyright 2016 IBM Corp.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+           http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.mfpdev</groupId>
+    <artifactId>mfp-adapters-extensions</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <dependency-dagger-version>2.0</dependency-dagger-version>
+        <dependency-adapter-maven-api-version>8.0.0</dependency-adapter-maven-api-version>
+        <dependency-spring-version>4.1.6.RELEASE</dependency-spring-version>
+        <dependency-javax.ws.rs-api-version>2.0</dependency-javax.ws.rs-api-version>
+        <dependency-javaee-web-api-version>6.0</dependency-javaee-web-api-version>
+        <dependency-jaxp-api-version>1.4.2</dependency-jaxp-api-version>
+        <dependency-javax.servlet-api-version>3.0.1</dependency-javax.servlet-api-version>
+
+        <!-- Jgitflow properties -->
+        <jgitflowFeatureBranchPrefix>release/</jgitflowFeatureBranchPrefix>
+        <jgitflowMasterBranchName>master</jgitflowMasterBranchName>
+        <jgitflowDevelopBranchName>develop</jgitflowDevelopBranchName>
+    </properties>
+
+    <modules>
+        <module>mfp-adapters-spring-integration</module>
+        <module>mfp-adapters-swagger-codegen</module>
+        <module>samples</module>
+    </modules>
+
+    <repositories>
+        <repository>
+            <id>jcenter-snapshots</id>
+            <name>jcenter</name>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+        <repository>
+            <id>IMP release</id>
+            <url>http://visustar.francelab.fr.ibm.com:8081/nexus/content/repositories/mobile-all</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+        <!-- IMP snapshots repository -->
+        <repository>
+            <id>IMP snapshots</id>
+            <url>http://visustar.francelab.fr.ibm.com:8081/nexus/content/repositories/mobile-s</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+        <!-- Dundermifflin snapshots repository -->
+        <repository>
+            <id>Dundermifflin release</id>
+            <url>http://dundermifflin.austin.ibm.com:8081/nexus/content/repositories/mobile-all</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>mobile-all</id>
+            <url>http://visustar.francelab.fr.ibm.com:8081/nexus/content/repositories/mobile-all</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <distributionManagement>
+        <repository>
+            <id>release-repo</id>
+            <url>http://visustar.francelab.fr.ibm.com:8081/nexus/content/repositories/mobile-r</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshot-repo</id>
+            <url>http://visustar.francelab.fr.ibm.com:8081/nexus/content/repositories/mobile-s</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.ibm.mfp</groupId>
+                <artifactId>mfp-adapters-dagger-integration</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ibm.mfp</groupId>
+                <artifactId>mfp-adapters-spring-integration</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.dagger</groupId>
+                <artifactId>dagger</artifactId>
+                <version>${dependency-dagger-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.dagger</groupId>
+                <artifactId>dagger-compiler</artifactId>
+                <version>${dependency-dagger-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${dependency-spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${dependency-spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${dependency-spring-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>${dependency-spring-version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${dependency-spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${dependency-spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${dependency-spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${dependency-spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${dependency-spring-version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${dependency-spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${dependency-spring-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.ibm.mfp</groupId>
+                <artifactId>adapter-maven-api</artifactId>
+                <scope>provided</scope>
+                <version>${dependency-adapter-maven-api-version}</version>
+            </dependency>
+
+            <!-- servlet API -->
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${dependency-javax.servlet-api-version}</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.ws.rs</groupId>
+                <artifactId>javax.ws.rs-api</artifactId>
+                <version>${dependency-javax.ws.rs-api-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-web-api</artifactId>
+                <version>${dependency-javaee-web-api-version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+   
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.ibm.mfp</groupId>
+                    <artifactId>adapter-maven-plugin</artifactId>
+                    <extensions>true</extensions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>external.atlassian.jgitflow</groupId>
+                <artifactId>jgitflow-maven-plugin</artifactId>
+                <version>1.0-m5.1</version>
+                <configuration>
+
+
+                    <!-- TODO: disable allowSnapshots! -->
+                    <allowSnapshots>true</allowSnapshots>
+                    <!--<developmentVersion>1.0.0-SNAPSHOT</developmentVersion>-->
+                    <!-- I would like to insert the date as a version suffix, the problem is that Maven
+                         Checks for existing versions prior to adding the suffix, thus recognizing the
+                         new version as existing one
+                         This is why the next line is commented out and the date suffix will be added as command line variable -->
+                    <!--<releaseBranchVersionSuffix>${buildNumber}</releaseBranchVersionSuffix>-->
+                    <!-- For specific plugin configuration options,
+                    see the Goals documentation page -->
+                    <!-- Enable this to push to origin using SSH keys -->
+                    <enableSshAgent>true</enableSshAgent>
+                    <!-- Keep your maven submodules at the same version as the parent POM -->
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <!--
+                      Pusing in-development features to origin allows all devs to see what each other
+                      are working on
+                    -->
+                    <pushFeatures>true</pushFeatures>
+                    <!--
+                      This allows the CI server (e.g. Jenkins) to automatically push new releases to
+                      origin; you can then either manually deploy them or, if you are doing Continuous
+                      Deployments, auto-deploy them to prod
+                    -->
+                    <pushReleases>true</pushReleases>
+                    <!--
+                      Hot Fixes should be pushed to origin as well so that any dev can pick them up
+                    -->
+                    <pushHotfixes>true</pushHotfixes>
+                    <!--
+                      Prevents deployments from dev workstations so that they can be done by a CI
+                      server
+                    -->
+                    <!--<noDeploy>true</noDeploy>-->
+
+                    <flowInitContext>
+                        <masterBranchName>${jgitflowMasterBranchName}</masterBranchName>
+                        <developBranchName>${jgitflowDevelopBranchName}</developBranchName>
+                        <featureBranchPrefix>${jgitflowFeatureBranchPrefix}</featureBranchPrefix>
+                        <releaseBranchPrefix>release/</releaseBranchPrefix>
+                        <hotfixBranchPrefix>hotfix/</hotfixBranchPrefix>
+                        <versionTagPrefix />
+                    </flowInitContext>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <header>apache.txt</header>
+                    <properties>
+                        <owner>IBM</owner>
+                        <project.inceptionYear>2016</project.inceptionYear>
+                    </properties>
+                    <excludes>
+                        <exclude>apache.txt</exclude>
+                        <exclude>**/.gitignore</exclude>
+                        <exclude>**/README</exclude>
+                        <exclude>**/src/test/resources/**</exclude>
+                        <exclude>**/src/main/resources/**</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,50 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.northdata</groupId>
+		<artifactId>superpom</artifactId>
+		<version>1.1.0</version>
+	</parent>
+
+	<groupId>com.northdata.jhyphenator</groupId>
+	<artifactId>jhyphenator</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<name>Hyphenator for Java</name>
+
+	<description>Hyphenator for Java</description>
+
+	<properties>
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<scm>
+		<connection>scm:git:git@github.com:northdata/jhyphenator.git</connection>
+		<developerConnection>scm:git:git@github.com:northdata/jhyphenator.git</developerConnection>
+		<url>http://github.com/northdata/jhyphenator/tree/master</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<url>http://github.com/northdata/jhyphenator</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>pl.pragmatists</groupId>
+			<artifactId>JUnitParams</artifactId>
+			<version>1.0.4</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+</project>

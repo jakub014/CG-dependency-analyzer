@@ -1,0 +1,196 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!-- JGUYET MAVEN POM FILE --> 
+  
+  <!-- ########################################################################## -->
+  <!-- MAVEN PROJECT HDR -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.weoohh</groupId>
+  <artifactId>request</artifactId>
+  <version>1.0.0</version>
+  
+  <packaging>jar</packaging>
+  
+  <name>${project.groupId}:${project.artifactId}</name>
+  <description>Library of Http/Https simple request Encryption(BR/NO), manage proxy(http/https)</description>
+  <url>https://github.com/jguyet/HttpRequest</url>
+  
+  <!-- ########################################################################## -->
+  <!-- UTF-8 CONVERTION -->
+  <properties>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<java.source.version>1.8</java.source.version>
+	<java.target.version>1.8</java.target.version>
+	<log4j.version>2.6.2</log4j.version>
+	<!-- Force version of JUnit because of issue with parent dependencies -->
+	<junit.version>4.12</junit.version>
+  </properties>
+  <!-- ########################################################################## -->
+  <!-- LICENSE -->
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <!-- ########################################################################## -->
+  <!-- DEVELOPER -->
+  <developers>
+    <developer>
+      <name>Guyet Jeremy</name>
+      <email>jguyet.weoohh@gmail.com</email>
+      <organization>Weoohh</organization>
+      <organizationUrl>http://www.weoohh.com</organizationUrl>
+    </developer>
+  </developers>
+
+  <organization>
+        <name>weoohh</name>
+  </organization>
+  <!-- ########################################################################## -->
+  <!-- SVN FROM GITHUB -->
+  <scm>
+	<url>http://github.com/jguyet/HttpRequest.git</url>
+  </scm>
+  <!-- ########################################################################## -->
+  <!-- LIBRARIES DEPENDENCIES -->
+  <dependencies>
+	<dependency>
+	    <groupId>org.junit.jupiter</groupId>
+	    <artifactId>junit-jupiter-api</artifactId>
+	    <version>5.0.0</version>
+	    <scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpclient</artifactId>
+		<version>4.5.2</version>
+	</dependency>
+	
+	<!-- LOGGING logback -->
+	<dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.1.11</version>
+    </dependency>
+    <dependency>
+	    <groupId>ch.qos.logback</groupId>
+	    <artifactId>logback-core</artifactId>
+	    <version>1.1.11</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.slf4j</groupId>
+	    <artifactId>log4j-over-slf4j</artifactId>
+	    <version>1.7.25</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>commons-io</groupId>
+	    <artifactId>commons-io</artifactId>
+	    <version>2.6</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.brotli</groupId>
+	    <artifactId>dec</artifactId>
+	    <version>0.1.2</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.brotli</groupId>
+	    <artifactId>parent</artifactId>
+	    <version>0.1.2</version>
+	    <type>pom</type>
+	</dependency>
+	
+	<!-- Force version of JUnit because of issue with parent dependencies -->
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>${junit.version}</version>
+		<scope>test</scope>
+	</dependency>
+	
+  </dependencies>
+  <distributionManagement>
+	<snapshotRepository>
+		<id>ossrh</id>
+		<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+	</snapshotRepository>
+	<repository>
+    	<id>ossrh</id>
+    	<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+  </repository>
+  </distributionManagement>
+
+  <!-- END LIBRARIES DEPENDENCIES -->
+  <!-- ########################################################################## -->
+  <build>
+	  <plugins>
+	  	  <!-- ###################################################################### -->
+	      <!-- START PLUGIN COMPILER -->
+	      <plugin>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <version>3.5.1</version>
+	        <configuration>
+	          <!-- JAVA COMPILANCE VERSION -->
+	          <source>1.8</source>
+	          <target>1.8</target>
+	        </configuration>
+	      </plugin>
+	      <!-- END PLUGIN COMPILER -->
+	      <!-- ###################################################################### -->
+		  <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-source-plugin</artifactId>
+			<version>2.2.1</version>
+			<executions>
+				<execution>
+				<id>attach-sources</id>
+				<goals>
+					<goal>jar-no-fork</goal>
+				</goals>
+				</execution>
+			</executions>
+		  </plugin>
+		  <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-javadoc-plugin</artifactId>
+			<version>2.9.1</version>
+			<executions>
+				<execution>
+				<id>attach-javadocs</id>
+				<goals>
+					<goal>jar</goal>
+				</goals>
+				</execution>
+			</executions>
+		  </plugin>
+		  <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-gpg-plugin</artifactId>
+			<version>1.5</version>
+			<executions>
+				<execution>
+				<id>sign-artifacts</id>
+				<phase>verify</phase>
+				<goals>
+					<goal>sign</goal>
+				</goals>
+				</execution>
+			</executions>
+		  </plugin>
+		  <plugin>
+			<groupId>org.sonatype.plugins</groupId>
+			<artifactId>nexus-staging-maven-plugin</artifactId>
+			<version>1.6.7</version>
+			<extensions>true</extensions>
+			<configuration>
+				<serverId>ossrh</serverId>
+				<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+				<autoReleaseAfterClose>true</autoReleaseAfterClose>
+			</configuration>
+		  </plugin>
+	  </plugins>
+  </build>
+</project>

@@ -1,0 +1,336 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.github.nexengine</groupId>
+	<artifactId>Quimera-Test-Framework-Ecosystem</artifactId>
+	<version>1.3.8-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>Quimera - Ecossistema de Frameworks de Teste</name>
+	<url>https://github.com/NexEngine/Quimera</url>
+    <description>
+		Framework que engloba RestAssured.IO, TestNg e AllureResport em um.
+		Usado para criar testes de API e de Interface, alé de facilitadores para as asserções e chamadas.
+    </description>
+
+    <developers>
+        <developer>
+            <id>GersonWP</id>
+            <name>Gerson Willer Pinto</name>
+            <email>willer.gerson@gmail.com</email>
+            <organization>NexEngine</organization>
+            <organizationUrl>https://github.com/NexEngine</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>+3</timezone>
+        </developer>
+    </developers>
+	
+	<repositories>
+		<repository>
+			<id>localRepository</id>
+			<url>file:${project.basedir}/recursos/generate/</url>
+		</repository>
+		<repository>
+			<id>oracleJar</id>
+			<url>file:${project.basedir}/recursos/oracleJar/</url>
+		</repository>
+		<repository>
+			<id>central</id>
+			<url>https://repo1.maven.org/maven2</url>
+		</repository>
+		<repository>
+			<id>ICM</id>
+			<url>http://maven.icm.edu.pl/artifactory/repo/</url>
+		</repository>
+	</repositories>
+	
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+	
+	<licenses>
+		<license>
+		  <name>Apache License, Version 2.0</name>
+		  <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		  <distribution>repo</distribution>
+		</license>
+	</licenses>
+  
+	<scm>
+		<connection>scm:git:git://github.com/NexEngine/Quimera.git</connection>
+		<developerConnection>scm:git:git@github.com:NexEngine/Quimera.git</developerConnection>
+		<url>https://github.com/NexEngine/Quimera</url>
+		<tag>Quimera-Test-Framework-Ecosystem-1.3.8</tag>
+	</scm>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.2</version>
+				<executions>
+					<execution>
+						<id>default-deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<localCheckout>true</localCheckout>
+					<pushChanges>false</pushChanges>
+					<mavenExecutorId>forked-path</mavenExecutorId>
+					<arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
+					<checkModificationExcludes>
+					    <checkModificationExclude>pom.xml</checkModificationExclude>
+					</checkModificationExcludes>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-gitexe</artifactId>
+						<version>1.9.5</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>attach-javadoc</id>
+						<configuration>
+							<encoding>UTF-8</encoding>
+							<additionalparam>${doclint}</additionalparam>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven-compiler.version>3.8.1</maven-compiler.version>
+		<java.version>11</java.version>
+		<selenium.version>3.141.59</selenium.version>
+		<testng.version>7.0.0</testng.version>
+		<aspectj.version>1.8.10</aspectj.version>
+		<rest-assured.version>4.1.1</rest-assured.version>
+		<assertj-core.version>3.13.2</assertj-core.version>
+		<maven-surefire-failsafe-version>3.0.0-M3</maven-surefire-failsafe-version>
+		<postgres.version>42.2.6</postgres.version>
+		<com.microsoft.sqlserver.version>8.2.0.jre11</com.microsoft.sqlserver.version>
+		<com.oracle.version>19.8.0.0</com.oracle.version>
+	</properties>
+
+	<dependencies>
+
+		<!-- TestNG -->
+			<dependency>
+			    <groupId>org.testng</groupId>
+			    <artifactId>testng</artifactId>
+			    <version>${testng.version}</version>
+				<!-- <scope>test</scope> -->
+			</dependency>
+
+		<!-- Banco de Dados -->
+			<dependency>
+			    <groupId>org.postgresql</groupId>
+			    <artifactId>postgresql</artifactId>
+			    <version>${postgres.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.microsoft.sqlserver</groupId>
+				<artifactId>mssql-jdbc</artifactId>
+				<version>${com.microsoft.sqlserver.version}</version>
+				<!-- <scope>test</scope> -->
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc8 -->
+			<dependency>
+			    <groupId>com.oracle.database.jdbc</groupId>
+			    <artifactId>ojdbc8</artifactId>
+			    <version>${com.oracle.version}</version>
+			</dependency>
+
+
+		<!-- UITest (Selenium WebDriver) -->
+			<dependency>
+		    	<groupId>org.seleniumhq.selenium</groupId>
+		    	<artifactId>selenium-java</artifactId>
+				<version>${selenium.version}</version>
+			</dependency>
+			<dependency>
+		    	<groupId>org.seleniumhq.selenium</groupId>
+		    	<artifactId>selenium-chrome-driver</artifactId>
+		    	<version>${selenium.version}</version>
+			</dependency>
+			<dependency>
+		    	<groupId>org.seleniumhq.selenium</groupId>
+		    	<artifactId>selenium-server</artifactId>
+		    	<version>${selenium.version}</version>
+			</dependency>
+			<dependency>
+		    	<groupId>org.seleniumhq.selenium</groupId>
+		    	<artifactId>selenium-api</artifactId>
+		    	<version>${selenium.version}</version>
+			</dependency>
+
+		<!-- RestAssured.IO -->
+			<dependency>
+				<groupId>io.rest-assured</groupId>
+				<artifactId>rest-assured</artifactId>
+				<version>${rest-assured.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.rest-assured</groupId>
+				<artifactId>rest-assured-all</artifactId>
+				<version>${rest-assured.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.rest-assured</groupId>
+			    <artifactId>json-path</artifactId>
+			    <version>${rest-assured.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.rest-assured</groupId>
+			    <artifactId>xml-path</artifactId>
+			    <version>${rest-assured.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.rest-assured</groupId>
+			    <artifactId>json-schema-validator</artifactId>
+			    <version>${rest-assured.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.rest-assured</groupId>
+			    <artifactId>spring-mock-mvc</artifactId>
+			    <version>${rest-assured.version}</version>
+			</dependency>
+			<dependency>
+			    <groupId>io.rest-assured</groupId>
+			    <artifactId>spring-web-test-client</artifactId>
+			    <version>${rest-assured.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.rest-assured</groupId>
+				<artifactId>scala-support</artifactId>
+				<version>${rest-assured.version}</version>
+			</dependency>
+
+		<!-- Report Allure -->
+			<dependency>
+			    <groupId>io.qameta.allure</groupId>
+			    <artifactId>allure-testng</artifactId>
+			    <version>2.13.0</version>
+			</dependency>
+
+
+		<!-- Assert Complement -->
+			<dependency>
+				<groupId>org.assertj</groupId>
+				<artifactId>assertj-core</artifactId>
+				<!-- use 2.9.1 for Java 7 projects -->
+				<version>${assertj-core.version}</version>
+			</dependency>
+
+		<!-- Complements -->
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.10.0.pr2</version>
+			</dependency>
+			<dependency>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-jar-plugin</artifactId>
+			    <version>3.1.2</version>
+			</dependency>
+
+	</dependencies>
+	
+	<profiles>
+		<!-- GPG Signature on release -->
+		<profile>
+			<id>release-sign-artifacts</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>1.6</version>
+					<executions>
+						<execution>
+							<id>sign-artifacts</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+						</execution>
+					</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>java8-doclint-disabled</id>
+			<activation>
+				<jdk>${java.version}</jdk>
+			</activation>
+			<properties>
+				<doclint>none</doclint>
+			</properties>
+		</profile>
+	</profiles>
+
+</project>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.mklinger.maven</groupId>
+		<artifactId>maven-parent</artifactId>
+		<version>1.21</version>
+	</parent>
+
+	<groupId>de.mklinger.commons</groupId>
+	<artifactId>exec-docker</artifactId>
+	<version>1.1-SNAPSHOT</version>
+	<packaging>bundle</packaging>
+
+	<name>${project.artifactId}</name>
+	<description>Docker CLI execution for Java</description>
+	<url>https://github.com/de-mklinger/exec-docker</url>
+	<inceptionYear>2018</inceptionYear>
+
+	<organization>
+		<name>mklinger GmbH</name>
+		<url>http://www.mklinger.de</url>
+	</organization>
+
+	<licenses>
+		<license>
+			<name>Apache License 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Marc Klinger</name>
+			<email>mklinger[at]mklinger[dot]de</email>
+			<organization>mklinger GmbH</organization>
+			<organizationUrl>https://www.mklinger.de</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git@github.com:de-mklinger/exec-docker.git</connection>
+		<developerConnection>scm:git:git@github.com:de-mklinger/exec-docker.git</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/de-mklinger/exec-docker</url>
+	</scm>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.mklinger.commons</groupId>
+			<artifactId>exec</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.hamcrest</groupId>
+		    <artifactId>hamcrest-library</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>de.mklinger.commons</groupId>
+			<artifactId>junit-support</artifactId>
+			<version>0.9</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>

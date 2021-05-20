@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ch.ninecode.cim</groupId>
+    <artifactId>CIMSpark</artifactId>
+    <!-- version>${version.dependency.scala}-${version.dependency.spark}-CIMSPARK_VERSION</version -->
+    <version>2.12-3.0.1-5.1.1</version>
+    <packaging>pom</packaging>
+    <name>CIM-Spark interface.</name>
+
+    <description>Software using Apache Spark and the Common Information Model (CIM)</description>
+    <inceptionYear>2015</inceptionYear>
+    <url>https://github.com/derrickoswald/CIMSpark</url>
+    <organization>
+        <name>9code GmbH</name>
+        <url>http://9code.ch</url>
+    </organization>
+    <scm>
+        <url>git@github.com:derrickoswald/CIMSpark.git</url>
+        <connection>scm:git:git@github.com:derrickoswald/CIMSpark.git</connection>
+        <developerConnection>scm:git:git@github.com:derrickoswald/CIMSpark.git</developerConnection>
+    </scm>
+    <issueManagement>
+        <url>https://github.com/derrickoswald/CIMSpark/issues</url>
+    </issueManagement>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <comments>see https://github.com/derrickoswald/CIMSpark/blob/master/LICENSE.md</comments>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Derrick Oswald</name>
+            <email>derrick.oswald@9code.ch</email>
+            <id>derrickoswald</id>
+            <organization>9code GmbH</organization>
+            <organizationUrl>http://9code.ch/</organizationUrl>
+            <timezone>1</timezone>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <keybase>https://keybase.io/derrickoswald</keybase>
+                <picUrl>https://secure.gravatar.com/avatar/d659afe3730a534914c5555640d326b3</picUrl>
+            </properties>
+        </developer>
+        <developer>
+            <name>Markus Jung</name>
+            <email>markus.jung@nis.ch</email>
+            <id>mastermaeg</id>
+            <organization>NIS AG</organization>
+            <organizationUrl>http://www.nis.ch/</organizationUrl>
+            <timezone>1</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <picUrl>https://cdn.jsdelivr.net/gh/derrickoswald/CIMSpark@master/img/Markus.jpg</picUrl>
+            </properties>
+        </developer>
+        <developer>
+            <name>Mike Heinen</name>
+            <email>mbheinen@gmail.com</email>
+            <id>mbheinen</id>
+            <timezone>-6</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <picUrl>https://avatars1.githubusercontent.com/u/6753163</picUrl>
+            </properties>
+        </developer>
+        <developer>
+            <name>Luca Saputelli</name>
+            <email>luca.saputelli@nis.ch</email>
+            <id>sapl</id>
+            <organization>NIS AG</organization>
+            <organizationUrl>http://www.nis.ch/</organizationUrl>
+            <timezone>1</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <picUrl>https://cdn.jsdelivr.net/gh/derrickoswald/CIMSpark@master/img/Luca.jpg</picUrl>
+            </properties>
+        </developer>
+        <developer>
+            <name>Rijad Nuridini</name>
+            <email>Rijad.Nuridini@nis.ch</email>
+            <id>nurr</id>
+            <organization>NIS AG</organization>
+            <organizationUrl>http://www.nis.ch/</organizationUrl>
+            <timezone>1</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <picUrl>https://cdn.jsdelivr.net/gh/derrickoswald/CIMSpark@master/img/Rijad.jpg</picUrl>
+            </properties>
+        </developer>
+    </developers>
+
+    <properties>
+
+        <encoding>UTF-8</encoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <!-- Plugin versions -->
+        <version.dependency.maven-enforcer-plugin>1.4.1</version.dependency.maven-enforcer-plugin>
+        <version.dependency.maven-deploy-plugin>2.8.2</version.dependency.maven-deploy-plugin>
+        <version.dependency.maven-failsafe-plugin>2.22.2</version.dependency.maven-failsafe-plugin>
+        <version.dependency.maven-surefire-plugin>2.22.2</version.dependency.maven-surefire-plugin>
+        <version.dependency.build-helper-maven-plugin>3.1.0</version.dependency.build-helper-maven-plugin>
+        <version.dependency.maven-gpg-plugin>1.6</version.dependency.maven-gpg-plugin>
+        <version.dependency.maven-jar-plugin>3.2.0</version.dependency.maven-jar-plugin>
+        <version.dependency.maven-assembly-plugin>3.3.0</version.dependency.maven-assembly-plugin>
+        <version.dependency.maven-source-plugin>3.2.1</version.dependency.maven-source-plugin>
+        <version.dependency.maven-site-plugin>3.9.0</version.dependency.maven-site-plugin>
+        <version.dependency.maven-project-info-reports-plugin>3.1.0</version.dependency.maven-project-info-reports-plugin>
+        <version.dependency.buildnumber-maven-plugin>1.4</version.dependency.buildnumber-maven-plugin>
+        <version.dependency.scala-maven-plugin>4.4.0</version.dependency.scala-maven-plugin>
+        <version.dependency.scalatest-maven-plugin>2.0.0</version.dependency.scalatest-maven-plugin>
+
+        <!-- Scala versions -->
+        <version.dependency.scala>2.12</version.dependency.scala>
+        <version.dependency.scalalibrary>2.12.10</version.dependency.scalalibrary>
+
+        <!-- Spark versions -->
+        <version.dependency.spark>3.0.1</version.dependency.spark>
+        <version.dependency.cassandra_spark>3.0.0</version.dependency.cassandra_spark>
+        <!-- version.dependency.hadoop>3.2.1</version.dependency.hadoop -->
+
+        <!-- Component versions -->
+        <version.dependency.scopt>4.0.0-RC2</version.dependency.scopt>
+
+        <!-- test versions -->
+        <version.dependency.junit>4.13</version.dependency.junit>
+        <version.dependency.scalatest>3.2.0</version.dependency.scalatest>
+        <skipITs>false</skipITs>
+
+        <scaladoc.skip>false</scaladoc.skip>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${version.dependency.maven-enforcer-plugin}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>1.11</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>${version.dependency.scala-maven-plugin}</version>
+                <configuration>
+                    <scalaCompatVersion>${version.dependency.scala}</scalaCompatVersion>
+                    <scalaVersion>${version.dependency.scalalibrary}</scalaVersion>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                    <displayCmd>true</displayCmd>
+                    <args>
+                        <arg>-deprecation</arg>
+                        <arg>-feature</arg>
+                        <arg>-unchecked</arg>
+                        <arg>-Ywarn-dead-code</arg>
+                        <arg>-Ywarn-unused</arg>
+                        <arg>-Xfatal-warnings</arg>
+                        <arg>-Xlint:_</arg>
+                        <arg>-target:jvm-1.8</arg>
+                    </args>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <scalaVersion>${version.dependency.scalalibrary}</scalaVersion>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-cli</id>
+                        <configuration>
+                            <goals>
+                                <goal>doc</goal>
+                            </goals>
+                            <reportOutputDirectory>${project.build.directory}/doc</reportOutputDirectory>
+                            <args>
+                                <arg>-groups</arg>
+                            </args>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>doc-jar</goal>
+                        </goals>
+                        <configuration>
+                            <args>
+                                <arg>-groups</arg>
+                            </args>
+                            <skip>${scaladoc.skip}</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- signing artifacts -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${version.dependency.maven-gpg-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <!--suppress UnresolvedMavenProperty -->
+                            <keyname>${gpg.keyname}</keyname>
+                            <!-- This is necessary for gpg to not try to use the pinentry programs -->
+                            <gpgArguments>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- deploy artifacts -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${version.dependency.maven-deploy-plugin}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <modules>
+        <module>CIMTool</module>
+        <module>CIMReader</module>
+        <module>CIMExport</module>
+        <module>CIMJDBC</module>
+        <module>CIMDifference</module>
+    </modules>
+
+</project>

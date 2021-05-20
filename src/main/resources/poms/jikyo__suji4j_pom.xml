@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.jikyo</groupId>
+    <artifactId>suji</artifactId>
+    <version>0.0.5</version>
+
+    <name>Suji</name>
+
+    <description>
+        Suji is a converter library from Japanese number notation to numerical value,
+        and from numerical notation to Japanese Kansuji notation.
+
+        Converter.values(src) to convert from Japanese number notation to numerical value:
+        Japanese number notation can include Kansuji.
+        The String "１つの価格が二兆30万五千十7円になります。" will be converted to two BigDecimal, 1 and 2000000005017.
+        And also, 打率は三割二部五厘です。 will be a 0.325.
+        The return value is a list of Suji Numeral objects.
+        If the input string has no number notation, Suji returns a empty list.
+        The Numeral object has three methods: value(), begin(), and end():
+
+        value(): a BigDecimal instance of a numerical value for the number notation.
+        begin(): the begin index (int) of the found number notation at the input string.
+        end(): the end index (int) of the found number notation.
+
+        Converter.kansujis(src) to convert from numeric notation to Japanese Kansuji notation:
+        The String 20兆30万五千十7円になります。 will be converted to the Kansuji string, 二十兆三十万五千十七.
+        The boolean flag one is interpreted as whether to display the first character 一 or not.
+        The output of Converter.kansujis('1000万', true) will be converted to 一千万,
+        and the output of Converter.kansujis('1000万', false) will be converted to 千万.
+        Note that kansujis does not support numerical notation after the decimal point.
+        If the input string is 32.01, the output will 三十二, not 三十二割一厘.
+
+        The return value is a list of Kansuji objects.
+        If the input string has no number notation, Suji returns a empty list.
+        The Kansuji object has three methods: value(), begin(), and end():
+
+        value(): a String instance of a Kansuji notation.
+        begin(): the begin index (int) of the found number notation at the input string.
+        end(): the end index (int) of the found number notation.
+
+
+        Suji is a one-pass parser.
+        That is, Suji parse a source text from the head to the end only once.
+    </description>
+
+    <url>https://github.com/jikyo/suji4j</url>
+    <inceptionYear>2019</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Junnosuke Moriya</name>
+            <email>shinsen.jikyo@gmail.com</email>
+            <organization>jikyo</organization>
+            <organizationUrl>https://jikyo.github.io/</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/jikyo/suji4j.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/jikyo/suji4j.git</developerConnection>
+        <url>https://github.com/jikyo/suji4j</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <name>Nexus Release Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.5.3</version>
+                    <configuration>
+                        <useReleaseProfile>false</useReleaseProfile>
+                        <releaseProfiles>release-ossrh</releaseProfiles>
+                        <tagNameFormat>v@{project.version}</tagNameFormat>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+                <executions>
+                    <execution>
+                      <id>prepare-agent</id>
+                      <goals>
+                        <goal>prepare-agent</goal>
+                      </goals>
+                    </execution>
+                    <execution>
+                      <id>report</id>
+                      <phase>test</phase>
+                      <goals>
+                        <goal>report</goal>
+                      </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+          <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <reportSets>
+              <reportSet>
+                <reports>
+                  <report>report</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+          </plugin>
+        </plugins>
+    </reporting>
+
+    <profiles>
+        <profile>
+            <id>release-ossrh</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <configuration>
+                            <charset>UTF-8</charset>
+                            <encoding>UTF-8</encoding>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.7</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

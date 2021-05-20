@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>dev.xethh.libs.toolkits</groupId>
+        <artifactId>bom-base</artifactId>
+        <version>1.0.4</version>
+        <relativePath/>
+    </parent>
+    <artifactId>bom-common</artifactId>
+    <name>bom-common</name>
+
+    <description>Bom common defined common libraries for all general use case and basic imported base dependency of junit, slf4j and DateUtils.</description>
+
+    <scm>
+        <connection>scm:git:git://github.com/xh-dev-pom-mgmt/bom-common.git</connection>
+        <developerConnection>scm:git:ssh://github.com:xh-dev-pom-mgmt/bom-common.git</developerConnection>
+        <url>https://github.com/xh-dev-pom-mgmt/bom-common</url>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- log library start -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <!-- log library start -->
+
+        <!-- xethh library start -->
+        <dependency>
+            <groupId>me.xethh.utils</groupId>
+            <artifactId>DateUtils</artifactId>
+        </dependency>
+        <!-- xethh library end -->
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.30</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.13.1</version>
+            </dependency>
+            <dependency>
+                <groupId>me.xethh.utils</groupId>
+                <artifactId>functional-packs</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.xethh.libs.toolkits</groupId>
+                <artifactId>commons</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>me.xethh.utils</groupId>
+                <artifactId>DateUtils</artifactId>
+                <version>6.0.0.RC9</version>
+            </dependency>
+            <dependency>
+                <groupId>me.xethh.utils</groupId>
+                <artifactId>JDBCProvider</artifactId>
+                <version>1.1.4</version>
+            </dependency>
+            <dependency>
+                <groupId>me.xethh.utils</groupId>
+                <artifactId>DecimalExtension</artifactId>
+                <version>2.0-RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.11</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>4.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.8.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson</groupId>
+                <artifactId>jackson-bom</artifactId>
+                <version>2.11.3</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>30-jre</version>
+                <type>bundle</type>
+            </dependency>
+            <dependency>
+                <groupId>io.reactivex.rxjava3</groupId>
+                <artifactId>rxjava</artifactId>
+                <version>3.0.7</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>

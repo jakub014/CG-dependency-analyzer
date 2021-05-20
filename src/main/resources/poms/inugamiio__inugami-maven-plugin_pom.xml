@@ -1,0 +1,288 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+    ============================================================================
+    = PROJECT INFORMATIONS
+    ============================================================================
+    -->
+    <groupId>io.inugami.maven.plugin</groupId>
+    <artifactId>inugami-maven-plugin</artifactId>
+    <version>2.0.1-SNAPSHOT</version>
+    <packaging>maven-plugin</packaging>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Specifics maven lifecycle to package and run inugami project</description>
+    <url>http://inugami.io</url>
+
+
+    <!-- ======================================================================= 
+    = PROPERTIES
+    ======================================================================== -->
+    <properties>
+        <super.jdk>11</super.jdk>
+
+        <org.apache.maven.version>3.5.0</org.apache.maven.version>
+        <org.apache.maven.maven-project.version>2.2.1</org.apache.maven.maven-project.version>
+        <org.apache.maven.maven-dependency-plugin.version>3.0.1</org.apache.maven.maven-dependency-plugin.version>
+        <org.apache.maven.maven-plugin-annotations.version>3.5</org.apache.maven.maven-plugin-annotations.version>
+
+        <org.slf4j-api.version>1.7.25</org.slf4j-api.version>
+        <ch.logback.version>1.2.3</ch.logback.version>
+        <commons-io.version>2.5</commons-io.version>
+        <junit.junit>4.13.1</junit.junit>
+        <org.eclipse.ifecycle-mapping.version>1.0.0</org.eclipse.ifecycle-mapping.version>
+        <org.maven-compiler-plugin.version>3.8.0</org.maven-compiler-plugin.version>
+        <org.maven-plugin-plugin.version>3.6.0</org.maven-plugin-plugin.version>
+    </properties>
+
+
+    <!-- ======================================================================= 
+    = LICENSE
+    ======================================================================== -->
+    <licenses>
+        <license>
+            <name>GNU GENERAL PUBLIC LICENSE, Version 3</name>
+            <url>https://www.gnu.org/licenses/gpl.txt</url>
+        </license>
+    </licenses>
+
+    <!-- =======================================================================
+    = DEVELOPERS
+    ======================================================================== -->
+    <developers>
+        <developer>
+            <name>Mikhaïl Sadovnikov</name>
+            <email>mis.strator@inugami.io</email>
+            <organization>Inugami.io</organization>
+            <organizationUrl>http://inugami.io</organizationUrl>
+        </developer>
+
+        <developer>
+            <name>Patrick Guillerm</name>
+            <email>patrickguillerm@inugami.io</email>
+            <organization>Inugami.io</organization>
+            <organizationUrl>http://inugami.io</organizationUrl>
+        </developer>
+
+    </developers>
+    <!-- ======================================================================= 
+    = SCM
+    ======================================================================== -->
+    <scm>
+        <url>https://github.com/inugamiio/inugami-maven-plugin</url>
+        <connection>scm:git:git@github.com:inugamiio/inugami-maven-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:inugamiio/inugami-maven-plugin.git</developerConnection>
+        <tag>v0.0.0</tag>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <!--
+    ============================================================================
+    = DEPENDENCIES
+    ============================================================================
+    -->
+    <dependencies>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${org.slf4j-api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${ch.logback.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>${org.apache.maven.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-project</artifactId>
+            <version>${org.apache.maven.maven-project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>${org.apache.maven.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>${org.apache.maven.maven-dependency-plugin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>${org.apache.maven.maven-plugin-annotations.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.flexjson</groupId>
+            <artifactId>flexjson</artifactId>
+            <version>3.3</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.junit}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${org.maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${super.jdk}</source>
+                        <target>${super.jdk}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <optimize>true</optimize>
+                        <showWarnings>true</showWarnings>
+                        <showDeprecation>true</showDeprecation>
+
+                        <compilerArgs>
+                            <arg>-verbose</arg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>${org.eclipse.ifecycle-mapping.version}</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-plugin-plugin</artifactId>
+                                        <versionRange>[3.4,)</versionRange>
+                                        <goals>
+                                            <goal>helpmojo</goal>
+                                            <goal>descriptor</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <execute />
+                                    </action>
+                                </pluginExecution>
+
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+
+
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>${org.maven-plugin-plugin.version}</version>
+                <executions>
+
+                    <execution>
+                        <id>help-goal</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>helpmojo</goal>
+                            <goal>descriptor</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <useAgent>true</useAgent>
+                    <passphrase>${gpg.passphrase}</passphrase>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
