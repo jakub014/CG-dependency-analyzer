@@ -1,0 +1,89 @@
+// key-value-store
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+plugins {
+    id 'java'
+    id 'maven'
+    id 'signing'
+    id 'eclipse'
+    id 'idea'
+    
+    // keep dependencies up-to-date!
+    id 'com.github.ben-manes.versions' version '0.33.0'
+
+    // useful for creating immutable java beans
+    id 'org.inferred.processors' version '3.3.0'
+
+    // to ensure clean code
+    id "net.ltgt.errorprone" version "1.2.1"
+
+    // for deployment to Maven Central
+    id "io.codearte.nexus-staging" version "0.22.0"
+
+    // for building fat jar
+    id "com.github.johnrengelman.shadow" version "5.2.0"
+
+    // useful utilities
+    id "com.arakelian.multitool" version "3.2.0"
+}
+
+group   = 'com.arakelian'
+
+wrapper {
+    gradleVersion = '6.6.1'
+}
+
+multitool {
+    relocates += [
+        'org.apache.commons'     : 'repackaged.com.arakelian.store.${prefix}org.apache.commons',
+        'com.google.common'      : 'repackaged.com.arakelian.store.${prefix}com.google.common',
+        'com.google.thirdparty'  : 'repackaged.com.arakelian.store.${prefix}com.google.thirdparty',
+        'javax.annotation'       : 'repackaged.com.arakelian.store.${prefix}javax.annotation',
+    ]
+    
+    proguardConfiguration {
+        keep includedescriptorclasses:true, 'class com.arakelian.** { *; }'
+    }
+}
+
+dependencies {
+    processor 'org.immutables:value:2.8.8'
+
+    // annotations
+    compile 'org.immutables:value-annotations:2.8.8'
+    
+    // configure errorprone version
+    errorprone 'com.google.errorprone:error_prone_core:2.3.4'
+
+    // use Java 11 versions
+    compile 'com.arakelian:more-commons:3.0.0'
+
+    // we shadow the guava stuff that we use because of downstream compatibily issues 
+    shadow  'com.google.guava:guava:29.0-jre'
+    
+    // we use very few classes and don't want to suck in the entire library as dependency
+    shadow  'org.apache.commons:commons-lang3:3.11'
+    
+    // for high-speed event notification
+    compile 'com.lmax:disruptor:3.4.2'
+
+    // using Jackson feature set which requires Java 11+
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.11.0'
+
+    // logging
+    testCompile 'org.apache.logging.log4j:log4j-api:2.13.3'
+    testCompile 'org.apache.logging.log4j:log4j-core:2.13.3'
+    testCompile 'org.apache.logging.log4j:log4j-slf4j-impl:2.13.3'
+    testCompile 'org.slf4j:jcl-over-slf4j:1.7.30'
+    testCompile 'org.slf4j:jul-to-slf4j:1.7.30'
+    compile     'org.slf4j:slf4j-api:1.7.30'
+
+    // for unit testing
+    testCompile 'org.junit.jupiter:junit-jupiter:5.7.0'
+    testCompile 'com.arakelian:jackson-utils:3.4.0'
+}

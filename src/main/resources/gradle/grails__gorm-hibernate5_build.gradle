@@ -1,0 +1,320 @@
+import groovyx.net.http.RESTClient
+
+import static groovyx.net.http.ContentType.JSON
+
+buildscript {
+    repositories {
+        maven { url "https://repo.grails.org/grails/core" }
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath "org.codehaus.groovy.modules.http-builder:http-builder:0.7.2"
+        classpath "io.github.gradle-nexus:publish-plugin:1.0.0"
+        classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+        classpath "io.github.groovylang.groovydoc:groovydoc-gradle-plugin:1.0.1"
+        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+        classpath "org.grails.plugins:views-gradle:2.1.0.M4"
+        classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.6.1'
+        classpath "gradle.plugin.com.energizedwork.webdriver-binaries:webdriver-binaries-gradle-plugin:$webdriverBinariesVersion"
+    }
+}
+
+group "org.grails"
+version project.projectVersion
+logger.info("GORM VERSION = ${project.gormVersion}")
+
+ext {
+    isTravisBuild = System.getenv().get("TRAVIS") == 'true'
+    isCiBuild = project.hasProperty("isCiBuild")
+    isBuildSnapshot = version.endsWith('-SNAPSHOT')
+    isReleaseVersion = !isBuildSnapshot
+    nexusUsername = System.getenv("SONATYPE_USERNAME") ?: project.hasProperty("sonatypeOssUsername") ? project.sonatypeOssUsername : ''
+    nexusPassword = System.getenv("SONATYPE_PASSWORD") ?: project.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
+}
+
+ext."signing.keyId" = System.getenv("SIGNING_KEY") ?: project.hasProperty("signing.keyId") ? project.getProperty('signing.keyId') : null
+ext."signing.password" = System.getenv("SIGNING_PASSPHRASE") ?: project.hasProperty("signing.password") ? project.getProperty('signing.password') : null
+ext."signing.secretKeyRingFile" = project.hasProperty("signing.secretKeyRingFile") ? project.getProperty('signing.secretKeyRingFile') : null
+
+if (isReleaseVersion) {
+    apply plugin: 'maven-publish'
+    apply plugin: "io.github.gradle-nexus.publish-plugin"
+
+    nexusPublishing {
+        repositories {
+            sonatype {
+                def ossUser = System.getenv("SONATYPE_USERNAME") ?: project.hasProperty("sonatypeOssUsername") ? project.sonatypeOssUsername : ''
+                def ossPass = System.getenv("SONATYPE_PASSWORD") ?: project.hasProperty("sonatypeOssPassword") ? project.sonatypeOssPassword : ''
+                def ossStagingProfileId = System.getenv("SONATYPE_STAGING_PROFILE_ID") ?: project.hasProperty("sonatypeOssStagingProfileId") ? project.sonatypeOssStagingProfileId : ''
+                username = ossUser
+                password = ossPass
+                stagingProfileId = ossStagingProfileId
+            }
+        }
+    }
+}
+
+subprojects { project ->
+
+    repositories {
+        maven { url "https://repo.grails.org/grails/core" }
+        if(groovyVersion && groovyVersion.endsWith('-SNAPSHOT')) {
+            maven {
+                name 'JFrog OSS snapshot repo'
+                url 'https://oss.jfrog.org/oss-snapshot-local/'
+            }
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy.dependencySubstitution {
+            substitute module("org.codehaus.groovy:groovy-all") with module("org.codehaus.groovy:groovy:$groovyVersion")
+        }
+    }
+
+    ext {
+        isExample = project.name.startsWith('example')
+        isPluginProject = project.name.endsWith("-plugin") && (project.name.startsWith("grails") || project.name.startsWith("rx-"))
+        isGrails3PluginProject = project.name.endsWith("-plugin")
+    }
+
+    if(isExample) {
+        apply plugin: "groovy"
+
+        ext['h2.version'] = h2Version
+
+        if(project.name.startsWith("examples-grails")) {
+            apply plugin:"org.grails.grails-web"
+            apply plugin:"org.grails.grails-gsp"
+        }
+        configurations.all {
+            resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+                if(details.requested.group == 'org.codehaus.groovy' && details.requested.name.startsWith('groovy')) {
+                    details.useVersion(groovyVersion)
+                }
+                if(details.requested.group == 'org.springframework') {
+                    details.useVersion(springVersion)
+                }
+                if (details.requested.group == "org.springframework.boot") {
+                    details.useVersion(springBootVersion)
+                }
+                if (details.requested.group == "org.grails" && details.requested.name.contains("testing-support")) {
+                    details.useVersion(testingSupportVersion)
+                }
+                if(details.requested.group == 'org.grails' &&
+                        details.requested.name.startsWith('grails-datastore') &&
+                        details.requested.name != 'grails-datastore-gorm-hibernate5') {
+                    details.useVersion(gormVersion)
+                }
+            }
+        }
+        boolean usesGeb = project.name.contains('examples-grails') 
+        if (usesGeb) {
+            apply plugin:"com.energizedwork.webdriver-binaries"
+        }
+
+        dependencies {
+            //TODO: Remove spring-boot-starter-webflux, and reactor-test once update to Spring Boot 2.4.1
+            implementation 'org.springframework.boot:spring-boot-starter-webflux'
+            testImplementation "io.projectreactor:reactor-test:3.4.0"
+            testImplementation "org.codehaus.groovy:groovy-test-junit5:$groovyVersion"
+            testImplementation("org.spockframework:spock-core:$spockVersion") { transitive = false}
+            testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.0"
+            testImplementation "org.junit.platform:junit-platform-runner:1.7.0"
+            testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.0"
+        }
+
+        apply from: "${rootProject.projectDir}/gradle/testVerbose.gradle"
+        return
+    }
+
+    ext {
+        projectInfo = new PublishingConvention(project)
+        pomInfo = {
+            delegate.name projectInfo.projectName
+            delegate.description projectInfo.projectDescription
+            delegate.url projectInfo.projectURL
+
+            delegate.licenses {
+                delegate.license {
+                    delegate.name 'The Apache Software License, Version 2.0'
+                    delegate.url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    delegate.distribution 'repo'
+                }
+            }
+
+            delegate.scm {
+                delegate.url projectInfo.projectVcsUrl
+                delegate.connection projectInfo.projectVcsUrl
+                delegate.developerConnection projectInfo.projectVcsUrl
+            }
+
+
+            delegate.developers {
+                delegate.developer {
+                    delegate.id 'graemerocher'
+                    delegate.name 'Graeme Rocher'
+                }
+                delegate.developer {
+                    delegate.id 'jeffscottbrown'
+                    delegate.name 'Jeff Brown'
+                }
+                delegate.developer {
+                    delegate.id 'burtbeckwith'
+                    delegate.name 'Burt Beckwith'
+                }
+            }
+
+        }
+    }
+
+    apply plugin: 'groovy'
+
+    configurations.create('documentation') {
+        attributes {
+            attribute(Usage.USAGE_ATTRIBUTE, objects.named(Usage, Usage.JAVA_RUNTIME))
+        }
+    }
+
+    // Uncomment below code to force refresh dependencies
+    /*configurations.all {
+            resolutionStrategy {
+                cacheDynamicVersionsFor 0, 'hours'
+                cacheChangingModulesFor 0, 'hours'
+            }
+    }*/
+
+    if(isPluginProject) {
+        group "org.grails.plugins"
+        version project.rootProject.version - '.RELEASE'
+    }
+    else {
+        group "org.grails"
+        version project.rootProject.version
+    }
+
+    if(project.name == 'docs') {
+        return
+    }
+
+    if(isGrails3PluginProject) {
+        apply plugin: "org.grails.grails-plugin"       
+    }
+    else {
+        apply plugin:"groovy"
+        apply plugin: 'com.bmuschko.nexus'
+
+        modifyPom {
+            delegate.project pomInfo
+        }
+    }
+
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+
+    dependencies {
+        documentation "org.fusesource.jansi:jansi:$jansiVersion"
+        documentation "org.codehaus.groovy:groovy-dateutil:$groovyVersion"
+        documentation "info.picocli:picocli:$picocliVersion"
+        documentation "com.github.javaparser:javaparser-core:$javaParserCoreVersion"
+
+        implementation "org.codehaus.groovy:groovy:$groovyVersion"
+        testImplementation "org.codehaus.groovy:groovy-test-junit5:$groovyVersion"
+        testImplementation("org.spockframework:spock-core:$spockVersion") { transitive = false}
+        testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.0"
+        testImplementation "org.junit.platform:junit-platform-runner:1.7.0"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.0"
+    }
+
+    apply from: "${rootProject.projectDir}/gradle/testVerbose.gradle"
+
+    groovydoc.classpath += configurations.documentation
+
+    publishing {
+
+        if (isBuildSnapshot) {
+            repositories {
+                maven {
+                    credentials {
+                        def u = System.getenv("ARTIFACTORY_USERNAME") ?: project.hasProperty("artifactoryPublishUsername") ? project.artifactoryPublishUsername : ''
+                        def p = System.getenv("ARTIFACTORY_PASSWORD") ?: project.hasProperty("artifactoryPublishPassword") ? project.artifactoryPublishPassword : ''
+                        username = u
+                        password = p
+                    }
+                    if(isGrails3PluginProject) {
+                        url  "https://repo.grails.org/grails/plugins3-snapshots-local"
+                    } else {
+                        url  "https://repo.grails.org/grails/libs-snapshots-local"
+                    }
+                }
+            }
+        }
+
+        publications {
+            maven(MavenPublication) {
+                artifactId projectInfo.projectArtifactId
+
+                from components.java
+                afterEvaluate {
+                    artifact source: sourcesJar, classifier: "sources"
+                    artifact source: javadocJar, classifier: "javadoc"
+
+                    if(isGrails3PluginProject) {
+                        artifact source:"${sourceSets.main.groovy.outputDir}/META-INF/grails-plugin.xml",
+                                classifier:"plugin",
+                                extension:'xml'
+                    }
+                }
+                pom.withXml {
+                    def xml = asNode()
+                    def dependency = xml.dependencies.find { dep -> dep.artifactId == 'slf4j-simple' }
+                    dependency?.optional = true
+                    xml.children().last() + pomInfo
+                }
+
+            }
+        }
+    }
+
+    afterEvaluate {
+        signing {
+            required { isReleaseVersion && gradle.taskGraph.hasTask("publish") }
+            sign publishing.publications.maven
+        }
+    }
+
+    tasks.withType(Sign) {
+        onlyIf { isReleaseVersion }
+    }
+
+    //do not generate extra load on Nexus with new staging repository if signing fails
+    tasks.withType(io.github.gradlenexus.publishplugin.InitializeNexusStagingRepository).configureEach {
+        shouldRunAfter(tasks.withType(Sign))
+    }
+}
+
+class PublishingConvention {
+    Project project
+
+    String projectArtifactId
+    String projectName = 'GORM for Hibernate 5'
+    String projectDescription = 'Provides a GORM Object Mapping implementations for Hibernate 5'
+    String projectURL = 'https://gorm.grails.org/latest/hibernate'
+    String projectIssueTrackerUrl = 'https://github.com/grails/gorm-hibernate5/issues'
+    String projectVcsUrl = 'https://github.com/grails/gorm-hibernate5'
+
+    PublishingConvention(Project project) {
+        this.project = project
+
+        def name = project.name
+        if(name.startsWith('grails') && name.endsWith('-plugin')) {
+            name = 'hibernate5'
+        }
+        projectArtifactId = name
+    }
+}
+

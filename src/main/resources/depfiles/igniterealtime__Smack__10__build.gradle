@@ -1,0 +1,7 @@
+description = """\
+DNS over XMPP (DoX) support using MiniDNS."""
+
+dependencies {
+	api project(path: ':smack-resolver-minidns')
+	api project(path: ':smack-experimental')
+}

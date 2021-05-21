@@ -1,0 +1,13 @@
+plugins {
+    id 'java-library'
+}
+
+apply from: "${rootDir}/gradle/publish.gradle"
+
+dependencies {
+    api project(":rest-requests-api")
+}
+
+test {
+    useJUnitPlatform()
+}

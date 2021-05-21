@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.mobidevelop.robovm</groupId>
+        <artifactId>robovm-parent</artifactId>
+        <version>2.3.13-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>robovm-compiler-parent</artifactId>
+    <name>RoboVM Compiler Parent</name>
+    <packaging>pom</packaging>
+    <url>http://github.com/MobiVM/robovm</url>
+    <description>
+        The RoboVM compiler translates Java bytecode into native ARM or x86 code. Apps run directly on the CPU.
+        No interpreter or virtual machine involved.
+    </description>
+    <inceptionYear>2012</inceptionYear>
+
+    <modules>
+        <module>llvm</module>
+        <module>libimobiledevice</module>
+        <module>compiler</module>
+        <module>rt</module>
+        <module>cacerts</module>
+        <module>objc</module>
+        <module>cocoatouch</module>
+    </modules>
+</project>
+

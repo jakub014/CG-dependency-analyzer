@@ -1,0 +1,49 @@
+plugins {
+    id "org.unbroken-dome.test-sets" version "${testSetsPluginVersion}"
+    id "java-test-fixtures"
+}
+
+testSets {
+    integrationTest
+}
+
+configurations {
+    testFixturesApi.setCanBeResolved(true)
+}
+
+dependencies {
+    implementation project(":identity-config")
+    implementation project(":lockout-config")
+    implementation project(":context-config")
+    implementation project(":method-config")
+    implementation project(":otp-config")
+    implementation project(":otp-sim-swap-stub-config")
+    implementation project(":context-json")
+    implementation project(":method-json")
+    implementation project(":otp-json")
+    implementation project(":push-notification-json")
+    implementation project(":identity-external-find-stub-config")
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "com.github.michaelruocco:json-adapter:${jsonAdapterVersion}"
+    implementation "com.github.michaelruocco:random-value-suppliers:${randomValueSuppliersVersion}"
+
+    integrationTestImplementation project(":identity-in-memory-repository")
+    integrationTestImplementation project(":lockout-in-memory-repository")
+    integrationTestImplementation testFixtures(project(":method-config"))
+    integrationTestImplementation testFixtures(project(":identity-entities"))
+    integrationTestImplementation testFixtures(project(":lockout-entities"))
+    integrationTestImplementation testFixtures(project(":method-entities"))
+    integrationTestImplementation testFixtures(project(":otp-use-cases"))
+    integrationTestImplementation testFixtures(project(":push-notification-use-cases"))
+    integrationTestImplementation "org.awaitility:awaitility:${awaitilityVersion}"
+    integrationTestImplementation "com.neovisionaries:nv-i18n:${neovisionariesVersion}"
+    integrationTestImplementation "com.github.michaelruocco:testing-clocks:${testingClocksVersion}"
+
+    testFixturesCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testFixturesAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testFixturesApi testFixtures(project(":context-entities"))
+    testFixturesApi testFixtures(project(":lockout-entities"))
+    testFixturesApi testFixtures(project(":policy-entities"))
+    testFixturesApi testFixtures(project(":otp-entities"))
+    testFixturesApi testFixtures(project(":push-notification-entities"))
+}

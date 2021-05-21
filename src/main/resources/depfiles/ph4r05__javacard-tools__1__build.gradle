@@ -1,0 +1,114 @@
+buildscript {
+    ext.vertxVersion = '3.9.0'
+    ext.resilience4jVersion = '1.6.0'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+}
+
+plugins {
+    id 'java'
+    id 'maven'
+    id 'signing'
+
+    // https://imperceptiblethoughts.com/shadow/configuration/filtering/
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+}
+
+group 'com.klinec'
+version '0.0.4'
+sourceCompatibility = 1.8
+
+allprojects {
+    if (!this.ext.has('jcardsimVersion'))
+        this.ext['jcardsimVersion'] = '3.0.5.11'
+    if (!this.ext.has('apdu4jVersion'))
+        this.ext['apdu4jVersion'] = '2020b1'
+    if (!this.ext.has('apdu4jPcscVersion'))
+        this.ext['apdu4jPcscVersion'] = '20.08.12'
+}
+
+
+repositories {
+    mavenCentral()
+    maven { url "https://javacard.pro/maven" }
+    maven { url "https://deadcode.me/mvn" }
+}
+
+dependencies {
+    implementation group: 'com.klinec', name: 'jcardsim', version: jcardsimVersion, transitive: false
+    implementation group: "org.slf4j", name: "slf4j-api", version: "1.7.28"
+    implementation "com.github.martinpaljak:apdu4j-core:$apdu4jVersion"
+    implementation "com.github.martinpaljak:apdu4j-pcsc:$apdu4jPcscVersion"
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc {
+        failOnError = false
+    }
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+archivesBaseName = 'javacard-tools'
+
+// When uploading setup your ~/.gradle/gradle.properties
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'javacard-tools'
+                packaging 'jar'
+
+                description 'JavaCard tools for JC development'
+                url 'https://github.com/ph4r05/javacard-tools'
+
+                scm {
+                    connection 'scm:git:git://github.com/ph4r05/javacard-tools'
+                    developerConnection 'scm:git:git@github.com:ph4r05/javacard-tools.git'
+                    url 'https://github.com/ph4r05/javacard-tools'
+                }
+
+                licenses {
+                    license {
+                        name 'MIT'
+                        url 'https://raw.githubusercontent.com/ph4r05/javacard-tools/master/LICENSE'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'ph4r05'
+                        name 'Dusan Klinec'
+                        email 'dusan.klinec@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+}

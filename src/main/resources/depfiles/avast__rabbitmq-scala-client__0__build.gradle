@@ -1,0 +1,178 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.16'
+        classpath 'com.avast.gradle:gradle-docker-compose-plugin:0.14.3'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.38.0'
+    }
+}
+
+plugins {
+    id "io.github.gradle-nexus.publish-plugin" version '1.1.0'
+}
+apply plugin: 'docker-compose'
+
+nexusPublishing {
+    repositories {
+        sonatype()
+    }
+}
+
+allprojects {
+    apply plugin: 'idea'
+    group = 'com.avast.clients.rabbitmq'
+    version = version == 'unspecified' ? 'DEVELOPER-SNAPSHOT' : version
+    ext {
+        def scalaVersionEnv = System.getenv("SCALA_VERSION")
+
+        scalaVersionFull = scalaVersionEnv != null ? scalaVersionEnv : "2.12.13"
+        scalaVersion = "${scalaVersionFull}".split("\\.").dropRight(1).join(".")
+
+        metricsVersion = "2.8.5"
+        bytesVersion = "2.2.0"
+        circeVersion = "0.13.0"
+        cactusVersion = "0.17.0"
+        catsVersion = "2.4.2"
+        catsEffectVersion = "2.4.1"
+        fs2Version = "2.5.3"
+        protobufVersion = "3.16.0"
+        scalapbVersion = "0.11.0"
+        scalapbJson4sVersion = "0.11.0"
+        monixVersion = "3.0.0" // just for tests!
+    }
+}
+
+println("Scala version: ${scalaVersion} (${scalaVersionFull})") // will display the version once, when configuring root
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'scala'
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+    apply plugin: 'com.github.ben-manes.versions'
+
+    task sourceJar(type: Jar) {
+        from sourceSets.main.allSource
+        classifier "sources"
+    }
+
+    group = "com.avast.clients.rabbitmq"
+
+    java {
+        withJavadocJar()
+        withSourcesJar()
+    }
+
+    afterEvaluate {
+        publishing {
+            publications {
+                mavenJava(MavenPublication) {
+                    from(components.java)
+                    artifactId = archivesBaseName
+                    pom {
+                        name = 'RabbitMQ client for Scala'
+                        description = 'Scala wrapper over standard RabbitMQ Java client library'
+                        url = 'https://github.com/avast/rabbitmq-scala-client'
+                        licenses {
+                            license {
+                                name = 'The MIT License'
+                                url = 'http://www.opensource.org/licenses/mit-license.php'
+                            }
+                        }
+                        developers {
+                            developer {
+                                id = 'jendakol'
+                                name = 'Jenda Kolena'
+                                email = 'jan.kolena@avast.com'
+                            }
+                        }
+                        scm {
+                            connection = 'scm:git:git://github.com/avast/rabbitmq-scala-client.git'
+                            developerConnection = 'scm:git:ssh://github.com/avast/rabbitmq-scala-client.git'
+                            url = 'https://github.com/avast/rabbitmq-scala-client'
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    signing {
+        String base64Key = System.getenv('SIGNING_KEY')
+        if (base64Key) {
+            useInMemoryPgpKeys(new String(Base64.decoder.decode(base64Key)), System.getenv('SIGNING_PASSWORD'))
+            sign publishing.publications
+        }
+    }
+
+    configurations {
+        scalaCompilerPlugin
+    }
+
+    compileScala {
+        scalaCompileOptions.additionalParameters = ['-target:jvm-1.8']
+    }
+
+    test {
+        testLogging {
+            showStandardStreams = true
+        }
+    }
+
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        scalaCompilerPlugin "org.typelevel:kind-projector_$scalaVersionFull:0.11.3"
+
+        api "org.scala-lang.modules:scala-collection-compat_$scalaVersion:2.4.2"
+
+        testImplementation "io.monix:monix_$scalaVersion:$monixVersion"
+
+        testImplementation "com.avast.metrics:metrics-jmx:${metricsVersion}"
+
+        testImplementation "org.scalaj:scalaj-http_$scalaVersion:2.4.2"
+        testImplementation "io.circe:circe-core_$scalaVersion:$circeVersion"
+        testImplementation "io.circe:circe-generic_$scalaVersion:$circeVersion"
+        testImplementation "io.circe:circe-parser_$scalaVersion:$circeVersion"
+
+        testImplementation 'junit:junit:4.13.2'
+        testImplementation "org.scalatest:scalatest_$scalaVersion:3.0.8"
+        testImplementation 'org.mockito:mockito-all:1.10.19'
+        testImplementation 'ch.qos.logback:logback-classic:1.2.3'
+
+        testImplementation 'org.pegdown:pegdown:1.6.0'
+    }
+
+    tasks.withType(ScalaCompile) {
+        List plugins = configurations.scalaCompilerPlugin.files.collect { "-Xplugin:${it.getAbsolutePath()}".toString() }
+        if (scalaVersion.startsWith("2.12")) {
+            logger.info("Using -Ypartial-unification for Scala ${scalaVersion}")
+            plugins.add("-Ypartial-unification")
+        }
+        scalaCompileOptions.additionalParameters = plugins
+    }
+
+    test {
+        testLogging {
+            events 'failed'
+            exceptionFormat 'full'
+        }
+    }
+}
+
+
+allprojects {
+    //noinspection UnnecessaryQualifiedReference
+    tasks.withType(org.gradle.api.tasks.scala.ScalaDoc) {
+        enabled = false
+    }
+}

@@ -1,0 +1,41 @@
+group = rootProject.group
+version = rootProject.version
+
+apply plugin: 'scala'
+apply plugin: "com.github.johnrengelman.shadow"
+
+ext {
+    mainClass = "Main"
+    mainScript = "run-main"
+}
+
+dependencies {
+    compile project(':core')
+    compile project(':rocksdb')
+    compile project(':kafka:storage-kafka')
+    compile group: "ch.qos.logback", name: "logback-classic", version: "1.2.3"
+    compile group: "ch.qos.logback", name: "logback-core", version: "1.2.3"
+}
+
+build.dependsOn shadowJar
+shadowJar {
+    from { project.configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    append 'reference.conf'
+    manifest {
+        attributes(
+                'Main-Class': mainClass,
+                'version': project.version,
+        )
+    }
+}
+
+task createStartScripts(type: CreateStartScripts) {
+    outputDir = file("build/scripts")
+    mainClassName = mainClass
+    applicationName = mainScript
+    classpath = shadowJar.outputs.files
+}
+
+build.dependsOn createStartScripts
+
+

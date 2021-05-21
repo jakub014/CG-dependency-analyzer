@@ -1,0 +1,9 @@
+apply plugin: 'com.vanniktech.maven.publish'
+apply plugin: 'kotlin'
+apply plugin: 'java-library'
+
+dependencies {
+    api libs.mockWebServer
+    api project(':scarlet-websocket-okhttp')
+    implementation libs.kotlin.stdlib
+}

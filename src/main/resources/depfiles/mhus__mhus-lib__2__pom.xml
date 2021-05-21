@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2002 Mike Hummel (mh@mhus.de)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>lib-core</artifactId>
+  <packaging>bundle</packaging>
+  <parent>
+	  	<groupId>de.mhus.lib</groupId>
+        <artifactId>mhus-lib</artifactId>
+        <version>7.4.0-SNAPSHOT</version>
+  </parent>
+    <properties>
+      <site.path>..</site.path>
+    </properties>
+  
+   <build>
+    <plugins>
+   
+		  <plugin>
+	        <groupId>org.apache.felix</groupId>
+	        <artifactId>maven-bundle-plugin</artifactId>
+	        <extensions>true</extensions>
+	        <configuration>
+	          <instructions>
+                <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                <Bundle-Version>${project.version}</Bundle-Version>
+	            <Export-Package>
+	            	de.mhus.lib.core*;version=${project.version},
+	            	de.mhus.lib.form*;version=${project.version},
+	            	de.mhus.lib.logging*;version=${project.version}
+	            	</Export-Package>
+	            <Import-Package>
+		            org.apache.log4j*;version=1.2.14;resolution:=optional,
+		            org.slf4j*;version=1.7.5;resolution:=optional,
+		            de.mhus.lib.mutable;version=${project.version};resolution:=optional,
+		            net.sf.cglib.*;version=3.2.2;resolution:=optional,
+		            org.bouncycastle.*;resolution:=optional,
+		            org.apache.http.*;resolution:=optional,
+		            org.newsclub.net.unix.*;resolution:=optional,
+		            javax.mail.*;resolution:=optional,
+                    jline.console*;resolution:=optional,
+                    org.apache.shiro.*;resolution:=optional,
+                    org.yaml.snakeyaml.*;resolution:=optional,
+                    org.apache.maven.plugin.*;resolution:=optional,
+                    io.opentracing.*;resolution:=optional,
+                    jdk.internal.*;resolution:=optional,
+		            *
+	            </Import-Package>
+	            <Private-Package>
+	                net.bytebuddy*
+	            </Private-Package>
+	            <DynamicImport-Package>*</DynamicImport-Package>
+
+				<Embed-Dependency>
+					byte-buddy,
+					byte-buddy-agent
+				</Embed-Dependency>
+
+	          </instructions>
+	        </configuration>
+	      </plugin>
+    </plugins>
+  </build>
+  
+  <dependencies>
+    <dependency>
+        <groupId>de.mhus.lib</groupId>
+        <artifactId>lib-annotations</artifactId>
+    </dependency>
+	<dependency>
+	    <groupId>org.bouncycastle</groupId>
+	    <artifactId>bcprov-jdk15on</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.bouncycastle</groupId>
+	    <artifactId>bcmail-jdk15</artifactId>
+	    <exclusions>
+	    	<exclusion>
+	    		<groupId>org.bouncycastle</groupId>
+	    		<artifactId>bcprov-jdk15</artifactId>
+	    	</exclusion>
+	    </exclusions>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.httpcomponents</groupId>
+		<artifactId>httpclient</artifactId>
+	</dependency>
+	<dependency>
+	  <groupId>net.bytebuddy</groupId>
+	  <artifactId>byte-buddy</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>net.bytebuddy</groupId>
+	    <artifactId>byte-buddy-agent</artifactId>
+	</dependency>
+
+	<dependency>
+		<groupId>javax.mail</groupId>
+		<artifactId>mail</artifactId>
+	</dependency>
+	<dependency>
+	    <groupId>org.jline</groupId>
+	    <artifactId>jline</artifactId>
+	</dependency>
+    <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-core</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-config-core</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-config-ogdl</artifactId>
+    </dependency>
+        <!-- Shiro uses SLF4J for logging.  We'll use the 'simple' binding
+             in this example app.  See http://www.slf4j.org for more info. -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>1.7.21</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>1.7.21</version>
+        <scope>test</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt-api</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt-impl</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt-jackson</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>org.yaml</groupId>
+        <artifactId>snakeyaml</artifactId>
+    </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>3.6.3</version>
+        </dependency>
+
+		<dependency>
+	        <groupId>io.opentracing</groupId>
+		    <artifactId>opentracing-api</artifactId>
+		</dependency>
+		<dependency>
+	        <groupId>io.opentracing</groupId>
+		    <artifactId>opentracing-util</artifactId>
+		</dependency>
+
+        <dependency>
+          <groupId>javax.cache</groupId>
+          <artifactId>cache-api</artifactId>
+        </dependency>
+        <!-- 
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+        </dependency>
+         -->
+		
+  </dependencies>
+  
+  
+</project>

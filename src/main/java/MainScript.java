@@ -1,24 +1,132 @@
-import PomAnalyzer.PomAnalyzer;
-import PomAnalyzer.Dependency;
+import DependencyAnalyzer.BuildGradleAnalyzer;
+import DependencyAnalyzer.PomAnalyzer;
+import DependencyAnalyzer.Dependency;
 
+import DependencyAnalyzer.VulnsNotFoundException;
+import eu.fasten.analyzer.javacgopal.data.MavenCoordinate;
+
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
+
+import eu.fasten.analyzer.javacgopal.data.exceptions.MissingArtifactException;
+import eu.fasten.analyzer.javacgopal.data.exceptions.OPALException;
+import org.apache.commons.io.FileUtils;
+import org.jooq.tools.csv.CSVReader;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class MainScript {
 
-    private static final String VULNERABILITY_FILE_PATH = "src/main/java/PomAnalyzer/data/NewFormat.json";
+    private static final Long TIMESTAMP_MAY_2020 = 1589454523000L;
+    private static final Long TIMESTAMP_FEBRUARY_2021 = 1613308674000L;
 
+    private static ProjectType getProjectType(String groupID, String packageName) {
+        String basePath = "src/main/resources/depfiles/" + groupID + "__" + packageName;
+        String pomPath = basePath + "_pom.xml";
+        String gradlePath = basePath + "_build.gradle";
 
-    public static void main(String[] args) {
-        // TODO: Get set of projects to use from input file and execute the code below for each project.
+        if (new File(pomPath).exists()) {
+            return ProjectType.MAVEN;
+        } else if (new File(gradlePath).exists()) {
+            return ProjectType.GRADLE;
+        }
+        return null;
+    }
 
-        try {
-            String link = "https://github.com/liquibase/liquibase-hibernate";
-            String defaultBranch = "main";
+    public static void main(String[] args) throws ParseException, IOException {
+        JSONParser parser = new JSONParser();
+        JSONArray data = (JSONArray) parser.parse(new FileReader("src/main/resources/vulnerableProjectData.json"));
 
-            // Get repository name and standardize link.
-            RepositoryUtil.Pair pair = RepositoryUtil.getRepoAndLink(link);
-            String repositoryName = pair.getLeft();
-            link = pair.getRight();
+        CSVReader reader = new CSVReader(new FileReader("src/main/resources/depfile-info.csv"));
+        String[] nextLine;
+
+        List<ProjectInfo> projectInfoList = new ArrayList<>();
+        while ((nextLine = reader.readNext()) != null) {
+            String downloadedDepFilePath = nextLine[0];
+            String currentUserAndRepo = nextLine[1];
+            String relativeDepFilePath = nextLine[2];
+            String projectType = nextLine[3];
+
+            for (Object o : data) {
+                JSONObject jsonProject = (JSONObject) o;
+                String repository = (String) jsonProject.get("repository");
+                String user = (String) jsonProject.get("user");
+                String userAndRepo = user + "/" + repository;
+
+                if (userAndRepo.equals(currentUserAndRepo)) {
+                    projectInfoList.add(new ProjectInfo(projectType, downloadedDepFilePath, relativeDepFilePath, jsonProject));
+                    break;
+                }
+            }
+        }
+
+//        for (Object o : data) {
+//            JSONObject jsonProject = (JSONObject) o;
+//            String packageName = (String) jsonProject.get("repository");
+//            String groupID = (String) jsonProject.get("user");
+//            ProjectType projectType = getProjectType(groupID, packageName);
+//            projectInfoList.add(new ProjectInfo(projectType, jsonProject));
+//        }
+
+        final int startFrom = 0;
+        int counter = 0;
+
+        String filePath = "analysisResults/analysed-repos-gradle.txt";
+        File file = new File(filePath);
+        file.createNewFile();
+        Writer output = new FileWriter(filePath, true);
+
+        for (ProjectInfo projectInfo : projectInfoList) {
+            counter++;
+            if (counter > startFrom) {
+                Long lastUpdated = (Long) projectInfo.getLastUpdated();
+                if (TIMESTAMP_FEBRUARY_2021 < lastUpdated) {
+                    System.out.println("START ANALYSIS ON PROJECT NO." + counter);
+
+                    ProjectType projectType = projectInfo.getProjectType();
+                    String packageName = projectInfo.getRepository();
+                    String groupID = projectInfo.getUser();
+
+                    if (projectInfo.isInnerProject()) {
+                        System.out.println("RELATIVE PROJECT DIR DEP PATH " + projectInfo.getRelativeDirectoryPath());
+                        System.out.println("RELATIVE DEP FILE PATH IS " + projectInfo.getRelativeDepFilePath());
+                        System.out.println("PROJECT USER IS " + projectInfo.getUser());
+                        System.out.println("PROJECT REPO IS " + projectInfo.getRepository());
+                    }
+
+                    if (projectType == null) {
+                        String result = "POM/GRADLE FILE LOCALLY NOT FOUND FOR " + packageName + " ~ " + groupID + "\n";
+                        output.append(result);
+                        continue;
+                    }
+
+                    try {
+                        analyzeRepository(projectInfo);
+                        output.append("SUCCESSFULLY ANALYZED " + packageName + " ~ " + groupID + "\n");
+                    } catch (VulnsNotFoundException e) {
+                        System.out.println("NO VULNERABLE DEPENDENCIES FOUND");
+                        output.append("NO VULNERABLE DEPENDENCIES FOUND FOR " + packageName + " ~ " + groupID + "\n");
+                    } catch (IOException | OPALException | MissingArtifactException | ParseException | RepositoryUtil.JarNotFoundException e) {
+                        output.append("EXCEPTION " + e.getClass() + " THROWN FOR " + packageName + " ~ " + groupID + "\n");
+                    }
+                }
+            }
+        }
+        output.close();
+    }
+
+    public static void analyzeRepository(ProjectInfo projectInfo) throws IOException, OPALException, MissingArtifactException, ParseException, RepositoryUtil.JarNotFoundException, VulnsNotFoundException {
+        String link = projectInfo.getLink();
+        String defaultBranch = projectInfo.getDefaultBranch();
+        ProjectType projectType = projectInfo.getProjectType();
+
+        // Get repository name and standardize link.
+        RepositoryUtil.Pair pair = RepositoryUtil.getRepoAndLink(link);
+        String repositoryName = pair.getLeft();
+        link = pair.getRight();
 
             // Download repository from GitHub.
             System.out.println("DOWNLOADING REPOSITORY FROM LINK " + link);
@@ -26,26 +134,51 @@ public class MainScript {
             System.out.println("SUCCESSFULLY DOWNLOADED REPOSITORY " + repositoryPath);
 
             // Get dependencies from project dependency file.
-            System.out.println("GETTING DEPENDENCIES FROM pom.xml file");
-            String pomXMLPath = repositoryPath + "/pom.xml";
-            List<Dependency> dependencyList = PomAnalyzer.getProjectDependencies(pomXMLPath, VULNERABILITY_FILE_PATH);
-            System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM pom.xml file");
-            System.out.println("DEPENDENCIES ARE: ");
-            for (Dependency dependency : dependencyList) {
-                System.out.println(dependency);
+            List<Dependency> dependencyList;
+            if (projectType == ProjectType.MAVEN) {
+                System.out.println("GETTING DEPENDENCIES FROM pom.xml file");
+                String pomXMLPath;
+                if (!projectInfo.isInnerProject()) {
+                    pomXMLPath = repositoryPath + "/pom.xml";
+                } else {
+                   pomXMLPath = repositoryPath + projectInfo.getRelativeDepFilePath();
+                }
+                System.out.println("GETTING pom.xml DEPENDENCIES FROM path " + pomXMLPath);
+                dependencyList = PomAnalyzer.getProjectDependencies(pomXMLPath);
+                System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM pom.xml file");
+            } else {
+                System.out.println("GETTING DEPENDENCIES FROM build.gradle file");
+                if (projectInfo.isInnerProject()) {
+                    String newRepositoryPath = projectInfo.getRelativeDirectoryPath();
+                    if (!newRepositoryPath.equals("/")) {
+                        System.out.print("NEW REPOSITORY PATH IS " + newRepositoryPath);
+                        repositoryPath = newRepositoryPath;
+                    }
+                }
+                System.out.println("GETTING build.gradle DEPENDENCIES FROM base path " + repositoryPath);
+                dependencyList = BuildGradleAnalyzer.getProjectDependencies(repositoryPath);
+                System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM build.gradle file");
             }
+
+            for (Dependency d : dependencyList) System.out.println(d);
 
             // If no exception thrown, vulnerabilities have been found in the dependency file of project. Continue.
             // Get the jar of the downloaded repository.
             System.out.println("GENERATING JAR FILE");
-            String jarPath = RepositoryUtil.getRepositoryJAR(repositoryName, defaultBranch);
+            String jarPath = RepositoryUtil.getRepositoryJAR(projectInfo);
+            System.out.println("FINAL JAR PATH IS " + jarPath);
             System.out.println("SUCCESSFULLY GENERATED JAR FILE WITH JAR PATH " + jarPath);
 
-            // TODO: Continue with call graph generation for jar + dependencies and track affected methods
+            List<MavenCoordinate> coordList = new ArrayList<>();
+            for (Dependency dep : dependencyList) {
+                MavenCoordinate depcoord = new MavenCoordinate(dep.groupId, dep.artifactId, dep.version, "jar");
+                coordList.add(depcoord);
+            }
 
-        } catch (PomAnalyzer.VulnsNotFoundException | RepositoryUtil.JarNotFoundException e) {
-
-        }
-
+            MavenCoordinate[] toBeFilled = new MavenCoordinate[coordList.size()];
+            VulnerabilityTracer.traceProjectVulnerabilities(new File(jarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch);
+//        finally {
+//            FileUtils.deleteDirectory(new File(repositoryName));
+//        }
     }
 }

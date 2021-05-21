@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.vizaizai</groupId>
+    <artifactId>easy-http</artifactId>
+    <version>4.0.1</version>
+    <packaging>jar</packaging>
+    <name>easy-http</name>
+    <url>https://github.com/vizaizai/easy-http</url>
+    <description>A simple HTTP client for Java</description>
+
+
+    <contributors>
+        <contributor>
+            <name>Liao Chongwei</name>
+            <email>liaochongwei666@163.com</email>
+        </contributor>
+    </contributors>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Liao Chongwei</name>
+            <email>liaochongwei666@163.com</email>
+            <organization>https://github.com/vizaizai</organization>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/vizaizai/easy-http</url>
+        <connection>https://github.com/vizaizai/easy-http.git</connection>
+        <developerConnection>https://github.com/vizaizai/easy-http</developerConnection>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <httpclient.version>4.5.12</httpclient.version>
+        <commons.lang3.version>3.11</commons.lang3.version>
+        <commons.beanutils.version>1.9.4</commons.beanutils.version>
+        <slf4j-jul.version>1.0.1</slf4j-jul.version>
+        <retry.version>1.1.2</retry.version>
+        <jackson.version>2.12.1</jackson.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.github.vizaizai</groupId>
+            <artifactId>retry</artifactId>
+            <version>${retry.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons.beanutils.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.vizaizai</groupId>
+            <artifactId>slf4j-jul</artifactId>
+            <version>${slf4j-jul.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>[4.13.1,)</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

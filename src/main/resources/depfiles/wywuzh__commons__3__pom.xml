@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>commons-jdbc</artifactId>
+    <packaging>jar</packaging>
+    <description>Spring JDBC工具类库，旨在对Spring JDBC进行简单封装，降低Spring JDBC使用的复杂度，提高重复性代码的可重用度，尽可能地减少编码工作量。</description>
+    <url>http://git.oschina.net/wywuzh/commons</url>
+
+    <parent>
+        <groupId>com.github.wywuzh</groupId>
+        <artifactId>commons-parent</artifactId>
+        <version>2.3.5.RELEASE</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.wywuzh</groupId>
+            <artifactId>commons-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.wywuzh</groupId>
+            <artifactId>commons-pager</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

@@ -1,0 +1,109 @@
+group 'io.testable'
+version '0.0.12'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3"
+    }
+}
+apply plugin: 'io.codearte.nexus-staging'
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.seleniumhq.selenium:selenium-java:3.11.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
+    compile 'org.apache.commons:commons-csv:1.5'
+    testCompile 'junit:junit:4.13'
+}
+
+task fatJar(type: Jar) {
+    archiveName = project.name + '-all-' + project.version + '.jar'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+if (project.hasProperty('release')) {
+
+    allprojects {
+        apply plugin: 'signing'
+        apply plugin: 'maven'
+
+        // Signature of artifacts
+        signing {
+            sign configurations.archives
+        }
+
+        // OSSRH publication
+        uploadArchives {
+            repositories {
+                mavenDeployer {
+                    // POM signature
+                    beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+                    // Target repository
+                    repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                        authentication(userName: ossrhUser, password: ossrhPassword)
+                    }
+                    snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                        authentication(userName: ossrhUser, password: ossrhPassword)
+                    }
+                    pom.project {
+                        name project.name
+                        description project.description
+                        packaging 'jar'
+                        url 'https://github.com/testable/testable-selenium-java'
+
+                        scm {
+                            connection 'scm:git:https://github.com/testable/testable-selenium-java.git'
+                            developerConnection 'scm:git:git@github.com:testable/testable-selenium-java.git'
+                            url 'https://github.com/testable/testable-selenium-java.git'
+                        }
+
+                        licenses {
+                            license {
+                                name 'The MIT License (MIT)'
+                                url 'http://opensource.org/licenses/MIT'
+                                distribution 'repo'
+                            }
+                        }
+
+                        developers {
+                            developer {
+                                id = 'avistramer'
+                                name = 'Avi Stramer'
+                                email = 'avi@testable.io'
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+nexusStaging {
+    username = ossrhUser
+    password = ossrhPassword
+}

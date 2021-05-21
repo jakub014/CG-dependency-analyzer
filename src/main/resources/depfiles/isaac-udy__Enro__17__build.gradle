@@ -1,0 +1,28 @@
+androidLibrary()
+publishAndroidModule("dev.enro", "enro-test", "-alpha")
+
+dependencies {
+    releaseApi "dev.enro:enro-core:$versionName"
+    debugApi project(":enro-core")
+
+    releaseApi "dev.enro:enro-viewmodel:$versionName"
+    debugApi project(":enro-viewmodel")
+
+    implementation deps.androidx.core
+    implementation deps.androidx.appcompat
+
+    implementation deps.testing.junit
+    implementation deps.testing.androidx.runner
+    implementation deps.testing.androidx.core
+    implementation deps.testing.androidx.espresso
+    //noinspection FragmentGradleConfiguration
+    implementation deps.testing.androidx.fragment
+}
+
+afterEvaluate {
+    tasks.findByName("preReleaseBuild")
+            .dependsOn(":enro-core:publishToMavenLocal")
+
+    tasks.findByName("preReleaseBuild")
+            .dependsOn(":enro-viewmodel:publishToMavenLocal")
+}

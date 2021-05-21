@@ -1,0 +1,143 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'signing'
+    id 'checkstyle'
+    id 'java-library'
+    id 'maven-publish'
+    id 'io.codearte.nexus-staging' version '0.22.0'
+    id "org.jetbrains.kotlin.jvm" version "1.4.10"
+    id "io.gitlab.arturbosch.detekt" version "1.14.1"
+    id 'io.franzbecker.gradle-lombok' version '3.3.0'
+}
+
+def ossReleasesRepositoryUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+def ossSnapshotsRepositoryUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+
+allprojects {
+
+    ext {
+        nexus = [
+                target  : project.findProperty("nexus.target") ?: System.getenv("NEXUS_TARGET") ?: 'SNAPSHOT',
+                username: project.findProperty('nexus.username') ?: System.getenv("NEXUS_USERNAME"),
+                password: project.findProperty("nexus.password") ?: System.getenv("NEXUS_PASSWORD"),
+        ]
+        signing = [
+                gpgPrivateKey: project.findProperty("signing.gpg.privateKey") ?: System.getenv("GPG_PRIVATE_KEY"),
+                gpgPassphrase: project.findProperty("signing.gpg.passphrase") ?: System.getenv("GPG_PASSPHRASE")
+        ]
+    }
+
+    ext.nexus.url = nexus.target.equals('SNAPSHOT') ? ossSnapshotsRepositoryUrl : ossReleasesRepositoryUrl
+
+    group "org.sheinbergon"
+    version "0.3.0"
+
+    sourceCompatibility = 11
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+subprojects {
+
+    apply plugin: 'jacoco'
+    apply plugin: 'signing'
+    apply plugin: 'checkstyle'
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+    apply plugin: 'org.jetbrains.kotlin.jvm'
+    apply plugin: 'io.gitlab.arturbosch.detekt'
+    apply plugin: 'io.franzbecker.gradle-lombok'
+
+    dependencies {
+        api "net.java.dev.jna:jna-platform:5.5.0"
+        api "com.google.guava:guava:29.0-jre"
+
+        testImplementation "com.natpryce:hamkrest:1.7.0.3"
+        testImplementation "org.amshove.kluent:kluent:1.61"
+        testImplementation "org.jetbrains.kotlinx:atomicfu:0.14.3"
+        testImplementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+        testImplementation 'org.junit.platform:junit-platform-runner:1.6.2'
+        testImplementation "org.junit.jupiter:junit-jupiter:5.6.2"
+        testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.6.2'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
+    }
+
+    jacoco {
+        toolVersion = "0.8.5"
+    }
+
+    test {
+        useJUnitPlatform()
+        testLogging {
+            exceptionFormat = 'full'
+            events "passed", "skipped", "failed"
+        }
+        finalizedBy jacocoTestReport
+    }
+
+    jacocoTestReport {
+        dependsOn test
+        reports {
+            xml.enabled true
+            csv.enabled false
+            html.enabled true
+        }
+    }
+
+    checkstyle {
+        toolVersion '8.36.2'
+        configFile file("$rootDir/checkstyle.xml")
+        configDir rootDir
+    }
+
+    detekt {
+        toolVersion = "1.14.1"
+        config = files("$rootDir/detekt.yml")
+        input = files("src/main/kotlin", "src/test/kotlin")
+        buildUponDefaultConfig = true
+    }
+
+    afterEvaluate {
+
+        version = "$version-${nexus.target}"
+
+        compileTestKotlin {
+            dependsOn('detekt')
+            kotlinOptions {
+                jvmTarget = 11
+            }
+        }
+
+        compileKotlin {
+            dependsOn('detekt')
+            kotlinOptions {
+                jvmTarget = 11
+            }
+        }
+
+        signing {
+            required { nexus.target == 'RELEASE' }
+            useInMemoryPgpKeys(signing.gpgPrivateKey, signing.gpgPassphrase)
+            publishing.publications.forEach {
+                sign(it)
+            }
+        }
+    }
+}
+
+wrapper {
+    gradleVersion = "6.6.1"
+}
+
+nexusStaging {
+    username = nexus.username
+    password = nexus.password
+    numberOfRetries = 50
+    delayBetweenRetriesInMillis = 5000
+}

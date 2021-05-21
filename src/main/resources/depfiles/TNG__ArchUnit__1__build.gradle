@@ -1,0 +1,138 @@
+apply plugin: 'idea'
+
+ext.moduleName = 'com.tngtech.archunit'
+
+dependencies {
+    api dependency.slf4j
+    implementation dependency.asm
+    dependency.addGuava { dependencyNotation, config -> implementation(dependencyNotation, config) }
+
+    testImplementation dependency.log4j_api
+    testImplementation dependency.log4j_core
+    testImplementation dependency.log4j_slf4j
+    testImplementation dependency.junit4
+    testImplementation dependency.junit_dataprovider
+    testImplementation dependency.mockito
+    testImplementation dependency.assertj
+    testImplementation(dependency.assertj_guava) {
+        exclude module: 'assertj-core'
+        exclude module: 'guava'
+    }
+}
+
+shadowJar {
+    exclude 'META-INF/**'
+
+    dependencies {
+        exclude(dependency(dependency.slf4j))
+    }
+}
+
+/* Besides SLF4J we'll shadow everything we need into the JAR to avoid conflicts with other libraries*/
+publishing{
+    publications{
+        mavenJava{
+            pom.withXml {
+                def deps = asNode().dependencies.first() // there is only one "dependencies" element
+                deps.children().removeIf { dep ->
+                    dep.artifactId.text() != 'slf4j-api' || dep.scope.text() != 'compile'
+                }
+            }
+        }
+    }
+}
+
+addTestJarTo this
+configureSlowTestsFor this
+
+def jdk9MainDirs = ['src/jdk9main/java']
+def jdk9TestDirs = ['src/jdk9test/java']
+def jdk15TestDirs = ['src/jdk15test/java']
+sourceSets {
+    jdk9main {
+        java {
+            srcDirs = jdk9MainDirs
+        }
+        compileClasspath += sourceSets.main.compileClasspath
+    }
+    jdk9test {
+        java {
+            srcDirs = jdk9TestDirs
+        }
+        compileClasspath += sourceSets.test.compileClasspath
+    }
+    jdk15test {
+        java {
+            srcDirs = jdk15TestDirs
+        }
+        compileClasspath += sourceSets.test.compileClasspath
+    }
+}
+
+dependencies {
+    jdk9mainImplementation sourceSets.main.output
+    jdk9testImplementation sourceSets.test.output
+    jdk9testImplementation sourceSets.test.compileClasspath
+    jdk9testImplementation sourceSets.jdk9main.output
+    jdk15testImplementation sourceSets.test.output
+    jdk15testImplementation sourceSets.test.compileClasspath
+
+    runtimeOnly sourceSets.jdk9main.output
+}
+
+compileJdk9mainJava.with {
+    sourceCompatibility = JavaVersion.VERSION_1_9
+    targetCompatibility = JavaVersion.VERSION_1_9
+
+    destinationDir = compileJava.destinationDir
+}
+
+compileJdk9testJava.with {
+    sourceCompatibility = JavaVersion.VERSION_1_9
+    targetCompatibility = JavaVersion.VERSION_1_9
+}
+
+compileJdk15testJava.with {
+    sourceCompatibility = JavaVersion.VERSION_15
+    targetCompatibility = JavaVersion.VERSION_15
+
+    options.compilerArgs += '--enable-preview'
+}
+
+task jdk9Test(type: Test) {
+    testClassesDirs = sourceSets.jdk9test.output.classesDirs
+    classpath = sourceSets.jdk9test.runtimeClasspath
+}
+
+task jdk15Test(type: Test) {
+    testClassesDirs = sourceSets.jdk15test.output.classesDirs
+    classpath = sourceSets.jdk15test.runtimeClasspath
+    jvmArgs += "--enable-preview"
+
+    // workaround for issue in Gradle 6.7, see https://github.com/gradle/gradle/issues/14714
+    exclude '**/ClassFileImporterRecordsTest\$*RecordToImport.class'
+    exclude '**/GivenClassesThatRecordsTest\$*SomeRecord.class'
+    exclude '**/GivenMembersDeclaredInClassesThatRecordsTest\$*SomeRecord.class'
+    exclude '**/ShouldClassesThatRecordsTest\$*SomeRecord.class'
+    exclude '**/ShouldOnlyByClassesThatRecordsTest\$*RecordAccessingRecord.class'
+    exclude '**/ShouldOnlyByClassesThatRecordsTest\$*SomeRecord.class'
+}
+
+[jar, test]*.dependsOn compileJdk9mainJava
+
+[test, jdk9Test, jdk15Test].each { testTask ->
+    addMultiJdkTestsFor project, testTask
+}
+test.finalizedBy(jdk9Test, jdk15Test)
+
+[spotbugsJdk9test, spotbugsJdk15test]*.enabled = false
+
+idea {
+    module {
+        sourceDirs += jdk9MainDirs.collect { file(it) }
+        sourceDirs -= jdk9TestDirs.collect { file(it) }
+        sourceDirs -= jdk15TestDirs.collect { file(it) }
+        testSourceDirs += jdk9TestDirs.collect { file(it) }
+        testSourceDirs += jdk15TestDirs.collect { file(it) }
+    }
+}

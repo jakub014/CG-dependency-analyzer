@@ -1,0 +1,43 @@
+
+buildscript {
+    repositories { jcenter() }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+    }
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'
+apply from: '../uploadMaven.gradle'
+
+group 'io.github.yedaxia'
+version VERSION_NAME + '-min'
+
+sourceCompatibility = 1.8
+
+jar {
+    baseName "io.github.yedaxia.apidocs"
+    manifest {
+        attributes("Implementation-Title": "Gradle",
+                   "Implementation-Version": version,
+                   "Main-Class":"io.github.yedaxia.apidocs.Docs")
+    }
+}
+
+shadowJar {
+    baseName = 'io.github.yedaxia.apidocs'
+    classifier = "all"
+    version = VERSION_NAME
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    compile 'com.alibaba:fastjson:1.2.70'
+    compile 'com.github.javaparser:javaparser-core:3.6.16'
+    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.30'
+}

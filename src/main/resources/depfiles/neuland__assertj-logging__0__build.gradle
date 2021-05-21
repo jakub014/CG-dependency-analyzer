@@ -1,0 +1,165 @@
+import javax.naming.ConfigurationException
+
+ext {
+    junitVersion = '4.12'
+    assertjVersion = '2.9.0'
+    lombokVersion = '1.18.12'
+    log4jVersion = '1.2.17'
+    log4j2Version = '2.12.1'
+    logbackVersion = '1.2.3'
+
+    isReleaseVersion = !version.endsWith('SNAPSHOT')
+    sonatypeUsername = project.findProperty('sonatype.username')
+    sonatypePassword = project.findProperty('sonatype.password')
+}
+
+// 'core' must configured first, because the other modules depend on it's test output
+project(':assertj-logging-core') {
+    apply plugin: 'java'
+}
+
+
+subprojects {
+    group = 'de.neuland-bfi'
+    version = '0.3.1'
+
+    repositories {
+        mavenCentral()
+    }
+
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+
+    compileJava {
+        sourceCompatibility = 1.7
+        targetCompatibility = 1.7
+    }
+
+    dependencies {
+        implementation "junit:junit:${junitVersion}"
+        implementation "org.assertj:assertj-core:${assertjVersion}"
+
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+        testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    }
+
+    if (it.name != 'assertj-logging-core') {
+        dependencies {
+            api project(':assertj-logging-core')
+
+            testImplementation project(':assertj-logging-core').sourceSets.test.output
+        }
+    }
+
+    java {
+        withSourcesJar()
+        withJavadocJar()
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+
+                pom {
+                    name = 'AssertJ Logging'
+                    description = 'Logging Assertions for JUnit 4 and AssertJ'
+                    url = 'https://github.com/neuland/assertj-logging'
+                    licenses {
+                        license {
+                            name = 'Apache License, Version 2.0'
+                            url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'c.stuht'
+                            name = 'Christian Stuht'
+                            email = 'christian.stuht@neuland-bfi.de'
+                        }
+                        developer {
+                            id = 'a.grimm'
+                            name = 'Achim Grimm'
+                            email = 'achim.grimm@neuland-bfi.de'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:https://github.com/neuland/assertj-logging.git'
+                        developerConnection = 'scm:git:https://github.com/neuland/assertj-logging.git'
+                        url = 'scm:git:https://github.com/neuland/assertj-logging.git'
+                    }
+                    issueManagement {
+                        system = 'GitHub'
+                        url = 'https://github.com/neuland/assertj-logging/issues'
+                    }
+//                    distributionManagement {
+//                        downloadUrl = 'https://github.com/neuland/assertj-logging/releases'
+//                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                name = 'Sonatype'
+                if (isReleaseVersion) {
+                    url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+                } else {
+                    url 'https://oss.sonatype.org/content/repositories/snapshots/'
+                }
+                credentials {
+                    username sonatypeUsername
+                    password sonatypePassword
+                }
+            }
+        }
+    }
+
+    signing {
+        required { isReleaseVersion && gradle.taskGraph.hasTask('publish') }
+        sign publishing.publications.mavenJava
+    }
+
+    tasks.withType(PublishToMavenRepository) {
+        doFirst {
+            if (!sonatypeUsername) {
+                throw new ConfigurationException(
+                        'Please set the Sonatype username with project property "sonatype.username"')
+            }
+            if (!sonatypePassword) {
+                throw new ConfigurationException(
+                        'Please set the Sonatype password with project property "sonatype.password"')
+            }
+        }
+    }
+}
+
+
+project(':assertj-logging-log4j12') {
+    dependencies {
+        implementation "log4j:log4j:${log4jVersion}"
+    }
+}
+
+
+project(':assertj-logging-log4j') {
+    dependencies {
+        implementation "org.apache.logging.log4j:log4j-core:${log4j2Version}"
+    }
+}
+
+
+project(':assertj-logging-logback') {
+    dependencies {
+        implementation "ch.qos.logback:logback-classic:${logbackVersion}"
+    }
+}
+
+
+wrapper {
+    gradleVersion = '6.8'
+    distributionType = 'BIN'
+}

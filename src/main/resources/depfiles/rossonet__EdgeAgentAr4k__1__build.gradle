@@ -1,0 +1,40 @@
+plugins {
+    id 'antlr'
+}
+
+description = "core Ar4k Edge Gateway"
+
+apply plugin: 'com.google.protobuf'
+
+dependencies {
+	antlr "org.antlr:antlr4:4.5"
+	compile "org.antlr:antlr4:4.5"
+}
+
+protobuf {
+	protoc {
+		artifact = "com.google.protobuf:protoc:3.7.1"
+		generatedFilesBaseDir = "$projectDir/src"
+	}
+	plugins {
+		grpc { artifact = 'io.grpc:protoc-gen-grpc-java:1.20.0' }
+	}
+	generateProtoTasks {
+		all().each { task ->
+			task.group = 'GRPC ProtoBuf'
+			task.plugins {
+				grpc {
+					outputSubDir = 'java'
+				}
+			}
+		}
+	}
+}
+
+bootJar {
+	enabled = false
+}
+
+generateGrammarSource {
+    outputDirectory = file("src/main/java/org/ar4k/grammar")
+}

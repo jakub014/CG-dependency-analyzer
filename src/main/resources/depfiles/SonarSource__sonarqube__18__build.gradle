@@ -1,0 +1,37 @@
+description = 'SonarQube WebServer executable and Tomcat directly related code'
+
+sonarqube {
+  properties {
+    property 'sonar.projectName', "${projectTitle} :: WebServer"
+  }
+}
+
+dependencies {
+  // please keep the list grouped by configuration and ordered by name
+
+  compile 'com.google.guava:guava'
+  compile 'org.apache.tomcat.embed:tomcat-embed-core'
+  compile project(':sonar-core')
+  compile project(':server:sonar-auth-github')
+  compile project(':server:sonar-auth-gitlab')
+  compile project(':server:sonar-auth-ldap')
+  compile project(':server:sonar-auth-saml')
+  compile project(':server:sonar-ce-task-projectanalysis')
+  compile project(':server:sonar-process')
+  compile project(':server:sonar-webserver-core')
+  compile project(':server:sonar-webserver-webapi')
+
+  compileOnly 'com.google.code.findbugs:jsr305'
+
+  testCompile 'org.apache.logging.log4j:log4j-api'
+  testCompile 'org.apache.logging.log4j:log4j-core'
+  testCompile 'com.google.code.findbugs:jsr305'
+  testCompile 'com.tngtech.java:junit-dataprovider'
+  testCompile 'org.mockito:mockito-core'
+  testCompile 'org.eclipse.jetty:jetty-server'
+  testCompile 'org.eclipse.jetty:jetty-servlet'
+  testCompile testFixtures(project(':server:sonar-server-common'))
+  testCompile testFixtures(project(':server:sonar-webserver-auth'))
+  testCompile testFixtures(project(':server:sonar-webserver-es'))
+  testCompile project(':sonar-testing-harness')
+}

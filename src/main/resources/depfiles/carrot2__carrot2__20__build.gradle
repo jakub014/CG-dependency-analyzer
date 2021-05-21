@@ -1,0 +1,100 @@
+import org.apache.tools.ant.filters.*
+import java.nio.file.Files
+
+plugins {
+  id 'base'
+}
+
+ext {
+  distDir = file("$buildDir/dist")
+  distZip = file("$buildDir/distZip")
+}
+
+configurations {
+  dcs
+  examples
+  mavenArtifacts
+
+  distDirArtifact
+  distZipArtifact
+}
+
+dependencies {
+  dcs project(path: ":dcs:distribution", configuration: "distDir" )
+  examples project(path: ":core-examples", configuration: "distribution" )
+  mavenArtifacts project(path: ":", configuration: "mavenArtifacts")
+}
+
+task syncDist(type: Sync) {
+  def antPrj = new org.apache.tools.ant.Project()
+  afterEvaluate {
+    replaceTokens.each { k, v -> antPrj.setProperty(k.toString(), v.toString()) }
+  }
+
+  inputs.properties replaceTokensTrigger
+
+  from legal
+
+  from(files('src/main/assembly'), {
+    filteringCharset = 'UTF-8'
+    filter(ExpandProperties, project: antPrj)
+  })
+
+  from(configurations.dcs) {
+    into "dcs/"
+  }
+
+  from(configurations.examples) {
+    into "examples/"
+  }
+
+  from(configurations.mavenArtifacts) {
+    into "artifacts/"
+  }
+
+  into distDir
+}
+
+task zip(type: Zip) {
+  dependsOn syncDist
+
+  archiveFileName = "carrot2-${project.version}.zip"
+  destinationDirectory = distZip
+
+  from(distDir, {
+    filesMatching(["**/dcs", "**/gradlew"], { copySpec ->
+      copySpec.mode = 0755
+    })
+  })
+
+  fileMode 0644
+
+  into "carrot2-${project.version}/"
+}
+
+task bambooProps {
+  def storedProps = replaceTokens.collectEntries { k,v -> [k, v.toString()] }
+  def bambooPropsFile = file("${buildDir}/build.properties")
+
+  inputs.properties(storedProps)
+  outputs.file bambooPropsFile
+
+  doFirst {
+    def Properties p = new Properties();
+    p.putAll(storedProps);
+    Files.newBufferedWriter(bambooPropsFile.toPath()).withCloseable { w ->
+      p.store(w, "Build properties file")
+    }
+  }
+}
+
+assemble.dependsOn bambooProps
+assemble.dependsOn zip
+
+artifacts {
+  distZipArtifact tasks.zip
+
+  distDirArtifact project.ext.distDir, {
+    builtBy tasks.syncDist
+  }
+}

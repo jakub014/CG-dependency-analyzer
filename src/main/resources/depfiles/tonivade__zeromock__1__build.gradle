@@ -1,0 +1,12 @@
+
+dependencies {
+  api libs.purefunCore
+  api libs.jaxb
+  implementation libs.purefunTypeclasses
+  implementation libs.purefunMonad
+  implementation libs.purefunEffect
+  implementation libs.purefunInstances
+  implementation libs.purejson
+  implementation libs.jsonPath
+  testImplementation libs.equalsverifier
+}

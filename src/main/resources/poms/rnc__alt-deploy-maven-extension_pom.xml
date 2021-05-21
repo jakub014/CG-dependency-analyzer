@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (C) 2019 Red Hat, Inc.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+            http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.redhat.rcm</groupId>
+    <artifactId>redhat-releng-tools</artifactId>
+    <version>9</version>
+  </parent>
+
+  <groupId>org.goots.maven.extensions</groupId>
+  <artifactId>alt-deploy-maven-extension</artifactId>
+  <version>1.7-SNAPSHOT</version>
+
+  <name>Alt-Deploy Handler Maven Extension</name>
+  <description>Maven extension to handle legacy / new formats of altDeploymentRepository</description>
+  <inceptionYear>2019</inceptionYear>
+  <url>http://github.com/rnc/alt-deploy-maven-extension</url>
+
+  <licenses>
+    <license>
+      <name>APLv2.0</name>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>rnc</id>
+      <name>Nick Cross</name>
+      <email>ncross@redhat.com</email>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:https://github.com/rnc/alt-deploy-maven-extension.git</connection>
+    <developerConnection>scm:git:git@github.com:rnc/alt-deploy-maven-extension.git</developerConnection>
+    <url>http://github.com/rnc/alt-deploy-maven-extension</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <properties>
+    <projectOwner>Red Hat, Inc.</projectOwner>
+
+    <javaVersion>1.8</javaVersion>
+    <javaTestVersion>${javaVersion}</javaTestVersion>
+    <mavenVersion>3.5.2</mavenVersion>
+    <sisu>0.3.3</sisu>
+
+    <it.maven.home>${project.build.directory}/apache-maven-</it.maven.home>
+    <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
+    <itPomIncludes>*</itPomIncludes>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>javax.inject</groupId>
+        <artifactId>javax.inject</artifactId>
+        <version>1</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-compat</artifactId>
+        <version>${mavenVersion}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-core</artifactId>
+        <version>${mavenVersion}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-artifact</artifactId>
+        <version>${mavenVersion}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-model</artifactId>
+        <version>${mavenVersion}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-settings</artifactId>
+        <version>${mavenVersion}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.eclipse.sisu</groupId>
+        <artifactId>org.eclipse.sisu.plexus</artifactId>
+        <version>${sisu}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.25</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.github.stefanbirkner</groupId>
+        <artifactId>system-rules</artifactId>
+        <version>1.18.0</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.2.3</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>1.2.3</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-compat</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-artifact</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-settings</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-model</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.sisu</groupId>
+      <artifactId>org.eclipse.sisu.plexus</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.github.stefanbirkner</groupId>
+      <artifactId>system-rules</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.mycila</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <configuration>
+            <header>APACHE-2-SIMPLIFIED-COPYRIGHT.txt</header>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <configuration>
+            <mavenExecutorId>forked-path</mavenExecutorId>
+            <useReleaseProfile>false</useReleaseProfile>
+            <arguments>-Prelease,run-its</arguments>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.soebes.maven.plugins</groupId>
+          <artifactId>iterator-maven-plugin</artifactId>
+          <version>0.5.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-invoker-plugin</artifactId>
+          <version>3.0.1</version>
+          <configuration>
+            <debug>true</debug>
+            <showErrors>true</showErrors>
+            <addTestClassPath>true</addTestClassPath>
+            <projectsDirectory>src/it</projectsDirectory>
+            <showVersion>true</showVersion>
+            <!-- <mavenExecutable>mvnDebug</mavenExecutable> -->
+            <postBuildHookScript>verify</postBuildHookScript>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>buildnumber-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.sisu</groupId>
+        <artifactId>sisu-maven-plugin</artifactId>
+        <version>${sisu}</version>
+        <executions>
+          <execution>
+            <id>generate-index</id>
+            <goals>
+              <goal>main-index</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <artifactSet>
+                <includes>
+                  <include>org.goots.maven.extensions:*</include>
+                  <include>javax.inject:*</include>
+                  <include>org.eclipse.*:*</include>
+                </includes>
+              </artifactSet>
+              <filters>
+                <filter>
+                  <artifact>*:*:</artifact>
+                  <excludes>
+                    <exclude>META-INF/*.RSA</exclude>
+                    <exclude>META-INF/*.SF</exclude>
+                  </excludes>
+                </filter>
+              </filters>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>run-its</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.soebes.maven.plugins</groupId>
+            <artifactId>iterator-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <phase>integration-test</phase>
+                <goals>
+                  <goal>iterator</goal>
+                </goals>
+                <configuration>
+                  <items>
+                    <item>3.2.2</item>
+                    <item>3.2.3</item>
+                    <item>3.2.5</item>
+                    <item>3.3.1</item>
+                    <item>3.3.9</item>
+                    <item>${mavenVersion}</item>
+                    <item>3.5.4</item>
+                    <item>3.6.0</item>
+                    <item>3.6.3</item>
+                  </items>
+                  <pluginExecutors>
+                    <pluginExecutor>
+                      <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.1.1</version>
+                      </plugin>
+                      <goal>unpack</goal>
+                      <configuration>
+                        <artifactItems>
+                          <artifactItem>
+                            <groupId>org.apache.maven</groupId>
+                            <artifactId>apache-maven</artifactId>
+                            <version>@item@</version>
+                            <type>zip</type>
+                            <classifier>bin</classifier>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                          </artifactItem>
+                        </artifactItems>
+                      </configuration>
+                    </pluginExecutor>
+                    <pluginExecutor>
+                      <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                      </plugin>
+                      <goal>copy-resources</goal>
+                      <configuration>
+                        <outputDirectory>${it.maven.home}@item@/lib/ext</outputDirectory>
+                        <resources>
+                          <resource>
+                            <directory>${project.build.directory}</directory>
+                            <include>alt-deploy-maven-extension-${project.version}.jar</include>
+                            <filtering>false</filtering>
+                          </resource>
+                        </resources>
+                      </configuration>
+                    </pluginExecutor>
+                    <pluginExecutor>
+                      <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-invoker-plugin</artifactId>
+                      </plugin>
+                      <goal>run</goal>
+                      <configuration>
+                        <localRepositoryPath>${localRepositoryPath}-@item@</localRepositoryPath>
+                        <settingsFile>src/it/settings.xml</settingsFile>
+                        <cloneProjectsTo>${project.build.directory}/it-one-@item@</cloneProjectsTo>
+                        <mavenHome>${it.maven.home}@item@</mavenHome>
+                        <projectsDirectory>src/it</projectsDirectory>
+                        <pomIncludes>
+                          <pomInclude>${itPomIncludes}/pom.xml</pomInclude>
+                        </pomIncludes>
+                        <pomExcludes>
+                          <pomExclude>activation-modern-profile/pom.xml</pomExclude>
+                        </pomExcludes>
+                      </configuration>
+                    </pluginExecutor>
+                    <pluginExecutor>
+                      <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-invoker-plugin</artifactId>
+                      </plugin>
+                      <goal>run</goal>
+                      <configuration>
+                        <settingsFile>src/it/settings-profile.xml</settingsFile>
+                        <cloneProjectsTo>${project.build.directory}/it-two-@item@</cloneProjectsTo>
+                        <mavenHome>${it.maven.home}@item@</mavenHome>
+                        <projectsDirectory>src/it</projectsDirectory>
+                        <pomIncludes>
+                          <pomInclude>activation-modern-profile/pom.xml</pomInclude>
+                        </pomIncludes>
+                      </configuration>
+                    </pluginExecutor>
+                  </pluginExecutors>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

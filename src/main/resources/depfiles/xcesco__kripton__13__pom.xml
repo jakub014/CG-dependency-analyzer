@@ -1,0 +1,99 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.abubusoft</groupId>
+		<artifactId>kripton-parent</artifactId>
+		<version>8.0.0-rc.2</version>
+		<relativePath>../kripton-parent/pom.xml</relativePath>
+	</parent>
+
+	<name>Kripton Retrofit Converter</name>	
+	<artifactId>kripton-retrofit-converter</artifactId>	
+	<packaging>jar</packaging>
+	
+	<properties>
+		<java.version>1.8</java.version>
+		
+		<kripton.version>8.0.0-rc.2</kripton.version>
+		
+		<!-- dependencies version -->
+		<jackson.version>2.11.2</jackson.version>
+		<retrofit.version>2.9.0</retrofit.version>
+		<rx.version>2.2.19</rx.version>	
+		
+		<!-- test version -->
+		<junit.version>4.13.1</junit.version>
+		<unitils.version>3.4.2</unitils.version>
+		<jsr305.version>3.0.1</jsr305.version>
+<!-- 		<guava.version>29.0-jre</guava.version>		 -->
+		<robolectric.version>3.1.4</robolectric.version>
+		
+		<!-- android stub by roboletric -->
+		<roboletricAndroidAll.version>5.0.0_r2-robolectric-0</roboletricAndroidAll.version>
+		
+		<!-- processor libraries -->
+		<javapoet.version>1.9.0</javapoet.version>
+		<antlr.version>4.7.1</antlr.version>	
+	</properties>
+
+	<description>Kripton adapter for Retrofit library</description>
+		
+	<dependencies>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.5</version>
+			<scope>test</scope>
+		</dependency>
+		
+		
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>logging-interceptor</artifactId>
+			<version>3.14.9</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>3.14.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.abubusoft</groupId>
+			<artifactId>kripton</artifactId>
+			<version>${kripton.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.squareup.retrofit2</groupId>
+			<artifactId>retrofit</artifactId>
+			<version>${retrofit.version}</version>
+		</dependency>
+
+		<!-- TEST DEPENDENCIES -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-core</artifactId>
+			<version>${unitils.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>junit</artifactId>
+					<groupId>junit</groupId>
+				</exclusion>
+			</exclusions>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+</project>

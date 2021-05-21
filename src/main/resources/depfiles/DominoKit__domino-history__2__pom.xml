@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.dominokit</groupId>
+        <artifactId>domino-history</artifactId>
+        <version>1.0.0-RC3</version>
+    </parent>
+    <packaging>gwt-lib</packaging>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>domino-history-client</artifactId>
+
+    <name>domino-history-client</name>
+    <description>Provides implementations to use for browser applications navigation for using push state api</description>
+    <url>https://github.com/domino-history</url>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.gwtproject.core/gwt-core -->
+        <dependency>
+            <groupId>org.gwtproject.core</groupId>
+            <artifactId>gwt-core</artifactId>
+            <version>1.0.0-RC1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-history-shared</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.elemental2</groupId>
+            <artifactId>elemental2-core</artifactId>
+            <version>${elemental2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.elemental2</groupId>
+            <artifactId>elemental2-dom</artifactId>
+            <version>${elemental2.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>net.ltgt.gwt.maven</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <moduleName>org.dominokit.domino.client.history.History</moduleName>
+                    <moduleShortName>dominogwthistory</moduleShortName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

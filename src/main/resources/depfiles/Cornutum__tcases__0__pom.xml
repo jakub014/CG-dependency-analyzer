@@ -1,0 +1,299 @@
+<project 
+    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.cornutum.tcases</groupId>
+  <artifactId>tcases</artifactId>
+  <packaging>pom</packaging>
+  <version>3.5.2-SNAPSHOT</version>
+
+  <name>Tcases</name>
+  <description>Generates test cases from system input space models</description>
+  <url>https://github.com/Cornutum/tcases</url>
+
+  <developers>
+    <developer>
+      <name>Kerry Kimbrough</name>
+      <email>tcases@cornutum.org</email>
+      <organization>The Cornutum Project</organization>
+      <organizationUrl>http://www.cornutum.org</organizationUrl>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>The MIT License</name>
+      <url>http://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <organization>
+    <name>The Cornutum Project</name>
+    <url>http://www.cornutum.org/</url>
+  </organization>
+
+  <scm>
+    <connection>scm:git:https://github.com/Cornutum/tcases</connection>
+    <developerConnection>scm:git:https://github.com/Cornutum/tcases</developerConnection>
+    <url>https://github.com/Cornutum/tcases</url>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/Cornutum/tcases/issues</url>
+  </issueManagement>
+
+  <mailingLists>
+    <mailingList>
+      <name>Tcases Forum</name>
+      <subscribe>https://groups.google.com/d/forum/tcases</subscribe>
+      <unsubscribe>https://groups.google.com/d/forum/tcases</unsubscribe>
+      <post>https://groups.google.com/d/forum/tcases</post>
+    </mailingList>  
+  </mailingLists>
+
+  <distributionManagement>
+      <snapshotRepository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      </snapshotRepository>
+      <repository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      </repository>
+  </distributionManagement>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <tcasesJunit>true</tcasesJunit>
+  </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.7.0</version>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+            <encoding>UTF-8</encoding>
+            <compilerArgument>-Xlint:all</compilerArgument>
+            <compilerArgument>-Xlint:-processing</compilerArgument>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>versions-maven-plugin</artifactId>
+          <version>2.1</version>
+          <executions>
+            <execution>
+              <id>default-cli</id>
+              <goals>
+                <goal>set</goal>
+              </goals>
+              <configuration>
+               <generateBackupPoms>false</generateBackupPoms>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.8</version>
+            <extensions>true</extensions>
+            <configuration>
+                <serverId>ossrh</serverId>
+                <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.1.1</version>
+        </plugin>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <version>3.1.0</version>
+        </plugin>
+        <plugin>
+            <groupId>org.cornutum.tcases</groupId>
+            <artifactId>tcases-maven-plugin</artifactId>
+            <version>${project.version}</version>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>3.1.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <classifier>javadoc</classifier>
+              <doclint>none</doclint>
+              <links>
+                <link>http://www.cornutum.org/tcases/docs/api</link>
+              </links>
+            </configuration>
+          </execution>
+        </executions>
+    </plugin>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-source-plugin</artifactId>
+      <version>3.0.1</version>
+      <executions>
+        <execution>
+          <id>attach-sources</id>
+          <goals>
+            <goal>jar</goal>
+          </goals>
+          <configuration>
+            <classifier>sources</classifier>
+          </configuration>
+        </execution>
+      </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>          
+        </plugins>
+      </build>      
+    </profile>
+
+    <profile>
+      <id>tcases</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.cornutum.tcases</groupId>
+            <artifactId>tcases-maven-plugin</artifactId>
+            <configuration>
+              <junit>${tcasesJunit}</junit>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.1</version>
+        <scope>test</scope>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.cornutum.testing</groupId>
+        <artifactId>hamcrest-composites</artifactId>
+        <version>1.2.1</version>
+        <scope>test</scope>
+      </dependency>
+      
+      <dependency>
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest-library</artifactId>
+          <version>1.3</version>
+          <scope>test</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>com.github.dreamhead</groupId>
+          <artifactId>moco-junit</artifactId>
+          <version>1.1.0</version>
+          <scope>test</scope>
+      </dependency>
+      
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.4</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.3.1</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>4.1</version>
+      </dependency>
+
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.2.3</version>
+        <scope>runtime</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.25</version>
+      </dependency>
+
+    </dependencies>
+  </dependencyManagement>
+
+  <modules>
+    <module>tcases-ant</module>
+    <module>tcases-lib</module>
+    <module>tcases-io</module>
+    <module>tcases-cli</module>
+    <module>tcases-shell</module>
+    <module>tcases-maven-plugin</module>
+    <module>tcases-openapi</module>
+    <module>tcases-rest-assured</module>
+    <module>tcases-moco</module>
+  </modules>
+
+</project>

@@ -1,0 +1,172 @@
+/*
+ * TOZNY NON-COMMERCIAL LICENSE
+ *
+ * Tozny dual licenses this product. For commercial use, please contact
+ * info@tozny.com. For non-commercial use, the contents of this file are
+ * subject to the TOZNY NON-COMMERCIAL LICENSE (the "License") which
+ * permits use of the software only by government agencies, schools,
+ * universities, non-profit organizations or individuals on projects that
+ * do not receive external funding other than government research grants
+ * and contracts.  Any other use requires a commercial license. You may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at https://tozny.com/legal/non-commercial-license.
+ * Software distributed under the License is distributed on an "AS IS"
+ * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
+ * License for the specific language governing rights and limitations under
+ * the License. Portions of the software are Copyright (c) TOZNY LLC, 2018.
+ * All rights reserved.
+ *
+ */
+
+
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.getkeepsafe.dexcount'
+apply plugin: 'kotlin-android'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+android {
+    compileSdkVersion 30
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 30
+    }
+    sourceSets {
+        main {
+            manifest.srcFile("${project(":e3db-crypto-android").projectDir}/src/main/AndroidManifest.xml")
+            java {
+                srcDirs "${project(":e3db-crypto-android").projectDir}/src/main/java",
+                        "${project(":e3db").projectDir}/src/main/java",
+                        "${project(":e3db-crypto-interface").projectDir}/src/main/java",
+                        "${project(":e3db-crypto-stub-plain").projectDir}/src/main/java"
+            }
+            res {
+                srcDirs "${project(":e3db-crypto-android").projectDir}/src/main/res"
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt')
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+        // jna package used by libsodium references some sun packages, but those will never be called.
+    }
+}
+
+evaluationDependsOn(':publish')
+
+task sourceJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+
+task javadoc(type: Javadoc) {
+    enabled = false
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    destinationDir = file("../javadoc/")
+    failOnError false
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+signing {
+    sign configurations.archives
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+
+                from components.release
+                artifact sourceJar
+                artifact javadocJar
+                groupId project(":publish").ext.groupId
+                artifactId 'e3db-client-android'
+                version project(":publish").ext.version
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation project(":e3db-crypto-android").configurations.implementation.dependencies.matching { dep ->
+        // exclude project dependencies - only include external, maven dependencies
+        ExternalModuleDependency.class.isAssignableFrom(dep.class)
+    }
+    implementation project(":e3db").configurations.compile.dependencies.matching { dep ->
+        // exclude project dependencies - only include external, maven dependencies
+        ExternalModuleDependency.class.isAssignableFrom(dep.class)
+    }
+}
+
+artifacts {
+    archives javadocJar, sourceJar
+}
+
+uploadArchives {
+    group = "com.tozny.e3db"
+    archivesBaseName = "e3db-client-android"
+    version = project(":publish").ext.version
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+            pom.project {
+                artifactId = 'e3db-client-android'
+                groupId = 'com.tozny.e3db'
+                name 'E3DB Java SDK'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'An SDK to interact with TozStore Encrypted Storage with Android'
+                url 'https://github.com/tozny/e3db-java'
+
+                scm {
+                    connection 'scm:git:git://github.com/tozny/e3db-java.git'
+                    developerConnection 'scm:git:ssh://github.com/tozny/e3db-java.git'
+                    url 'https://github.com/tozny/e3db-java/tree/master'
+                }
+
+                licenses {
+                    license {
+                        name 'TOZNY NON-COMMERCIAL LICENSE'
+                        url 'https://tozny.com/legal/non-commercial-license'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id developerId
+                        name developerName
+                        email developerEmail
+                    }
+                }
+            }
+        }
+    }
+}

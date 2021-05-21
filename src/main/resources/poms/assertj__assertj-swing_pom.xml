@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.assertj</groupId>
+    <artifactId>assertj-parent-pom</artifactId>
+    <version>2.2.1</version>
+  </parent>
+
+  <artifactId>assertj-swing-parent-pom</artifactId>
+  <version>3.17.2-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>AssertJ Swing: Fluent assertions for java unit testing</name>
+  <description>Parent POM for all AssertJ-Swing modules</description>
+  <inceptionYear>2014</inceptionYear>
+
+  <modules>
+    <module>assertj-swing</module>
+    <module>assertj-swing-junit</module>
+    <module>assertj-swing-testng</module>
+  </modules>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <arguments>-DskipTests</arguments>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <scm>
+    <developerConnection>scm:git:git@github.com:assertj/assertj-swing.git</developerConnection>
+    <connection>git://github.com/assertj/assertj-swing.git</connection>
+    <url>https://github.com/assertj/assertj-swing</url>
+    <tag>HEAD</tag>
+  </scm>
+  <issueManagement>
+    <system>github</system>
+    <url>https://github.com/assertj/assertj-swing/issues</url>
+  </issueManagement>
+  <developers>
+    <developer>
+      <id>joel</id>
+      <name>Joel Costigliola</name>
+      <roles>
+        <role>Owner</role>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>croesch</id>
+      <name>Christian Rösch</name>
+      <email>christianroesch at gmx.net</email>
+      <roles>
+        <role>Owner</role>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>alexruiz</id>
+      <name>Alex Ruiz</name>
+      <email>alex.ruiz.05 at gmail.com</email>
+      <url>http://alexruiz.developerblogs.com</url>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>wanghy</id>
+      <name>Yvonne Wang</name>
+      <email>wanghy1101 at gmail.com</email>
+      <roles>
+        <role>Owner</role>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>konermann</id>
+      <name>Ansgar Konermann</name>
+      <url>http://passion.forco.de/</url>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+  </developers>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.easytesting</groupId>
+        <artifactId>fest-reflect</artifactId>
+        <version>1.4.1</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.easytesting</groupId>
+            <artifactId>fest-util</artifactId>
+          </exclusion>
+        </exclusions>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>org.easytesting</groupId>
+        <artifactId>fest-util</artifactId>
+        <version>1.2.5</version>
+        <scope>runtime</scope>
+        <optional>true</optional>
+      </dependency>
+      <dependency>
+        <groupId>org.easytesting</groupId>
+        <artifactId>fest-test</artifactId>
+        <version>2.1.0</version>
+        <scope>test</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>org.easytesting</groupId>
+            <artifactId>fest-util</artifactId>
+          </exclusion>
+      </exclusions>
+      </dependency>
+      <dependency>
+        <groupId>nl.jqno.equalsverifier</groupId>
+        <artifactId>equalsverifier</artifactId>
+        <version>2.3.1</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+  <properties>
+  </properties>
+</project>

@@ -1,0 +1,62 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+ext {
+    PUBLISH_GROUP_ID = 'com.prof18.rssparser'
+    PUBLISH_VERSION = versions.libVersionName
+    PUBLISH_ARTIFACT_ID = 'rssparser'
+}
+
+apply from: "${rootProject.projectDir}/gradle/publish-mavencentral.gradle"
+
+android {
+    compileSdkVersion versions.targetSdk
+    buildToolsVersion = versions.buildTools
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.libVersionCode
+        versionName versions.libVersionName
+        buildConfigField 'int', 'VERSION_CODE', String.valueOf(versions.libVersionCode)
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    testOptions.unitTests.includeAndroidResources = true
+
+}
+
+dependencies {
+    api "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
+
+    // Room
+    implementation "androidx.room:room-runtime:${versions.room}"
+    kapt "androidx.room:room-compiler:${versions.room}" // For Kotlin use kapt instead of annotationProcessor
+    implementation "androidx.room:room-ktx:${versions.room}"
+
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "org.robolectric:robolectric:${versions.robolectric}"
+    testImplementation "androidx.room:room-testing:${versions.room}"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation "androidx.test:core:${versions.androidXTest}"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.testCoroutines}"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockitoKotlin}"
+    testImplementation "org.mockito:mockito-core:${versions.mockitoCore}"
+    testImplementation "org.mockito:mockito-inline:${versions.mockitoInline}"
+}
+
+

@@ -1,0 +1,133 @@
+plugins {
+    id 'io.franzbecker.gradle-lombok' version '3.1.0'
+    id 'nebula.provided-base' version '3.0.3'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
+    id "com.jfrog.bintray" version "1.8.4" apply false
+}
+
+apply from: "$rootDir/gradle/ci-support.gradle"
+
+subprojects {
+    apply plugin: 'nebula.provided-base'
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'io.franzbecker.gradle-lombok'
+    apply plugin: 'com.github.johnrengelman.shadow'
+
+    group = "org.testcontainers"
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    compileJava.options.encoding = 'UTF-8'
+    compileTestJava.options.encoding = 'UTF-8'
+
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    lombok {
+        version = '1.18.12'
+    }
+
+    task delombok(type: io.franzbecker.gradle.lombok.task.DelombokTask) {
+        def outputDir = file("$buildDir/delombok")
+        outputs.dir(outputDir)
+        for (srcDir in project.sourceSets.main.java.srcDirs) {
+            inputs.dir(srcDir)
+            args(srcDir, "-d", outputDir)
+        }
+    }
+    delombok.onlyIf {
+        project.sourceSets.main.java.srcDirs.find { it.exists() }
+    }
+
+    // specific modules should be excluded from publication
+    if ( ! ["test-support", "jdbc-test"].contains(it.name) && !it.path.startsWith(":docs:") && it != project(":docs") ) {
+        apply from: "$rootDir/gradle/publishing.gradle"
+        apply from: "$rootDir/gradle/bintray.gradle"
+
+        jar.archiveClassifier.set("original")
+
+        publishing {
+            publications {
+                mavenJava(MavenPublication) { publication ->
+                    artifacts.removeAll { it.classifier == jar.archiveClassifier.get() }
+                    artifact project.tasks.shadowJar
+                }
+            }
+        }
+
+        task release(dependsOn: bintrayUpload)
+    }
+
+    test {
+        defaultCharacterEncoding = "UTF-8"
+        testLogging {
+            displayGranularity 1
+            showStackTraces = true
+            exceptionFormat = 'full'
+            events "STARTED", "PASSED", "FAILED", "SKIPPED"
+        }
+    }
+
+    tasks.withType(Test).all {
+        reports {
+            junitXml.outputPerTestCase = true
+        }
+    }
+
+    // Ensure that Javadoc generation is always tested
+    check.dependsOn(javadoc)
+
+    def postCheckCommand = properties["postCheckCommand"]
+    if (postCheckCommand) {
+        check.finalizedBy(tasks.create("postCheckExec", Exec) {
+            if (org.gradle.internal.os.OperatingSystem.current().isWindows()) {
+                commandLine('cmd', '/c', postCheckCommand)
+            } else {
+                commandLine('sh', '-c', postCheckCommand)
+            }
+        })
+    }
+
+    javadoc {
+        dependsOn delombok
+        source = delombok.outputs
+    }
+
+    shadowJar {
+        configurations = []
+        classifier = null
+
+        doFirst {
+            // See https://github.com/johnrengelman/shadow/blob/5.0.0/src/main/groovy/com/github/jengelman/gradle/plugins/shadow/tasks/ConfigureShadowRelocation.groovy
+            Set<String> packages = []
+            // Always read from core's configurations
+            for (configuration in tasks.getByPath(":testcontainers:shadowJar").configurations) {
+                for (jar in configuration.files) {
+                    def jf = new java.util.jar.JarFile(jar)
+                    for (entry in jf.entries()) {
+                        def name = entry.name
+                        if (name.endsWith(".class")) {
+                            def index = name.lastIndexOf('/')
+                            if (index != -1) {
+                                packages.add(name.substring(0, index))
+                            }
+                        }
+                    }
+                    jf.close()
+                }
+            }
+            for (pkg in packages) {
+                pkg = pkg.replaceAll('/', '.')
+
+                tasks.shadowJar.relocate(pkg, "org.testcontainers.shaded.${pkg}")
+            }
+        }
+    }
+
+    dependencies {
+        testCompile 'ch.qos.logback:logback-classic:1.2.3'
+    }
+}

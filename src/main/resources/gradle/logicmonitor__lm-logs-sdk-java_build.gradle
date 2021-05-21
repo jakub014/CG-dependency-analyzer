@@ -1,0 +1,174 @@
+plugins {
+    id "org.openapi.generator" version "4.3.1"
+    id "java-library"
+    id "signing"
+    id "maven-publish"
+}
+
+group "com.logicmonitor"
+version "1.2"
+
+def generatedJava = "src/generated/java"
+def jacksonVersion = "2.11.1"
+def jerseyVersion = "2.31"
+def junitVersion = "5.6.2"
+
+sourceCompatibility = "1.9"
+targetCompatibility = "1.9"
+compileJava.options.encoding = "UTF-8"
+
+sourceSets {
+    main {
+        java {
+            srcDir "${generatedJava}"
+            srcDir "src/main/java"
+        }
+    }
+    test {
+        java {
+            srcDir "src/test/java"
+        }
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation (
+            "io.swagger:swagger-annotations:1.6.2",
+            "com.google.code.findbugs:jsr305:3.0.2",
+            "org.glassfish.jersey.core:jersey-client:${jerseyVersion}",
+            "org.glassfish.jersey.inject:jersey-hk2:${jerseyVersion}",
+            "org.glassfish.jersey.media:jersey-media-json-jackson:${jerseyVersion}",
+            "org.glassfish.jersey.media:jersey-media-multipart:${jerseyVersion}",
+            "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}",
+            "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}",
+            "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
+            "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}",
+            "org.openapitools:jackson-databind-nullable:0.2.1",
+            "commons-codec:commons-codec:1.14"
+    )
+    testImplementation (
+            "org.junit.jupiter:junit-jupiter:${junitVersion}",
+            "org.mockito:mockito-core:3.4.4",
+            "org.glassfish.jersey.test-framework:jersey-test-framework-core:${jerseyVersion}",
+            "org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-grizzly2:${jerseyVersion}"
+    )
+    testCompileOnly(
+            "junit:junit:4.12"
+    )
+    testRuntimeOnly(
+            "org.junit.vintage:junit-vintage-engine:${junitVersion}"
+    )
+}
+
+clean {
+    delete "${rootDir}/.openapi-generator"
+    delete "${rootDir}/.travis.yml"
+    delete "${rootDir}/api"
+    delete "${rootDir}/bin"
+    delete "${rootDir}/build.sbt"
+    delete "${rootDir}/docs"
+    delete "${rootDir}/git_push.sh"
+    delete "${rootDir}/pom.xml"
+    delete "${rootDir}/${generatedJava}"
+}
+
+tasks.openApiGenerate.dependsOn clean
+openApiGenerate {
+    generatorName = "java"
+    inputSpec = "$rootDir/specs/lm-logs-api.yaml".toString()
+    outputDir = "$rootDir".toString()
+    skipOverwrite = true
+    generateApiTests = false
+    generateModelTests = false
+    apiPackage = "com.logicmonitor.logs.api"
+    invokerPackage = "com.logicmonitor.logs.invoker"
+    modelPackage = "com.logicmonitor.logs.model"
+    httpUserAgent = "${rootProject.name}/${rootProject.version}"
+    configOptions = [
+            dateLibrary: "java8",
+            disallowAdditionalPropertiesIfNotPresent: "false",
+            ensureUniqueParams: "true",
+            library: "jersey2",
+            sourceFolder: "${generatedJava}"
+    ]
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+compileJava.dependsOn tasks.openApiGenerate
+
+javadoc {
+    source = sourceSets.main.allJava
+    options.tags = [ "http.response.details:a:Http Response Details" ]
+    // doclint doesn't accept "table summary" in the generated code
+    failOnError = false
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+jar.dependsOn tasks.test
+
+signing {
+    sign publishing.publications
+}
+
+tasks.withType(GenerateModuleMetadata) {
+    // signing Gradle Module Metadata is not supported for snapshot dependencies
+    enabled = !version.endsWith("-SNAPSHOT")
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = rootProject.name
+            from components.java
+            pom {
+                name = "LogicMonitor Log Ingestion Java SDK"
+                description = "Sends logs to LogicMonitor log ingestion endpoint."
+                url = "https://github.com/logicmonitor/lm-logs-sdk-java"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "pmelkowski"
+                        name = "Piotr Melkowski"
+                        email = "contractor3deepsense@logicmonitor.com"
+                    }
+                }
+                scm {
+                    connection = "scm:git:https://github.com/logicmonitor/lm-logs-sdk-java.git"
+                    developerConnection = "scm:git:https://github.com/logicmonitor/lm-logs-sdk-java.git"
+                    url = "https://github.com/logicmonitor/lm-logs-sdk-java"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username SONATYPE_USERNAME
+                password SONATYPE_PASSWORD
+            }
+            if (version.endsWith("-SNAPSHOT")) {
+                url "https://oss.sonatype.org/content/repositories/snapshots"
+            } else {
+                url "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            }
+        }
+    }
+}

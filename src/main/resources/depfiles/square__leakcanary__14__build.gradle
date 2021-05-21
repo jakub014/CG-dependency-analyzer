@@ -1,0 +1,21 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+dependencies {
+  api project(':shark')
+
+  implementation deps.kotlin.stdlib
+
+  testImplementation deps.assertj_core
+  testImplementation deps.junit
+  testImplementation deps.kotlin_statistics
+  testImplementation deps.mockito
+  testImplementation deps.mockito_kotlin
+  testImplementation deps.okio
+  testImplementation project(':shark-test')
+}
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

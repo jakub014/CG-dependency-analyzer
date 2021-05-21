@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>io.lippia</groupId>
+		<artifactId>root</artifactId>
+		<version>3.2.3.8-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>core</artifactId>
+	<packaging>jar</packaging>
+	<url>http://lippia.io</url>
+
+	<name>lippia-core</name>
+
+	<description>
+		Core project, contains the behavior.
+	</description>
+
+    <developers>
+		<developer>
+			<name>Juan Manuel Carames</name>
+			<id>juan.carames</id>
+			<roles>
+				<role>Owner</role>
+			</roles>
+		</developer>
+	</developers>
+    
+    <scm>
+		<connection>scm:git:https://github.com/Crowdar/lippia-core.git</connection>
+		<developerConnection>scm:git:https://github.com/Crowdar/lippia-core.git</developerConnection>
+		<url>https://github.com/Crowdar/lippia-core</url>
+	</scm>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+		</license>
+	</licenses>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20190722</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M4</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

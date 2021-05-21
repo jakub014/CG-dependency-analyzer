@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+  
+   See the NOTICE file distributed with this work for additional
+   information regarding copyright ownership.
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.seaborne.rdf-delta</groupId>
+  <artifactId>rdf-delta</artifactId>
+  <packaging>pom</packaging>
+  <version>0.9.3-SNAPSHOT</version>
+
+  <name>RDF Delta</name>
+  <url>https://afs.github.io/rdf-delta/</url>
+
+  <description>
+    RDF Delta -- Change logs for RDF datasets; Dataset replication.
+  </description>
+
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+    </license>
+  </licenses>
+  
+  <issueManagement>
+    <url>https://github.com/afs/rdf-delta/issues</url>
+  </issueManagement>
+
+  <scm>
+    <connection>scm:git:https://github.com:afs/rdf-delta.git</connection>
+    <developerConnection>scm:git:git@github.com:afs/rdf-delta.git</developerConnection>
+    <url>https://github.com/afs/rdf-delta.git</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <developers>
+    <developer>
+      <name>Andy Seaborne</name>
+      <url>https://github.com/afs</url>
+      <timezone>Europe/London</timezone>
+    </developer>
+  </developers>
+  
+  <contributors>
+    <contributor>
+      <url>https://github.com/afs/rdf-delta/graphs/contributors</url>
+    </contributor>
+  </contributors>
+
+  <properties>
+    <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ssZ</maven.build.timestamp.format>
+    <build.time.xsd>${maven.build.timestamp}</build.time.xsd>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <ver.jena>4.0.0</ver.jena>
+    <ver.jetty>9.4.40.v20210413</ver.jetty>
+    <ver.junit>4.13.2</ver.junit>
+    <ver.slf4j>1.7.30</ver.slf4j>
+    <ver.log4j2>2.14.1</ver.log4j2>
+    <ver.rocksdb>6.19.3</ver.rocksdb>
+
+    <!-- Determines the Zookeeper version -->
+    <ver.curator>5.1.0</ver.curator>
+
+    <ver.aws-s3>1.11.908</ver.aws-s3>
+    <ver.s3mock>0.2.6</ver.s3mock>
+    <ver.awaitility>4.0.3</ver.awaitility>
+    <ver.micrometer>1.6.6</ver.micrometer>
+    <ver.jaxb-api>2.3.1</ver.jaxb-api>
+  </properties>
+  
+  <modules>
+    <module>rdf-patch</module>
+    <module>rdf-delta-base</module>
+    <module>rdf-delta-client</module>
+    <module>rdf-delta-server-local</module>
+    <module>rdf-delta-server-extra</module>
+    <module>rdf-delta-server-http</module>
+    <module>rdf-delta-fuseki</module>
+    <module>rdf-delta-integration-tests</module>
+
+    <module>rdf-delta-server</module>
+    <module>rdf-delta-fuseki-server</module>
+
+    <module>rdf-delta-cmds</module>
+    <module>rdf-delta-examples</module>
+    <module>rdf-delta-dist</module>
+  </modules>
+
+  <!-- for mvn versions:display-plugin-updates,
+       but generates a warning otherwise.
+       - - >
+	  <prerequisites>
+    	<maven>3.6.3</maven>
+	  </prerequisites>
+  -->
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.jena</groupId>
+        <artifactId>apache-jena-libs</artifactId>
+        <version>${ver.jena}</version>
+        <type>pom</type>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.jena</groupId>
+        <artifactId>jena-fuseki-main</artifactId>
+        <version>${ver.jena}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.jena</groupId>
+        <artifactId>jena-text</artifactId>
+        <version>${ver.jena}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-xml</artifactId>
+        <version>${ver.jetty}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.apache.jena</groupId>
+        <artifactId>jena-cmds</artifactId>
+        <version>${ver.jena}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.jena</groupId>
+        <artifactId>jena-base</artifactId>
+        <version>${ver.jena}</version>
+        <classifier>tests</classifier>
+      </dependency>
+
+      <dependency>
+        <groupId>org.rocksdb</groupId>
+        <artifactId>rocksdbjni</artifactId>
+        <version>${ver.rocksdb}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${ver.junit}</version>
+      </dependency>
+
+      <!-- Logging -->
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${ver.slf4j}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>${ver.slf4j}</version>
+      </dependency>
+
+      <!-- Either this for JUL ... -->
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-jdk14</artifactId>
+        <version>${ver.slf4j}</version>
+      </dependency>
+
+      <!-- or 
+           slf4j 1.7: artifact::log4j-slf4j-impl
+           slf4j 1.8: artifact::log4j-slf4j18-impl 
+      -->
+      <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-bom</artifactId>
+        <version>${ver.log4j2}</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+
+      <!-- End logging -->
+
+      <dependency>
+        <groupId>org.apache.curator</groupId>
+        <artifactId>curator-recipes</artifactId>
+        <version>${ver.curator}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.apache.curator</groupId>
+        <artifactId>curator-test</artifactId>
+        <version>${ver.curator}</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency> 
+
+      <dependency>
+        <groupId>org.awaitility</groupId>
+        <artifactId>awaitility</artifactId>
+        <version>${ver.awaitility}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-java-sdk-s3</artifactId>
+        <version>${ver.aws-s3}</version>
+         <exclusions>
+          <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+          </exclusion>
+          <!-- Use Jena dependecny choice. -->
+          <exclusion>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>${ver.jaxb-api}</version>
+      </dependency>
+
+
+      <!-- Control the version of com.amazonaws:aws-java-sdk-s3 -->
+      <dependency>
+        <groupId>io.findify</groupId>
+        <artifactId>s3mock_2.12</artifactId>
+        <version>${ver.s3mock}</version> 
+        <exclusions>
+          <exclusion>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>io.micrometer</groupId>
+        <artifactId>micrometer-core</artifactId>
+        <version>${ver.micrometer}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.micrometer</groupId>
+        <artifactId>micrometer-registry-prometheus</artifactId>
+          <version>${ver.micrometer}</version>
+      </dependency>
+
+    </dependencies>
+      
+  </dependencyManagement>
+
+  <dependencies>  
+    <dependency>
+      <groupId>org.apache.jena</groupId>
+      <artifactId>apache-jena-libs</artifactId>
+      <type>pom</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+
+  </dependencies>  
+
+  <build>
+    <pluginManagement>
+      <plugins>
+
+         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <!-- Not used but make a warning go away -->
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.9.1</version>
+        </plugin>
+        
+         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>3.3.0</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+
+          <!-- Needs maven run with java11 for release=
+               RDF Delta should work for compile and target Java 11 as well.
+               It is client software that might require java8 class formats.
+          -->
+          
+          <configuration>
+            <release>11</release>
+          </configuration>
+
+          <!-- 
+               Legacy - RDF Delta compiled with Java8.
+               Run maven with java8, compile and target java 1.8
+          <configuration>
+            <encoding>UTF-8</encoding>
+            <debug>true</debug>
+            <debuglevel>source,lines,vars</debuglevel>
+            <optimize>true</optimize>
+            <source>1.8</source>
+            <target>1.8</target>
+          </configuration>
+          -->
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+      
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.2</version> 
+          <configuration>
+            <includes>
+              <include>**/TS_*.java</include>
+            </includes>
+          </configuration>
+        </plugin>
+        
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5.3</version>
+          <configuration>
+            <goals>deploy</goals>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+          </configuration> 
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration>
+            <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.1.2</version>
+          <configuration>
+            <overWriteReleases>false</overWriteReleases>
+            <overWriteIfNewer>true</overWriteIfNewer>
+          </configuration>
+        </plugin>
+        
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration> 
+            <archive>
+              <manifestEntries>
+                <Automatic-Module-Name>${automatic.module.name}</Automatic-Module-Name>
+              </manifestEntries>
+            </archive>
+            <skipIfEmpty>true</skipIfEmpty>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>test-jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>3.2.1</version>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <!-- <phase>package</phase> package is the default -->
+              <goals>
+                <goal>jar-no-fork</goal>
+                <goal>test-jar-no-fork</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.2.0</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <!-- <doclint>none</doclint> -->
+              <!-- To allow the build to keep going despite javadoc problems:
+                   <failOnError>false</failOnError>
+              -->
+              <version>true</version>
+              <quiet>true</quiet>
+              <show>public</show>
+              <encoding>UTF-8</encoding>
+              <windowtitle>${project.name} ${project.version}</windowtitle>
+              <doctitle>${project.name} ${project.version}</doctitle>
+              <bottom>Licensed under the Apache License, Version 2.0</bottom>
+            </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>3.0.0-M3</version>
+          <executions>
+            <execution>
+              <id>enforce</id>
+              <goals>
+                <goal>enforce</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <rules>
+              <requirePluginVersions>
+                <message>Best practice is to always define plugin versions!</message>
+                <banLatest>true</banLatest>
+                <banRelease>true</banRelease>
+              </requirePluginVersions>
+              <requireReleaseDeps>
+                <message>No SNAPSHOT dependencies are allowed!</message>
+                <onlyWhenRelease>true</onlyWhenRelease>
+              </requireReleaseDeps>
+            </rules>
+            <fail>true</fail>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+      </plugin>
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration combine.self="override">
+              <rules>
+                <!-- Upstream inconsistencies prevent use of : <dependencyConvergence />-->
+                <requireJavaVersion>
+                  <version>1.8.0</version>
+                </requireJavaVersion>
+                <requirePluginVersions>
+                  <message>Best practice is to always define plugin versions!</message>
+                  <banLatest>true</banLatest>
+                  <banRelease>true</banRelease>
+                </requirePluginVersions>
+                <requireReleaseDeps>
+                  <message>No SNAPSHOT dependencies are allowed!</message>
+                  <onlyWhenRelease>true</onlyWhenRelease>
+                </requireReleaseDeps>
+                <requireMavenVersion>
+                  <version>3.5.0</version>
+                </requireMavenVersion>
+              </rules>
+              <fail>true</fail>
+              <failFast>false</failFast>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- Run the RAT Plugin -->
+      <plugin>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <version>0.13</version>
+        <!-- 
+             Run only if maven is running from this POM,
+             not when run in a sub-module with this as parent.
+        -->
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <id>rat-checks</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <excludeSubProjects>false</excludeSubProjects>
+          <excludes>
+            <exclude>**/hs_err_pid*.log</exclude>
+            <exclude>docs/**</exclude>
+            <exclude>local/**</exclude>
+            <exclude>.github/**</exclude>
+
+            <exclude>**/.project</exclude>
+            <exclude>**/.settings/**</exclude>
+            <exclude>**/.classpath</exclude>
+            <exclude>**/*.recommenders/**/*</exclude>
+
+            <exclude>**/delta.classpath*</exclude>
+            <exclude>**/README.*</exclude>
+            <exclude>**/*.cfg</exclude>
+
+            <!--
+                Javadoc add-ons files are required to be simple and our javadoc configuration
+                will ensure appropriate license and copyright statements are inserted
+                into generated documentation anyway so no need to put license statements in these
+                files
+            -->
+            <exclude>**/src/main/**/*.html</exclude>
+            <exclude>**/src/**/package-info.java</exclude>
+            
+            <!--
+                Text and Markdown files are typically used only for documentation purposes
+                and license declarations are usually spurious in these files since often they
+                will refer to the LICENSE/NOTICE for users to find the actual licenses
+            -->
+            <exclude>**/*.txt</exclude>
+            <exclude>**/*.md</exclude>
+           
+            <!--
+                META-INF services files can include comments but a license header would be
+                unnecessarily clutter so we exclude these
+            -->
+            <exclude>**/META-INF/services/*</exclude>
+            
+            <exclude>**/testing/**/*</exclude>
+            <exclude>**/log4j*.properties</exclude>
+            <exclude>**/logging*.properties</exclude>
+
+            <!-- Exclude anything created during the build (plugin generated files) ->-->
+            <exclude>**/target/**/*</exclude>
+            <!-- MSHADE-124 -->
+            <exclude>**/dependency-reduced-pom.xml</exclude>
+
+            <!-- ZooKeeper files -->
+            <exclude>**/Tutorial/**/zoo.dynamic</exclude>
+            <exclude>**/Tutorial/**/myid</exclude>
+
+          </excludes>
+        </configuration>
+      </plugin>
+
+    </plugins>
+
+  </build>
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <build>
+        <plugins>
+          <!-- For -Pdev :: don't create javadoc. -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>release</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+              <!-- Fixes for Javadoc when bulding for Java11. Both these are needed. -->
+
+              <!-- (1) Fix for:
+                   Named / unnamed modules error/warning
+              -->
+              <detectJavaApiLink>false</detectJavaApiLink>
+
+              <!-- (2) Fix for:
+                   [ERROR] error: the unnamed module reads package PKG from both A and B
+              -->
+              <source>8</source>
+
+              <!-- End Java11 fixes (2021-01) -->
+              <version>3.2.0</version>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.6</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+  </profiles>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh.snapshots</id>
+      <name>Sonatype Snapshots Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh.releases</id>
+      <name>Sonatype Gateway to Maven Central</name>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+  
+  <repositories>
+    <repository>
+      <id>sonatype.public</id>
+      <name>Sonatype Snapshots Repository</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>daily</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+    </repository>
+    
+    <!-- Only needed for Jena snapshots - - >
+    <repository>
+      <id>apache.snapshots</id>
+      <name>Apache Snapshot Repository</name>
+      <url>https://repository.apache.org/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    -->  
+  </repositories>
+
+</project>

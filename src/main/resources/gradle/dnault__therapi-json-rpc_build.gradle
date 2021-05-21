@@ -1,0 +1,188 @@
+
+plugins {
+    id "com.github.spotbugs" version "4.6.1"
+    id 'org.asciidoctor.jvm.convert' version '3.1.0'
+    id 'java-library'
+    id 'signing'
+    id 'maven-publish'
+    id 'checkstyle'
+}
+
+repositories {
+    mavenCentral()
+}
+
+group = "com.github.therapi"
+version = "0.5.1-SNAPSHOT"
+
+def githubProjectName = "therapi-json-rpc"
+def projectDescription = "JSON-RPC Microframework for Java"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    def slf4jVersion = '1.7.30'
+    def jacksonVersion = '2.12.1'
+    def springVersion = '5.3.4'
+
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+
+    // optional dependencies
+    compileOnly "org.springframework:spring-web:${springVersion}"
+    compileOnly "org.springframework:spring-webmvc:${springVersion}"
+    compileOnly "org.springframework:spring-aop:${springVersion}"
+
+    implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+
+    implementation 'com.google.code.findbugs:jsr305:3.0.0'
+    implementation 'com.google.guava:guava:21.0'
+    implementation 'org.apache.commons:commons-lang3:3.11'
+    implementation 'org.apache.commons:commons-text:1.9'
+    implementation 'aopalliance:aopalliance:1.0'
+
+    api "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+    api "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    api "com.fasterxml.jackson.module:jackson-module-parameter-names:${jacksonVersion}"
+    api "com.fasterxml.jackson.module:jackson-module-jsonSchema:${jacksonVersion}"
+
+    implementation "com.github.therapi:therapi-runtime-javadoc:0.12.0"
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'net.javacrumbs.json-unit:json-unit:1.28.2'
+    testImplementation "org.slf4j:slf4j-simple:${slf4jVersion}"
+    testImplementation "org.springframework:spring-aop:${springVersion}"
+}
+
+task sourceJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+}
+
+
+def gitUrl = "git@github.com:dnault/${githubProjectName}.git";
+
+def pomConfig = {
+    name "${group}:${project.name}"
+    description projectDescription
+    url "https://github.com/dnault/${githubProjectName}"
+    scm {
+        url "${gitUrl}"
+        connection "scm:git:${gitUrl}"
+        developerConnection "scm:git:${gitUrl}"
+    }
+    licenses {
+        license {
+            name 'Apache License 2.0'
+            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+        }
+    }
+    developers {
+        developer {
+            name 'David Nault'
+            email 'dnault@mac.com'
+            organization 'dnault'
+            organizationUrl 'https://github.com/dnault'
+        }
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            setUrl("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+            credentials {
+                // defined externally in gradle.properties
+                username = project.properties["ossrhUsername"]
+                password = project.properties["ossrhPassword"]
+            }
+        }
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+            pom.withXml {
+                asNode().appendNode('description', projectDescription)
+                asNode().children().last() + pomConfig
+            }
+
+            from components.java
+
+            artifact sourceJar {
+                classifier 'sources'
+            }
+
+            artifact javadocJar {
+                classifier 'javadoc'
+            }
+        }
+    }
+}
+
+signing {
+    // Use GPG agent
+    // https://docs.gradle.org/current/userguide/signing_plugin.html#sec:using_gpg_agent
+    // Requires "signing.gnupg.keyName" property defined externally in gradle.properties
+    useGpgCmd()
+
+    sign publishing.publications.mavenJava
+}
+
+task install {
+    dependsOn(publishToMavenLocal)
+}
+tasks.withType(JavaCompile) {
+    // retain parameter names in class files
+    options.compilerArgs << "-parameters"
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
+
+checkstyle {
+    toolVersion = "6.16.1"
+}
+
+spotbugs {
+    ignoreFailures = true
+    excludeFilter = file("config/findbugs/findbugs-exclude.xml")
+}
+
+spotbugsMain {
+    reports {
+        html {
+            enabled = true
+            destination = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+            stylesheet = 'fancy-hist.xsl'
+        }
+    }
+}
+
+asciidoctor {
+    attributes 'source-highlighter': 'coderay',
+           // toc: '',
+            idprefix: '',
+            idseparator: '-',
+            'data-uri': '',
+            example: "${projectDir}/examples/src/main/java/com/github/therapi/example/"
+
+    // icons               : '',
+    // 'data-uri'          : ''
+}
+
+// Prohibit snapshot dependencies unless we're building a snapshot
+if (!version.endsWith("SNAPSHOT")) {
+    configurations.all {
+        resolutionStrategy.eachDependency { details ->
+            if (details.requested.version.endsWith("-SNAPSHOT")) {
+                throw new GradleException("Can't release with SNAPSHOT dependency: $details.requested")
+            }
+        }
+    }
+}

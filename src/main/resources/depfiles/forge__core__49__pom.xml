@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>org.jboss.forge</groupId>
+      <artifactId>forge-parent</artifactId>
+      <version>3.9.9-SNAPSHOT</version>
+      <relativePath>../pom.xml</relativePath>
+   </parent>
+
+   <groupId>org.jboss.forge.addon</groupId>
+   <artifactId>javaee-parent</artifactId>
+
+   <packaging>pom</packaging>
+   <name>Forge - JavaEE Parent</name>
+
+   <modules>
+      <module>spi</module>
+      <module>addon</module>
+      <module>api</module>
+      <module>impl</module>
+      <module>scaffold-faces</module>
+      <module>tests</module>
+   </modules>
+
+   <properties>
+      <javaee.descriptors.version>0.0.6.Final</javaee.descriptors.version>
+   </properties>
+
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <groupId>org.jboss.forge.addon</groupId>
+            <artifactId>javaee-impl</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.forge.descriptors</groupId>
+            <artifactId>javaee-descriptors-api</artifactId>
+            <version>${javaee.descriptors.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.forge.descriptors</groupId>
+            <artifactId>javaee-descriptors</artifactId>
+            <version>${javaee.descriptors.version}</version>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
+</project>

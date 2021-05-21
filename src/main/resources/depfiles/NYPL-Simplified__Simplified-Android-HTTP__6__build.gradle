@@ -1,0 +1,7 @@
+dependencies {
+  api libraries.irradia_mime_api
+  api libraries.jackson_core
+
+  implementation libraries.kotlin_stdlib
+  implementation libraries.kotlin_reflect
+}

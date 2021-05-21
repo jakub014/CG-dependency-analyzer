@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.tagmycode</groupId>
+    <artifactId>tagmycode-netbeans</artifactId>
+    <version>2.3.0</version>
+    <packaging>nbm</packaging>
+    <name>TagMyCode</name>
+    <url>https://tagmycode.com</url>
+    <developers>
+        <developer>
+            <id>massimozappino</id>
+            <name>Massimo Zappino</name>
+            <email>massimo.zappino@gmail.com</email>
+            <timezone>+2</timezone>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://github.com/massimozappino/tagmycode-netbeans.git</connection>
+        <developerConnection>scm:git:https://github.com/massimozappino/tagmycode-netbeans.git</developerConnection>
+        <url>https://github.com/massimozappino/tagmycode-netbeans/tree/${project.scm.tag}</url>
+        <tag>master</tag>
+    </scm>
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+    <properties>
+        <netbeans.api.version>RELEASE110</netbeans.api.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <tagmycode-java-plugin-framework.version>2.3.2</tagmycode-java-plugin-framework.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>nbm-maven-plugin</artifactId>
+                <version>3.13</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <useOSGiDependencies>false</useOSGiDependencies>
+                    <publicPackages>
+                        <publicPackage>com.tagmycode.netbeans</publicPackage>
+                    </publicPackages>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <useDefaultManifestFile>true</useDefaultManifestFile>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.0</version>
+            </plugin>
+        </plugins>
+    </build>
+    <repositories>
+        <repository>
+            <id>netbeans</id>
+            <name>Repository hosting NetBeans modules</name>
+            <url>http://bits.netbeans.org/nexus/content/groups/netbeans</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    
+    
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <keyname>1F3AB7627F208553</keyname>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9.1</version>
+                        <configuration>
+                            <source>8</source>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fifesoft</groupId>
+            <artifactId>rsyntaxtextarea</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>23.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-netbeans-api-annotations-common</artifactId>
+            <version>${netbeans.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-openide-awt</artifactId>
+            <version>${netbeans.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-netbeans-modules-settings</artifactId>
+            <version>${netbeans.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-openide-dialogs</artifactId>
+            <version>${netbeans.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-netbeans-modules-editor</artifactId>
+            <version>${netbeans.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-netbeans-modules-keyring</artifactId>
+            <version>${netbeans.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-openide-nodes</artifactId>
+            <version>${netbeans.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-openide-util</artifactId>
+            <version>${netbeans.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-openide-loaders</artifactId>
+            <version>${netbeans.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-openide-windows</artifactId>
+            <version>${netbeans.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-openide-util-ui</artifactId>
+            <version>${netbeans.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-openide-text</artifactId>
+            <version>${netbeans.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-netbeans-api-progress</artifactId>
+            <version>${netbeans.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>                
+                        
+        <dependency>
+            <groupId>com.tagmycode</groupId>
+            <artifactId>tagmycode-plugin-framework</artifactId>
+            <version>${tagmycode-java-plugin-framework.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.3.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.3.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.3.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <description>Provides the support for &lt;a href="https://tagmycode.com"&gt;TagMyCode&lt;/a&gt;.
+
+
+This plugin allows you to manage your own snippets.&lt;br/&gt;
+&lt;br/&gt;
+Features:&lt;br/&gt;
+* Add snippets: you can save your code snippets including description, language, and tags&lt;br/&gt;
+* List snippets (CRUD): snippets are stored locally and you can filter, sort, create, modify, edit or delete them directly from the IDE&lt;br/&gt;
+* Quick search: you can search your snippets and insert them directly into the document&lt;br/&gt;
+&lt;br/&gt;
+CHANGELOG:&lt;br/&gt;
+&lt;br/&gt;
+2.3.0 (released 2020-07-26)&lt;br/&gt;
+* published plugin into Apache NetBeans Plugin Portal&lt;br/&gt;
+* filter snippets by languages&lt;br/&gt;
+&lt;br/&gt;
+2.2.1 (released 2018-01-10)&lt;br/&gt;
+* Quick Search dialog is now resizable&lt;/br&gt;
+* fixed syntax highlight for PHP and HTML&lt;/br&gt;
+* if refresh token is not valid user will be automatically logged out&lt;/br&gt;
+&lt;/br&gt;
+2.2.0 (released 2017-11-06)&lt;br/&gt;
+* snippets management works in offline mode&lt;br/&gt;
+* autodetect language on new snippet&lt;br/&gt;
+* added settings dialog with editor theme and font size option&lt;br/&gt;
+* added title and description to snippet view&lt;br/&gt;
+* changed open browser class&lt;br/&gt;
+* text can be dragged into table to create a new snippet&lt;br/&gt;
+* snippets can be dragged directly into editor and the code are copied&lt;br/&gt;
+* added "save as file" feature&lt;br/&gt;
+* added "clone snippet" feature&lt;br/&gt;
+* added "snippet properties" dialog&lt;br/&gt;
+* detect binary file&lt;br/&gt;
+&lt;br/&gt;
+2.1.0 (released 2017-04-24)&lt;br/&gt;
+* moved error messages from dialog to Netbeans Notification Log&lt;br/&gt;
+* added welcome panel&lt;br/&gt;
+* about dialog shows plugin version and framework version&lt;br/&gt;
+* moved storage from JSON to SQL&lt;br/&gt;
+&lt;br/&gt;
+2.0 (released 2016-07-11)&lt;br/&gt;
+* new user interface&lt;br/&gt;
+* list of snippets stored locally&lt;br/&gt;
+* syntax highlight powered by &lt;a href="http://bobbylight.github.io/RSyntaxTextArea/"&gt;RSyntaxTextArea&lt;/a&gt;&lt;br/&gt;
+* snippets are synchronized with server&lt;br/&gt;
+* filter snippets&lt;br/&gt;
+* quick search feature&lt;br/&gt;
+* insert selected snippet at cursor in document&lt;br/&gt;
+&lt;br/&gt;
+1.1.3 (released 2015-12-18)&lt;br/&gt;
+* Fix for NetBeans 8.1&lt;br/&gt;
+&lt;br/&gt;
+1.1.2 (released 2014-10-03)&lt;br/&gt;
+* Switched authentication from OAuth 1.0a to OAuth 2&lt;br/&gt;
+* Console write also snippet title when new snippet is created (thanks to bejoy)&lt;br/&gt;
+&lt;br/&gt;
+1.1 (released 2014-08-19)&lt;br/&gt;
+* Added "Search snippets" feature&lt;br/&gt;
+* Fixed some minor bugs&lt;br/&gt;
+&lt;br/&gt;
+1.0 (released 2014-04-14)&lt;br/&gt;
+* First release with feature "Create snippet"&lt;br/&gt;
+
+</description>
+</project>

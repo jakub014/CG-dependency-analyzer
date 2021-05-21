@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>activitystreams-hsp</artifactId>
+  <packaging>jar</packaging>
+  <name>Activitystreams-HSP</name>
+  <description>Module for HSP-Messaging</description>
+  <url>https://github.com/StaatsbibliothekBerlin/messaging</url>
+  <licenses>
+    <license>
+      <name>MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <url>scm:git:https://github.com/StaatsbibliothekBerlin/messaging</url>
+  </scm>
+
+  <parent>
+    <artifactId>hsp-messaging</artifactId>
+    <groupId>de.staatsbibliothek-berlin.hsp</groupId>
+    <version>1.1.17</version>
+  </parent>
+
+  <developers>
+    <developer>
+      <email>konrad.eichstaedt@sbb.spk-berlin.de</email>
+      <name>Eichstaedt Konrad</name>
+      <organization>Staatsbibliothek zu Berlin</organization>
+      <organizationUrl>https://www.staatsbibliothek-berlin.de</organizationUrl>
+    </developer>
+    <developer>
+      <email>piotr.czarnecki@sbb.spk-berlin.de</email>
+      <name>Czarnecki Piotr</name>
+      <organization>Staatsbibliothek zu Berlin</organization>
+      <organizationUrl>https://www.staatsbibliothek-berlin.de</organizationUrl>
+    </developer>
+    <developer>
+      <email>konstantin.goerlitz@sbb.spk-berlin.de</email>
+      <name>Konstantin Görlitz</name>
+      <organization>Staatsbibliothek zu Berlin</organization>
+      <organizationUrl>https://www.staatsbibliothek-berlin.de</organizationUrl>
+    </developer>
+    <developer>
+      <name>Constantijn Blondel</name>
+      <email>Constantijn.Blondel@sbb.spk-berlin.de</email>
+      <organization>Staatsbibliothek zu Berlin</organization>
+      <organizationUrl>https://www.staatsbibliothek-berlin.de</organizationUrl>
+    </developer>
+    <developer>
+      <name>Marten Christoph</name>
+      <email>Christoph.Marten@sbb.spk-berlin.de</email>
+      <organization>Staatsbibliothek zu Berlin</organization>
+      <organizationUrl>https://www.staatsbibliothek-berlin.de</organizationUrl>
+    </developer>
+    <developer>
+      <name>Udo Boysen</name>
+      <email>Udo.Boysen@sbb.spk-berlin.de</email>
+      <organization>Staatsbibliothek zu Berlin</organization>
+      <organizationUrl>https://www.staatsbibliothek-berlin.de</organizationUrl>
+    </developer>
+  </developers>
+
+  <profiles>
+    <!-- Default profile. -->
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <sign.package>false</sign.package>
+        <maven.javadoc.skip>false</maven.javadoc.skip>
+        <maven.site.skip>true</maven.site.skip>
+        <maven.source.skip>false</maven.source.skip>
+        <skipITs>true</skipITs>
+      </properties>
+    </profile>
+
+    <!-- Profile for the CI server. -->
+    <profile>
+      <id>integration</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <sign.package>false</sign.package>
+        <maven.javadoc.skip>false</maven.javadoc.skip>
+        <maven.site.skip>false</maven.site.skip>
+        <skipITs>false</skipITs>
+      </properties>
+
+      <build>
+          <plugins>
+            <plugin>
+              <groupId>org.jacoco</groupId>
+              <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-failsafe-plugin</artifactId>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+            <plugin>
+              <artifactId>maven-release-plugin</artifactId>
+              <groupId>org.apache.maven.plugins</groupId>
+            </plugin>
+            <plugin>
+              <artifactId>maven-install-plugin</artifactId>
+              <groupId>org.apache.maven.plugins</groupId>
+            </plugin>
+            <plugin>
+              <artifactId>maven-resources-plugin</artifactId>
+              <groupId>org.apache.maven.plugins</groupId>
+            </plugin>
+            <plugin>
+              <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+              <artifactId>maven-dependency-plugin</artifactId>
+              <executions>
+                <execution>
+                  <phase>package</phase>
+                  <goals>
+                    <goal>copy-dependencies</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${project.build.directory}/${project.artifactId}/WEB-INF/lib
+                    </outputDirectory>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>deb</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <skipITs>true</skipITs>
+      </properties>
+    </profile>
+    <profile>
+      <id>public</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-source-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+          </plugin>
+          <plugin>
+              <groupId>org.sonatype.plugins</groupId>
+              <artifactId>nexus-staging-maven-plugin</artifactId>
+          </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+      <distributionManagement>
+        <snapshotRepository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+      </distributionManagement>
+    </profile>
+  </profiles>
+
+  <dependencies>
+    <dependency>
+      <groupId>de.staatsbibliothek-berlin.hsp</groupId>
+      <artifactId>tei-jaxb</artifactId>
+      <scope>compile</scope>
+      <version>${hsp-messaging.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>jackson-annotations</artifactId>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>jackson-core</artifactId>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>jackson-databind</artifactId>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.module</groupId>
+      <artifactId>jackson-module-jaxb-annotations</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit-jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+  </dependencies>
+
+</project>

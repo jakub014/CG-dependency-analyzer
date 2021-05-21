@@ -1,0 +1,118 @@
+
+plugins {
+  id "com.bmuschko.nexus" version "2.3.1"
+}
+plugins {
+    id 'java-library'
+}
+//plugins {
+//    id "org.jetbrains.kotlin.jvm" version "1.4.10"
+//}
+//plugins {
+//  id "io.vertx.vertx-plugin" version "1.1.2"
+//}
+
+archivesBaseName = "haruno-core"
+version = "0.1.0-beta"
+description = 'Haruno Core'
+
+jar {
+    enabled = true
+    baseName = archivesBaseName
+//    classifier = ''
+    manifest {
+        attributes 'Implementation-Title': 'Haruno Bot Core', 'Implementation-Version': version
+    }
+}
+
+//vertx {
+//    vertxVersion = "3.9.3"
+//    
+//    mainVerticle = 'org.iharu.haruno.core.launcher.Launcher'
+//  
+//}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url "https://repo1.maven.org/maven2/"
+    }
+}
+
+test {
+    useJUnit()
+}
+
+//https://github.com/howmanybots/onebot/blob/master/v11/specs/README.md
+
+//websocket 
+//https://medium.com/@alexey.soshin/playing-ping-pong-over-websockets-with-vert-x-447c634c6c87
+
+dependencies {
+//    implementation 'org.iharu.bootstrap:iharu-foundation:0.2.0-beta'
+    implementation project(":haruno-core-support") 
+    
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+//    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
+
+    implementation "io.vertx:vertx-core:${vertxVersion}"
+    implementation "io.vertx:vertx-web-client:${vertxVersion}"
+//    implementation 'io.vertx:vertx-web:3.9.3'
+//    implementation 'io.vertx:vertx-platform:2.1.6'
+    implementation 'com.lmax:disruptor:3.4.2'
+
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.11.2'
+    
+    implementation 'dk.brics:automaton:1.12-1'
+    
+//    testImplementation 'org.iharu.bootstrap:iharu-foundation:0.2.0-beta'
+}
+
+javadoc {
+    options.encoding = 'UTF-8'
+}
+
+modifyPom {
+    project {
+        name archivesBaseName
+        packaging 'jar'
+        // optionally artifactId can be defined here 
+        description 'The initial part of the iHaru Framework'
+        url 'https://github.com/harunobot/HarunoBot'
+        inceptionYear '2020'
+
+        scm {
+          connection 'scm:https://github.com/harunobot/HarunoBot.git'
+          developerConnection 'scm:git://github.com/harunobot/HarunoBot.git'
+          url 'https://github.com/harunobot/HarunoBot'
+        }
+
+        licenses {
+          license {
+            name 'GNU General Public License, version 3'
+            url 'http://www.gnu.org/licenses/gpl-3.0.txt'
+          }
+        }
+
+        developers {
+          developer {
+            id 'VEP'
+            name 'iTeamVEP'
+            email 'x517138883@gmail.com'
+          }
+        }
+    }
+}
+
+extraArchive {
+    sources = true
+    tests = true
+    javadoc = true
+}
+
+nexus {
+    sign = true
+    repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+    snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+}

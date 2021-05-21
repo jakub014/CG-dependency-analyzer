@@ -1,0 +1,127 @@
+plugins {
+    id 'java-library'
+    id 'checkstyle'
+    id 'com.github.spotbugs' version '4.5.1'
+    id 'com.bmuschko.nexus' version '2.3.1'
+    id 'io.codearte.nexus-staging' version '0.21.2'
+}
+
+group = 'com.imsweb'
+version = file('VERSION').text.trim()
+description = 'Cancer-related synthetic data generator.'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+println "Starting build using JDK ${Runtime.version().feature()}"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api 'com.imsweb:layout:3.3'
+    api 'com.imsweb:naaccr-xml:7.12'
+
+    implementation 'com.imsweb:algorithms:3.3'
+    implementation 'com.imsweb:staging-client-java:6.0.0'
+    implementation 'com.imsweb:staging-algorithm-cs:02.05.50.7'
+    implementation 'org.apache.commons:commons-lang3:3.11'
+    implementation 'commons-io:commons-io:2.7'
+
+    testImplementation 'junit:junit:4.13'
+}
+
+// enforce UTF-8, display the compilation warnings
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+}
+
+// the Javadoc was made way too strict in Java 8 and it's not worth the time fixing everything!
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
+
+// customize the manifest
+jar {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                'Implementation-Version': project.version,
+                'Implementation-Vendor': 'Information Management Services Inc.',
+                'Created-By': System.properties['java.vm.version'] + ' (' + System.properties['java.vm.vendor'] + ')',
+                'Built-By': System.getProperty('user.name'),
+                'Built-Date': new Date(),
+                'Built-JDK': System.getProperty('java.version'),
+                'Automatic-Module-Name': 'com.imsweb.datagenerator',
+                'Main-Class': 'com.imsweb.datagenerator.gui.StandaloneNaaccrDataGenerator')
+    }
+    from ('VERSION') {
+        rename 'VERSION', 'DATA-GENERATOR-VERSION'
+    }
+    from ('LICENSE') {
+        rename 'LICENSE', 'DATA-GENERATOR-LICENSE'
+    }
+}
+
+// checkstyle plugin settings
+checkstyle {
+    ignoreFailures = true
+    configFile = project(':').file('config/checkstyle/checkstyle.xml')
+    configProperties = ['suppressionFile': project(':').file('config/checkstyle/suppressions.xml')]
+}
+
+// spotbugs plugin settings
+spotbugs {
+    ignoreFailures = true
+    excludeFilter = project(':').file("config/spotbugs/spotbugs-exclude.xml")
+}
+
+// configure nexus staging plugin
+nexusStaging {
+    numberOfRetries = 50
+    delayBetweenRetriesInMillis = 5000
+}
+
+// needed to deploy to Maven Central
+modifyPom {
+    project {
+        name 'Synthetic data generator.'
+        description 'This Java library can be used to create synthetic data files.'
+        url 'https://github.com/imsweb/data-generator'
+        inceptionYear '2016'
+
+        scm {
+            url 'https://github.com/imsweb/data-generator'
+            connection 'scm:https://github.com/imsweb/data-generator.git'
+            developerConnection 'scm:git@github.com:imsweb/data-generator.git'
+        }
+
+        licenses {
+            license {
+                name 'A modified BSD License (BSD)'
+                url 'https://github.com/imsweb/data-generator/blob/master/LICENSE'
+                distribution 'repo'
+            }
+        }
+
+        developers {
+            developer {
+                id 'depryf'
+                name 'Fabian Depry'
+                email 'depryf@imsweb.com'
+            }
+        }
+    }
+}
+
+// don't try to release a snapshot to a non-snapshot repository, that won't work anyway
+if (version.endsWith('-SNAPSHOT'))
+    gradle.startParameter.excludedTaskNames += 'closeAndReleaseRepository'
+
+// Gradle wrapper, this allows to build the project without having to install Gradle...
+wrapper {
+    gradleVersion = '6.7'
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+

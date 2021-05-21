@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(":sbk-api")
+    // https://mvnrepository.com/artifact/org.foundationdb/fdb-java
+    compile group: 'org.foundationdb', name: 'fdb-java', version: '6.2.22'
+}

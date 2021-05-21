@@ -1,0 +1,60 @@
+/*
+ * Root project for xtext-lib.
+ */
+
+import java.time.format.DateTimeFormatter
+import java.time.LocalDateTime
+
+buildscript {
+	apply from: "${rootDir}/gradle/versions.gradle"
+	repositories.mavenCentral()
+	dependencies {
+		classpath "org.xtext:xtext-gradle-plugin:$versions.xtext_gradle_plugin"
+	}
+}
+
+plugins {
+  id 'org.ajoberstar.grgit' version '4.1.0'
+}
+
+apply from: "${rootDir}/gradle/versions.gradle"
+apply from: "${rootDir}/gradle/bootstrap-setup.gradle"
+
+ext.buildTime = DateTimeFormatter.ofPattern('yyyyMMdd-HHmm').format(LocalDateTime.now())
+
+subprojects {
+	version = rootProject.version
+	
+	repositories {
+		mavenLocal()
+		mavenCentral()
+		// TODO remove this once we switched back to java platform plugin
+		// https://github.com/eclipse/xtext/issues/1388
+		maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+	}
+	apply plugin: 'maven-publish'
+	if (name != 'org.eclipse.xtext.dev-bom') {
+		apply plugin: 'java'
+		dependencies {
+			compile platform(project(':org.eclipse.xtext.dev-bom'))
+		}
+		if (findProperty('compileXtend') == 'true') {
+			apply plugin: 'org.xtext.xtend'
+		}
+		apply plugin: 'eclipse'
+		
+		
+		apply from: "${rootDir}/gradle/java-compiler-settings.gradle"
+		apply from: "${rootDir}/gradle/xtend-compiler-settings.gradle"
+		apply from: "${rootDir}/gradle/maven-deployment.gradle"
+		apply from: "${rootDir}/gradle/eclipse-project-layout.gradle"
+		apply from: "${rootDir}/gradle/manifest-gen.gradle"
+		apply from: "${rootDir}/gradle/validation.gradle"
+	}
+}
+
+task clean(type: Delete) {
+	group 'Build'
+	description 'Deletes the local repositories'
+	delete 'build'
+}

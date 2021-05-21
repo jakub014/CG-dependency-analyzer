@@ -1,0 +1,127 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>funnelback-shared-test</artifactId>
+    <packaging>jar</packaging>
+    <name>Plugin Shared Test Resources</name>
+    <parent>
+        <groupId>com.funnelback</groupId>
+        <artifactId>funnelback-shared-parent</artifactId>
+        <version>16.3.2118-SNAPSHOT</version>
+    </parent>
+
+    <description>Utilities and supporting classes for testing plugins for the Funnelback Enterprise Search Engine</description>
+    <url>https://github.com/FunnelbackPtyLtd/funnelback-shared</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Funnelback R&amp;D Team</name>
+            <email>dev@funnelback.com</email>
+            <organization>Funnelback</organization>
+            <organizationUrl>https://funnelback.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/FunnelbackPtyLtd/funnelback-shared.git</connection>
+        <developerConnection>scm:git:ssh://github.com:FunnelbackPtyLtd/funnelback-shared.git</developerConnection>
+        <url>http://github.com/FunnelbackPtyLtd/funnelback-shared/tree/master</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>funnelback-snapshots</id>
+            <url>http://maven-repo.cbr.au.funnelback.com:8081/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <finalName>funnelback-${project.artifactId}-${project.version}</finalName>
+        <plugins>
+            <plugin>
+                <!-- JavaDoc doesn't understand lombok, so we must delombok first.
+                     See https://stackoverflow.com/a/51947792/797 and https://github.com/rzwitserloot/lombok/issues/1033 --> 
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-maven-plugin</artifactId>
+                <version>1.18.2.0</version>
+                <configuration>
+                    <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+                    <outputDirectory>${project.basedir}/target/delombok</outputDirectory>
+                    <addOutputDirectory>false</addOutputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>delombok</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <configuration>
+                    <show>private</show>
+                    
+                    <sourcepath>${project.basedir}/target/delombok</sourcepath>
+                    <sourceFileIncludes>
+                        <include>com/**/*.java</include>
+                    </sourceFileIncludes>
+                    <!-- It can be tempting to turn this to false, don't-->
+                    <failOnError>true</failOnError>
+                    <docfilessubdirs>true</docfilessubdirs>
+                    <failOnError>false</failOnError>
+                    <additionalparam>--allow-script-in-comments</additionalparam>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.funnelback</groupId>
+            <artifactId>funnelback-shared</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
+    </dependencies>
+</project>

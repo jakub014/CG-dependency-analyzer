@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ai.active</groupId>
+    <artifactId>webhook-sdk</artifactId>
+    <version>1.0.8-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Webhook SDK</name>
+    <description>Webhook Request Response Pojos</description>
+    <url>https://triniti.ai</url>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Active AI</name>
+            <email>dev@active.ai</email>
+            <organization>Active Intelligence</organization>
+            <organizationUrl>https://active.ai</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/triniticloud/webhook-sdk.git</connection>
+        <developerConnection>scm:git:https://github.com/triniticloud/webhook-sdk.git</developerConnection>
+        <url>https://github.com/triniticloud/webhook-sdk.git</url>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <jackson.version>[2.9.9.2,)</jackson.version>
+        <commons-lang3.version>3.8.1</commons-lang3.version>
+        <org.springframework.security.spring-security-crypto.version>5.1.5.RELEASE</org.springframework.security.spring-security-crypto.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+            <version>${org.springframework.security.spring-security-crypto.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <minmemory>128m</minmemory>
+                    <maxmemory>4g</maxmemory>
+                    <includeDependencySources>false</includeDependencySources>
+                    <show>public</show>
+                    <defaultexcludes>yes</defaultexcludes>
+                    <author>false</author>
+                    <version>true</version>
+                    <use>false</use>
+                    <notree>true</notree>
+                    <nodeprecatedlist>true</nodeprecatedlist>
+                    <windowtitle>Webhook SDK for Java -
+                        ${project.version}</windowtitle>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                    <doctitle>Webhook SDK for Java API Reference -
+                        ${project.version}</doctitle>
+                    <packagesheader>Webhook SDK for Java</packagesheader>
+                    <bottom><![CDATA[Copyright &#169; Active Intelligence Pte Ltd (http://active.ai/). All Rights Reserved.]]></bottom>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <configuration>
+                            <gpgArguments>
+                                <arg>--no-tty</arg>
+                                <arg>--pinentry-mode</arg>
+                                <arg>loopback</arg>
+                            </gpgArguments>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.7</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                          <serverId>ossrh</serverId>
+                          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                      </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>artifactory</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>snapshots</id>
+                    <name>artifactory-snapshots</name>
+                    <url>https://artifactory.active.ai/artifactory/libs-snapshot-local</url>
+                </snapshotRepository>
+                <repository>
+                    <id>central</id>
+                    <name>artifactory-releases</name>
+                    <url>https://artifactory.active.ai/artifactory/libs-release-local</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
+
+</project>

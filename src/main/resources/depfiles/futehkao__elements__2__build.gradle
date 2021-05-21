@@ -1,0 +1,51 @@
+/*
+Copyright 2015-2019 Futeh Kao
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+dependencies {
+    compile "org.yaml:snakeyaml:${snakeyamlVersion}"
+    compile "simple-jndi:simple-jndi:${simplejndiVersion}"
+    compile "com.google.code.findbugs:jsr305:${findbugsVersion}"
+    compile "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+    compile "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+    compile group: 'org.apache.logging.log4j', name: 'log4j-web', version: "${log4jVersion}"
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile ("org.apache.logging.log4j:log4j-slf4j-impl:${log4jVersion}")
+    compile "org.apache.logging.log4j:log4j-jul:${log4jVersion}"
+    compile "com.lmax:disruptor:${lmaxDisruptorVerions}"
+    compile ("org.codehaus.groovy:groovy:${groovyVersion}:indy")
+    compile ("org.codehaus.groovy:groovy-json:${groovyVersion}:indy")
+    compile "com.google.guava:guava:${guavaVerions}"
+
+    compile ("com.sun.mail:javax.mail:${javamailVersion}")
+    compile (group: 'javax', name: 'javaee-api', version: "${javaeeApiVersion}")  // we need this because of javax annotation, inject etc
+    compile ("org.glassfish.jaxb:jaxb-runtime:${jaxbRuntimeVersion}")
+    compile ("com.fasterxml.jackson.core:jackson-core:${jacksonVersion}")
+    compile ("com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}")
+    compile ("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
+    compile ("com.fasterxml.jackson.module:jackson-module-jaxb-annotations:${jacksonVersion}")
+    compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${jacksonVersion}"
+    compile "net.bytebuddy:byte-buddy:${bytebuddyVersion}"
+
+    compile ("org.ehcache:ehcache:${ehcacheVersion}")
+    compile "javax.cache:cache-api:${javaCacheApiVerison}"
+    compile ("com.typesafe.akka:akka-actor-typed_${akkaScalaVersion}:${akkaVersion}")
+    compile group: 'com.typesafe.akka', name: "akka-actor_${akkaScalaVersion}", version: "${akkaVersion}"
+
+    testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
+    testCompile "org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}"
+    testCompile "org.junit.platform:junit-platform-launcher:${junitPlatformLauncherVersion}"
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
+}

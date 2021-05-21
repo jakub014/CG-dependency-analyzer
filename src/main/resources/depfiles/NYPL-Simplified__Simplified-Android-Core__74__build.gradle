@@ -1,0 +1,105 @@
+android {
+  testOptions {
+    unitTests {
+      includeAndroidResources = true
+    }
+  }
+}
+
+dependencies {
+
+  api project(":simplified-accessibility")
+  api project(":simplified-accounts-api")
+  api project(":simplified-accounts-database")
+  api project(":simplified-accounts-database-api")
+  api project(":simplified-accounts-json")
+  api project(":simplified-accounts-registry")
+  api project(":simplified-accounts-registry-api")
+  api project(":simplified-accounts-source-filebased")
+  api project(":simplified-accounts-source-nyplregistry")
+  api project(":simplified-accounts-source-spi")
+  api project(":simplified-analytics-api")
+  api project(":simplified-analytics-circulation")
+  api project(":simplified-books-api")
+  api project(":simplified-books-audio")
+  api project(":simplified-books-borrowing")
+  api project(":simplified-books-bundled-api")
+  api project(":simplified-books-controller")
+  api project(":simplified-books-controller-api")
+  api project(":simplified-books-covers")
+  api project(":simplified-books-database")
+  api project(":simplified-books-database-api")
+  api project(":simplified-books-formats")
+  api project(":simplified-books-formats-api")
+  api project(":simplified-books-registry-api")
+  api project(":simplified-boot-api")
+  api project(":simplified-feeds-api")
+  api project(":simplified-files")
+  api project(":simplified-futures")
+  api project(":simplified-json-core")
+  api project(":simplified-migration-from3master")
+  api project(":simplified-migration-spi")
+  api project(":simplified-metrics")
+  api project(":simplified-metrics-api")
+  api project(":simplified-notifications")
+  api project(":simplified-oauth")
+  api project(":simplified-opds-auth-document")
+  api project(":simplified-opds-auth-document-api")
+  api project(":simplified-opds-core")
+  api project(":simplified-opds2")
+  api project(":simplified-opds2-irradia")
+  api project(":simplified-opds2-parser-api")
+  api project(":simplified-opds2-r2")
+  api project(":simplified-patron")
+  api project(":simplified-patron-api")
+  api project(":simplified-profiles")
+  api project(":simplified-profiles-api")
+  api project(":simplified-profiles-controller-api")
+  api project(":simplified-reader-api")
+  api project(":simplified-reader-bookmarks")
+  api project(":simplified-reader-bookmarks-api")
+  api project(":simplified-services-api")
+  api project(":simplified-tenprint")
+  api project(":simplified-threads")
+  api project(":simplified-ui-branding")
+  api project(":simplified-ui-errorpage")
+  api project(":simplified-ui-splash")
+  api project(":simplified-ui-theme")
+  api project(":simplified-viewer-epub-readium1")
+  api project(":simplified-webview")
+
+  api libraries.nypl_audiobook_api
+  api libraries.nypl_audiobook_downloads
+  api libraries.nypl_audiobook_feedbooks
+  api libraries.nypl_audiobook_manifest_license_check_api
+  api libraries.nypl_audiobook_manifest_fulfill_api
+  api libraries.nypl_audiobook_manifest_fulfill_basic
+  api libraries.nypl_audiobook_manifest_parser_webpub
+  api libraries.nypl_audiobook_open_access
+  api libraries.nypl_audiobook_rbdigital
+  api libraries.nypl_audiobook_views
+
+  implementation libraries.io7m_jfunctional
+  implementation libraries.io7m_jnull
+  implementation libraries.jackson_databind
+  implementation libraries.junit
+  implementation libraries.junit_jupiter_api
+  implementation libraries.junit_jupiter_engine
+  implementation libraries.kotlin_stdlib
+  implementation libraries.kotlin_reflect
+  implementation libraries.mockito_android
+  implementation libraries.mockito_kotlin
+  implementation libraries.nypl_drm_core
+  implementation libraries.nypl_http_api
+  implementation libraries.nypl_http_bearer_token
+  implementation libraries.nypl_http_vanilla
+  implementation libraries.okhttp3_mockwebserver
+  implementation libraries.slf4j
+  implementation libraries.nypl_readium
+  implementation libraries.nypl_readium_js
+  implementation libraries.koush_async
+
+  testImplementation libraries.logback_classic
+  testImplementation libraries.junit
+  testImplementation libraries.robolectric
+}

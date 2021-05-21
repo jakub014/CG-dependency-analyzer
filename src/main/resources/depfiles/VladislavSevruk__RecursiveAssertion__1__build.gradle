@@ -1,0 +1,38 @@
+dependencies {
+    compile project(':recursive-assertion-core')
+    api (
+            "org.assertj:assertj-core:${assertjVersion}"
+    )
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = "${project.name}"
+            from components.java
+            pom {
+                name = 'Recursive Assertion AssertJ'
+                description = 'This utility library helps to assert complex models using various settings and provide convenient error messages using AssertJ SoftAssertion class.'
+                url = 'https://github.com/VladislavSevruk/RecursiveAssertion/recursive-assertion-assertj'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'uladzislau_seuruk'
+                        name = 'Uladzislau Seuruk'
+                        email = 'vladislavsevruk@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://VladislavSevruk/RecursiveAssertion.git'
+                    developerConnection = 'scm:git:ssh://VladislavSevruk/RecursiveAssertion.git'
+                    url = 'https://github.com/VladislavSevruk/RecursiveAssertion/tree/master'
+                }
+            }
+        }
+    }
+}

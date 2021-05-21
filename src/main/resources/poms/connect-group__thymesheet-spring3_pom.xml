@@ -1,0 +1,120 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>org.sonatype.oss</groupId>
+		<artifactId>oss-parent</artifactId>
+		<version>7</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.connect-group</groupId>
+	<artifactId>thymesheet-spring3</artifactId>
+	<version>2.2.0</version>
+	<packaging>jar</packaging>
+
+	<name>thymesheet-spring3</name>
+	<description>Use Thymesheet and Thymeleaf with Spring3</description>
+	<url>http://connect-group.github.io/thymesheet-spring3/</url>
+
+
+	<licenses>
+		<license>
+			<name>The Apache Software License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+		<url>scm:git:git@github.com:connect-group/thymesheet-spring3.git</url>
+		<connection>scm:git:git@github.com:connect-group/thymesheet-spring3.git</connection>
+		<developerConnection>scm:git:git@github.com:connect-group/thymesheet-spring3.git</developerConnection>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>4dz</id>
+			<name>Adam Perry</name>
+			<email>aperry7 AT gmail DOT com</email>
+			<roles>
+				<role>Project Admin</role>
+				<role>Lead Developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>http://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+	</distributionManagement>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <nexus-staging-plugin.version>1.6.4</nexus-staging-plugin.version>
+    <nexus-staging-plugin.nexusUrl>https://oss.sonatype.org/</nexus-staging-plugin.nexusUrl>
+		<springframework.version>3.2.18.RELEASE</springframework.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-spring3</artifactId>
+			<version>2.1.6.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.connect-group</groupId>
+			<artifactId>thymesheet</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${springframework.version}</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+
+	</dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>${nexus-staging-plugin.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>sonatype-nexus-staging</serverId>
+          <nexusUrl>${nexus-staging-plugin.nexusUrl}</nexusUrl>
+          <stagingProfileId>14b1865cd4eab2</stagingProfileId>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

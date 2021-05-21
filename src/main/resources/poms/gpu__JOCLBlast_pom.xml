@@ -1,0 +1,268 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>9</version>
+     </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.jocl</groupId>
+    <artifactId>jocl-blast</artifactId>
+    <version>1.5.3-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+    <name>JOCLBlast</name>
+    <description>Java bindings for CLBlast</description>
+    <url>http://www.jocl.org</url>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>http://jocl.org/downloads/LICENSE.TXT</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Marco Hutter</name>
+            <email>jocl@jocl.org</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:gpu/JOCLBlast.git</connection>
+        <developerConnection>scm:git:git@github.com:gpu/JOCLBlast.git</developerConnection>
+        <url>git@github.com:gpu/JOCLBlast.git</url>
+    </scm>
+
+    <!--
+      Define properties that are required for naming and identifying the
+      native libraries, based on the operating system and architecture:
+
+          jocl.os     : The short name for the operating system
+          jocl.arch   : The architecture of the target platform
+          jocl.ext    : The extension of the native libraries
+          jocl.prefix : The prefix of the native libraries
+
+      The native libraries will be named according to
+          LibraryName-${jocl.os}-${jocl.arch}.${jocl.ext}
+      e.g.
+          joclDriver-windows-x86_64.dll
+    -->
+
+    <profiles>
+        <profile>
+            <id>windows-x86_64</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                    <arch>amd64</arch>
+                </os>
+            </activation>
+            <properties>
+                <jocl.os>windows</jocl.os>
+                <jocl.arch>x86_64</jocl.arch>
+                <jocl.ext>dll</jocl.ext>
+                <jocl.prefix />
+            </properties>
+        </profile>
+        <profile>
+            <id>windows-x86</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                    <arch>x86</arch>
+                </os>
+            </activation>
+            <properties>
+                <jocl.os>windows</jocl.os>
+                <jocl.arch>x86</jocl.arch>
+                <jocl.ext>dll</jocl.ext>
+                <jocl.prefix />
+            </properties>
+        </profile>
+        <profile>
+            <id>linux-x86_64</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                    <arch>amd64</arch>
+                </os>
+            </activation>
+            <properties>
+                <jocl.os>linux</jocl.os>
+                <jocl.arch>x86_64</jocl.arch>
+                <jocl.ext>so</jocl.ext>
+                <jocl.prefix>lib</jocl.prefix>
+            </properties>
+        </profile>
+        <profile>
+            <id>linux-x86</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                    <arch>x86</arch>
+                </os>
+            </activation>
+            <properties>
+                <jocl.os>linux</jocl.os>
+                <jocl.arch>x86</jocl.arch>
+                <jocl.ext>so</jocl.ext>
+                <jocl.prefix>lib</jocl.prefix>
+            </properties>
+        </profile>
+        <profile>
+            <id>apple-x86_64</id>
+            <activation>
+                <os>
+                    <family>mac</family>
+                    <arch>x86_64</arch>
+                </os>
+            </activation>
+            <properties>
+                <jocl.os>apple</jocl.os>
+                <jocl.arch>x86_64</jocl.arch>
+                <jocl.ext>dylib</jocl.ext>
+                <jocl.prefix>lib</jocl.prefix>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <defaultGoal>package</defaultGoal>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+
+                <executions>
+
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}/lib</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/nativeLibraries/</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/*.dll</include>
+                                        <include>**/*.jnilib</include>
+                                        <include>**/*.dylib</include>
+                                        <include>**/*.so</include>
+                                    </includes>
+                                </resource>
+                                <resource>
+                                    <directory>${basedir}/../../nativeLibraries/</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>**/*.dll</include>
+                                        <include>**/*.jnilib</include>
+                                        <include>**/*.dylib</include>
+                                        <include>**/*.so</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
+                </executions>
+
+            </plugin>
+
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.7</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <forkMode>once</forkMode>
+                    <argLine>-Djava.library.path=${project.basedir}/nativeLibraries${path.separator}${project.basedir}/nativeLibraries/${jocl.os}/${jocl.arch}/</argLine>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+        	<groupId>org.jocl</groupId>
+        	<artifactId>jocl</artifactId>
+        	<version>2.0.0</version>
+        </dependency>
+    </dependencies>
+</project>
+
+
+
+
+
+
+

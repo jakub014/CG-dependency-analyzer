@@ -1,0 +1,107 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.9.2'
+    }
+}
+
+
+allprojects {
+    apply from: this.file("./common.gradle")
+    apply plugin: 'java'
+    // must be applied after your artifact generating plugin (eg. java / com.android.library)
+    apply plugin: 'maven'
+    group 'com.github.fengyuchenglun'
+    version rootProject.ext.application.version
+    sourceCompatibility = this.ext.javaConfig.sourceCompatibility
+    targetCompatibility = this.ext.javaConfig.targetCompatibility
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+    }
+
+    dependencies {
+        compile rootProject.ext.dependence.logbackClassicLib
+        compile rootProject.ext.dependence.commonsLang3Lib
+        compile rootProject.ext.dependence.commonsCollections4Lib
+        compileOnly rootProject.ext.dependence.lombokLib
+        annotationProcessor rootProject.ext.dependence.lombokLib
+        testCompileOnly rootProject.ext.dependence.lombokLib
+        testCompile rootProject.ext.dependence.junitLib
+    }
+
+    ext {
+        DESCRIPTION = 'A rest document generator with parse the source code.'
+        SITE_URL = rootProject.ext.application.siteUrl
+        GIT_URL = rootProject.ext.application.gitUrl
+        LICENSE = 'MIT License'
+        DEVELOPER_ID = rootProject.ext.application.author
+        DEVELOPER_NAME = rootProject.ext.application.author
+        DEVELOPER_EMAIL = rootProject.ext.application.email
+        IS_UPLOADING = project.getGradle().startParameter.taskNames.any { it.contains('bintrayUpload') }
+        BINTRAYUSER = rootProject.ext.application.bintrayUser
+        BINTRAYKEY = rootProject.ext.application.bintrayKey
+    }
+
+}
+
+
+subprojects {
+    apply plugin: 'com.novoda.bintray-release'
+
+
+    publish {
+        userOrg = "forever"
+        groupId = group
+        artifactId = name
+        publishVersion = version
+        desc = DESCRIPTION
+        website = SITE_URL
+        bintrayUser = BINTRAYUSER
+        bintrayKey = BINTRAYKEY
+        dryRun = false
+    }
+
+    gradle.taskGraph.whenReady { taskGraph ->
+        taskGraph.getAllTasks().find {
+            it.path == ":$project.name:generatePomFileForMavenPublication"
+        }?.doLast {
+            file("build/publications/maven/pom-default.xml").delete()
+            println 'Overriding pom-file to make sure we can sync to maven!'
+            pom {
+                //noinspection GroovyAssignabilityCheck
+                project {
+                    name "$project.name"
+                    artifactId name
+                    packaging 'jar'
+                    description DESCRIPTION
+                    url SITE_URL
+                    version version
+
+                    scm {
+                        url GIT_URL
+                        connection GIT_URL
+                        developerConnection GIT_URL
+                    }
+
+                    licenses {
+                        license {
+                            name LICENSE
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id DEVELOPER_ID
+                            name DEVELOPER_NAME
+                            email DEVELOPER_EMAIL
+                        }
+                    }
+                }
+            }.writeTo("build/publications/maven/pom-default.xml")
+        }
+    }
+}

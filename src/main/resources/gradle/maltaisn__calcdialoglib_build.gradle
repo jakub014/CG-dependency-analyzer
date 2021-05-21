@@ -1,0 +1,37 @@
+buildscript {
+    ext {
+        setup = [
+                compileSdk: 29,
+                buildTools: "29.0.2",
+                minSdk: 14,
+                targetSdk: 29
+        ]
+    }
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$androidPluginVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintrayPluginVersion"
+        classpath "com.github.dcendents:android-maven-gradle-plugin:$mavenPublishPluginVersion"
+        classpath "com.github.breadmoirai:github-release:$githubReleasePluginVersion"
+    }
+}
+
+plugins {
+    id "base"
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+clean {
+    delete rootProject.buildDir
+}

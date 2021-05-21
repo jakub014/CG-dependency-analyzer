@@ -1,0 +1,12 @@
+description = "Apereo CAS Core Configuration"
+dependencies {
+
+    implementation libraries.jasypt
+    implementation libraries.bouncycastle
+    
+    api project(":api:cas-server-core-api-configuration-model")
+    api project(":api:cas-server-core-api-util")
+    api project(":api:cas-server-core-api-authentication")
+    api project(":api:cas-server-core-api-webflow")
+}
+

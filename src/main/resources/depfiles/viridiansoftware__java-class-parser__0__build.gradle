@@ -1,0 +1,125 @@
+buildscript {
+    repositories {
+    	mavenLocal()
+        mavenCentral()
+        jcenter()
+        maven { url 'https://plugins.gradle.org/m2/' }
+		maven { url "https://oss.sonatype.org/service/local/repositories/releases/content/" }
+    }
+    dependencies {
+		classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.9.0'
+	}
+}
+
+if(project.hasProperty('ossrhUser') && project.hasProperty("release")) {
+	apply plugin: "io.codearte.nexus-staging"
+
+	nexusStaging {
+		packageGroup = 'com.viridiansoftware'
+		username = ossrhUser
+		password = ossrhPassword
+	}
+}
+
+ext {
+	descriptorParserVersion="1.0.2"
+	lombokVersion="1.18.6"
+	signatureParserVersion="1.0.2"
+
+	junitVersion="4.8.1"
+	jmockVersion="2.5.1"
+	concurrentUnitVersion="0.4.2"
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+	jcenter()
+	maven { url "https://oss.sonatype.org/service/local/repositories/releases/content/" }
+	maven { url 'https://maven.google.com' }
+}
+
+apply plugin: "signing"
+apply plugin: "maven"
+apply plugin: "java"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group = 'com.viridiansoftware'
+version = "1.0.3"
+
+task sourcesJar(type: Jar) {
+	archiveClassifier = 'sources'
+	from sourceSets.main.allSource
+}
+		
+task javadocJar(type: Jar) {
+	archiveClassifier = 'javadoc'
+	from javadoc
+}
+		
+artifacts {
+	archives javadocJar, sourcesJar
+}
+
+dependencies {
+	compileOnly "org.projectlombok:lombok:$lombokVersion"
+	compile "com.viridiansoftware:java-descriptor-parser-lib:$descriptorParserVersion"
+	compile "com.viridiansoftware:java-signature-parser-lib:$signatureParserVersion"
+	
+	annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+	
+	testCompile "junit:junit:$junitVersion"
+	testCompile "org.jmock:jmock-junit4:$jmockVersion"
+	testCompile "org.jmock:jmock-legacy:$jmockVersion"
+	testCompile "net.jodah:concurrentunit:$concurrentUnitVersion"
+}
+
+// Maven Central publication
+if(project.hasProperty('ossrhUser')) {
+	signing {
+		sign configurations.archives
+	}
+	
+	uploadArchives {
+		repositories {
+			mavenDeployer {
+				// POM signature
+				beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+				// Target repository
+				repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+					authentication(userName: ossrhUser, password: ossrhPassword)
+				}
+				pom.project {
+					name project.name
+					description project.description
+					packaging 'jar'
+					url 'https://github.com/viridiansoftware/java-class-parser'
+
+					scm {
+						connection 'scm:git:https://github.com/viridiansoftware/java-class-parser.git'
+						developerConnection 'scm:git:git@github.com:viridiansoftware/java-class-parser.git'
+						url 'https://github.com/viridiansoftware/java-class-parser.git'
+					}
+
+					licenses {
+						license {
+							name 'The BSD 3-Clause License'
+							url 'https://opensource.org/licenses/BSD-3-Clause'
+							distribution 'repo'
+						}
+					}
+
+					developers {
+						developer {
+							id = 'tomcashman'
+							name = 'Thomas Cashman'
+							email = 'thomascashman404@gmail.com'
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>jangaroo-parent</artifactId>
+    <groupId>net.jangaroo</groupId>
+    <version>4.0.78-SNAPSHOT</version>
+    <relativePath>../jangaroo-parent/pom.xml</relativePath>
+  </parent>
+  <packaging>pom</packaging>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>jangaroo-distribution</artifactId>
+  <name>jangaroo-distribution</name>
+  <description>
+    The Jangaroo compiler a single, self-contained download:
+    jooc - AS3-to-JS, MXML and properties compiler
+  </description>
+
+  <scm>
+    <url>http://github.com/CoreMedia/jangaroo-tools</url>
+    <connection>scm:git:git://github.com/CoreMedia/jangaroo-tools.git</connection>
+    <developerConnection>scm:git:git@github.com:CoreMedia/jangaroo-tools.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <dependencies>
+    <dependency>
+      <groupId>net.jangaroo</groupId>
+      <artifactId>jangaroo-compiler</artifactId>
+      <version>${project.version}</version>
+      <classifier>jar-with-dependencies</classifier>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <properties>
+    <jangaroo.version>${project.version}</jangaroo.version>
+  </properties>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <appendAssemblyId>false</appendAssemblyId>
+          <descriptor>${project.basedir}/src/assemble/download.xml</descriptor>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

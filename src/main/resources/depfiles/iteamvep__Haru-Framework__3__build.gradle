@@ -1,0 +1,37 @@
+
+version = '0.1.0'
+
+jar {
+    enabled = true
+    baseName = 'springboot-support'
+//    classifier = ''
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart', 'Implementation-Version': version
+    }
+}
+
+dependencies {
+    compile project(':Base-Interface')
+    def $springBootVersion = '2.1.5.RELEASE'
+    
+    //Spring Boot
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: $springBootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-logging', version: $springBootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: $springBootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: $springBootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: $springBootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: $springBootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: $springBootVersion
+    
+    compile group: 'com.allanditzel', name: 'spring-security-csrf-token-filter', version: '1.1'
+    
+//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: $springBootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: $springBootVersion
+
+//annotationProcessor group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: $springBootVersion
+//compile group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: $springBootVersion
+    
+    compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: $springBootVersion
+    //Just for Test
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: $springBootVersion
+}

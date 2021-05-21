@@ -1,0 +1,3 @@
+interfax-java ~ org.apache.httpcomponents:httpclient
+cx-config-provider ~ com.fasterxml.jackson.core:jackson-databind
+jcabi-http ~ org.apache.httpcomponents:httpclient

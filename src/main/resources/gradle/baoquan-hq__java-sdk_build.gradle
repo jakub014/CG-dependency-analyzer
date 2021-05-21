@@ -1,0 +1,92 @@
+group 'com.baoquan'
+version '3.0.17'
+description 'Api sdk of Baoquan.com'
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'Eagle java sdk'
+                artifactId 'eagle-sdk'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'Baoquan api sdk for members to use the services of Baoquan.com'
+                url 'https://baoquan.com'
+
+                scm {
+                    connection 'scm:git:git@github.com:baoquan-hq/java-sdk.git'
+                    developerConnection 'scm:git:git@github.com:baoquan-hq/java-sdk.git'
+                    url 'git@github.com:baoquan-hq/java-sdk.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The GNU General Public License, Version 3'
+                        url 'http://www.gnu.org/licenses/gpl-3.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'lihao'
+                        name 'lihao'
+                        email 'lih@baoquan.com'
+                    }
+                }
+            }
+        }
+    }
+}
+dependencies {
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.67'
+    compile group: 'org.bouncycastle', name: 'bcpkix-jdk15on', version: '1.64'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
+    compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.10'
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0'
+//    compile group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

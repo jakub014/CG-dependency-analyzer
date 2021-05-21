@@ -1,0 +1,12 @@
+apply from: 'libs.gradle'
+
+apply plugin: 'groovy'
+
+dependencies {
+	api project(':iplass-core')
+	api project(':iplass-web')
+}
+sourceSets {
+	demo
+}
+

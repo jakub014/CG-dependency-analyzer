@@ -1,0 +1,40 @@
+description = 'Compute Engine JVM application'
+
+sonarqube {
+  properties {
+    property 'sonar.projectName', "${projectTitle} :: Compute Engine"
+  }
+}
+
+dependencies {
+  // please keep the list grouped by configuration and ordered by name
+  compile 'com.google.guava:guava'
+  compile 'com.google.protobuf:protobuf-java'
+  compile 'com.hazelcast:hazelcast'
+  compile 'commons-io:commons-io'
+  compile 'org.apache.commons:commons-dbcp2'
+  compile 'org.nanohttpd:nanohttpd'
+  compile 'org.picocontainer:picocontainer'
+  compile project(':server:sonar-ce-common')
+  compile project(':server:sonar-ce-task')
+  compile project(':server:sonar-ce-task-projectanalysis')
+  compile project(':server:sonar-process')
+  compile project(':server:sonar-ce-task')
+  compile project(':server:sonar-server-common')
+  compile project(':sonar-core')
+  compile project(path: ':sonar-plugin-api', configuration: 'shadow')
+  compile project(':sonar-plugin-api-impl')
+  compile project(':sonar-ws')
+  
+  compileOnly 'com.google.code.findbugs:jsr305'
+
+  testCompile 'com.google.code.findbugs:jsr305'
+  testCompile 'com.tngtech.java:junit-dataprovider'
+  testCompile 'junit:junit'
+  testCompile 'org.assertj:assertj-core'
+  testCompile 'org.mockito:mockito-core'
+  testCompile 'org.slf4j:slf4j-api'
+  
+  testCompile testFixtures(project(':server:sonar-db-dao'))
+
+}

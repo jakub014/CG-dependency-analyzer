@@ -1,0 +1,6 @@
+dependencies {
+    api project(":entities")
+    implementation "javax.money:money-api:1.1"
+
+    testImplementation testFixtures(project(":entities"))
+}

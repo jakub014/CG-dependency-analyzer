@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ *
+ * acme4j - ACME Java client
+ *
+ * Copyright (C) 2017 Richard "Shred" Körber
+ *   http://acme4j.shredzone.org
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.shredzone.acme4j</groupId>
+        <artifactId>acme4j</artifactId>
+        <version>2.12-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>acme4j-it</artifactId>
+
+    <name>acme4j IT</name>
+    <description>acme4j Integration Tests</description>
+
+    <properties>
+        <pebble.version>latest</pebble.version>
+
+        <skipITs>true</skipITs>
+    </properties>
+
+    <profiles>
+        <profile>
+            <!-- Profile with integration tests. Requires docker! -->
+            <!-- mvn -P ci verify -->
+            <id>ci</id>
+            <properties>
+                <skipITs>false</skipITs>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <excludes>
+                                <exclude>org/shredzone/acme4j/it/boulder/**</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>start</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                    <goal>start</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>stop</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!-- Profile for testing against a local Boulder server. -->
+            <!-- mvn -P boulder verify -->
+            <id>boulder</id>
+            <properties>
+                <skipITs>false</skipITs>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <configuration>
+                            <excludes>
+                                <exclude>org/shredzone/acme4j/it/pebble/**</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.35.0</version>
+
+                <configuration>
+                    <logStdout>true</logStdout>
+                    <verbose>true</verbose>
+                    <removeAll>true</removeAll>
+
+                    <images>
+                        <image>
+                            <alias>pebble</alias>
+                            <name>letsencrypt/pebble:${pebble.version}</name>
+                            <run>
+                                <namingStrategy>alias</namingStrategy>
+                                <ports>
+                                    <port>14000:14000</port>
+                                </ports>
+                                <links>
+                                    <link>bammbamm</link>
+                                </links>
+                                <cmd>
+                                    <exec>
+                                        <arg>sh</arg>
+                                        <arg>-c</arg>
+                                        <arg>pebble -strict -dnsserver $(getent hosts bammbamm|cut -d' ' -f1):8053 -config /test/config/pebble-config.json</arg>
+                                    </exec>
+                                </cmd>
+                                <wait>
+                                    <log>Listening</log>
+                                </wait>
+                                <!-- Comment out to perform tests with validation delays. -->
+                                <env>
+                                    <PEBBLE_VA_NOSLEEP>1</PEBBLE_VA_NOSLEEP>
+                                </env>
+                            </run>
+                        </image>
+                        <image>
+                            <alias>bammbamm</alias>
+                            <name>letsencrypt/pebble-challtestsrv:${pebble.version}</name>
+                            <run>
+                                <namingStrategy>alias</namingStrategy>
+                                <hostname>bammbamm</hostname>
+                                <ports>
+                                    <port>8055:8055</port>
+                                </ports>
+                                <cmd>
+                                    <exec>
+                                        <arg>sh</arg>
+                                        <arg>-c</arg>
+                                        <arg>pebble-challtestsrv -defaultIPv6 "" -defaultIPv4 $(getent hosts bammbamm|cut -d' ' -f1)</arg>
+                                    </exec>
+                                </cmd>
+                                <wait>
+                                    <log>Starting management server</log>
+                                </wait>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.shredzone.acme4j</groupId>
+            <artifactId>acme4j-client</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.shredzone.acme4j</groupId>
+            <artifactId>acme4j-utils</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+    </dependencies>
+</project>

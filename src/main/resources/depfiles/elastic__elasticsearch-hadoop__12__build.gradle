@@ -1,0 +1,85 @@
+/*
+ * Licensed to Elasticsearch under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+apply plugin: 'es.hadoop.build.base'
+apply plugin: 'java-library'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+configurations {
+    // Gradle's java library plugin adds a variant to each project that offers the classes dir as an artifact that can be
+    // used in other projects instead of requiring a jar operation to happen. We have artifacts that are being shaded into
+    // a third-party jar that this depends on, which inherently means there is no classes output to share for compilation.
+    // This will force the MR project to require jars from upstream project dependencies, which shouldn't be a problem since
+    // there should only be one upstream project.
+    compileClasspath {
+        beforeLocking {
+            attributes {
+                attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, project.objects.named(LibraryElements, LibraryElements.JAR))
+            }
+        }
+    }
+    testCompileClasspath {
+        beforeLocking {
+            attributes {
+                attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, project.objects.named(LibraryElements, LibraryElements.JAR))
+            }
+        }
+    }
+    itestCompileClasspath {
+        beforeLocking {
+            attributes {
+                attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, project.objects.named(LibraryElements, LibraryElements.JAR))
+            }
+        }
+    }
+}
+
+dependencies {
+    api(project(':elasticsearch-hadoop-mr'))
+    api(project.ext.hadoopClient) {
+        exclude group: "commons-httpclient"
+        exclude group: 'com.fasterxml.jackson.core'
+    }
+
+    api("junit:junit:${project.ext.junitVersion}")
+
+    implementation(project(path: ":thirdparty", configuration: "shadow"))
+
+    implementation("org.hamcrest:hamcrest-all:${project.ext.hamcrestVersion}")
+
+    implementation("io.netty:netty-all:4.0.29.Final") {
+        because "Needed for creating mock SSL Server to test against"
+    }
+
+    implementation("org.apache.hadoop:hadoop-minikdc:${project.ext.minikdcVersion}") {
+        because "Embedding KDC in tests"
+        // For some reason, the dependencies that are pulled in with MiniKDC have multiple resource files
+        // that cause issues when they are loaded. We exclude the ldap schema data jar to get around this.
+        exclude group: "org.apache.directory.api", module: "api-ldap-schema-data"
+        exclude group: 'com.fasterxml.jackson.core'
+    }
+}

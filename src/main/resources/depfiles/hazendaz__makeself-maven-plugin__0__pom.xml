@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Copyright 2011-2021 the original author or authors.
+
+       This program is free software; you can redistribute it and/or
+       modify it under the terms of the GNU General Public License
+       as published by the Free Software Foundation; either version 2
+       of the License, or (at your option) any later version.
+
+       You may obtain a copy of the License at
+
+          https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
+
+       This program is distributed in the hope that it will be useful,
+       but WITHOUT ANY WARRANTY; without even the implied warranty of
+       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+       GNU General Public License for more details.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.hazendaz</groupId>
+        <artifactId>base-parent</artifactId>
+        <version>28</version>
+        <relativePath />
+    </parent>
+
+    <groupId>com.github.hazendaz.maven</groupId>
+    <artifactId>makeself-maven-plugin</artifactId>
+    <version>1.3.1-SNAPSHOT</version>
+    <packaging>maven-plugin</packaging>
+
+    <name>makeself-maven-plugin</name>
+    <description>Makeself is a self-extracting archiving tool for Unix systems, in 100% shell script.</description>
+    <url>https://github.com/hazendaz/makeself-maven-plugin</url>
+    <licenses>
+        <license>
+            <name>GNU General Public License, version 2</name>
+            <url>https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html</url>
+            <distribution>manual</distribution>
+        </license>
+    </licenses>
+
+    <prerequisites>
+        <maven>3.1.1</maven>
+    </prerequisites>
+
+    <scm>
+        <url>https://github.com/hazendaz/makeself-maven-plugin</url>
+        <connection>scm:git:ssh://github.com/hazendaz/makeself-maven-plugin.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/hazendaz/makeself-maven-plugin.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    <issueManagement>
+        <system>GitHub Issue Management</system>
+        <url>https://github.com/hazendaz/makeself-maven-plugin/issues</url>
+    </issueManagement>
+    <ciManagement>
+        <system>Travis CI</system>
+        <url>https://travis-ci.org/hazendaz/makeself-maven-plugin</url>
+    </ciManagement>
+    <distributionManagement>
+        <site>
+            <id>gh-pages-scm</id>
+            <name>GitHub Pages</name>
+            <url>scm:git:ssh://git@github.com/hazendaz/makeself-maven-plugin.git</url>
+        </site>
+    </distributionManagement>
+
+    <properties>
+        <!-- Checkstyle -->
+        <checkstyle.config>checkstyle-4space.xml</checkstyle.config>
+
+        <!-- Maven Artifacts -->
+        <download-plugin.version>1.6.3</download-plugin.version>
+        <invoker-plugin.version>3.2.2</invoker-plugin.version>
+        <maven.version>3.8.1</maven.version>
+        <maven-plugin.version>3.6.1</maven-plugin.version>
+        <plexus-utils.version>3.3.0</plexus-utils.version>
+        <shared-utils.version>3.3.4</shared-utils.version>
+
+        <!-- Compress -->
+        <compress.version>1.20</compress.version>
+
+        <!-- Guava -->
+        <guava.version>30.1.1-jre</guava.version>
+
+        <!-- Junit -->
+        <junit.version>5.7.1</junit.version>
+
+        <!-- Targeted patches -->
+        <io.version>2.8.0</io.version>
+        <lang3.version>3.12.0</lang3.version>
+        <slf4j.version>2.0.0-alpha1</slf4j.version>
+    </properties>
+
+    <dependencies>
+        <!-- Maven -->
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version>${maven.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>${maven.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>${maven-plugin.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-resolver-provider</artifactId>
+            <version>${maven.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.shared</groupId>
+            <artifactId>maven-shared-utils</artifactId>
+            <version>${shared-utils.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Plexus -->
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-utils</artifactId>
+            <version>${plexus-utils.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Commons Compress -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>${compress.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Junit -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Targeted patches -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${io.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${lang3.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>${maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-descriptor</id>
+                        <goals>
+                            <goal>descriptor</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>help-goal</id>
+                        <goals>
+                            <goal>helpmojo</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <configuration>
+                    <header>${license.header}</header>
+                    <excludes combine.children="append">
+                        <exclude>**/*makeself-header.sh</exclude>
+                        <exclude>**/*makeself.sh</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <!-- We rebundle the JAR and maven fails to keep manifest, so save it and apply it directly during assembly -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>${project.artifactId}</artifactId>
+                                    <version>${project.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}/classes</outputDirectory>
+                                    <includes>META-INF/MANIFEST.MF</includes>
+                                 </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <archive>
+                        <manifestFile>${project.build.directory}/classes/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                    <!-- We do not need to attach again as the jar cycle did it for us -->
+                    <attach>false</attach>
+                    <descriptors>
+                        <descriptor>${project.basedir}/src/assembly/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>${maven-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </reporting>
+
+    <profiles>
+        <profile>
+            <id>run-it</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-invoker-plugin</artifactId>
+                        <version>${invoker-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>integration-test-run</id>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <projectsDirectory>${project.basedir}/src/it</projectsDirectory>
+                                    <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+                                    <showVersion>true</showVersion>
+                                    <pomIncludes>
+                                        <pomInclude>*/pom.xml</pomInclude>
+                                    </pomIncludes>
+                                    <postBuildHookScript>verify</postBuildHookScript>
+                                    <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
+                                    <settingsFile>${project.basedir}/src/it/settings.xml</settingsFile>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>update-makeself</id>
+            <build>
+                <plugins>
+                    <!-- Download -->
+                    <plugin>
+                        <groupId>com.googlecode.maven-download-plugin</groupId>
+                        <artifactId>download-maven-plugin</artifactId>
+                        <version>${download-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>download-makeself</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>wget</goal>
+                                </goals>
+                                <configuration>
+                                    <url>https://raw.githubusercontent.com/megastep/makeself/master/makeself.sh</url>
+                                    <outputDirectory>${project.basedir}/src/assembly/makeself</outputDirectory>
+                                    <skipCache>true</skipCache>
+                                    <overwrite>true</overwrite>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>download-makeself-header</id>
+                                <phase>clean</phase>
+                                <goals>
+                                    <goal>wget</goal>
+                                </goals>
+                                <configuration>
+                                    <url>https://raw.githubusercontent.com/megastep/makeself/master/makeself-header.sh</url>
+                                    <outputDirectory>${project.basedir}/src/assembly/makeself</outputDirectory>
+                                    <skipCache>true</skipCache>
+                                    <overwrite>true</overwrite>
+                                </configuration>
+                            </execution>
+                       </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>eclipse</id>
+            <activation>
+                <property>
+                    <name>m2e.version</name>
+                </property>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on 
+                            the Maven build itself. -->
+                        <plugin>
+                            <groupId>org.eclipse.m2e</groupId>
+                            <artifactId>lifecycle-mapping</artifactId>
+                            <configuration>
+                                <lifecycleMappingMetadata>
+                                    <pluginExecutions>
+                                        <pluginExecution>
+                                            <pluginExecutionFilter>
+                                                <groupId>org.apache.maven.plugins</groupId>
+                                                <artifactId>maven-plugin-plugin</artifactId>
+                                                <versionRange>[${maven-plugin.version},)</versionRange>
+                                                <goals>
+                                                    <goal>helpmojo</goal>
+                                                    <goal>descriptor</goal>
+                                                </goals>
+                                            </pluginExecutionFilter>
+                                            <action>
+                                                <ignore />
+                                            </action>
+                                        </pluginExecution>
+                                    </pluginExecutions>
+                                </lifecycleMappingMetadata>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
+</project>

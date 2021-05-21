@@ -1,0 +1,153 @@
+import java.time.Instant
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.22.0"
+    }
+}
+
+apply from: "$rootDir/gradle/versions.gradle"
+
+
+apply plugin: 'io.codearte.nexus-staging'
+nexusStaging {
+    packageGroup = 'com.ainrif'
+    stagingProfileId = '679bd25392a70'
+    delayBetweenRetriesInMillis = 5000
+}
+
+ext.versions = [
+        slf4j     : '1.7.30',
+        groovy    : '3.0.6',
+        lang3     : '3.11',
+        jackson   : '2.11.3',
+        springCore: '5.3.0',
+        byteBuddy : '1.10.17',
+        classgraph: '4.8.90',
+
+        servletApi: '4.0.1',
+        jsr305    : '3.0.2',
+        micronaut : '2.1.2',
+        jaxrsApi  : '2.1.1',
+
+        spock     : '2.0-M3-groovy-3.0',
+        cglib     : '3.3.0',
+        logback   : '1.2.3',
+
+]
+
+allprojects {
+    apply plugin: 'groovy'
+    apply plugin: 'java-library'
+
+    compileGroovy {
+        configure(groovyOptions) {
+            configurationScript = file("$rootDir/gradle/compiler-config.groovy")
+        }
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    group = 'com.ainrif.apiator'
+    version = versionHolder.version
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    configurations {
+        all {
+            it.exclude group: 'commons-logging'
+            it.exclude group: 'org.apache.logging.log4j'
+            it.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+        }
+    }
+
+    dependencies {
+        api "org.codehaus.groovy:groovy:${versions.groovy}"
+
+        compileOnly "org.slf4j:jcl-over-slf4j:${versions.slf4j}"
+        compileOnly "org.slf4j:log4j-over-slf4j:${versions.slf4j}"
+
+        testImplementation "org.spockframework:spock-core:${versions.spock}"
+
+        testImplementation "cglib:cglib:${versions.cglib}"
+        testImplementation "org.apache.commons:commons-lang3:${versions.lang3}"
+
+        testImplementation "org.slf4j:jcl-over-slf4j:${versions.slf4j}"
+        testImplementation "org.slf4j:log4j-over-slf4j:${versions.slf4j}"
+        testImplementation "ch.qos.logback:logback-classic:${versions.logback}"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
+subprojects {
+    def archiveReportsTask = task archiveReports(type: Zip) {
+        from 'build/reports/tests'
+        archiveAppendix.set 'tests_reports'
+        archiveVersion.set "${project.version}_${Instant.now()}"
+        onlyIf {
+            test.state.failure
+        }
+    }
+
+    test {
+        finalizedBy archiveReportsTask
+        testLogging {
+            exceptionFormat = 'full'
+            showStandardStreams = true
+        }
+    }
+}
+
+dependencies {
+    implementation project(':api')
+    implementation project(':renderer:core-html-renderer')
+    implementation project(':provider:jax-rs-provider')
+    implementation project(':provider:micronaut-provider')
+
+    implementation project(':renderer:core-json-renderer:plugin:jakson-plugin-core-json-renderer')
+    implementation project(':renderer:core-json-renderer:plugin:jax-rs-plugin-core-json-renderer')
+    implementation project(':renderer:core-json-renderer:plugin:micronaut-plugin-core-json-renderer')
+
+    implementation project(':test:core-model-test')
+    implementation project(':test:jax-rs-model-test')
+    implementation project(':test:micronaut-model-test')
+    implementation project(':test:demo-model-test')
+
+    implementation "org.codehaus.groovy:groovy-json:${versions.groovy}"
+}
+
+task publishGitTag {
+    onlyIf {
+        versionHolder.release
+    }
+    doLast {
+        versionHolder.git.with {
+            try {
+                tag.add(name: project.version, annotate: false, force: true)
+            } catch (Exception e) {
+                // jGit doesn't process force flag properly at org.eclipse.jgit.api.TagCommand#updateTagRef:184
+                if (e.class.simpleName != 'JGitInternalException' || !e.message.contains('NO_CHANGE')) {
+                    throw e
+                }
+            }
+
+            push(refsOrSpecs: ['refs/tags/' + project.version])
+        }
+    }
+}
+
+task generate_stub(type: JavaExec) {
+    main = 'gradle.GenerateJsonForUiDev'
+    classpath = sourceSets.test.runtimeClasspath
+    args project.rootDir.absolutePath
+}

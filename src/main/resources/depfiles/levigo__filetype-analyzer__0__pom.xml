@@ -1,0 +1,522 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.jadice.filetype</groupId>
+  <artifactId>analyzer</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>jadice filetype analyzer</name>
+  <packaging>jar</packaging>
+
+  <description>A library to identify file formats and to extract meta-data from those files</description>
+  <url>https://github.com/levigo/filetype-analyzer</url>
+
+  <organization>
+    <name>levigo solutions GmbH</name>
+  </organization>
+
+  <contributors>
+    <contributor>
+      <organization>levigo solutions GmbH</organization>
+      <email>solutions@levigo.de</email>
+    </contributor>
+  </contributors>
+
+  <scm>
+    <url>https://github.com/levigo/filetype-analyzer</url>
+    <connection>https://github.com/levigo/filetype-analyzer</connection>
+    <developerConnection>git@github.com:levigo/filetype-analyzer.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Jörg Henne</name>
+      <email>hennejg@gmail.com</email>
+      <organizationUrl>http://levigo.de</organizationUrl>
+    </developer>
+  </developers>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <truezip.version>7.7.10</truezip.version>
+    <slf4j.version>1.7.30</slf4j.version>
+
+    <poi.version>5.0.0</poi.version>
+    <rtfparserkit.version>1.16.0</rtfparserkit.version>
+    <commons.io.version>2.8.0</commons.io.version>
+    <tika-parsers.version>1.25</tika-parsers.version>
+
+    <pdfbox.version>2.0.22</pdfbox.version>
+
+    <jaxb-api.version>2.3.1</jaxb-api.version>
+    <jaxb-runtime.version>2.3.3</jaxb-runtime.version>
+
+    <!-- testing -->
+    <junit.version>4.13.2</junit.version>
+    <hamcrest.version>2.2</hamcrest.version>
+    <jmock-junit4.version>2.12.0</jmock-junit4.version>
+
+    <!-- sonarcloud -->
+    <sonar.projectKey>levigo_filetype-analyzer</sonar.projectKey>
+    <sonar.organization>levigo</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
+    <!-- maven plugins -->
+    <extra-enforcer-rules.version>1.3</extra-enforcer-rules.version>
+    <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
+    <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
+    <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+    <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
+    <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
+    <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+    <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
+    <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+    <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+    <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
+    <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+    <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
+    <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+    <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+    <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <!-- Calculating the test coverage -->
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco-maven-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>pre-unit-test</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <configuration>
+              <!-- Sets the name of the property containing the settings 
+                for JaCoCo runtime agent. -->
+              <propertyName>jacocoAgentArgLine</propertyName>
+            </configuration>
+          </execution>
+          <execution>
+            <id>report</id>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-plugin.version}</version>
+        <configuration>
+          <!-- Sets the VM argument line as defined by the JaCoCo plugin. -->
+          <argLine>${jacocoAgentArgLine}</argLine>
+          <!-- system properties supplied to maven are not automatically 
+            mapped to surefire test runs. Therefore, we need to specify a manual mapping 
+            here. -->
+          <systemPropertyVariables>
+            <com.levigo.analyzer.testsuite>${com.levigo.analyzer.testsuite}</com.levigo.analyzer.testsuite>
+            <maven.project.version>${project.version}</maven.project.version>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>${maven-enforcer-plugin.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>extra-enforcer-rules</artifactId>
+            <version>${extra-enforcer-rules.version}</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>enforce-versions</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>[3.5.4,)</version>
+                </requireMavenVersion>
+                <requireJavaVersion>
+                  <!-- http://maven.apache.org/enforcer/enforcer-rules/versionRanges.html -->
+                  <version>[1.8,12)</version>
+                </requireJavaVersion>
+                <!-- <requirePluginVersions> <message>Best Practice is to 
+                  always define plugin versions!</message> <banLatest>true</banLatest> <banRelease>true</banRelease> 
+                  <banSnapshots>true</banSnapshots> <phases>clean,install,deploy,site</phases> 
+                  </requirePluginVersions> -->
+              </rules>
+            </configuration>
+          </execution>
+          <execution>
+            <id>enforce-classes</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <banCircularDependencies/>
+                <enforceBytecodeVersion>
+                  <maxJdkVersion>1.8</maxJdkVersion>
+                </enforceBytecodeVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>${maven-release-plugin.version}</version>
+        <configuration>
+          <username>git</username>
+          <password/>
+          <goals>deploy</goals>
+          <useReleaseProfile>false</useReleaseProfile>
+          <!-- use our own profile in case of releases: upload html documentation 
+            / enforce relaese env. -->
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <preparationGoals>clean</preparationGoals>
+        </configuration>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>${maven-jar-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>${maven-clean-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>${maven-install-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>${maven-site-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>${maven-resources-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>${maven-deploy-plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${maven-javadoc-plugin.version}</version>
+        <configuration>
+          <!-- <excludePackageNames>*.internal*</excludePackageNames> -->
+          <!-- the javadoc footer may not contain any newline characters 
+            otherwise the javadoc plugin will fail -->
+          <footer>
+            <![CDATA[
+<table border="0" cellpadding="0"><tr><td><img src="{@docRoot}/levigo_icon.gif" width="32" /></td><td>Copyright &#169; ${copyright.year} levigo holding gmbh. All rights reserved.</td></tr></table>
+							]]>
+          </footer>
+        </configuration>
+        <!-- https://maven.apache.org/plugins/maven-javadoc-plugin/examples/aggregate.html -->
+        <!-- "Since 3.1.0 the aggregate has changed a little bit. It'll generate 
+          aggregated reports at every level. To get only an aggregated project at root 
+          level, you need to configure the pom like:" -->
+        <reportSets>
+          <reportSet>
+            <id>aggregate</id>
+            <inherited>false</inherited>
+            <reports>
+              <report>aggregate</report>
+            </reports>
+          </reportSet>
+          <reportSet>
+            <id>default</id>
+            <reports>
+              <report>javadoc</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>${poi.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>${commons.io.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>de.schlichtherle.truezip</groupId>
+      <artifactId>truezip-file</artifactId>
+      <version>${truezip.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>de.schlichtherle.truezip</groupId>
+      <artifactId>truezip-kernel</artifactId>
+      <version>${truezip.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>de.schlichtherle.truezip</groupId>
+      <artifactId>truezip-driver-zip</artifactId>
+      <version>${truezip.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-compress</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.joniles</groupId>
+      <artifactId>rtfparserkit</artifactId>
+      <version>${rtfparserkit.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.pdfbox</groupId>
+      <artifactId>pdfbox</artifactId>
+      <version>${pdfbox.version}</version>
+    </dependency>
+
+    <!-- Using Hamcrest in a Maven Project see http://hamcrest.org/JavaHamcrest/distributables#maven-upgrade-example -->
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest</artifactId>
+      <version>${hamcrest.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-library</artifactId>
+      <version>${hamcrest.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jmock</groupId>
+      <artifactId>jmock-junit4</artifactId>
+      <version>${jmock-junit4.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.tika</groupId>
+      <artifactId>tika-parsers</artifactId>
+      <version>${tika-parsers.version}</version>
+      <exclusions>
+        <!-- could cause problems with docp image processing -->
+        <exclusion>
+          <groupId>com.github.jai-imageio</groupId>
+          <artifactId>jai-imageio-core</artifactId>
+        </exclusion>
+        <!-- unnecessary -->
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+        <!-- these are included in JRE 8, and already defined in jadice server for JRE 11 -->
+        <exclusion>
+          <groupId>org.glassfish.jaxb</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.sun.activation</groupId>
+          <artifactId>jakarta.activation</artifactId>
+        </exclusion>
+        <!-- library for reading from and writing to MS Access databases. -->
+        <exclusion>
+          <groupId>com.healthmarketscience.jackcess</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.quartz-scheduler</groupId>
+          <artifactId>quartz</artifactId>
+        </exclusion>
+        <!-- Apache Spatial Information System (SIS) = library for developing geospatial applications -->
+        <exclusion>
+          <groupId>org.apache.sis.core</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.sis.storage</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+        <!-- could cause problems -->
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>${jaxb-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>${jaxb-runtime.version}</version>
+    </dependency>
+  </dependencies>
+
+  <distributionManagement>
+    <repository>
+      <id>maven2.releases.levigo.de</id>
+      <url>https://levigo.de/maven2/content/repositories/levigo-releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>maven2.snapshots.levigo.de</id>
+      <url>https://levigo.de/maven2/content/repositories/levigo-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <profiles>
+    <!-- Activate using the release property: mvn clean install -Prelease -->
+    <profile>
+      <id>release</id>
+      <activation>
+        <property>
+          <name>release</name>
+        </property>
+      </activation>
+
+      <build>
+        <plugins>
+          <!-- To release to Maven central -->
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>${nexus-staging-maven-plugin.version}</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+
+          <!-- To generate javadoc -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${maven-source-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${maven-javadoc-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+                <configuration>
+                  <source>8</source>
+                  <detectJavaApiLink>false</detectJavaApiLink>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+          <!-- To sign the artifacts -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${maven-gpg-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <gpgArguments>
+                <gpgArgument>--pinentry-mode</gpgArgument>
+                <gpgArgument>loopback</gpgArgument>
+              </gpgArguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

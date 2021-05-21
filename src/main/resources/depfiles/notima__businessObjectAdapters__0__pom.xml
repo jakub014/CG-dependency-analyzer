@@ -1,0 +1,234 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.notima.generic.businessobjects.adapter</groupId>
+	<artifactId>businessObjectAdapters</artifactId>
+	<version>1.8.11-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<businessobjects.version>0.1.19-SNAPSHOT</businessobjects.version>
+		<karaf.version>4.2.7</karaf.version>
+		<pmt-admin-api.version>2.0.2</pmt-admin-api.version>
+		<webpay-common.version>0.0.4-SNAPSHOT</webpay-common.version>
+		<apache.poi.version>3.17</apache.poi.version>
+		<fortnox4j.version>1.8.11-SNAPSHOT</fortnox4j.version>
+		<gson.version>2.8.5</gson.version>
+		<siefilelib.version>1.0.4</siefilelib.version>
+	</properties>
+
+	<modules>
+		<module>fortnoxAdapter</module>
+		<module>sveaWebpayAdapter</module>
+		<module>ublAdapter</module>
+		<module>infometricAdapter</module>
+		<module>csvAdapter</module>
+		<module>sieAdapter</module>
+		<module>adapterTools</module>
+		<module>jasperReportAdapter</module>
+		<module>adempiereAdapter</module>
+		<module>excelAdapter</module>
+		<module>jasperFonts</module>
+		<module>emailAdapter</module>
+	</modules>
+
+	<dependencyManagement>
+	
+		<dependencies>
+		
+	  		<dependency>
+	  			<groupId>com.svea</groupId>
+	  			<artifactId>webpay-common</artifactId>
+	  			<version>${webpay-common.version}</version>
+	  		</dependency>
+		
+		</dependencies>
+	
+	</dependencyManagement>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.29</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.29</version>
+		</dependency>
+
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.core</artifactId>
+            <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.cmpn</artifactId>
+            <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        
+	    <dependency>
+	    	<groupId>org.apache.karaf</groupId>
+	    	<artifactId>org.apache.karaf.util</artifactId>
+	    	<version>${karaf.version}</version>
+	    </dependency>
+
+        <dependency>
+            <groupId>org.apache.karaf.shell</groupId>
+            <artifactId>org.apache.karaf.shell.core</artifactId>
+            <version>${karaf.version}</version>
+        </dependency>
+
+		<dependency>
+			<groupId>org.notima.generic</groupId>
+			<artifactId>businessobjects</artifactId>
+			<version>${businessobjects.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.1</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+					<stagingProgressTimeoutMinutes>25</stagingProgressTimeoutMinutes>
+					<keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
+					<keepStagingRepositoryOnFailure>true</keepStagingRepositoryOnFailure>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.1</version>
+				<configuration>
+					<includes>
+						<include>**/AllTests.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<description>A collection of adapters used to convert between ERP:s and common format 
+https://github.com/notima/businessobjects</description>
+
+	<organization>
+		<name>Notima System Integration AB</name>
+		<url>https://github.com/notima</url>
+	</organization>
+	<scm>
+		<url>https://github.com/notima/businessObjectAdapters</url>
+		<connection>scm:git:git://github.com/notima/businessObjectAdapters.git</connection>
+		<developerConnection>Daniel Tamm</developerConnection>
+	</scm>
+	<issueManagement>
+		<url>https://github.com/notima/businessObjectAdapters/issues</url>
+		<system>Github Issues</system>
+	</issueManagement>
+	<inceptionYear>2012</inceptionYear>
+	<url>https://github.com/notima/businessObjectAdapters</url>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Daniel Tamm</name>
+			<email>daniel@notima.se</email>
+			<organization>Notima System Integration AB</organization>
+			<organizationUrl>https://github.com/notima</organizationUrl>
+		</developer>
+	</developers>
+
+	<name>Business Object Adapters</name>
+</project>

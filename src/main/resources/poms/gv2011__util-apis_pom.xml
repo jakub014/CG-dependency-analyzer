@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.github.gv2011</groupId>
+    <artifactId>parent-gv</artifactId>
+    <version>1.2</version>
+  </parent>
+
+  <artifactId>util-apis</artifactId>
+  <version>0.9</version>
+
+  <inceptionYear>2016</inceptionYear>
+
+  <developers>
+    <developer>
+      <id>vinz</id>
+      <name>Vinz</name>
+      <url>https://github.com/gv2011/</url>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>The MIT License</name>
+      <url>https://opensource.org/licenses/MIT</url>
+      <comments>
+        The license applies to the content of the source code repository identified within the 'scm'-section
+        of this file and the corresponding content in the previous repository at https://github.com/gv2011/util. 
+        The author(s) and copyright dates are given by these source code repositories, the
+        'developers' section and the inceptionYear tag of this file.
+      </comments>
+    </license>
+  </licenses>
+
+  <properties>
+    <java.release>11</java.release>
+  </properties>
+
+  <scm>
+    <connection>scm:git:git@github.com:gv2011/util-apis.git</connection>
+    <developerConnection>scm:git:git@github.com:gv2011/util-apis.git</developerConnection>
+    <url>https://github.com/gv2011/util-apis</url>
+    <tag>util-apis-0.9</tag>
+  </scm>
+
+  <dependencies>
+   <dependency>
+      <groupId>jakarta.activation</groupId>
+      <artifactId>jakarta.activation-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>pl.project13.maven</groupId>
+        <artifactId>git-commit-id-plugin</artifactId>
+        <configuration>
+          <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>geowave-core-parent</artifactId>
+		<groupId>org.locationtech.geowave</groupId>
+		<relativePath>../</relativePath>
+		<version>2.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>geowave-core-index</artifactId>
+	<name>GeoWave Index</name>
+	<dependencies>
+		<dependency>
+			<groupId>com.clearspring.analytics</groupId>
+			<artifactId>stream</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.uzaygezen</groupId>
+			<artifactId>uzaygezen-core</artifactId>
+			<version>0.2</version>
+		</dependency>
+        <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<classifier>jdk15</classifier>
+			<version>2.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.ben-manes.caffeine</groupId>
+			<artifactId>caffeine</artifactId>
+		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ Copyright (c) 2015 Red Hat, Inc. and/or its affiliates.
+
+ This program and the accompanying materials are made
+ available under the terms of the Eclipse Public License 2.0
+ which is available at https://www.eclipse.org/legal/epl-2.0/
+
+ SPDX-License-Identifier: EPL-2.0
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>test-apps</artifactId>
+        <groupId>org.jberet.test-apps</groupId>
+        <version>1.4.2.Final-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>purgeJdbcRepository</artifactId>
+    <properties>
+        <jvmArgs>-Xmx32m</jvmArgs>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jberet.test-apps</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- for test org.jberet.testapps.purgeJdbcRepository.PurgeJdbcRepositoryIT.concurrentCreateJdbcJobRepository -->
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.10.2.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- dependency for kill-and-restart tests -->
+        <dependency>
+            <groupId>org.jberet.test-apps</groupId>
+            <artifactId>purgeInMemoryRepository</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jberet.test-apps</groupId>
+            <artifactId>chunkPartition</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine>${jvmArgs}</argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <argLine>${jvmArgs}</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

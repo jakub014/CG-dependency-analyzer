@@ -1,0 +1,7 @@
+dependencies {
+    implementation project(":use-cases")
+    implementation project(":in-memory-delivery")
+    implementation project(":sns-delivery")
+    implementation project(":ses-delivery")
+    implementation "com.github.michaelruocco:random-value-suppliers:${randomValueSuppliersVersion}"
+}

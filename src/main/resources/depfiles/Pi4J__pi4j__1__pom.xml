@@ -1,0 +1,335 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- MAVEN ARTIFACT INFORMATION -->
+    <artifactId>pi4j-core</artifactId>
+    <name>Pi4J :: Java Library (Core)</name>
+    <description>Pi4J Java Library for the Raspberry Pi</description>
+    <packaging>jar</packaging>
+    <parent>
+        <groupId>com.pi4j</groupId>
+        <artifactId>pi4j-parent</artifactId>
+        <version>1.4</version>
+    </parent>
+
+    <!-- PROJECT DEPENDENCIES -->
+    <dependencies>
+
+        <!-- while the pi4j-native dependency is not needed for compiling this
+             project, including it here ensures that it gets compiled in the maven
+             build lifecycle before the pi4j-core project.    -->
+        <dependency>
+            <groupId>com.pi4j</groupId>
+            <artifactId>pi4j-native</artifactId>
+            <classifier>raspberrypi-dynamic-armhf</classifier>
+            <version>${project.version}</version>
+            <type>so</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.pi4j</groupId>
+            <artifactId>pi4j-native</artifactId>
+            <classifier>raspberrypi-dynamic-aarch64</classifier>
+            <version>${project.version}</version>
+            <type>so</type>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-core</artifactId>
+            <version>${powermock.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito2</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <!-- BUILD INSTRUCTIONS -->
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.build.directory}</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>LICENSE.txt</include>
+                    <include>NOTICE.txt</include>
+                    <include>README.md</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <argLine>-noverify</argLine> <!-- needed for running PowerMock for com.pi4j.jni.I2C -->
+                    <excludes>
+                        <!-- TEMPORARILY EXCLUDED TEST; TEST FAILS ON OSX -->
+                        <exclude>
+                            **/I2CBusImplTest.java
+                        </exclude>
+                    </excludes>
+                    <excludedGroups>com.pi4j.IntegrationTests</excludedGroups>
+                </configuration>
+            </plugin>
+
+            <!-- JAVA COMPILER -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+
+            <!-- INCLUDE SOURCE JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+
+            <!-- INCLUDE JAVADOC JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+
+            <!-- GENERATE LICENSE HEADERS IN SOURCE FILES -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+            </plugin>
+
+            <!-- RETRIEVE THE JNI NATIVE LIBRARY DEPENDENCY -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <!-- we define the libpi4j native project as a dependency so that
+                                    native library can be included in the final packaged pi4j.jar -->
+
+                                <!-- LIBPI4J for the Raspberry-Pi platform -->
+                                <!-- NOTE: As of 2018-04-23, Pi4J no longer includes
+                                           a statically linked wiringPi lib for the Raspberry Pi platform. -->
+                                <artifactItem>
+                                    <groupId>com.pi4j</groupId>
+                                    <artifactId>pi4j-native</artifactId>
+                                    <version>${project.version}</version>
+                                    <classifier>raspberrypi-dynamic-armhf</classifier>
+                                    <type>so</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/lib/raspberrypi/dynamic
+                                    </outputDirectory>
+                                    <destFileName>libpi4j-armhf.so</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.pi4j</groupId>
+                                    <artifactId>pi4j-native</artifactId>
+                                    <version>${project.version}</version>
+                                    <classifier>raspberrypi-dynamic-aarch64</classifier>
+                                    <type>so</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/lib/raspberrypi/dynamic
+                                    </outputDirectory>
+                                    <destFileName>libpi4j-aarch64.so</destFileName>
+                                </artifactItem>
+
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- EMBED THE JNI NATIVE LIBRARY INSIDE THE JAR -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>embed-jni-native-resource</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>${project.build.directory}/lib</directory>
+                                    <targetPath>lib</targetPath>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- OSGi BUNDLE -->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Version>${project.version}</Bundle-Version>
+                        <Export-Package>
+                            com.pi4j.concurrent.*,
+                            com.pi4j.util.*,
+                            com.pi4j.jni.*,
+                            com.pi4j.wiringpi.*,
+                            com.pi4j.system.*,
+                            com.pi4j.temperature.*,
+                            com.pi4j.io.serial.*,
+                            com.pi4j.io.gpio.*,
+                            com.pi4j.io.i2c.*,
+                            com.pi4j.io.spi.*,
+                            com.pi4j.io.w1.*,
+                            com.pi4j.io.wdt.*
+                        </Export-Package>
+                        <Import-Package>!com.pi4j.*</Import-Package>
+                    </instructions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>manifest</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- INCLUDE OSGi MANIFEST IN JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- OPTIONALLY DEPLOY THE FINAL JAR TO THE RASPBERRY PI -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+
+                    <!-- copy the compiled JAR file to the Raspberry Pi platform platform -->
+                    <execution>
+                        <id>transfer-compiled-pi4j-jar</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <taskdef resource="net/sf/antcontrib/antcontrib.properties"
+                                    classpathref="maven.plugin.classpath"/>
+                                <if>
+                                    <equals arg1="${pi4j.dev.transfer}" arg2="true"/>
+                                    <then>
+
+                                        <!-- ensure the target directory exists on the Raspberry Pi -->
+                                        <sshexec host="${pi4j.dev.host}" port="${pi4j.dev.port}"
+                                            username="${pi4j.dev.user}"
+                                            password="${pi4j.dev.password}" trust="true" failonerror="false"
+                                            verbose="true" command="mkdir --parents ${pi4j.dev.directory}"/>
+
+                                        <!-- copy the JAR file to the Raspberry Pi -->
+                                        <scp
+                                            file="${project.build.directory}/${project.build.finalName}.jar"
+                                            todir="${pi4j.dev.user}:${pi4j.dev.password}@${pi4j.dev.host}:${pi4j.dev.directory}"
+                                            port="${pi4j.dev.port}" trust="true" verbose="true" failonerror="true">
+                                        </scp>
+                                    </then>
+                                </if>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.ant</groupId>
+                        <artifactId>ant-jsch</artifactId>
+                        <version>${ant-jsch.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.jcraft</groupId>
+                        <artifactId>jsch</artifactId>
+                        <version>${jsch.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>ant-contrib</groupId>
+                        <artifactId>ant-contrib</artifactId>
+                        <version>${ant-contrib.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>integration-tests</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${maven-failsafe-plugin.version}</version>
+                        <configuration>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <groups>com.pi4j.IntegrationTests</groups>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

@@ -1,0 +1,145 @@
+plugins {
+    id 'java'
+    id 'maven'
+    id 'maven-publish'
+    id 'signing'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+    id 'io.github.gradle-nexus.publish-plugin' version '1.0.0'
+}
+
+group = "run.facet.agent.java"
+archivesBaseName = "facet-agent"
+version = 'master-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+def springVersion = '5.3.5'
+def jacksonVersion = '2.12.2'
+def log4JVersion = '2.14.1'
+
+dependencies {
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jacksonVersion
+    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: jacksonVersion
+    implementation group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
+    implementation group: 'org.springframework', name: 'spring-context', version: springVersion
+    implementation group: 'org.springframework', name: 'spring-core', version: springVersion
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: log4JVersion
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: log4JVersion
+}
+
+repositories {
+    mavenCentral()
+}
+
+def shadedPackagePrefix = 'run.facet.dependencies.'
+shadowJar {
+    archiveClassifier.set('')
+    project.configurations.implementation.canBeResolved(true);
+    manifest {
+        attributes 'Premain-Class': 'run.facet.agent.java.Agent',
+                'Can-Redefine-Classes': true,
+                'Can-Retransform-Classes': true
+    }
+    ["com.fasterxml", "org.springframework", "javassist", "org.apache", "org.yaml", "org.aopalliance"].each {
+        relocate(it, "$shadedPackagePrefix$it")
+    }
+    //Needed for for log4j logging
+    mergeServiceFiles()
+    transform(com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer)
+
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+artifacts {
+    archives shadowJar, javadocJar, sourcesJar
+}
+
+signing {
+    def signingKeyId = findProperty("signingKeyId")
+    def signingKey = findProperty("signingKey")
+    def signingPassword = findProperty("signingPassword")
+    useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+    sign configurations.archives
+}
+
+tasks.withType(GenerateModuleMetadata) {
+    enabled = false
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from(components.java)
+            pom {
+                name = archivesBaseName
+                packaging = 'jar'
+                description = 'An experimental low-code Java agent to enable and disable endpoints and methods.  Not production ready.'
+                url = 'https://facet.run/documentation/java/'
+
+                scm {
+                    connection = 'scm:git:https://github.com/facet-tech/agent-java'
+                    developerConnection = 'scm:git:https://github.com/facet-tech/agent-java'
+                    url = 'scm:git:https://github.com/facet-tech/agent-java'
+                }
+
+                licenses {
+                    license {
+                        name = 'The MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'Facet.Run'
+                        name = 'Facet'
+                        email = 'engineering@facet.run'
+                    }
+                }
+                pom.withXml {
+                    Node pomNode = asNode()
+                    pomNode.remove(pomNode.get("dependencies"))
+                }
+            }
+            pom.withXml {
+                def pomFile = file("${project.buildDir}/pom.xml")
+                writeTo(pomFile)
+                def pomAscFile = signing.sign(pomFile).signatureFiles[0]
+                artifact(pomAscFile) {
+                    classifier = null
+                    extension = 'pom.asc'
+                }
+            }
+
+            project.tasks.signArchives.signatureFiles.each {
+                artifact(it) {
+                    def matcher = it.file =~ /-(sources|javadoc)\.jar\.asc$/
+                    if (matcher.find()) {
+                        classifier = matcher.group(1)
+                    } else {
+                        classifier = null
+                    }
+                    extension = 'jar.asc'
+                }
+            }
+        }
+    }
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+            username = "engineering@facet.run"
+            password = findProperty("sonatypePassword")
+        }
+    }
+}

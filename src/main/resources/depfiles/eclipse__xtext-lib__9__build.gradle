@@ -1,0 +1,38 @@
+plugins {
+    id "de.esoco.gwt" version "1.1.0"
+}
+
+group = 'org.eclipse.xtend'
+
+dependencies {
+	compile project(':org.eclipse.xtend.lib.gwt')
+	compile "com.google.gwt:gwt-dev:$versions.gwt"
+}
+
+gwt {
+	gwtVersion = versions.gwt
+	module 'org.eclipse.xtend.lib.test.Test'
+	compile {
+		strict = true
+	}
+}
+
+jar {
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+test {
+	dependsOn gwtCompile
+}
+
+tasks.withType(Javadoc) {
+	enabled = false
+}
+
+eclipse {
+	project {
+		file.whenMerged {
+			natures.remove('org.eclipse.wst.common.modulecore.ModuleCoreNature')
+		}
+	}
+}

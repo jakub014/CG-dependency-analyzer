@@ -1,0 +1,171 @@
+group 'net.dankito.jpa.couchbaselite'
+version '1.0.0-alpha6'
+def mavenArtifactId = "couchbase-lite-jpa"
+
+
+buildscript {
+    ext {
+        kotlinVersion = '1.3.61'
+
+        couchbaseLiteVersion = '1.4.1'
+
+        jpaAnnotationReaderVersion = '1.0.0-alpha5'
+    }
+
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+
+        // Nexus staging plugin has to be downgraded to 0.10.0 to be applicable to sub projects, see https://github.com/UweTrottmann/SeriesGuide/commit/ca33e8ad2fa6cc5c426450c8aef3417ba073ca7f
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.10.0"
+    }
+}
+
+
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+// So after executing uploadArchives staged repository can be closed and released by executing closeAndReleaseRepository
+apply plugin: 'io.codearte.nexus-staging'
+
+
+sourceCompatibility = 1.7
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.6"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.6"
+}
+
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+sourceSets {
+    test {
+        java {
+            srcDirs += [ "${buildDir.absolutePath}/generated/source/kapt/test/" ]
+        }
+    }
+}
+
+// temporarily ignore tests
+test {
+    exclude 'net/dankito/jpa/couchbaselite/**'
+}
+
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+
+    compile ("com.couchbase.lite:couchbase-lite-java-core:$couchbaseLiteVersion", {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-annotations'
+        exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+    })
+
+    compile "net.dankito.jpa.annotationreader:api:$jpaAnnotationReaderVersion"
+
+    compile "org.slf4j:slf4j-api:1.7.25"
+    
+
+    testCompile "junit:junit:4.12"
+    testCompile "org.assertj:assertj-core:3.12.1"
+
+    testCompile "com.couchbase.lite:couchbase-lite-java:$couchbaseLiteVersion"
+
+    testCompile "net.dankito.utils:java-utils:1.0.10"
+
+    testCompile "ch.qos.logback:logback-core:1.2.3"
+    testCompile "ch.qos.logback:logback-classic:1.2.3"
+
+    kaptTest "net.dankito.jpa.annotationreader:jpa-apt:$jpaAnnotationReaderVersion"
+}
+
+
+
+/*          publish to maven central            */
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository url: repositories.mavenLocal().url
+
+//            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//                authentication(userName: ossrhUsername, password: ossrhPassword)
+//            }
+//
+//            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+//                authentication(userName: ossrhUsername, password: ossrhPassword)
+//            }
+
+            pom.project {
+                name mavenArtifactId
+                artifactId = mavenArtifactId
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description "JPA provider for CouchbaseLite. Not a full JPA implementation yet, but most annotations are working."
+                url 'https://github.com/dankito/couchbase-lite-jpa'
+
+                scm {
+                    connection 'scm:git:git://github.com/dankito/couchbase-lite-jpa.git'
+                    developerConnection 'scm:git:git@github.com:dankito/couchbase-lite-jpa.git'
+                    url 'https://github.com/dankito/couchbase-lite-jpa'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'dankito'
+                        name 'Christian Dankl'
+                        email 'maven@dankito.net'
+                    }
+                }
+            }
+        }
+    }
+}
+
+nexusStaging {
+    packageGroup = "net.dankito"
+}

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.pustefixframework</groupId>
+    <artifactId>pustefixframework</artifactId>
+    <version>0.23.1-SNAPSHOT</version>
+  </parent>
+
+  <groupId>org.pustefixframework</groupId>
+  <artifactId>pustefix-core</artifactId>
+  <version>0.23.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>Pustefix Core</name>
+
+  <profiles>
+    <profile><!-- see http://maven.apache.org/general.html#tools-jar-dependency -->
+      <id>oracle-tools.jar</id>
+      <activation>
+        <jdk>1.8</jdk>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>com.sun</groupId>
+          <artifactId>tools</artifactId>
+          <version>1.8.0</version>
+          <scope>system</scope>
+          <systemPath>${java.home}/../lib/tools.jar</systemPath>
+        </dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <activation>
+        <jdk>12</jdk>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>javax.xml.bind</groupId>
+          <artifactId>jaxb-api</artifactId>
+          <version>2.3.0</version>
+          <optional>true</optional>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>org.pustefixframework</groupId>
+      <artifactId>pustefix-live</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+
+    <!-- Spring logging with SLF4J -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+
+    <!-- Logging test dependencies -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>1.2.3</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.marsching.flexiparse</groupId>
+      <artifactId>flexiparse</artifactId>
+      <version>0.2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>5.1.8.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>5.1.8.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>5.1.8.RELEASE</version>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.owasp.encoder</groupId>
+      <artifactId>encoder</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.4.7</version>
+    </dependency>
+
+
+    <!-- We need both to compile the our extensions. Our default is saxon 6 (that's why saxon 8 is optional) because
+         only some xsl files have been adjusted, and we want to avoid "the xsl 1 sheet ond xsl 2 processor" warning -->
+    <dependency>
+      <groupId>com.icl.saxon</groupId>
+      <artifactId>saxon</artifactId>
+      <version>6.5.5</version>
+    </dependency>
+    <dependency>
+      <groupId>net.sf.saxon</groupId>
+      <artifactId>Saxon-HE</artifactId>
+      <version>9.6.0-4</version>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-core</artifactId>
+      <version>9.0.22</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-jasper</artifactId>
+        <version>9.0.22</version>
+        <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-httpclient</groupId>
+      <artifactId>commons-httpclient</artifactId>
+      <version>3.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.yahoo.platform.yui</groupId>
+      <artifactId>yuicompressor</artifactId>
+      <version>2.4.8</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.google.javascript</groupId>
+      <artifactId>closure-compiler</artifactId>
+      <version>v20140625</version>
+      <scope>compile</scope>
+      <optional>true</optional>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-commons</artifactId>
+      <version>2.1.9.RELEASE</version>
+      <optional>true</optional>
+    </dependency>
+    
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- do not add to root pom because it forks a new lifecycle: -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+           <goals><goal>jar</goal></goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.8</version>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <configuration>
+              <target>
+                <mkdir dir="${basedir}/target/classes/META-INF" />
+                <echo file="${basedir}/target/classes/META-INF/wsd.properties">
+                  groupId = ${project.groupId}
+                  artifactId = ${project.artifactId}
+                  version = ${project.version}
+                  name = ${project.name}
+                  url = ${project.url}
+                  site = ${project.distributionManagement.site.url}
+                  scmConnection = ${project.scm.connection}
+                </echo>
+                <echo file="${basedir}/target/classes/META-INF/pominfo.properties">
+                  groupId = ${project.groupId}
+                  artifactId = ${project.artifactId}
+                  version = ${project.version}
+                  name = ${project.name}
+                  url = ${project.url}
+                  site = ${project.distributionManagement.site.url}
+                  scmConnection = ${project.scm.connection}
+                </echo>
+              </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.pustefixframework.maven.plugins</groupId>
+        <artifactId>pustefix-statuscode-plugin</artifactId>
+        <version>0.23.1-SNAPSHOT</version>
+        <executions>
+          <execution>
+            <configuration>
+              <module>pustefix-core</module>
+              <docRoot>${basedir}/src/main/resources/PUSTEFIX-INF</docRoot>
+              <includes><include>dyntxt/statuscodeinfo.xml</include></includes>
+            </configuration>
+            <id>statuscodes</id>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>

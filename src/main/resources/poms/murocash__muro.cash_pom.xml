@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>cash.muro</groupId>
+		<artifactId>muro-parent-pom</artifactId>
+		<version>0.1.0-alpha2</version>
+	</parent>
+	<artifactId>muro.cash</artifactId>	
+	<name>muro.cash</name>
+	<description>A PayWall for Websites with large amount of data</description>
+	<url>https://github.com/murocash/muro.cash</url>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>https://github.com/murocash/muro.cash/blob/main/LICENSE</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git@github.com:murocash/muro.cash.git</connection>
+		<developerConnection>scm:git@github.com:murocash/muro.cash.git</developerConnection>
+		<url>https://github.com/murocash/muro.cash</url>
+	</scm>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>cash.muro</groupId>
+			<artifactId>cashid4spring</artifactId>
+			<version>${revision}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+			<version>2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>5.3.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>2.4.1</version>
+		</dependency>
+				
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-data</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.26</version>
+		</dependency>	
+		
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>	
+</project>

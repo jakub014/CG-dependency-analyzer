@@ -1,0 +1,104 @@
+plugins {
+    id "java-library"
+    id "org.openjfx.javafxplugin" version "0.0.9"
+    id "maven-publish"
+    id "signing"
+}
+
+group "bayern.steinbrecher"
+version "0.15-rc.6-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "bayern.steinbrecher:JavaUtility:0.16"
+    implementation "bayern.steinbrecher:jsch:0.1.57"
+    implementation "com.google.guava:guava:29.0-jre"
+    implementation "org.mariadb.jdbc:mariadb-java-client:2.7.0"
+    implementation "org.freemarker:freemarker:2.3.30"
+    implementation "org.jetbrains:annotations:19.0.0"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.7.0"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.7.0"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.0"
+    testImplementation "org.craftercms.mariaDB4j:mariaDB4j:2.4.8"
+    testRuntimeOnly "org.craftercms.mariaDB4j:mariaDB4j:2.4.8E"
+    testImplementation "org.craftercms.mariaDB4j:mariaDB4j-db-win64:10.4.6.2"
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+java {
+    modularity.inferModulePath = true
+    withSourcesJar()
+    withJavadocJar()
+}
+
+javafx {
+    version = "14"
+    modules = [
+            "javafx.base"
+    ]
+}
+
+test {
+    useJUnitPlatform()
+}
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username = "${ossrhUsername}"
+                password = "${ossrhPassword}"
+            }
+        }
+    }
+    publications {
+        library(MavenPublication) {
+            pom {
+                name = 'DBConnector'
+                description = 'A library which aims to simplify database connections especially if they are over SSH'
+                url = 'https://steinbrecher.bayern'
+                licenses {
+                    license {
+                        name = 'The Beer-Ware License (Revision 42)'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'stefanHuber'
+                        name = 'Stefan Huber'
+                        email = 'stefan.huber.niedling@outlook.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/TrackerSB/DBConnector.git'
+                    developerConnection = 'scm:git:ssh://github.com/TrackerSB/DBConnector.git'
+                    url = 'https://github.com/TrackerSB/DBConnector'
+                }
+            }
+            from components.java
+        }
+    }
+}
+
+signing {
+    useGpgCmd()
+    sign publishing.publications.library
+}

@@ -1,0 +1,138 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>signservice-integration-xml</artifactId>
+  <packaging>jar</packaging>
+
+  <parent>
+    <groupId>se.idsec.signservice.integration</groupId>
+    <artifactId>signservice-integration-parent</artifactId>
+    <version>1.2.0</version>
+  </parent>
+
+  <name>IDsec Solutions :: SignService :: Integration :: XML Processing</name>
+  <description>SignService Integration XML Processing</description>
+  <url>https://github.com/idsec-solutions/signservice-integration</url>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:https://github.com/idsec-solutions/signservice-integration.git</connection>
+    <developerConnection>scm:git:https://github.com/idsec-solutions/signservice-integration.git</developerConnection>
+    <url>https://github.com/idsec-solutions/signservice-integration/tree/master</url>
+  </scm>
+
+  <organization>
+    <name>IDsec Solutions AB</name>
+    <url>https://www.idsec.se</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <name>Martin Lindström</name>
+      <email>martin@idsec.se</email>
+      <organization>IDsec Solutions AB</organization>
+      <organizationUrl>https://www.idsec.se</organizationUrl>
+    </developer>
+
+    <developer>
+      <name>Stefan Santesson</name>
+      <email>stefan@idsec.se</email>
+      <organization>IDsec Solutions AB</organization>
+      <organizationUrl>https://www.idsec.se</organizationUrl>
+    </developer>
+  </developers>
+
+  <properties>
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>se.idsec.signservice.integration</groupId>
+      <artifactId>signservice-integration-api</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>se.idsec.signservice.integration</groupId>
+      <artifactId>signservice-integration-impl</artifactId>
+      <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-context</artifactId>
+        </exclusion>        
+      </exclusions>
+    </dependency>
+    
+    <dependency>
+      <groupId>se.idsec.signservice.commons</groupId>
+      <artifactId>signservice-commons</artifactId>
+    </dependency>
+        
+    <dependency>
+      <groupId>se.idsec.signservice.commons</groupId>
+      <artifactId>signservice-xml-commons</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+
+    <!-- Test -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+        
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <scope>test</scope>
+    </dependency>    
+
+  </dependencies>
+
+  <build>
+
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <doctitle>SignService Integration XML Implementation - ${project.version}</doctitle>
+          <windowtitle>SignService Integration XML Implementation - ${project.version}</windowtitle>
+        </configuration>
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+</project>

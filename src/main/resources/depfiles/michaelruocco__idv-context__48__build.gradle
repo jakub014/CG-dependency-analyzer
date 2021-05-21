@@ -1,0 +1,16 @@
+plugins {
+    id "java-test-fixtures"
+}
+
+dependencies {
+    implementation project(":method-entities")
+    implementation project(":push-notification-entities")
+    implementation project(":method-use-cases")
+    implementation project(":context-use-cases")
+    implementation project(":identity-use-cases")
+    implementation project(":common-use-cases")
+    implementation "com.neovisionaries:nv-i18n:${neovisionariesVersion}"
+
+    testImplementation testFixtures(project(":push-notification-entities"))
+    testImplementation testFixtures(project(":context-entities"))
+}

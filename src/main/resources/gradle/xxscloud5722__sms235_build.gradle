@@ -1,0 +1,124 @@
+import org.jetbrains.dokka.gradle.DokkaTask
+
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.21'
+    id 'org.jetbrains.dokka' version '0.10.1'
+    id 'signing'
+}
+
+apply from: '/Users/xxscloud/config/publish.gradle'
+group 'com.xxscloud.sdk'
+version '1.0'
+
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/central' }
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
+    mavenCentral()
+    jcenter()
+    maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    compile 'org.slf4j:slf4j-api:1.7.26'
+    compile 'com.squareup.okhttp3:okhttp:4.8.1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
+    compile 'commons-codec:commons-codec:1.9'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+task generateSourcesJar(type: Jar) {
+    group = 'jar'
+    from sourceSets.main.java.srcDirs
+    archiveClassifier.set('sources')
+}
+
+task dokkaJavadoc(type: DokkaTask) {
+    outputFormat = "javadoc"
+    outputDirectory = javadoc.destinationDir
+}
+
+task generateJavadoc(type: Jar, dependsOn: dokkaJavadoc) {
+    group = 'jar'
+    archiveClassifier.set("javadoc")
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives generateJavadoc
+    archives generateSourcesJar
+}
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'xxscloud-sms235'
+                description = 'xxscloud-sms235'
+                url = 'https://github.com/xxscloud5722/sms235'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'xxscloud'
+                        name = 'xxscloud'
+                        email = 'xxscloud@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/xxscloud5722/sms235'
+                    developerConnection = 'scm:git:ssh://github.com/xxscloud5722/sms235'
+                    url = 'https://github.com/xxscloud5722/sms235'
+                }
+            }
+            artifact generateSourcesJar
+            artifact generateJavadoc
+        }
+    }
+
+    repositories {
+        mavenLocal()
+        maven {
+            url 'https://oss.sonatype.org/service/local/staging/deploy/maven2'
+            credentials {
+                username sonatypeUsername
+                password sonatypePassword
+            }
+        }
+    }
+}
+
+
+signing {
+    sign publishing.publications.mavenJava
+}

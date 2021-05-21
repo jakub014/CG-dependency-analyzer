@@ -1,0 +1,137 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.2.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.10.1"
+    }
+
+    apply from: "$rootDir/gradle/common/coverage.gradle"
+    installCoverageDeps()
+}
+
+plugins {
+    id "io.github.gradle-nexus.publish-plugin" version "1.0.0"
+    id 'pl.allegro.tech.build.axion-release' version '1.12.1'
+}
+
+def isOnCI = System.getenv('RUNNING_ON_CI') == 'true'
+
+scmVersion {
+    ignoreUncommittedChanges = isOnCI
+    useHighestVersion = true
+    tag {
+        prefix = 'v'
+        versionSeparator = ""
+        deserialize = { tag, position, String tagName ->
+            def result = tagName.substring(1)
+            while (result.count(".") < 2) {
+                result += ".0"
+            }
+            result
+        }
+    }
+}
+version = scmVersion.version
+println("Version: $version")
+
+apply from: "$rootDir/secrets.gradle"
+def publicationUsername = secrets.getProperty("publication.username") ?: System.getenv("PUBLICATION_USERNAME")
+def publicationPassword = secrets.getProperty("publication.password") ?: System.getenv("PUBLICATION_PASSWORD")
+
+// Base package setup
+group 'com.ensody.reactivestate'
+subprojects {
+    group rootProject.group
+    version = rootProject.version
+
+    def isAndroidProject = project.file('src/main/AndroidManifest.xml').exists()
+    def isPlatformProject = project.name == 'dependency-versions-bom'
+    def isTestProject = project.name.endsWith('-test')
+
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+
+    apply from: "$rootDir/dependencies.gradle"
+
+    if (!isPlatformProject) {
+        if (!isAndroidProject) {
+            apply from: "$rootDir/gradle/common/kotlin-library.gradle"
+            kotlinLibrary()
+
+            dependencies {
+                base()
+                if (isTestProject) {
+                    baseTestLib()
+                }
+            }
+        } else {
+            apply from: "$rootDir/gradle/common/android-library.gradle"
+            androidLibrary()
+
+            android {
+                // Resolve build conflicts for test modules
+                if (isTestProject) {
+                    packagingOptions {
+                        pickFirst 'META-INF/AL2.0'
+                        pickFirst 'META-INF/LGPL2.1'
+                    }
+                }
+            }
+
+            dependencies {
+                baseAndroid()
+                if (isTestProject) {
+                    androidTestLib()
+                }
+            }
+        }
+
+        apply from: "$rootDir/gradle/common/dokka.gradle"
+
+        apply from: "$rootDir/gradle/common/coverage.gradle"
+        trackCoverage(isOnCI)
+    }
+
+    apply from: "$rootDir/gradle/common/publish.gradle"
+    publish(
+        url: "https://s01.oss.sonatype.org/service/local/",
+        username: publicationUsername,
+        password: publicationPassword,
+        repoUrl: "https://github.com/ensody/ReactiveState-Kotlin",
+        pomAction: {
+            description = "An easy to understand reactive state management solution for Kotlin and Android."
+            url = "https://ensody.github.io/ReactiveState-Kotlin/"
+            licenses {
+                license(LICENSE.APACHE2)
+            }
+            developers {
+                developer {
+                    id = "wkornewald"
+                    name = "Waldemar Kornewald"
+                    organization = "Ensody GmbH"
+                    organizationUrl = "https://www.ensody.com"
+                }
+            }
+        },
+        isPlatformProject: isPlatformProject,
+    )
+}
+
+nexusPublishing {
+    repositories {
+        mavenCentral {
+            nexusUrl = uri("https://s01.oss.sonatype.org/service/local/")
+            snapshotRepositoryUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            username = publicationUsername
+            password = publicationPassword
+        }
+    }
+}

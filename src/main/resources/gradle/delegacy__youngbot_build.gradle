@@ -1,0 +1,74 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.google.gradle:osdetector-gradle-plugin:1.6.2'
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.10.RELEASE'
+    }
+}
+
+plugins {
+    id "net.rdrei.android.buildtimetracker" version "0.11.0"
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+    }
+}
+
+apply from: "${rootDir}/gradle/scripts/build-flags.gradle"
+
+buildtimetracker {
+    reporters {
+        summary {
+            ordered false
+            barstyle "unicode"
+        }
+    }
+}
+
+configure(projectsWithFlags('java')) {
+    // Common dependencies
+    dependencies {
+        if (project != project(':core')) {
+            api project(':core')
+        }
+
+        implementation 'com.google.guava:guava'
+
+        implementation 'org.slf4j:slf4j-api'
+
+        implementation 'com.google.code.findbugs:jsr305'
+
+        if (project != project(':testing-internal')) {
+            testImplementation project(':testing-internal')
+        }
+
+        testImplementation 'org.junit.jupiter:junit-jupiter-api'
+        testImplementation 'org.junit.jupiter:junit-jupiter-params'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+        testRuntimeOnly 'org.junit.platform:junit-platform-commons'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+        testRuntimeOnly 'org.junit.platform:junit-platform-engine'
+        testRuntimeOnly 'io.projectreactor.tools:blockhound-junit-platform'
+
+        testImplementation 'org.assertj:assertj-core'
+        testImplementation 'io.projectreactor:reactor-test'
+        testImplementation 'org.mockito:mockito-junit-jupiter'
+        testImplementation 'org.awaitility:awaitility'
+    }
+
+    tasks.withType(JavaCompile) {
+        options.compilerArgs += '-Xlint:unchecked'
+    }
+
+    tasks.withType(Test) {
+        // https://github.com/reactor/BlockHound/issues/33
+        if (JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_13)) {
+            jvmArgs += '-XX:+AllowRedefinitionToAddDeleteMethods'
+        }
+    }
+}

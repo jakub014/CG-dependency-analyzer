@@ -1,0 +1,10 @@
+plugins {
+  id 'organization.library-convention'
+}
+
+description = 'Translates GraphQL schema to Java source code'
+
+dependencies {
+  api project(':grapid-core')
+  implementation 'com.squareup:javapoet:1.13.0'
+}

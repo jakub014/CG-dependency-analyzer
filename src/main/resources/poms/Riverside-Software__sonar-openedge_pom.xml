@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>eu.rssw</groupId>
+  <artifactId>sonar-openedge</artifactId>
+  <packaging>pom</packaging>
+  <version>2.14.0-SNAPSHOT</version>
+  <name>OpenEdge plugin for SonarQube</name>
+  <url>http://www.riverside-software.fr/</url>
+  <description>Open source code analysis for OpenEdge</description>
+
+  <modules>
+    <module>rcode-reader</module>
+    <module>proparse</module>
+    <module>database-parser</module>
+    <module>profiler-parser</module>
+    <module>listing-parser</module>
+    <module>openedge-checks</module>
+    <module>openedge-plugin</module>
+    <module>coverage-report</module>
+  </modules>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.sonarsource.scanner.maven</groupId>
+          <artifactId>sonar-maven-plugin</artifactId>
+          <version>3.7.0.1746</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+</project>

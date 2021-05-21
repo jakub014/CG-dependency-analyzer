@@ -1,0 +1,34 @@
+apply plugin: 'org.jetbrains.kotlin.js'
+
+kotlin {
+
+  target {
+    nodejs {
+      testTask {
+        useMocha {
+          timeout = "5s"
+        }
+      }
+    }
+    browser {
+      testTask {
+        useMocha {
+          timeout = "5s"
+        }
+      }
+    }
+  }
+
+  sourceSets["main"].dependencies {
+    api project(':runtime')
+    api npm(deps.sqljs, versions.sqljs)
+  }
+  sourceSets["test"].dependencies {
+    implementation deps.kotlin.test.js
+  }
+}
+
+apply from: "$rootDir/gradle/gradle-mvn-push.gradle"
+
+// https://github.com/Kotlin/dokka/issues/1455
+tasks.getByName("dokkaGfm").dependsOn(tasks.getByName("build"))

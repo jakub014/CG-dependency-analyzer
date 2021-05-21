@@ -1,0 +1,112 @@
+plugins {
+    id 'java-library'
+    id "org.sonarqube" version "3.2.0"
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "data-rocks-team_schemaregistry-junit"
+        property "sonar.organization", "data-rocks-team"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.scanner.force-deprecated-java-version-grace-period", "true"
+        property "sonar.coverage.exclusions", "**/schemaregistry-junit-test/**"
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        // Add Confluent maven repo for Confluent dependencies
+        maven {
+            url "http://packages.confluent.io/maven/"
+        }
+        // Required for com.github.everit-org.json-schema:org.everit.json.schema:
+        maven {
+            url "https://jitpack.io"
+        }
+    }
+}
+
+ext {
+    apacheCuratorVersion = '5.1.0'
+    assertjVersion = '3.19.0'
+    confluentVersion = '6.1.1'
+    kafkaJunitVersion = '3.2.2'
+    jsonSchemaVersion = '1.12.1'
+    junit4Version = '4.13.2'
+    junitJupiterVersion = '5.7.1'
+    lombokVersion = '1.18.20'
+    protobufVersion = '3.16.0'
+    slf4jVersion = '1.7.30'
+    testcontainersVersion = '1.15.2'
+}
+
+subprojects {
+
+    // Every module is a Java library
+    apply plugin: 'java-library'
+
+    // Checkstyle
+    apply from: "$rootProject.projectDir/checkstyle.gradle"
+
+    // PMD
+    apply from: "$rootProject.projectDir/pmd.gradle"
+
+    // Specific Junit configuration
+    apply from: "$rootProject.projectDir/junit.gradle"
+
+    dependencies {
+        // Lombok configuration
+        compileOnly "org.projectlombok:lombok:$lombokVersion"
+        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+        testImplementation "org.projectlombok:lombok:$lombokVersion"
+        testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+        implementation "org.slf4j:slf4j-api:$slf4jVersion"
+        implementation "org.slf4j:slf4j-simple:$slf4jVersion"
+
+        testImplementation "org.assertj:assertj-core:$assertjVersion"
+    }
+
+    // Jacoco
+    apply from: "$rootProject.projectDir/jacoco.gradle"
+
+    // Add flag to run specific group of tests
+    apply from: "$rootProject.projectDir/on-off-test.gradle"
+
+    // Keep Java8 compatibility
+    if (JavaVersion.current().java9Compatible) {
+        project.afterEvaluate {
+            tasks.withType(JavaCompile) {
+                def version = "8"
+                project.logger.info("Configuring $name to use --release $version")
+                options.compilerArgs.addAll(['--release', version])
+            }
+        }
+    } else {
+        project.logger.warn("-PcrossCompile not supported prior to JDK 9. "
+                + "Current JDK is ${JavaVersion.current()}")
+    }
+}
+
+task setDependenciesForExample {
+    group 'Configure Example'
+    description 'Set dependencies for example using centralised ext variables'
+    doLast {
+        fileTree("examples")
+            .filter { it.isFile() }
+            .filter { it.name == 'build.gradle' }
+            .files
+            .path
+            .each {file ->
+                File buildGradle = new File(file)
+                String content = buildGradle.text
+
+                project.ext.properties
+                    .each{ k, v ->
+                        content = content.replaceAll("$k = 'PLACEHOLDER'", "$k = '$v'")}
+
+                buildGradle.write(content)
+            }
+    }
+}

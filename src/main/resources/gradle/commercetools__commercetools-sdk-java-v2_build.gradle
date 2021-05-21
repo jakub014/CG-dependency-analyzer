@@ -1,0 +1,323 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    // Here we define all plugins that are used by subprojects and specify the version for external ones
+
+    id 'idea'
+
+    id 'maven'
+    id 'maven-publish'
+    id 'signing'
+
+    id 'java'
+    id 'java-library' // needed to make sure that transitive deps have 'compile' scope
+
+    id "com.diffplug.spotless" version "5.12.4"
+
+    id 'io.github.gradle-nexus.publish-plugin' version '1.1.0'
+}
+
+import java.text.SimpleDateFormat
+
+def globalVersion = new Version(version)
+
+class Version {
+    String originalVersion
+    String thisVersion
+    String status
+    Date buildTime
+
+    Version(String versionValue) {
+        buildTime = new Date()
+        originalVersion = versionValue
+        thisVersion = versionValue
+        if (originalVersion.endsWith('-SNAPSHOT')) {
+            status = 'integration'
+        } else {
+            status = 'release'
+            thisVersion = versionValue
+        }
+    }
+
+    String getTimestamp() {
+        // Convert local file timestamp to UTC
+        def format = new SimpleDateFormat('yyyyMMddHHmmss')
+        format.setCalendar(Calendar.getInstance(TimeZone.getTimeZone('UTC')))
+        return format.format(buildTime)
+    }
+
+    String toString() {
+        thisVersion
+    }
+}
+
+allprojects {
+    description = "The e-commerce SDK from commercetools for Java"
+}
+
+tasks.register("writeVersionToReadme") {
+    doLast {
+        ant.replaceregexp(match: 'commercetools: \"[^\\s]+\"', replace: "commercetools: \"${globalVersion}\"", flags:'g', byline:true) {
+            fileset(dir: projectDir, includes: 'README.md')
+        }
+        ant.replaceregexp(match: '<commercetools.version>.+</commercetools.version>', replace: "<commercetools.version>${globalVersion}</commercetools.version>", flags:'g', byline:true) {
+            fileset(dir: projectDir, includes: 'README.md')
+        }
+    }
+}
+
+ext {
+    versions = [
+            slf4j: "1.7.30",
+            logback: "1.2.3",
+            findbugs: "3.0.2",
+            jackson: "2.12.3",
+            junit: "4.13.2",
+            validation: "2.0.1.Final",
+            assertJ: "3.19.0",
+            gson: "2.8.6",
+            awaitility: "4.0.3",
+            failsafe: "2.4.0"
+    ]
+
+    commons = [
+            lang3: 'org.apache.commons:commons-lang3:3.12.0',
+            cli: 'commons-cli:commons-cli:1.4',
+            io: 'commons-io:commons-io:2.8.0',
+
+    ]
+
+    scmProjectName = rootProject.name
+    scmRepo = 'github.com'
+    scmProjectPath = "commercetools/commercetools-sdk-java-v2.git"  // github relative path with .git extension
+    scmProjectUrl = "https://$scmRepo/$scmProjectPath"      // just as web-page
+    scmHttpsUrl = "https://$scmRepo/$scmProjectPath"        // common VCS read access
+    scmSshUrl = "git@$scmRepo:$scmProjectPath"              // developers VCS read-write repo
+    SNAPSHOT_SUFFIX = "-SNAPSHOT"
+    versionWIP = "development$SNAPSHOT_SUFFIX"
+}
+
+// maven-specific publishing settings
+def pomConfig = {
+    licenses {
+        license {
+            name "The Apache Software License, Version 2.0"
+            url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+            distribution "repo"
+        }
+    }
+    scm {
+        connection "scm:git:$scmHttpsUrl"
+        developerConnection "scm:git:$scmSshUrl"
+        url "$scmProjectUrl"
+    }
+}
+
+allprojects {
+    apply plugin: 'com.diffplug.spotless'
+    apply plugin: 'jacoco'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    spotless {
+        def importOrderConfigFile = rootProject.file("src/eclipse/eclipse.importorder")
+        def javaFormatterConfigFile = rootProject.file("src/eclipse/eclipse-formatter-settings.xml")
+
+        java {
+            importOrderFile(importOrderConfigFile)
+            eclipse().configFile(javaFormatterConfigFile)
+            removeUnusedImports()
+            trimTrailingWhitespace()
+            endWithNewline()
+        }
+    }
+}
+
+group='com.commercetools.sdk'
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            username = System.getenv('CTP_OSS_USER')
+            password = System.getenv('CTP_OSS_SECRET')
+        }
+    }
+}
+
+subprojects { project ->
+
+    apply plugin: 'idea'
+
+    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
+    apply plugin: 'signing'
+
+    apply plugin: 'java'
+    apply plugin: 'java-library' // needed to make sure that transitive deps have 'compile' scope
+
+    group='com.commercetools.sdk'
+
+    version = globalVersion
+
+    configurations {
+        integrationTestImplementation.extendsFrom(testImplementation)
+        integrationTestApi.extendsFrom(testApi)
+        integrationTestRuntimeOnly.extendsFrom(testRuntimeOnly)
+    }
+
+    sourceSets {
+        integrationTest {
+            compileClasspath += sourceSets.main.output
+            runtimeClasspath += sourceSets.main.output
+            java {
+            }
+        }
+    }
+
+    dependencies {
+        testImplementation "junit:junit:${versions.junit}"
+        testImplementation "org.assertj:assertj-core:${versions.assertJ}"
+        testImplementation "org.awaitility:awaitility:${versions.awaitility}"
+        testImplementation "ch.qos.logback:logback-classic:${versions.logback}"
+        testImplementation 'org.skyscreamer:jsonassert:1.5.0'
+        testImplementation "com.google.code.gson:gson:${versions.gson}"
+        testImplementation "com.tngtech.junit.dataprovider:junit4-dataprovider:2.8"
+        testImplementation 'org.mockito:mockito-inline:3.9.0'
+        testImplementation 'org.mockito:mockito-junit-jupiter:3.9.0'
+        testImplementation 'pl.pragmatists:JUnitParams:1.1.1'
+    }
+
+    task integrationTest(type: Test) {
+        description = "Runs integration tests."
+        group = "verification"
+
+        testClassesDirs = sourceSets.integrationTest.output.classesDirs
+        classpath = sourceSets.integrationTest.runtimeClasspath
+        shouldRunAfter(test)
+    }
+    check.dependsOn(integrationTest)
+
+    task sourcesJar(type: Jar) {
+        archiveClassifier = 'sources'
+        from sourceSets.main.allJava
+    }
+
+    task javadocJar(type: Jar) {
+        archiveClassifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    javadoc {
+        source = sourceSets.main.allJava
+        classpath = configurations.compileClasspath
+
+        options {
+            setMemberLevel JavadocMemberLevel.PUBLIC
+            setAuthor false
+            noTimestamp = true
+
+            links "https://docs.oracle.com/javase/8/docs/api/"
+        }
+    }
+
+    ext {
+        buildInfoPath = "build/generated/src/main/java/io/vrap/rmf/base/client/"
+        buildInfoPackage = "io.vrap.rmf.base.client"
+    }
+
+    if (project.file("build.gradle").exists()) {
+
+        publishing {
+            repositories {
+                maven {
+                    name = "GitHubPackages"
+                    url = uri("https://maven.pkg.github.com/commercetools/commercetools-sdk-java-v2")
+                    credentials {
+                        username = System.getenv("GITHUB_ACTOR")
+                        password = System.getenv("GITHUB_TOKEN")
+                    }
+                }
+            }
+            publications {
+                Maven(MavenPublication) {
+                    from components.java
+                    artifact sourcesJar
+                    artifact javadocJar
+                    groupId group
+                    artifactId project.name
+                    version version
+
+                    pom {
+                        name = project.name
+                        description = project.description
+                        developers {
+                            developer {
+                                id = "jenschude"
+                                name = "Jens Schulze"
+                                email = "jens.schulze@commercetools.com"
+                            }
+                        }
+                        url = scmHttpsUrl
+                    }
+                    pom.withXml {
+                        def root = asNode()
+                        root.children().last() + pomConfig
+                    }
+                }
+            }
+        }
+
+        signing {
+            useGpgCmd()
+            sign publishing.publications.Maven
+        }
+    }
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+def exportedProjects= [
+        ":commercetools:commercetools-http-client",
+        ":commercetools:commercetools-sdk-java-api",
+        ":commercetools:commercetools-sdk-java-importapi",
+        ":commercetools:commercetools-sdk-java-ml",
+        ":commercetools:commercetools-sdk-compat-v1",
+        ":commercetools:commercetools-sdk-java-history",
+        ":rmf:rmf-java-base",
+        ":commercetools:commercetools-okhttp-client3",
+        ":commercetools:commercetools-okhttp-client4",
+        ":rmf:okhttp-client",
+]
+task alljavadoc(type: Javadoc) {
+    source exportedProjects.collect { project(it).sourceSets.main.allJava }
+    classpath = files(exportedProjects.collect { project(it).sourceSets.main.compileClasspath })
+    destinationDir = file("${buildDir}/docs/javadoc")
+    options.noTimestamp = true
+}
+
+task codeCoverageReport(type: JacocoReport) {
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    subprojects.each {
+        sourceSets it.sourceSets.main
+    }
+
+    reports {
+        xml.enabled true
+        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+        html.enabled false
+        csv.enabled false
+    }
+}
+
+codeCoverageReport.dependsOn {
+    subprojects*.test
+}

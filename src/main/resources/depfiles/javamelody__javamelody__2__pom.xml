@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>net.bull.javamelody</groupId>
+		<artifactId>javamelody-parent</artifactId>
+		<version>1.88.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>javamelody-swing</artifactId>
+	<packaging>jar</packaging>
+	<name>JavaMelody - Swing</name>
+	<description>Swing UI for Java Melody</description>
+	<url>https://github.com/javamelody/javamelody/wiki</url>
+	<licenses>
+		<license>
+			<name>ASL</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Emeric Vernat</name>
+			<email>evernat@free.fr</email>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:svn:http://javamelody.googlecode.com/svn/trunk/</connection>
+		<developerConnection>scm:svn:https://javamelody.googlecode.com/svn/trunk/</developerConnection>
+		<url>http://javamelody.googlecode.com/svn/trunk/</url>
+	</scm>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>javamelody-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<!-- 3.0.1 for compatibility with Java 7 -->
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<!-- Dépendance iText pour exports PDF -->
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+			<version>2.1.7</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>bcmail-jdk14</artifactId>
+					<groupId>bouncycastle</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>bcprov-jdk14</artifactId>
+					<groupId>bouncycastle</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>bctsp-jdk14</artifactId>
+					<groupId>bouncycastle</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Dépendance iText-RTF pour exports RTF -->
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext-rtf</artifactId>
+			<version>2.1.7</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>bcmail-jdk14</artifactId>
+					<groupId>bouncycastle</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>bcprov-jdk14</artifactId>
+					<groupId>bouncycastle</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>bctsp-jdk14</artifactId>
+					<groupId>bouncycastle</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- Dépendances ehcache et quartz -->
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>quartz</groupId>
+			<artifactId>quartz</artifactId>
+			<version>1.5.2</version>
+			<optional>true</optional>
+		</dependency>
+		<!-- Dépendance XStream pour exports XML et JSON -->
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.16</version>
+		</dependency>
+	</dependencies>
+
+	<properties>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<build>
+		<plugins>
+			<!-- Configuration compilation -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<compilerArgument>-Xlint</compilerArgument>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.1.1</version>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/dependency</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<configuration>
+							<target>
+								<echo message="Construction du jar" level="info" />
+								<tstamp>
+									<format property="TODAY_FR"
+										pattern="dd MMMM yyyy HH:mm:ss" locale="fr,FR" />
+								</tstamp>
+								<delete
+									file="target/javamelody-swing-${project.version}.jar" />
+								<jar
+									destfile="target/javamelody-swing-${project.version}.jar">
+									<zipfileset dir="target/classes"
+										excludes="**/Thumbs.db" />
+									<zipfileset file="LICENSE" />
+									<zipfileset
+										src="${project.build.directory}/dependency/javamelody-core-${project.version}.jar"
+										excludes="net/bull/javamelody/Main.class,com/lowagie/text/pdf/fonts/cmap_info.txt" />
+									<zipgroupfileset
+										dir="${project.build.directory}/dependency">
+										<include name="itext-2.1.7.jar" />
+										<include name="log4j-*.jar" />
+										<include name="xstream-*.jar" />
+										<include name="xmlpull-*.jar" />
+										<include name="ehcache-*.jar" />
+										<include name="quartz-*.jar" />
+										<include name="javax.servlet-api-*.jar" />
+										<include name="itext-rtf-*.jar" />
+									</zipgroupfileset>
+									<manifest>
+										<attribute name="Built-By" value="${user.name}" />
+										<attribute name="Built-Date" value="${TODAY_FR}" />
+										<attribute name="Build-Jdk" value="${java.version}" />
+										<section name="javamelody-swing">
+											<attribute name="Implementation-Title"
+												value="Java Melody Swing" />
+											<attribute name="Implementation-Vendor"
+												value="Emeric Vernat" />
+										</section>
+										<!-- attributes related to Java Web Start -->
+										<!-- see http://docs.oracle.com/javase/8/docs/technotes/guides/jweb/security/manifest.html -->
+										<attribute name="Permissions"
+											value="all-permissions" />
+										<attribute name="Codebase" value="*" />
+										<attribute name="Application-Name"
+											value="JavaMelody Desktop" />
+										<attribute name="Trusted-Library" value="true" />
+									</manifest>
+								</jar>
+
+								<echo message="Signature du jar" level="info" />
+								<signjar
+									jar="target/javamelody-swing-${project.version}.jar"
+									alias="javamelody" keystore="src/main/key/javamelodykeystore"
+									storetype="JKS" storepass="javamelody" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<!-- nécessaire car maven définit java_home avec le jre pour ant ! -->
+						<groupId>sun.jdk</groupId>
+						<artifactId>tools</artifactId>
+						<version>1.7.0</version>
+						<scope>system</scope>
+						<systemPath>${java.home}/../lib/tools.jar</systemPath>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+</project>

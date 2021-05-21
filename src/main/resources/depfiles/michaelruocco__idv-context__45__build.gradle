@@ -1,0 +1,18 @@
+plugins {
+    id "org.unbroken-dome.test-sets" version "${testSetsPluginVersion}"
+}
+
+testSets {
+    integrationTest
+}
+
+dependencies {
+    api testFixtures(project(":common-entities"))
+    implementation project(":common-use-cases")
+    implementation project(":otp-use-cases")
+    implementation project(":otp-sim-swap-stub")
+
+    integrationTestImplementation testFixtures(project(":context-entities"))
+    integrationTestImplementation testFixtures(project(":otp-entities"))
+    integrationTestImplementation "org.awaitility:awaitility:${awaitilityVersion}"
+}

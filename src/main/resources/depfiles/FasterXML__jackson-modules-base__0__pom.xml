@@ -1,0 +1,109 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion> 
+  <parent>
+    <groupId>com.fasterxml.jackson</groupId>
+    <artifactId>jackson-base</artifactId>
+    <version>3.0.0-SNAPSHOT</version>
+  </parent>
+  <groupId>com.fasterxml.jackson.module</groupId>
+  <artifactId>jackson-modules-base</artifactId>
+  <name>Jackson modules: Base</name>
+  <version>3.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <description>Parent pom for Jackson "base" modules: modules that build directly on databind, and are
+not datatype, data format, or JAX-RS provider modules.
+  </description>
+
+  <modules>
+    <module>afterburner</module>
+    <module>blackbird</module>
+    <module>guice</module>
+    <module>jakarta-xmlbind</module>
+    <!-- 24-Apr-2021, tatu: May not need the "old" JAXB for 3.0...
+      -->
+    <module>jaxb</module>
+    <module>mrbean</module>
+    <module>osgi</module>
+<!-- 29-Jan-2018, tatu: No need for this, with Java 8
+    <module>paranamer</module>
+-->
+  </modules>
+
+  <url>https://github.com/FasterXML/jackson-modules-base</url>
+  <scm>
+    <connection>scm:git:git@github.com:FasterXML/jackson-modules-base.git</connection>
+    <developerConnection>scm:git:git@github.com:FasterXML/jackson-modules-base.git</developerConnection>
+    <url>http://github.com/FasterXML/jackson-modules-base</url>    
+    <tag>HEAD</tag>
+  </scm>
+  <issueManagement>
+    <url>https://github.com/FasterXML/jackson-modules-base/issues</url>
+  </issueManagement>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- 17-Oct-2017, tatu: MrBean and Afterburner will use Byte Buddy instead of raw ASM
+          starting with 3.0
+      -->
+    <version.bytebuddy>1.10.13</version.bytebuddy>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>net.bytebuddy</groupId>
+        <artifactId>byte-buddy</artifactId>
+        <version>${version.bytebuddy}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <!-- Alas, need to include snapshot reference since otherwise can not find
+       snapshot of parent... -->
+  <repositories>
+    <repository>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <releases><enabled>false</enabled></releases>
+      <snapshots><enabled>true</enabled></snapshots>
+    </repository>
+  </repositories>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+	<plugin>
+	  <!-- Inherited from oss-base. Generate PackageVersion.java.-->
+          <groupId>com.google.code.maven-replacer-plugin</groupId>
+          <artifactId>replacer</artifactId>
+	  <executions>
+            <execution>
+              <id>process-packageVersion</id>
+              <phase>generate-sources</phase>
+            </execution>
+          </executions>
+	</plugin>
+
+	<plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <configuration>
+            <excludes>
+              <exclude>com/fasterxml/jackson/**/failing/*.java</exclude>
+            </excludes>
+          </configuration>
+	</plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>de.jjohannes</groupId>
+        <artifactId>gradle-module-metadata-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

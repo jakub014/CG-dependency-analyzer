@@ -1,0 +1,134 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<name>Esper (Parent)</name>
+	<groupId>com.espertech</groupId>
+	<version>8.7.0</version>
+	<artifactId>esper-parent</artifactId>
+	<packaging>pom</packaging>
+	<url>http://www.espertech.com/esper</url>
+	<description>Complex event processing and event series analysis component</description>
+	<modules>
+		<module>common</module>
+		<module>common-avro</module>
+		<module>compiler</module>
+		<module>runtime</module>
+		<module>regression-lib</module>
+		<module>regression-run</module>
+		<module>esperio</module>
+		<module>examples</module>
+	</modules>
+	<properties>
+		<rootPath>${basedir}</rootPath>
+
+		<!-- Plugins dependencies version -->
+		<maven.bundle.plugin.version>3.5.0</maven.bundle.plugin.version>
+		<maven.checkstyle.plugin.version>3.1.1</maven.checkstyle.plugin.version>
+		<maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
+		<maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
+		<maven.deploy.plugin.version>2.7</maven.deploy.plugin.version>
+		<maven.gpg.plugin.version>1.5</maven.gpg.plugin.version>
+		<maven.jar.plugin.version>2.2</maven.jar.plugin.version>
+		<maven.javadoc.plugin.version>3.0.1</maven.javadoc.plugin.version>
+		<maven.source.plugin.version>2.1</maven.source.plugin.version>
+		<maven.surefire.plugin.version>2.4.3</maven.surefire.plugin.version>
+		<puppycrawl.tools.checkstyle.version>8.29</puppycrawl.tools.checkstyle.version>
+
+		<antlr4-runtime.version>4.7.2</antlr4-runtime.version>
+		<avro.version>1.9.1</avro.version>
+		<avro.jackson.version>2.9.9</avro.jackson.version>
+		<janino.version>3.1.0</janino.version>
+		<log4j.version>1.2.17</log4j.version>
+		<mysql-connector-java.version>8.0.17</mysql-connector-java.version>
+		<slf4j-api.version>1.7.30</slf4j-api.version>
+
+		<!-- Testing dependencies versions -->
+		<junit.version>4.11</junit.version>
+		<mockito.version>1.10.19</mockito.version>
+		<hamcrest-core.version>1.3</hamcrest-core.version>
+	</properties>
+	<licenses>
+		<license>
+			<name>GNU General Public License Version 2</name>
+			<url>http://www.gnu.org/licenses/old-licenses/gpl-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	<scm>
+		<url>https://github.com/espertechinc/esper.git</url>
+		<developerConnection>scm:git:git@github.com:espertechinc/esper.git</developerConnection>
+		<connection>scm:git:git@github.com:espertechinc/esper.git</connection>
+	</scm>
+	<developers>
+		<developer>
+			<id>espertech</id>
+			<name>EsperTech</name>
+			<email>info@espertech.com</email>
+			<url>http://www.espertech.com</url>
+			<organization>EsperTech</organization>
+			<organizationUrl>http://www.espertech.com</organizationUrl>
+		</developer>
+	</developers>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>sonatype-nexus-snapshots</id>
+			<name>Sonatype Nexus snapshot repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>sonatype-nexus-staging</id>
+			<name>Sonatype Nexus release repository</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${maven.checkstyle.plugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.puppycrawl.tools</groupId>
+						<artifactId>checkstyle</artifactId>
+						<version>${puppycrawl.tools.checkstyle.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<phase>validate</phase>
+						<configuration>
+							<configLocation>${rootPath}/checkstyle/checkstyle.xml</configLocation>
+							<headerLocation>${rootPath}/checkstyle/java.header</headerLocation>
+							<suppressionsLocation>${rootPath}/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+							<encoding>UTF-8</encoding>
+							<consoleOutput>true</consoleOutput>
+							<failsOnError>true</failsOnError>
+							<linkXRef>false</linkXRef>
+						</configuration>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>${maven.gpg.plugin.version}</version>
+				<configuration>
+					<passphrase>${gpg.passphrase}</passphrase>
+				</configuration>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

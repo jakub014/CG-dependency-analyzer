@@ -1,0 +1,16 @@
+androidLibrary()
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation project(":enro")
+    kapt project(":enro-processor")
+
+    api deps.kotlin.stdLib
+    api deps.androidx.core
+    api deps.androidx.appcompat
+    api deps.androidx.lifecycle
+    api deps.androidx.constraintlayout
+    api deps.androidx.fragment
+    api deps.androidx.activity
+    api deps.material
+}

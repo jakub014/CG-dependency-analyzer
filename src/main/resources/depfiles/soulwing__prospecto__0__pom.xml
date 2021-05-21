@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ File created on Mar 9, 2016
+  ~
+  ~ Copyright (c) 2016 Carl Harris, Jr
+  ~ and others as noted
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~   http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.soulwing</groupId>
+    <artifactId>soulwing-parent</artifactId>
+    <version>19</version>
+  </parent>
+
+  <groupId>org.soulwing.prospecto</groupId>
+  <artifactId>prospecto</artifactId>
+  <version>1.9.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Prospecto</name>
+  <description>
+    A framework for producing client views in a RESTful web application
+  </description>
+  <url>https://github.com/soulwing/${project.artifactId}</url>
+
+  <properties>
+    <demo.module>prospecto-demo-jaxrs</demo.module>
+    <demo.userName>jane</demo.userName>
+    <demo.roles>USER</demo.roles>
+  </properties>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Carl Harris</name>
+      <organization>Soulwing</organization>
+      <organizationUrl>https://github.com/soulwing</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git@github.com:soulwing/${project.artifactId}.git</connection>
+    <developerConnection>${project.scm.connection}</developerConnection>
+    <url>git@github.com:soulwing/${project.artifactId}.git</url>
+    <tag>1.5.0</tag>
+  </scm>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <release>7</release>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.wildfly.plugins</groupId>
+        <artifactId>wildfly-maven-plugin</artifactId>
+        <version>1.1.0.Alpha7</version>
+        <configuration>
+          <version>9.0.2.Final</version>
+          <targetDir>${project.basedir}/${demo.module}/target</targetDir>
+          <filename>${demo.module}-${project.version}.war</filename>
+          <javaOpts>
+            <javaOpt>-DuserContext.userName=${demo.userName}</javaOpt>
+            <javaOpt>-DuserContext.roles=${demo.roles}</javaOpt>
+            <javaOpt>-XX:MaxPermSize=256m</javaOpt>
+          </javaOpts>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-library</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jmock</groupId>
+      <artifactId>jmock-junit4</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>javax.json</groupId>
+        <artifactId>javax.json-api</artifactId>
+        <version>1.1</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>2.3.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish</groupId>
+        <artifactId>javax.json</artifactId>
+        <version>1.1.4</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.annotation</groupId>
+        <artifactId>javax.annotation-api</artifactId>
+        <version>1.3.2</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.xml</groupId>
+        <artifactId>jaxb-impl</artifactId>
+        <version>2.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.reflections</groupId>
+        <artifactId>reflections</artifactId>
+        <version>0.9.9</version>
+      </dependency>
+      <dependency>
+        <groupId>org.glassfish.jersey.core</groupId>
+        <artifactId>jersey-common</artifactId>
+        <version>2.13</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>[2.9.10.5,)</version>
+      </dependency>
+      <dependency>
+        <groupId>org.soulwing.jdbc</groupId>
+        <artifactId>fluent-jdbc</artifactId>
+        <version>1.1.4</version>
+      </dependency>
+      <dependency>
+        <groupId>org.soulwing</groupId>
+        <artifactId>bean-manager-locator</artifactId>
+        <version>1.0.1</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <modules>
+    <module>prospecto-api</module>
+    <module>prospecto-matchers</module>
+    <module>prospecto-runtime</module>
+    <module>prospecto-jaxrs</module>
+    <module>prospecto-jaxb</module>
+    <module>prospecto-jackson</module>
+    <module>prospecto-cdi-scope</module>
+    <module>prospecto-tests</module>
+    <module>prospecto-demo-jaxrs</module>
+  </modules>
+
+</project>

@@ -1,0 +1,73 @@
+apply plugin: 'kotlin-platform-jvm'
+apply plugin: 'jacoco'
+apply plugin: 'org.sonarqube'
+
+def isAndroid = project.rootProject.hasProperty("ANDROID")
+if(isAndroid) {
+    logger.warn("Android build!")
+}
+
+// TODO: rename 'kluent' to 'kluent-jvm' for 2.0
+def artifactName = isAndroid ? 'kluent-android' : 'kluent'
+configurePublishing(artifactName)
+
+dependencies {
+    expectedBy project(':kluent-common')
+    implementation libs.kotlin_stdlib_jvm
+    implementation libs.kotlin_reflect
+    implementation libs.kotlin_test_jvm
+    implementation libs.junit
+
+    testImplementation libs.junit
+    testImplementation libs.kotlin_test_jvm
+    testImplementation libs.kotlin_test_junit
+    testImplementation libs.kotlinx_coroutines_test
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
+}
+
+sourceSets {
+    main {
+        kotlin {
+            srcDir 'src/main/kotlin'
+
+            if(isAndroid) {
+                exclude '**/*Backtick*'
+            }
+        }
+    }
+    test {
+        kotlin {
+            srcDir 'src/test/kotlin'
+
+            if(isAndroid) {
+                exclude '**/backtick*/**', '**/*Backtick*'
+            }
+        }
+    }
+}
+
+tasks.withType(compileKotlin.getClass()) {
+    kotlinOptions {
+        jvmTarget = isAndroid ? '1.6' : '1.8'
+
+        freeCompilerArgs += [
+                '-Xuse-experimental=kotlin.Experimental'
+        ]
+    }
+}
+
+sonarqube {
+    properties {
+        property 'sonar.coverage.exclusions', '**/*Backtick.kt'
+        property 'sonar.projectKey', 'MarkusAmshove_Kluent'
+        property 'sonar.organization', 'markusamshove'
+        property 'sonar.host.url', 'https://sonarcloud.io'
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}

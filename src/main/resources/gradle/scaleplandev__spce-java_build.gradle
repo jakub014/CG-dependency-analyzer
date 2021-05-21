@@ -1,0 +1,140 @@
+// Author: yuce
+// Created on: 2020-07-31, at: 23:50 +0300
+
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'maven-publish'
+    id 'signing'
+    id 'me.champeau.gradle.jmh' version '0.5.0'
+    id "com.jfrog.bintray" version '1.8.5'
+}
+
+ext {
+    junitVersion = '5.6.2'
+    jacksonVersion = '2.11.1'
+    ituVersion = '1.3.0'
+    avroVersion = '1.10.0'
+}
+
+group 'io.scaleplan'
+version '0.3.4'
+
+def title = "ScalePlan CloudEvents for Java"
+def homeUrl = "https://github.com/scaleplandev/spce-java"
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    implementation "com.ethlo.time:itu:$ituVersion"
+    implementation "org.apache.avro:avro:$avroVersion"
+
+    compileOnly "org.jetbrains:annotations:19.0.0"
+
+    if (JavaVersion.current().isJava9Compatible()) {
+        // Workaround for @javax.annotation.Generated
+        // see: https://github.com/grpc/grpc-java/issues/3633
+        implementation 'javax.annotation:javax.annotation-api:1.3.2'
+    }
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    testImplementation "org.jetbrains:annotations:17.0.0"
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jmh {
+    duplicateClassesStrategy = 'warn'
+    jmhVersion = '1.22'
+//    profilers = ['perf']
+
+    // BROKEN
+    // def includeBenchmarks = project.properties.get('include', '').split(',')
+    def includeBenchmarks = [ ]
+    include = includeBenchmarks
+
+}
+
+javadoc {
+    title = "$title $version"
+    source = sourceSets.main.allJava
+    options.overview = "etc/javadoc/overview.html"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    setArchiveClassifier('sources')
+    from sourceSets.main.allSource
+}
+
+javadoc.failOnError = false
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    setArchiveClassifier('javadoc')
+    from javadoc.destinationDir
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = "$group"
+            artifactId = "${rootProject.name}"
+            version = "$version"
+            from(components.java)
+            artifact sourcesJar
+            artifact javadocJar
+
+            pom {
+                description = "$title"
+                name = "${rootProject.name}"
+                version = "$version"
+                url = "$homeUrl"
+
+                licenses {
+                    license {
+                        name = "The Apache Software License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                        distribution = "repo"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "yuce-scaleplan"
+                        name = "Yüce Tekol"
+                        email = "yuce@scaleplan.io"
+                    }
+                }
+
+                scm {
+                    url = "https://github.com/scaleplandev/spce-java.git"
+                }
+
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "Sonatype"
+            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username "$ossrhUsername"
+                password "$ossrhPassword"
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}

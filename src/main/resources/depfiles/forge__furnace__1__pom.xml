@@ -1,0 +1,179 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>org.jboss</groupId>
+      <artifactId>jboss-parent</artifactId>
+      <version>38</version>
+      <relativePath />
+   </parent>
+   <groupId>org.jboss.forge.furnace</groupId>
+   <artifactId>furnace-bom</artifactId>
+   <version>2.29.1-SNAPSHOT</version>
+   <packaging>pom</packaging>
+   <name>Furnace - BOM</name>
+   <description>The Furnace "Bill of Materials"</description>
+   <url>http://forge.jboss.org</url>
+
+   <licenses>
+      <license>
+         <name>Eclipse Public License version 1.0</name>
+         <url>http://www.eclipse.org/legal/epl-v10.html</url>
+      </license>
+   </licenses>
+
+   <developers>
+      <developer>
+         <id>lincoln</id>
+         <name>Lincoln Baxter, III</name>
+         <email>lincolnbaxter@gmail.com</email>
+      </developer>
+      <developer>
+         <id>gastaldi</id>
+         <name>George Gastaldi</name>
+         <email>gegastaldi@gmail.com</email>
+      </developer>
+   </developers>
+
+   <issueManagement>
+      <system>jira</system>
+      <url>https://issues.jboss.org/browse/FURNACE</url>
+   </issueManagement>
+
+   <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   </properties>
+
+   <dependencyManagement>
+      <dependencies>
+
+         <!-- CDI Container -->
+         <dependency>
+            <groupId>org.jboss.forge.furnace.container</groupId>
+            <artifactId>cdi</artifactId>
+            <classifier>forge-addon</classifier>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.forge.furnace.container</groupId>
+            <artifactId>cdi-api</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+
+         <!-- Simple Container -->
+         <dependency>
+            <groupId>org.jboss.forge.furnace.container</groupId>
+            <artifactId>simple</artifactId>
+            <classifier>forge-addon</classifier>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.forge.furnace.container</groupId>
+            <artifactId>simple-api</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+
+         <!-- Furnace Runtime -->
+         <dependency>
+            <groupId>org.jboss.forge.furnace</groupId>
+            <artifactId>furnace</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.forge.furnace</groupId>
+            <artifactId>furnace-api</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.forge.furnace</groupId>
+            <artifactId>furnace-proxy</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.forge.furnace</groupId>
+            <artifactId>furnace-se</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.forge.furnace</groupId>
+            <artifactId>furnace-manager</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.forge.furnace</groupId>
+            <artifactId>furnace-manager-api</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.forge.furnace</groupId>
+            <artifactId>furnace-manager-spi</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.forge.furnace</groupId>
+            <artifactId>furnace-manager-resolver-maven</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+
+         <!-- Test Harness Dependencies -->
+         <dependency>
+            <groupId>org.jboss.forge.furnace.test</groupId>
+            <artifactId>furnace-test-harness</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.forge.furnace.test</groupId>
+            <artifactId>arquillian-furnace-classpath</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+         <dependency>
+            <groupId>org.jboss.forge.furnace.test</groupId>
+            <artifactId>arquillian-forge-core</artifactId>
+            <version>${project.version}</version>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
+
+   <scm>
+      <connection>scm:git:git://github.com/forge/furnace.git</connection>
+      <developerConnection>scm:git:git@github.com:forge/furnace.git</developerConnection>
+      <url>http://github.com/forge/furnace</url>
+      <tag>HEAD</tag>
+   </scm>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <configuration>
+               <preparationGoals>clean install</preparationGoals>
+               <releaseProfiles>gpg-sign,jboss-release</releaseProfiles>
+               <tagNameFormat>@{project.version}</tagNameFormat>
+            </configuration>
+         </plugin>
+         <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.3</version>
+            <extensions>true</extensions>
+            <configuration>
+               <autoReleaseAfterClose>true</autoReleaseAfterClose>
+               <serverId>ossrh</serverId>
+               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+            </configuration>
+         </plugin>
+      </plugins>
+   </build>
+   
+   <distributionManagement>
+      <snapshotRepository>
+         <id>ossrh</id>
+         <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      </snapshotRepository>
+      <repository>
+         <id>ossrh</id>
+         <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      </repository>
+   </distributionManagement>
+
+</project>

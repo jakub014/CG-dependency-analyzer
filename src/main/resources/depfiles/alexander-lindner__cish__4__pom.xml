@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>cish</artifactId>
+        <groupId>org.alindner.cish</groupId>
+        <version>v0.3.6</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <dependencies>
+        <dependency>
+            <groupId>org.alindner.cish</groupId>
+            <artifactId>compiler</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.alindner.cish</groupId>
+            <artifactId>lang</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.alindner.cish</groupId>
+            <artifactId>extension</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.argparse4j</groupId>
+            <artifactId>argparse4j</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+    </dependencies>
+
+    <artifactId>interpreter</artifactId>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jlink-plugin</artifactId>
+                <version>3.1.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <!-- configuration elements goes here -->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>
+                                org.alindner.cish.interpreter.Interpreter
+                            </mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!--            <plugin>-->
+            <!--                <groupId>org.moditect</groupId>-->
+            <!--                <artifactId>moditect-maven-plugin</artifactId>-->
+            <!--                <version>1.0.0.Beta2</version>-->
+            <!--                <executions>-->
+            <!--                    <execution>-->
+            <!--                        <id>add-module-infos</id>-->
+            <!--                        <phase>generate-resources</phase>-->
+            <!--                        <goals>-->
+            <!--                            <goal>add-module-info</goal>-->
+            <!--                        </goals>-->
+            <!--                        <configuration>-->
+            <!--                            <overwriteExistingFiles>true</overwriteExistingFiles>-->
+            <!--                            <outputDirectory>${project.build.directory}/modules</outputDirectory>-->
+            <!--                            <modules>-->
+            <!--                                <module>-->
+            <!--                                    <artifact>-->
+            <!--                                        <groupId>org.codehaus.plexus</groupId>-->
+            <!--                                        <artifactId>plexus-container-default</artifactId>-->
+            <!--                                        <version>2.1.0</version>-->
+            <!--                                    </artifact>-->
+            <!--                                    <moduleInfoSource>-->
+            <!--                                        module org.codehaus.plexus {-->
+            <!--                                        requires google.collections;-->
+            <!--                                        requires junit;-->
+            <!--                                        requires plexus.classworlds;-->
+            <!--                                        requires plexus.utils;-->
+            <!--                                        requires xbean.reflect;-->
+            <!--                                        exports org.codehaus.plexus;-->
+            <!--                                        exports org.codehaus.plexus.component;-->
+            <!--                                        exports org.codehaus.plexus.component.builder;-->
+            <!--                                        exports org.codehaus.plexus.component.collections;-->
+            <!--                                        exports org.codehaus.plexus.component.composition;-->
+            <!--                                        exports org.codehaus.plexus.component.configurator;-->
+            <!--                                        exports org.codehaus.plexus.component.configurator.converters;-->
+            <!--                                        exports org.codehaus.plexus.component.configurator.converters.basic;-->
+            <!--                                        exports org.codehaus.plexus.component.configurator.converters.composite;-->
+            <!--                                        exports org.codehaus.plexus.component.configurator.converters.lookup;-->
+            <!--                                        exports org.codehaus.plexus.component.configurator.converters.special;-->
+            <!--                                        exports org.codehaus.plexus.component.configurator.expression;-->
+            <!--                                        exports org.codehaus.plexus.component.discovery;-->
+            <!--                                        exports org.codehaus.plexus.component.factory;-->
+            <!--                                        exports org.codehaus.plexus.component.factory.java;-->
+            <!--                                        exports org.codehaus.plexus.component.manager;-->
+            <!--                                        exports org.codehaus.plexus.component.repository;-->
+            <!--                                        exports org.codehaus.plexus.component.repository.exception;-->
+            <!--                                        exports org.codehaus.plexus.component.repository.io;-->
+            <!--                                        exports org.codehaus.plexus.configuration;-->
+            <!--                                        exports org.codehaus.plexus.configuration.io;-->
+            <!--                                        exports org.codehaus.plexus.configuration.source;-->
+            <!--                                        exports org.codehaus.plexus.configuration.xml;-->
+            <!--                                        exports org.codehaus.plexus.container.initialization;-->
+            <!--                                        exports org.codehaus.plexus.context;-->
+            <!--                                        exports org.codehaus.plexus.lifecycle;-->
+            <!--                                        exports org.codehaus.plexus.lifecycle.phase;-->
+            <!--                                        exports org.codehaus.plexus.logging;-->
+            <!--                                        exports org.codehaus.plexus.logging.console;-->
+            <!--                                        exports org.codehaus.plexus.personality.plexus.lifecycle.phase;-->
+            <!--                                        }-->
+            <!--                                    </moduleInfoSource>-->
+            <!--                                </module>-->
+
+            <!--                            </modules>-->
+            <!--                        </configuration>-->
+            <!--                    </execution>-->
+            <!--                    <execution>-->
+            <!--                        <id>generate-module-info</id>-->
+            <!--                        <phase>generate-sources</phase>-->
+            <!--                        <goals>-->
+            <!--                            <goal>generate-module-info</goal>-->
+            <!--                        </goals>-->
+            <!--                        <configuration>-->
+            <!--                            <modules>-->
+            <!--                                <module>-->
+            <!--                                    <artifact>-->
+            <!--                                        <groupId>commons-io</groupId>-->
+            <!--                                        <artifactId>commons-io</artifactId>-->
+            <!--                                        <version>2.8.0</version>-->
+            <!--                                    </artifact>-->
+            <!--                                    <moduleInfo>-->
+            <!--                                        <name>org.apache.commons.io</name>-->
+            <!--                                        <exports>-->
+            <!--                                            *;-->
+            <!--                                        </exports>-->
+            <!--                                        <requires>-->
+            <!--                                            *;-->
+            <!--                                        </requires>-->
+            <!--                                    </moduleInfo>-->
+            <!--                                </module>-->
+            <!--                                <module>-->
+            <!--                                    <artifact>-->
+            <!--                                        <groupId>org.reflections</groupId>-->
+            <!--                                        <artifactId>reflections</artifactId>-->
+            <!--                                        <version>0.9.12</version>-->
+            <!--                                    </artifact>-->
+            <!--                                    <moduleInfo>-->
+            <!--                                        <name>org.reflections</name>-->
+            <!--                                        <exports>-->
+            <!--                                            *;-->
+            <!--                                        </exports>-->
+            <!--                                        <requires>-->
+            <!--                                            *;-->
+            <!--                                        </requires>-->
+            <!--                                    </moduleInfo>-->
+            <!--                                </module>-->
+
+            <!--                                &lt;!&ndash;                                <module>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                    <artifact>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                        <groupId>org.apache.maven.shared</groupId>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                        <artifactId>maven-shared-utils</artifactId>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                        <version>3.3.3</version>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                    </artifact>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                    <moduleInfo>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                        <name>org.apache.maven.shared.utils</name>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                        <exports>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                            *;&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                        </exports>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                        <requires>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                            *;&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                        </requires>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                    </moduleInfo>&ndash;&gt;-->
+            <!--                                &lt;!&ndash;                                </module>&ndash;&gt;-->
+            <!--                            </modules>-->
+            <!--                        </configuration>-->
+            <!--                    </execution>-->
+            <!--                </executions>-->
+            <!--            </plugin>-->
+        </plugins>
+    </build>
+</project>

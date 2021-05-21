@@ -1,0 +1,50 @@
+plugins {
+    id "org.unbroken-dome.test-sets" version "${testSetsPluginVersion}"
+    id "java-test-fixtures"
+}
+
+ext {
+    logbackVersion = "1.2.3"
+}
+
+testSets {
+    integrationTest
+}
+
+configurations {
+    testFixturesApi.setCanBeResolved(true)
+    testRuntimeOnly.exclude module: "slf4j-simple"
+}
+
+dependencies {
+    api project(":otp-entities")
+    api project(":activity-entities")
+
+    implementation project(":common-json")
+    implementation project(":otp-json")
+    implementation "com.github.michaelruocco:string-utils:${mruocStringUtilsVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "com.github.michaelruocco:json-adapter:${jsonAdapterVersion}"
+    implementation "com.github.michaelruocco:duration-logger:${durationLoggerVersion}"
+    implementation "com.github.michaelruocco:json-masker:${jsonMaskerVersion}"
+    implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
+
+    testImplementation "uk.org.webcompere:system-stubs-jupiter:${systemStubsVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+    testRuntimeOnly "ch.qos.logback:logback-core:${logbackVersion}"
+    testRuntimeOnly "ch.qos.logback:logback-classic:${logbackVersion}"
+
+    integrationTestImplementation "com.github.tomakehurst:wiremock-jre8:2.27.2"
+    integrationTestImplementation testFixtures(project(":context-json"))
+
+    testFixturesCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testFixturesAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testFixturesApi "uk.org.webcompere:system-stubs-jupiter:${systemStubsVersion}"
+    testFixturesApi testFixtures(project(":method-entities"))
+    testFixturesApi testFixtures(project(":method-json"))
+    testFixturesApi testFixtures(project(":identity-json"))
+    testFixturesImplementation "org.apache.commons:commons-lang3:3.12.0"
+    testFixturesImplementation "org.awaitility:awaitility:${awaitilityVersion}"
+}
+
+apply from: rootProject.file("publish.gradle")

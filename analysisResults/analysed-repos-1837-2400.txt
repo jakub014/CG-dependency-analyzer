@@ -1,0 +1,533 @@
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR xacml4j ~ xacml4j-opensource
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR agileway ~ fangjinuo
+NO VULNERABLE DEPENDENCIES FOUND FOR simple-tool ~ Ling2099
+SUCCESSFULLY ANALYZED wdm4j ~ rosolko
+NO VULNERABLE DEPENDENCIES FOUND FOR hsclient ~ teverett
+SUCCESSFULLY ANALYZED spring-boot-data-geode ~ spring-projects
+POM/GRADLE FILE LOCALLY NOT FOUND FOR jmolecules ~ xmolecules
+SUCCESSFULLY ANALYZED jmolecules ~ xmolecules
+SUCCESSFULLY ANALYZED slf4j-stdio ~ greysoft
+NO VULNERABLE DEPENDENCIES FOUND FOR conga-aem-plugin ~ wcm-io-devops
+NO VULNERABLE DEPENDENCIES FOUND FOR ide-login ~ GoogleCloudPlatform
+POM/GRADLE FILE LOCALLY NOT FOUND FOR jEntityTest ~ TestMonkeys
+SUCCESSFULLY ANALYZED jEntityTest ~ TestMonkeys
+SUCCESSFULLY ANALYZED iPLAss ~ ISID
+NO VULNERABLE DEPENDENCIES FOUND FOR entando-keycloak-plugin ~ entando
+NO VULNERABLE DEPENDENCIES FOUND FOR vfs-jcifs-smb ~ new-proimage
+NO VULNERABLE DEPENDENCIES FOUND FOR Sudachi ~ WorksApplications
+SUCCESSFULLY ANALYZED grpc-spring-boot-starter ~ yidongnan
+NO VULNERABLE DEPENDENCIES FOUND FOR mima-maven-plugin ~ kelnos
+NO VULNERABLE DEPENDENCIES FOUND FOR ci.common ~ openliberty
+SUCCESSFULLY ANALYZED noo ~ troopson
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-servicedirectory ~ googleapis
+SUCCESSFULLY ANALYZED java-servicedirectory ~ googleapis
+NO VULNERABLE DEPENDENCIES FOUND FOR heidelpayJava ~ heidelpay
+NO VULNERABLE DEPENDENCIES FOUND FOR java-sdk ~ unlaunch
+POM/GRADLE FILE LOCALLY NOT FOUND FOR lib-daml-jvm-test ~ digital-asset
+SUCCESSFULLY ANALYZED lib-daml-jvm-test ~ digital-asset
+POM/GRADLE FILE LOCALLY NOT FOUND FOR delta ~ delta-io
+SUCCESSFULLY ANALYZED delta ~ delta-io
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-billing ~ googleapis
+SUCCESSFULLY ANALYZED java-billing ~ googleapis
+SUCCESSFULLY ANALYZED gerrit-rest-java-client ~ uwolfer
+NO VULNERABLE DEPENDENCIES FOUND FOR brave-opentracing ~ openzipkin-contrib
+POM/GRADLE FILE LOCALLY NOT FOUND FOR promregator ~ promregator
+SUCCESSFULLY ANALYZED promregator ~ promregator
+SUCCESSFULLY ANALYZED pz-zdoc ~ cocolabs
+NO VULNERABLE DEPENDENCIES FOUND FOR euler-preview ~ euler-io
+SUCCESSFULLY ANALYZED rsql-hibernate-jpa ~ ichanzhar
+NO VULNERABLE DEPENDENCIES FOUND FOR tomkit ~ yanhu32
+NO VULNERABLE DEPENDENCIES FOUND FOR azure-cosmosdb-spark ~ Azure
+NO VULNERABLE DEPENDENCIES FOUND FOR elasticsearch-cluster-runner ~ codelibs
+NO VULNERABLE DEPENDENCIES FOUND FOR java-sdk ~ signaturit
+SUCCESSFULLY ANALYZED xml-stream-css ~ nithril
+POM/GRADLE FILE LOCALLY NOT FOUND FOR baker ~ ing-bank
+SUCCESSFULLY ANALYZED baker ~ ing-bank
+NO VULNERABLE DEPENDENCIES FOUND FOR eureka-server ~ zahori-io
+NO VULNERABLE DEPENDENCIES FOUND FOR cqf-ruler ~ DBCG
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR duracloud ~ duracloud
+SUCCESSFULLY ANALYZED libsignal-service-java ~ Turasa
+SUCCESSFULLY ANALYZED gaia-sdk ~ leftshiftone
+SUCCESSFULLY ANALYZED jwks-rsa-java ~ auth0
+NO VULNERABLE DEPENDENCIES FOUND FOR json-diff ~ deblockt
+NO VULNERABLE DEPENDENCIES FOUND FOR spring-batch-lightmin ~ tuxdevelop
+NO VULNERABLE DEPENDENCIES FOUND FOR fuzzy-matcher ~ intuit
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR nextfractal ~ nextbreakpoint
+POM/GRADLE FILE LOCALLY NOT FOUND FOR dagger ~ google
+EXCEPTION class org.apache.commons.io.IOExceptionList THROWN FOR dagger ~ google
+SUCCESSFULLY ANALYZED spring-cloud-services-connector ~ pivotal-cf
+POM/GRADLE FILE LOCALLY NOT FOUND FOR akka-persistence-cassandra ~ akka
+SUCCESSFULLY ANALYZED akka-persistence-cassandra ~ akka
+NO VULNERABLE DEPENDENCIES FOUND FOR fast-object-pool ~ DanielYWoo
+NO VULNERABLE DEPENDENCIES FOUND FOR db-exchange ~ Mengzuozhu
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-recaptchaenterprise ~ googleapis
+SUCCESSFULLY ANALYZED java-recaptchaenterprise ~ googleapis
+NO VULNERABLE DEPENDENCIES FOUND FOR cofe.xyz-next ~ gochaorg
+POM/GRADLE FILE LOCALLY NOT FOUND FOR errai ~ errai
+SUCCESSFULLY ANALYZED errai ~ errai
+NO VULNERABLE DEPENDENCIES FOUND FOR common-pay ~ developcollect
+SUCCESSFULLY ANALYZED PetBlocks ~ Shynixn
+SUCCESSFULLY ANALYZED javers ~ javers
+SUCCESSFULLY ANALYZED fulibMockups ~ fujaba
+SUCCESSFULLY ANALYZED bugsnag-java ~ bugsnag
+NO VULNERABLE DEPENDENCIES FOUND FOR dollarx ~ loyada
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-bigquerydatatransfer ~ googleapis
+SUCCESSFULLY ANALYZED java-bigquerydatatransfer ~ googleapis
+SUCCESSFULLY ANALYZED canvas-api ~ oxctl
+NO VULNERABLE DEPENDENCIES FOUND FOR studio ~ craftercms
+NO VULNERABLE DEPENDENCIES FOUND FOR esapi-java-legacy ~ ESAPI
+NO VULNERABLE DEPENDENCIES FOUND FOR camunda-bpm-assert ~ camunda
+POM/GRADLE FILE LOCALLY NOT FOUND FOR smali ~ JesusFreke
+SUCCESSFULLY ANALYZED smali ~ JesusFreke
+POM/GRADLE FILE LOCALLY NOT FOUND FOR cobigen ~ devonfw
+SUCCESSFULLY ANALYZED cobigen ~ devonfw
+NO VULNERABLE DEPENDENCIES FOUND FOR committer-azuresearch ~ Norconex
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR rocketmq ~ apache
+POM/GRADLE FILE LOCALLY NOT FOUND FOR edb ~ MrYang-Jia
+SUCCESSFULLY ANALYZED edb ~ MrYang-Jia
+POM/GRADLE FILE LOCALLY NOT FOUND FOR play-soap ~ playframework
+SUCCESSFULLY ANALYZED play-soap ~ playframework
+EXCEPTION class org.apache.commons.io.IOExceptionList THROWN FOR ongdb ~ graphfoundation
+POM/GRADLE FILE LOCALLY NOT FOUND FOR azure-kusto-spark ~ Azure
+SUCCESSFULLY ANALYZED azure-kusto-spark ~ Azure
+SUCCESSFULLY ANALYZED synapse ~ otto-de
+SUCCESSFULLY ANALYZED jawn ~ MTDdk
+NO VULNERABLE DEPENDENCIES FOUND FOR amazon-kinesis-connector-flink ~ awslabs
+POM/GRADLE FILE LOCALLY NOT FOUND FOR scala-rbac ~ johnhungerford
+SUCCESSFULLY ANALYZED scala-rbac ~ johnhungerford
+NO VULNERABLE DEPENDENCIES FOUND FOR clickhouse-jdbc ~ ClickHouse
+SUCCESSFULLY ANALYZED logzio-logback-appender ~ logzio
+NO VULNERABLE DEPENDENCIES FOUND FOR toolbox ~ HughWick
+NO VULNERABLE DEPENDENCIES FOUND FOR ao-credit-cards-payflowPro ~ aoindustries
+NO VULNERABLE DEPENDENCIES FOUND FOR unmz-common-util ~ FaritorKang
+NO VULNERABLE DEPENDENCIES FOUND FOR bootique-tapestry ~ bootique
+NO VULNERABLE DEPENDENCIES FOUND FOR KalturaGeneratedAPIClientsJava ~ kaltura
+NO VULNERABLE DEPENDENCIES FOUND FOR jcublas ~ jcuda
+NO VULNERABLE DEPENDENCIES FOUND FOR impsort-maven-plugin ~ revelc
+POM/GRADLE FILE LOCALLY NOT FOUND FOR jaxrs-api ~ eclipse-ee4j
+SUCCESSFULLY ANALYZED jaxrs-api ~ eclipse-ee4j
+SUCCESSFULLY ANALYZED atlas-generator ~ osmlab
+NO VULNERABLE DEPENDENCIES FOUND FOR lanterna ~ mabe02
+NO VULNERABLE DEPENDENCIES FOUND FOR dynamic-sql ~ pengweizhong
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-phishingprotection ~ googleapis
+SUCCESSFULLY ANALYZED java-phishingprotection ~ googleapis
+NO VULNERABLE DEPENDENCIES FOUND FOR redis-helper ~ pugwoo
+POM/GRADLE FILE LOCALLY NOT FOUND FOR spark-testing-base ~ holdenk
+SUCCESSFULLY ANALYZED spark-testing-base ~ holdenk
+POM/GRADLE FILE LOCALLY NOT FOUND FOR play-prometheus-filters ~ Jyllands-Posten
+SUCCESSFULLY ANALYZED play-prometheus-filters ~ Jyllands-Posten
+NO VULNERABLE DEPENDENCIES FOUND FOR pairwise-tree-generator ~ 3DRaven
+SUCCESSFULLY ANALYZED MySQLw ~ PlanetTeamSpeakk
+SUCCESSFULLY ANALYZED kotlin-flow-extensions ~ akarnokd
+POM/GRADLE FILE LOCALLY NOT FOUND FOR squbs ~ paypal
+SUCCESSFULLY ANALYZED squbs ~ paypal
+NO VULNERABLE DEPENDENCIES FOUND FOR search ~ craftercms
+SUCCESSFULLY ANALYZED micro-server ~ aol
+POM/GRADLE FILE LOCALLY NOT FOUND FOR nanotest-strawman ~ scala
+SUCCESSFULLY ANALYZED nanotest-strawman ~ scala
+POM/GRADLE FILE LOCALLY NOT FOUND FOR seals ~ durban
+SUCCESSFULLY ANALYZED seals ~ durban
+NO VULNERABLE DEPENDENCIES FOUND FOR elasticsearch-dataformat ~ codelibs
+POM/GRADLE FILE LOCALLY NOT FOUND FOR amazon-mws ~ ChunMengLu
+SUCCESSFULLY ANALYZED amazon-mws ~ ChunMengLu
+NO VULNERABLE DEPENDENCIES FOUND FOR dictionary ~ starlangsoftware
+NO VULNERABLE DEPENDENCIES FOUND FOR geometry-api-java ~ Esri
+NO VULNERABLE DEPENDENCIES FOUND FOR moskito-javaagent ~ anotheria
+NO VULNERABLE DEPENDENCIES FOUND FOR zt-exec ~ zeroturnaround
+NO VULNERABLE DEPENDENCIES FOUND FOR j4ts ~ j4ts
+NO VULNERABLE DEPENDENCIES FOUND FOR aws-glue-schema-registry ~ awslabs
+POM/GRADLE FILE LOCALLY NOT FOUND FOR sbt-exercise ~ scala-exercises
+SUCCESSFULLY ANALYZED sbt-exercise ~ scala-exercises
+SUCCESSFULLY ANALYZED browserup-proxy ~ browserup
+NO VULNERABLE DEPENDENCIES FOUND FOR Web-Client ~ AtomGraph
+NO VULNERABLE DEPENDENCIES FOUND FOR simple-json ~ xkcoding
+NO VULNERABLE DEPENDENCIES FOUND FOR fess-suggest ~ codelibs
+SUCCESSFULLY ANALYZED trellis ~ trellis-ldp
+POM/GRADLE FILE LOCALLY NOT FOUND FOR scala-isabelle ~ dominique-unruh
+SUCCESSFULLY ANALYZED scala-isabelle ~ dominique-unruh
+NO VULNERABLE DEPENDENCIES FOUND FOR GeoIP2-java ~ maxmind
+POM/GRADLE FILE LOCALLY NOT FOUND FOR feast ~ feast-dev
+SUCCESSFULLY ANALYZED feast ~ feast-dev
+NO VULNERABLE DEPENDENCIES FOUND FOR trakt-java ~ UweTrottmann
+POM/GRADLE FILE LOCALLY NOT FOUND FOR yixsoft-autobatis ~ yixblog
+SUCCESSFULLY ANALYZED yixsoft-autobatis ~ yixblog
+NO VULNERABLE DEPENDENCIES FOUND FOR ets-cat30 ~ opengeospatial
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-vision ~ googleapis
+SUCCESSFULLY ANALYZED java-vision ~ googleapis
+POM/GRADLE FILE LOCALLY NOT FOUND FOR truevfs ~ christian-schlichtherle
+SUCCESSFULLY ANALYZED truevfs ~ christian-schlichtherle
+SUCCESSFULLY ANALYZED radar-jersey ~ RADAR-base
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR dynamodb-cross-region-library ~ awslabs
+SUCCESSFULLY ANALYZED jfix-armeria ~ ru-fix
+NO VULNERABLE DEPENDENCIES FOUND FOR domino-slf4j-logger ~ DominoKit
+SUCCESSFULLY ANALYZED fitnesse ~ unclebob
+NO VULNERABLE DEPENDENCIES FOUND FOR fiks-io-send-klient ~ ks-no
+NO VULNERABLE DEPENDENCIES FOUND FOR sendgrid-java ~ sendgrid
+POM/GRADLE FILE LOCALLY NOT FOUND FOR lisa ~ UniVE-SSV
+SUCCESSFULLY ANALYZED lisa ~ UniVE-SSV
+SUCCESSFULLY ANALYZED artifactz-java-client ~ iktech
+POM/GRADLE FILE LOCALLY NOT FOUND FOR elepy ~ RyanSusana
+SUCCESSFULLY ANALYZED elepy ~ RyanSusana
+SUCCESSFULLY ANALYZED json-typedef-java ~ jsontypedef
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR jmicro ~ mynewworldyyl
+NO VULNERABLE DEPENDENCIES FOUND FOR windup-maven-plugin ~ windup
+SUCCESSFULLY ANALYZED springfox-enum-plugin ~ hoereth
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-containeranalysis ~ googleapis
+SUCCESSFULLY ANALYZED java-containeranalysis ~ googleapis
+SUCCESSFULLY ANALYZED webauthn4j-spring-security ~ webauthn4j
+NO VULNERABLE DEPENDENCIES FOUND FOR TelegramBots ~ rubenlagus
+NO VULNERABLE DEPENDENCIES FOUND FOR spring-search ~ sipios
+POM/GRADLE FILE LOCALLY NOT FOUND FOR aemanalyser-maven-plugin ~ adobe
+SUCCESSFULLY ANALYZED aemanalyser-maven-plugin ~ adobe
+NO VULNERABLE DEPENDENCIES FOUND FOR businessObjectAdapters ~ notima
+NO VULNERABLE DEPENDENCIES FOUND FOR atomix ~ atomix
+SUCCESSFULLY ANALYZED bc-java ~ bcgit
+NO VULNERABLE DEPENDENCIES FOUND FOR overture ~ overturetool
+SUCCESSFULLY ANALYZED jaxrs-security ~ Bankdata
+POM/GRADLE FILE LOCALLY NOT FOUND FOR stapler ~ stapler
+SUCCESSFULLY ANALYZED stapler ~ stapler
+SUCCESSFULLY ANALYZED hivemq-testcontainer ~ hivemq
+NO VULNERABLE DEPENDENCIES FOUND FOR agile-security ~ mydeathtrial
+SUCCESSFULLY ANALYZED android-utils ~ nisrulz
+POM/GRADLE FILE LOCALLY NOT FOUND FOR prob2_kernel ~ hhu-stups
+SUCCESSFULLY ANALYZED prob2_kernel ~ hhu-stups
+NO VULNERABLE DEPENDENCIES FOUND FOR extension-springcloud ~ AxonFramework
+SUCCESSFULLY ANALYZED ask-kodiak-sdk ~ trustedchoice
+NO VULNERABLE DEPENDENCIES FOUND FOR h3-java ~ uber
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-datacatalog ~ googleapis
+SUCCESSFULLY ANALYZED java-datacatalog ~ googleapis
+POM/GRADLE FILE LOCALLY NOT FOUND FOR spring-cloud-zookeeper ~ spring-cloud
+SUCCESSFULLY ANALYZED spring-cloud-zookeeper ~ spring-cloud
+NO VULNERABLE DEPENDENCIES FOUND FOR vertx-sql-client ~ eclipse-vertx
+NO VULNERABLE DEPENDENCIES FOUND FOR logback-logdna ~ zileo-net
+SUCCESSFULLY ANALYZED WeIdentity ~ WeBankFinTech
+NO VULNERABLE DEPENDENCIES FOUND FOR netbeans-php-switcher ~ VitexSoftware
+NO VULNERABLE DEPENDENCIES FOUND FOR dropwizard-leader-latch ~ kiwiproject
+POM/GRADLE FILE LOCALLY NOT FOUND FOR akkeeper ~ ramencloud
+SUCCESSFULLY ANALYZED akkeeper ~ ramencloud
+NO VULNERABLE DEPENDENCIES FOUND FOR gizmo ~ quarkusio
+NO VULNERABLE DEPENDENCIES FOUND FOR fess ~ codelibs
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR spring-core ~ VladimirAntin
+POM/GRADLE FILE LOCALLY NOT FOUND FOR volc-sdk-java ~ volcengine
+SUCCESSFULLY ANALYZED volc-sdk-java ~ volcengine
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR alibabacloud-ververica-common ~ aliyun
+SUCCESSFULLY ANALYZED bananaj ~ banana-j
+NO VULNERABLE DEPENDENCIES FOUND FOR iotcore-sdk-java ~ baidu
+NO VULNERABLE DEPENDENCIES FOUND FOR logbook ~ zalando
+POM/GRADLE FILE LOCALLY NOT FOUND FOR azure-notificationhubs-java-backend ~ Azure
+SUCCESSFULLY ANALYZED azure-notificationhubs-java-backend ~ Azure
+NO VULNERABLE DEPENDENCIES FOUND FOR java_sdk ~ Riskified
+NO VULNERABLE DEPENDENCIES FOUND FOR goniub ~ CreditTone
+SUCCESSFULLY ANALYZED test.rockitizer ~ rockitconsulting
+SUCCESSFULLY ANALYZED ktor ~ ktorio
+NO VULNERABLE DEPENDENCIES FOUND FOR spring-webmvc-pac4j ~ pac4j
+NO VULNERABLE DEPENDENCIES FOUND FOR empty3 ~ manuelddahmen
+NO VULNERABLE DEPENDENCIES FOUND FOR kiara ~ kapoorlabs
+NO VULNERABLE DEPENDENCIES FOUND FOR jcifs ~ jitsni
+NO VULNERABLE DEPENDENCIES FOUND FOR jira-maven-plugin ~ schrepfler
+NO VULNERABLE DEPENDENCIES FOUND FOR locust4j ~ myzhan
+SUCCESSFULLY ANALYZED nexmo-java ~ Nexmo
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR redis-sdk-plus ~ rtf666
+SUCCESSFULLY ANALYZED konf ~ uchuhimo
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-analytics-data ~ googleapis
+SUCCESSFULLY ANALYZED java-analytics-data ~ googleapis
+NO VULNERABLE DEPENDENCIES FOUND FOR dropwizard-prometheus ~ dhatim
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR spring-junit-test ~ jklasd
+SUCCESSFULLY ANALYZED htsjdk ~ samtools
+NO VULNERABLE DEPENDENCIES FOUND FOR angles-java-client ~ AnglesHQ
+NO VULNERABLE DEPENDENCIES FOUND FOR plantuml-maven-plugin ~ Huluvu424242
+NO VULNERABLE DEPENDENCIES FOUND FOR thymeleaf ~ thymeleaf
+NO VULNERABLE DEPENDENCIES FOUND FOR pi4j ~ Pi4J
+SUCCESSFULLY ANALYZED jirf ~ DanySK
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-websecurityscanner ~ googleapis
+SUCCESSFULLY ANALYZED java-websecurityscanner ~ googleapis
+SUCCESSFULLY ANALYZED engagement-client-java ~ GenesysPureEngage
+SUCCESSFULLY ANALYZED one.irradia.mime ~ irradia
+NO VULNERABLE DEPENDENCIES FOUND FOR GMavenPlus ~ groovy
+NO VULNERABLE DEPENDENCIES FOUND FOR vkit ~ verytouch
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-video-intelligence ~ googleapis
+SUCCESSFULLY ANALYZED java-video-intelligence ~ googleapis
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-automl ~ googleapis
+SUCCESSFULLY ANALYZED java-automl ~ googleapis
+SUCCESSFULLY ANALYZED rokuality-java ~ rokuality
+POM/GRADLE FILE LOCALLY NOT FOUND FOR OfficeFloor ~ officefloor
+SUCCESSFULLY ANALYZED OfficeFloor ~ officefloor
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR ats-testexplorer ~ Axway
+POM/GRADLE FILE LOCALLY NOT FOUND FOR ditto ~ eclipse
+SUCCESSFULLY ANALYZED ditto ~ eclipse
+NO VULNERABLE DEPENDENCIES FOUND FOR liquibase-test-harness ~ liquibase
+POM/GRADLE FILE LOCALLY NOT FOUND FOR flyway-play ~ flyway
+SUCCESSFULLY ANALYZED flyway-play ~ flyway
+POM/GRADLE FILE LOCALLY NOT FOUND FOR pine ~ sparsetech
+SUCCESSFULLY ANALYZED pine ~ sparsetech
+POM/GRADLE FILE LOCALLY NOT FOUND FOR tensorflow_scala ~ eaplatanios
+SUCCESSFULLY ANALYZED tensorflow_scala ~ eaplatanios
+SUCCESSFULLY ANALYZED forklift ~ dcshock
+NO VULNERABLE DEPENDENCIES FOUND FOR code-analyst ~ RedCA-Family
+SUCCESSFULLY ANALYZED factoryfx ~ factoryfx
+NO VULNERABLE DEPENDENCIES FOUND FOR simple_swift_client ~ slacesa
+POM/GRADLE FILE LOCALLY NOT FOUND FOR scala-parser-combinators ~ scala
+SUCCESSFULLY ANALYZED scala-parser-combinators ~ scala
+NO VULNERABLE DEPENDENCIES FOUND FOR PreferencesFX ~ dlsc-software-consulting-gmbh
+NO VULNERABLE DEPENDENCIES FOUND FOR qsf-integration ~ quasiris
+NO VULNERABLE DEPENDENCIES FOUND FOR bootique-jcache ~ bootique
+NO VULNERABLE DEPENDENCIES FOUND FOR zanata-spring ~ porscheinformatik
+NO VULNERABLE DEPENDENCIES FOUND FOR RgxGen ~ curious-odd-man
+NO VULNERABLE DEPENDENCIES FOUND FOR ObjectiveSql ~ braisdom
+POM/GRADLE FILE LOCALLY NOT FOUND FOR AckCord ~ Katrix
+SUCCESSFULLY ANALYZED AckCord ~ Katrix
+NO VULNERABLE DEPENDENCIES FOUND FOR carbon-secvault ~ wso2
+NO VULNERABLE DEPENDENCIES FOUND FOR security-api ~ eclipse-ee4j
+NO VULNERABLE DEPENDENCIES FOUND FOR snf4j ~ snf4j
+NO VULNERABLE DEPENDENCIES FOUND FOR jmock ~ a524631266
+NO VULNERABLE DEPENDENCIES FOUND FOR nutzwx ~ nutzam
+POM/GRADLE FILE LOCALLY NOT FOUND FOR bitpeace ~ eikek
+SUCCESSFULLY ANALYZED bitpeace ~ eikek
+SUCCESSFULLY ANALYZED java-sdk ~ qiniu
+POM/GRADLE FILE LOCALLY NOT FOUND FOR plexus-pom ~ codehaus-plexus
+SUCCESSFULLY ANALYZED plexus-pom ~ codehaus-plexus
+POM/GRADLE FILE LOCALLY NOT FOUND FOR jfinal ~ jfinal
+SUCCESSFULLY ANALYZED jfinal ~ jfinal
+POM/GRADLE FILE LOCALLY NOT FOUND FOR sigmastate-interpreter ~ ScorexFoundation
+SUCCESSFULLY ANALYZED sigmastate-interpreter ~ ScorexFoundation
+SUCCESSFULLY ANALYZED verify-test-utils ~ alphagov
+NO VULNERABLE DEPENDENCIES FOUND FOR rtfparserkit ~ joniles
+NO VULNERABLE DEPENDENCIES FOUND FOR msgraph-sdk-java ~ microsoftgraph
+NO VULNERABLE DEPENDENCIES FOUND FOR Chronicle-Bytes ~ OpenHFT
+SUCCESSFULLY ANALYZED flink-clickhouse-sink ~ ivi-ru
+NO VULNERABLE DEPENDENCIES FOUND FOR ph-genericode ~ phax
+POM/GRADLE FILE LOCALLY NOT FOUND FOR MIAO ~ TheColdVoid
+SUCCESSFULLY ANALYZED MIAO ~ TheColdVoid
+NO VULNERABLE DEPENDENCIES FOUND FOR jackson-syntax-highlight ~ skjolber
+NO VULNERABLE DEPENDENCIES FOUND FOR hsmqtt ~ teverett
+NO VULNERABLE DEPENDENCIES FOUND FOR project-keeper-maven-plugin ~ exasol
+NO VULNERABLE DEPENDENCIES FOUND FOR Ant-Media-Server ~ ant-media
+NO VULNERABLE DEPENDENCIES FOUND FOR javadeps ~ migwel
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-memcache ~ googleapis
+SUCCESSFULLY ANALYZED java-memcache ~ googleapis
+NO VULNERABLE DEPENDENCIES FOUND FOR contrast-sdk-java ~ Contrast-Security-OSS
+NO VULNERABLE DEPENDENCIES FOUND FOR singer ~ pinterest
+POM/GRADLE FILE LOCALLY NOT FOUND FOR import-export-udf-common-scala ~ exasol
+SUCCESSFULLY ANALYZED import-export-udf-common-scala ~ exasol
+SUCCESSFULLY ANALYZED scalardb ~ scalar-labs
+NO VULNERABLE DEPENDENCIES FOUND FOR guice-persist-jooq ~ supercargo
+NO VULNERABLE DEPENDENCIES FOUND FOR docconverter ~ assimbly
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-container ~ googleapis
+SUCCESSFULLY ANALYZED java-container ~ googleapis
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR marklogic-contentpump ~ marklogic
+NO VULNERABLE DEPENDENCIES FOUND FOR logback-miner ~ CharLemAznable
+SUCCESSFULLY ANALYZED foilen-infra-cli ~ foilen
+NO VULNERABLE DEPENDENCIES FOUND FOR spring-cq ~ lz1998
+POM/GRADLE FILE LOCALLY NOT FOUND FOR jooq-async ~ maif
+SUCCESSFULLY ANALYZED jooq-async ~ maif
+SUCCESSFULLY ANALYZED micronaut-starter ~ micronaut-projects
+POM/GRADLE FILE LOCALLY NOT FOUND FOR chimney ~ scalalandio
+SUCCESSFULLY ANALYZED chimney ~ scalalandio
+SUCCESSFULLY ANALYZED zip4jvm ~ oleg-cherednik
+NO VULNERABLE DEPENDENCIES FOUND FOR databuilderframework ~ appform-io
+NO VULNERABLE DEPENDENCIES FOUND FOR ErisTerminal ~ brunomancuso
+NO VULNERABLE DEPENDENCIES FOUND FOR autogui ~ ppp-kohe
+NO VULNERABLE DEPENDENCIES FOUND FOR ether ~ rafex
+POM/GRADLE FILE LOCALLY NOT FOUND FOR OfficeFloor ~ officefloor
+SUCCESSFULLY ANALYZED OfficeFloor ~ officefloor
+NO VULNERABLE DEPENDENCIES FOUND FOR arangodb-java-driver ~ arangodb
+NO VULNERABLE DEPENDENCIES FOUND FOR arch-unit-build-plugin-core ~ societe-generale
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR docsdk-java ~ docsdk
+POM/GRADLE FILE LOCALLY NOT FOUND FOR spring-cloud-config ~ spring-cloud
+SUCCESSFULLY ANALYZED spring-cloud-config ~ spring-cloud
+NO VULNERABLE DEPENDENCIES FOUND FOR J2V8 ~ eclipsesource
+POM/GRADLE FILE LOCALLY NOT FOUND FOR wire-signals ~ wireapp
+SUCCESSFULLY ANALYZED wire-signals ~ wireapp
+NO VULNERABLE DEPENDENCIES FOUND FOR seata ~ seata
+NO VULNERABLE DEPENDENCIES FOUND FOR lib-exceptional ~ akk-team33
+NO VULNERABLE DEPENDENCIES FOUND FOR ixortalk-oauth2-spring-boot-starter ~ ixortalk
+NO VULNERABLE DEPENDENCIES FOUND FOR RESTest ~ isa-group
+SUCCESSFULLY ANALYZED orderbook ~ exchange-core
+NO VULNERABLE DEPENDENCIES FOUND FOR json-data-generator ~ vincentrussell
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-document-ai ~ googleapis
+SUCCESSFULLY ANALYZED java-document-ai ~ googleapis
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-redis ~ googleapis
+SUCCESSFULLY ANALYZED java-redis ~ googleapis
+POM/GRADLE FILE LOCALLY NOT FOUND FOR oapi-sdk-java ~ larksuite
+SUCCESSFULLY ANALYZED oapi-sdk-java ~ larksuite
+NO VULNERABLE DEPENDENCIES FOUND FOR db-util ~ vladmihalcea
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR incubator-livy ~ apache
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR fhirlib-scala ~ lifeomic
+NO VULNERABLE DEPENDENCIES FOUND FOR ets-ogcapi-features10 ~ opengeospatial
+NO VULNERABLE DEPENDENCIES FOUND FOR nutz-spring-boot-starter ~ nutzam
+NO VULNERABLE DEPENDENCIES FOUND FOR incubator-gcm ~ EdurtIO
+NO VULNERABLE DEPENDENCIES FOUND FOR pypi-adapter ~ artipie
+NO VULNERABLE DEPENDENCIES FOUND FOR fess-ds-s3 ~ codelibs
+NO VULNERABLE DEPENDENCIES FOUND FOR alta ~ veithen
+NO VULNERABLE DEPENDENCIES FOUND FOR alipay-sdk-java-all ~ alipay
+NO VULNERABLE DEPENDENCIES FOUND FOR common-xss ~ shanehan
+POM/GRADLE FILE LOCALLY NOT FOUND FOR avro4s ~ sksamuel
+SUCCESSFULLY ANALYZED avro4s ~ sksamuel
+NO VULNERABLE DEPENDENCIES FOUND FOR cloud-access-java ~ cryptomator
+POM/GRADLE FILE LOCALLY NOT FOUND FOR ujorm ~ pponec
+SUCCESSFULLY ANALYZED ujorm ~ pponec
+SUCCESSFULLY ANALYZED gax-java ~ googleapis
+POM/GRADLE FILE LOCALLY NOT FOUND FOR OfficeFloor ~ officefloor
+SUCCESSFULLY ANALYZED OfficeFloor ~ officefloor
+NO VULNERABLE DEPENDENCIES FOUND FOR java-client ~ orangebeard-io
+POM/GRADLE FILE LOCALLY NOT FOUND FOR sonar-scm-git ~ SonarSource
+SUCCESSFULLY ANALYZED sonar-scm-git ~ SonarSource
+NO VULNERABLE DEPENDENCIES FOUND FOR provider ~ mybatis-mapper
+SUCCESSFULLY ANALYZED vis-ui ~ kotcrab
+POM/GRADLE FILE LOCALLY NOT FOUND FOR KombiN ~ pranav-ninja
+SUCCESSFULLY ANALYZED KombiN ~ pranav-ninja
+NO VULNERABLE DEPENDENCIES FOUND FOR spring-api-tools ~ eoscode
+SUCCESSFULLY ANALYZED stripe-java ~ stripe
+NO VULNERABLE DEPENDENCIES FOUND FOR smooks-flatfile-cartridge ~ smooks
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR netty-rpc ~ ChuanLikeCode
+NO VULNERABLE DEPENDENCIES FOUND FOR QuickBooks-V3-Java-SDK ~ intuit
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-asset ~ googleapis
+SUCCESSFULLY ANALYZED java-asset ~ googleapis
+NO VULNERABLE DEPENDENCIES FOUND FOR cmt-statemachine ~ dsc-cmt
+NO VULNERABLE DEPENDENCIES FOUND FOR data-wharf ~ L-Angel
+NO VULNERABLE DEPENDENCIES FOUND FOR WekaTools ~ ptrajdos
+SUCCESSFULLY ANALYZED application-framework ~ hongque-pro
+NO VULNERABLE DEPENDENCIES FOUND FOR collector-http ~ Norconex
+NO VULNERABLE DEPENDENCIES FOUND FOR pdfbox-graphics2d ~ rototor
+POM/GRADLE FILE LOCALLY NOT FOUND FOR tesler ~ tesler-platform
+SUCCESSFULLY ANALYZED tesler ~ tesler-platform
+NO VULNERABLE DEPENDENCIES FOUND FOR java-api-client ~ Recombee
+NO VULNERABLE DEPENDENCIES FOUND FOR rulewerk ~ knowsys
+NO VULNERABLE DEPENDENCIES FOUND FOR app-AfoReporter ~ gematik
+NO VULNERABLE DEPENDENCIES FOUND FOR firebase-admin-java ~ firebase
+NO VULNERABLE DEPENDENCIES FOUND FOR cotterpin ~ mbenson
+NO VULNERABLE DEPENDENCIES FOUND FOR commons ~ galan
+POM/GRADLE FILE LOCALLY NOT FOUND FOR spring-cloud-vault ~ spring-cloud
+SUCCESSFULLY ANALYZED spring-cloud-vault ~ spring-cloud
+NO VULNERABLE DEPENDENCIES FOUND FOR essentials ~ greenrobot
+POM/GRADLE FILE LOCALLY NOT FOUND FOR maven-common-artifact-filters ~ apache
+SUCCESSFULLY ANALYZED maven-common-artifact-filters ~ apache
+NO VULNERABLE DEPENDENCIES FOUND FOR ioutils ~ antkorwin
+POM/GRADLE FILE LOCALLY NOT FOUND FOR weidentity-contract ~ WeBankFinTech
+SUCCESSFULLY ANALYZED weidentity-contract ~ WeBankFinTech
+POM/GRADLE FILE LOCALLY NOT FOUND FOR fixed-width ~ AbsaOSS
+SUCCESSFULLY ANALYZED fixed-width ~ AbsaOSS
+POM/GRADLE FILE LOCALLY NOT FOUND FOR epsagon-java ~ epsagon
+SUCCESSFULLY ANALYZED epsagon-java ~ epsagon
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR elasticsearch-migration ~ quandoo
+NO VULNERABLE DEPENDENCIES FOUND FOR nutzmore ~ nutzam
+POM/GRADLE FILE LOCALLY NOT FOUND FOR directory-watcher ~ gmethvin
+SUCCESSFULLY ANALYZED directory-watcher ~ gmethvin
+NO VULNERABLE DEPENDENCIES FOUND FOR kotlin-spark-shell ~ Kotlin
+NO VULNERABLE DEPENDENCIES FOUND FOR openmessaging-storage-dledger ~ openmessaging
+POM/GRADLE FILE LOCALLY NOT FOUND FOR jmolecules ~ xmolecules
+SUCCESSFULLY ANALYZED jmolecules ~ xmolecules
+NO VULNERABLE DEPENDENCIES FOUND FOR easyexcel ~ alibaba
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-monitoring ~ googleapis
+SUCCESSFULLY ANALYZED java-monitoring ~ googleapis
+EXCEPTION class org.apache.commons.io.IOExceptionList THROWN FOR oci-java-sdk ~ oracle
+SUCCESSFULLY ANALYZED reliza-java-client ~ relizaio
+NO VULNERABLE DEPENDENCIES FOUND FOR tnm4j ~ soulwing
+SUCCESSFULLY ANALYZED hibernate-arcus ~ Kims-DeveloperGroup
+POM/GRADLE FILE LOCALLY NOT FOUND FOR step-grid ~ exense
+SUCCESSFULLY ANALYZED step-grid ~ exense
+SUCCESSFULLY ANALYZED courgette-jvm ~ prashant-ramcharan
+NO VULNERABLE DEPENDENCIES FOUND FOR java-bigtable ~ googleapis
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR nutzboot ~ nutzam
+POM/GRADLE FILE LOCALLY NOT FOUND FOR akka-eventhubs ~ navicore
+SUCCESSFULLY ANALYZED akka-eventhubs ~ navicore
+SUCCESSFULLY ANALYZED RefactoringMiner ~ tsantalis
+POM/GRADLE FILE LOCALLY NOT FOUND FOR play-ws-standalone-json4s ~ tototoshi
+SUCCESSFULLY ANALYZED play-ws-standalone-json4s ~ tototoshi
+SUCCESSFULLY ANALYZED browserup-proxy ~ browserup
+POM/GRADLE FILE LOCALLY NOT FOUND FOR scala-pact ~ ITV
+SUCCESSFULLY ANALYZED scala-pact ~ ITV
+POM/GRADLE FILE LOCALLY NOT FOUND FOR jms-testkit ~ sullis
+SUCCESSFULLY ANALYZED jms-testkit ~ sullis
+NO VULNERABLE DEPENDENCIES FOUND FOR cmq-java-sdk ~ tencentyun
+NO VULNERABLE DEPENDENCIES FOUND FOR problem-spring-web ~ zalando
+NO VULNERABLE DEPENDENCIES FOUND FOR aws-encryption-sdk-java ~ aws
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-analytics-data ~ googleapis
+SUCCESSFULLY ANALYZED java-analytics-data ~ googleapis
+POM/GRADLE FILE LOCALLY NOT FOUND FOR borer ~ sirthias
+SUCCESSFULLY ANALYZED borer ~ sirthias
+POM/GRADLE FILE LOCALLY NOT FOUND FOR ditto ~ eclipse
+SUCCESSFULLY ANALYZED ditto ~ eclipse
+POM/GRADLE FILE LOCALLY NOT FOUND FOR parent ~ authzforce
+SUCCESSFULLY ANALYZED parent ~ authzforce
+NO VULNERABLE DEPENDENCIES FOUND FOR google-action-repository ~ FrestoBar
+SUCCESSFULLY ANALYZED boilerplate ~ DanySK
+POM/GRADLE FILE LOCALLY NOT FOUND FOR probably ~ propensive
+SUCCESSFULLY ANALYZED probably ~ propensive
+POM/GRADLE FILE LOCALLY NOT FOUND FOR liquibase ~ liquibase
+SUCCESSFULLY ANALYZED liquibase ~ liquibase
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR maven-s3-wagon ~ seahen
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-translate ~ googleapis
+SUCCESSFULLY ANALYZED java-translate ~ googleapis
+POM/GRADLE FILE LOCALLY NOT FOUND FOR java-logging ~ googleapis
+SUCCESSFULLY ANALYZED java-logging ~ googleapis
+SUCCESSFULLY ANALYZED gw-core-jackson ~ geewit
+NO VULNERABLE DEPENDENCIES FOUND FOR hb0730-commons ~ hb0730
+NO VULNERABLE DEPENDENCIES FOUND FOR elasticsearch-sql ~ NLPchina
+NO VULNERABLE DEPENDENCIES FOUND FOR rewrite ~ ocpsoft
+POM/GRADLE FILE LOCALLY NOT FOUND FOR spark-metrics ~ banzaicloud
+SUCCESSFULLY ANALYZED spark-metrics ~ banzaicloud
+SUCCESSFULLY ANALYZED confij ~ keykey7
+NO VULNERABLE DEPENDENCIES FOUND FOR math ~ starlangsoftware
+NO VULNERABLE DEPENDENCIES FOUND FOR spring-cloud-zuul-ratelimit ~ marcosbarbero
+POM/GRADLE FILE LOCALLY NOT FOUND FOR ONVIF-Java ~ 03
+SUCCESSFULLY ANALYZED ONVIF-Java ~ 03
+NO VULNERABLE DEPENDENCIES FOUND FOR selenium-jupiter ~ bonigarcia
+NO VULNERABLE DEPENDENCIES FOUND FOR parquet-mr ~ apache
+NO VULNERABLE DEPENDENCIES FOUND FOR liquibase-teradata ~ liquibase
+SUCCESSFULLY ANALYZED corda ~ corda
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR testdroid-api ~ bitbar
+NO VULNERABLE DEPENDENCIES FOUND FOR liquibase-spanner ~ cloudspannerecosystem
+SUCCESSFULLY ANALYZED relax-utils ~ infilow
+POM/GRADLE FILE LOCALLY NOT FOUND FOR compliance-examples ~ saltedge
+SUCCESSFULLY ANALYZED compliance-examples ~ saltedge
+NO VULNERABLE DEPENDENCIES FOUND FOR jbehave-junit-support ~ jbehavesupport
+SUCCESSFULLY ANALYZED DRM-Android-Core ~ NYPL-Simplified
+NO VULNERABLE DEPENDENCIES FOUND FOR eql ~ bingoohuang
+SUCCESSFULLY ANALYZED spock-toolbox ~ ainrif
+NO VULNERABLE DEPENDENCIES FOUND FOR ulid-creator ~ f4b6a3
+NO VULNERABLE DEPENDENCIES FOUND FOR azure-sdk-for-java ~ Azure
+NO VULNERABLE DEPENDENCIES FOUND FOR spatial4j ~ locationtech
+NO VULNERABLE DEPENDENCIES FOUND FOR dhis2-java-client ~ dhis2
+POM/GRADLE FILE LOCALLY NOT FOUND FOR authors ~ 2m
+SUCCESSFULLY ANALYZED authors ~ 2m
+NO VULNERABLE DEPENDENCIES FOUND FOR soul ~ Dromara
+NO VULNERABLE DEPENDENCIES FOUND FOR gauge-java ~ getgauge
+SUCCESSFULLY ANALYZED git-lfs-java ~ bozaro
+POM/GRADLE FILE LOCALLY NOT FOUND FOR fs2-rabbit ~ profunktor
+SUCCESSFULLY ANALYZED fs2-rabbit ~ profunktor
+NO VULNERABLE DEPENDENCIES FOUND FOR junon ~ computablefacts
+NO VULNERABLE DEPENDENCIES FOUND FOR sofa-rpc ~ sofastack
+NO VULNERABLE DEPENDENCIES FOUND FOR java-uniqueid ~ LableOrg
+SUCCESSFULLY ANALYZED sumobot ~ SumoLogic
+SUCCESSFULLY ANALYZED JApiDocs ~ YeDaxia
+SUCCESSFULLY ANALYZED rabbit-common ~ chengyuxing
+NO VULNERABLE DEPENDENCIES FOUND FOR SmartEngine ~ alibaba
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR alfresco-file-encryption-extension ~ nwforrer
+POM/GRADLE FILE LOCALLY NOT FOUND FOR zio-test-akka-http ~ senia-psm
+SUCCESSFULLY ANALYZED zio-test-akka-http ~ senia-psm
+NO VULNERABLE DEPENDENCIES FOUND FOR noc-monitor-impl ~ aoindustries
+SUCCESSFULLY ANALYZED TonY ~ linkedin
+NO VULNERABLE DEPENDENCIES FOUND FOR XCSP3-Java-Tools ~ xcsp3team
+NO VULNERABLE DEPENDENCIES FOUND FOR elasticsearch-analysis-fess ~ codelibs
+NO VULNERABLE DEPENDENCIES FOUND FOR idaithalam ~ virtualansoftware
+NO VULNERABLE DEPENDENCIES FOUND FOR jgroups-kubernetes ~ jgroups-extras
+SUCCESSFULLY ANALYZED genie ~ Netflix
+NO VULNERABLE DEPENDENCIES FOUND FOR assist4j ~ yuweihn
+NO VULNERABLE DEPENDENCIES FOUND FOR javacpp ~ bytedeco
+NO VULNERABLE DEPENDENCIES FOUND FOR currencycloud-java ~ CurrencyCloud
+NO VULNERABLE DEPENDENCIES FOUND FOR common-util ~ mydeathtrial
+POM/GRADLE FILE LOCALLY NOT FOUND FOR fastutil ~ vigna
+SUCCESSFULLY ANALYZED fastutil ~ vigna
+SUCCESSFULLY ANALYZED toolarium-enum-configuration ~ toolarium
+NO VULNERABLE DEPENDENCIES FOUND FOR conventional-commits-for-java ~ foo4u
+NO VULNERABLE DEPENDENCIES FOUND FOR java-kafka-client ~ opentracing-contrib
+POM/GRADLE FILE LOCALLY NOT FOUND FOR elepy ~ RyanSusana
+SUCCESSFULLY ANALYZED elepy ~ RyanSusana
+EXCEPTION class RepositoryUtil$JarNotFoundException THROWN FOR gedcomx-java ~ FamilySearch
+NO VULNERABLE DEPENDENCIES FOUND FOR smooks-json-cartridge ~ smooks
+SUCCESSFULLY ANALYZED artist ~ uber
+NO VULNERABLE DEPENDENCIES FOUND FOR autoannotator ~ marco-eckstein
+POM/GRADLE FILE LOCALLY NOT FOUND FOR ditto ~ eclipse
+SUCCESSFULLY ANALYZED ditto ~ eclipse
+NO VULNERABLE DEPENDENCIES FOUND FOR lidou ~ baijianruoli

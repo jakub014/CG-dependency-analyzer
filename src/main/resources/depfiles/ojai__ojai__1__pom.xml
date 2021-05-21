@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2015 MapR, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+-->
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.ojai</groupId>
+    <artifactId>ojai-root</artifactId>
+    <version>3.2-SNAPSHOT</version>
+    <relativePath>../..</relativePath>
+  </parent>
+
+  <artifactId>ojai</artifactId>
+  <name>OJAI Core Library for Java</name>
+  <packaging>jar</packaging>
+
+  <build>
+
+    <plugins>
+
+      <plugin>
+        <groupId>org.antlr</groupId>
+        <artifactId>antlr4-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>fieldPath</id>
+            <goals>
+              <goal>antlr4</goal>
+            </goals>
+            <configuration>
+              <includes><include>FieldPath.g4</include></includes>
+              <sourceDirectory>${basedir}/../../antlr4</sourceDirectory>
+              <outputDirectory>${project.build.directory}/generated-sources/antlr4/org/ojai/antlr4</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals><goal>shade</goal></goals>
+          </execution>
+        </executions>
+        <configuration>
+          <minimizeJar>true</minimizeJar>
+          <createDependencyReducedPom>true</createDependencyReducedPom>
+          <dependencyReducedPomLocation>${project.build.directory}/dependency-reduced-pom.xml</dependencyReducedPomLocation>
+          <artifactSet>
+            <includes>
+              <include>joda-time:joda-time</include>
+            </includes>
+          </artifactSet>
+          <relocations>
+            <relocation><pattern>org.joda.time.</pattern><shadedPattern>org.ojai.joda.</shadedPattern></relocation>
+          </relocations>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <excludePackageNames>*.impl:*.antlr4:*.jackson</excludePackageNames>
+          <groups>
+            <group>
+              <title>OJAI Core APIs</title>
+              <packages>org.ojai:org.ojai.exceptions:org.ojai.types</packages>
+            </group>
+            <group>
+              <title>OJAI APIs for JSON</title>
+              <packages>org.ojai.json</packages>
+            </group>
+            <group>
+              <title>OJAI Store APIs</title>
+              <packages>org.ojai.store*</packages>
+            </group>
+            <group>
+              <title>Miscellaneous Helper Classes</title>
+              <packages>org.ojai.beans:org.ojai.util:org.ojai.annotation</packages>
+            </group>
+          </groups>
+
+          <overview>${basedir}/src/main/javadoc/overview.html</overview>
+          <doctitle>${project.name} v. ${project.version}</doctitle>
+          <windowtitle>${project.name} v. ${project.version}</windowtitle>
+          <header>${project.name} v. ${project.version}</header>
+          <footer>${project.name} v. ${project.version}</footer>
+          <bottom></bottom>
+        </configuration>
+      </plugin>
+
+    </plugins>
+
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.antlr</groupId>
+      <artifactId>antlr4-runtime</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>2.9.1</version>
+    </dependency>
+  </dependencies>
+
+</project>

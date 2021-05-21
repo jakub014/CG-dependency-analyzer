@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+		xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>net.enilink.platform</groupId>
+		<artifactId>platform-parent</artifactId>
+		<version>1.4.0-SNAPSHOT</version>
+		<relativePath>../..</relativePath>
+	</parent>
+
+	<scm>
+		<connection>${enilink.scm.connection}</connection>
+		<developerConnection>${enilink.scm.developerConnection}</developerConnection>
+		<url>${enilink.scm.url}</url>
+	</scm>
+
+	<artifactId>enilink-launch-pde</artifactId>
+	<packaging>pom</packaging>
+
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<modules>
+				<module>../../bundles/vendor/net.enilink.bundles.liftweb</module>
+				<module>../../bundles/core/net.enilink.platform.core</module>
+				<module>../../bundles/core/net.enilink.platform.security</module>
+				<module>../../bundles/web/net.enilink.platform.lift</module>
+				<module>../../bundles/web/net.enilink.platform.web</module>
+				<module>../../features/net.enilink.platform.feature</module>
+				<module>../../features/net.enilink.platform.equinox.feature</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>versions</id>
+			<!-- empty profile for updating project versions -->
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.enilink.platform</groupId>
+			<artifactId>net.enilink.platform.equinox.feature</artifactId>
+			<version>${project.version}</version>
+			<type>pom</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.reficio</groupId>
+				<artifactId>p2-maven-plugin</artifactId>
+				<version>1.3.0</version>
+				<executions>
+					<execution>
+						<id>site</id>
+						<phase>package</phase>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<configuration>
+							<skipNotExistingArtifacts>true</skipNotExistingArtifacts>
+							<artifacts>
+								<artifact>
+									<id>
+										net.enilink.platform:net.enilink.platform.equinox.feature:pom:${project.version}
+									</id>
+									<excludes>
+										<exclude>net.enilink.platform:*</exclude>
+										<exclude>net.enilink.bundles:*liftweb</exclude>
+									</excludes>
+								</artifact>
+							</artifacts>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

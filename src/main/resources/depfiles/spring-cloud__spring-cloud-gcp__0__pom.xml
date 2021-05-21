@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-build</artifactId>
+		<version>2.3.4.RELEASE</version>
+		<relativePath/><!-- lookup parent from repository -->
+	</parent>
+
+	<artifactId>spring-cloud-gcp</artifactId>
+	<version>1.2.8.BUILD-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Spring Cloud GCP</name>
+	<description>Spring Cloud GCP</description>
+	<url>https://spring.io/projects/spring-cloud-gcp</url>
+
+	<scm>
+		<url>https://github.com/spring-cloud/spring-cloud-gcp</url>
+		<connection>scm:git:git://github.com/spring-cloud/spring-cloud-gcp.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/spring-cloud/spring-cloud-gcp.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<modules>
+		<module>docs</module>
+		<module>spring-cloud-gcp-dependencies</module>
+		<module>spring-cloud-gcp-pubsub</module>
+		<module>spring-cloud-gcp-core</module>
+		<module>spring-cloud-gcp-cloudfoundry</module>
+		<module>spring-cloud-gcp-storage</module>
+		<module>spring-cloud-gcp-starters</module>
+		<module>spring-cloud-gcp-samples</module>
+		<module>spring-cloud-gcp-autoconfigure</module>
+		<module>spring-cloud-gcp-pubsub-stream-binder</module>
+		<module>spring-cloud-gcp-data-spanner</module>
+		<module>spring-cloud-gcp-data-datastore</module>
+		<module>spring-cloud-gcp-security-iap</module>
+		<module>spring-cloud-gcp-vision</module>
+		<module>spring-cloud-gcp-kotlin-samples</module>
+		<module>spring-cloud-gcp-logging</module>
+		<module>spring-cloud-gcp-data-firestore</module>
+		<module>spring-cloud-gcp-bigquery</module>
+		<module>spring-cloud-gcp-security-firebase</module>
+		<module>spring-cloud-gcp-secretmanager</module>
+	</modules>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<spring-cloud-commons.version>2.2.8.BUILD-SNAPSHOT</spring-cloud-commons.version>
+		<spring-cloud-bus.version>2.2.4.BUILD-SNAPSHOT</spring-cloud-bus.version>
+		<spring-cloud-sleuth.version>2.2.8.BUILD-SNAPSHOT</spring-cloud-sleuth.version>
+		<spring-cloud-stream.version>Horsham.BUILD-SNAPSHOT</spring-cloud-stream.version>
+		<zipkin-gcp.version>1.0.2</zipkin-gcp.version>
+		<app-engine-maven-plugin.version>2.4.0</app-engine-maven-plugin.version>
+		<kotlin.version>1.3.31</kotlin.version>
+		<errorprone.version>2.6.0</errorprone.version>
+		<java-cfenv.version>2.2.2.RELEASE</java-cfenv.version>
+	</properties>
+
+	<dependencyManagement>
+
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-gcp-dependencies</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-commons-dependencies</artifactId>
+				<version>${spring-cloud-commons.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-sleuth-dependencies</artifactId>
+				<version>${spring-cloud-sleuth.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-stream-dependencies</artifactId>
+				<version>${spring-cloud-stream.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-config-dependencies</artifactId>
+				<version>${spring-cloud-commons.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-bus</artifactId>
+				<version>${spring-cloud-bus.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>ch.qos.logback.contrib</groupId>
+				<artifactId>logback-json-classic</artifactId>
+				<version>0.1.5</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.zipkin.gcp</groupId>
+				<artifactId>zipkin-sender-stackdriver</artifactId>
+				<version>${zipkin-gcp.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>io.zipkin.zipkin2</groupId>
+						<artifactId>zipkin</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>io.zipkin.gcp</groupId>
+				<artifactId>brave-propagation-stackdriver</artifactId>
+				<version>${zipkin-gcp.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>io.zipkin.brave</groupId>
+						<artifactId>brave</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>io.pivotal.cfenv</groupId>
+				<artifactId>java-cfenv</artifactId>
+				<version>${java-cfenv.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.pivotal.cfenv</groupId>
+				<artifactId>java-cfenv-test-support</artifactId>
+				<version>${java-cfenv.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.awaitility</groupId>
+			<artifactId>awaitility</artifactId>
+			<version>3.1.6</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<argLine>-Xms512m -Xmx512m</argLine>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>checkstyle-validation</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<configuration>
+							<!-- Checkstyle rules inherited from spring-cloud-build -->
+							<suppressionsLocation>src/checkstyle/checkstyle-suppressions.xml</suppressionsLocation>
+							<includeTestSourceDirectory>true</includeTestSourceDirectory>
+							<consoleOutput>true</consoleOutput>
+							<failsOnError>true</failsOnError>
+							<failOnViolation>true</failOnViolation>
+							<violationSeverity>warning</violationSeverity>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>appengine-maven-plugin</artifactId>
+				<version>${app-engine-maven-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<configuration>
+					<excludePackageNames>
+						com.example,
+						com.example.*,
+						<!-- Exclude samples and classes in the Firestore Google Client library packages -->
+						com.google.cloud.firestore
+					</excludePackageNames>
+					<links>
+						<link>https://googleapis.dev/java/google-cloud-vision/latest/</link>
+						<link>https://googleapis.dev/java/google-cloud-spanner/latest/</link>
+						<link>https://googleapis.dev/java/google-cloud-clients/latest/</link>
+					</links>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${maven-failsafe-plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>spring</id>
+			<repositories>
+				<repository>
+					<id>spring-snapshots</id>
+					<name>Spring Snapshots</name>
+					<url>https://repo.spring.io/snapshot</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+				</repository>
+				<repository>
+					<id>spring-milestones</id>
+					<name>Spring Milestones</name>
+					<url>https://repo.spring.io/milestone</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>spring-releases</id>
+					<name>Spring Releases</name>
+					<url>https://repo.spring.io/release</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>gcs-mirror</id>
+					<name>GCS Maven Mirror</name>
+					<url>https://maven-central.storage-download.googleapis.com/repos/central/data</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>spring-snapshots</id>
+					<name>Spring Snapshots</name>
+					<url>https://repo.spring.io/snapshot</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+				</pluginRepository>
+				<pluginRepository>
+					<id>spring-milestones</id>
+					<name>Spring Milestones</name>
+					<url>https://repo.spring.io/milestone</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</pluginRepository>
+				<pluginRepository>
+					<id>spring-releases</id>
+					<name>Spring Releases</name>
+					<url>https://repo.spring.io/release</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</pluginRepository>
+				<pluginRepository>
+					<id>gcs-mirror</id>
+					<name>GCS Maven Mirror</name>
+					<url>https://maven-central.storage-download.googleapis.com/repos/central/data</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+
+		<!-- Code Coverage -->
+		<profile>
+			<id>codecov</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<configuration>
+							<!-- need for JaCoCo -->
+							<argLine>@{argLine} -Xms512m -Xmx512m</argLine>
+							<includes>
+								<include>**/*Tests.java</include>
+								<include>**/*Test.java</include>
+							</includes>
+							<excludes>
+								<exclude>**/Abstract*.java</exclude>
+							</excludes>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>0.8.2</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>report</id>
+								<phase>test</phase>
+								<goals>
+									<goal>report</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- JDK 16+ configuration -->
+		<profile>
+			<id>jdk_16_and_up</id>
+			<activation>
+				<jdk>[16,]</jdk>
+			</activation>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-plugin</artifactId>
+							<configuration>
+								<!-- illegal-access=permit is needed to make GCLIB proxying work, used in Datastore -->
+								<argLine>-Xms512m -Xmx512m --illegal-access=permit</argLine>
+								<skip>${skip.surefire.tests}</skip>
+								<excludes>
+									<exclude>${integration-test.pattern}</exclude>
+								</excludes>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+		<!-- Error prone; JDK 8 requires a different configuration than 9+ -->
+		<profile>
+			<id>errorprone_java_9_and_up</id>
+			<activation>
+				<jdk>[9,]</jdk>
+			</activation>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-compiler-plugin</artifactId>
+							<version>3.8.1</version>
+							<configuration>
+								<source>${maven.compiler.source}</source>
+								<target>${maven.compiler.target}</target>
+								<encoding>UTF-8</encoding>
+								<fork>true</fork>
+								<compilerArgs>
+									<arg>-XDcompilePolicy=simple</arg>
+									<arg>-Xplugin:ErrorProne</arg>
+									<!-- See: https://github.com/GoogleCloudPlatform/spring-cloud-gcp/pull/92 -->
+									<arg>-parameters</arg>
+									<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
+									<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+									<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+									<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+									<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+									<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+									<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+									<arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
+									<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+									<arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+								</compilerArgs>
+								<annotationProcessorPaths>
+									<path>
+										<groupId>com.google.errorprone</groupId>
+										<artifactId>error_prone_core</artifactId>
+										<version>${errorprone.version}</version>
+									</path>
+								</annotationProcessorPaths>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+		<profile>
+			<id>errorprone_java8</id>
+			<activation>
+				<jdk>1.8</jdk>
+			</activation>
+			<properties>
+				<javac.version>9+181-r4173-1</javac.version>
+			</properties>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<artifactId>maven-compiler-plugin</artifactId>
+							<version>3.8.0</version>
+							<configuration>
+								<fork>true</fork>
+								<compilerArgs combine.children="append">
+									<arg>-J-Xbootclasspath/p:${settings.localRepository}/com/google/errorprone/javac/${javac.version}/javac-${javac.version}.jar</arg>
+									<!-- See: https://github.com/GoogleCloudPlatform/spring-cloud-gcp/pull/92 -->
+									<arg>-parameters</arg>
+								</compilerArgs>
+							</configuration>
+							<dependencies>
+								<dependency>
+									<groupId>com.google.errorprone</groupId>
+									<artifactId>error_prone_core</artifactId>
+									<version>${errorprone.version}</version>
+								</dependency>
+							</dependencies>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
+		</profile>
+	</profiles>
+
+</project>

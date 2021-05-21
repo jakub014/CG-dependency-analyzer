@@ -1,0 +1,153 @@
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+targetCompatibility = 1.8
+sourceCompatibility = 1.8
+
+group = 'com.github.chubbard'
+version = '1.0.1'
+//version = '1.0.2-SNAPSHOT'
+description = """
+A simplified standalone ETL engine for groovy.  Gratum is groovy + datum.
+"""
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'commons-io', name: 'commons-io', version: '2.8.0'
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.15'
+    implementation group: 'commons-cli', name: 'commons-cli', version: '1.4'
+
+    implementation 'org.codehaus.groovy:groovy-all:2.5.13'
+    implementation 'io.github.http-builder-ng:http-builder-ng-core:1.0.3'
+    implementation 'org.apache.poi:poi:4.1.2'
+    implementation 'org.apache.poi:poi-ooxml:4.1.2'
+    implementation 'org.apache.poi:ooxml-schemas:1.4'
+    implementation group: "org.apache.commons", name:"commons-compress", version:"1.20"
+    implementation group: "com.jcraft", name: "jsch", version: "0.1.55"
+    implementation "org.bouncycastle:bcprov-jdk15on:1.67",
+            "org.bouncycastle:bcprov-ext-jdk15on:1.66",
+            "org.bouncycastle:bcpg-jdk15on:1.67",
+            "org.bouncycastle:bcpkix-jdk15on:1.67"
+
+//    testCompile "mysql:mysql-connector-java:5.1.40"
+    testImplementation group: 'junit', name: 'junit', version: '4.11'
+}
+
+publishing {
+    publications {
+        gratum(MavenPublication) {
+            //customizePom(pom)
+            from components.java
+
+            pom {
+                name = project.name
+                description = project.description
+                url = 'https://github.com/chubbard/gratum'
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "chubbard"
+                        name = "Charlie Hubbard"
+                        email = "gratum@fuseanalytics.com"
+                    }
+                }
+                scm {
+                    connection = "scm:https://github.com/chubbard/gratum.git"
+                    developerConnection = "scm:https://github.com/chubbard/gratum.git"
+                    url = "https://github.com/chubbard/gratum.git"
+                }
+            }
+
+            pom.withXml {
+                def pomFile = file("${project.buildDir}/generated-pom.xml")
+                writeTo(pomFile)
+                def pomAscFile = signing.sign(pomFile).signatureFiles[0]
+                artifact(pomAscFile) {
+                    classifier = null
+                    extension = 'pom.asc'
+                }
+            }
+
+            // create the signed artifacts
+            project.tasks.signArchives.signatureFiles.each {
+                artifact(it) {
+                    def matcher = it.file =~ /-(sources|javadoc|groovydoc)\.zip\.asc$/
+                    if (matcher.find()) {
+                        classifier = matcher.group(1)
+                    } else {
+                        classifier = null
+                    }
+                    extension = 'jar.asc'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url project.version.endsWith('-SNAPSHOT') ? "https://oss.sonatype.org/content/repositories/snapshots/" : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username sonatypeUsername
+                password sonatypePassword
+            }
+        }
+        mavenLocal()
+    }
+}
+
+task sourceJar(type: Jar) {
+    classifier "sources"
+    extension 'zip'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier 'javadoc'
+    extension  'zip'
+    from javadoc.destinationDir
+}
+
+task groovydocJar(type: Jar, dependsOn: groovydoc ) {
+    classifier 'groovydoc'
+    extension 'zip'
+    from groovydoc.destinationDir
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives groovydocJar
+    archives sourceJar
+}
+
+signing {
+//    //sign publishing.publications.maven
+    required { !version.endsWith("SNAPSHOT") && gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}
+
+model {
+    tasks.generatePomFileForGratumPublication {
+        destination = file("$buildDir/generated-pom.xml")
+    }
+
+    tasks.publishGratumPublicationToMavenLocal {
+        dependsOn project.tasks.signArchives
+    }
+    tasks.publishGratumPublicationToMavenRepository {
+        dependsOn project.tasks.signArchives
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.9'
+}

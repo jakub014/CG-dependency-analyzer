@@ -1,0 +1,103 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'signing'
+    id 'checkstyle'
+    id 'io.codearte.nexus-staging' version '0.22.0'
+}
+
+group 'com.github.jwchung'
+if (project.hasProperty("semver")) {
+    version semver
+}
+
+repositories {
+    mavenCentral()
+}
+
+checkstyle {
+    toolVersion = '8.1'
+
+}
+
+dependencies {
+    implementation group: 'junit', name: 'junit', version: '4.12'
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = 'junit4-pioneer'
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'junit4-pioneer'
+                description = 'JUnit4 Extensions Pack'
+                url = 'https://github.com/jwChung/junit4-pioneer'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://raw.githubusercontent.com/jwChung/junit4-pioneer/master/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'jwchung'
+                        name = 'Jin-Wook Chung'
+                        email = 'jwchung@hotmail.com'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/jwChung/junit4-pioneer.git'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "OSSRH"
+            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            if (project.hasProperty("sonatypeUsername")
+                    && project.hasProperty("sonatypePassword") ) {
+                credentials {
+                    username = sonatypeUsername
+                    password = sonatypePassword
+                }
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.maven
+}
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+nexusStaging {
+    if (project.hasProperty("sonatypeUsername")
+        && project.hasProperty("sonatypePassword") ) {
+        username = sonatypeUsername
+        password = sonatypePassword
+    }
+    stagingProfileId = "845535153553b"
+}
+
+classes.finalizedBy checkstyleMain
+testClasses.finalizedBy checkstyleTest

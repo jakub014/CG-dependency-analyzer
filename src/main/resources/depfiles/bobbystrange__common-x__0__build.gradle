@@ -1,0 +1,24 @@
+ext {
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    jacksonVersion = "2.12.1"
+}
+
+dependencies {
+    implementation "org.dreamcat:common-core:$VERSION"
+
+    // https://mvnrepository.com/artifact/cglib/cglib
+    implementation 'cglib:cglib:3.3.0'
+    // https://mvnrepository.com/artifact/org.javassist/javassist
+    implementation "org.javassist:javassist:3.27.0-GA"
+
+    implementation "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${jacksonVersion}"
+
+    // https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail
+    implementation "com.sun.mail:jakarta.mail:1.6.5"
+
+    testImplementation "org.slf4j:slf4j-simple:$slf4jVersion"
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation 'org.springframework:spring-beans:5.2.3.RELEASE'
+}

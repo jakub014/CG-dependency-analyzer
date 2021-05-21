@@ -1,0 +1,99 @@
+ext.moduleName = 'com.tngtech.archunit.junit'
+
+configurations {
+    archJunitApi
+    api.extendsFrom archJunitApi
+}
+
+sourceSets {
+    archJunitApi {
+        java {
+            srcDirs = ['src/api/java']
+        }
+        compileClasspath = configurations.archJunitApi
+    }
+}
+
+dependencies {
+    compileOnly sourceSets.archJunitApi.output
+    testImplementation sourceSets.archJunitApi.output
+}
+
+task apiJar(type: Jar) {
+    archiveFileName = jar.archiveFileName.get().replace(project.name, "${project.name}-api")
+    from sourceSets.archJunitApi.output
+}
+build.dependsOn apiJar
+
+artifacts {
+    archJunitApi apiJar
+}
+
+dependencies {
+    archJunitApi project(path: ':archunit', configuration: 'shadow')
+    dependency.addGuava { dependencyNotation, config -> implementation(dependencyNotation, config) }
+    implementation dependency.slf4j
+
+    testImplementation dependency.log4j_api
+    testImplementation dependency.log4j_core
+    testImplementation dependency.log4j_slf4j
+    testImplementation dependency.junit4
+    testImplementation dependency.junit_dataprovider
+    testImplementation dependency.mockito
+    testImplementation dependency.assertj
+    testImplementation(dependency.assertj_guava) {
+        exclude module: 'assertj-core'
+        exclude module: 'guava'
+    }
+    testImplementation project(path: ':archunit', configuration: 'tests')
+}
+
+addTestJarTo this
+
+shadowJar {
+    exclude 'META-INF/**'
+
+    dependencies {
+        exclude(project(':archunit'))
+        exclude(dependency(dependency.slf4j))
+    }
+}
+
+def addCleanThirdPartyTask = {
+    // These files are already relocated into archunit.jar, so they're transitively available
+    tasks.create(name: 'removeDuplicateThirdParty', type: Jar, dependsOn: shadowJar) {
+        exclude "${thirdPartyRelocationPackage.replace('.', '/')}/**"
+
+        File tempPath = tempJar(jar.archiveFile.get().getAsFile())
+        File jarPath = shadowJar.archiveFile.get().getAsFile()
+        from zipTree(jarPath)
+        archiveFileName = tempPath.name
+
+        doLast {
+            assert jarPath.delete()
+            assert tempPath.renameTo(jarPath)
+        }
+    }
+    finishArchive.dependsOn removeDuplicateThirdParty
+}
+ext.configureJUnitArchive = { configureDependencies ->
+    return {
+        delegate.with addCleanThirdPartyTask
+        compileJava.dependsOn project(':archunit-junit').finishArchive
+
+        publishing{
+            publications{
+                mavenJava{
+                    pom.withXml {
+                        configureDependencies(asNode().dependencies.first()) // there is only one "dependencies" element
+                    }
+                }
+            }
+        }
+    }
+}
+
+this.with addCleanThirdPartyTask
+
+javadoc.enabled = false
+uploadArchives.enabled = false

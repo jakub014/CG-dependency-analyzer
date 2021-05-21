@@ -1,0 +1,116 @@
+plugins {
+  id 'java-library'
+  id 'idea'
+  id 'com.google.protobuf' version '0.8.10'
+  id 'maven'
+  id 'io.codearte.nexus-staging' version '0.21.2'
+  id 'signing'
+}
+
+group 'com.braintreepayments'
+version '0.3.1-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+configurations {
+  deployerJars
+}
+
+dependencies {
+  compile 'com.graphql-java:graphql-java:16.1'
+  compile 'com.google.protobuf:protobuf-java:3.11.1'
+  compile 'com.google.code.gson:gson:2.0'
+
+  testCompile 'junit:junit:4.12'
+  testCompile 'org.mockito:mockito-core:3.2.0'
+  testCompile 'com.graphql-java-kickstart:graphql-java-tools:11.0.0'
+}
+
+protobuf {
+  protoc {
+    artifact = 'com.google.protobuf:protoc:3.11.1'
+  }
+}
+
+def sonatypePassword = System.env['SONATYPE_PASSWORD']
+
+nexusStaging {
+  packageGroup = 'com.braintreepayments'
+  numberOfRetries 50
+  delayBetweenRetriesInMillis 3000
+}
+
+signing {
+  required {
+    !version.endsWith('SNAPSHOT')
+  }
+  sign configurations.archives
+}
+
+task javadocsJar(type: Jar) {
+  classifier = 'javadoc'
+  from sourceSets.main.java.srcDirs
+}
+
+task sourcesJar(type: Jar) {
+  classifier = 'sources'
+  from sourceSets.main.java.srcDirs
+}
+
+artifacts {
+  archives javadocsJar
+  archives sourcesJar
+}
+
+uploadArchives {
+  repositories.mavenDeployer {
+    pom.setArtifactId 'apollo-tracing-uploader'
+
+    pom.project {
+      name 'apollo-tracing-uploader'
+      version = version
+      groupId 'com.braintreepayments'
+      description 'A GraphQL Java instrumentation for uploading tracing metrics to the Apollo Graph Manager.'
+      url 'https://github.com/braintree/apollo-tracing-uploader-java'
+
+      scm {
+        url 'scm:git@github.com:braintree/apollo-tracing-uploader-java.git'
+      }
+
+      developers {
+        developer {
+          id 'devs'
+        }
+      }
+
+      licenses {
+        license {
+          url 'http://opensource.org/licenses/MIT'
+          distribution 'repo'
+        }
+      }
+    }
+
+    doFirst {
+      if (sonatypePassword == null) {
+        throw new Exception('Need to set SONATYPE_PASSWORD environment variable.')
+      }
+    }
+
+    beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+    configuration = configurations.deployerJars
+
+    repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
+      authentication(userName: 'braintree', password: sonatypePassword)
+    }
+
+    snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
+      authentication(userName: 'braintree', password: sonatypePassword)
+    }
+  }
+}

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.jarvisframework</groupId>
+        <artifactId>jarvis-framework-tool</artifactId>
+        <version>1.0.5.RELEASE</version>
+    </parent>
+
+    <artifactId>jarvis-tool-extra</artifactId>
+    <name>${project.artifactId}</name>
+    <description>Jarvis框架工具类库</description>
+    <url>https://github.com/jarvisframework/jarvis-framework-tool</url>
+
+    <properties>
+        <net.version>3.6</net.version>
+    </properties>
+
+    <dependencies>
+        <!-- FTP工具 -->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>${net.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>1.4.11.1</version>
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>1.1.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jarvisframework</groupId>
+            <artifactId>jarvis-tool-core</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jarvisframework</groupId>
+            <artifactId>jarvis-tool-http</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jarvisframework</groupId>
+            <artifactId>jarvis-tool-setting</artifactId>
+            <version>${project.parent.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.taobao</groupId>
+            <artifactId>taobao-sdk-java-auto</artifactId>
+            <version>20200716</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/src/main/resources/libs/taobao-sdk-java-auto_1594802809428-20200716.jar</systemPath>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+</project>

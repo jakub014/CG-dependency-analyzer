@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.fernice</groupId>
+        <artifactId>fernice-maven</artifactId>
+        <version>1.0.33</version>
+    </parent>
+    <artifactId>fernice-reflare</artifactId>
+    <version>1.0.34-SNAPSHOT</version>
+
+    <name>fernice-reflare</name>
+    <description>CSS integration through fernice-flare in Java Swing as a LookAndFeel</description>
+    <url>https://github.com/fernice/reflare</url>
+
+    <scm>
+        <connection>scm:git:ssh://git@github.com:fernice/reflare.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com:fernice/relare.git</developerConnection>
+        <url>https://github.com/fernice/reflare</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.fernice</groupId>
+            <artifactId>fernice-flare</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.fernice</groupId>
+            <artifactId>fernice-reflare-access</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

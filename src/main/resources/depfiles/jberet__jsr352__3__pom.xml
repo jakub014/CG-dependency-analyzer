@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ Copyright (c) 2020 Red Hat, Inc. and/or its affiliates.
+
+ This program and the accompanying materials are made
+ available under the terms of the Eclipse Public License 2.0
+ which is available at https://www.eclipse.org/legal/epl-2.0/
+
+ SPDX-License-Identifier: EPL-2.0
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <properties>
+        <version.org.codehaus.woodstox.woodstox-core-asl>4.4.1</version.org.codehaus.woodstox.woodstox-core-asl>
+        <version.org.apache.qpid>0.10.0</version.org.apache.qpid>
+    </properties>
+
+    <modules>
+        <module>common</module>
+        <module>loadBatchXml</module>
+        <module>flow</module>
+        <module>loopback</module>
+        <module>split</module>
+        <module>chunkStop</module>
+        <module>chunkPartition</module>
+        <module>chunkClose</module>
+        <module>propertyInjection</module>
+        <module>postConstruct</module>
+        <module>inheritance</module>
+        <module>scripting</module>
+        <module>infinispanRepositoryMem</module>
+        <module>infinispanRepositoryFile</module>
+        <module>infinispanRepositoryRocksDB</module>
+        <module>infinispanRepositoryJdbc</module>
+        <module>chunkSkipRetry</module>
+        <module>purgeInMemoryRepository</module>
+        <module>purgeJdbcRepository</module>
+        <module>purgeMongoRepository</module>
+        <module>cdiScopes</module>
+        <module>javaJSL</module>
+        <module>throttle</module>
+        <module>amqp</module>
+        <module>upsertWriter</module>
+        <module>cluster</module>
+        <module>cassandraInject</module>
+        <module>jdbcBatchletReaderWriter</module>
+        <module>serialization</module>
+    </modules>
+    <parent>
+        <groupId>org.jberet</groupId>
+        <artifactId>jberet-parent</artifactId>
+        <version>1.4.2.Final-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.jberet.test-apps</groupId>
+    <artifactId>test-apps</artifactId>
+    <packaging>pom</packaging>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- If necessary, use woodstox xml parser, which supports resolving custom xml external entities -->
+            <!-- aalto-xml from the parent pom does not support it -->
+            <dependency>
+                <groupId>org.codehaus.woodstox</groupId>
+                <artifactId>woodstox-core-asl</artifactId>
+                <version>${version.org.codehaus.woodstox.woodstox-core-asl}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.qpid</groupId>
+                <artifactId>qpid-jms-client</artifactId>
+                <version>${version.org.apache.qpid}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jboss.spec.javax.annotation</groupId>
+            <artifactId>jboss-annotations-api_1.3_spec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.transaction</groupId>
+            <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.marshalling</groupId>
+            <artifactId>jboss-marshalling</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jberet</groupId>
+            <artifactId>jberet-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jberet</groupId>
+            <artifactId>jberet-se</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-core-impl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.weld.se</groupId>
+            <artifactId>weld-se-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>aalto-xml</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.woodstox</groupId>
+            <artifactId>stax2-api</artifactId>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>jdk10</id>
+            <activation>
+                <jdk>10</jdk>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <artifactId>maven-failsafe-plugin</artifactId>
+                            <configuration>
+                                <excludes>
+                                    <exclude>**/FileInfinispanRepositoryIT.java</exclude>
+                                    <exclude>**/RocksDBInfinispanRepositoryIT.java</exclude>
+                                    <exclude>**/JdbcInfinispanRepositoryIT.java</exclude>
+                                </excludes>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

@@ -1,0 +1,210 @@
+/*
+ * Copyright (c) 2020-2021 Vikash Madhow
+ */
+
+/**
+ *  _____  _____  ______
+ * |  __  |  __  |  _  |  | |
+ * | |__  | |__  | | | |  | |
+ * |  __  |__  | | | | |  | |
+ * | |__   __| | | |_| |_ | |___
+ * |_____ _____| |_______ |_____
+ *
+ * @author Vikash Madhow (vikash.madhow@gmail.com)
+ */
+
+buildscript {
+  repositories {
+    jcenter()
+    mavenCentral()
+  }
+}
+
+plugins {
+  id "antlr"
+  id "java-library"
+  id "maven-publish"
+  id "signing"
+  id "io.codearte.nexus-staging" version "0.22.0"
+  id "synapticloop.projectFilestatistics" version "1.1.0"
+}
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+  jcenter()
+//  maven {
+//    url = uri("http://maven.cubrid.org/")
+//  }
+}
+
+generateGrammarSource {
+  outputDirectory = file("src/main/antlr")
+  arguments += ["-long-messages"]
+}
+
+sourceSets {
+  main {
+    java { srcDirs = ['src/main/java', 'src/main/antlr'] }
+    resources { srcDirs = ['src/main/resources'] }
+  }
+  test {
+    java { srcDirs = ['src/test/java', 'src/test/antlr'] }
+    resources { srcDirs = ['src/test/resources'] }
+  }
+}
+
+projectFilestatistics {
+  // the files to include in the generation of the statistics
+  includes = ["src/main/**/*.*"]
+
+  // the files to exclude from the generation
+  excludes = [
+      "**/*.woff*",
+      "**/*.babelrc",
+      "**/*.editorconfig",
+      "**/*.eot",
+      "**/*.eslintignore",
+      "**/*.gif",
+      "**/*.ico",
+      "**/*.interp",
+      "**/*.jpg",
+      "**/*.json",
+      "**/*.keep",
+      "**/*.map",
+      "**/*.orig",
+      "**/*.otf",
+      "**/*.png",
+      "**/*.svg",
+      "**/*.tokens",
+      "**/*.ttf",
+  ]
+
+  // the output directory for the generated statistics
+  outputDirectory = 'src/docs'
+
+  // if you require to over-ride how single and multi-line comments work, or
+  // need to add in some extensions which aren't built in...
+  // propertyFile = 'over-ride.properties'
+}
+
+dependencies {
+  antlr("org.antlr:antlr4:latest.release")
+
+  implementation("org.apache.commons:commons-lang3:3.9")
+
+  implementation("org.postgresql:postgresql:42.2.19")
+  implementation("com.microsoft.sqlserver:mssql-jdbc:9.2.1.jre11")
+  implementation("org.mariadb.jdbc:mariadb-java-client:2.7.2")
+  implementation("mysql:mysql-connector-java:8.0.23")
+  implementation("org.hsqldb:hsqldb:2.6.0")
+  implementation("com.zaxxer:HikariCP:4.0.3")
+//  implementation("cubrid:cubrid-jdbc:10.2.2.8874")
+
+  implementation("org.json:json:latest.release")
+  implementation("org.yaml:snakeyaml:latest.release")
+
+  implementation("com.vikmad:base:latest.release")
+
+//  implementation("org.apache.zookeeper:zookeeper:3.6.2")
+//  implementation("org.apache.kafka:kafka-clients:2.7.0")
+//  implementation("org.apache.kafka:kafka_2.13:2.7.0")
+//  implementation("org.apache.kafka:connect:2.7.0")
+//  implementation("org.apache.kafka:connect-api:2.7.0")
+//  implementation("org.apache.kafka:kafka-examples:2.7.0")
+
+  // Use JUnit test framework
+  testImplementation(platform('org.junit:junit-bom:5.7.0'))
+  testImplementation('org.junit.jupiter:junit-jupiter:5.7.0')
+}
+
+test {
+  useJUnitPlatform()
+  testLogging {
+    events "passed", "skipped", "failed"
+  }
+}
+
+group = 'com.vikmad'
+archivesBaseName = 'esql'
+sourceCompatibility = JavaVersion.VERSION_14
+version = "0.5.1"
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
+
+java {
+  modularity.inferModulePath = true
+  withJavadocJar()
+  withSourcesJar()
+}
+
+//compileJava {
+//  inputs.property("moduleName", 'ma.vi.esql')
+//  doFirst {
+//    // println("Classpath: " + classpath.asPath)
+//    options.compilerArgs = [
+//        '--module-path', classpath.asPath,
+//        '--add-exports', 'org.hsqldb/org.hsqldb=ma.vi.esql',
+//    ]
+//    classpath = files()
+//  }
+//}
+
+publishing {
+  repositories {
+    maven {
+      def releaseRepo = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+      def snapshotRepo = "https://oss.sonatype.org/content/repositories/snapshots/"
+      url = isReleaseVersion ? releaseRepo : snapshotRepo
+      credentials {
+        username = project.hasProperty('ossrhUsername') ? ossrhUsername : "Unknown user"
+        password = project.hasProperty('ossrhPassword') ? ossrhPassword : "Unknown password"
+      }
+    }
+  }
+
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
+      pom {
+        groupId = 'com.vikmad'
+        artifactId = 'esql'
+        name = "ESQL language implementation"
+        description = 'ESQL, SQL enhanced with metadata compiling to various relational databases'
+        url = 'https://github.com/vikashmadhow/esql'
+        licenses {
+          license {
+            name = 'The Apache License, Version 2.0'
+            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+          }
+        }
+        developers {
+          developer {
+            id = "vikashmadhow"
+            name = "Vikash Madhow"
+            email = "vikash.madhow@gmail.com"
+            url = "http://vikmad.com"
+          }
+        }
+        scm {
+          url = 'https://github.com/vikashmadhow/esql'
+          connection = 'scm:https://github.com/vikashmadhow/esql.git'
+          developerConnection = 'scm:git://github.com/vikashmadhow/esql.git'
+        }
+      }
+    }
+  }
+}
+
+signing {
+  sign publishing.publications.mavenJava
+}
+
+tasks.withType(Sign) {
+  onlyIf { isReleaseVersion }
+}
+
+nexusStaging {
+  packageGroup = group
+  username = project.getProperty('ossrhUsername')
+  password = project.getProperty('ossrhPassword')
+}

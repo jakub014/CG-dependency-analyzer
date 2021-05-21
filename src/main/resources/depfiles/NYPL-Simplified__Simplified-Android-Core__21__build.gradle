@@ -1,0 +1,21 @@
+dependencies {
+  api project(":simplified-accounts-api")
+  api project(":simplified-books-api")
+  api project(":simplified-books-audio")
+  api project(":simplified-books-bundled-api")
+  api project(":simplified-books-formats-api")
+  api project(":simplified-content-api")
+  api project(":simplified-opds-core")
+  api project(":simplified-profiles-api")
+
+
+  implementation project(":simplified-adobe-extensions")
+  implementation project(":simplified-taskrecorder-api")
+
+  implementation libraries.kotlin_stdlib
+  implementation libraries.kotlin_reflect
+  implementation libraries.nypl_drm_core
+  implementation libraries.nypl_http_api
+  implementation libraries.nypl_http_downloads
+  implementation libraries.slf4j
+}

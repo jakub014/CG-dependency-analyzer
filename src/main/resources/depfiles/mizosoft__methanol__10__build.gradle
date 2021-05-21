@@ -1,0 +1,40 @@
+plugins {
+  id 'com.github.johnrengelman.shadow' version '7.0.0'
+}
+
+dependencies {
+  annotationProcessor deps.jmhAnnotationProcessor
+  implementation project(':methanol')
+  implementation project(':methanol-jackson')
+  implementation project(':methanol-brotli')
+  implementation project(':methanol-testutils')
+  implementation deps.mockWebServer
+  implementation deps.jmhCore
+  implementation deps.brotliDec
+}
+
+shadowJar {
+  archivesBaseName = rootProject.getArtifactId(project)
+  archiveClassifier = 'all'
+  mergeServiceFiles()
+}
+
+task jmh(type: JavaExec) {
+  classpath = files(shadowJar)
+  args('-foe', 'true')
+  def additionalArgs = System.properties.jmhArgs
+  if (additionalArgs) {
+    if (additionalArgs.length() > 2
+        && additionalArgs.startsWithAny("'", '"')
+        && additionalArgs.endsWithAny("'", '"')) {
+      additionalArgs = additionalArgs[1..additionalArgs.length() - 1]
+    }
+    args additionalArgs
+  }
+}
+
+tasks.withType(JavaCompile) {
+  options.errorprone {
+    excludedPaths = '.*/build/generated/.*' // jmh generated code makes errorprone go nuts
+  }
+}

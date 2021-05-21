@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.optum.sourcehawk</groupId>
+        <artifactId>sourcehawk-dist</artifactId>
+        <version>0.6.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>sourcehawk-dist-linux</artifactId>
+    <name>Sourcehawk Distributions Linux</name>
+    <description>Sourcehawk linux executable</description>
+    <packaging>pom</packaging>
+
+    <properties>
+        <graalvm.version/> <!-- Defined in jdk specific profile -->
+        <docker.image>${project.artifactId}-native-image-builder</docker.image>
+        <docker.workdir>/home/${global.project.name}</docker.workdir>
+        <docker.build.executable>${docker.workdir}/${global.project.name}</docker.build.executable>
+        <native.image>${project.build.directory}/${global.project.name}</native.image>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.optum.sourcehawk</groupId>
+            <artifactId>sourcehawk-cli</artifactId>
+            <classifier>native-image</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.optum.sourcehawk</groupId>
+            <artifactId>sourcehawk-cli</artifactId>
+            <version>${project.version}</version>
+            <classifier>bash-completion</classifier>
+            <type>sh</type>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <plugins>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-manpages</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>${project.parent.parent.basedir}/gh-pages/manpages</directory>
+                                    <includes>
+                                        <include>${global.project.name}*</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}/dist/manpages</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- COPY NATIVE IMAGE DEPENDENCIES -->
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-native-image</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeGroupIds>com.optum.sourcehawk</includeGroupIds>
+                            <includeArtifactIds>sourcehawk-cli</includeArtifactIds>
+                            <includeClassifiers>native-image</includeClassifiers>
+                            <outputDirectory>${project.build.directory}/dist</outputDirectory>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-native-image-bash-completion</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.optum.sourcehawk</groupId>
+                                    <artifactId>sourcehawk-cli</artifactId>
+                                    <classifier>bash-completion</classifier>
+                                    <type>sh</type>
+                                    <outputDirectory>${project.build.directory}/dist/bash-completion</outputDirectory>
+                                    <destFileName>${global.project.name}</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- BUILD NATIVE IMAGE -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>build-native-image</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <dockerfile>${basedir}/native-image-builder/Dockerfile</dockerfile>
+                            <repository>${docker.image}</repository>
+                            <tag>${project.version}</tag>
+                            <buildArgs>
+                                <GRAALVM_VERSION>${graalvm.version}</GRAALVM_VERSION>
+                                <NAME>${global.project.name}</NAME>
+                                <JAR>target/dist/sourcehawk-cli-${project.version}-native-image.jar</JAR>
+                                <WORKDIR>${docker.workdir}</WORKDIR>
+                            </buildArgs>
+                            <skipDockerInfo>true</skipDockerInfo>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- EXEC PROCESSORS AND SCRIPTS -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+
+                    <!-- EXTRACT NATIVE IMAGE FROM DOCKER CONTAINER TO TARGET DIRECTORY -->
+                    <execution>
+                        <id>extract-native-image</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>../scripts/extract-file-from-docker-container.sh</executable>
+                            <arguments>
+                                <argument>${docker.image}:${project.version}</argument>
+                                <argument>${docker.build.executable}</argument>
+                                <argument>${project.build.directory}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+
+            <!-- ATTACH NATIVE IMAGE ARTIFACT-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-native-image-artifact</id>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <phase>post-integration-test</phase>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>${native.image}</file>
+                                    <classifier>x86_64</classifier>
+                                    <type>zip</type>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <profiles>
+
+        <!-- LINUX INTEGRATION TESTS -->
+        <profile>
+            <id>linux-integration-tests</id>
+            <activation>
+                <os>
+                    <family>unix</family>
+                </os>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <executions>
+
+                            <!-- VERIFY EXECUTABLE -->
+                            <execution>
+                                <id>verify-native-image-execution</id>
+                                <phase>integration-test</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>${native.image}</executable>
+                                    <arguments>
+                                        <argument>--version</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- JAVA 8 NATIVE IMAGE BUILD -->
+        <profile>
+            <id>native-image-build-java8</id>
+            <activation>
+                <jdk>8</jdk>
+            </activation>
+            <properties>
+                <graalvm.version>20.3.0-java8</graalvm.version>
+            </properties>
+        </profile>
+
+        <!-- JAVA 11 NATIVE IMAGE BUILD -->
+        <profile>
+            <id>native-image-build-java11</id>
+            <activation>
+                <jdk>11</jdk>
+            </activation>
+            <properties>
+                <graalvm.version>20.3.0-java11</graalvm.version>
+            </properties>
+        </profile>
+
+    </profiles>
+
+</project>

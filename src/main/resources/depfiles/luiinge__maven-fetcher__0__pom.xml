@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.github.luiinge</groupId>
+        <artifactId>maven-java-starter</artifactId>
+        <version>11.2.0</version>
+    </parent>
+
+    <groupId>io.github.luiinge</groupId>
+    <artifactId>maven-fetcher</artifactId>
+    <version>1.1.0</version>
+
+    <name>Maven Fetcher</name>
+    <description>Java utility to fetch Maven dependencies</description>
+    <inceptionYear>2020</inceptionYear>
+
+
+    <url>https://github.com/luiinge/maven-fetcher</url>
+
+    <organization>
+        <name>luiinge</name>
+        <url>https://github.com/luiinge</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Luis Iñesta Gelabert</name>
+            <email>luiinge@gmail.com</email>
+        </developer>
+    </developers>
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/luiinge/maven-fetcher/issues</url>
+    </issueManagement>
+
+    <scm>
+        <connection>scm:git:git://github.com/luiinge/maven-fetcher.git</connection>
+        <developerConnection>scm:git:ssh://github.com:luiinge/maven-fetcher.git</developerConnection>
+        <url>https://github.com/luiinge/maven-fetcher/tree/master</url>
+    </scm>
+
+    <properties>
+        <maven-resolver.version>1.6.3</maven-resolver.version>
+        <maven-model.version>3.8.1</maven-model.version>
+        <maven-aether-provider.version>3.3.9</maven-aether-provider.version>
+        <commons-logging.version>1.2</commons-logging.version>
+        <slf4j-ansi.version>1.0.0</slf4j-ansi.version>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.maven.resolver</groupId>
+            <artifactId>maven-resolver-impl</artifactId>
+            <version>${maven-resolver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.resolver</groupId>
+            <artifactId>maven-resolver-connector-basic</artifactId>
+            <version>${maven-resolver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.resolver</groupId>
+            <artifactId>maven-resolver-transport-file</artifactId>
+            <version>${maven-resolver.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.resolver</groupId>
+            <artifactId>maven-resolver-transport-http</artifactId>
+            <version>${maven-resolver.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-model</artifactId>
+            <version>${maven-model.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-aether-provider</artifactId>
+            <version>${maven-aether-provider.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.luiinge</groupId>
+            <artifactId>slf4j-ansi</artifactId>
+            <version>${slf4j-ansi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons-logging.version}</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>maven.fetcher</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>

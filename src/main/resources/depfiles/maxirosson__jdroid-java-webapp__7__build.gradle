@@ -1,0 +1,101 @@
+apply plugin: 'com.jdroidtools.java.webapp'
+
+description = 'Jdroid Sample Server'
+
+configurations.all {
+	// check for updates every build
+	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+buildscript {
+	dependencies {
+		classpath(BuildLibs.JDROID_GRADLE_JAVA_WEBAPP_PLUGIN)
+	}
+}
+
+dependencies {
+
+	compile project(':jdroid-java-webapp-core')
+	compile project(':jdroid-java-webapp-csv')
+	compile project(':jdroid-java-webapp-facebook')
+	compile project(':jdroid-java-webapp-twitter')
+	compile project(':jdroid-java-webapp-firebase-fcm')
+
+	if (jdroid.propertyResolver.getBooleanProp("JDROID_JAVA_AS_PROJECT_DEPENDENCY", false)) {
+		compile(project(':jdroid-java-firebase-database')) {
+			exclude module: 'jdroid-java-core'
+		}
+	} else {
+		compile(Libs.JDROID_JAVA_FIREBASE_DATABASE) {
+			exclude module: 'jdroid-java-core'
+		}
+	}
+
+	if (jdroid.propertyResolver.getBooleanProp("JDROID_JAVA_HTTP_AS_PROJECT_DEPENDENCY", false)) {
+		compile project(":jdroid-java-http-okhttp")
+	} else {
+		compile (Libs.JDROID_JAVA_HTTP_OKHTTP) {
+			exclude module: 'jdroid-java-core'
+		}
+	}
+
+	compile(Libs.JDROID_JAVA_FIREBASE_FIRESTORE)
+	compile(Libs.FIREBASE_TOKEN_GENERATOR)
+
+	testImplementation(Libs.JUNIT)
+	testImplementation(Libs.MOCKITO)
+}
+
+// Generate the settings.properties
+project.afterEvaluate {
+
+	project.task('generateBuildConfigClass') {
+		doLast {
+			File dir = new File("$projectDir/build/generated/com/jdroid/javaweb/sample/context")
+			dir.mkdirs()
+			File file = new File(dir, "BuildConfig.kt")
+			file.withWriter { out ->
+
+				out.writeLine("package com.jdroid.javaweb.sample.context")
+				out.writeLine("")
+				out.writeLine("object BuildConfig {")
+				jdroid.setBuildConfigString(out, 'APP_NAME', project.name)
+				jdroid.setBuildConfigString(out, 'APP_VERSION', project.version.toString())
+				jdroid.setBuildConfigString(out, 'BUILD_TYPE')
+				jdroid.setBuildConfigString(out, 'BUILD_TIME', jdroid.getBuildTime())
+				jdroid.setBuildConfigString(out, 'GIT_BRANCH', jdroid.getGitBranch())
+				jdroid.setBuildConfigString(out, 'GIT_SHA', jdroid.getGitSha())
+				jdroid.setBuildConfigString(out, 'MIN_API_VERSION', '1.0')
+				jdroid.setBuildConfigString(out, 'GOOGLE_SERVER_API_KEY')
+
+				jdroid.setBuildConfigBoolean(out, 'HTTP_MOCK_ENABLED')
+				jdroid.setBuildConfigInteger(out, 'HTTP_MOCK_SLEEP_DURATION')
+
+				jdroid.setBuildConfigString(out, 'ADMIN_TOKEN', 'admin')
+
+				jdroid.setBuildConfigString(out, 'TWITTER_OAUTH_CONSUMER_KEY')
+				jdroid.setBuildConfigString(out, 'TWITTER_OAUTH_CONSUMER_SECRET')
+				jdroid.setBuildConfigString(out, 'TWITTER_OAUTH_ACCESS_TOKEN')
+				jdroid.setBuildConfigString(out, 'TWITTER_OAUTH_ACCESS_TOKEN_SECRET')
+				jdroid.setBuildConfigBoolean(out, 'TWITTER_ENABLED', false)
+
+				jdroid.setBuildConfigString(out, 'FIREBASE_URL')
+				jdroid.setBuildConfigString(out, 'FIREBASE_AUTH_TOKEN')
+				jdroid.setBuildConfigString(out, 'FIREBASE_SERVICE_ACCOUNT', "")
+
+				jdroid.setBuildConfigBoolean(out, 'SENTRY_ENABLED', false)
+				jdroid.setBuildConfigString(out, 'SENTRY_DSN')
+				out.writeLine("}")
+			}
+		}
+	}
+
+	project.tasks.'compileKotlin'.dependsOn 'generateBuildConfigClass'
+}
+
+// https://blog.openshift.com/run-gradle-builds-on-openshift/
+war {
+	archiveName = 'ROOT.war'
+//	destinationDir = file('webapps')
+}
+

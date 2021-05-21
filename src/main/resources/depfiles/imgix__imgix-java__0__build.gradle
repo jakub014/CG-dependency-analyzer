@@ -1,0 +1,145 @@
+plugins {
+  id 'java'
+  id 'maven-publish'
+  id 'signing'
+  id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
+  id "io.freefair.maven-central.validate-poms" version "5.3.0"
+  id "com.diffplug.spotless" version "5.11.1"
+}
+
+group = 'com.imgix' // sonatype groupId
+version = '2.3.2' // add SNAPSHOT if deploying to staging repo
+
+// declare expected JDK versions
+sourceCompatibility = 8
+targetCompatibility = 8
+
+// Delcare the maven repo ans the source for the junit and hamcrest repository and dependencies
+repositories {
+    maven { url "https://repo.maven.apache.org/maven2" }
+}
+
+dependencies {
+    testImplementation group: 'junit', name: 'junit', version:'4.12'
+    testImplementation group: 'org.hamcrest', name: 'hamcrest-library', version:'1.3'
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+java {
+    // A task that packages the output of the javadoc task in JAR with classifier javadoc.
+    withJavadocJar()
+    // A task that packages the Java sources of the main SourceSet in JAR with classifier sources.
+    withSourcesJar()
+}
+
+// A task that runs tests with a non-UTF-8 encoding scheme.
+// This ensures that the library behavior does not change
+// even when the default charset of the calling system does.
+task testUTF32(type: Test) {
+  jvmArgs "-Dfile.encoding=UTF-32"
+}
+
+publishing {
+  publications {
+    release(MavenPublication) {
+      groupId "com.imgix" // sonatype JIRA groupId
+      artifactId "imgix-java" // the name of the library
+      version '2.3.2' // add SNAPSHOT if staging
+      from(components["java"]) // this is a dependency of MavenPublication
+
+      // provide all the metadata for the library
+      pom {
+        artifactId = "imgix-java"
+        name = 'imgix-java'
+        packaging = 'jar'
+        description = 'imgix-java is a client library for generating image URLs with imgix.'
+        url = 'https://github.com/imgix/imgix-java'
+
+        scm {
+          connection = 'https://github.com/imgix/imgix-java.git'
+          developerConnection = 'https://github.com/imgix/imgix-java.git'
+          url = 'https://github.com/imgix/imgix-java'
+        }
+
+        licenses {
+          license {
+            name = 'BSD-2-Clause License'
+            url = 'https://github.com/imgix/imgix-java/blob/main/LICENSE'
+          }
+        }
+
+        developers {
+          developer {
+            id = 'imgix'
+            name = 'imgix'
+            email = 'sdk@imgix.com'
+          }
+        }
+      }
+    }
+  }
+}
+
+// sign all the files with the local gpg key, key must have been previously deployed online
+signing {
+    def signingKeyId = findProperty("signingKeyId")
+    def signingKey = findProperty("signingKey")
+    def signingPassword = findProperty("signingPassword")
+    useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
+  sign publishing.publications
+}
+
+
+// validate the pom.xml has all the attributes required by MacenCentral
+task validateMavenPom(type: io.freefair.gradle.plugins.maven.central.ValidateMavenPom) {
+    pomFile = file("build/publications/release/pom-default.xml")
+    ignoreFailures = false
+    dependsOn('publishToSonatype')
+}
+
+nexusPublishing {
+    // assumes sonatype credentials present in either env or gradle.properties
+    def sonatypeUsername = findProperty("sonatypeUsername")
+    def sonatypePassword = findProperty("sonatypePassword")
+    repositories {
+        sonatype {
+          username = sonatypeUsername
+          password = sonatypePassword
+          useStaging = true // force all deploys to use staging repos
+        }
+    }
+    // sets timout & retry options to avoid hangups when nexus API is acting up
+    clientTimeout = Duration.ofSeconds(300)
+    connectTimeout = Duration.ofSeconds(60)
+    transitionCheckOptions {
+        maxRetries.set(40)
+        delayBetween.set(java.time.Duration.ofMillis(3000))
+    }
+}
+
+// Use spotless plugin to lint and (opt.) auto format using googleJavaFormat standard
+spotless {
+  // optional: limit format enforcement to just the files changed by this feature branch
+  ratchetFrom 'origin/main'
+
+  format 'misc', {
+    // define the files to apply `misc` to
+    target '*.gradle', '*.md', '.gitignore'
+
+    // define the steps to apply to those files
+    trimTrailingWhitespace()
+    indentWithSpaces(2) // or spaces. Takes an integer argument if you don't like 4
+    endWithNewline()
+  }
+  java {
+    // don't need to set target, it is inferred from java
+
+    // apply a specific flavor of google-java-format
+    googleJavaFormat()
+  }
+}

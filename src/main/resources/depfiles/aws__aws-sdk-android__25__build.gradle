@@ -1,0 +1,17 @@
+apply from: rootProject.file('publishing.gradle')
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 11
+        targetSdkVersion 29
+    }
+}
+
+dependencies {
+    api project(':aws-android-sdk-core')
+    implementation 'com.google.guava:guava:29.0-android'
+}
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>jmespath-contrib</artifactId>
+  <version>0.4.1-SNAPSHOT</version>
+  <name>JMESPath Contributions</name>
+  <description>Community contributed extensions to JMESPath for Java</description>
+
+  <parent>
+    <groupId>io.burt</groupId>
+    <artifactId>jmespath</artifactId>
+    <version>0.3.0</version>
+  </parent>
+
+  <scm>
+    <connection>scm:git:ssh://git@github.com/burtcorp/jmespath-java-contrib.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/burtcorp/jmespath-java-contrib.git</developerConnection>
+    <url>https://github.com/burtcorp/jmespath-java-contrib.git</url>
+    <tag>jmespath-contrib-${project.version}</tag>
+  </scm>
+
+  <properties>
+    <junit.version>4.12</junit.version>
+    <hamcrest.version>1.3</hamcrest.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>jmespath-core</artifactId>
+      <version>0.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>jmespath-jackson</artifactId>
+      <version>0.3.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>jmespath-gson</artifactId>
+      <version>0.3.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-library</artifactId>
+      <version>${hamcrest.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>

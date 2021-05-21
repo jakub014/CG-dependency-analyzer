@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.github.dreamroute</groupId>
+        <artifactId>fast</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>fast-spring-boot-starter</artifactId>
+    <name>${project.artifactId}</name>
+    <description>fast</description>
+    <url>https://github.com/Dreamroute/fast</url>
+
+    <scm>
+        <connection>scm:git:git@github.com:Dreamroute/fast.git</connection>
+        <developerConnection>scm:git:git@github.com:Dreamroute/fast.git</developerConnection>
+        <url>https://github.com/Dreamroute/fast</url>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>w.dehai</name>
+            <email>342252328@qq.com</email>
+        </developer>
+    </developers>
+
+    <build>
+        <plugins>
+            <!--
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

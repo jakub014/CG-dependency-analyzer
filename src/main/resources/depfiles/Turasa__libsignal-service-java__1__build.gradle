@@ -1,0 +1,128 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+archivesBaseName = "signal-service-android"
+version          = lib_signal_service_version_number
+group            = lib_signal_service_group_info
+
+repositories {
+    google()
+    mavenCentral()
+    mavenLocal()
+    jcenter {
+        content {
+            includeVersion 'org.jetbrains.trove4j', 'trove4j', '20160824'
+        }
+    }
+}
+
+dependencies {
+    implementation 'org.whispersystems:signal-client-android:0.5.1'
+    api (project(':libsignal-service')) {
+        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
+    }
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion '30.0.2'
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 30
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        warning 'InvalidPackage'
+        abortOnError false
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name.equals("lint")) {
+        task.enabled = false
+    }
+}
+
+def isReleaseBuild() {
+    return version.contains("SNAPSHOT") == false
+}
+
+def getReleaseRepositoryUrl() {
+    return hasProperty('sonatypeRepo') ? sonatypeRepo
+            : "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+}
+
+def getRepositoryUsername() {
+    return hasProperty('whisperSonatypeUsername') ? whisperSonatypeUsername : ""
+}
+
+def getRepositoryPassword() {
+    return hasProperty('whisperSonatypePassword') ? whisperSonatypePassword : ""
+}
+
+
+signing {
+    required { isReleaseBuild() && gradle.taskGraph.hasTask("uploadArchives") }
+    sign configurations.archives
+}
+
+uploadArchives {
+    configuration = configurations.archives
+    repositories.mavenDeployer {
+        beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+        repository(url: getReleaseRepositoryUrl()) {
+            authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+        }
+
+        pom.project {
+            name 'signal-service-android'
+            packaging 'aar'
+            description 'Signal Service communication library for Android, unofficial fork'
+            url 'https://github.com/Turasa/libsignal-service-java'
+
+            scm {
+                url 'scm:git@github.com:Turasa/libsignal-service-java.git'
+                connection 'scm:git@github.com:Turasa/libsignal-service-java.git'
+                developerConnection 'scm:git@github.com:Turasa/libsignal-service-java.git'
+            }
+
+            licenses {
+                license {
+                    name 'GPLv3'
+                    url 'https://www.gnu.org/licenses/gpl-3.0.txt'
+                    distribution 'repo'
+                }
+            }
+
+            developers {
+                developer {
+                    name 'Moxie Marlinspike'
+                }
+                developer {
+                    name 'Sebastian Scheibner'
+                }
+                developer {
+                    name 'Tilman Hoffbauer'
+                }
+            }
+        }
+    }
+}
+
+task installArchives(type: Upload) {
+    description "Installs the artifacts to the local Maven repository."
+    configuration = configurations['archives']
+    repositories {
+        mavenDeployer {
+            repository url: "file://${System.properties['user.home']}/.m2/repository"
+        }
+    }
+}
+

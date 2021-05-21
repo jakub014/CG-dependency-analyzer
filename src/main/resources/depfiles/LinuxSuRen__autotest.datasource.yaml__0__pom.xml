@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.surenpi.autotest</groupId>
+        <artifactId>autotest.parent</artifactId>
+        <version>1.0.2</version>
+    </parent>
+
+    <artifactId>autotest.datasource.yaml</artifactId>
+    <version>1.0.2-SNAPSHOT</version>
+
+    <scm>
+        <connection>scm:git:git@github.com:LinuxSuRen/${project.artifactId}.git</connection>
+        <url>scm:git:git@github.com:LinuxSuRen/${project.artifactId}</url>
+        <developerConnection>scm:git:git@github.com:LinuxSuRen/${project.artifactId}.git</developerConnection>
+        <tag>${project.version}</tag>
+    </scm>
+    
+    <description>YAML格式的数据源</description>
+    <name>autotest.datasource.yaml</name>
+    <url>http://surenpi.com</url>
+    
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>nexus-snapshots</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.surenpi.autotest</groupId>
+            <artifactId>autotest.datasource</artifactId>
+            <version>1.0.0-20170706</version>
+        </dependency>
+        <dependency>
+            <groupId>com.surenpi.autotest</groupId>
+            <artifactId>autotest.webui</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+        </dependency>
+
+		<!-- 单元测试 -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+    </dependencies>
+</project>

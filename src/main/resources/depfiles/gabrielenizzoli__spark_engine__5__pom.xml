@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>plan-model-builder</artifactId>
+
+    <parent>
+        <groupId>com.spark-engine</groupId>
+        <artifactId>spark-engine-parent</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <name>Spark Engine Model Builder Module</name>
+    <url>https://www.spark-engine.com</url>
+
+    <dependencies>
+        <!-- packages -->
+        <dependency>
+            <groupId>com.spark-engine</groupId>
+            <artifactId>plan-model</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+        </dependency>
+        <!-- test -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

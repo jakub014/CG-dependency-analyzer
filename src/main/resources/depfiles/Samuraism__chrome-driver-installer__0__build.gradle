@@ -1,0 +1,79 @@
+plugins {
+    id 'java'
+    id 'signing'
+    id 'maven-publish'
+}
+
+group 'com.samuraism'
+version '1.4'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+compileJava   {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+}
+
+dependencies {
+    compile 'org.apache.commons:commons-compress:1.20'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'webdriver-installer'
+            from components.java
+            pom {
+                name = 'webdriver-installer'
+                description = 'webdriver-installer'
+                url = 'https://github.com/yusuke/webdriver-installer'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'yusuke'
+                        name = 'Yusuke Yamamoto'
+                        email = 'yusuke@mac.com'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/Samuraism/webdriver-installer'
+                    connection = 'scm:git:git://github.com/Samuraism/webdriver-installer.git'
+                    developerConnection = 'scm:git:git@github.com:Samuraism/webdriver-installer.git'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username = project.properties['SONATYPE_USERNAME'] ?: "none"
+                password = project.properties['SONATYPE_PASSWORD'] ?: "none"
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}

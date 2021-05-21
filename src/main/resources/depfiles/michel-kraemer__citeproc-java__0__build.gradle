@@ -1,0 +1,61 @@
+subprojects {
+    apply plugin: 'jacoco'
+    apply plugin: 'java'
+
+    version = '3.0.0-SNAPSHOT'
+    group = 'de.undercouch'
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://oss.sonatype.org/content/groups/public'
+        }
+    }
+    
+    dependencies {
+        testImplementation 'junit:junit:4.12'
+    }
+    
+    // configure javadoc
+    javadoc {
+        // exclude internal packages
+        exclude '**/internal/**'
+        
+        // link to Java 8 documentation
+        options.author true
+        options.links 'https://docs.oracle.com/javase/8/docs/api/'
+        options.source '8' // Java version
+    }
+    
+    // package javadoc into a jar file
+    task packageJavadoc(type: Jar, dependsOn: 'javadoc') {
+        from javadoc.destinationDir
+        classifier = 'javadoc'
+    }
+    
+    // package source into a jar file
+    task packageSources(type: Jar) {
+        from sourceSets.main.allSource
+        classifier = 'sources'
+    }
+
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << '-Xlint:unchecked'
+        options.deprecation = true
+    }
+
+    test {
+        if (project.hasProperty('excludeTests')) {
+            exclude project.excludeTests
+        }
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.enabled = true
+            html.enabled = true
+        }
+    }
+}

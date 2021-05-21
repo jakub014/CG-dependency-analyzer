@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.2.5.RELEASE"
+    }
+}
+
+plugins {
+    id "org.jetbrains.kotlin.jvm"
+    id "org.jetbrains.kotlin.plugin.jpa"
+    id "org.springframework.boot"
+    id "io.spring.dependency-management"
+}
+
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+group 'com.github.materna-se.fegen'
+version "$fegen_spring_util_version${fegen_snapshot ? '-SNAPSHOT' : ''}"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    compileOnly "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+    compileOnly "org.springframework.boot:spring-boot-starter-web"
+    compileOnly "org.springframework.boot:spring-boot-starter-data-jpa"
+    compileOnly "org.springframework.boot:spring-boot-starter-data-rest"
+    compileOnly "org.springframework.security:spring-security-config"
+    compileOnly "org.springframework.security:spring-security-web"
+}
+
+// Build a library instead of an executable jar
+bootJar { enabled = false }
+jar { enabled = true }
+
+kotlinArtifact {
+    artifactProject = project
+    artifactId = "fegen-spring-util"
+    artifactName = "FeGen Spring util"
+    artifactDescription = "Configuration for Spring to enable the use of FeGen"
+}

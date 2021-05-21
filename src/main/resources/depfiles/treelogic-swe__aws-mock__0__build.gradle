@@ -1,0 +1,266 @@
+allprojects {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+}
+
+buildscript {
+    repositories {
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath "net.saliman:gradle-cobertura-plugin:2.6.1"
+        classpath "com.bmuschko:gradle-tomcat-plugin:2.5"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'com.bmuschko.tomcat-base'
+apply plugin: 'checkstyle'
+apply plugin: 'maven'
+apply plugin: 'signing'
+apply plugin: "net.saliman.cobertura"
+
+group = 'com.treelogic-swe'
+version = '1.3.4'
+ext.packaging = 'jar'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    providedCompile 'javax.servlet:servlet-api:2.5'
+    compile 'org.apache.commons:commons-lang3:3.1'
+    compile 'org.slf4j:slf4j-log4j12:1.7.5'
+    compile 'log4j:log4j:1.2.17'
+    compile 'org.freemarker:freemarker:2.3.20'
+    compile 'com.treelogic-swe:cxf-stub:1.0.4'
+    compile group: 'joda-time', name: 'joda-time', version: '2.8.1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+    compile "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+    compile "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+    testCompile "com.amazonaws:aws-java-sdk:1.11.52"
+    testCompile "org.powermock:powermock-core:2.0.9"
+    testCompile "org.powermock:powermock-module-junit4:2.0.9"
+    testCompile "org.powermock:powermock-api-mockito2:2.0.9"
+
+    def tomcatVersion = '7.0.92'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+}
+
+// fix the issue that in eclipse workspace source/javadoc of dependency libs don't show correctly
+eclipse.classpath.file {
+    withXml { xml ->
+        def node = xml.asNode()
+        node.remove( node.find { it.@path == 'org.eclipse.jst.j2ee.internal.web.container' } )
+        node.appendNode( 'classpathentry', [ kind: 'con', path: 'org.eclipse.jst.j2ee.internal.web.container', exported: 'true'])
+    }
+}
+
+sourceSets {
+    // example code also in java source sets
+    examples {
+        java {
+            srcDir 'example/java/simple'
+            srcDir 'example/java/full/client-usage'
+            srcDir 'example/java/full/extending-aws-mock/java'
+            srcDir 'example/java/test'
+        }
+        compileClasspath += sourceSets.main.runtimeClasspath
+    }
+
+    test {
+        compileClasspath += sourceSets.examples.runtimeClasspath
+        runtimeClasspath += sourceSets.examples.runtimeClasspath
+    }
+
+    // integration test code are separated from src/test/java
+    integrationTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/integration-test/java')
+        }
+        resources.srcDir file('src/integration-test/resources')
+    }
+}
+
+configurations {
+    examplesCompile.extendsFrom testCompile
+    examplesRuntime.extendsFrom testRuntime
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+ext {
+    tomcatStopPort = 8081
+    tomcatStopKey = 'stopKey'
+}
+
+task integrationTomcatRun(type: com.bmuschko.gradle.tomcat.tasks.TomcatRun) {
+    stopPort = tomcatStopPort
+    stopKey = tomcatStopKey
+    daemon = true
+    httpPort = 8001
+    doLast{
+      String urlPrefix = 'http://localhost:' + httpPort + '/' + contextPath
+      println 'EC2 endpoint available is at ' + urlPrefix + '/ec2-endpoint'
+      println 'CloudWatch endpoint available is at ' + urlPrefix + '/cloudwatch'
+    }
+}
+
+task integrationTomcatStop(type: com.bmuschko.gradle.tomcat.tasks.TomcatStop) {
+    stopPort = tomcatStopPort
+    stopKey = tomcatStopKey
+}
+
+task integrationTest(type: Test) {
+   testClassesDir = sourceSets.integrationTest.output.classesDir
+   classpath = sourceSets.integrationTest.runtimeClasspath
+   dependsOn integrationTomcatRun
+
+   doLast{
+	exec {
+		commandLine 'sh', '-c', 'npm test'
+	}
+   }
+
+   finalizedBy integrationTomcatStop
+}
+
+check.dependsOn integrationTest
+
+checkstyle {
+    sourceSets = [ sourceSets.main, sourceSets.examples ]
+    toolVersion = "7.6.1"
+}
+
+// Running 'gradle wrapper' will generate gradlew - Getting gradle wrapper working and using it will save you a lot of pain.
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.9'
+}
+
+task checkstylejs (type: Checkstyle) {
+    source 'example/nodejs'
+    include '**/*.js'
+    classpath=files()
+}
+
+task sourcesJar(type:Jar, dependsOn: classes){
+    classifier = 'sources'
+    from sourceSets.main.allSource
+    exclude "**/log4j.properties"
+}
+
+task javadocJar(type: Jar) {
+    classifier = "javadoc"
+    from javadoc
+}
+
+test {
+    testLogging.showStandardStreams = false
+}
+
+jar {
+    exclude('log4j.properties')
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+}
+
+/**
+ * We comment the signing task for avoiding travis-ci build failure
+ * because we don't commit secret key for signing jars to github.com.
+ */
+//signing {
+//    sign configurations.archives
+//}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment)  }
+
+            /**
+             * for publishing to local folder - for normal travis-ci builds
+             * run with signing task commented
+             */
+            repository(url: "file:/tmp/tlswe/repo")
+
+            /**
+             * for publishing to public maven repo - for manually releasing to maven repo
+             * run with signing task uncommented
+             */
+            //repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+            //  authentication(userName: sonatypeUsername, password: sonatypePassword)
+            //}
+
+            addFilter('upload_jars') {artifact, file ->
+                 artifact.type != 'war'
+            }
+
+            pom('upload_jars').project {
+               name 'aws-mock'
+               packaging 'jar'
+               description 'A lightweight, language-agnostic mock of essential AWS services, for test automation.'
+               url 'https://github.com/treelogic-swe/aws-mock'
+
+               scm {
+                   url 'scm:git@github.com:treelogic-swe/aws-mock.git'
+                   connection 'scm:git@github.com:treelogic-swe/aws-mock.git'
+                   developerConnection 'scm:git@github.com:treelogic-swe/aws-mock.git'
+               }
+
+               licenses {
+                   license {
+                       name 'MIT'
+                       distribution 'repo'
+                   }
+               }
+
+               developers {
+                   developer {
+                        id 'christopherbalz'
+                        name 'Christopher Balz'
+                        email 'christopherbalz@yahoo.com'
+                    }
+                    developer {
+                        id 'maxiaohao'
+                        name 'Ma Xiaohao'
+                        email 'maxiaohao@gmail.com'
+                    }
+                    developer {
+                        id 'Jayscrivner'
+                        name 'Jay Scrivner'
+                        email 'Jayscrivner@gmail.com'
+                    }
+                    developer {
+                        id 'zkareem'
+                        name 'Zaki Kareem'
+                        email 'zakimak9@gmail.com'
+                    }
+               }
+            }
+
+        }
+    }
+}
+
+cobertura {
+    coverageCheckHaltOnFailure = true
+    coverageCheckBranchRate = 0
+    coverageCheckLineRate = 0
+    coverageCheckPackageBranchRate = 0
+    coverageCheckPackageLineRate = 0
+    coverageCheckTotalLineRate = 80
+    coverageCheckTotalBranchRate = 80
+    coverageReportDir = file("$buildDir/cobertura/")
+}
+

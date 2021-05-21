@@ -1,0 +1,105 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: "org.jetbrains.kotlin.jvm"
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+group 'com.github.isyscore'
+version '1.6.0'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://kotlin.bintray.com/kotlinx' }
+    maven { url "https://plugins.gradle.org/m2/" }
+}
+
+dependencies {
+    api "com.squareup.okhttp3:okhttp:4.8.1"
+    api "commons-io:commons-io:2.7"
+    api "org.apache.commons:commons-compress:1.20"
+    api "org.apache.commons:commons-lang3:3.11"
+    api "org.jsoup:jsoup:1.13.1"
+    api "com.google.code.gson:gson:2.8.6"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3"
+
+    testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    testImplementation "com.google.code.gson:gson:2.8.6"
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    classifier "javadoc"
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier "sources"
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment ->
+                signing.signPom(deployment)
+            }
+            repository(url: ossrhNexusUrl) {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+            snapshotRepository(url: ossrhNexusSnapshot) {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+            pom.project {
+                name "common-jvm"
+                packaging 'jar'
+                description 'iSysCore Common Kotlin Library'
+                url 'https://github.com/isyscore/common-jvm'
+                scm {
+                    connection 'https://github.com/isyscore/common-jvm'
+                    developerConnection 'https://github.com/isyscore/common-jvm'
+                    url 'https://github.com/isyscore/common-jvm'
+                }
+                licenses {
+                    license {
+                        name 'MIT License'
+                        url 'https://github.com/isyscore/common-jvm/blob/main/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'isyscore'
+                        name 'isyscore'
+                        email 'hexj@isyscore.com'
+                    }
+                }
+            }
+        }
+    }
+}
+
+

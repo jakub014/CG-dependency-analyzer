@@ -1,0 +1,57 @@
+ext.moduleName = 'com.tngtech.archunit.junit5.engine'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    api project(path: ':archunit')
+    api project(path: ':archunit-junit5-api')
+    api project(path: ':archunit-junit5-engine-api')
+    implementation project(path: ':archunit-junit')
+    dependency.addGuava { dependencyNotation, config -> implementation(dependencyNotation, config) }
+    implementation dependency.slf4j
+
+    testImplementation project(path: ':archunit', configuration: 'tests')
+    testImplementation dependency.assertj
+    testImplementation dependency.mockito
+    testImplementation dependency.junit5JupiterApi
+
+    testRuntimeOnly dependency.junit5JupiterEngine
+}
+
+compileJava.dependsOn project(':archunit-junit5-api').finishArchive
+compileJava.dependsOn project(':archunit-junit5-engine-api').finishArchive
+
+javadoc {
+    source(project(':archunit-junit').sourceSets.main.allJava)
+}
+sourcesJar {
+    from project(':archunit-junit').sourceSets.main.allSource
+}
+
+configureSlowTestsFor this
+
+test {
+    useJUnitPlatform() {
+        excludeEngines 'archunit'
+    }
+}
+
+shadowJar {
+    exclude 'META-INF/maven/**'
+
+    dependencies {
+        exclude(dependency {
+            def isApi = it.configuration == 'archJunitApi'
+            def isUnwantedDependency = it.name != dependency.guava && it.moduleName != 'archunit-junit'
+            isUnwantedDependency || isApi
+        })
+    }
+}
+
+def configureDependencies = { deps ->
+    deps.children().removeIf { dep ->
+        dep.scope.text() != 'compile' || !(dep.artifactId.text() in ['archunit', 'archunit-junit5-api', 'archunit-junit5-engine-api'])
+    }
+}
+this.with project(':archunit-junit').configureJUnitArchive(configureDependencies)

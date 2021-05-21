@@ -1,0 +1,93 @@
+<!--
+  #%L
+  %%
+  Copyright (C) 2011 - 2017 BMW Car IT GmbH
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<artifactId>cpp</artifactId>
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<name>${project.groupId}:${project.artifactId}</name>
+
+	<parent>
+		<groupId>io.joynr</groupId>
+		<artifactId>joynr</artifactId>
+		<version>1.16.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<modules>
+		<module>libjoynr</module>
+		<module>tests</module>
+	</modules>
+	<profiles>
+		<profile>
+			<id>spotbugs</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.spotbugs</groupId>
+						<artifactId>spotbugs-maven-plugin</artifactId>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!-- NOTE the license to be added to the source header files must be
+					specifically (redundantly) defined below -->
+				<!-- This is a shortcoming of the license-maven-plugin -->
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>license-maven-plugin</artifactId>
+					<configuration>
+						<verbose>false</verbose>
+						<addSvnKeyWords>true</addSvnKeyWords>
+						<licenseName>apache_v2</licenseName>
+						<roots>
+							<root>.</root>
+						</roots>
+					<excludes>
+						<exclude>tests/resources/LDAS_checkPermissionToAdd.json</exclude>
+						<exclude>tests/resources/ListOfCapabilitiesToInject.json</exclude>
+						<exclude>tests/resources/MasterAccessTable.json</exclude>
+						<exclude>tests/resources/MasterRegistrationTable.json</exclude>
+						<exclude>tests/resources/OwnerAccessTable.json</exclude>
+						<exclude>tests/resources/OwnerRegistrationTable.json</exclude>
+						<exclude>tests/resources/application1_ACL_RCL_Permissions.json</exclude>
+						<exclude>tests/resources/application2_ACL_RCL_Permissions.json</exclude>
+						<exclude>tests/resources/application3_ACL_RCL_Permissions.json</exclude>
+						<exclude>tests/resources/application4_ACL_RCL_Permissions.json</exclude>
+						<exclude>tests/resources/application5_ACL_RCL_Permissions.json</exclude>
+					</excludes>
+					</configuration>
+				</plugin>
+
+				<!-- Skip deploy -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>

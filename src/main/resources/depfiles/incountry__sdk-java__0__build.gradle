@@ -1,0 +1,253 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+import com.github.spotbugs.snom.SpotBugsTask
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'io.codearte.nexus-staging' version "${nexusStagingVersion}"
+    id "org.sonarqube" version "${sonarQubeVersion}"
+    id 'jacoco'
+    id "com.github.spotbugs" version "${spotbugsVersion}"
+}
+
+apply plugin: 'maven'
+apply plugin: 'java'
+apply plugin: 'signing'
+
+group group
+version version
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+archivesBaseName = rootProject.name
+
+sourceSets {
+    integration {
+        resources.srcDir "$projectDir/src/integration/resources"
+        compileClasspath += main.output + test.output
+        runtimeClasspath += main.output + test.output
+    }
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+    }
+}
+
+configurations {
+    integrationImplementation.extendsFrom testImplementation
+    integrationRuntime.extendsFrom testRuntime
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${jupiterVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${jupiterVersion}"
+    integrationRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${jupiterVersion}"
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: "${jupiterVersion}"
+    testCompile group: "com.macasaet.fernet", name: "fernet-java8", version: "${fernetVersion}"
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: "${jaxbApiVersion}"
+    compile group: 'commons-codec', name: 'commons-codec', version: "${commonsCodecVersion}"
+    compile "com.google.code.gson:gson:${gsonVersion}"
+    compile "org.apache.logging.log4j:log4j-api:${log4jVersion}"
+    compile "org.apache.logging.log4j:log4j-core:${log4jVersion}"
+    compile "org.apache.logging.log4j:log4j-jcl:${log4jVersion}"
+    spotbugsPlugins "com.h3xstream.findsecbugs:findsecbugs-plugin:${findsecbugsVersion}"
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: "${apacheHttpClientVersion}"
+    compile group: 'commons-io', name: 'commons-io', version: "${commonsIoVersion}"
+    compile group: 'org.apache.httpcomponents', name: 'httpmime', version: "${apacheHttpMimeVersion}"
+}
+
+apply plugin: 'com.github.spotbugs'
+spotbugs {
+    toolVersion = "${spotBugsToolVersion}"
+    excludeFilter = file("$projectDir/config/spotbugs/exclude.xml")
+    ignoreFailures = false
+    effort = "max"
+}
+
+tasks.withType(SpotBugsTask.class) {
+    reports { result ->
+        xml.enabled = false
+        html {
+            enabled = true
+            println("REPORT FILE [" + getTask() + "]: " + getDestination())
+        }
+    }
+}
+
+apply plugin: 'checkstyle'
+checkstyle {
+    toolVersion "${checkStyleVersion}"
+    configFile file("$projectDir/config/checkstyle/checkstyle.xml")
+}
+checkstyleMain {
+    source = 'src/main/java'
+}
+checkstyleTest {
+    source = 'src/test/java'
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "incountry_sdk-java"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.organization", "incountry"
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/jacoco/test/jacocoTestReport.xml"
+        property "sonar.buildbreaker.skip", "false"
+        property "sonar.qualitygate.wait", "true"
+        property "sonar.qualitygate.timeout", "300"
+        property "sonar.verbose", "false"
+    }
+}
+
+jacoco {
+    toolVersion = "${jacocoVersion}"
+    reportsDir = file("$buildDir/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+        html.enabled true
+    }
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: nexusUsername, password: nexusPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: nexusUsername, password: nexusPassword)
+            }
+
+            pom.project {
+                packaging 'jar'
+                name rootProject.name
+                description 'InCountry Java SDK'
+                url 'https://github.com/incountry/sdk-java'
+
+                scm {
+                    url 'https://github.com/incountry/sdk-java'
+                    connection 'scm:https://github.com/incountry/sdk-java.git'
+                    developerConnection 'scm:https://github.com/incountry/sdk-java.git'
+                }
+
+                licenses {
+                    license {
+                        name 'MIT License'
+                        url 'https://github.com/incountry/sdk-java/blob/master/LICENSE'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'sdks'
+                        name 'InCountrySDKs'
+                        email 'sdks@incountry.com'
+                    }
+                }
+            }
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+    maxParallelForks = 4
+}
+
+
+jar {
+    manifest {
+        attributes("Implementation-Title": "${rootProject.group}:${rootProject.name}",
+                "Implementation-Version": project.version,
+                "Implementation-Vendor": "InCountry INC")
+    }
+}
+
+task javadocJar(type: Jar) {
+    getArchiveClassifier().set('javadoc')
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    getArchiveClassifier().set('sources')
+    from sourceSets.main.allSource
+}
+
+task integrationTest(type: Test) {
+    testClassesDirs = sourceSets.integration.output.classesDirs
+    classpath = sourceSets.integration.runtimeClasspath
+}
+
+integrationTest {
+    useJUnitPlatform()
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+if (project.hasProperty('signing.keyId')) {
+    signing {
+        sign configurations.archives
+    }
+}
+
+nexusStaging {
+    packageGroup = project.getGroup()
+}
+
+tasks.withType(Test) {
+    testLogging {
+        // set options for log level LIFECYCLE
+        events TestLogEvent.FAILED,
+                TestLogEvent.PASSED,
+                TestLogEvent.SKIPPED,
+                TestLogEvent.STANDARD_OUT
+        exceptionFormat TestExceptionFormat.FULL
+        showExceptions true
+        showCauses true
+        showStackTraces true
+
+        afterSuite { desc, result ->
+            if (!desc.parent) { // will match the outermost suite
+                def output = "Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+                def startItem = '|  ', endItem = '  |'
+                def repeatLength = startItem.length() + output.length() + endItem.length()
+                println('\n' + ('-' * repeatLength) + '\n' + startItem + output + endItem + '\n' + ('-' * repeatLength))
+            }
+        }
+    }
+}
+
+
+task generateVersionClass(type: Copy) {
+    from "${projectDir}/config/template"
+    into "${projectDir}/src/main/java/com/incountry/residence/sdk/version/"
+    filter { line -> line.replaceAll('DEV-SNAPSHOT', "${project.version}") }
+}
+compileJava.dependsOn generateVersionClass
+
+compileJava {
+    options.compilerArgs << '-parameters'
+}

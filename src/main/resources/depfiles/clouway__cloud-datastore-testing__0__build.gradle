@@ -1,0 +1,92 @@
+
+
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10"
+    classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+apply plugin: 'com.bmuschko.nexus'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+allprojects {
+  apply plugin: 'java'
+  apply plugin: 'com.bmuschko.nexus'
+
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+
+  group = 'com.clouway.testing'
+  version = '0.0.3'
+
+  modifyPom {
+    project {
+      name 'clouWay Cloud Datastore Testing Library'
+      description 'clouWay Datastore Testing Library'
+      url 'https://github.com/clouway/cloud-datastore-testing'
+      inceptionYear '2019'
+
+      scm {
+        url 'https://github.com/clouway/cloud-datastore-testing'
+        connection 'scm:https://clouway@github.com/clouway/cloud-datastore-testing.git'
+        developerConnection 'scm:git://github.com/clouway/cloud-datastore-testing.git'
+      }
+
+      licenses {
+        license {
+          name 'The Apache Software License, Version 2.0'
+          url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+          distribution 'repo'
+        }
+      }
+
+      developers {
+        developer {
+          id 'telcong'
+          name 'Telcong Bot'
+          email 'telcong@clouway.com'
+        }
+      }
+    }
+  }
+
+  extraArchive {
+    sources = true
+    tests = false
+    javadoc = true
+  }
+
+  nexus {
+    sign = true
+    repositoryUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+    snapshotRepositoryUrl = 'https://oss.sonatype.org/content/repositories/snapshots'
+  }
+
+
+}
+
+repositories {
+  mavenCentral()
+}
+
+configurations {
+  providedCompile
+}
+
+dependencies {
+  
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.10"
+  compile "org.testcontainers:testcontainers:1.15.0-rc2"
+  compile "com.google.cloud:google-cloud-datastore:1.105.0"
+  
+  compile "junit:junit:4.12"
+}

@@ -1,0 +1,114 @@
+buildscript {
+	repositories {
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		classpath "com.github.node-gradle:gradle-node-plugin:2.2.4"
+	}
+}
+
+// sassのコンパイルにgradle-node-pluginを使用
+plugins {
+	id "com.github.node-gradle.node" version "2.2.4"
+}
+
+apply from: 'libs.gradle'
+dependencies {
+	api project(':iplass-core')
+	api project(':iplass-web')
+}
+
+//gradle-node-plugin options
+//gulpは4にすると「TypeError: gulp.hasTask is not a function」が発生するため3に。
+//これにあわせてNodeのバージョンを調整
+node {
+	//nodeをダウンロード
+	download = true
+	//node version
+	//12にするとReferenceError: primordials is not defined
+	version = '11.15.0'
+	//npm version
+	npmVersion = '6.7.0'
+
+	workDir = file("${project.buildDir}/nodejs")
+	npmWorkDir = file("${project.buildDir}/npm")
+}
+
+task buildSass(type: NpmTask) {
+	//package.jsonで定義したタスクを実行
+	args = ['run', 'sass:build'];
+}
+
+task rebuildSass(type: NpmTask) {
+	//fix Node Sass could not find a binding for your current environment
+	args = ['run', 'sass:rebuild'];
+}
+
+task buildSassImageColor(type: NpmTask) {
+	//package.jsonで定義したタスクを実行
+	args = ['run', 'sass:buildImageColor'];
+}
+
+task copyStaticResources(type: Sync) {
+	dependsOn('processResources')
+
+	//静的リソースをコピー
+	from 'build/resources/main/'
+	//jar内のwebjarsフォルダ配下をコピー
+	from (configurations.wjRuntime.collect {it.isDirectory() ? it : zipTree(it)}) {
+		exclude 'META-INF/maven/'
+		exclude 'META-INF/MANIFEST.MF'
+	}
+	into 'build/tmp/staticresources'
+	includeEmptyDirs = false
+}
+
+task archiveStaticResources(type: Zip) {
+	dependsOn('copyStaticResources')
+
+	archiveName = "${project.name}-staticresources-${version}.zip"
+
+	//META-INF/resourcesをZIP圧縮
+	from ('build/tmp/staticresources/META-INF/resources') {
+		exclude 'jsp'
+	}
+}
+
+
+/*
+ * jspのコンパイルチェック
+ */
+configurations {
+	jspcc
+}
+dependencies {
+	jspcc configurations.implementation
+	jspcc configurations.compileOnly
+}
+task compileJsp(dependsOn: ["compileJava",':iplass-core:jar',':iplass-web:jar']) {
+	doLast {
+		def taskName = "compileJsp"
+		ant.echo(message: "jsp compile check")
+		ant.taskdef(classname: "org.apache.jasper.JspC", name: taskName) {
+			classpath {
+				pathelement(path: configurations.jasper.asPath)
+				pathelement(path: files(configurations.jspcc.files.findAll{it.name != 'note.txt'}).asPath)
+				pathelement(path: sourceSets.main.output.classesDirs.asPath)
+			}
+		}
+		def outDir = "${buildDir}/deploy/gem/classes"
+		ant."${taskName}"(
+				uriRoot: "src/main/resources",
+				outputDir: outDir,
+				javaencoding: "utf-8",
+				compilersourcevm: javaVersion,
+				compilertargetvm: javaVersion,
+				compile: "true",
+				verbose: "1")
+	}
+}
+classes {
+	dependsOn('compileJsp')
+}

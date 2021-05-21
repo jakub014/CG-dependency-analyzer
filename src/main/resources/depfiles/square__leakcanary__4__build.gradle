@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+dependencies {
+  api project(':leakcanary-android-core')
+
+  implementation deps.androidx.test.runner
+  implementation deps.kotlin.stdlib
+
+  androidTestImplementation deps.androidx.test.core
+  androidTestImplementation deps.androidx.test.espresso
+  androidTestImplementation deps.androidx.test.rules
+  androidTestImplementation deps.androidx.fragment
+}
+
+android {
+  compileSdkVersion versions.compileSdk
+  defaultConfig {
+    minSdkVersion versions.minSdk
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+  lintOptions {
+    disable 'GoogleAppIndexingWarning'
+    // junit references java.lang.management
+    ignore 'InvalidPackage'
+    check 'Interoperability'
+  }
+}
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')

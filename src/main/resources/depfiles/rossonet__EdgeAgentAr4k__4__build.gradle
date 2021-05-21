@@ -1,0 +1,17 @@
+description = "ActiveMQ integration component"
+
+dependencies {
+	compile project(':ar4k-core')
+	compile group: 'org.apache.activemq', name: 'artemis-server', version: '2.16.0'
+	compile group: 'org.apache.activemq', name: 'artemis-mqtt-protocol', version: '2.16.0'
+	compile group: 'org.apache.activemq', name: 'artemis-commons', version: '2.16.0'
+	compile group: 'org.apache.activemq', name: 'artemis-core-client', version: '2.16.0'
+	compile group: 'org.apache.activemq', name: 'artemis-stomp-protocol', version: '2.16.0'
+	testCompile group: 'org.eclipse.paho', name: 'org.eclipse.paho.client.mqttv3', version: '1.2.4'
+	testCompile group: 'javax.json', name: 'javax.json-api'
+}
+
+bootJar {
+	enabled = false
+}
+

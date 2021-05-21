@@ -1,0 +1,331 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+<!--
+For adding to Sonatype OSSRH, need to issue:
+mvn clean package dokka:javadoc dokka:javadocJar deploy
+
+See also:
+http://central.sonatype.org/pages/apache-maven.html
+
+To see updated versions available: http://mojo.codehaus.org/versions-maven-plugin/
+versions:display-dependency-updates
+
+NOTE: This assumes gpg is running as a daemon/service with a settings.xml file in
+this directory like the following (you'll have to replace the question marks):
+
+<settings>
+  <profiles>
+    <profile>
+      <id>ossrh</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <gpg.executable>gpg2</gpg.executable>
+      </properties>
+    </profile>
+  </profiles>
+  <servers>
+    <server>
+      <id>ossrh</id>
+      <username>?????</username>
+      <password>?????</password>
+    </server>
+  </servers>
+</settings>
+
+-->
+	<groupId>com.planbase.pdf</groupId>
+	<artifactId>PdfLayoutMgr2</artifactId>
+	<version>2.4.9</version>
+	<packaging>jar</packaging>
+
+	<name>PdfLayoutMgr2</name>
+	<description>An AGPL page-layout manager for PDFBox with line-breaking, page-breaking, and tables. Uses a box-model for styles.</description>
+	<url>https://github.com/PlanBase/PdfLayoutMgr2</url>
+
+	<licenses>
+		<license>
+			<name>GNU Affero General Public License (AGPL) version 3.0</name>
+			<url>https://www.gnu.org/licenses/agpl-3.0.en.html</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>PlanBase Inc.</name>
+			<email>support@planbase.com</email>
+			<organization>PlanBase Inc.</organization>
+			<organizationUrl>https://planbase.com/</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:https://github.com/PlanBase/PdfLayoutMgr2.git</connection>
+		<developerConnection>scm:git:https://github.com/PlanBase/PdfLayoutMgr2.git</developerConnection>
+		<url>https://github.com/PlanBase/PdfLayoutMgr2</url>
+	</scm>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jcenter</id>
+			<name>JCenter</name>
+			<url>https://jcenter.bintray.com/</url>
+		</pluginRepository>
+	</pluginRepositories>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.0.0-M3</version>
+				<executions>
+					<execution>
+						<id>enforce-maven</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>[3.6.0,)</version>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jetbrains.dokka</groupId>
+				<artifactId>dokka-maven-plugin</artifactId>
+				<version>1.4.10</version>
+				<executions>
+					<execution>
+						<phase>pre-site</phase>
+						<goals>
+							<goal>dokka</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+
+					<!-- List of '.md' files with package and module docs -->
+					<!-- http://kotlinlang.org/docs/reference/kotlin-doc.html#module-and-package-documentation -->
+<!--					<includes>-->
+<!--						<file>package.html</file>-->
+<!--					</includes>-->
+
+					<!-- Used for linking to JDK, default: 6 -->
+					<jdkVersion>8</jdkVersion>
+
+					<!-- Do not output deprecated members, applies globally, can be overridden by packageOptions -->
+					<skipDeprecated>false</skipDeprecated>
+					<!-- Emit warnings about not documented members, applies globally, also can be overridden by packageOptions -->
+					<reportUndocumented>false</reportUndocumented>
+					<!-- Do not create index pages for empty packages -->
+					<skipEmptyPackages>true</skipEmptyPackages>
+
+					<!-- See platforms section of documentation -->
+					<impliedPlatforms>
+						<platform>JVM</platform>
+					</impliedPlatforms>
+
+					<!-- Specifies the location of the project source code on the Web. If provided, Dokka generates "source" links
+						 for each declaration. -->
+					<sourceLinks>
+						<link>
+							<!-- Source directory -->
+							<path>${project.basedir}/src/main/java</path>
+							<!-- URL showing where the source code can be accessed through the web browser -->
+							<url>https://github.com/PlanBase/PdfLayoutMgr2</url>
+							<!--Suffix which is used to append the line number to the URL. Use #L for GitHub -->
+							<lineSuffix>#L</lineSuffix>
+						</link>
+					</sourceLinks>
+
+					<!-- No default documentation link to kotlin-stdlib -->
+					<noStdlibLink>false</noStdlibLink>
+
+					<!-- Disable linking to online JDK documentation -->
+					<noJdkLink>false</noJdkLink>
+
+				</configuration>
+			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>org.apache.maven.plugins</groupId>-->
+				<!--<artifactId>maven-javadoc-plugin</artifactId>-->
+				<!--<version>2.9.1</version>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<id>attach-javadocs</id>-->
+						<!--<goals>-->
+							<!--<goal>jar</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+				<!--</executions>-->
+			<!--</plugin>-->
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.8</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jetbrains.kotlin</groupId>
+				<artifactId>kotlin-maven-plugin</artifactId>
+				<configuration>
+					<jvmTarget>1.8</jvmTarget>
+					<args>
+						<arg>-Xjvm-default=enable</arg>
+						<!-- See: https://youtrack.jetbrains.com/issue/KT-6301 -->
+						<!-- Starting Kotlin 1.2.50 this should sort of work -->
+						<!--<arg>-language-version 1.3</arg>-->
+						<!--<arg>-XXLanguage:+JvmStaticInInterface</arg>-->
+					</args>
+				</configuration>
+				<version>${kotlin.version}</version>
+
+				<executions>
+					<execution>
+						<id>compile</id>
+						<phase>compile</phase>
+						<goals> <goal>compile</goal> </goals>
+						<configuration>
+							<jvmTarget>1.8</jvmTarget>
+						</configuration>
+					</execution>
+					<execution>
+						<id>test-compile</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>test-compile</goal>
+						</goals>
+						<configuration>
+							<jvmTarget>1.8</jvmTarget>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<executions>
+					<execution>
+						<id>compile</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-testCompile</id>
+						<phase>none</phase>
+					</execution>
+					<execution>
+						<id>java-test-compile</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                    <compilerArgs>
+                        <arg>-Xlint</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.pdfbox</groupId>
+			<artifactId>pdfbox</artifactId>
+			<version>2.0.21</version>
+		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>junit</groupId>-->
+			<!--<artifactId>junit</artifactId>-->
+			<!--<version>4.12</version>-->
+			<!--<scope>test</scope>-->
+		<!--</dependency>-->
+		<dependency>
+			<groupId>org.organicdesign</groupId>
+			<artifactId>Indented</artifactId>
+			<version>0.0.15</version>
+		</dependency>
+		<dependency>
+			<groupId>org.organicdesign</groupId>
+			<artifactId>TestUtils</artifactId>
+			<version>0.0.19</version>
+			<scope>test</scope>
+		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.organicdesign</groupId>-->
+			<!--<artifactId>Paguro</artifactId>-->
+			<!--<version>3.1.1</version>-->
+		<!--</dependency>-->
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-stdlib</artifactId>
+			<version>${kotlin.version}</version>
+		</dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-test-junit</artifactId>
+            <version>${kotlin.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <kotlin.version>1.4.10</kotlin.version>
+    </properties>
+
+</project>

@@ -1,0 +1,14 @@
+plugins {
+    id "java-test-fixtures"
+}
+
+dependencies {
+    api "org.javamoney:moneta:1.4.2"
+    api "com.github.michaelruocco.idv:otp-entities:${contextVersion}"
+    api "com.github.michaelruocco.idv:activity-entities:${contextVersion}"
+    implementation "org.apache.commons:commons-collections4:4.4"
+
+    testFixturesApi "com.github.michaelruocco.idv:otp-entities:${contextVersion}:test-fixtures"
+    testFixturesApi "com.github.michaelruocco.idv:activity-entities:${contextVersion}:test-fixtures"
+    testFixturesApi "com.github.michaelruocco.idv:method-entities:${contextVersion}:test-fixtures"
+}

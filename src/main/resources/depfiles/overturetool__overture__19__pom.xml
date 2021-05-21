@@ -1,0 +1,34 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>core</artifactId>
+    <groupId>org.overturetool</groupId>
+    <version>3.0.3-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <packaging>pom</packaging>
+
+  <groupId>org.overturetool.core</groupId>
+  <artifactId>codegen</artifactId>
+  <name>Code Generation</name>
+
+  <properties>
+    <astcreator.version>1.6.8</astcreator.version>
+  </properties>
+
+  <modules>
+    <module>ir</module>
+    <module>platform</module>
+    <module>javagen</module>
+    <module>javagen-test</module>
+    <module>vdm2jml</module>
+    <module>vdm2jml-runtime</module>
+    <module>codegen-runtime</module>
+    <module>codegen-maven-plugin</module>
+    <module>isagen</module>
+  </modules>
+  
+</project>

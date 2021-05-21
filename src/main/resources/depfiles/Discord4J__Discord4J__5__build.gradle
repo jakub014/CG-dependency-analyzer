@@ -1,0 +1,21 @@
+dependencies {
+    api project(':common')
+    api 'com.discord4j:simple-fsm:1.0.1'
+
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:$junit_version"
+    testImplementation "ch.qos.logback:logback-classic:$logback_version"
+}
+
+javadoc {
+    dependsOn project(':common').javadoc
+
+    options.linksOffline rootProject.buildDocsUrl('discord4j-common'), project(':common').javadoc.destinationDir.toURI() as String
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': archivesBaseName,
+                'Implementation-Version': archiveVersion,
+                'Automatic-Module-Name': 'discord4j.voice'
+    }
+}

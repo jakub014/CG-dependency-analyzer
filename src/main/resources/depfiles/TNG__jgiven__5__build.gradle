@@ -1,0 +1,21 @@
+plugins {
+    id 'java-library'
+}
+description = "Module to write JGiven tests with TestNG"
+
+
+dependencies {
+    api project(':jgiven-core')
+    implementation project(':jgiven-html5-report')
+    compileOnly "org.testng:testng:$testngVersion"
+
+    testImplementation 'org.testng.testng-remote:testng-remote-dist:1.4.0'
+    testImplementation "org.testng:testng:$testngVersion"
+}
+
+test.useTestNG() {
+    parallel 'methods'
+    threadCount 10
+}
+
+test.finalizedBy(jgivenHtml5Report)

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>plugin-archetypes</artifactId>
+    <parent>
+        <artifactId>funnelback-shared-parent</artifactId>
+        <groupId>com.funnelback</groupId>
+        <version>16.3.2118-SNAPSHOT</version>
+    </parent>
+
+    <description>Archetype for a plugin for the Funnelback Enterprise Search Engine</description>
+    <url>https://github.com/FunnelbackPtyLtd/funnelback-shared</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Funnelback R&amp;D Team</name>
+            <email>dev@funnelback.com</email>
+            <organization>Funnelback</organization>
+            <organizationUrl>https://funnelback.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/FunnelbackPtyLtd/funnelback-shared.git</connection>
+        <developerConnection>scm:git:ssh://github.com:FunnelbackPtyLtd/funnelback-shared.git</developerConnection>
+        <url>http://github.com/FunnelbackPtyLtd/funnelback-shared/tree/master</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>funnelback-snapshots</id>
+            <url>http://maven-repo.cbr.au.funnelback.com:8081/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.internetitem</groupId>
+                <artifactId>write-properties-file-maven-plugin</artifactId>
+                <version>1.0.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>write-properties-file</goal>
+                        </goals>
+                        <configuration>
+                            <filename>../test-classes/projects/test/archetype.properties</filename>
+                            <properties>
+                                <property><name>gatherer</name><value>true</value></property>
+                                <property><name>facets</name><value>true</value></property>
+                                <property><name>indexing</name><value>true</value></property>
+                                <property><name>searchLifeCycle</name><value>true</value></property>
+                                <property><name>filtering</name><value>true</value></property>
+                                <property><name>jsoup-filtering</name><value>true</value></property>
+                                <property><name>search-servlet-filtering</name><value>true</value></property>
+                                <property><name>groupId</name><value>testGroupId</value></property>
+                                <property><name>artifactId</name><value>testArtifactId</value></property>
+                                <property><name>package</name><value>com.example.test</value></property>
+                                <property><name>version</name><value>1.0.0-SNAPSHOT</value></property>
+                                <property><name>plugin-name</name><value>A human friendly name for the plugin displayed in the UI</value></property>
+                                <property><name>plugin-description</name><value>A brief description of the plugin</value></property>
+                                <property><name>runs-on-datasource</name><value>true</value></property>
+                                <property><name>runs-on-result-page</name><value>false</value></property>
+                                <!--
+                                This is the one that makes this not a static file, we must generate it
+                                to have the current project version :(
+                                 -->
+                                <property><name>archetypeVersion</name><value>${project.version}</value></property>
+                            </properties>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-archetype-plugin</artifactId>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>integration-test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

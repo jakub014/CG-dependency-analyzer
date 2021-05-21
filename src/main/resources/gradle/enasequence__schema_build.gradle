@@ -1,0 +1,196 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3"
+    }
+}
+
+apply plugin: 'io.codearte.nexus-staging'
+
+
+apply plugin: 'java'
+
+apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'signing'
+
+group = 'uk.ac.ebi.ena.sra'
+version = '1.8.0'
+archivesBaseName = 'sra-xml'
+
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.xmlbeans:xmlbeans:2.5.0'
+    testCompile 'junit:junit:4.12'
+    testCompile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.6.2'
+    testCompile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.6.2'
+}
+
+
+
+idea {
+    module {
+        sourceDirs += sourceSets.main.output.classesDirs
+    }
+}
+
+task printClasspath  {
+    configurations.testCompile.each { println it }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+        resources {
+            srcDir 'src/main/resources'
+            include '**/SRA*.xsd'
+            include '**/ENA*.xsd'
+            include '**/EGA*.xsd'
+            exclude '**/ENA.embl.xsd'
+            exclude '**/ENA.root.xsd'
+        }
+    }
+    generated {
+        java
+        output.resourcesDir = sourceSets.main.output.resourcesDir
+        compileClasspath += sourceSets.main.runtimeClasspath
+    }
+
+}
+
+
+task classes (overwrite: true)  {
+}
+
+
+task printSources  {
+    sourceSets.main.allSource.files.each {File file ->
+        println file
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier  = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.generated.allSource
+    archiveClassifier  = 'sources'
+}
+
+artifacts {
+    archives jar
+    archives javadocJar
+    archives sourcesJar
+
+}
+
+signing {
+    sign configurations.archives
+}
+
+install {
+    configuration = configurations.runtime
+}
+
+
+
+task generateXMLBeanSources (overwrite: true) {
+    doLast{
+        delete "src/generated/java"
+        ant.taskdef(name:'xmlbean', classname: 'org.apache.xmlbeans.impl.tool.XMLBean', classpath: configurations.compile.asPath)
+        sourceSets.main.resources.files.each {File file ->
+            ant.xmlbean(schema: file.path, classgendir: "build/classes/java/main" , srcgendir: "src/generated/java", classpath: configurations.compile.asPath) {
+                fileset(dir: file.parentFile) {
+                    include(name: '*.xsdconfig')
+                }
+            }
+
+        }
+    }
+}
+
+compileGeneratedJava.dependsOn generateXMLBeanSources
+compileTestJava.dependsOn compileGeneratedJava
+jar.dependsOn compileGeneratedJava
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+wrapper{
+    gradleVersion = '5.6.4'
+}
+
+
+task updateVersionInSchema{
+    ant.replaceregexp(match:'<!--\\s*version\\s*:[^->]*-->', replace:'<!-- version:' + version + ' -->' , flags:'g', byline:true) {
+        fileset(dir: project.projectDir, includes: '/src/**/sra/schema/*.xsd')
+    }
+}
+tasks.build.dependsOn(updateVersionInSchema)
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'sra-xml'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'XML Beans compile from the XML Schemas used to submit SRA data to the European Nucleotide Archive'
+                url 'http://www.ebi.ac.uk/ena'
+
+                scm {
+                    url 'https://github.com/enasequence/schema'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'Josue'
+                        name 'Josue Martinez'
+                        email 'josue@ebi.ac.uk'
+                    }
+                }
+            }
+        }
+    }
+}
+
+nexusStaging {
+    packageGroup = "uk.ac.ebi.ena.sra"
+}
+
+test {
+    maxHeapSize = "1024m"
+    jvmArgs "-Dfile.encoding=UTF-8"
+    testLogging {
+        events "failed", "standardOut", "standardError"
+    }
+}

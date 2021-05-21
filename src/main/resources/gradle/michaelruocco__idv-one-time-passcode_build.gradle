@@ -1,0 +1,206 @@
+buildscript {
+    configurations.classpath {
+        resolutionStrategy {
+            //this jgit version is required to fix this issue:
+            //https://github.com/diffplug/spotless/issues/587 with the spotless plugin
+            force 'org.eclipse.jgit:org.eclipse.jgit:5.7.0.202003110725-r'
+        }
+    }
+}
+
+plugins {
+    id "idea"
+    id "java-library"
+    id "com.diffplug.spotless" version "5.12.1"
+    id "com.github.ben-manes.versions" version "0.38.0"
+    id "pl.allegro.tech.build.axion-release" version "1.13.2"
+    id "org.sonarqube" version "3.1.1"
+    id "com.vanniktech.dependency.graph.generator" version "0.5.0"
+    id "nebula.lint" version "16.23.0"
+    id "io.codearte.nexus-staging" version "0.30.0"
+    id "com.adarshr.test-logger" version "3.0.0"
+}
+
+scmVersion {
+    versionCreator "versionWithBranch"
+    tag {
+        prefix = "${name}-"
+    }
+}
+project.version = scmVersion.version
+
+allprojects {
+    apply plugin: "idea"
+    apply plugin: "jacoco"
+    apply plugin: "nebula.lint"
+
+    group "com.github.michaelruocco.idv"
+    version = rootProject.version
+
+    sourceCompatibility = 15
+    targetCompatibility = 15
+
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+
+    jacoco {
+        toolVersion = "0.8.6"
+    }
+
+    gradleLint {
+        rules = ['all-dependency']
+        alwaysRun = false
+    }
+}
+
+subprojects {
+    apply plugin: "java-library"
+    apply plugin: "com.diffplug.spotless"
+    apply plugin: 'com.adarshr.test-logger'
+
+    ext {
+        testSetsPluginVersion = "3.0.1"
+
+        lombokVersion = "1.18.20"
+        slf4jVersion = "1.7.30"
+        contextVersion = "0.1.16"
+        logbackVersion = "1.2.3"
+        mongoVersion = "3.12.8"
+        awsSdkVersion = "1.11.1000"
+        jsonAdapterVersion = "1.0.0"
+        randomValueSuppliersVersion = "0.1.0"
+
+        junitVersion = "5.7.1"
+        junitPioneerVersion = "1.3.8"
+        assertjVersion = "3.19.0"
+        mockitoVersion = "3.9.0"
+        jsonUnitAssertjVersion = "2.25.0"
+        testingClocksVersion = "0.1.4"
+
+        gitUrl = "https://github.com/michaelruocco/idv-one-time-passcode"
+        pomConfig = {
+            licenses {
+                license {
+                    name "MIT License"
+                    url "https://opensource.org/licenses/MIT"
+                    distribution "repo"
+                }
+            }
+
+            developers {
+                developer {
+                    id "mruoc"
+                    name "Michael Ruocco"
+                    email "michael.ruocco@hotmail.com"
+                }
+            }
+
+            scm {
+                url project.ext.gitUrl
+            }
+        }
+    }
+
+    dependencies {
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+        implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+
+        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+        testImplementation "org.assertj:assertj-core:${assertjVersion}"
+        testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+        testRuntimeOnly "org.slf4j:slf4j-simple:${slf4jVersion}"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    }
+
+    javadoc.options.addStringOption('Xdoclint:none', '-quiet')
+
+    tasks.withType(Test) {
+        useJUnitPlatform()
+        systemProperty "org.slf4j.simpleLogger.defaultLogLevel", "debug"
+    }
+
+    testlogger {
+        theme 'mocha'
+        showStandardStreams true
+    }
+
+    spotless {
+        java {
+            removeUnusedImports()
+            trimTrailingWhitespace()
+            indentWithSpaces(4)
+            endWithNewline()
+
+            replace 'Not enough space after if', 'if(', 'if ('
+            replaceRegex 'Too much space after if', 'if +\\(', 'if ('
+
+            replace 'Not enough space after for', 'for(', 'for ('
+            replaceRegex 'Too much space after for', 'for +\\(', 'for ('
+
+            replace 'Not enough space after while', 'while(', 'while ('
+            replaceRegex 'Too much space after while', 'while +\\(', 'while ('
+        }
+    }
+}
+
+task codeCoverageReport(type: JacocoReport) {
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    subprojects.each {
+        sourceSets it.sourceSets.main
+    }
+
+    reports {
+        xml.enabled true
+        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+        html.enabled false
+        csv.enabled false
+    }
+}
+
+codeCoverageReport.dependsOn {
+    subprojects*.test
+    subprojects.findAll { it.tasks.findByName("integrationTest") != null }.integrationTest
+}
+
+project.tasks["sonarqube"].dependsOn codeCoverageReport
+sonarqube {
+    properties {
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.organization", "michaelruocco"
+        property "sonar.projectKey", "michaelruocco_idv-one-time-passcode"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${project.buildDir}/reports/jacoco/report.xml"
+    }
+}
+
+dependencyUpdates.resolutionStrategy {
+    componentSelection { rules ->
+        rules.all { ComponentSelection selection ->
+            boolean rejected = ["alpha", "beta", "rc", "cr", "m", "preview"].any { qualifier ->
+                selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
+            }
+            if (rejected) {
+                selection.reject("Release candidate")
+            }
+        }
+    }
+}
+
+import com.vanniktech.dependency.graph.generator.DependencyGraphGeneratorExtension.Generator
+
+def oneTimePasscodeGenerator = new Generator(
+        "idvOneTimePasscode",
+        { dependency -> dependency.getModuleGroup().startsWith("com.github.michaelruocco.idv") },
+        { dependency -> true }
+)
+
+dependencyGraphGenerator {
+    generators = [Generator.ALL, oneTimePasscodeGenerator]
+}

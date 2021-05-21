@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--~
+    ~ Copyright 2017 Couchbase, Inc.
+    ~
+    ~ Licensed under the Apache License, Version 2.0 (the "License");
+    ~ you may not use this file except in compliance with the License.
+    ~ You may obtain a copy of the License at
+    ~
+    ~     http://www.apache.org/licenses/LICENSE-2.0
+    ~
+    ~ Unless required by applicable law or agreed to in writing, software
+    ~ distributed under the License is distributed on an "AS IS" BASIS,
+    ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    ~ See the License for the specific language governing permissions and
+    ~ limitations under the License.
+    ~-->
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.couchbase.client</groupId>
+    <artifactId>kafka-connect-couchbase</artifactId>
+    <packaging>jar</packaging>
+    <version>4.0.6</version>
+    <name>Kafka Connector for Couchbase</name>
+    <organization>
+        <name>Couchbase, Inc.</name>
+        <url>https://couchbase.com</url>
+    </organization>
+    <url>https://couchbase.com</url>
+    <description>
+        A Kafka Connect Couchbase connector for copying data between Kafka and Couchbase Server.
+    </description>
+
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git://github.com/couchbase/kafka-connect-couchbase.git</connection>
+        <developerConnection>scm:git:git@github.com:couchbase/kafka-connect-couchbase.git</developerConnection>
+        <url>https://github.com/couchbase/kafka-connect-couchbase</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <issueManagement>
+        <system>Couchbase JIRA</system>
+        <url>https://www.couchbase.com/issues/browse/KAFKAC</url>
+    </issueManagement>
+
+    <developers>
+        <developer>
+            <id>avsej</id>
+            <name>Sergey Avseyev</name>
+            <email>sergey@couchbase.com</email>
+        </developer>
+        <developer>
+            <id>dnault</id>
+            <name>David Nault</name>
+            <email>david.nault@couchbase.com</email>
+        </developer>
+    </developers>
+
+    <properties>
+        <java-compat.version>1.8</java-compat.version>
+        <kafka.version>2.5.0</kafka.version>
+        <dcp-client.version>0.34.0</dcp-client.version>
+        <java-client.version>3.1.3</java-client.version>
+        <runtime.javadoc.version>0.12.0</runtime.javadoc.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.version>4.13.1</junit.version>
+        <mysql.version>5.1.6</mysql.version>
+        <mockito.version>1.10.19</mockito.version>
+        <dist-archive-name>${project.artifactId}-${project.version}.zip</dist-archive-name>
+
+        <!-- Don't sign artifacts unless the 'stage' or 'release' profile is active -->
+        <gpg.skip>true</gpg.skip>
+
+        <!-- When deploying, automatically promote artifacts from staging repository -->
+        <autoReleaseAfterClose>true</autoReleaseAfterClose>
+    </properties>
+
+    <repositories>
+        <!-- For the `kafka-connect-avro-converter` library
+             used by the Kafka Streams demo -->
+        <repository>
+            <id>confluent</id>
+            <name>Confluent</name>
+            <url>https://packages.confluent.io/maven/</url>
+        </repository>
+
+        <!-- for DCP client snapshots -->
+        <repository>
+            <id>sonatype-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases><enabled>false</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>connect-api</artifactId>
+            <version>${kafka.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>connect-json</artifactId>
+            <version>${kafka.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- For Kafka Streams demo -->
+        <dependency>
+            <groupId>io.confluent</groupId>
+            <artifactId>kafka-connect-avro-converter</artifactId>
+            <version>5.5.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.couchbase.client</groupId>
+            <artifactId>dcp-client</artifactId>
+            <version>${dcp-client.version}</version>
+            <exclusions>
+                <!-- SLF4J is provided by Kafka; don't want it in uber jar -->
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.couchbase.client</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${java-client.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.therapi</groupId>
+            <artifactId>therapi-runtime-javadoc</artifactId>
+            <version>${runtime.javadoc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-jmx</artifactId>
+            <version>1.5.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams</artifactId>
+            <version>${kafka.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--
+                To refresh the generated docs, run:
+                    mvn clean test-compile exec:java
+             -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <mainClass>com.couchbase.connect.kafka.util.config.AsciiDocGenerator</mainClass>
+                    <classpathScope>test</classpathScope>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <source>${java-compat.version}</source>
+                    <target>${java-compat.version}</target>
+                    <annotationProcessorPaths>
+                        <!-- Save Javadoc for use in Kafka config definitions. -->
+                        <annotationProcessorPath>
+                            <groupId>com.github.therapi</groupId>
+                            <artifactId>therapi-runtime-javadoc-scribe</artifactId>
+                            <version>${runtime.javadoc.version}</version>
+                        </annotationProcessorPath>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.confluent</groupId>
+                <version>0.11.3</version>
+                <artifactId>kafka-connect-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>kafka-connect</goal>
+                        </goals>
+                        <configuration>
+                            <title>Kafka Connect Couchbase</title>
+                            <documentationUrl>https://docs.couchbase.com/kafka-connector/current/</documentationUrl>
+                            <description>
+                                This is the official Couchbase connector developed by Couchbase, Inc.
+
+                                The source connector listens for database changes and publishes changed documents to Kafka.
+                                The sink connector writes Kafka messages to Couchbase.
+                            </description>
+                            <logo>assets/couchbase_logo.png</logo>
+
+                            <supportProviderName>Couchbase, Inc.</supportProviderName>
+                            <supportSummary>Join us on the Couchbase Forums where we provide support free of charge on a best effort basis. Couchbase Enterprise Edition subscribers receive additional support through their normal support channel.</supportSummary>
+                            <supportUrl>https://forums.couchbase.com/c/Kafka-Connector/27</supportUrl>
+                            <supportLogo>assets/couchbase_logo.png</supportLogo>
+
+                            <ownerUsername>couchbase</ownerUsername>
+                            <ownerType>organization</ownerType>
+                            <ownerName>Couchbase, Inc.</ownerName>
+                            <ownerUrl>https://couchbase.com/</ownerUrl>
+                            <ownerLogo>assets/couchbase_logo.png</ownerLogo>
+
+                            <componentTypes>
+                                <componentType>sink</componentType>
+                                <componentType>source</componentType>
+                                <componentType>transform</componentType>
+                            </componentTypes>
+
+                            <tags>
+                                <tag>Couchbase</tag>
+                                <tag>database</tag>
+                            </tags>
+
+                            <requirements>
+                                <requirement>Couchbase Server 5.0 or later</requirement>
+                                <requirement>Confluent Platform 4.1.0 or later</requirement>
+                            </requirements>
+
+                            <deliveryGuarantee>
+                                <deliveryGuarantee>atLeastOnce</deliveryGuarantee>
+                            </deliveryGuarantee>
+
+                            <kafkaConnectApi>true</kafkaConnectApi>
+                            <singleMessageTransforms>true</singleMessageTransforms>
+                            <confluentControlCenterIntegration>true</confluentControlCenterIntegration>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.1</version>
+                <configuration>
+                    <useSystemClassLoader>false</useSystemClassLoader>
+                    <argLine>-Djava.awt.headless=true</argLine>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>${autoReleaseAfterClose}</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <properties>
+                <gpg.skip>false</gpg.skip>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <version>3.0.0-M3</version>
+                        <executions>
+                            <execution>
+                                <id>enforce-release</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <requireReleaseVersion>
+                                            <message>Not a release version (remove -SNAPSHOT suffix!)</message>
+                                        </requireReleaseVersion>
+                                        <requireReleaseDeps>
+                                            <message>Can't release with snapshot dependencies!</message>
+                                        </requireReleaseDeps>
+                                    </rules>
+                                    <fail>true</fail>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

@@ -1,0 +1,253 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven { url 'https://repo.spring.io/plugins-release' }
+		maven { url 'https://plugins.gradle.org/m2/' }
+		//Needed only for SNAPSHOT versions
+        //maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
+	}
+	dependencies {
+		classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:$gradleNexusStagingPluginVersion"
+		classpath "io.spring.gradle:spring-io-plugin:$springIoPluginVersion"
+		classpath "org.springframework.build.gradle:docbook-reference-plugin:$docbookReferencePluginVersion"
+	}
+}
+
+apply plugin: 'io.codearte.nexus-staging'
+
+configure(allprojects) {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    apply plugin: "maven"
+
+    if (project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')) {
+		apply plugin: 'signing'
+	}
+
+    group = 'com.github.ppodgorsek'
+
+    compileJava {
+        sourceCompatibility="$javaVersion"
+        targetCompatibility="$javaVersion"
+    }
+    compileTestJava {
+        sourceCompatibility="$javaVersion"
+        targetCompatibility="$javaVersion"
+    }
+
+    [compileJava, compileTestJava]*.options*.compilerArgs = ['-Xlint:none']
+
+    sourceSets.test.resources.srcDirs = ['src/test/resources', 'src/test/java']
+
+    tasks.withType(Test).all {
+        systemProperty("java.awt.headless", "true")
+    }
+
+    repositories {
+        maven { url "https://repo.spring.io/libs-snapshot" }
+        maven { url "https://repo.spring.io/libs-milestone" }
+        mavenLocal()
+    }
+
+    dependencies {
+		compile "org.slf4j:slf4j-api:$slf4jVersion"
+
+		compileOnly "org.projectlombok:lombok:$lombokVersion"
+		annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+		testCompileOnly "org.projectlombok:lombok:$lombokVersion"
+		testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
+
+        testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
+        testCompile "junit:junit:$junitVersion"
+        testCompile "org.mockito:mockito-core:$mockitoVersion"
+        testCompile "org.springframework:spring-test:$springVersion"
+    }
+
+	eclipse {
+		classpath {
+			downloadJavadoc = true
+			downloadSources = true
+		}
+	}
+
+    // servlet-api (2.5) and tomcat-servlet-api (3.0) classpath entries should not be
+    // exported to dependent projects in Eclipse to avoid false compilation errors due
+    // to changing APIs across these versions
+    eclipse.classpath.file.whenMerged { classpath ->
+        classpath.entries.findAll { entry -> entry.path.contains('servlet-api') }*.exported = false
+
+        // When the root project's name is the same as a dependency project's name, the name ends
+        // up being duplicated in the classpath entry. For example a dependency on "spring-social-facebook"
+        // would have a path of "/spring-social-facebook-spring-social-facebook".
+        // The following lines set the path properly in that case.
+        classpath.entries.findAll { entry ->
+            if (entry.path.equals("/" + rootProject.name + "-" + rootProject.name)) {
+                entry.path = "/" + rootProject.name;
+            }
+        }
+    }
+
+	idea {
+		module {
+			downloadJavadoc = true
+			downloadSources = true
+		}
+	}
+}
+
+configure(subprojects) { subproject ->
+    apply from: "${rootProject.projectDir}/publish-maven.gradle"
+
+    if (project.hasProperty('platformVersion')) {
+        apply plugin: 'spring-io'
+
+        repositories {
+            maven { url "https://repo.spring.io/libs-snapshot" }
+        }
+
+        dependencyManagement {
+            springIoTestRuntime {
+                imports {
+                    mavenBom "io.spring.platform:platform-bom:${platformVersion}"
+                }
+            }
+        }
+    }
+
+    jar {
+        manifest.attributes['Implementation-Title'] = subproject.name
+        manifest.attributes['Implementation-Version'] = subproject.version
+
+        from("${rootProject.projectDir}/src/dist") {
+            include "license.txt"
+            include "notice.txt"
+            into "META-INF"
+            expand(copyright: new Date().format('yyyy'), version: project.version)
+        }
+    }
+
+    javadoc {
+        description = "Generates project-level javadoc for use in -javadoc jar"
+
+        options.memberLevel = org.gradle.external.javadoc.JavadocMemberLevel.PROTECTED
+        options.author = true
+        options.header = project.name
+
+        if (JavaVersion.current().isJava8Compatible()) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+
+    task sourcesJar(type: Jar, dependsOn:classes) {
+    	from("${rootProject.projectDir}/src/dist") {
+            include "license.txt"
+            include "notice.txt"
+            into "META-INF"
+            expand(copyright: new Date().format('yyyy'), version: project.version)
+        }
+
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar) {
+		from("${rootProject.projectDir}/src/dist") {
+            include "license.txt"
+            include "notice.txt"
+            into "META-INF"
+            expand(copyright: new Date().format('yyyy'), version: project.version)
+        }
+
+        classifier = 'javadoc'
+        from javadoc
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
+
+	if (project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')) {
+		signing {
+			sign configurations.archives
+		}
+	}
+
+    configurations {
+        springReleaseTestRuntime.extendsFrom testRuntime
+        springSnapshotTestRuntime.extendsFrom testRuntime
+    }
+
+    // Test against latest Spring Framework release
+    configurations.springReleaseTestRuntime {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.springframework') {
+                details.useVersion springFrameworkReleaseVersion
+            }
+        }
+    }
+
+    // Test against latest Spring Framework snapshot
+    configurations.springSnapshotTestRuntime {
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.springframework') {
+                details.useVersion springFrameworkSnapshotVersion
+            }
+        }
+    }
+
+    task springReleaseTest(type: Test) {
+        classpath = sourceSets.test.output + sourceSets.main.output + configurations.springReleaseTestRuntime
+        getReports().getJunitXml().setDestination(file("$buildDir/spring-release-test-results/"))
+        getReports().getHtml().setDestination(file("$buildDir/reports/spring-release-tests/"))
+    }
+    check.dependsOn springReleaseTest
+
+    task springSnapshotTest(type: Test) {
+        classpath = sourceSets.test.output + sourceSets.main.output + configurations.springSnapshotTestRuntime
+        getReports().getJunitXml().setDestination(file("$buildDir/spring-snapshot-test-results/"))
+        getReports().getHtml().setDestination(file("$buildDir/reports/spring-snapshot-tests/"))
+    }
+    check.dependsOn springSnapshotTest
+
+    configure([test, springReleaseTest, springSnapshotTest]) {
+        systemProperties['springVersion'] = springVersion
+    }
+}
+
+project('spring-social-facebook') {
+	description = 'Facebook API'
+	dependencies {
+		compile ("org.springframework.social:spring-social-core:$springSocialVersion")
+		compile ("org.springframework.social:spring-social-config:$springSocialVersion")
+		compile ("org.springframework.social:spring-social-security:$springSocialVersion", optional)
+		compile ("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
+		compile ("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+		compile ("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
+		compile ("javax.servlet:javax.servlet-api:$servletApiVersion", provided)
+		testCompile ("org.springframework:spring-test:$springVersion")
+	}
+}
+
+project('spring-social-facebook-web') {
+    description = 'Facebook Web'
+    dependencies {
+        compile ("org.springframework:spring-web:$springVersion")
+        compile ("org.springframework:spring-webmvc:$springVersion")
+        compile ("org.springframework.social:spring-social-core:$springSocialVersion", optional)
+        compile project(':spring-social-facebook', optional)
+        compile ("com.fasterxml.jackson.core:jackson-core:$jacksonVersion", optional)
+        compile ("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion", optional)
+        compile ("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion", optional)
+        compile ("javax.servlet:javax.servlet-api:$servletApiVersion", provided)
+        compile ("javax.servlet.jsp:javax.servlet.jsp-api:$jspApiVersion", provided)
+        testCompile ("org.springframework:spring-test:$springVersion")
+    }
+}
+
+if (project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')) {
+	task release(dependsOn: [uploadArchives, closeAndReleaseRepository]) {
+		// Nothing specific here
+	}
+}

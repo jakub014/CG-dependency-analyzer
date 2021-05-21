@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.overturetool</groupId>
+    <artifactId>ide</artifactId>
+    <version>3.0.3-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <packaging>pom</packaging>
+
+  <groupId>org.overturetool.ide</groupId>
+  <artifactId>org.overture.ide.vdmsl</artifactId>
+  <name>Overture IDE VDM-SL top level</name>
+  <description>Top level for the Overture IDE for VDM-SL</description>
+
+  <modules>
+    <!-- Put all child Eclipse Plugin projects(modules) here -->
+    <module>core</module>
+    <module>ui</module>
+    <module>debug</module>
+  </modules>
+</project>

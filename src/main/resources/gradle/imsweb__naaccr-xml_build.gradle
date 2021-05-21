@@ -1,0 +1,128 @@
+plugins {
+    id 'java-library'
+    id 'checkstyle'
+    id 'com.github.spotbugs' version '4.5.1'
+    id 'com.bmuschko.nexus' version '2.3.1'
+    id 'io.codearte.nexus-staging' version '0.21.2'
+}
+
+group = 'com.imsweb'
+version = file('VERSION').text
+description = 'This library provides support for the NAACCR XML format.'
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+println "Starting build using JDK ${Runtime.version().feature()}"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api 'com.thoughtworks.xstream:xstream:1.4.16'
+
+    implementation 'commons-io:commons-io:2.7'
+    implementation 'org.apache.commons:commons-lang3:3.11'
+
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'com.imsweb:data-generator:1.19'
+    testImplementation 'com.opencsv:opencsv:5.4'
+}
+
+// enforce UTF-8, display the compilation warnings
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+}
+
+// the Javadoc was made way too strict in Java 8 and it's not worth the time fixing everything!
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+}
+
+// customize the manifest
+jar {
+    manifest {
+        attributes('Implementation-Title': project.name,
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'Information Management Services Inc.',
+                'Created-By': System.properties['java.vm.version'] + ' (' + System.properties['java.vm.vendor'] + ')',
+                'Built-By': System.getProperty('user.name'),
+                'Built-Date': new Date(),
+                'Built-JDK': System.getProperty('java.version'),
+                'Automatic-Module-Name': 'com.imsweb.naaccrxml')
+    }
+    from('VERSION') {
+        rename 'VERSION', 'NAACCR-XML-VERSION'
+    }
+    from('LICENSE') {
+        rename 'LICENSE', 'NAACCR-XML-LICENSE'
+    }
+}
+
+// checkstyle plugin settings
+checkstyle {
+    ignoreFailures = true
+    configFile = project(':').file('config/checkstyle/checkstyle.xml')
+    configProperties = ['suppressionFile' : project(':').file('config/checkstyle/checkstyle-exclude.xml')]
+}
+
+// spotbugs plugin settings
+spotbugs {
+    ignoreFailures = true
+    excludeFilter =  project(':').file("config/spotbugs/spotbugs-exclude.xml")
+}
+
+// configure nexus staging plugin
+nexusStaging {
+    numberOfRetries = 50
+    delayBetweenRetriesInMillis = 5000
+}
+
+// needed to deploy to Maven Central
+modifyPom {
+    project {
+        name 'NAACCR XML'
+        description 'This library provides support for the NAACCR XML format.'
+        url 'https://github.com/imsweb/naaccr-xml'
+        inceptionYear '2015'
+
+        scm {
+            url 'https://github.com/imsweb/naaccr-xml'
+            connection 'scm:https://github.com/imsweb/naaccr-xml.git'
+            developerConnection 'scm:git@github.com:imsweb/naaccr-xml.git'
+        }
+
+        licenses {
+            license {
+                name 'A modified BSD License (BSD)'
+                url 'https://github.com/imsweb/naaccr-xml/blob/master/LICENSE'
+                distribution 'repo'
+            }
+        }
+
+        developers {
+            developer {
+                id 'depryf'
+                name 'Fabian Depry'
+                email 'depryf@imsweb.com'
+            }
+        }
+    }
+}
+
+// don't try to release a snapshot to a non-snapshot repository, that won't work anyway
+if (version.endsWith('-SNAPSHOT'))
+    gradle.startParameter.excludedTaskNames.add('closeAndReleaseRepository')
+
+// Gradle wrapper, this allows to build the project without having to install Gradle...
+wrapper {
+    gradleVersion = '6.7'
+    distributionType = Wrapper.DistributionType.ALL
+}
+
+// the SAS library is compiled under Java 7 code-compatibility; Intellij can't handle that (only because I didn't properly set it up as a module)
+if (System.getProperty("idea.active") != 'true')
+    apply from: 'gradle/sas.gradle'
+
+apply from: 'gradle/release.gradle'

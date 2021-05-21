@@ -1,0 +1,24 @@
+/*
+ * Build file for jpalmyra
+ * 
+ */
+
+def versions = [ jackson:'2.9.8', ,slf4j:"1.7.26", httpcomponents:'4.5.8']
+
+def jackson = [
+	annotations: "com.fasterxml.jackson.core:jackson-annotations:${versions.jackson}",
+	core: "com.fasterxml.jackson.core:jackson-core:${versions.jackson}",
+	databind: "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}"
+]
+
+def apache = [
+	http: [ client:"org.apache.httpcomponents:httpclient:${versions.httpcomponents}"
+	]
+]
+
+def log = [
+  slf4j: [ api:"org.slf4j:slf4j-api:${versions.slf4j}"
+  ]
+]
+
+ext.deps = [ 'jackson': jackson, 'apache': apache, 'log':log]

@@ -1,0 +1,24 @@
+apply plugin: 'java-library'
+
+dependencies {
+    testImplementation project(":hollow-test")
+    testImplementation 'junit:junit:4.11'
+    testImplementation 'org.mockito:mockito-core:2.15.0'
+    testImplementation 'com.github.spotbugs:spotbugs:4.2.1'
+    testImplementation 'org.assertj:assertj-core:3.15.0'
+}
+
+// quiet warnings about sun.misc.Unsafe
+compileJava {
+  options.compilerArgs << '-XDignore.symbol.file'
+  options.fork = true
+  options.forkOptions.executable = 'javac'
+}
+
+javadoc {
+    options.addStringOption('XDignore.symbol.file', '-quiet')
+}
+
+test {
+    environment 'FB_NO_UPDATE_CHECKS', 'true' // https://github.com/findbugsproject/findbugs/issues/137#issuecomment-256604616
+}

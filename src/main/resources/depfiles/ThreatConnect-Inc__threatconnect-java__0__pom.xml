@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.threatconnect</groupId>
+	<artifactId>sdk</artifactId>
+	<description>The ThreatConnect Java SDK.</description>
+	<packaging>pom</packaging>
+	<version>2.12.2</version>
+	<name>ThreatConnect</name>
+	<url>http://maven.apache.org</url>
+	<modules>
+		<module>threatconnect-app</module>
+		<module>threatconnect-sdk</module>
+		<module>threatconnect-sdk-addons</module>
+	</modules>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Danny Tineo</name>
+			<email>integrations@threatconnect.com</email>
+			<organization>ThreatConnect</organization>
+			<organizationUrl>https://www.threatconnect.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Mitchell Turner</name>
+			<email>integrations@threatconnect.com</email>
+			<organization>ThreatConnect</organization>
+			<organizationUrl>https://www.threatconnect.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Greg Marut</name>
+			<email>integrations@threatconnect.com</email>
+			<organization>ThreatConnect</organization>
+			<organizationUrl>https://www.threatconnect.com</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<url>https://github.com/ThreatConnect-Inc/threatconnect-java</url>
+		<connection>scm:git:git@github.com:ThreatConnect-Inc/threatconnect-java.git</connection>
+		<developerConnection>scm:git:git@github.com:ThreatConnect-Inc/threatconnect-java.git</developerConnection>
+	</scm>
+
+	<profiles>
+		<profile>
+			<id>sign</id>
+			<build>
+				<plugins>
+					<!--GPG Signing -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.6</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>${dist.snapshot.id}</id>
+			<url>${dist.snapshot.url}</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+</project>

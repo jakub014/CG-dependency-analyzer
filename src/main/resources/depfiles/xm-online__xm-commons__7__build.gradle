@@ -1,0 +1,13 @@
+apply plugin: 'io.spring.dependency-management'
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:$versions.springBoot")
+    }
+}
+
+dependencies {
+    compile 'com.fasterxml.jackson.core:jackson-databind'
+    compile "org.apache.commons:commons-lang3:${versions.commonsLang3}"
+
+    testCompile 'junit:junit'
+}

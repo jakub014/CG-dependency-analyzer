@@ -1,0 +1,314 @@
+buildscript {
+    ext {
+        repos = {
+            gradlePluginPortal()
+            mavenLocal()
+            mavenCentral()
+        }
+        nexusStagingPluginVersion = '0.20.0'
+        nexusPublishPluginVersion = '0.2.0'
+        axionReleasePluginVersion = '1.12.1'
+        publishingPluginVersion = '1.0.0'
+        jacksonVersion = '2.12.1'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'idea'
+    id 'checkstyle'
+    id 'jacoco'
+    id 'maven-publish'
+    id 'groovy'
+    id 'signing'
+    id 'pl.allegro.tech.build.axion-release' version "$axionReleasePluginVersion"
+    id 'io.github.gradle-nexus.publish-plugin' version "$publishingPluginVersion"
+    id 'io.codearte.nexus-staging' version "$nexusStagingPluginVersion"
+    id "me.champeau.jmh" version "0.6.3"
+}
+
+group = 'com.hltech'
+
+repositories(repos)
+
+scmVersion {
+    tag {
+        prefix = 'sql-event-store-4j-release'
+    }
+}
+
+project.version = scmVersion.version
+
+apply from: 'gradle/test.gradle'
+apply from: 'gradle/codequality.gradle'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+dependencies {
+    compileOnly "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    compileOnly "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:$nexusStagingPluginVersion"
+    compileOnly "pl.allegro.tech.build:axion-release-plugin:$axionReleasePluginVersion"
+
+    /* LOMBOK - generate additional bytecode during compilation*/
+    compileOnly "org.projectlombok:lombok:1.18.16"
+    annotationProcessor "org.projectlombok:lombok:1.18.16"
+}
+
+//https://central.sonatype.org/pages/gradle.html
+javadoc {
+    failOnError false
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    archiveClassifier = 'javadoc'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    archiveClassifier = 'sources'
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+nexusPublishing {
+    repositories {
+        sonatype{
+            username = System.getenv('SONATYPE_USER')
+            password = System.getenv('SONATYPE_PASSWORD')
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from(components.java)
+            artifact sourcesJar
+            artifact javadocJar
+            pom {
+                version = project.version
+                artifactId  = 'sql-event-store-4j'
+                name = project.name
+                groupId = project.group
+                packaging = 'jar'
+
+                description = 'Event store library to use with rdmbs database'
+                url = 'https://github.com/HLTech/SqlEventStore4J'
+                inceptionYear = '2018'
+
+                scm {
+                    connection = 'scm:git:https://github.com/HLTech/SqlEventStore4J.git'
+                    developerConnection = 'scm:git:git@github.com:HLTech/SqlEventStore4J.git'
+                    url = 'https://github.com/HLTech/SqlEventStore4J.git'
+                }
+
+                licenses {
+                    license {
+                        name = 'The MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'pienikrz'
+                        name = 'Krzysztof Pieniążek'
+                        email = 'pieniazek.krzysiek@gmail.com'
+                    }
+                    developer {
+                        id = 'rydlu'
+                        name = 'Zbigniew Rydlewski'
+                        email = 'zbigniew@rydlewski.pl'
+                    }
+                    developer {
+                        id = 'michalkarolik'
+                        name = 'Michał Karolik'
+                        email = 'karolik.m@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+}
+
+if (project.hasProperty("signing.keyId")) {
+    signing {
+        sign publishing.publications.mavenJava
+    }
+}
+
+nexusStaging {
+    packageGroup project.group
+    username System.getenv('SONATYPE_USER')
+    password System.getenv('SONATYPE_PASSWORD')
+    stagingProfileId = '8932a92dff8c84'
+    numberOfRetries = 5
+    delayBetweenRetriesInMillis = 60000
+}
+
+jmh {
+    threads = 10
+}
+
+
+buildscript {
+    ext {
+        repos = {
+            gradlePluginPortal()
+            mavenLocal()
+            mavenCentral()
+        }
+        nexusStagingPluginVersion = '0.20.0'
+        nexusPublishPluginVersion = '0.2.0'
+        axionReleasePluginVersion = '1.12.1'
+        publishingPluginVersion = '1.0.0'
+        jacksonVersion = '2.12.1'
+    }
+}
+
+plugins {
+    id 'java'
+    id 'idea'
+    id 'checkstyle'
+    id 'jacoco'
+    id 'maven-publish'
+    id 'groovy'
+    id 'signing'
+    id 'pl.allegro.tech.build.axion-release' version "$axionReleasePluginVersion"
+    id 'io.github.gradle-nexus.publish-plugin' version "$publishingPluginVersion"
+    id 'io.codearte.nexus-staging' version "$nexusStagingPluginVersion"
+    id "me.champeau.jmh" version "0.6.3"
+}
+
+group = 'com.hltech'
+
+repositories(repos)
+
+scmVersion {
+    tag {
+        prefix = 'sql-event-store-4j-release'
+    }
+}
+
+project.version = scmVersion.version
+
+apply from: 'gradle/test.gradle'
+apply from: 'gradle/codequality.gradle'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+dependencies {
+    compileOnly "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    compileOnly "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:$nexusStagingPluginVersion"
+    compileOnly "pl.allegro.tech.build:axion-release-plugin:$axionReleasePluginVersion"
+
+    /* LOMBOK - generate additional bytecode during compilation*/
+    compileOnly "org.projectlombok:lombok:1.18.16"
+    annotationProcessor "org.projectlombok:lombok:1.18.16"
+}
+
+//https://central.sonatype.org/pages/gradle.html
+javadoc {
+    failOnError false
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    archiveClassifier = 'javadoc'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    archiveClassifier = 'sources'
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+nexusPublishing {
+    repositories {
+        sonatype{
+            username = System.getenv('SONATYPE_USER')
+            password = System.getenv('SONATYPE_PASSWORD')
+        }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from(components.java)
+            artifact sourcesJar
+            artifact javadocJar
+            pom {
+                version = project.version
+                artifactId  = 'sql-event-store-4j'
+                name = project.name
+                groupId = project.group
+                packaging = 'jar'
+
+                description = 'Event store library to use with rdmbs database'
+                url = 'https://github.com/HLTech/SqlEventStore4J'
+                inceptionYear = '2018'
+
+                scm {
+                    connection = 'scm:git:https://github.com/HLTech/SqlEventStore4J.git'
+                    developerConnection = 'scm:git:git@github.com:HLTech/SqlEventStore4J.git'
+                    url = 'https://github.com/HLTech/SqlEventStore4J.git'
+                }
+
+                licenses {
+                    license {
+                        name = 'The MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'pienikrz'
+                        name = 'Krzysztof Pieniążek'
+                        email = 'pieniazek.krzysiek@gmail.com'
+                    }
+                    developer {
+                        id = 'rydlu'
+                        name = 'Zbigniew Rydlewski'
+                        email = 'zbigniew@rydlewski.pl'
+                    }
+                    developer {
+                        id = 'michalkarolik'
+                        name = 'Michał Karolik'
+                        email = 'karolik.m@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+}
+
+if (project.hasProperty("signing.keyId")) {
+    signing {
+        sign publishing.publications.mavenJava
+    }
+}
+
+nexusStaging {
+    packageGroup project.group
+    username System.getenv('SONATYPE_USER')
+    password System.getenv('SONATYPE_PASSWORD')
+    stagingProfileId = '8932a92dff8c84'
+    numberOfRetries = 5
+    delayBetweenRetriesInMillis = 60000
+}
+
+jmh {
+    threads = 10
+}
+
+

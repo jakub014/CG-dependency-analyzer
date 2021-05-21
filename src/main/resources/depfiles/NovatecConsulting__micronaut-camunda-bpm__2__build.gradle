@@ -1,0 +1,39 @@
+plugins {
+    id("io.micronaut.application")
+}
+
+group = "info.novatec"
+
+micronaut {
+    runtime("jetty")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("micronaut.camunda.bpm.example.*")
+    }
+}
+
+dependencies {
+    implementation(project(":micronaut-camunda-bpm-feature"))
+    runtimeOnly("com.h2database:h2")
+    runtimeOnly("ch.qos.logback:logback-classic")
+
+    // Test
+    testImplementation("io.micronaut:micronaut-http-client")
+
+    testImplementation("org.camunda.bpm.assert:camunda-bpm-assert:$camundaPlatformAssert")
+    testImplementation("org.assertj:assertj-core")
+}
+
+application {
+    mainClass.set("info.novatec.micronaut.camunda.bpm.example.Application")
+}
+
+java {
+    sourceCompatibility = JavaVersion.toVersion("1.8")
+    targetCompatibility = JavaVersion.toVersion("1.8")
+}
+
+dockerfile {
+    args.set(['-Dmicronaut.server.host=0.0.0.0']) // Jetty must listen on all interfaces, not only on "localhost"
+}

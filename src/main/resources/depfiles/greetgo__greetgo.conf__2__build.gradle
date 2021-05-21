@@ -1,0 +1,23 @@
+plugins {
+  id "kz.greetgo.upload-to-maven"
+  id "kz.greetgo.upload-to-gg-repo"
+}
+
+dependencies {
+  compile project(":greetgo.conf")
+
+  testCompile "com.h2database:h2:1.4.200"
+  testCompile "org.postgresql:postgresql:42.2.18"
+  testCompile "org.mariadb.jdbc:mariadb-java-client:2.7.1"
+}
+
+uploadToMavenCentral {
+  description = "Configuration library using in greetgo!"
+  url = 'https://github.com/greetgo/greetgo.conf'
+  scm.url = 'https://github.com/greetgo/greetgo.conf.git'
+  developer {
+    id = 'pompei'
+    name = 'Evgeniy Kolpakov'
+    email = 'ekolpakov@greet-go.com'
+  }
+}

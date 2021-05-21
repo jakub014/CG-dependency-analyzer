@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.marcoeckstein</groupId>
+    <artifactId>autoannotator</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.4-SNAPSHOT</version>
+    <name>AutoAnnotator</name>
+    <description>
+        A metaprogramming tool for automatically annotating types with validation constraints,
+        JPA annotations and arbitrary other annotations.
+    </description>
+    <url>https://github.com/marco-eckstein/autoannotator</url>
+    <inceptionYear>2019</inceptionYear>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>marcoeckstein.com</id>
+            <name>Marco Eckstein</name>
+            <email>marco.eckstein@gmx.de</email>
+            <url>https://www.marcoeckstein.com</url>
+        </developer>
+    </developers>
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/marco-eckstein/autoannotator/issues</url>
+    </issueManagement>
+    <scm>
+        <connection>scm:git:https://github.com/marco-eckstein/autoannotator</connection>
+        <developerConnection>scm:git:https://github.com/marco-eckstein/autoannotator</developerConnection>
+        <url>https://github.com/marco-eckstein/autoannotator</url>
+    </scm>
+
+    <modules>
+        <module>autoannotator-api</module>
+        <module>autoannotator-cli</module>
+        <module>autoannotator-core</module>
+        <module>autoannotator-maven-plugin</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sourceDirectory>src/main/kotlin</sourceDirectory>
+        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+        <java.version>1.8</java.version>
+        <jdk.version>8</jdk.version>
+        <kotlin.version>1.4.0</kotlin.version>
+        <ktlint.version>0.41.0</ktlint.version>
+        <detekt.version>1.16.0</detekt.version>
+        <dokka.version>0.10.0</dokka.version>
+        <slf4j.version>1.7.29</slf4j.version>
+        <mainClass>com.marcoeckstein.autoannotator.cli.Main</mainClass>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <!--suppress KotlinMavenPluginPhase -->
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.14.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.kotlintest</groupId>
+            <artifactId>kotlintest-assertions</artifactId>
+            <version>3.4.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>2.0.1.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>javax.persistence-api</artifactId>
+                <version>2.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-annotations</artifactId>
+                <version>3.5.6-Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.persistence</groupId>
+                <artifactId>org.eclipse.persistence.core</artifactId>
+                <version>2.7.5</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <sourceDirectory>${sourceDirectory}</sourceDirectory>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <configuration>
+                    <keyname>Marco Eckstein (Maven Releases)</keyname>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <profiles>
+        <profile>
+            <id>parent</id>
+            <activation>
+                <!-- If project is the parent project -->
+                <file>
+                    <exists>${basedir}/LICENSE.txt</exists>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>license-maven-plugin</artifactId>
+                        <version>2.0.0</version>
+                        <inherited>false</inherited>
+                        <configuration>
+                            <thirdPartyFilename>LICENSES-DEPENDENCIES.txt</thirdPartyFilename>
+                            <excludedScopes>provided,test,system</excludedScopes>
+                            <licenseMerges>
+                                <licenseMerge>
+                                    Apache License, Version 2.0|
+                                    Apache 2|
+                                    Apache-2.0|
+                                    Apache 2.0|
+                                    Apache License 2.0|
+                                    The Apache 2.0 License|
+                                    The Apache License, Version 2.0|
+                                    The Apache Software License, Version 2.0
+                                </licenseMerge>
+                                <licenseMerge>
+                                    MIT License|
+                                    MIT|
+                                    The MIT License
+                                </licenseMerge>
+                            </licenseMerges>
+                            <includedLicenses>
+                                Apache License, Version 2.0|
+                                MIT License
+                            </includedLicenses>
+                            <failOnBlacklist>true</failOnBlacklist>
+                        </configuration>
+                        <executions>
+                            <!--
+                                Due to an issue (https://stackoverflow.com/questions/55308956),
+                                warnings are expected..
+                             -->
+                            <execution>
+                                <id>aggregate-add-third-party</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>aggregate-add-third-party</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>submodule</id>
+            <activation>
+                <!-- If project is a submodule -->
+                <file>
+                    <missing>${basedir}/LICENSE.txt</missing>
+                </file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-plugin</artifactId>
+                        <version>${kotlin.version}</version>
+                        <configuration>
+                            <args>
+                                <arg>-Xjsr305=strict</arg>
+                                <arg>-progressive</arg>
+                                <arg>-jvm-target</arg>
+                                <arg>${java.version}</arg>
+                            </args>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>compile</id>
+                                <goals>
+                                    <goal>compile</goal>
+                                </goals>
+                                <configuration>
+                                    <sourceDirs>
+                                        <sourceDir>${project.build.sourceDirectory}</sourceDir>
+                                    </sourceDirs>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>test-compile</id>
+                                <goals>
+                                    <goal>test-compile</goal>
+                                </goals>
+                                <configuration>
+                                    <sourceDirs>
+                                        <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
+                                        <sourceDir>${project.basedir}/src/test/java</sourceDir>
+                                    </sourceDirs>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <id>ktlint</id>
+                                <phase>compile</phase>
+                                <configuration>
+                                    <target name="ktlint">
+                                        <java taskname="ktlint"
+                                            dir="${basedir}"
+                                            fork="true"
+                                            failonerror="true"
+                                            classname="com.pinterest.ktlint.Main"
+                                            classpathref="maven.plugin.classpath">
+                                            <arg value="--experimental"/>
+                                            <arg value="--relative"/>
+                                            <arg value="--verbose"/>
+                                        </java>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.pinterest</groupId>
+                                <artifactId>ktlint</artifactId>
+                                <version>${ktlint.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.github.ozsie</groupId>
+                        <artifactId>detekt-maven-plugin</artifactId>
+                        <version>${detekt.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                                <configuration>
+                                    <buildUponDefaultConfig>true</buildUponDefaultConfig>
+                                    <config>
+                                        ${project.basedir}/../detekt-base.yml,${project.basedir}/../detekt-project.yml
+                                    </config>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <executions>
+                            <!-- Replacing default-compile as it is treated specially by maven -->
+                            <execution>
+                                <id>default-compile</id>
+                                <phase>none</phase>
+                            </execution>
+                            <!-- Replacing default-testCompile as it is treated specially by maven -->
+                            <execution>
+                                <id>default-testCompile</id>
+                                <phase>none</phase>
+                            </execution>
+                            <execution>
+                                <id>java-compile</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>compile</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>java-test-compile</id>
+                                <phase>test-compile</phase>
+                                <goals>
+                                    <goal>testCompile</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M4</version>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <configuration>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <archive>
+                                <manifest>
+                                    <mainClass>${mainClass}</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>package code</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <executions>
+                            <execution>
+                                <id>package sources</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.jetbrains.dokka</groupId>
+                        <artifactId>dokka-maven-plugin</artifactId>
+                        <version>${dokka.version}</version>
+                        <executions>
+                            <execution>
+                                <id>create and package docs</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>dokka</goal>
+                                    <goal>javadoc</goal>
+                                    <goal>javadocJar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!-- <samples>-->
+                            <!--     <dir>${project.basedir}/src/test/</dir>-->
+                            <!-- </samples>-->
+                            <jdkVersion>${jdk.version}</jdkVersion>
+                            <reportUndocumented>false</reportUndocumented>
+                            <!-- <sourceLinks>-->
+                            <!--     <link>-->
+                            <!--         <path>src</path>-->
+                            <!--         <url>https://github.com/marco-eckstein/autoannotator</url>-->
+                            <!--         <lineSuffix>#L</lineSuffix>-->
+                            <!--     </link>-->
+                            <!-- </sourceLinks>-->
+                            <externalDocumentationLinks>
+                                <link>
+                                    <url>https://kotlinlang.org/api/latest/jvm/stdlib/index.html</url>
+                                </link>
+                                <link>
+                                    <url>https://docs.oracle.com/javase/8/docs/api/</url>
+                                </link>
+                                <link>
+                                    <url>https://javaee.github.io/javaee-spec/javadocs/</url>
+                                </link>
+                            </externalDocumentationLinks>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    <distributionManagement>
+        <repository>
+            <id>Sonatype Staging</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <id>Sonatype Snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jcenter</id>
+            <name>JCenter</name>
+            <url>https://jcenter.bintray.com/</url>
+            <!-- Required for dokka-maven-plugin -->
+        </pluginRepository>
+    </pluginRepositories>
+</project>

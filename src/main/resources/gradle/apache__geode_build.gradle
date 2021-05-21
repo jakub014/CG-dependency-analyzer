@@ -1,0 +1,206 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+plugins {
+  id "wrapper"
+  id "nebula.facet" version "8.0.0" apply false
+  id "base"
+  id "idea"
+  id "eclipse"
+  id "com.diffplug.spotless" version "5.11.1" apply false
+  id "com.github.ben-manes.versions" version "0.38.0" apply false
+  id "nebula.lint" version "16.17.1" apply false
+  id "com.palantir.docker" version "0.26.0" apply false
+  id "io.spring.dependency-management" version "1.0.11.RELEASE" apply false
+  id "org.ajoberstar.grgit" version "4.1.0" apply false
+  id "org.nosphere.apache.rat" version "0.7.0" apply false
+  id "org.sonarqube" version "3.1.1" apply false
+  id "me.champeau.gradle.japicmp" apply false // Version defined in buildSrc/build.gradle
+  id 'me.champeau.gradle.jmh' version '0.5.3' apply false
+}
+
+
+apply from: "${scriptDir}/lint.gradle"
+apply from: "${scriptDir}/resolve-dependencies.gradle"
+apply from: "${scriptDir}/sonar.gradle"
+apply from: "${scriptDir}/rat.gradle"
+
+wrapper {
+  gradleVersion = minimumGradleVersion
+  distributionType = "all"
+}
+
+allprojects {
+  ext.isReleaseVersion = true
+  if(version.contains("build")) {
+    ext.isReleaseVersion = false
+  }
+
+  repositories {
+    mavenCentral()
+    maven { url "https://repo.spring.io/release" }
+  }
+
+  buildRoot = buildRoot.trim()
+  if (!buildRoot.isEmpty()) {
+    buildDir = buildRoot + project.path.replace(":", "/") + "/build"
+  }
+}
+
+task combineReports(type: TestReport) {
+  description 'Combines the test reports.'
+  destinationDir = file "${rootProject.buildDir}/reports/combined"
+
+  doLast {
+    println "All test reports at ${rootProject.buildDir}/reports/combined"
+  }
+}
+
+ext.readScmInfo = { proj ->
+  // Attempt to read git information, or else return UNKNOWN
+  try {
+    def git = org.ajoberstar.grgit.Grgit.open(currentDir: project(proj).projectDir)
+    try {
+      return [
+          'Source-Repository': git.branch.current.name,
+          'Source-Revision'  : git.head().id,
+          'Source-Date'      : git.head().date.format('yyyy-MM-dd HH:mm:ss Z')
+      ] as Properties
+    } finally {
+      git.close()
+    }
+  } catch (IllegalStateException ignoredDistributionBuild) {
+    // If we're building from the source distribution, we don't have git.
+    // Instead, we use the .buildinfo copied to the root directory during the distribution build
+    // from the writeBuildInfo task below (from build/.buildinfo)
+    def buildInfo = file "$rootDir/.buildinfo"
+    if (buildInfo.exists()) {
+      def props = new Properties()
+      new FileInputStream(buildInfo).withStream { fis ->
+        props.load(fis)
+      }
+      return props
+    }
+    throw new GradleException("Cannot get SCM information when neither git nor source distribution is available")
+  }
+}
+
+tasks.register('writeBuildInfo') {
+  def buildInfo = file "$buildDir/.buildinfo"
+  def scmInfo = this.readScmInfo("geode-core")
+
+  inputs.property("Source-Revision", scmInfo.getProperty("Source-Revision"))
+  outputs.files {
+    buildInfo
+  }
+  doLast {
+    buildInfo.getParentFile().mkdirs()
+    new FileOutputStream(buildInfo).withStream { fos ->
+      scmInfo.store(fos, '')
+    }
+  }
+}
+tasks.register('test') {
+  description "An all-project target for unit tests"
+}
+
+tasks.register('devBuild') {
+  group 'Build'
+  description "A convenience target for a typical developer workflow: apply spotless and assemble all classes."
+  dependsOn tasks.named('assemble')
+  // Each subproject injects its SpotlessApply as a dependency to this task in the standard config
+}
+
+tasks.register('generate') {
+  group = 'Build'
+  description = "Top-level target for all source generation. Helps IDE integration"
+  // This task is a no-op, with other tasks
+  // injecting themselves as a task dependency into this task.  E.g., via
+  // `afterEvaluate.rootProject.generate.dependsOn(generateProto)`
+}
+
+tasks.register('printTestClasspath') {
+  group 'Build'
+  description "Print the classpath used in all tests for all subprojects"
+
+  doLast {
+    Set result = new LinkedHashSet()
+    // Prefer sources at the start of the classpath
+    subprojects.each { sub ->
+      if (sub.hasProperty("sourceSets")) {
+        sub.sourceSets.each { ss ->
+          ss.each { x ->
+            x.output.classesDirs.each { y -> result.add(y) }
+          }
+        }
+      }
+    }
+
+    subprojects.each { sub ->
+      sub.configurations.each { c ->
+        if (c.name.toLowerCase().endsWith("runtimeclasspath")) {
+          c.each { f -> result.add(f) }
+        }
+      }
+    }
+
+    println result.join(File.pathSeparator)
+  }
+}
+
+// Prompt the user for a publication passsword to sign archives or upload artifacts, if requested
+if (project.hasProperty('askpass')) {
+  gradle.taskGraph.whenReady { taskGraph ->
+    if(taskGraph.allTasks.any {it instanceof Sign}) {
+      if(!project.hasProperty('signing.keyId') || !project.hasProperty('signing.secretKeyRingFile')) {
+        println "You must configure your signing.keyId and signing.secretKeyRingFile"
+        println "in ~/.gradle/gradle.properties in order to sign jars\n"
+        println "See https://cwiki.apache.org/confluence/display/GEODE/Release+Steps"
+        throw new GradleException("Signing key/keyring is missing")
+      }
+
+      if(!project.hasProperty('signing.password')) {
+        def password = PasswordDialog.askPassword("Please enter your password to unlock your gpg keyring for signing artifacts")
+
+        subprojects { ext."signing.password" = password }
+      }
+    }
+
+    if(taskGraph.allTasks.any {it instanceof PublishToMavenRepository}) {
+      if(!project.hasProperty('mavenUsername')) {
+        println "You must configure your mavenUsername in ~/.gradle/gradle.properties in order to publish\n"
+        println "See https://cwiki.apache.org/confluence/display/GEODE/Release+Steps"
+        throw new GradleException("mavenUsername is missing")
+      }
+      if(!project.hasProperty('mavenPassword')) {
+        def getPassword = PasswordDialog.askPassword("Please enter your apache password to publish to Apache Maven")
+
+        taskGraph.allTasks.each {
+          if(it instanceof PublishToMavenRepository) {
+            (it as PublishToMavenRepository).repository.credentials.password = getPassword
+          }
+        }
+      }
+    }
+  }
+}
+
+gradle.taskGraph.whenReady({ graph ->
+  tasks.getByName('combineReports').reportOn rootProject.subprojects.collect {
+    it.tasks.withType(Test)
+  }.flatten()
+})

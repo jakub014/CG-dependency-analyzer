@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>org.eclipse.dirigible</groupId>
+		<artifactId>dirigible-parent</artifactId>
+		<version>5.11.0-SNAPSHOT</version>
+		<relativePath>../../pom.xml</relativePath>
+	</parent>
+
+	<name>Engine - Parent</name>
+	<artifactId>dirigible-engine-parent</artifactId>
+    <packaging>pom</packaging>
+
+	<modules>
+        <module>engine-all</module>
+		<module>engine-api</module>
+		<module>engine-javascript</module>
+		<module>engine-javascript-graalvm</module>
+		<module>engine-job</module>
+		<module>engine-listener</module>
+		<module>engine-web</module>
+		<module>engine-wiki</module>
+		<module>engine-command</module>
+		<module>engine-odata</module>
+	</modules>
+
+	<properties>
+		<license.header.location>../../license-header.txt</license.header.location>
+	</properties>
+</project>

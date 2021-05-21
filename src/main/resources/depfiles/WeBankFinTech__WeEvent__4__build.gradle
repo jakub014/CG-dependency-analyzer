@@ -1,0 +1,77 @@
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+dependencies {
+    // spring boot
+    implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+
+    // spring boot with log4j2
+    implementation("org.springframework.boot:spring-boot-starter-log4j2")
+    // avoid "Log4j appears to be running in a Servlet environment, but there's no log4j-web module available."
+    implementation("org.apache.logging.log4j:log4j-web:${log4jVersion}")
+
+    // discovery
+    implementation("org.springframework.cloud:spring-cloud-starter-zookeeper-discovery") {
+        exclude group: "commons-logging", module: "commons-logging"
+    }
+
+    // account login
+    implementation("org.springframework.boot:spring-boot-starter-security")
+
+    // persist database
+    implementation("org.apache.commons:commons-dbcp2:${apacheCommonsVersion.dbcp2}")
+    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisVersion}")
+    implementation("org.mariadb.jdbc:mariadb-java-client:${mariadbClientVersion}")
+
+    // jsoup
+    implementation("org.jsoup:jsoup:${jsoupVersion}")
+
+    // forward backend
+    implementation("org.apache.httpcomponents:httpclient:${httpclientVersion}")
+
+    //jpa
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    //h2
+    implementation("com.h2database:h2:${h2Version}")
+
+    //JWT
+    implementation("com.auth0:java-jwt:${JWTVersion}")
+
+    // fileupload
+    implementation("commons-fileupload:commons-fileupload:${apacheCommonsVersion.fileupload}")
+
+    api project(":weevent-file")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+bootJar {
+    destinationDir file("dist/apps")
+    archiveName project.name + "-" + version + ".jar"
+
+    // thin spring boot jar
+    excludes = ["*.jar"]
+
+    doLast {
+        copy {
+            from file("src/main/resources/")
+            into "dist/conf"
+        }
+        copy {
+            from configurations.runtimeClasspath
+            into "dist/lib"
+        }
+        copy {
+            from file("web/html/")
+            into "dist/html"
+        }
+    }
+}

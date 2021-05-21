@@ -1,0 +1,189 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>ru.sbtqa.tag</groupId>
+  <artifactId>page-factory-2</artifactId>
+  <version>16.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>page-factory-2</name>
+  <url>http://github.com/sbtqa/page-factory</url>
+  <description>page-factory-2 description</description>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Viktor Sidochenko</name>
+      <email>viktor.sidochenko@gmail.com</email>
+      <organization>sbtqa</organization>
+      <organizationUrl>http://github.com/sbtqa</organizationUrl>
+    </developer>
+    <developer>
+      <name>Konstantin Maltsev</name>
+      <email>mkypers@gmail.com</email>
+      <organization>sbtqa</organization>
+      <organizationUrl>http://github.com/sbtqa</organizationUrl>
+    </developer>
+    <developer>
+      <name>Alexander Anikeev</name>
+      <email>iamanikeev@gmail.com</email>
+      <organization>sbtqa</organization>
+      <organizationUrl>http://github.com/sbtqa</organizationUrl>
+    </developer>
+    <developer>
+      <name>Ivan Varivoda</name>
+      <email>varivoda_ivan@mail.ru</email>
+      <organization>sbtqa</organization>
+      <organizationUrl>http://github.com/sbtqa</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git://github.com/sbtqa/page-factory-2</connection>
+    <developerConnection>scm:git:ssh://github.com:sbtqa/page-factory-2.git</developerConnection>
+    <url>https://github.com/sbtqa/page-factory-2/tree/master</url>
+  </scm>
+
+  <properties>
+    <selenium.version>3.141.59</selenium.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <cucumber.version>4.3.1</cucumber.version>
+    <aspectj.version>1.9.2</aspectj.version>
+    <aspectj.plugin.version>1.12.6</aspectj.plugin.version>
+    <spring.version>4.2.4.RELEASE</spring.version>
+    <activemq.version>5.13.0</activemq.version>
+    <surefire.version>2.22.1</surefire.version>
+    <tag.version.qautils>1.7.1</tag.version.qautils>
+    <tag.version.videorecorder>1.0.7</tag.version.videorecorder>
+    <tag.version.webdrivermanager>2.2.2</tag.version.webdrivermanager>
+    <tag.version.datajack>5.1.2</tag.version.datajack>
+    <allure.version>2.13.0</allure.version>
+  </properties>
+
+  <modules>
+    <module>page-factory-api</module>
+    <module>page-factory-core</module>
+    <module>tests/test-web-app</module>
+    <module>plugins/web-plugin</module>
+    <module>plugins/html-plugin</module>
+    <module>plugins/mobile-plugin</module>
+    <module>plugins/rest-plugin</module>
+    <module>plugins/mq-plugin</module>
+  </modules>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.22</version>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <activation>
+        <property>
+          <name>release</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <modules>
+        <module>page-factory-api</module>
+        <module>page-factory-core</module>
+        <module>tests/test-web-app</module>
+        <module>plugins/web-plugin</module>
+        <module>plugins/html-plugin</module>
+        <module>plugins/mobile-plugin</module>
+        <module>plugins/rest-plugin</module>
+        <module>page-factory-doc</module>
+      </modules>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.3</version>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.3</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>2.2.1</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>2.9.1</version>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.5</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>eu.ralph-schuster</groupId>
+		<artifactId>pom-oss</artifactId>
+		<version>2.0.2</version>
+	</parent>
+
+	<properties>
+		<project.home>https://github.com/technicalguru/sportdata-api-client</project.home>
+		<maven.bundle.version>3.5.1</maven.bundle.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+	</properties>
+
+	<groupId>eu.ralph-schuster</groupId>
+	<artifactId>sportdata-api-client</artifactId>
+	<version>0.9.5</version>
+
+	<name>sportdata-api-client</name>
+	<description>A simple sportdataapi.com client.</description>
+	<url>https://github.com/technicalguru/sportdata-api-client</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>eu.ralph-schuster</groupId>
+			<artifactId>baselib</artifactId>
+			<version>1.4.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>2.32</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-json-jackson</artifactId>
+			<version>2.32</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.inject</groupId>
+			<artifactId>jersey-hk2</artifactId>
+			<version>2.32</version>
+		</dependency>
+	</dependencies>
+
+	<scm>
+		<connection>scm:git:https://github.com/technicalguru/sportdata-api-client.git</connection>
+		<developerConnection>scm:git:https://github.com/technicalguru/sportdata-api-client.git</developerConnection>
+		<url>https://github.com/technicalguru/sportdata-api-client</url>
+	  <tag>sportdata-api-client-0.9.5</tag>
+  </scm>
+
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/technicalguru/sportdata-api-client</url>
+	</issueManagement>
+
+	<ciManagement>
+		<system>bamboo</system>
+		<url>https://bamboo.ralph-schuster.eu:8443/browse/SDACJ</url>
+	</ciManagement>
+
+	<developers>
+		<developer>
+			<id>ralph</id>
+			<name>Ralph Schuster</name>
+		</developer>
+	</developers>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<properties>
+						<property>
+							<name>listener</name>
+							<value>com.sportdataapi.ClientProvider</value>
+						</property>
+					</properties>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

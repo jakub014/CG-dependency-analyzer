@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>net.cactusthorn.routing</groupId>
+        <artifactId>root</artifactId>
+        <version>${revision}${changelist}</version>
+    </parent>
+
+    <artifactId>thymeleaf</artifactId>
+    <packaging>jar</packaging>
+
+    <name>Routing :: Thymeleaf</name>
+    <description>HTML Producer using Thymeleaf</description>
+
+    <licenses>
+        <license>
+            <name>BSD 3-Clause License</name>
+            <url>https://github.com/Gmugra/net.cactusthorn.routing/blob/main/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Alexei Khatskevich</name>
+            <email>alexei.khatskevich@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/Gmugra/net.cactusthorn.routing</url>
+        <connection>scm:git:https://github.com/Gmugra/net.cactusthorn.routing.git</connection>
+        <developerConnection>scm:git:https://github.com/Gmugra/net.cactusthorn.routing.git</developerConnection>
+    </scm>
+
+    <properties>
+        <pmd.skip>false</pmd.skip>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>net.cactusthorn.routing</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

@@ -1,0 +1,63 @@
+buildscript {
+    repositories { 
+        mavenLocal() 
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.2.2.RELEASE")
+        classpath("net.researchgate:gradle-release:2.6.0")
+    }
+}
+
+plugins { 
+    id 'io.franzbecker.gradle-lombok' version '1.14'
+    id 'java'
+    id 'maven'
+    id 'idea'
+    id "io.github.gradle-nexus.publish-plugin" version "1.0.0"
+}
+
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'edu.kit.datamanager'
+archivesBaseName = "generic-message-consumer"
+version = project['version']
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+bootJar {
+    baseName = 'generic-message-consumer'
+    classifier = 'boot'
+}
+
+jar {
+    enabled = true
+}
+
+repositories {
+    mavenLocal() 
+    jcenter()
+    mavenCentral()
+}
+ 
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-amqp")
+    implementation("edu.kit.datamanager:service-base:0.2.0")
+    implementation group: 'com.h2database', name: 'h2', version: '1.3.148'
+
+    testImplementation("junit:junit")
+}
+
+lombok {
+    version = '1.18.10'
+    sha256 = ""
+}
+
+if (project.hasProperty('deploy')) {
+    println 'Using deploy profile for building ' + project.getName()
+   apply from: 'gradle/profile-deploy.gradle'
+}

@@ -1,0 +1,209 @@
+/*
+ * Copyright 2012-2021 Michael Hoffer <info@michaelhoffer.de>. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification, are
+ * permitted provided that the following conditions are met:
+ *
+ *    1. Redistributions of source code must retain the above copyright notice, this list of
+ *       conditions and the following disclaimer.
+ *
+ *    2. Redistributions in binary form must reproduce the above copyright notice, this list
+ *       of conditions and the following disclaimer in the documentation and/or other materials
+ *       provided with the distribution.
+ *
+ * Please cite the following publication(s):
+ *
+ * M. Hoffer, C.Poliwoda, G.Wittum. Visual Reflection Library -
+ * A Framework for Declarative GUI Programming on the Java Platform.
+ * Computing and Visualization in Science, 2011, in press.
+ *
+ * THIS SOFTWARE IS PROVIDED BY Michael Hoffer <info@michaelhoffer.de> "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL Michael Hoffer <info@michaelhoffer.de> OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ * ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * The views and conclusions contained in the software and documentation are those of the
+ * authors and should not be interpreted as representing official policies, either expressed
+ * or implied, of Michael Hoffer <info@michaelhoffer.de>.
+ */
+
+import java.text.SimpleDateFormat
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.kordamp.gradle:stats-gradle-plugin:0.2.2'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.27.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+    }
+}
+
+plugins {
+    id 'jacoco'
+    id 'com.github.hierynomus.license' version '0.15.0'
+    id 'net.nemerosa.versioning' version '2.9.0'
+    id 'com.github.kt3k.coveralls' version '2.8.4'
+}
+
+apply from: 'gradle/idea.gradle'
+apply from: 'gradle/jdkdetect.gradle'
+
+Date buildTimeAndDate = new Date()
+ext {
+    buildBy = System.properties['user.name']
+    buildDate = new SimpleDateFormat('yyyy-MM-dd').format(buildTimeAndDate)
+    buildTime = new SimpleDateFormat('HH:mm:ss.SSSZ').format(buildTimeAndDate)
+    buildRevision = versioning.info.commit
+    buildCreatedBy = "${System.properties['java.version']} (${System.properties['java.vendor']} ${System.properties['java.vm.version']})".toString()
+    macosx = System.getProperty('os.name').contains('Mac OS')
+    jacocoMergeExecFile  = "${buildDir}/jacoco/root.exec"
+    jacocoRootReportPath = "${buildDir}/reports/jacoco/root/"
+    projectsWithCoverage = []
+    projectsToPublish = []
+}
+
+jacoco {
+    toolVersion = jacocoVersion
+}
+
+wrapper {
+    gradleVersion = '6.8.2'
+}
+
+println("Gradle uses JDK " + project.jdk)
+
+allprojects {
+    apply plugin: 'base'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+    apply plugin: 'com.github.ben-manes.versions'
+
+    repositories {
+        jcenter()
+    }
+
+    // JDK 8 is way too strict about Javadoc style
+    if (JavaVersion.current().isJava8Compatible()) {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+subprojects { subproj ->
+    subproj.apply plugin: 'java'
+
+    subproj.tasks.withType(JavaCompile) {
+        sourceCompatibility = subproj.sourceCompatibility
+        targetCompatibility = subproj.targetCompatibility
+        options*.encoding = 'UTF-8'
+    }
+
+    tasks.withType(AbstractCompile) {
+        if (rootProject.hasProperty('lint') && rootProject.lint.toBoolean()) {
+            options.compilerArgs = [
+                '-Xlint:all', '-Xlint:deprecation', '-Xlint:unchecked'
+            ]
+        }
+    }
+
+    subproj.apply from: rootProject.file('gradle/code-quality.gradle')
+    subproj.apply plugin: 'org.kordamp.gradle.stats'
+
+    if (subproj.publishJars.toBoolean()) {
+        task sourceJar(type: Jar) {
+            group 'Build'
+            description 'An archive of the source code'
+            classifier 'sources'
+            from sourceSets.main.allSource
+        }
+
+        subproj.apply from: rootProject.file('gradle/code-coverage.gradle')
+        subproj.apply from: rootProject.file('gradle/publishing.gradle')
+        //subproj.apply from: rootProject.file('gradle/javafx.gradle')
+
+        projectsToPublish << subproj
+        projectsWithCoverage << subproj
+
+        dependencies {
+            //compileOnly project.files(project.jfxrtLocation)
+            testImplementation 'junit:junit:4.12'
+        }
+
+        test {
+            // set heap size for the test JVM(s)
+            minHeapSize = "64m"
+            maxHeapSize = "256m"
+
+            testLogging {
+                afterSuite { desc, result ->
+                    if (!desc.parent) {
+                        println "Test results ${project.name}: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)"
+                    }
+                }
+            }
+        }
+
+        javadoc {
+            excludes = ['**/*.html', 'META-INF/**']
+
+            options.addBooleanOption('javafx', true)
+
+            options.use         = true
+            options.splitIndex  = true
+            options.encoding    = 'UTF-8'
+            options.author      = true
+            options.version     = true
+            options.source      = 1.8
+            options.windowTitle = "$subproj.name $version"
+            options.docTitle    = "$subproj.name $version"
+            options.footer      = rootProject.javadocFooter
+            options.links       = ['https://junit.org/junit4/javadoc/latest/',
+                                   'https://docs.oracle.com/javase/8/docs/api/',
+                                   'https://docs.oracle.com/javase/8/javafx/api/']
+        }
+    }
+}
+
+evaluationDependsOnChildren()
+
+task jacocoRootMerge(type: org.gradle.testing.jacoco.tasks.JacocoMerge) {
+    dependsOn = projectsWithCoverage.test
+    dependsOn = projectsWithCoverage.jacocoTestReport
+    executionData = files(projectsWithCoverage.jacocoTestReport.executionData)
+    destinationFile = file(jacocoMergeExecFile)
+}
+
+task jacocoRootReport(dependsOn: jacocoRootMerge, type: JacocoReport) {
+    executionData files(projectsWithCoverage.jacocoTestReport.executionData)
+    sourceDirectories.from = files(projectsWithCoverage.sourceSets.main.allSource.srcDirs)
+    classDirectories.from = files(projectsWithCoverage.sourceSets.main.output)
+    reports {
+        xml.enabled = true
+        csv.enabled = false
+        html.enabled = true
+        html.destination = file("${jacocoRootReportPath}/html")
+        xml.destination  = file("${jacocoRootReportPath}/root.xml")
+    }
+}
+
+coveralls {
+    sourceDirs = projectsWithCoverage.sourceSets.main.allSource.srcDirs.flatten()
+    jacocoReportPath = "${jacocoRootReportPath}/root.xml"
+}
+
+tasks.coveralls {
+    group = 'Coverage reports'
+    description = 'Uploads the aggregated coverage report to Coveralls'
+
+    dependsOn jacocoRootReport
+    onlyIf { System.env.'CI' }
+}

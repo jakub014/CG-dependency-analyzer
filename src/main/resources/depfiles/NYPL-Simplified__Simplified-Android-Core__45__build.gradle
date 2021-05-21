@@ -1,0 +1,15 @@
+dependencies {
+  api project(":simplified-migration-spi")
+  api project(":simplified-threads")
+
+  api libraries.google_guava
+  api libraries.joda_time
+  api libraries.nypl_drm_core
+
+  implementation libraries.kotlin_stdlib
+  implementation libraries.kotlin_reflect
+  implementation libraries.slf4j
+
+  compileOnly libraries.google_autovalue
+  annotationProcessor libraries.google_autovalue_processor
+}

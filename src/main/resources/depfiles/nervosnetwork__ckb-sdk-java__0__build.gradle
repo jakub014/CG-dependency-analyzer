@@ -1,0 +1,175 @@
+buildscript {
+
+    ext.bouncycastleVersion = '1.65'
+    ext.rxjavaVersion = '2.2.21'
+    ext.gsonVersion = '2.8.6'
+    ext.okhttpVersion = '4.9.1'
+    ext.loggingOkhttpVersion = '4.9.1'
+    ext.slf4jVersion = '1.7.30'
+    ext.guavaVersion = '30.1.1-jre'
+
+    ext.junitVersion = '5.7.1'
+
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.30.0'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:6.0.0'
+    }
+}
+
+plugins {
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+    id 'java'
+    id 'com.github.sherter.google-java-format' version '0.8'
+    id 'com.jfrog.bintray' version '1.8.5'
+}
+
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'application'
+apply plugin: 'io.codearte.nexus-staging'
+
+mainClassName = 'org.nervos.ckb.example.RpcExample'
+applicationName = 'ckb-sdk-java'
+
+description 'ckb-sdk-java base project'
+
+allprojects {
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    group 'org.nervos.ckb'
+    version '0.40.0'
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+        testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    task installGitHooks(type: Copy) {
+        from new File(rootProject.rootDir, 'config/pre-commit')
+        into {
+            new File(rootProject.rootDir, '.git/hooks')
+        }
+        fileMode 0755
+    }
+
+    build.dependsOn installGitHooks
+}
+
+configure(subprojects.findAll { it.name != 'tests' }) {
+    // Required for Maven Nexus repository
+    apply plugin: 'maven'
+    apply plugin: 'signing'
+
+    // Required for JFrog Artifactory repository
+    apply plugin: 'maven-publish'
+    apply plugin: 'com.jfrog.bintray'
+
+    task javadocJar(type: Jar) {
+        classifier = 'javadoc'
+        from javadoc
+    }
+
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task testJar(type: Jar) {
+        classifier = 'tests'
+        from sourceSets.test.output
+    }
+
+    artifacts {
+        archives sourcesJar, javadocJar, testJar
+    }
+
+    ext {
+        ossrhUsername = project.hasProperty('ossrhUsername') ? project.property('ossrhUsername') : ''
+        ossrhPassword = project.hasProperty('ossrhPassword') ? project.property('ossrhPassword') : ''
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                groupId 'org.nervos.ckb'
+                version '0.40.0'
+                from components.java
+            }
+        }
+    }
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+                repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
+                    authentication(
+                            userName: ossrhUsername,
+                            password: ossrhPassword
+                    )
+                }
+
+                pom.project {
+                    name 'ckb-sdk-java'
+                    packaging 'jar'
+                    description project.description
+                    url 'https://github.com/nervosnetwork/ckb-sdk-java.git'
+
+                    scm {
+                        connection 'scm:git@github.com:nervosnetwork/ckb-sdk-java.git'
+                        url 'https://github.com/nervosnetwork/ckb-sdk-java.git'
+                    }
+
+                    licenses {
+                        license {
+                            name 'The MIT License'
+                            url 'https://opensource.org/licenses/MIT'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id 'nervos'
+                            name 'nervos developer'
+                            email 'op@nervos.org'
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    signing {
+        required { gradle.taskGraph.hasTask('uploadArchives') }  // only execute as part of this task
+        sign configurations.archives
+    }
+
+    task release {
+        dependsOn 'build'
+        dependsOn 'uploadArchives'
+        dependsOn 'bintrayUpload'
+
+        tasks.findByName('uploadArchives').mustRunAfter 'build'
+        tasks.findByName('bintrayUpload').mustRunAfter 'build'
+    }
+}

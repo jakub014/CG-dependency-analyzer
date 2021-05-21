@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.github.fangjinuo.agileway</groupId>
+        <artifactId>agileway</artifactId>
+        <version>2.5.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>agileway-sshclient</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--License: BSD-->
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.55</version>
+            <optional>true</optional>
+        </dependency>
+
+
+        <!--License: Apache 2.0-->
+        <dependency>
+            <groupId>net.schmizz</groupId>
+            <artifactId>sshj</artifactId>
+            <version>0.10.0</version>
+            <optional>true</optional>
+        </dependency>
+
+        <!--License: Apache 2.0-->
+        <dependency>
+            <groupId>com.airlenet.yang</groupId>
+            <artifactId>ganymed-ssh2</artifactId>
+            <version>1.2.0</version>
+            <optional>true</optional>
+        </dependency>
+
+        <!--采用私有协议，代码和 ganymed-ssh2 基本一样-->
+        <dependency>
+            <groupId>com.trilead</groupId>
+            <artifactId>trilead-ssh2</artifactId>
+            <version>1.0.0-build222</version>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- &lt;0.2.8 use LGPL + Apache,  &ge;0.2.8 GPL-->
+        <dependency>
+            <groupId>sshtools</groupId>
+            <artifactId>j2ssh-core</artifactId>
+            <version>0.2.9</version>
+            <optional>true</optional>
+        </dependency>
+        <!--将 Apache Common-Logging 适配给 slf4j, j2ssh-core 用的是 Common-Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+            <optional>true</optional>
+        </dependency>
+
+    </dependencies>
+
+</project>

@@ -1,0 +1,61 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.versions = [
+            'minSdkVersion'    : 14,
+            'compileSdkVersion': 29,
+            'buildToolsVersion': "29.0.2",
+            'targetSdkVersion' : 29,
+            'release'          : '0.2.4',
+            'kotlin'           : '1.4.21',
+            'gradle'           : '4.1.1'
+    ]
+    ext.depends = [
+            'android' : [
+                    'gradlePlugin': "com.android.tools.build:gradle:${versions.gradle}",
+            ],
+            'javassist' : 'org.javassist:javassist:3.27.0-GA',
+            'junit'   : 'junit:junit:4.12',
+            'androidx': [
+                    'annotations': "androidx.annotation:annotation:1.0.0",
+                    'appcompat'  : 'androidx.appcompat:appcompat:1.0.2',
+                    'test'       : [
+                            'runner'  : 'androidx.test:runner:1.2.0',
+                            'espresso': 'androidx.test.espresso:espresso-core:3.2.0'
+                    ]
+            ],
+            javapoet  : 'com.squareup:javapoet:1.10.0',
+            'auto'    : [
+                    'service': 'com.google.auto.service:auto-service:1.0-rc4',
+                    'common' : 'com.google.auto:auto-common:0.10'
+            ],
+            'release' : [
+                    'runtime' : "com.github.tablebird:service-provider-builder:${versions.release}",
+                    'compiler': "com.github.tablebird:service-provider-builder-compiler:${versions.release}"
+            ],
+            'kotlin'  : [
+                    'stdLibJdk8': "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}",
+            ],
+            'gson' : 'com.google.code.gson:gson:2.8.1'
+    ]
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:${versions.gradle}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

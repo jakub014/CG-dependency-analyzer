@@ -1,0 +1,50 @@
+buildscript {
+	dependencies {
+		classpath 'io.spring.gradle:spring-build-conventions:0.0.37'
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+	}
+	repositories {
+		gradlePluginPortal()
+		maven { url 'https://repo.spring.io/plugins-snapshot' }
+	}
+}
+
+apply plugin: 'io.spring.convention.root'
+
+allprojects {
+
+	group = 'org.springframework.geode'
+
+	repositories {
+
+		mavenCentral()
+
+		if (version.contains('-')) {
+			maven { url "https://repo.spring.io/milestone" }
+		}
+		if (version.endsWith('-SNAPSHOT')) {
+			maven { url "https://repo.spring.io/snapshot" }
+		}
+	}
+
+	configurations.all {
+		resolutionStrategy.cacheChangingModulesFor 0, "minutes"
+	}
+}
+
+nohttp {
+	source.excludes = [ "**/.gradle/**", "**/.m2/**" ]
+}
+
+description = 'Spring Boot for Apache Geode'
+
+//ext['spring.version'] = "$springVersion"
+//ext['spring-framework.version'] = "$springVersion"
+//ext['spring-data-bom.version'] = "$springDataBomVersion"
+//ext['spring-session-bom.version'] = "$springSessionBomVersion"
+
+ext.snapshotBuild = version.endsWith('SNAPSHOT')
+ext.releaseBuild = version.endsWith('RELEASE')
+ext.milestoneBuild = !(releaseBuild || snapshotBuild)
+
+ext.MAVEN_POM_EDITOR_GRADLE = "$rootDir/gradle/maven-pom-editor.gradle"

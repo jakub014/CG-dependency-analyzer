@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.jboss.metadata</groupId>
+        <artifactId>jboss-as-parent-metadata</artifactId>
+        <version>14.0.0.Beta2-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>jboss-metadata-appclient</artifactId>
+    <packaging>jar</packaging>
+
+    <name>JBoss Metadata Appclient</name>
+
+    <description>The JavaEE App Client metadata classes</description>
+
+    <!-- Compile Dependencies -->
+    <dependencies>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>jboss-metadata-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+        </dependency>
+
+	<dependency>
+            <groupId>org.jboss.metadata</groupId>
+            <artifactId>jboss-metadata-common</artifactId>
+            <version>${project.version}</version>
+            <classifier>tests</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${javax.persistence.groupId}</groupId>
+            <artifactId>${javax.persistence.artifactId}</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+</project>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.aegisql</groupId>
+		<artifactId>conveyor</artifactId>
+		<version>1.5.3-SNAPSHOT</version>
+	</parent>
+	<groupId>com.aegisql.persistence</groupId>
+	<artifactId>conveyor-persistence</artifactId>
+	<version>1.5.3-SNAPSHOT</version>
+	<name>conveyor-persistence</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.aegisql</groupId>
+			<artifactId>conveyor-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aegisql.id_builder</groupId>
+			<artifactId>id_builder</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+				<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.12.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.10.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.8.0</version>
+		</dependency>
+		
+	</dependencies>
+	<packaging>pom</packaging>
+	<modules>
+    <module>conveyor-persistence-core</module>
+    <module>conveyor-persistence-jdbc</module>
+  </modules>
+</project>

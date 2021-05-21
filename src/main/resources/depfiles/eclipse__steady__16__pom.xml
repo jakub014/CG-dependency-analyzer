@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    This file is part of Eclipse Steady.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+    SPDX-License-Identifier: Apache-2.0
+    SPDX-FileCopyrightText: Copyright (c) 2018-2020 SAP SE or an SAP affiliate company and Eclipse Steady contributors
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.22.RELEASE</version>
+		<relativePath/>
+	</parent>
+
+	<groupId>org.eclipse.steady</groupId>
+	<artifactId>rest-lib-utils</artifactId>
+	<version>3.2.0-SNAPSHOT</version>
+	<packaging>${packaging.type}</packaging>
+
+	<name>REST service to analyze and compare libraries</name>
+	<description>
+		Provides RESTful APIs to discover, analyze and difference Maven artifacts, Java archives
+		as well as Java source and byte code.
+	</description>
+	
+	<!-- From url to distMgmt: Identical for root, rest-backend and rest-lib-utils -->
+	<url>https://eclipse.github.io/steady/</url>
+	<inceptionYear>2018</inceptionYear>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<organization>
+		<name>Eclipse Steady</name>
+		<url>https://projects.eclipse.org/projects/technology.steady</url>
+	</organization>
+	<developers>
+		<developer>
+			<id>plate</id>
+			<name>Henrik Plate</name>
+			<email>henrik.plate@sap.com</email>
+			<organization>SAP SE</organization>
+			<organizationUrl>http://www.sap.com</organizationUrl>
+		</developer>
+		<developer>
+			<id>ponta</id>
+			<name>Serena Elisa Ponta</name>
+			<email>serena.ponta@sap.com</email>
+			<organization>SAP SE</organization>
+			<organizationUrl>http://www.sap.com</organizationUrl>
+		</developer>
+		<developer>
+			<id>sabetta</id>
+			<name>Antonino Sabetta</name>
+			<email>antonino.sabetta@sap.com</email>
+			<organization>SAP SE</organization>
+			<organizationUrl>http://www.sap.com</organizationUrl>
+		</developer>
+		<developer>
+			<id>dangremont</id>
+			<name>Cedric Dangremont</name>
+			<email>cedric.dangremont@sap.com</email>
+			<organization>SAP SE</organization>
+			<organizationUrl>http://www.sap.com</organizationUrl>
+		</developer>
+		<developer>
+			<id>pezze</id>
+			<name>Alessandro Pezze</name>
+		</developer>
+		<developer>
+			<id>patil</id>
+			<name>Sumeet Patil</name>
+			<email>sumeet.patil@sap.com</email>
+			<organization>SAP SE</organization>
+			<organizationUrl>http://www.sap.com</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:git://github.com/eclipse/steady.git</connection>
+		<developerConnection>scm:git:ssh://github.com:sap/eclipse/steady.git</developerConnection>
+		<url>https://github.com/eclipse/steady/tree/master</url>
+	</scm>
+	<issueManagement>
+		<url>https://github.com/eclipse/steady/issues</url>
+		<system>GitHub</system>
+	</issueManagement>
+
+	<properties>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+		
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		
+		<!-- Skip install and deploy -->
+		<skip.install.deploy>true</skip.install.deploy>
+		<maven.install.skip>${skip.install.deploy}</maven.install.skip>
+		<maven.deploy.skip>${skip.install.deploy}</maven.deploy.skip>
+		
+		<!-- Fix vulnerable dependencies in spring-boot-dependencies -->
+		<commons-beanutils.version>1.9.4</commons-beanutils.version><!-- from 1.9.3 -->
+		<hibernate.version>5.4.18.Final</hibernate.version><!-- from 5.0.12.Final, which includes vulnerable dom4j 1.6.1  -->
+		<jackson.version>2.9.10.20210106</jackson.version><!-- from 2.8.11.20181123 -->
+		<logback.version>1.2.3</logback.version><!--  from 1.1.11 -->
+		<log4j2.version>2.13.3</log4j2.version><!-- from 2.7 -->
+		<snakeyaml.version>1.26</snakeyaml.version><!-- from 1.17 -->
+		<spring.version>4.3.29.RELEASE</spring.version><!-- from 4.3.25.RELEASE -->
+		<tomcat.version>8.5.63</tomcat.version><!-- from 8.5.43 -->
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.steady</groupId>
+			<artifactId>lang-java</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.steady</groupId>
+			<artifactId>lang-python</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.xml.bind</groupId>
+		    <artifactId>jaxb-api</artifactId>
+		    <version>2.3.1</version>
+		</dependency>
+
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
+		</dependency>
+
+		<!-- Actuator -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.13</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.7</version>
+		</dependency>
+
+		<!-- Swagger core dependencies -->
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>1.5.22</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-core</artifactId>
+			<version>1.5.22</version>
+		</dependency>
+
+		<!-- SpringFox dependencies -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>org.eclipse.steady</groupId>
+			<artifactId>shared</artifactId>
+			<classifier>tests</classifier> <!-- type=test-jar does not seem to work here, use classifier instead -->
+			<version>${project.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+		 	<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-mock</artifactId>
+			<version>2.0.8</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- Dependency finder and its dependencies -->
+		<dependency>
+			<groupId>com.jeantessier</groupId>
+			<artifactId>dependency-finder</artifactId>
+			<version>1.2.1-beta5</version>
+		</dependency>
+
+		<!-- The following are the dependencies of dependency-finder They have
+			been pasted here from the dependency-finder pom.xml.
+			log4j:log4j:1.2.17 is not needed, as another logging impl is present
+			in the context of Spring Boot. ant:ant has been replaced by org.apache.ant:ant. -->
+		<dependency>
+			<groupId>oro</groupId>
+			<artifactId>oro</artifactId>
+			<version>2.0.8</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>30.1.1-jre</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ant</groupId>
+			<artifactId>ant</artifactId>
+			<version>1.10.9</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>standalone</id>
+			<activation>
+				<property>
+			    	<name>spring.standalone</name>
+			    </property>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<packaging.type>jar</packaging.type>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+					<version>1.7.21</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>container</id>
+			<properties>
+				<packaging.type>war</packaging.type>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>commons-digester</groupId>
+					<artifactId>commons-digester</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</dependency>
+			</dependencies>
+			<build>
+				<plugins>
+					<!--
+						Maintain admin credentials for vulas-tomcat-server @ {host:port} in settings.xml
+						Build WAR
+						Run "mvn -Dmaven.tomcat.url={host:port}/manager/text tomcat7:deploy-only"
+						Point browser to {host:port}/apps
+					-->
+					<plugin>
+						<groupId>org.apache.tomcat.maven</groupId>
+						<artifactId>tomcat7-maven-plugin</artifactId>
+						<version>2.0</version>
+						<configuration>
+							<server>vulas-tomcat-server</server>
+							<path>/cia</path>
+							<warFile>${project.build.directory}/${project.build.finalName}.war</warFile>
+							<update>true</update>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- Activate when deploying to the Central Repo. Also see https://central.sonatype.org/pages/apache-maven.html#nexus-staging-maven-plugin-for-deployment-and-release -->
+		<profile>
+			<id>javadoc</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>2.2.1</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<!--  Run the following to fix all JavaDoc: "mvn -DdefaultAuthor=SAP -X -DfixTags=param,return,throws -P gradle clean compile org.apache.maven.plugins:maven-javadoc-plugin:3.1.1:fix"
+					The tag 'links' results in an exception in module lang-java.-->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>3.1.1</version>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- Activate when deploying to the Central Repo. Also see https://central.sonatype.org/pages/apache-maven.html#nexus-staging-maven-plugin-for-deployment-and-release -->
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.5</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<!-- Flattens the pom.xml files included in artifacts,
+			cf. https://www.mojohaus.org/flatten-maven-plugin/plugin-info.html --> 
+			<plugin>
+			    <groupId>org.codehaus.mojo</groupId>
+			    <artifactId>flatten-maven-plugin</artifactId>
+			    <version>1.2.2</version>
+			    <executions>
+			    	<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+						<configuration>
+							<flattenMode>clean</flattenMode>
+						</configuration>
+					</execution>
+					<execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		
+			<!-- Add support for multi release JARs (required by log4j2) --> 
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-jar-plugin</artifactId>
+			    <configuration>
+				<archive>
+				    <manifestEntries>
+						<Multi-Release>true</Multi-Release>
+				    </manifestEntries>
+				</archive>
+			    </configuration>
+			</plugin>
+
+			<!-- Include LICENSE and NOTICE in all JARs (ESF requirement) -->
+
+			<!-- Note: Symlink LICENSE to be created with WSL (not Cygwin) and copied with plugin version 2.7, cf.
+			https://issues.apache.org/jira/browse/MRESOURCES-237
+			https://stackoverflow.com/questions/40346225/maven-resources-plugin-symbolic-link-handling -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.outputDirectory}/META-INF</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.basedir}/..</directory>
+							        <includes>
+							          <include>LICENSE</include>
+							          <include>NOTICE</include>
+							        </includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>1.7.0</version>
+				<extensions>true</extensions>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			
+			<!-- Run with 'mvn -Dproject.name="Eclipse Steady" license:format -P gradle' -->
+			<plugin>
+			    <groupId>com.mycila</groupId>
+			    <artifactId>license-maven-plugin</artifactId>
+			    <version>3.0</version>
+			    <configuration>
+                    <header>copyright-license-header-template.txt</header>
+			        <properties>
+            			<owner>SAP SE or an SAP affiliate company and Eclipse Steady contributors</owner>
+                    </properties>
+			        <excludes>
+			            <exclude>LICENSES/**</exclude>
+			            <exclude>.reuse/**</exclude>
+			            <exclude>**/.pydevproject</exclude>
+			            <exclude>**/.dockerignore</exclude>
+			            <exclude>**/.gitattributes</exclude>
+			            <exclude>**/.xsaccess</exclude>
+			            <exclude>**/.xsapp</exclude>
+			            <exclude>**/requirements.txt</exclude>
+			            <exclude>**/NOTICE.txt</exclude>
+			            <exclude>**/LICENSE.txt</exclude>
+			            <exclude>**/README.md</exclude>
+			            <exclude>**/CONTRIBUTING.md</exclude>
+			            <exclude>**/CONTRIBUTORS.md</exclude>
+			            <exclude>**/findbugs-exclude.xml</exclude>
+			            <exclude>**/findbugs-include.xml</exclude>
+			            <exclude>**/src/test/resources/**</exclude>
+			            <exclude>**/log4j.properties</exclude>
+			            <exclude>**/*.g4</exclude>
+			            <exclude>**/*.tokens</exclude>
+			            <exclude>**/*.log</exclude>
+			            <exclude>**/.travis/**</exclude>
+			            <exclude>**/kubernetes/**</exclude>
+			            <exclude>**/docker/**</exclude>
+			            <exclude>**/docs/**</exclude>
+			            <exclude>**/.github/**</exclude>
+			            <exclude>**/gradle-wrapper.*</exclude>
+			            <exclude>**/.gradle/**</exclude>
+			            <exclude>**/.gradle_home/**</exclude>
+			            <exclude>**/*.gradle</exclude>
+			            <exclude>**/gradlew.bat</exclude>
+			            <exclude>**/gradlew</exclude>
+			            <exclude>**/src/it/settings.xml</exclude>
+			            <exclude>**/src/main/webapp/helpers/pqueue.js</exclude>
+			            <exclude>**/src/main/webapp/helpers/transpiled/pqueueES5.js</exclude>
+			            <exclude>**/src/main/resources/db/migration/*.sql</exclude>
+			        </excludes>
+			    </configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

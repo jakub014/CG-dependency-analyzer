@@ -1,0 +1,77 @@
+plugins {
+    id 'java'
+    id 'java-library'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation "net.java.dev.jna:jna-platform:5.5.0"
+    api "com.google.code.findbugs:jsr305:3.0.2"
+    api "org.apache.commons:commons-lang3:3.9"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier 'javadoc'
+    from javadoc.destinationDir
+}
+
+publishing {
+    publications {
+        core(MavenPublication) {
+            artifactId = "needle-core"
+            from components.java
+            artifact tasks.javadocJar
+            artifact tasks.sourcesJar
+            pom {
+                name = 'needle-core'
+                description = 'Feature-rich CPU affinity for the JVM - Core library'
+                url = 'https://github.com/sheinbergon/needle'
+                inceptionYear = '2020'
+
+                licenses {
+                    license {
+                        name = 'Apache License 2.0'
+                        url = 'https://github.com/sheinbergon/needle/blob/master/LICENSE'
+                        distribution = 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'sheinbergon'
+                        name = 'Idan Sheinberg'
+                        email = 'ishinberg0@gmail.com'
+                    }
+                }
+
+                scm {
+                    url = 'https://github.com/sheinbergon/needle'
+                    connection = 'scm:https://github.com/sheinbergon/needle.git'
+                    developerConnection = 'scm:git@github.com:sheinbergon/needle.git'
+                }
+            }
+
+            repositories {
+                mavenLocal()
+                maven {
+                    name "oss-sonatype-nexus"
+                    url nexus.url
+                    credentials {
+                        username = nexus.username
+                        password = nexus.password
+                    }
+                }
+            }
+        }
+    }
+}

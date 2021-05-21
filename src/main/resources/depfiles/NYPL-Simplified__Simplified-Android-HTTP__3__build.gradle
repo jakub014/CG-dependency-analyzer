@@ -1,0 +1,15 @@
+dependencies {
+  implementation project(":org.librarysimplified.http.vanilla")
+
+  implementation libraries.chucker
+  implementation libraries.kotlin_stdlib
+  implementation libraries.kotlin_reflect
+  implementation libraries.okhttp
+  implementation libraries.slf4j
+}
+
+android {
+  defaultConfig {
+    buildConfigField "String", "CHUCKER_VERSION_NAME", "\"${VERSION_NAME}\""
+  }
+}
