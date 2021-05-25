@@ -19,7 +19,7 @@ if __name__=='__main__':
             link = contents[1]
             vulnerable_dependency = contents[2][23:]
 
-            with open(f'results/{file_name[0:len(file_name)]}.md', 'a') as markdown_file:
+            with open(f'results/{file_name[0:len(file_name) - 4]}.md', 'a') as markdown_file:
                 markdown_file.write(README_TEMPLATE)
 
             for i in range(4, len(contents)-3, 3):
@@ -60,5 +60,5 @@ if __name__=='__main__':
                 vulnerable_method_return = vulnerability_uri.split('(')[1].split(')')[1]
 
                 markdown_output = f"|  {reconstructed_path}  |  {method_name}  |  {method_arguments if method_arguments else 'void'}  |  {vulnerable_method_name} | {vulnerable_reconstructed_path} |\n"
-                with open(f'results/{file_name[0:len(file_name)]}.md', 'a') as markdown_file:
+                with open(f'results/{file_name[0:len(file_name)-4]}.md', 'a') as markdown_file:
                     markdown_file.write(markdown_output)
