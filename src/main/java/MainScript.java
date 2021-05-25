@@ -41,7 +41,7 @@ public class MainScript {
         JSONParser parser = new JSONParser();
         JSONArray data = (JSONArray) parser.parse(new FileReader("src/main/resources/vulnerableProjectData.json"));
 
-        CSVReader reader = new CSVReader(new FileReader("src/main/resources/depfile-info.csv"));
+        CSVReader reader = new CSVReader(new FileReader("src/main/resources/new_depfile-info.csv"));
         String[] nextLine;
 
         List<ProjectInfo> projectInfoList = new ArrayList<>();
@@ -96,36 +96,33 @@ public class MainScript {
                     String packageName = projectInfo.getRepository();
                     String groupID = projectInfo.getUser();
 
-                    String pomName = groupID + "__" + packageName + "_pom.xml";
-                    String pomPath = "src/main/resources/poms/" + pomName;
+                    String pomPath = "src/main/resources/" + projectInfo.getDownloadedDepFilePath();
                     File pom = new File(pomPath);
 
                     if (!pom.exists()) {
                         try {
                             String result = "POM LOCALLY NOT FOUND FOR " + packageName + " ~ " + groupID + "\n";
                             output.append(result);
-                            output.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                         continue;
                     }
 
-                    if (projectInfo.isInnerProject()) {
+                    /*if (projectInfo.isInnerProject()) {
                         System.out.println("RELATIVE PROJECT DIR DEP PATH " + projectInfo.getRelativeDirectoryPath());
                         System.out.println("RELATIVE DEP FILE PATH IS " + projectInfo.getRelativeDepFilePath());
                         System.out.println("PROJECT USER IS " + projectInfo.getUser());
                         System.out.println("PROJECT REPO IS " + projectInfo.getRepository());
-                    }
+                    }*/
 
 
                     try {
-                        PomAnalyzer.getProjectDependencies(pomPath);
-                        analyzeRepository(projectInfo);
+                        List<Dependency> dependencyList = PomAnalyzer.getProjectDependencies(pomPath);
+                        analyzeRepository(projectInfo, dependencyList);
                         try {
                             String result = "SUCCESSFULLY ANALYZED " + packageName + " ~ " + groupID + "\n";
                             output.append(result);
-                            output.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -135,7 +132,6 @@ public class MainScript {
                         try {
                             String result = "NO VULNERABLE DEPENDENCIES FOUND FOR " + packageName + " ~ " + groupID + "\n";
                             output.append(result);
-                            output.close();
                         } catch (IOException e1) {
                             e1.printStackTrace();
                         }
@@ -143,7 +139,6 @@ public class MainScript {
                         try {
                             String result = "EXCEPTION " + e.getClass() + " THROWN FOR " + packageName + " ~ " + groupID + "\n";
                             output.append(result);
-                            output.close();
                         } catch (IOException e1) {
                             e1.printStackTrace();
                         }
@@ -154,39 +149,12 @@ public class MainScript {
         output.close();
     }
 
-    public static void analyzeRepository(ProjectInfo projectInfo) throws IOException, OPALException, MissingArtifactException, ParseException, RepositoryUtil.JarNotFoundException, VulnsNotFoundException {
+    public static void analyzeRepository(ProjectInfo projectInfo, List<Dependency> dependencyList) throws IOException, OPALException, MissingArtifactException, ParseException, RepositoryUtil.JarNotFoundException, VulnsNotFoundException {
         String link = projectInfo.getLink();
         String defaultBranch = projectInfo.getDefaultBranch();
         ProjectType projectType = projectInfo.getProjectType();
 
-        // Get dependencies from local project dependency file.
-        String depFilePath = projectInfo.getDownloadedDepFilePath();
-        List<Dependency> dependencyList;
-        if (projectType == ProjectType.MAVEN) {
-            System.out.println("GETTING pom.xml DEPENDENCIES FROM path " + depFilePath);
-            dependencyList = PomAnalyzer.getProjectDependencies(depFilePath);
-            System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM pom.xml file");
-        } else {
-            System.out.println("GETTING build.gradle DEPENDENCIES FROM base path " + depFilePath);
-            dependencyList = BuildGradleAnalyzer.getProjectDependencies(depFilePath);
-            System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM build.gradle file");
-        }
-
         for (Dependency d : dependencyList) System.out.println(d);
-
-        // If no exception thrown, vulnerabilities have been found in the dependency file of project. Continue.
-
-        // Get repository link, name, and default branch.
-
-        /*
-            String link = "https://github.com/" + projectInfo.getGroupId() + "/" + projectInfo.getRepositoryName();
-            String defaultBranch;
-            if (projectType == ProjectType.MAVEN) {
-                defaultBranch = projectInfo.getRelativeDepFilePath().split("pom.xml")[0];
-            } else {
-                defaultBranch = projectInfo.getRelativeDepFilePath().split("build.gradle")[0];
-            }
-        */
 
         RepositoryUtil.Pair pair = RepositoryUtil.getRepoAndLink(link);
         String repositoryName = pair.getLeft();

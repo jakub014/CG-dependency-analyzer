@@ -27,9 +27,8 @@ public class ProjectInfo {
     public String getRelativeDirectoryPath() {
         String[] splitPath = this.getRelativeDepFilePath().split("/");
         StringBuilder newRepositoryPathBuilder = new StringBuilder();
-        newRepositoryPathBuilder.append("/");
         for (int i = 0; i < splitPath.length-1; i++) {
-            newRepositoryPathBuilder.append(splitPath[i]);
+            newRepositoryPathBuilder.append(splitPath[i] + "/");
         }
         return newRepositoryPathBuilder.toString();
     }
