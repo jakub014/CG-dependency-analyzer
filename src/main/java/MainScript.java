@@ -20,6 +20,7 @@ import org.json.simple.parser.ParseException;
 
 public class MainScript {
 
+    private static final boolean filterEnabled = false;
     private static final Long TIMESTAMP_MAY_2020 = 1589454523000L;
     private static final Long TIMESTAMP_FEBRUARY_2021 = 1613308674000L;
 
@@ -44,22 +45,28 @@ public class MainScript {
         String[] nextLine;
 
         List<ProjectInfo> projectInfoList = new ArrayList<>();
+        String previousUserAndRepo = null;
+
+        // Perform analysis for each entry in depfile-info.csv
         while ((nextLine = reader.readNext()) != null) {
             String downloadedDepFilePath = nextLine[0];
             String currentUserAndRepo = nextLine[1];
             String relativeDepFilePath = nextLine[2];
             String projectType = nextLine[3];
 
+            // Add project info to list.
             for (Object o : data) {
                 JSONObject jsonProject = (JSONObject) o;
                 String repository = (String) jsonProject.get("repository");
                 String user = (String) jsonProject.get("user");
                 String userAndRepo = user + "/" + repository;
 
-                if (userAndRepo.equals(currentUserAndRepo)) {
-                    projectInfoList.add(new ProjectInfo(projectType, downloadedDepFilePath, relativeDepFilePath, jsonProject));
-                    break;
-                }
+                    if (userAndRepo.equals(currentUserAndRepo)) {
+                        boolean innerProject = currentUserAndRepo.equals(previousUserAndRepo);
+                        projectInfoList.add(new ProjectInfo(projectType, downloadedDepFilePath, relativeDepFilePath, jsonProject, innerProject));
+                        previousUserAndRepo = currentUserAndRepo;
+                        break;
+                    }
             }
         }
 
@@ -83,12 +90,26 @@ public class MainScript {
             counter++;
             if (counter > startFrom) {
                 Long lastUpdated = (Long) projectInfo.getLastUpdated();
-                if (TIMESTAMP_FEBRUARY_2021 < lastUpdated) {
+                if (!filterEnabled || TIMESTAMP_FEBRUARY_2021 < lastUpdated) {
                     System.out.println("START ANALYSIS ON PROJECT NO." + counter);
 
-                    ProjectType projectType = projectInfo.getProjectType();
                     String packageName = projectInfo.getRepository();
                     String groupID = projectInfo.getUser();
+
+                    String pomName = groupID + "__" + packageName + "_pom.xml";
+                    String pomPath = "src/main/resources/poms/" + pomName;
+                    File pom = new File(pomPath);
+
+                    if (!pom.exists()) {
+                        try {
+                            String result = "POM LOCALLY NOT FOUND FOR " + packageName + " ~ " + groupID + "\n";
+                            output.append(result);
+                            output.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        continue;
+                    }
 
                     if (projectInfo.isInnerProject()) {
                         System.out.println("RELATIVE PROJECT DIR DEP PATH " + projectInfo.getRelativeDirectoryPath());
@@ -97,20 +118,35 @@ public class MainScript {
                         System.out.println("PROJECT REPO IS " + projectInfo.getRepository());
                     }
 
-                    if (projectType == null) {
-                        String result = "POM/GRADLE FILE LOCALLY NOT FOUND FOR " + packageName + " ~ " + groupID + "\n";
-                        output.append(result);
-                        continue;
-                    }
 
                     try {
+                        PomAnalyzer.getProjectDependencies(pomPath);
                         analyzeRepository(projectInfo);
-                        output.append("SUCCESSFULLY ANALYZED " + packageName + " ~ " + groupID + "\n");
+                        try {
+                            String result = "SUCCESSFULLY ANALYZED " + packageName + " ~ " + groupID + "\n";
+                            output.append(result);
+                            output.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
                     } catch (VulnsNotFoundException e) {
                         System.out.println("NO VULNERABLE DEPENDENCIES FOUND");
-                        output.append("NO VULNERABLE DEPENDENCIES FOUND FOR " + packageName + " ~ " + groupID + "\n");
+                        try {
+                            String result = "NO VULNERABLE DEPENDENCIES FOUND FOR " + packageName + " ~ " + groupID + "\n";
+                            output.append(result);
+                            output.close();
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
                     } catch (IOException | OPALException | MissingArtifactException | ParseException | RepositoryUtil.JarNotFoundException e) {
-                        output.append("EXCEPTION " + e.getClass() + " THROWN FOR " + packageName + " ~ " + groupID + "\n");
+                        try {
+                            String result = "EXCEPTION " + e.getClass() + " THROWN FOR " + packageName + " ~ " + groupID + "\n";
+                            output.append(result);
+                            output.close();
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
                     }
                 }
             }
@@ -123,62 +159,57 @@ public class MainScript {
         String defaultBranch = projectInfo.getDefaultBranch();
         ProjectType projectType = projectInfo.getProjectType();
 
-        // Get repository name and standardize link.
+        // Get dependencies from local project dependency file.
+        String depFilePath = projectInfo.getDownloadedDepFilePath();
+        List<Dependency> dependencyList;
+        if (projectType == ProjectType.MAVEN) {
+            System.out.println("GETTING pom.xml DEPENDENCIES FROM path " + depFilePath);
+            dependencyList = PomAnalyzer.getProjectDependencies(depFilePath);
+            System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM pom.xml file");
+        } else {
+            System.out.println("GETTING build.gradle DEPENDENCIES FROM base path " + depFilePath);
+            dependencyList = BuildGradleAnalyzer.getProjectDependencies(depFilePath);
+            System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM build.gradle file");
+        }
+
+        for (Dependency d : dependencyList) System.out.println(d);
+
+        // If no exception thrown, vulnerabilities have been found in the dependency file of project. Continue.
+
+        // Get repository link, name, and default branch.
+
+        /*
+            String link = "https://github.com/" + projectInfo.getGroupId() + "/" + projectInfo.getRepositoryName();
+            String defaultBranch;
+            if (projectType == ProjectType.MAVEN) {
+                defaultBranch = projectInfo.getRelativeDepFilePath().split("pom.xml")[0];
+            } else {
+                defaultBranch = projectInfo.getRelativeDepFilePath().split("build.gradle")[0];
+            }
+        */
+
         RepositoryUtil.Pair pair = RepositoryUtil.getRepoAndLink(link);
         String repositoryName = pair.getLeft();
         link = pair.getRight();
 
-            // Download repository from GitHub.
-            System.out.println("DOWNLOADING REPOSITORY FROM LINK " + link);
-            String repositoryPath = RepositoryUtil.downloadRepository(link, repositoryName, defaultBranch);
-            System.out.println("SUCCESSFULLY DOWNLOADED REPOSITORY " + repositoryPath);
+        // Download repository from GitHub.
+        System.out.println("DOWNLOADING REPOSITORY FROM LINK " + link);
+        String repositoryPath = RepositoryUtil.downloadRepository(link, repositoryName, defaultBranch);
+        System.out.println("SUCCESSFULLY DOWNLOADED REPOSITORY " + repositoryPath);
 
-            // Get dependencies from project dependency file.
-            List<Dependency> dependencyList;
-            if (projectType == ProjectType.MAVEN) {
-                System.out.println("GETTING DEPENDENCIES FROM pom.xml file");
-                String pomXMLPath;
-                if (!projectInfo.isInnerProject()) {
-                    pomXMLPath = repositoryPath + "/pom.xml";
-                } else {
-                   pomXMLPath = repositoryPath + projectInfo.getRelativeDepFilePath();
-                }
-                System.out.println("GETTING pom.xml DEPENDENCIES FROM path " + pomXMLPath);
-                dependencyList = PomAnalyzer.getProjectDependencies(pomXMLPath);
-                System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM pom.xml file");
-            } else {
-                System.out.println("GETTING DEPENDENCIES FROM build.gradle file");
-                if (projectInfo.isInnerProject()) {
-                    String newRepositoryPath = projectInfo.getRelativeDirectoryPath();
-                    if (!newRepositoryPath.equals("/")) {
-                        System.out.print("NEW REPOSITORY PATH IS " + newRepositoryPath);
-                        repositoryPath = newRepositoryPath;
-                    }
-                }
-                System.out.println("GETTING build.gradle DEPENDENCIES FROM base path " + repositoryPath);
-                dependencyList = BuildGradleAnalyzer.getProjectDependencies(repositoryPath);
-                System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM build.gradle file");
-            }
+        // Get the jar of the downloaded repository.
+        System.out.println("GENERATING JAR FILE");
+        String jarPath = RepositoryUtil.getRepositoryJAR(projectInfo);
+        System.out.println("FINAL JAR PATH IS " + jarPath);
+        System.out.println("SUCCESSFULLY GENERATED JAR FILE WITH JAR PATH " + jarPath);
 
-            for (Dependency d : dependencyList) System.out.println(d);
+        List<MavenCoordinate> coordList = new ArrayList<>();
+        for (Dependency dep : dependencyList) {
+            MavenCoordinate depcoord = new MavenCoordinate(dep.groupId, dep.artifactId, dep.version, "jar");
+            coordList.add(depcoord);
+        }
 
-            // If no exception thrown, vulnerabilities have been found in the dependency file of project. Continue.
-            // Get the jar of the downloaded repository.
-            System.out.println("GENERATING JAR FILE");
-            String jarPath = RepositoryUtil.getRepositoryJAR(projectInfo);
-            System.out.println("FINAL JAR PATH IS " + jarPath);
-            System.out.println("SUCCESSFULLY GENERATED JAR FILE WITH JAR PATH " + jarPath);
-
-            List<MavenCoordinate> coordList = new ArrayList<>();
-            for (Dependency dep : dependencyList) {
-                MavenCoordinate depcoord = new MavenCoordinate(dep.groupId, dep.artifactId, dep.version, "jar");
-                coordList.add(depcoord);
-            }
-
-            MavenCoordinate[] toBeFilled = new MavenCoordinate[coordList.size()];
-            VulnerabilityTracer.traceProjectVulnerabilities(new File(jarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch);
-//        finally {
-//            FileUtils.deleteDirectory(new File(repositoryName));
-//        }
+        MavenCoordinate[] toBeFilled = new MavenCoordinate[coordList.size()];
+        VulnerabilityTracer.traceProjectVulnerabilities(new File(jarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch);
     }
 }

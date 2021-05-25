@@ -8,7 +8,7 @@ public class ProjectInfo {
     private JSONObject projectJSONData;
     private boolean innerProject;
 
-    public ProjectInfo(String projectType, String downloadedDepFilePath, String relativeDepFilePath, JSONObject projectJSONData) {
+    public ProjectInfo(String projectType, String downloadedDepFilePath, String relativeDepFilePath, JSONObject projectJSONData, boolean innerProject) {
         if (projectType.equals("maven")) {
             this.projectType = ProjectType.MAVEN;
         } else if (projectType.equals("gradle")) {
@@ -17,7 +17,7 @@ public class ProjectInfo {
         this.downloadedDepFilePath = downloadedDepFilePath;
         this.relativeDepFilePath = relativeDepFilePath;
         this.projectJSONData = projectJSONData;
-        this.innerProject = true;
+        this.innerProject = innerProject;
     }
 
     public Long getLastUpdated() {
@@ -62,10 +62,6 @@ public class ProjectInfo {
         return downloadedDepFilePath;
     }
 
-    public void setDownloadedDepFilePath(String downloadedDepFilePath) {
-        this.downloadedDepFilePath = downloadedDepFilePath;
-    }
-
     public String getRelativeDepFilePath() {
         return relativeDepFilePath;
     }
@@ -90,11 +86,6 @@ public class ProjectInfo {
         this.innerProject = innerProject;
     }
 
-    public ProjectInfo(ProjectType projectType, JSONObject projectJSONData) {
-        this.projectType = projectType;
-        this.projectJSONData = projectJSONData;
-        this.innerProject = false;
-    }
 
     @Override
     public String toString() {
