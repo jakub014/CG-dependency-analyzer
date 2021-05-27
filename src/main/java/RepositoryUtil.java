@@ -12,7 +12,7 @@ import java.util.*;
 public class RepositoryUtil {
 
     // !!! IMPORTANT: Set MAVEN_HOME to the PATH on your computer
-    final static String MAVEN_HOME = "/usr/share/maven";
+    final static String MAVEN_HOME = "C:\\Program Files\\apache-maven-3.8.1";
 
     public static class JarNotFoundException extends Exception {
         public JarNotFoundException(String message) {
@@ -142,7 +142,7 @@ public class RepositoryUtil {
                 }
                 buildMavenProject(pomXMLPath);
             } else {
-                buildGradleProject(repositoryName, defaultBranch, projectInfo.getRelativeDirectoryPath());
+                buildGradleProject(repositoryName, defaultBranch, projectInfo.getRelativeDirectoryPath("/"));
             }
         }
         // No known dependency file in project.
@@ -156,7 +156,7 @@ public class RepositoryUtil {
         if (projectType != null) {
             String repositoryTargetPath = repositoryName + "/" + repositoryName + "-" + defaultBranch;
             if (projectInfo.isInnerProject()) {
-                String relativeDirPath = projectInfo.getRelativeDirectoryPath();
+                String relativeDirPath = projectInfo.getRelativeDirectoryPath("/");
                 if (!relativeDirPath.equals("/")) repositoryTargetPath += relativeDirPath;
             }
             if (projectType == ProjectType.MAVEN) {

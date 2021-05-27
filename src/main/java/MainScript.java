@@ -41,7 +41,7 @@ public class MainScript {
         JSONParser parser = new JSONParser();
         JSONArray data = (JSONArray) parser.parse(new FileReader("src/main/resources/vulnerableProjectData.json"));
 
-        CSVReader reader = new CSVReader(new FileReader("src/main/resources/new_depfile-info.csv"));
+        CSVReader reader = new CSVReader(new FileReader("src/main/resources/depfile-info.csv"));
         String[] nextLine;
 
         List<ProjectInfo> projectInfoList = new ArrayList<>();
@@ -62,8 +62,8 @@ public class MainScript {
                 String userAndRepo = user + "/" + repository;
 
                     if (userAndRepo.equals(currentUserAndRepo)) {
-                        boolean innerProject = currentUserAndRepo.equals(previousUserAndRepo);
-                        projectInfoList.add(new ProjectInfo(projectType, downloadedDepFilePath, relativeDepFilePath, jsonProject, innerProject));
+                        //boolean innerProject = currentUserAndRepo.equals(previousUserAndRepo);
+                        projectInfoList.add(new ProjectInfo(projectType, downloadedDepFilePath, relativeDepFilePath, jsonProject, true));
                         previousUserAndRepo = currentUserAndRepo;
                         break;
                     }
@@ -90,7 +90,7 @@ public class MainScript {
             counter++;
             if (counter > startFrom) {
                 Long lastUpdated = (Long) projectInfo.getLastUpdated();
-                if (!filterEnabled || TIMESTAMP_FEBRUARY_2021 < lastUpdated) {
+                if (!filterEnabled || TIMESTAMP_FEBRUARY_2021 > lastUpdated) {
                     System.out.println("START ANALYSIS ON PROJECT NO." + counter);
 
                     String packageName = projectInfo.getRepository();
@@ -154,16 +154,21 @@ public class MainScript {
         String defaultBranch = projectInfo.getDefaultBranch();
         ProjectType projectType = projectInfo.getProjectType();
 
-        for (Dependency d : dependencyList) System.out.println(d);
+//        for (Dependency d : dependencyList) System.out.println(d);
 
         RepositoryUtil.Pair pair = RepositoryUtil.getRepoAndLink(link);
         String repositoryName = pair.getLeft();
         link = pair.getRight();
 
         // Download repository from GitHub.
-        System.out.println("DOWNLOADING REPOSITORY FROM LINK " + link);
-        String repositoryPath = RepositoryUtil.downloadRepository(link, repositoryName, defaultBranch);
-        System.out.println("SUCCESSFULLY DOWNLOADED REPOSITORY " + repositoryPath);
+        String repositoryPath = repositoryName + "/" + repositoryName + "-" + defaultBranch;
+        if (!new File(repositoryPath).exists()) {
+            System.out.println("DOWNLOADING REPOSITORY FROM LINK " + link);
+            repositoryPath = RepositoryUtil.downloadRepository(link, repositoryName, defaultBranch);
+            System.out.println("SUCCESSFULLY DOWNLOADED REPOSITORY " + repositoryPath);
+        } else {
+            System.out.println("REPOSITORY ALREADY DOWNLOADED");
+        }
 
         // Get the jar of the downloaded repository.
         System.out.println("GENERATING JAR FILE");
@@ -178,6 +183,6 @@ public class MainScript {
         }
 
         MavenCoordinate[] toBeFilled = new MavenCoordinate[coordList.size()];
-        VulnerabilityTracer.traceProjectVulnerabilities(new File(jarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch);
+        VulnerabilityTracer.traceProjectVulnerabilities(new File(jarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
     }
 }

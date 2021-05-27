@@ -24,11 +24,11 @@ public class ProjectInfo {
         return (Long) this.projectJSONData.get("lastUpdated");
     }
 
-    public String getRelativeDirectoryPath() {
+    public String getRelativeDirectoryPath(String delimiter) {
         String[] splitPath = this.getRelativeDepFilePath().split("/");
         StringBuilder newRepositoryPathBuilder = new StringBuilder();
         for (int i = 0; i < splitPath.length-1; i++) {
-            newRepositoryPathBuilder.append(splitPath[i] + "/");
+            newRepositoryPathBuilder.append(splitPath[i] + delimiter);
         }
         return newRepositoryPathBuilder.toString();
     }
