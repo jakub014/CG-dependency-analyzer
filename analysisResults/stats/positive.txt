@@ -10,3 +10,9 @@ anterosiot__ ~ com.fasterxml.jackson.core:jackson-databind
 anterossmsintegration__ ~ com.fasterxml.jackson.core:jackson-databind
 apigee-config-maven-plugin__ ~ org.apache.httpcomponents:httpclient
 aquality-selenium-java__ ~ com.fasterxml.jackson.core:jackson-databind
+cx-config-provider__ ~ com.fasterxml.jackson.core:jackson-databind
+contentful.java__ ~ com.squareup.retrofit2:retrofit
+gtfs-lib__ ~ org.postgresql:postgresql
+cronitor-java__ ~ org.apache.httpcomponents:httpclient
+duo_client_java__duo-client__ ~ com.squareup.okhttp:okhttp
+curl-logger__ ~ com.fasterxml.jackson.core:jackson-databind
