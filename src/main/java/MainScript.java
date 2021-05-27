@@ -78,7 +78,7 @@ public class MainScript {
 //            projectInfoList.add(new ProjectInfo(projectType, jsonProject));
 //        }
 
-        final int startFrom = 1345;
+        final int startFrom = 4204;
         int counter = 0;
 
         String filePath = "analysisResults/analysed-repos-gradle.txt";
@@ -161,7 +161,7 @@ public class MainScript {
         link = pair.getRight();
 
         // Download repository from GitHub.
-        String repositoryPath = repositoryName + "/" + repositoryName + "-" + defaultBranch;
+        String repositoryPath = "downloaded-repos/" + repositoryName + "/" + repositoryName + "-" + defaultBranch;
         if (!new File(repositoryPath).exists()) {
             System.out.println("DOWNLOADING REPOSITORY FROM LINK " + link);
             repositoryPath = RepositoryUtil.downloadRepository(link, repositoryName, defaultBranch);

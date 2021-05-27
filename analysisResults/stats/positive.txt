@@ -8,3 +8,5 @@ java-algorand-sdk__ ~ com.fasterxml.jackson.core:jackson-databind
 alibabacloud-ververica-common__ ~ com.fasterxml.jackson.core:jackson-databind
 anterosiot__ ~ com.fasterxml.jackson.core:jackson-databind
 anterossmsintegration__ ~ com.fasterxml.jackson.core:jackson-databind
+apigee-config-maven-plugin__ ~ org.apache.httpcomponents:httpclient
+aquality-selenium-java__ ~ com.fasterxml.jackson.core:jackson-databind

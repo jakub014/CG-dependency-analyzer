@@ -1,0 +1,16 @@
+apigee-config-maven-plugin
+https://github.com/apigee/apigee-config-maven-plugin
+Vulnerable dependency: org.apache.httpcomponents:httpclient
+
+___fasten://mvn!apigee-config-maven-plugin$master/com.apigee.edge.config.mavenplugin/ReportsMojo.getReportMap(%2Fcom.apigee.edge.config.utils%2FServerProfile)%2Fjava.util%2FMap
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+
+___fasten://mvn!apigee-config-maven-plugin$master/com.apigee.edge.config.mavenplugin/SpecsMojo.getAPISpecs(%2Fcom.apigee.edge.config.utils%2FServerProfile)SpecsMojo$Specs
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+
+___fasten://mvn!apigee-config-maven-plugin$master/com.apigee.edge.config.mavenplugin/ExtensionsMojo.getExtension(%2Fcom.apigee.edge.config.utils%2FServerProfile)%2Fjava.util%2FList
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+
+___fasten://mvn!apigee-config-maven-plugin$master/com.apigee.edge.config.mavenplugin/ExtensionsMojo.getExtensionID(%2Fcom.apigee.edge.config.utils%2FServerProfile,%2Fjava.lang%2FString)%2Fjava.lang%2FString
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+

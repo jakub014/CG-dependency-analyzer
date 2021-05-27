@@ -60,7 +60,7 @@ public class RepositoryUtil {
      */
     public static String downloadRepository(String link, String repositoryName, String defaultBranch) {
         // Download zip file.
-        String zipPath = repositoryName + ".zip";
+        String zipPath = "downloaded-repos/" + repositoryName + ".zip";
         try {
            FileUtils.copyURLToFile(new URL(link + "/archive/refs/heads/" + defaultBranch + ".zip"), new File(zipPath));
         } catch (IOException e) {
@@ -70,14 +70,14 @@ public class RepositoryUtil {
         // Extract zip file
         try {
             ZipFile zipFile = new ZipFile(zipPath);
-            zipFile.extractAll(repositoryName);
+            zipFile.extractAll("downloaded-repos/" + repositoryName);
         } catch (ZipException e) {
             e.printStackTrace();
         }
 
         // Delete downloaded zip file.
         new File(zipPath).delete();
-        return repositoryName + "/" + repositoryName + "-" + defaultBranch;
+        return "downloaded-repos/" + repositoryName + "/" + repositoryName + "-" + defaultBranch;
     }
 
     private static boolean buildMavenProject(String pomXMLPath) {
@@ -134,7 +134,7 @@ public class RepositoryUtil {
         // Check whether pom.xml file exists in project
         if (projectType != null) {
             if (projectType == ProjectType.MAVEN) {
-                String pomXMLPath = repositoryName + "/" + repositoryName + "-" + defaultBranch;
+                String pomXMLPath = "downloaded-repos/" + repositoryName + "/" + repositoryName + "-" + defaultBranch;
                 if (projectInfo.isInnerProject()) {
                     pomXMLPath += projectInfo.getRelativeDepFilePath();
                 } else {
@@ -154,7 +154,7 @@ public class RepositoryUtil {
         ProjectType projectType = projectInfo.getProjectType();
 
         if (projectType != null) {
-            String repositoryTargetPath = repositoryName + "/" + repositoryName + "-" + defaultBranch;
+            String repositoryTargetPath = "downloaded-repos/" + repositoryName + "/" + repositoryName + "-" + defaultBranch;
             if (projectInfo.isInnerProject()) {
                 String relativeDirPath = projectInfo.getRelativeDirectoryPath("/");
                 if (!relativeDirPath.equals("/")) repositoryTargetPath += relativeDirPath;
