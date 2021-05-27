@@ -78,7 +78,7 @@ public class MainScript {
 //            projectInfoList.add(new ProjectInfo(projectType, jsonProject));
 //        }
 
-        final int startFrom = 0;
+        final int startFrom = 1345;
         int counter = 0;
 
         String filePath = "analysisResults/analysed-repos-gradle.txt";
