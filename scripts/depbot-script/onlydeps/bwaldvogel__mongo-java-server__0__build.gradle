@@ -1,0 +1,9 @@
+org.slf4j:slf4j-api$latest.release
+org.junit.jupiter:junit-jupiter-api$latest.release
+org.junit.jupiter:junit-jupiter-params$latest.release
+org.junit.jupiter:junit-jupiter-engine$latest.release
+org.assertj:assertj-core$latest.release
+ch.qos.logback:logback-classic$latest.release
+org.slf4j:jcl-over-slf4j$latest.release
+com.github.johnrengelman.shadow$latest.release
+org.sonarqube$latest.release

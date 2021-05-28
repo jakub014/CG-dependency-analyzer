@@ -1,0 +1,6 @@
+org.jetbrains:annotations$20.0.0
+junit:junit$4.13.1
+org.hamcrest:hamcrest-library$2.2
+org.mockito:mockito-core$3.6.28
+com.nhaarman.mockitokotlin2:mockito-kotlin$2.2.0
+com.nhaarman:expect.kt$1.0.1

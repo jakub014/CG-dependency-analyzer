@@ -1,0 +1,5 @@
+org.webjars:bootstrap$3.3.7-1
+org.webjars:jquery$3.1.1
+org.webjars.npm:vue$2.5.17
+org.webjars.npm:vue-resource$1.5.1
+org.webjars.npm:element-ui$2.4.8

@@ -1,0 +1,7 @@
+commons-io:commons-io$2.8.0
+net.sf.saxon:Saxon-HE$9.9.1-7
+org.apache.ant:ant$1.10.9
+org.slf4j:slf4j-api$1.7.25
+junit:junit$4.12
+org.xmlunit:xmlunit-core$2.3.0
+nu.validator.htmlparser:htmlparser$1.4

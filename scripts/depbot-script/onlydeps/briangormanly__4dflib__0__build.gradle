@@ -1,0 +1,7 @@
+mysql:mysql-connector-java$5.1.44
+org.mariadb.jdbc:mariadb-java-client$2.7.0
+org.postgresql:postgresql$9.4-1200-jdbc41
+org.hsqldb:hsqldb$2.3.4
+com.zaxxer:HikariCP$2.5.1
+org.slf4j:slf4j-api$1.7.12
+junit:junit$4.8.2

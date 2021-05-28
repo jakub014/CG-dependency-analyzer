@@ -1,0 +1,11 @@
+org.ajoberstar.grgit:grgit-core$3.1.1
+com.diffplug.spotless$5.8.2
+net.ltgt.errorprone$1.2.1
+org.springframework.boot$2.4.3
+io.spring.dependency-management$1.0.6.RELEASE
+com.github.hierynomus.license$0.15.0
+org.gradle.crypto.checksum$1.1.0
+org.jetbrains.kotlin.jvm$1.4.20
+org.jetbrains.kotlin.plugin.spring$1.4.20
+org.jetbrains.dokka$0.10.1
+com.jfrog.bintray$1.8.3

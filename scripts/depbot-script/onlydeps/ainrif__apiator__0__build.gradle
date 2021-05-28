@@ -1,0 +1,9 @@
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.22.0
+org.codehaus.groovy:groovy$3.0.6
+org.slf4j:jcl-over-slf4j$1.7.30
+org.slf4j:log4j-over-slf4j$1.7.30
+org.spockframework:spock-core$2.0-M3-groovy-3.0
+cglib:cglib$3.3.0
+org.apache.commons:commons-lang3$3.11
+ch.qos.logback:logback-classic$1.2.3
+org.codehaus.groovy:groovy-json$3.0.6

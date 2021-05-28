@@ -1,0 +1,6 @@
+net.sourceforge.csvjdbc:csvjdbc$1.0.35
+com.fasterxml.jackson.core:jackson-core$2.9.4
+org.bradfordmiller:sqlutils$0.0.4
+org.junit.jupiter:junit-jupiter-engine$5.5.1
+jvm$1.4.20
+org.jetbrains.dokka$1.4.20

@@ -1,0 +1,6 @@
+com.fasterxml.jackson:jackson-bom$2.9.10.20191020
+org.assertj:assertj-core$3.16.1
+org.junit.jupiter:junit-jupiter-api$5.3.2
+org.junit.jupiter:junit-jupiter-engine$5.3.2
+nebula.release$13.0.0
+org.jetbrains.kotlin.jvm$1.4.31

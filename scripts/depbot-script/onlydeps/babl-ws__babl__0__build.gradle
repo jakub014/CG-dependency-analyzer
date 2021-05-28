@@ -1,0 +1,16 @@
+org.agrona:agrona$1.9.0
+io.aeron:aeron-driver$1.32.0
+uk.co.real-logic:sbe-all$1.21.0
+org.openjdk.jmh:jmh-generator-annprocess$1.27
+org.openjdk.jmh:jmh-core$1.28
+org.junit.jupiter:junit-jupiter-api$5.7.1
+org.mockito:mockito-core$3.9.0
+com.google.truth:truth$1.1.2
+io.vertx:vertx-core$3.9.4
+io.vertx:vertx-web$3.9.4
+org.hdrhistogram:HdrHistogram$2.1.12
+org.awaitility:awaitility$4.0.3
+com.caucho:resin$4.0.65
+org.junit.jupiter:junit-jupiter-engine$5.7.1
+com.github.johnrengelman.shadow$6.1.0
+net.minecrell.licenser$0.4.1

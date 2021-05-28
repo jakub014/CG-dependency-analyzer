@@ -1,0 +1,7 @@
+org.projectlombok:lombok$1.18.6
+org.slf4j:slf4j-log4j12$1.7.25
+org.assertj:assertj-core$3.11.1
+net.researchgate.release$2.8.0
+com.bakdata.sonar$1.1.6
+com.bakdata.sonatype$1.1.6
+org.hildan.github.changelog$0.8.0

@@ -1,0 +1,15 @@
+org.apache.commons:commons-compress$1.20
+org.apache.commons:commons-exec$1.3
+org.codehaus.plexus:plexus-utils$3.3.0
+org.jline:jline-reader$3.19.0
+org.junit:junit-bom$5.8.0-M1
+org.junit.platform:junit-platform-console$1.8.0-M1
+io.strikt:strikt-core$0.30.1
+io.strikt:strikt-jvm$0.30.1
+org.jetbrains.kotlin:kotlin-reflect$1.5.0
+multiplatform$1.5.0
+org.jetbrains.dokka$1.4.30
+com.github.ben-manes.versions$0.38.0
+se.patrikerdes.use-latest-versions$0.2.16
+org.ajoberstar.grgit$4.1.0
+nebula.release$15.3.1

@@ -1,0 +1,3 @@
+org.slf4j:slf4j-api$1.7.12
+pl.allegro.tech:embedded-elasticsearch$2.10.0
+org.elasticsearch.client:transport$6.8.12

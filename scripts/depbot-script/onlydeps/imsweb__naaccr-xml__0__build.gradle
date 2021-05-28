@@ -1,0 +1,9 @@
+com.thoughtworks.xstream:xstream$1.4.16
+commons-io:commons-io$2.7
+org.apache.commons:commons-lang3$3.11
+junit:junit$4.13
+com.imsweb:data-generator$1.19
+com.opencsv:opencsv$5.4
+com.github.spotbugs$4.5.1
+com.bmuschko.nexus$2.3.1
+io.codearte.nexus-staging$0.21.2

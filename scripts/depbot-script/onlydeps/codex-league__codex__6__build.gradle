@@ -1,0 +1,9 @@
+org.webjars:bootstrap$3.3.7-1
+org.webjars:jquery$3.1.1
+org.webjars.npm:vue$2.5.17
+org.webjars.npm:vue-resource$1.5.1
+org.webjars.npm:element-ui$2.4.8
+mysql:mysql-connector-java$5.1.21
+com.alibaba:druid-spring-boot-starter$1.1.10
+com.baomidou:mybatis-plus$3.3.0
+com.baomidou:mybatis-plus-boot-starter$3.3.0

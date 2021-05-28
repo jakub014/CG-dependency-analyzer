@@ -1,0 +1,9 @@
+org.jetbrains.kotlin:kotlin-gradle-plugin$1.5.0
+org.jetbrains.dokka:dokka-gradle-plugin$1.4.32
+junit:junit$4.13.2
+joda-time:joda-time$2.10.10
+org.threeten:threetenbp$1.5.1
+org.apache.logging.log4j:log4j-slf4j-impl$2.14.1
+org.apache.logging.log4j:log4j-core$2.14.1
+org.jetbrains.kotlin.jvm$1.5.0
+org.jetbrains.dokka$1.4.32

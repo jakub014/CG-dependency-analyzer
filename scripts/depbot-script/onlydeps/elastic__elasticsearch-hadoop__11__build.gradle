@@ -1,0 +1,6 @@
+com.fasterxml.jackson.module:jackson-module-scala_2.12$2.6.7.1
+com.fasterxml.jackson.core:jackson-annotations$2.6.7
+org.json4s:json4s-jackson_2.12$3.2.11
+org.slf4j:slf4j-api$1.7.6
+commons-httpclient:commons-httpclient$3.0.1
+commons-codec:commons-codec$1.4

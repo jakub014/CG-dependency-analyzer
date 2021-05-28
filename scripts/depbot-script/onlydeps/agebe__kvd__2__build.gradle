@@ -1,0 +1,7 @@
+org.apache.commons:commons-lang3$3.12.0
+com.google.guava:guava$30.1.1-jre
+com.beust:jcommander$1.80
+ch.qos.logback:logback-classic$1.2.3
+org.jgrapht:jgrapht-core$1.5.1
+com.google.code.gson:gson$2.8.6
+com.palantir.docker$0.26.0

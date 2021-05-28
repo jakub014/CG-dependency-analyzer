@@ -1,0 +1,7 @@
+javax.servlet:javax.servlet-api$3.1.0
+com.github.node-gradle.node$2.2.4
+com.palantir.consistent-versions$1.27.0
+com.diffplug.spotless$5.8.2
+com.github.ben-manes.versions$0.36.0
+de.thetaphi.forbiddenapis$3.1
+com.carrotsearch.gradle.randomizedtesting$0.0.2

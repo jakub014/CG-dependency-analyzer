@@ -1,0 +1,4 @@
+org.apache.velocity:velocity-engine-core$2.0
+org.apache.commons:commons-lang3$3.5
+commons-configuration:commons-configuration$1.10
+commons-io:commons-io$2.5

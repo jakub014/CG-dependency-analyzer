@@ -1,0 +1,16 @@
+com.sourcemuse.gradle.plugin:gradle-mongo-plugin$0.13.0
+com.jfrog.bintray.gradle:gradle-bintray-plugin$1.8.4
+com.github.jengelman.gradle.plugins:shadow$2.0.4
+goate:gradle8$0.3.201705310130
+org.scala-lang:scala-compiler$2.11.8
+org.scala-lang:scala-library$2.11.8
+org.scala-lang:scala-reflect$2.11.8
+org.scala-lang:scala-actors$2.11.8
+org.scala-lang:scala-xml$2.11.0-M4
+com.google.inject:guice$4.0
+ch.qos.logback:logback-classic$1.1.7
+ch.qos.logback:logback-access$1.1.7
+ch.qos.logback:logback-core$1.1.7
+org.codehaus.janino:janino$2.7.8
+org.atteo.classindex:classindex$3.3
+xml-apis:xml-apis$1.4.01

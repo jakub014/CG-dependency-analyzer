@@ -1,0 +1,7 @@
+cz.jirutka.rsql:rsql-parser$2.1.0
+joda-time:joda-time$2.10.6
+org.hibernate:hibernate-core$5.4.21.Final
+org.apache.commons:commons-lang3$3.11
+org.springframework.data:spring-data-jpa$2.2.9.RELEASE
+org.slf4j:slf4j-ext$1.7.30
+jvm$1.4.0

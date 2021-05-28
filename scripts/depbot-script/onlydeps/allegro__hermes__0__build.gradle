@@ -1,0 +1,11 @@
+org.jboss.logging:jboss-logging$3.2.1.Final
+org.slf4j:slf4j-api$1.7.12
+org.apache.commons:commons-lang3$3.9
+junit:junit$4.11
+com.tngtech.java:junit-dataprovider$1.10.0
+pl.pragmatists:JUnitParams$1.0.2
+org.mockito:mockito-all$1.9.5
+org.assertj:assertj-core$3.1.0
+com.jayway.awaitility:awaitility$1.6.1
+com.googlecode.catch-exception:catch-exception$1.2.0
+pl.allegro.tech.build.axion-release$1.7.2

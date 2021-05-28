@@ -1,0 +1,5 @@
+org.apache.commons:commons-lang3$3.10
+org.xmlunit:xmlunit-core$2.6.2
+org.assertj:assertj-core$3.11.1
+org.xmlunit:xmlunit-assertj$2.6.2
+org.hamcrest:hamcrest-library$2.2

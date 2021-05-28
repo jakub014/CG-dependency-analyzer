@@ -1,0 +1,9 @@
+dnsjava:dnsjava$2.1.9
+xpp3:xpp3_min$1.1.4c
+org.brotli:dec$0.1.2
+org.slf4j:slf4j-api$1.7.30
+com.sun.mail:all$1.5.0-b01
+com.sun.activation:javax.activation$1.2.0
+xml-apis:xml-apis$1.4.01
+net.sf.jtidy:jtidy$r938
+org.checkerframework:checker-qual$2.10.0

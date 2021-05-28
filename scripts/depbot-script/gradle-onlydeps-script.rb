@@ -80,6 +80,8 @@ repos_file.each_line do |line|
 				file.name = "build.gradle.kts"
 			elsif file.name.include? "build.gradle"
 				file.name = "build.gradle.kts"
+			else
+				next
 			end
 			
 			parser = Dependabot::FileParsers.for_package_manager(package_manager).new(
@@ -95,6 +97,7 @@ repos_file.each_line do |line|
 			end
 			
 			if dependencies.any?
+				
 				out_path = "onlydeps/#{group_id}__#{package_name}__#{filecount}__build.gradle"
 				out = File.open(out_path, "a")
 				puts "\n#{out_path}"

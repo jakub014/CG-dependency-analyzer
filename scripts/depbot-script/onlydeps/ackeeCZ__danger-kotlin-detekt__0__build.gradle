@@ -1,0 +1,8 @@
+org.jetbrains.kotlin:kotlin-stdlib-jdk8$1.4.30
+systems.danger:danger-kotlin-sdk$1.2
+com.fasterxml.jackson.dataformat:jackson-dataformat-xml$2.12.2
+com.google.truth:truth$1.0.1
+org.jetbrains.kotlin.jvm$1.4.30
+com.github.johnrengelman.shadow$6.0.0
+io.codearte.nexus-staging$0.30.0
+org.jetbrains.dokka$1.4.30

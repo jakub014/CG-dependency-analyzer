@@ -1,0 +1,14 @@
+net.sf.proguard:proguard-gradle$6.2.2
+com.github.Gleethos:neureka$v
+org.codehaus.groovy:groovy$3.0.7
+org.jocl:jocl$2.0.4
+org.jetbrains:annotations$16.0.2
+org.projectlombok:lombok$1.18.18
+com.athaydes:spock-reports$2.0-RC2
+org.slf4j:slf4j-api$1.7.30
+org.slf4j:slf4j-simple$1.7.30
+net.bytebuddy:byte-buddy$1.9.3
+org.objenesis:objenesis$2.6
+org.spockframework:spock-core$2.0-M2-groovy-3.0
+org.spockframework:spock-bom$2.0-M2-groovy-3.0
+info.solidsoft.pitest$1.5.1

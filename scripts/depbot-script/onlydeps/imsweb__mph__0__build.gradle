@@ -1,0 +1,7 @@
+org.apache.commons:commons-lang3$3.11
+com.opencsv:opencsv$5.4
+junit:junit$4.13
+com.imsweb:seerapi-client-java$3.22
+com.github.spotbugs$4.5.1
+com.bmuschko.nexus$2.3.1
+io.codearte.nexus-staging$0.21.2

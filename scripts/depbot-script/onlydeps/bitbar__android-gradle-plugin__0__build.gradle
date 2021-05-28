@@ -1,0 +1,6 @@
+com.android.tools.build:builder-test-api$2.3.0
+com.android.tools:annotations$25.3.0
+com.testdroid:testdroid-api$2.100
+junit:junit$4.12
+com.android.tools.build:gradle$2.3.0
+com.android.tools.build:gradle-core$2.3.0

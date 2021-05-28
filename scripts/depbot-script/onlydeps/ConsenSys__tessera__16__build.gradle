@@ -1,0 +1,9 @@
+javax.validation:validation-api$2.0.1.Final
+javax.transaction:javax.transaction-api$1.3
+org.bouncycastle:bcpkix-jdk15on$1.61
+org.springframework:spring-orm$5.1.2.RELEASE
+org.springframework:spring-test$5.1.2.RELEASE
+javax.inject:javax.inject$1
+javax.persistence:javax.persistence-api$2.2
+org.eclipse.persistence:org.eclipse.persistence.jpa$2.7.3
+org.hibernate:hibernate-validator$6.0.2.Final

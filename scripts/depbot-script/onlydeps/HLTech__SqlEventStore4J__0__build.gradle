@@ -1,0 +1,8 @@
+com.fasterxml.jackson.core:jackson-databind$2.12.1
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.20.0
+pl.allegro.tech.build:axion-release-plugin$1.12.1
+org.projectlombok:lombok$1.18.16
+pl.allegro.tech.build.axion-release$1.12.1
+io.github.gradle-nexus.publish-plugin$1.0.0
+io.codearte.nexus-staging$0.20.0
+me.champeau.jmh$0.6.3

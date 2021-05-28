@@ -1,0 +1,4 @@
+org.springframework.boot:spring-boot-dependencies$2.3.2.RELEASE
+com.google.guava:guava$29.0-jre
+org.junit.platform:junit-platform-testkit$1.6.0
+com.fatboyindustrial.gson-javatime-serialisers:gson-javatime-serialisers$1.1.1

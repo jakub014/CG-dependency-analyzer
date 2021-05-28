@@ -1,0 +1,15 @@
+org.projectlombok:lombok$1.18.20
+uk.co.jemos.podam:podam$7.2.7.RELEASE
+com.github.javafaker:javafaker$1.0.2
+junit:junit$4.13.2
+org.apache.lucene:lucene-core$8.8.2
+org.apache.lucene:lucene-analyzers-common$8.8.2
+org.apache.lucene:lucene-queryparser$8.8.2
+org.apache.logging.log4j:log4j-slf4j-impl$2.14.1
+org.apache.logging.log4j:log4j-core$2.14.1
+org.awaitility:awaitility$4.1.0
+joda-time:joda-time$2.10.10
+org.meanbean:meanbean$2.0.3
+com.fasterxml.jackson.core:jackson-databind$2.12.3
+commons-io:commons-io$2.8.0
+com.google.guava:guava$30.1.1-jre

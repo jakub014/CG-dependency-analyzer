@@ -1,0 +1,10 @@
+org.apache.commons:commons-lang3$3.11
+com.fasterxml.jackson.core:jackson-databind$2.12.0
+org.junit.jupiter:junit-jupiter-api$5.7.0
+org.slf4j:slf4j-api$1.7.30
+com.google.guava:guava$29.0-jre
+org.projectlombok:lombok$1.18.16
+org.slf4j:slf4j-simple$1.7.30
+org.junit.jupiter:junit-jupiter$5.7.0
+org.mockito:mockito-core$3.6.28
+org.mockito:mockito-junit-jupiter$3.6.28

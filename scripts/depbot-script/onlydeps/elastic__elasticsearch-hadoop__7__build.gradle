@@ -1,0 +1,8 @@
+org.slf4j:slf4j-api$1.7.6
+commons-logging:commons-logging$1.1.1
+javax.xml.bind:jaxb-api$2.3.1
+com.google.protobuf:protobuf-java$2.5.0
+org.apache.hadoop.thirdparty:hadoop-shaded-protobuf_3_7$1.0.0
+com.fasterxml.jackson.core:jackson-annotations$2.6.7
+org.elasticsearch:securemock$1.2
+org.eclipse.jetty.orbit:javax.servlet$3.0.0.v201112011016

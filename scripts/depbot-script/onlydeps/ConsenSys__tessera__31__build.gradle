@@ -1,0 +1,4 @@
+javax.persistence:javax.persistence-api$2.2
+org.eclipse.persistence:org.eclipse.persistence.jpa$2.7.6
+org.eclipse.persistence:org.eclipse.persistence.extension$2.7.6
+com.h2database:h2$1.4.200

@@ -1,0 +1,8 @@
+com.amazonaws:aws-java-sdk-rdsdata$1.11.970
+com.google.guava:guava$28.1-jre
+org.junit.jupiter:junit-jupiter-api$5.5.2
+org.junit.jupiter:junit-jupiter-engine$5.5.2
+org.junit.jupiter:junit-jupiter-params$5.5.2
+org.mockito:mockito-core$3.1.0
+org.assertj:assertj-core$3.13.2
+io.freefair.lombok$5.1.1

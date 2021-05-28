@@ -1,0 +1,5 @@
+cglib:cglib-nodep$2.2
+com.couchbase.client:couchbase-client$1.4.8
+org.codehaus.groovy:groovy-all$2.3.3
+org.spockframework:spock-core$0.7-groovy-2.0
+com.cyrusinnovation:mockito-groovy-support$1.3

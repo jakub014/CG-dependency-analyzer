@@ -1,0 +1,11 @@
+com.imsweb:layout$3.3
+com.imsweb:naaccr-xml$7.12
+com.imsweb:algorithms$3.3
+com.imsweb:staging-client-java$6.0.0
+com.imsweb:staging-algorithm-cs$02.05.50.7
+org.apache.commons:commons-lang3$3.11
+commons-io:commons-io$2.7
+junit:junit$4.13
+com.github.spotbugs$4.5.1
+com.bmuschko.nexus$2.3.1
+io.codearte.nexus-staging$0.21.2

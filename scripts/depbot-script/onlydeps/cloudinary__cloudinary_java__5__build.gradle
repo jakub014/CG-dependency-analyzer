@@ -1,0 +1,8 @@
+org.apache.commons:commons-lang3$3.1
+org.apache.httpcomponents:httpclient$4.4
+org.apache.httpcomponents:httpmime$4.4
+org.hamcrest:java-hamcrest$2.0.0.0
+pl.pragmatists:JUnitParams$1.0.5
+junit:junit$4.12
+io.codearte.nexus-staging$0.21.1
+de.marcphilipp.nexus-publish$0.4.0

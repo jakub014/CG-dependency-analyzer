@@ -1,0 +1,4 @@
+org.apache.commons:commons-lang3$3.7
+org.slf4j:jcl-over-slf4j$1.7.5
+org.slf4j:jul-to-slf4j$1.7.5
+org.glassfish.jersey.media:jersey-media-json-processing$2.27

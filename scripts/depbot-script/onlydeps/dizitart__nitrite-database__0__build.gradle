@@ -1,0 +1,9 @@
+io.freefair.gradle:lombok-plugin$5.3.3.3
+org.asciidoctor:asciidoctor-gradle-plugin$1.6.1
+net.ltgt.gradle:gradle-errorprone-plugin$2.0.1
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.30.0
+com.adarshr:gradle-test-logger-plugin$3.0.0
+gradle.plugin.gradle-plugins:jartest$1.0.1
+javax.xml.bind:jaxb-api$2.3.1
+org.glassfish.jaxb:jaxb-runtime$3.0.1
+com.google.errorprone:error_prone_core$2.7.1

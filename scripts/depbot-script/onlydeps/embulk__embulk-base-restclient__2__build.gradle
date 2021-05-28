@@ -1,0 +1,5 @@
+org.embulk:embulk-api$0.10.18
+org.embulk:embulk-spi$0.10.18
+org.embulk:embulk-util-retryhelper-jetty93$0.8.0
+org.embulk:embulk-core$0.10.18
+org.embulk:embulk-deps$0.10.18

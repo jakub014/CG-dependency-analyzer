@@ -1,0 +1,7 @@
+commons-io:commons-io$1.4
+com.google.guava:guava$18.0
+org.apache.commons:commons-lang3$3.4
+org.freemarker:freemarker$2.3.24-incubating
+io.fixprotocol.orchestra:repository-quickfix$1.5.0
+org.jfrog.buildinfo:build-info-extractor-gradle$4.4.12
+com.bmuschko:gradle-tomcat-plugin$2.2.2

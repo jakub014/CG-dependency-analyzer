@@ -1,0 +1,5 @@
+com.bmuschko:gradle-nexus-plugin$2.2
+com.github.lkishalmi.gradle:gradle-bom-plugin$0.3
+org.projectlombok:lombok$1.16.18
+junit:junit$4.12
+org.mockito:mockito-core$1.9.5

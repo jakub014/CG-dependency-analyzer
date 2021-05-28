@@ -1,0 +1,4 @@
+org.apache.tomcat:tomcat-jdbc$9.0.36
+io.netty:netty-transport$4.1.49.Final
+io.netty:netty-codec$4.1.49.Final
+io.netty:netty-handler$4.1.49.Final

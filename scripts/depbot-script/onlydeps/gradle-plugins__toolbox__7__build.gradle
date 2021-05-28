@@ -1,0 +1,4 @@
+org.apache.commons:commons-lang3$3.5
+com.google.code.gson:gson$2.8.6
+org.jetbrains.kotlin.jvm$1.3.72
+com.gradle.plugin-publish$0.13.0

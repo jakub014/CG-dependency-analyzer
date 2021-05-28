@@ -1,0 +1,7 @@
+org.projectlombok:lombok$1.18.10
+com.fasterxml.jackson.core:jackson-databind$2.9.8
+com.fasterxml.jackson.core:jackson-annotations$2.9.8
+com.glookast.commons:commons-base$2.0.1
+com.glookast.commons:commons-xml$1.0.0
+org.junit.jupiter:junit-jupiter-api$5.5.2
+org.junit.jupiter:junit-jupiter-engine$5.5.2

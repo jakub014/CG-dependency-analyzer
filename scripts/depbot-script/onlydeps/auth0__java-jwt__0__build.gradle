@@ -1,0 +1,6 @@
+com.fasterxml.jackson.core:jackson-databind$2.11.0
+org.bouncycastle:bcprov-jdk15on$1.60
+junit:junit$4.12
+net.jodah:concurrentunit$0.4.3
+org.hamcrest:java-hamcrest$2.0.0.0
+org.mockito:mockito-core$2.18.3

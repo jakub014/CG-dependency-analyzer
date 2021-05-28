@@ -1,0 +1,6 @@
+org.jetbrains.kotlin:kotlin-gradle-plugin$1.4.10
+org.jetbrains.kotlin:kotlin-serialization$1.4.10
+com.jfrog.bintray.gradle:gradle-bintray-plugin$1.7.3
+com.github.dcendents:android-maven-gradle-plugin$1.5
+org.jetbrains.kotlinx:kotlinx-serialization-protobuf$1.0.1
+junit:junit$4.12

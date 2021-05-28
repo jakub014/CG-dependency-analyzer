@@ -1,0 +1,2 @@
+org.apache.hadoop:hadoop-client$2.6.0-cdh5.10.0
+org.mockito:mockito-core$2.23.0

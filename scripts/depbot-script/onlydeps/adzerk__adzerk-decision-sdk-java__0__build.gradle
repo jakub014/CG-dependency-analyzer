@@ -1,0 +1,12 @@
+com.github.dcendents:android-maven-gradle-plugin$1.5
+javax.annotation:jsr250-api$1.0
+io.swagger:swagger-annotations$1.5.22
+com.google.code.findbugs:jsr305$3.0.2
+com.squareup.okhttp3:okhttp$3.14.2
+com.squareup.okhttp3:logging-interceptor$3.14.2
+com.google.code.gson:gson$2.8.5
+io.gsonfire:gson-fire$1.8.3
+org.threeten:threetenbp$1.4.0
+org.slf4j:slf4j-api$1.7.29
+junit:junit$4.12
+org.apache.commons:commons-lang3$3.9

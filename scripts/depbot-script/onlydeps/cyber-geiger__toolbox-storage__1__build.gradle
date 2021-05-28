@@ -1,0 +1,10 @@
+com.h2database:h2$1.4.200
+com.puppycrawl.tools:checkstyle$8.38
+junit:junit$4.13
+org.junit.vintage:junit-vintage-engine$5.7.0
+info.picocli:picocli$4.5.2
+info.picocli:picocli-codegen$4.5.2
+xml-apis:xml-apis$1.0.b2
+org.apache.logging.log4j:log4j-core$2.12.1
+org.apache.logging.log4j:log4j-api$2.12.1
+org.apache.logging.log4j:log4j-jul$2.12.1

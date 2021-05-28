@@ -1,0 +1,4 @@
+org.testng:testng$6.11
+org.assertj:assertj-core$3.12.2
+kz.greetgo.upload-to-maven$0.0.5
+kz.greetgo.upload-to-gg-repo$0.0.5

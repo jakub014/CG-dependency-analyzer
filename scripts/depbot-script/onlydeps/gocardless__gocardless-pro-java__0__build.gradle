@@ -1,0 +1,11 @@
+ch.raffael.pegdown-doclet:pegdown-doclet$1.2.1
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.11.0
+com.squareup.okhttp:okhttp$2.7.5
+com.google.code.gson:gson$2.8.0
+com.google.guava:guava$20.0
+org.slf4j:slf4j-api$1.7.21
+commons-codec:commons-codec$1.11
+com.github.rholder:guava-retrying$2.0.0
+junit:junit$4.12
+org.assertj:assertj-core$2.6.0
+com.squareup.okhttp:mockwebserver$2.7.5

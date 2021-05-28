@@ -1,0 +1,6 @@
+javax.servlet.jsp:jsp-api$2.1
+jstl:jstl$1.2
+javax.el:el-api$2.2
+org.grails:grails-datastore-gorm-hibernate5$7.1.0.M1
+taglibs:standard$1.1.2
+javax.servlet:jstl$1.2

@@ -1,0 +1,9 @@
+org.apache.commons:commons-lang3$3.0
+org.freemarker:freemarker$2.3.21
+org.schemarepo:schema-repo-common$0.1.3
+io.confluent:kafka-schema-registry$4.1.2
+org.eclipse.jetty:jetty-server$9.4.27.v20200227
+org.eclipse.jetty:jetty-alpn-openjdk8-server$9.4.27.v20200227
+org.eclipse.jetty:jetty-alpn-openjdk8-client$9.4.30.v20200611
+org.glassfish.jersey.bundles.repackaged:jersey-guava$2.23.2
+org.hornetq:hornetq-jms-server$2.4.1.Final

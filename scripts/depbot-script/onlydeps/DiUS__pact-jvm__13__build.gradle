@@ -1,0 +1,8 @@
+org.jooq:jool$0.9.14
+com.github.rholder:guava-retrying$2.0.0
+javax.mail:mail$1.5.0-b01
+com.github.rest-driver:rest-client-driver$1.1.45
+org.apache.commons:commons-collections4$4.1
+javax.xml.bind:jaxb-api$2.3.0
+org.spockframework:spock-core$2.0-groovy-3.0
+org.objenesis:objenesis$3.1
