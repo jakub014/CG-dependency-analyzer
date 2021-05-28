@@ -1,0 +1,4 @@
+com.google.guava:guava$30.1.1-jre
+com.cronutils:cron-utils$9.1.5
+junit:junit$4.13.2
+ch.qos.logback:logback-classic$1.2.3

@@ -1,0 +1,5 @@
+org.apache.commons:commons-text$1.5
+org.jetbrains.kotlin.jvm$1.4.31
+io.gitlab.arturbosch.detekt$1.14.1
+org.jetbrains.dokka$1.4.10
+org.javamodularity.moduleplugin$1.7.0

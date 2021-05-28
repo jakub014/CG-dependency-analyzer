@@ -1,0 +1,6 @@
+com.fasterxml.jackson.core:jackson-databind$2.12.1
+com.fasterxml.jackson.datatype:jackson-datatype-jsr310$2.12.1
+com.google.guava:guava$0.30-jre
+com.google.truth:truth$1.1.2
+com.google.testing.compile:compile-testing$0.19
+org.junit.platform:junit-platform-commons$1.7.0

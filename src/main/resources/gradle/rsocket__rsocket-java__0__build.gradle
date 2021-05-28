@@ -1,0 +1,8 @@
+junit:junit$4.12
+com.github.sherter.google-java-format$0.9
+com.jfrog.artifactory$4.21.0
+com.jfrog.bintray$1.8.5
+me.champeau.jmh$0.6.4
+io.spring.dependency-management$1.0.11.RELEASE
+io.morethan.jmhreport$0.9.0
+io.github.reyerizo.gradle.jcstress$0.8.11

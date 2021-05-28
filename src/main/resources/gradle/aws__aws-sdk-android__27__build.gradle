@@ -1,0 +1,4 @@
+androidx.test:core$1.3.0
+androidx.test.ext:junit$1.1.2
+androidx.test:runner$1.3.0
+org.apache.commons:commons-io$1.3.2

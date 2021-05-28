@@ -1,0 +1,8 @@
+org.testcontainers:spock$1.15.1
+org.awaitility:awaitility$4.0.3
+ch.qos.logback:logback-classic$1.2.3
+io.netty:netty-tcnative$2.0.36.Final
+io.netty:netty-tcnative-boringssl-static$2.0.35.Final
+org.zalando:logbook-netty$2.4.1
+org.bouncycastle:bcpkix-jdk15on$1.65
+com.amazonaws:aws-java-sdk-lambda$1.11.920

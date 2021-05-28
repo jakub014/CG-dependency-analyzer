@@ -1,0 +1,4 @@
+org.junit-pioneer:junit-pioneer$0.3.0
+org.assertj:assertj-core$3.10.0
+com.jayway.jsonpath:json-path$2.4.0
+com.gradle.plugin-publish$0.12.0

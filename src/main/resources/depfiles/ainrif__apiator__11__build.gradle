@@ -1,8 +1,0 @@
-compileJava.options.compilerArgs += '-parameters'
-
-dependencies {
-    compileOnly project(':api')
-
-    // support javax.annotation.Nullable checks
-    api "com.google.code.findbugs:jsr305:${versions.jsr305}"
-}

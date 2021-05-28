@@ -1,0 +1,4 @@
+com.android.tools.build:gradle$3.6.2
+com.sensorsdata.analytics.android:android-gradle-plugin2$3.3.3
+com.jfrog.bintray.gradle:gradle-bintray-plugin$1.8.4
+com.github.dcendents:android-maven-gradle-plugin$2.1

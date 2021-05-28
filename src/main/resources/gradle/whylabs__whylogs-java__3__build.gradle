@@ -1,0 +1,10 @@
+org.slf4j:slf4j-api$1.7.27
+org.apache.logging.log4j:log4j-core$2.13.2
+org.apache.logging.log4j:log4j-slf4j-impl$2.13.2
+org.apache.commons:commons-csv$1.8
+commons-io:commons-io$2.6
+org.apache.commons:commons-lang3$3.10
+com.google.protobuf:protobuf-java-util$3.11.4
+info.picocli:picocli$4.2.0
+org.projectlombok:lombok$1.18.12
+org.testng:testng$6.8

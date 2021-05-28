@@ -1,4 +1,0 @@
-dependencies {
-    implementation project(':util-array')
-    implementation project.ext.dependencies.fastutil
-}

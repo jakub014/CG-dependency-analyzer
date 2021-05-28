@@ -1,0 +1,6 @@
+com.jfrog.bintray.gradle:gradle-bintray-plugin$1.8.4
+org.unbroken-dome.gradle-plugins:gradle-testsets-plugin$2.1.1
+de.undercouch.download$4.1.1
+com.diffplug.gradle.spotless$3.25.0
+io.codearte.nexus-staging$0.22.0
+de.marcphilipp.nexus-publish$0.4.0

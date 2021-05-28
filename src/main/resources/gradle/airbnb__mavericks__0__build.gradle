@@ -1,0 +1,3 @@
+com.vanniktech:gradle-maven-publish-plugin$0.14.2
+org.jetbrains.dokka:dokka-gradle-plugin$1.4.30
+net.sf.proguard:proguard-gradle$6.2.0

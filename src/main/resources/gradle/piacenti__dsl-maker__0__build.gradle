@@ -1,0 +1,9 @@
+org.jetbrains.dokka:dokka-gradle-plugin$1.4.32
+org.apache.logging.log4j:log4j-api$2.12.1
+org.apache.logging.log4j:log4j-core$2.12.1
+org.apache.logging.log4j:log4j-slf4j-impl$2.12.1
+com.thoughtworks.xstream:xstream$1.4.7
+org.jetbrains.kotlin.multiplatform$1.5.0
+org.jetbrains.kotlin.plugin.serialization$1.5.0
+org.jetbrains.dokka$1.4.32
+io.github.gradle-nexus.publish-plugin$1.0.0

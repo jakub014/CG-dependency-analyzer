@@ -1,0 +1,4 @@
+io.projectreactor:reactor-bom$2020.0.7
+com.gorylenko.gradle-git-properties$2.2.4
+com.github.ben-manes.versions$0.38.0
+net.researchgate.release$2.8.1

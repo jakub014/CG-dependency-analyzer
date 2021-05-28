@@ -1,0 +1,4 @@
+org.asynchttpclient:async-http-client$2.8.1
+org.scala-lang.modules:scala-java8-compat_2.13$0.9.1
+io.netty:netty-transport-native-epoll$4.1.48.Final
+org.spockframework:spock-core$2.0-groovy-3.0

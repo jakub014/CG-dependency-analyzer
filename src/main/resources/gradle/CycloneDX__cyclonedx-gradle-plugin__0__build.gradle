@@ -1,0 +1,5 @@
+commons-codec:commons-codec$1.15
+commons-io:commons-io$2.8.0
+org.apache.maven:maven-core$3.5.0
+org.cyclonedx:cyclonedx-core-java$4.1.0
+com.gradle.plugin-publish$0.12.0

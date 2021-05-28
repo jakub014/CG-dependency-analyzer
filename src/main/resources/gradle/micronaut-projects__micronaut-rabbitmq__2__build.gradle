@@ -1,0 +1,2 @@
+org.testcontainers:spock$1.15.3
+ch.qos.logback:logback-classic$1.2.3

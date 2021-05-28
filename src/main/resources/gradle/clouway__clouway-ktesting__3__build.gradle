@@ -1,0 +1,8 @@
+com.google.guava:guava$18.0
+javax.servlet:servlet-api$2.5
+com.google.sitebricks:sitebricks$0.8.11
+com.google.sitebricks:sitebricks-client$0.8.11
+junit:junit$4.11
+com.github.tomakehurst:wiremock$1.58
+com.clouway.testing:clouway-ktesting-json$0.0.1
+org.hamcrest:hamcrest-library$1.3

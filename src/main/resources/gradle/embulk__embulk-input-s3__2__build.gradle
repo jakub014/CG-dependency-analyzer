@@ -1,0 +1,13 @@
+org.embulk:embulk-api$0.10.19
+org.embulk:embulk-spi$0.10.19
+com.fasterxml.jackson.core:jackson-annotations$2.6.7
+com.fasterxml.jackson.core:jackson-core$2.6.7
+com.fasterxml.jackson.core:jackson-databind$2.6.7
+com.fasterxml.jackson.datatype:jackson-datatype-jdk8$2.6.7
+javax.validation:validation-api$1.1.0.Final
+joda-time:joda-time$2.9.2
+junit:junit$4.13
+org.mockito:mockito-core$1.10.19
+org.embulk:embulk-core$0.10.19
+org.embulk:embulk-deps$0.10.19
+org.embulk:embulk-standards$0.10.19

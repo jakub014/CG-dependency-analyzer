@@ -1,0 +1,6 @@
+com.github.sarxos:webcam-capture$0.3.12
+com.github.sarxos:webcam-capture-driver-v4l4j$0.3.12
+com.github.sarxos:webcam-capture-driver-ipcam$0.3.12
+com.github.sarxos:webcam-capture-driver-vlcj$0.3.12
+com.github.sarxos:webcam-capture-driver-opencv$0.3.12
+org.bytedeco:javacv-platform$1.5.4

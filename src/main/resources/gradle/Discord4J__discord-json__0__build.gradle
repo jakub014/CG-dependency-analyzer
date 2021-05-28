@@ -1,0 +1,9 @@
+io.projectreactor:reactor-bom$2020.0.5
+com.fasterxml.jackson.core:jackson-databind$2.12.3
+com.fasterxml.jackson.datatype:jackson-datatype-jdk8$2.12.3
+org.immutables:value$2.8.8
+org.immutables:builder$2.8.8
+org.junit.jupiter:junit-jupiter-engine$5.7.1
+ch.qos.logback:logback-classic$1.2.3
+com.github.ben-manes.versions$0.38.0
+net.researchgate.release$2.8.1

@@ -1,0 +1,5 @@
+commons-codec:commons-codec$1.6
+commons-io:commons-io$2.8.0
+org.xerial:sqlite-jdbc$3.23.1
+com.h2database:h2$1.4.200
+com.mockrunner:mockrunner-jdbc$2.0.1

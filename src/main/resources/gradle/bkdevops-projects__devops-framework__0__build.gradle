@@ -1,0 +1,12 @@
+io.jsonwebtoken:jjwt-api$0.11.2
+io.jsonwebtoken:jjwt-impl$0.11.2
+io.jsonwebtoken:jjwt-jackson$0.11.2
+commons-io:commons-io$2.6
+org.apache.commons:commons-compress$1.18
+org.apache.hadoop:hadoop-hdfs$2.6.0
+org.apache.hadoop:hadoop-common$2.6.0
+com.google.guava:guava$29.0-jre
+io.swagger:swagger-annotations$1.5.20
+io.swagger:swagger-models$1.5.20
+io.springfox:springfox-boot-starter$3.0.0
+com.amazonaws:aws-java-sdk-s3$1.11.700

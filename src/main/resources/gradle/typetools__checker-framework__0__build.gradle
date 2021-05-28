@@ -1,0 +1,15 @@
+-Xep:ReferenceEquality$OFF
+-Xep:DefaultCharset$OFF
+-Xep:StringSplitter$OFF
+-Xep:EqualsGetClass$OFF
+-Xep:MixedMutabilityReturnType$OFF
+-Xep:AnnotateFormatMethod$OFF
+-Xep:InvalidBlockTag$OFF
+-Xep:InlineMeSuggester$OFF
+org.plumelib:require-javadoc$1.0.2
+com.google.errorprone:error_prone_core$2.7.1
+com.github.johnrengelman.shadow$6.1.0
+de.undercouch.download$4.1.1
+net.ltgt.errorprone$2.0.1
+org.ajoberstar.grgit$4.1.0
+com.gorylenko.gradle-git-properties$2.3.1

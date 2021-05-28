@@ -1,0 +1,4 @@
+org.kt3k.gradle.plugin:coveralls-gradle-plugin$2.8.3
+org.jacoco:org.jacoco.core$0.8.5
+com.github.dcendents:android-maven-gradle-plugin$1.4.1
+com.jfrog.bintray.gradle:gradle-bintray-plugin$1.0

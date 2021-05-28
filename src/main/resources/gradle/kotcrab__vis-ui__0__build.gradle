@@ -1,0 +1,5 @@
+com.netflix.nebula:gradle-extra-configurations-plugin$3.0.3
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.22.0
+com.kotcrab.vis:vis-usl$0.2.1
+com.badlogicgames.gdx:gdx-tools$1.9.2
+com.github.ben-manes:gradle-versions-plugin$0.36.0

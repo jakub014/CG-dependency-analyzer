@@ -1,0 +1,11 @@
+org.glassfish.jersey.inject:jersey-hk2$2.27
+org.slf4j:jul-to-slf4j$1.7.5
+org.glassfish.jersey.media:jersey-media-json-processing$2.27
+org.glassfish.jersey.media:jersey-media-moxy$2.27
+com.sun.mail:javax.mail$1.6.2
+org.bouncycastle:bcprov-jdk15on$1.68
+org.slf4j:jcl-over-slf4j$1.7.5
+org.glassfish.jersey.core:jersey-server$2.27
+org.glassfish.jersey.test-framework:jersey-test-framework-core$2.27
+org.glassfish.jersey.test-framework.providers:jersey-test-framework-provider-grizzly2$2.13
+org.springframework:spring-test$5.1.2.RELEASE

@@ -1,0 +1,4 @@
+org.springframework.boot:spring-boot-gradle-plugin$2.4.5
+org.owasp:dependency-check-gradle$6.1.6
+com.github.jengelman.gradle.plugins:shadow$6.1.0
+io.codearte.nexus-staging$0.30.0

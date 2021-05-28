@@ -1,4 +1,0 @@
-dependencies {
-    compile project(':extensions:calculation')
-    compile 'jfreechart:jfreechart:1.0.0'
-}

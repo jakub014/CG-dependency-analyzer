@@ -1,0 +1,5 @@
+org.apache.commons:commons-collections4$4.2
+io.swagger.parser.v3:swagger-parser$2.0.5
+com.fasterxml.jackson.core:jackson-databind$2.10.3
+com.github.spullara.mustache.java:compiler$0.9.5
+org.apache.httpcomponents:httpclient$4.5.6

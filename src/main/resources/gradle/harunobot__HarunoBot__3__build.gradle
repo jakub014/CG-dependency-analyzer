@@ -1,0 +1,11 @@
+org.iharu.bootstrap:iharu-foundation$0.2.0-beta
+com.lmax:disruptor$3.4.2
+org.atteo.classindex:classindex$3.9
+dk.brics:automaton$1.12-1
+org.xeustechnologies:jcl-core$2.8
+ch.qos.logback:logback-classic$1.2.3
+org.fusesource.jansi:jansi$1.18
+com.fasterxml.jackson.dataformat:jackson-dataformat-yaml$2.11.2
+com.github.ben-manes.caffeine:caffeine$2.8.1
+io.vertx.vertx-plugin$1.1.3
+org.checkerframework$0.5.12

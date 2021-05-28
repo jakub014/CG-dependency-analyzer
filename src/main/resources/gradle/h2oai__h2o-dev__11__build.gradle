@@ -1,0 +1,5 @@
+com.google.guava:guava$16.0.1
+org.mockito:mockito-core$2.18.3
+net.sf.opencsv:opencsv$2.3
+com.google.code.gson:gson$2.6.2
+ai.h2o:h2o-tree-api$0.3.17

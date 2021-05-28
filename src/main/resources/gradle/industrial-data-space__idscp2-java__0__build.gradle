@@ -1,0 +1,6 @@
+org.yaml:snakeyaml$1.26
+com.google.protobuf$0.8.15
+biz.aQute.bnd$5.1.2
+org.jetbrains.kotlin.jvm$1.4.31
+com.diffplug.spotless$5.11.0
+com.github.jk1.dependency-license-report$1.16

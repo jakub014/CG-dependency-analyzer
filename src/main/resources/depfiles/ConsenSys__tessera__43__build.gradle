@@ -1,5 +1,0 @@
-
-dependencies {
-  implementation project(':tessera-partyinfo')
-  implementation project(':encryption:encryption-api')
-}

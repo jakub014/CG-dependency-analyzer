@@ -1,0 +1,4 @@
+com.jcraft:jsch.agentproxy.core$0.0.9
+com.jcraft:jsch.agentproxy.sshagent$0.0.9
+com.jcraft:jsch.agentproxy.usocket-jna$0.0.9
+de.danielbechler:java-object-diff$0.10.2

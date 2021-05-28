@@ -1,0 +1,10 @@
+com.fasterxml.jackson.module:jackson-module-scala_2.13$2.10.5
+org.apache.kafka:kafka_2.13$2.8.0
+com.google.guava:guava$30.1-jre
+com.google.code.findbugs:jsr305$3.0.2
+org.scalatest:scalatest_2.13$3.2.5
+org.scalatestplus:junit-4-13_2.13$3.2.5.0
+junit:junit$4.12
+org.apache.logging.log4j:log4j-slf4j-impl$2.14.0
+com.github.johnrengelman.shadow$6.1.0
+com.bisnode.opa$0.3.1

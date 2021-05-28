@@ -1,0 +1,3 @@
+com.datastax.cassandra:cassandra-driver-core$3.1.0
+com.netflix.astyanax:astyanax-core$latest.release
+com.netflix.astyanax:astyanax-thrift$latest.release

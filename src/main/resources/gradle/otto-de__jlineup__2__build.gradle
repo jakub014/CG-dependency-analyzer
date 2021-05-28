@@ -1,0 +1,4 @@
+info.picocli:picocli$4.6.1
+info.picocli:picocli-codegen$4.6.1
+ch.qos.logback:logback-classic$1.2.3
+org.graalvm.nativeimage:svm$21.1.0

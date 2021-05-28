@@ -1,0 +1,4 @@
+org.apache.jena:jena-arq$2.11.1
+org.slf4j:slf4j-jdk14$1.6.4
+org.slf4j:log4j-over-slf4j$1.7.12
+ca.coglinc.javacc$2.3.1

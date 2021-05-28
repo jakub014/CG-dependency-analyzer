@@ -1,9 +1,0 @@
-dependencies {
-    api project(":lockout-use-cases")
-    api project(":lockout-json")
-    api "org.redisson:redisson:${redissionVersion}"
-    implementation "com.github.michaelruocco:json-adapter:${jsonAdapterVersion}"
-    implementation "com.github.michaelruocco:duration-logger:${durationLoggerVersion}"
-
-    testImplementation testFixtures(project(":policy-entities"))
-}

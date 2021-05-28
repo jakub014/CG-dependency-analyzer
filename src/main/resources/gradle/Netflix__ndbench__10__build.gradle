@@ -1,0 +1,7 @@
+org.janusgraph:janusgraph-core$0.2.0
+org.janusgraph:janusgraph-cassandra$0.2.0
+org.janusgraph:janusgraph-cql$0.2.0
+org.janusgraph:janusgraph-es$0.2.0
+org.elasticsearch:elasticsearch$5.6.3
+org.elasticsearch.client:transport$5.6.3
+com.fasterxml.jackson.core:jackson-databind$2.7.5

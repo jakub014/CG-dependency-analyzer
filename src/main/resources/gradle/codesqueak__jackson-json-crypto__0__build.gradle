@@ -1,0 +1,13 @@
+com.fasterxml.jackson.core:jackson-core$2.12.0
+com.fasterxml.jackson.core:jackson-databind$2.12.0
+com.fasterxml.jackson.core:jackson-annotations$2.12.0
+javax.validation:validation-api$2.0.1.Final
+org.hibernate:hibernate-validator$6.1.7.Final
+org.slf4j:slf4j-api$1.7.30
+org.glassfish:javax.el$3.0.0
+javax.el:javax.el-api$3.0.0
+org.junit.jupiter:junit-jupiter-api$5.7.0
+org.junit.jupiter:junit-jupiter-engine$5.7.0
+org.easymock:easymock$4.2
+org.hamcrest:hamcrest$2.2
+com.github.spotbugs$4.6.0

@@ -1,0 +1,8 @@
+jakarta.inject:jakarta.inject-api$2.0.0
+org.hibernate:hibernate-core$5.4.29.Final
+junit:junit$4.13.2
+com.google.testing.compile:compile-testing$0.19
+org.mongodb:mongo-java-driver$3.12.8
+org.neo4j.driver:neo4j-java-driver$1.4.5
+org.glassfish.web:el-impl$2.2.1-b05
+org.glassfish:javax.el$3.0.1-b12

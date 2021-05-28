@@ -1,6 +1,0 @@
-dependencies {
-    api project(":use-cases")
-    implementation "com.github.michaelruocco:random-value-suppliers:${randomValueSuppliersVersion}"
-
-    testImplementation testFixtures(project(":entities"))
-}

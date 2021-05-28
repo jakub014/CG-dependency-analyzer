@@ -1,0 +1,2 @@
+io.micrometer:micrometer-registry-datadog$latest.release
+org.mockito:mockito-core$3.4.4

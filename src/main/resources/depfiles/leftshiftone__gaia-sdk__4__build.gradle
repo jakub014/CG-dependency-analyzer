@@ -1,7 +1,0 @@
-dependencies {
-    compile project(":gaia-sdk-java:gaia-sdk-api")
-    compile project(":gaia-sdk-java:gaia-sdk-graphql")
-}
-compileKotlin {
-    kotlinOptions.jvmTarget = 1.8
-}

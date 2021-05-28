@@ -1,0 +1,17 @@
+io.awspring.cloud:spring-cloud-aws-dependencies$2.3.1
+org.springframework.integration:spring-integration-bom$5.5.0
+com.fasterxml.jackson:jackson-bom$2.12.3
+org.junit:junit-bom$5.7.2
+com.amazonaws:amazon-kinesis-client$1.14.3
+com.amazonaws:amazon-kinesis-producer$0.14.6
+com.amazonaws:dynamodb-lock-client$1.1.0
+javax.servlet:javax.servlet-api$4.0.1
+org.assertj:assertj-core$3.19.0
+cloud.localstack:localstack-utils$0.2.11
+org.awaitility:awaitility$4.0.3
+org.apache.logging.log4j:log4j-slf4j-impl$2.14.1
+org.apache.logging.log4j:log4j-jcl$2.14.1
+org.sonarqube$3.1.1
+org.ajoberstar.grgit$4.1.0
+io.spring.dependency-management$1.0.11.RELEASE
+com.jfrog.artifactory$4.21.0

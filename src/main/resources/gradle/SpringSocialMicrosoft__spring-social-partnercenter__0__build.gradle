@@ -1,0 +1,15 @@
+org.apache.httpcomponents:httpclient$4.3.3
+org.springframework.social:spring-social-core$1.1.4.RELEASE
+org.springframework.retry:spring-retry$1.1.2.RELEASE
+com.fasterxml.jackson.core:jackson-databind$2.6.7
+com.fasterxml.jackson.datatype:jackson-datatype-jsr310$2.6.7
+org.slf4j:slf4j-api$1.7.22
+com.google.guava:guava$21.0
+junit:junit$4.12
+com.github.tomakehurst:wiremock$2.4.1
+org.assertj:assertj-core$3.6.2
+ch.qos.logback:logback-classic$1.1.8
+org.mockito:mockito-core$2.7.22
+commons-io:commons-io$2.4
+com.jfrog.bintray$1.7.3
+pl.allegro.tech.build.axion-release$1.8.1

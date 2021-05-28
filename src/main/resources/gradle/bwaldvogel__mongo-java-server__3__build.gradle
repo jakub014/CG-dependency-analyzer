@@ -1,0 +1,6 @@
+com.fasterxml.jackson.core:jackson-core$latest.release
+com.fasterxml.jackson.core:jackson-databind$latest.release
+com.fasterxml.jackson.datatype:jackson-datatype-jsr310$latest.release
+org.postgresql:postgresql$latest.release
+com.zaxxer:HikariCP$latest.release
+org.testcontainers:testcontainers$latest.release

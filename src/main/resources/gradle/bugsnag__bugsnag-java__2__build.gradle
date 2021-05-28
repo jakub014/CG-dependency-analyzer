@@ -1,0 +1,5 @@
+org.springframework:spring-webmvc$4.3.18.RELEASE
+org.springframework.boot:spring-boot$1.5.15.RELEASE
+junit:junit$4.12
+org.springframework.boot:spring-boot-starter-test$1.5.15.RELEASE
+org.springframework.boot:spring-boot-starter-web$1.5.15.RELEASE

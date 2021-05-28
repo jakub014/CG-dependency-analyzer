@@ -1,0 +1,8 @@
+com.google.android.gms:play-services-ads$10.2.1
+com.android.support:support-v4$27.1.1
+ly.iterative.itly:sdk-android$1.2.0
+junit:junit$4.12
+org.powermock:powermock-module-junit4$2.0.2
+org.powermock:powermock-api-mockito2$2.0.2
+org.powermock:powermock-core$2.0.2
+com.android.support.test:orchestrator$1.0.2

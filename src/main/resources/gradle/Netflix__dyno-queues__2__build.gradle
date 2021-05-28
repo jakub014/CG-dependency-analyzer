@@ -1,0 +1,10 @@
+com.google.inject:guice$3.0
+com.netflix.dyno:dyno-core$1.7.2-rc2
+com.netflix.dyno:dyno-jedis$1.7.2-rc2
+com.netflix.dyno:dyno-demo$1.7.2-rc2
+com.netflix.archaius:archaius-core$0.7.5
+com.netflix.servo:servo-core$0.12.17
+com.netflix.eureka:eureka-client$1.8.1
+com.fasterxml.jackson.core:jackson-databind$2.4.4
+org.rarefiedredis.redis:redis-java$0.0.17
+junit:junit$4.11

@@ -1,0 +1,9 @@
+com.google.guava:guava$28.2-jre
+org.apache.commons:commons-lang3$3.9
+org.apache.ant:ant$1.9.13
+org.ow2.asm:asm$6.0
+commons-io:commons-io$2.6
+junit:junit$4.12
+com.google.code.gson:gson$2.8.6
+org.spockframework:spock-bom$1.2-groovy-2.5
+org.jsoup:jsoup$1.13.1

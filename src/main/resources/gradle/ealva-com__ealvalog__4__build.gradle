@@ -1,0 +1,4 @@
+org.jetbrains:annotations$20.0.0
+junit:junit$4.13.1
+org.hamcrest:hamcrest-library$2.2
+org.mockito:mockito-core$3.6.28

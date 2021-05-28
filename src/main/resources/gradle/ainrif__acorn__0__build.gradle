@@ -1,0 +1,9 @@
+org.slf4j:slf4j-api$1.7.30
+org.slf4j:slf4j-simple$1.7.30
+org.slf4j:jcl-over-slf4j$1.7.30
+org.slf4j:log4j-over-slf4j$1.7.30
+org.slf4j:osgi-over-slf4j$1.7.30
+info.picocli:picocli$4.6.1
+org.codehaus.groovy:groovy-bom$3.0.7
+org.spockframework:spock-bom$2.0-M4-groovy-3.0
+io.github.gradle-nexus.publish-plugin$1.0.0

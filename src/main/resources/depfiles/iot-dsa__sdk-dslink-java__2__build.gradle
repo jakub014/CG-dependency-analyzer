@@ -1,7 +1,0 @@
-apply from: '../../bintray.gradle'
-
-description = 'Commons API to assist with developing DSLinks'
-
-dependencies {
-    api project(':dslink')
-}

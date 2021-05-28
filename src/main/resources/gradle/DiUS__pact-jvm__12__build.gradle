@@ -1,0 +1,6 @@
+org.apache.maven:maven-plugin-api$3.6.0
+org.apache.maven.plugin-tools:maven-plugin-annotations$3.6.0
+org.apache.maven:maven-core$3.6.0
+com.github.ajalt:mordant$1.2.1
+org.spockframework:spock-core$2.0-groovy-3.0
+org.objenesis:objenesis$3.1

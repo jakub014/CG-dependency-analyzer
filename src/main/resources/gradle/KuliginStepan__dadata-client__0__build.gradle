@@ -1,0 +1,2 @@
+org.springframework.boot:spring-boot-starter-parent$2.2.6.RELEASE
+io.github.gradle-nexus.publish-plugin$1.0.0

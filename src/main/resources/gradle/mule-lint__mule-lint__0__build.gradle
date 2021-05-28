@@ -1,0 +1,11 @@
+org.junit.jupiter:junit-jupiter-engine$5.3.2
+org.codehaus.groovy:groovy-all$2.4.4
+commons-cli:commons-cli$1.4
+org.apache.ant:ant$1.10.1
+org.slf4j:slf4j-simple$1.7.25
+org.slf4j:slf4j-api$1.7.25
+org.apache.commons:commons-lang3$3.4
+org.mockito:mockito-core$2.24.0
+org.junit.jupiter:junit-jupiter-api$5.3.2
+org.skyscreamer:jsonassert$1.5.0
+com.github.johnrengelman.shadow$6.0.0

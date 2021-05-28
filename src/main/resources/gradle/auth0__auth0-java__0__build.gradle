@@ -1,0 +1,11 @@
+com.squareup.okhttp3:okhttp$4.9.0
+com.squareup.okhttp3:logging-interceptor$4.9.0
+com.fasterxml.jackson.core:jackson-databind$2.12.1
+com.auth0:java-jwt$3.14.0
+org.bouncycastle:bcprov-jdk15on$1.68
+org.mockito:mockito-core$3.7.7
+com.squareup.okhttp3:mockwebserver$4.9.0
+org.hamcrest:hamcrest-core$2.2
+org.hamcrest:hamcrest-library$2.2
+junit:junit$4.13.1
+com.jfrog.bintray$1.8.5

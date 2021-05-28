@@ -1,0 +1,7 @@
+org.apache.commons:commons-lang3$latest.release
+com.fasterxml.jackson.core:jackson-core$latest.release
+com.fasterxml.woodstox:woodstox-core$latest.release
+org.yaml:snakeyaml$latest.release
+org.junit:junit-bom$5.7.0
+org.junit.jupiter:junit-jupiter$5.7.0
+io.codearte.nexus-staging$0.22.0

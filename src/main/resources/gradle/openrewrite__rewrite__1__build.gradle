@@ -1,0 +1,8 @@
+org.eclipse.jgit:org.eclipse.jgit$latest.release
+com.fasterxml.jackson.core:jackson-databind$latest.release
+com.fasterxml.jackson.dataformat:jackson-dataformat-smile$latest.release
+com.fasterxml.jackson.module:jackson-module-parameter-names$latest.release
+com.fasterxml.jackson.module:jackson-module-kotlin$latest.release
+io.micrometer:micrometer-core$latest.release
+io.github.classgraph:classgraph$latest.release
+org.yaml:snakeyaml$latest.release

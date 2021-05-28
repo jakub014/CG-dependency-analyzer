@@ -1,0 +1,10 @@
+org.scala-lang:scala-library$2.13.5
+com.google.auth:google-auth-library-oauth2-http$0.24.1
+com.google.api-client:google-api-client$1.31.3
+com.google.apis:google-api-services-run$v1-rev20210301-1.31.0
+org.slf4j:slf4j-api$1.7.30
+com.fasterxml.jackson.dataformat:jackson-dataformat-yaml$2.12.2
+com.google.guava:guava$30.1-jre
+gradle.plugin.com.google.cloud.tools:jib-gradle-plugin$2.8.0
+com.github.ben-manes.versions$0.38.0
+com.gradle.plugin-publish$0.13.0

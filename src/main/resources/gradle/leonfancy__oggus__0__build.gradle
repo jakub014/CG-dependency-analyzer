@@ -1,0 +1,4 @@
+com.google.guava:guava$29.0-jre
+org.junit.jupiter:junit-jupiter-api$5.6.0
+org.junit.jupiter:junit-jupiter-params$5.6.0
+org.junit.jupiter:junit-jupiter-engine$5.6.0

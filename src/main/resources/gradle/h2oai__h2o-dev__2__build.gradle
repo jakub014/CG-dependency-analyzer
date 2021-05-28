@@ -1,0 +1,6 @@
+com.google.guava:guava$16.0.1
+org.hamcrest:hamcrest-junit$2.0.0.0
+org.mockito:mockito-core$2.18.0
+com.github.stefanbirkner:system-rules$1.18.0
+org.apache.derby:derby$10.14.2.0
+org.glassfish.tyrus.bundles:tyrus-standalone-client$1.12

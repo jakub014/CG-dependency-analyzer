@@ -1,6 +1,0 @@
-dependencies {
-  implementation libraries.kotlin_stdlib
-  implementation libraries.kotlin_reflect
-
-  implementation libraries.nypl_http_api
-}

@@ -1,9 +1,0 @@
-dependencies {
-    compile project(':progeny')
-
-    testCompile "org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}"
-    testCompile "org.junit.platform:junit-platform-launcher:${junitPlatformLauncherVersion}"
-    testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}"
-}
-
-uploadArchives.enabled = false

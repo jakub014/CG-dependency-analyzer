@@ -1,0 +1,4 @@
+org.jetbrains:annotations$latest.release
+com.fasterxml.jackson.core:jackson-annotations$latest.release
+org.antlr:antlr4$4.8-1
+io.micrometer:micrometer-core$latest.release

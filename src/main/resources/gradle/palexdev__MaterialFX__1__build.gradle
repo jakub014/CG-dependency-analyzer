@@ -1,0 +1,7 @@
+junit:junit$4.13
+com.vanniktech:gradle-maven-publish-plugin$0.13.0
+org.apache.logging.log4j:log4j-api$2.14.0
+org.apache.logging.log4j:log4j-core$2.14.0
+org.reactfx:reactfx$2.0-M5
+biz.aQute.bnd.builder$5.2.0
+com.vanniktech.maven.publish$0.13.0

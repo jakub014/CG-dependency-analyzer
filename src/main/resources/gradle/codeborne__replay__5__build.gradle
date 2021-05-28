@@ -1,0 +1,8 @@
+net.sf.jxls:jxls-core$1.0.6
+net.sf.jxls:jxls-reader$1.0.6
+org.apache.commons:commons-jexl$2.1.1
+org.apache.poi:poi$3.11
+org.apache.poi:poi-ooxml$3.11
+org.apache.poi:poi-ooxml-schemas$3.11
+org.apache.xmlbeans:xmlbeans$2.6.0
+commons-digester:commons-digester$2.1

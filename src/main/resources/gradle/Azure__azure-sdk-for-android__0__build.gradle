@@ -1,0 +1,6 @@
+com.android.tools.build:gradle$4.0.1
+de.mannodermaus.gradle.plugins:android-junit5$1.7.1.1
+com.getkeepsafe.dexcount:dexcount-gradle-plugin$2.0.0
+com.vanniktech:gradle-android-junit-jacoco-plugin$0.16.0
+gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin$4.6.0
+com.github.spotbugs:spotbugs$4.0.0

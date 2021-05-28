@@ -1,0 +1,10 @@
+com.fasterxml.jackson.core:jackson-core$2.11.3
+com.fasterxml.jackson.core:jackson-databind$2.11.3
+software.amazon.awssdk:dynamodb$2.15.25
+org.assertj:assertj-core$3.16.1
+org.junit.jupiter:junit-jupiter-api$5.3.2
+org.junit.jupiter:junit-jupiter-engine$5.3.2
+org.testcontainers:testcontainers$1.15.0
+org.testcontainers:localstack$1.15.0
+org.skyscreamer:jsonassert$1.5.0
+nebula.release$15.2.0

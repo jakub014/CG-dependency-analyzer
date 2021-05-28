@@ -1,0 +1,11 @@
+org.sonarsource.scanner.gradle:sonarqube-gradle-plugin$2.8
+io.spring.gradle:propdeps-plugin$0.0.9.RELEASE
+com.jfrog.bintray.gradle:gradle-bintray-plugin$1.8.4
+org.jfrog.buildinfo:build-info-extractor-gradle$4.13.0
+org.springframework.boot:spring-boot-dependencies$2.2.4.RELEASE
+com.google.guava:guava$28.2-jre
+commons-io:commons-io$2.6
+commons-logging:commons-logging$1.2
+net.bull.javamelody:javamelody-core$1.81.0
+org.apache.pdfbox:pdfbox$2.0.21
+io.spring.dependency-management$1.0.9.RELEASE

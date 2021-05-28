@@ -1,0 +1,13 @@
+org.springframework.boot:spring-boot-gradle-plugin$2.4.3
+cz.habarta.typescript-generator:typescript-generator-gradle-plugin$2.19.577
+cz.habarta.typescript-generator:typescript-generator-spring$2.19.577
+org.jetbrains.kotlin:kotlin-gradle-plugin$1.4.10
+org.jetbrains.kotlin:kotlin-allopen$1.4.10
+org.jetbrains.kotlin:kotlin-stdlib-jdk8$1.4.10
+org.springframework.boot:spring-boot-starter-web$2.4.3
+com.uliian:uliian-commons$1.5.3
+org.springframework.boot:spring-boot-starter-aop$2.4.3
+com.google.guava:guava$29.0-jre
+com.baomidou:mybatis-plus-boot-starter$3.4.2
+org.springframework.boot:spring-boot-starter-test$2.4.3
+com.fasterxml.jackson.module:jackson-module-kotlin$2.11.2

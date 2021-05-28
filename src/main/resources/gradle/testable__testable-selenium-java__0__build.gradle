@@ -1,0 +1,5 @@
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.5.3
+org.seleniumhq.selenium:selenium-java$3.11.0
+com.fasterxml.jackson.core:jackson-databind$2.11.1
+org.apache.commons:commons-csv$1.5
+junit:junit$4.13

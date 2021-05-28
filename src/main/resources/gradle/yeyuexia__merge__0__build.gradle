@@ -1,0 +1,6 @@
+org.mockito:mockito-all$1.10.19
+io.github.dummie-java:dummie$1.0.1
+commons-beanutils:commons-beanutils$1.9.3
+org.slf4j:slf4j-api$1.7.25
+junit:junit$4.12
+com.google.guava:guava$23.0

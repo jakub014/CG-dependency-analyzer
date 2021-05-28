@@ -1,0 +1,4 @@
+com.oracle.oci.sdk:oci-java-sdk-vault$1.36.5
+com.oracle.oci.sdk:oci-java-sdk-secrets$1.36.5
+com.oracle.oci.sdk:oci-java-sdk-common$1.36.5
+org.testcontainers:spock$1.15.3

@@ -1,0 +1,5 @@
+org.nanohttpd:nanohttpd$2.3.1
+org.nanohttpd:nanohttpd-webserver$2.3.1
+org.nanohttpd:nanohttpd-nanolets$2.3.1
+com.github.stefanbirkner:system-rules$1.19.0
+junit:junit$4.12

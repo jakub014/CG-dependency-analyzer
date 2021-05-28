@@ -1,6 +1,0 @@
-dependencies {
-    api project(":use-cases")
-    api "com.amazonaws:aws-java-sdk-ses:${awsSdkVersion}"
-
-    testImplementation testFixtures(project(":entities"))
-}

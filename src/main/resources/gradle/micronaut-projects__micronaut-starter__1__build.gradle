@@ -1,0 +1,5 @@
+io.github.java-diff-utils:java-diff-utils$4.10
+org.eclipse.jgit:org.eclipse.jgit$5.11.1.202105131744-r
+org.yaml:snakeyaml$1.28
+com.typesafe:config$1.4.1
+org.apache.commons:commons-compress$1.20

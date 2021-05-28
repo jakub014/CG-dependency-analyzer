@@ -1,0 +1,6 @@
+org.mockito:mockito-core$2.23.4
+org.javassist:javassist$3.27.0-GA
+junit:junit$4.12
+org.openjdk.jmh:jmh-core$1.25.2
+org.openjdk.jmh:jmh-generator-annprocess$1.25.2
+com.github.hierynomus.license$0.14.0

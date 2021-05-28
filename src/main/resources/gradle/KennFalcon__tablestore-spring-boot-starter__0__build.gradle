@@ -1,0 +1,9 @@
+org.springframework.boot:spring-boot-starter$2.1.1.RELEASE
+org.springframework.boot:spring-boot-configuration-processor$2.1.1.RELEASE
+org.springframework.boot:spring-boot-autoconfigure$2.1.1.RELEASE
+org.apache.commons:commons-lang3$3.8
+org.apache.commons:commons-collections4$4.2
+com.alibaba:fastjson$1.2.54
+com.google.guava:guava$28.0-jre
+com.aliyun.openservices:tablestore$5.7.0
+org.xerial.snappy:snappy-java$1.1.7.7

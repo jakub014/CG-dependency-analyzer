@@ -1,0 +1,10 @@
+com.squareup:javapoet$1.13.0
+com.atlassian.commonmark:commonmark$0.14.0
+org.jsoup:jsoup$1.13.1
+software.amazon.smithy:smithy-model$1.4.0
+software.amazon.smithy:smithy-aws-traits$1.4.0
+org.junit.jupiter:junit-jupiter-api$5.4.0
+org.junit.jupiter:junit-jupiter-engine$5.4.0
+org.junit.jupiter:junit-jupiter-params$5.4.0
+org.hamcrest:hamcrest$2.1
+jvm$1.4.20

@@ -1,0 +1,15 @@
+com.google.auto.service:auto-service$1.0-rc7
+org.projectlombok:lombok$1.18.18
+org.junit.jupiter:junit-jupiter-params$5.7.1
+org.junit.jupiter:junit-jupiter-engine$5.7.1
+org.assertj:assertj-core$3.19.0
+com.github.stefanbirkner:system-lambda$1.2.0
+org.awaitility:awaitility$4.0.3
+ch.qos.logback:logback-classic$1.2.3
+org.ajoberstar.reckon$0.13.0
+com.github.ben-manes.versions$0.36.0
+org.sonarqube$3.1.1
+org.asciidoctor.jvm.convert$3.3.0
+com.github.johnrengelman.shadow$6.1.0
+de.marcphilipp.nexus-publish$0.4.0
+io.codearte.nexus-staging$0.22.0

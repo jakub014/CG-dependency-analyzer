@@ -1,0 +1,12 @@
+com.vanniktech:gradle-maven-publish-plugin$0.8.0
+io.swagger.core.v3:swagger-annotations$2.1.4
+io.swagger.core.v3:swagger-models$2.1.4
+io.swagger.core.v3:swagger-integration$2.1.4
+org.webjars:swagger-ui$3.32.5
+org.springframework:spring-core$5.2.7.RELEASE
+org.ninjaframework:ninja-test-utilities$6.5.0
+io.rest-assured:rest-assured$4.3.1
+org.ninjaframework:ninja-servlet$6.5.0
+org.skyscreamer:jsonassert$1.5.0
+org.apache.httpcomponents:httpclient$4.5.2
+com.fasterxml.jackson.dataformat:jackson-dataformat-properties$2.11.1

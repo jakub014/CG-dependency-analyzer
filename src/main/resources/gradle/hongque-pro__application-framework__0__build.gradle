@@ -1,0 +1,10 @@
+org.jetbrains.kotlin:kotlin-bom$1.4.10
+org.junit:junit-bom$5.7.0
+org.springframework.boot:spring-boot-dependencies$2.3.4.RELEASE
+org.springframework.cloud:spring-cloud-dependencies$Hoxton.SR8
+org.mockito:mockito-all$1.10.19
+org.jetbrains.kotlin.plugin.spring$1.4.10
+org.springframework.boot$2.3.4.RELEASE
+org.jetbrains.kotlin.jvm$1.4.10
+io.spring.dependency-management$1.0.10.RELEASE
+io.codearte.nexus-staging$0.22.0

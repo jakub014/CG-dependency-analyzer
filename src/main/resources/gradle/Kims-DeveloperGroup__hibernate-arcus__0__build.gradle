@@ -1,0 +1,9 @@
+org.projectlombok:lombok$1.18.14
+com.navercorp.arcus:arcus-java-client$1.12.1
+org.hibernate:hibernate-core$5.4.22.Final
+org.slf4j:slf4j-api$1.7.30
+ch.qos.logback:logback-classic$1.2.3
+junit:junit$4.12
+org.hibernate:hibernate-testing$5.4.27.Final
+org.assertj:assertj-core$3.18.1
+com.h2database:h2$1.4.200

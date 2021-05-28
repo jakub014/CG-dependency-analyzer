@@ -1,0 +1,5 @@
+org.springframework:spring-webmvc$5.1.0.RELEASE
+javax.validation:validation-api$2.0.1.Final
+com.alibaba:fastjson$1.2.51
+com.google.code.gson:gson$2.8.5
+com.baomidou:mybatis-plus$3.4.0

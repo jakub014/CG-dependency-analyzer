@@ -1,6 +1,0 @@
-archivesBaseName = "rabbitmq-client-api_$scalaVersion"
-
-dependencies {
-    api "com.avast.bytes:bytes-core:${bytesVersion}"
-    api "co.fs2:fs2-core_$scalaVersion:$fs2Version"
-}

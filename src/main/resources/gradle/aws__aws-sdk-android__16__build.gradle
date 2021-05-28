@@ -1,0 +1,6 @@
+androidx.core:core$1.3.1
+androidx.browser:browser$1.2.0
+androidx.appcompat:appcompat$1.2.0
+androidx.test.ext:junit$1.1.2
+androidx.test:rules$1.3.0
+androidx.test:runner$1.3.0

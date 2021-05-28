@@ -1,0 +1,8 @@
+org.eclipse.jgit:org.eclipse.jgit$latest.release
+io.micrometer:micrometer-registry-prometheus$latest.release
+org.junit.jupiter:junit-jupiter-api$latest.release
+org.junit.jupiter:junit-jupiter-params$latest.release
+io.github.classgraph:classgraph$latest.release
+org.assertj:assertj-core$latest.release
+com.google.googlejavaformat:google-java-format$1.6
+ch.qos.logback:logback-classic$1.0.13

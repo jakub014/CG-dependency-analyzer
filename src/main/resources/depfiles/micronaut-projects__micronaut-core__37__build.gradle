@@ -1,8 +1,0 @@
-ext {
-    snakeYamlVersion = '1.27'
-}
-
-dependencies {
-    api "org.codehaus.groovy:groovy:$groovyVersion"
-    testImplementation "org.yaml:snakeyaml:$snakeYamlVersion"
-}

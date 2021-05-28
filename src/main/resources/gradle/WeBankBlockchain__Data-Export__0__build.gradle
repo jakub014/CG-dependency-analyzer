@@ -1,0 +1,5 @@
+org.projectlombok:lombok$1.18.10
+com.webank:solc-gradle-plugin$1.0.0
+com.ibeetl:beetl$2.9.3
+org.springframework.boot$2.2.8.RELEASE
+io.spring.dependency-management$1.0.9.RELEASE

@@ -1,0 +1,5 @@
+io.swagger:swagger-core$1.5.22
+com.fasterxml.jackson.core:jackson-databind$2.12.2
+com.fasterxml.jackson.module:jackson-module-kotlin$2.12.2
+io.swagger:swagger-parser$1.0.36
+org.assertj:assertj-core$3.10.0

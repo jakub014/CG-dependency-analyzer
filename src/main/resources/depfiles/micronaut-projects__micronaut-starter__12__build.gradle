@@ -1,8 +1,0 @@
-dependencies {
-    testImplementation project(":test-utils")
-    testImplementation project(":micronaut-cli")
-}
-
-tasks.withType(Test) {
-    forkEvery = 10
-}

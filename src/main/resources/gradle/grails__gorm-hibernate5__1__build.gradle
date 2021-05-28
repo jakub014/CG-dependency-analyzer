@@ -1,0 +1,3 @@
+javax.validation:validation-api$2.0.1.Final
+javax.el:javax.el-api$3.0.1-b06
+net.sf.ehcache:ehcache-core$2.6.11

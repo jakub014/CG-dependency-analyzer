@@ -1,0 +1,12 @@
+bayern.steinbrecher:JavaUtility$0.16
+bayern.steinbrecher:jsch$0.1.57
+com.google.guava:guava$29.0-jre
+org.mariadb.jdbc:mariadb-java-client$2.7.0
+org.freemarker:freemarker$2.3.30
+org.jetbrains:annotations$19.0.0
+org.junit.jupiter:junit-jupiter-api$5.7.0
+org.junit.jupiter:junit-jupiter-params$5.7.0
+org.junit.jupiter:junit-jupiter-engine$5.7.0
+org.craftercms.mariaDB4j:mariaDB4j$2.4.8
+org.craftercms.mariaDB4j:mariaDB4j-db-win64$10.4.6.2
+org.openjfx.javafxplugin$0.0.9

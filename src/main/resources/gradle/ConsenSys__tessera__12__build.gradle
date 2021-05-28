@@ -1,0 +1,8 @@
+com.h2database:h2$1.4.200
+com.zaxxer:HikariCP$3.2.0
+org.eclipse.persistence:org.eclipse.persistence.jpa$2.7.3
+org.eclipse.persistence:org.eclipse.persistence.extension$2.7.3
+org.hsqldb:hsqldb$2.4.1
+org.xerial:sqlite-jdbc$3.23.1
+javax.persistence:javax.persistence-api$2.2
+javax.transaction:javax.transaction-api$1.3

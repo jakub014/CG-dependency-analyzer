@@ -1,0 +1,6 @@
+br.com.guiabolso:events-core$5.0.8
+org.slf4j:slf4j-api$1.7.30
+org.mockito:mockito-core$3.5.11
+com.nhaarman.mockitokotlin2:mockito-kotlin$2.2.0
+jvm$1.4.31
+io.gitlab.arturbosch.detekt$1.16.0

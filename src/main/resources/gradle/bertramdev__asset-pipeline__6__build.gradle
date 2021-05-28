@@ -1,0 +1,5 @@
+org.codehaus.groovy:groovy-all$2.4.19
+org.jruby:jruby-complete$9.2.11.1
+com.bertramlabs.plugins:jruby-container$0.6.3
+org.spockframework:spock-core$1.3-groovy-2.4
+com.jfrog.bintray$1.8.5

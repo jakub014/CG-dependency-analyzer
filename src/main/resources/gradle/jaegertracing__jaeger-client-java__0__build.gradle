@@ -1,0 +1,14 @@
+org.projectlombok:lombok$1.18.2
+org.codehaus.mojo:animal-sniffer-annotations$1.16
+com.google.errorprone:error_prone_core$2.1.1
+-Xep:NestedInstanceOfConditions$OFF
+-Xep:InstanceOfAndCastMatchWrongType$OFF
+org.jruyi.thrift$0.4.0
+com.github.hierynomus.license$0.15.0
+com.github.johnrengelman.shadow$5.0.0
+net.ltgt.errorprone$0.0.14
+ru.vyarus.animalsniffer$1.5.0
+io.codearte.nexus-staging$0.20.0
+de.marcphilipp.nexus-publish$0.2.0
+com.github.ben-manes.versions$0.21.0
+net.researchgate.release$2.6.0

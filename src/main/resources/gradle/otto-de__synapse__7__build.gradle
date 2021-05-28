@@ -1,0 +1,12 @@
+com.google.guava:guava$30.1.1-jre
+com.fasterxml.jackson.datatype:jackson-datatype-jsr310$2.12.2
+org.springframework.kafka:spring-kafka$2.6.7
+junit:junit$4.13.2
+org.hamcrest:hamcrest-all$1.3
+org.springframework.kafka:spring-kafka-test$2.6.7
+com.jayway.jsonpath:json-path-assert$2.5.0
+com.tngtech.java:junit-dataprovider$1.13.1
+org.awaitility:awaitility$4.0.3
+org.mockito:mockito-core$3.8.0
+ch.qos.logback:logback-core$1.2.3
+ch.qos.logback:logback-classic$1.2.3

@@ -1,0 +1,8 @@
+ru.yandex.clickhouse:clickhouse-jdbc$0.3.1
+com.github.housepower:clickhouse-native-jdbc$2.5.4
+ch.qos.logback:logback-classic$1.2.3
+org.testcontainers:junit-jupiter$1.14.3
+org.testcontainers:clickhouse$1.14.3
+io.micronaut.library$1.5.0
+org.sonarqube$3.1.1
+com.diffplug.spotless$5.11.0

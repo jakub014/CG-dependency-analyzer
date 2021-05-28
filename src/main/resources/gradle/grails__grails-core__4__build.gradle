@@ -1,0 +1,6 @@
+org.grails:grails-gdoc-engine$1.0.1
+org.yaml:snakeyaml$1.28
+org.asciidoctor:asciidoctorj$2.4.2
+org.xhtmlrenderer:core-renderer$8.0
+com.lowagie:itext$2.0.8
+org.jsoup:jsoup$1.7.3

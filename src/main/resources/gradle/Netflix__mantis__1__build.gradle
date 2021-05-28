@@ -1,0 +1,4 @@
+io.netty:netty-codec-http$4.1.17.Final
+io.netty:netty-buffer$4.1.17.Final
+org.hamcrest:hamcrest-core$1.3
+junit:junit-dep$4.11

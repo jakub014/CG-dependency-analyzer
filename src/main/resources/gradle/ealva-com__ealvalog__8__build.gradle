@@ -1,0 +1,10 @@
+androidx.appcompat:appcompat$1.2.0
+org.jetbrains:annotations$20.0.0
+com.android.support.test.espresso:espresso-core$2.2.2
+org.mockito:mockito-core$3.6.28
+org.hamcrest:hamcrest-library$2.2
+com.android.support.test:runner$1.0.2
+com.android.support.test:rules$1.0.2
+org.mockito:mockito-android$3.5.0
+com.nhaarman.mockitokotlin2:mockito-kotlin$2.2.0
+com.nhaarman:expect.kt$1.0.1

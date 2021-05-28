@@ -1,0 +1,10 @@
+org.eclipse.virgo.util:org.eclipse.virgo.util.osgi.manifest$3.5.0.RELEASE
+org.osgi:osgi_R4_core$1.0
+org.hamcrest:hamcrest-all$1.3
+org.easymock:easymock$3.4
+junit:junit$4.12
+ch.qos.logback:logback-classic$1.1.7
+com.github.johnrengelman.shadow$5.2.0
+de.marcphilipp.nexus-publish$0.3.0
+io.codearte.nexus-staging$0.21.2
+org.ajoberstar.git-publish$2.1.3

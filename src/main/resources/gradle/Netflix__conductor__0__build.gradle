@@ -1,0 +1,6 @@
+com.netflix.nebula:gradle-extra-configurations-plugin$5.0.3
+org.springframework.boot:spring-boot-gradle-plugin$2.3.1.RELEASE
+org.springframework.boot:spring-boot-dependencies$2.3.1.RELEASE
+io.spring.dependency-management$1.0.9.RELEASE
+nebula.netflixoss$9.2.2
+org.sonarqube$3.1.1

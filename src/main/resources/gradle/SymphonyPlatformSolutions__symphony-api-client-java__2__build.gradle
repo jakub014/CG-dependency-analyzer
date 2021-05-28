@@ -1,0 +1,6 @@
+org.mapstruct:mapstruct$1.4.1.Final
+org.mapstruct:mapstruct-processor$1.4.1.Final
+javax.annotation:jsr250-api$1.0
+org.assertj:assertj-core$3.19.0
+org.openapi.generator$5.0.0-beta2
+de.undercouch.download$4.1.1

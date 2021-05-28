@@ -1,0 +1,2 @@
+com.fasterxml.jackson.core:jackson-databind$2.12.2
+com.oracle.database.r2dbc:oracle-r2dbc$0.1.0

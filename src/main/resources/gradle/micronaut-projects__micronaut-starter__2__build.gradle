@@ -1,0 +1,11 @@
+info.picocli:picocli$4.6.1
+info.picocli:picocli-shell-jline3$4.6.1
+org.slf4j:slf4j-nop$1.7.30
+org.fusesource.jansi:jansi$1.18
+org.yaml:snakeyaml$1.28
+org.shredzone.acme4j:acme4j-client$2.11
+org.shredzone.acme4j:acme4j-utils$2.10
+info.picocli:picocli-codegen$4.6.1
+org.reflections:reflections$0.9.12
+org.asciidoctor.convert$2.4.0
+io.sdkman.vendors$2.0.0

@@ -1,0 +1,9 @@
+org.apache.mesos:mesos$1.9.0
+org.apache.curator:curator-framework$4.3.0
+org.apache.commons:commons-lang3$3.10
+ch.qos.logback:logback-classic$1.2.3
+junit:junit$4.12
+com.googlecode.protobuf-java-format:protobuf-java-format$1.4
+javax.activation:activation$1.1.1
+javax.xml.bind:jaxb-api$2.4.0-b180830.0359
+io.freefair.lombok$3.2.0

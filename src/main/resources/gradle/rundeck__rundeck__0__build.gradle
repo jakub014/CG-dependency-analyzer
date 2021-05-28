@@ -1,0 +1,8 @@
+com.adaptc.gradle:nexus-workflow$0.6
+com.google.gradle:osdetector-gradle-plugin$1.4.0
+org.owasp:dependency-check-gradle$5.3.2
+org.yaml:snakeyaml$1.26
+com.gradle.build-scan$3.2.1
+org.dvaske.gradle.git-build-info$0.8
+com.dorongold.task-tree$1.5
+org.ajoberstar.grgit$2.2.1

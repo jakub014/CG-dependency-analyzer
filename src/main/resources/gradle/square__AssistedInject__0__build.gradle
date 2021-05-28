@@ -1,0 +1,12 @@
+com.google.auto.service:auto-service$1.0-rc4
+com.google.auto:auto-common$0.10
+junit:junit$4.12
+com.google.truth:truth$0.42
+com.squareup:javapoet$1.11.1
+com.google.guava:guava$26.0-jre
+com.google.testing.compile:compile-testing$0.15
+org.robolectric:robolectric$4.0-alpha-3
+javax.inject:javax.inject$1
+com.google.android:android$4.1.1.4
+androidx.annotation:annotation$1.0.0
+com.android.tools.build:gradle$3.4.2

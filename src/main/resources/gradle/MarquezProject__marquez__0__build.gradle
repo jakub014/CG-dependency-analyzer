@@ -1,0 +1,8 @@
+com.adarshr:gradle-test-logger-plugin$2.1.1
+com.github.jengelman.gradle.plugins:shadow$6.1.0
+com.diffplug.spotless:spotless-plugin-gradle$5.12.1
+org.projectlombok:lombok$1.18.18
+org.assertj:assertj-core$3.19.0
+org.junit.jupiter:junit-jupiter$5.7.1
+org.mockito:mockito-core$3.8.0
+org.mockito:mockito-junit-jupiter$3.8.0

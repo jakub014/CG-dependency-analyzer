@@ -1,0 +1,10 @@
+org.apache.commons:commons-lang3$3.11
+com.esaulpaugh:headlong$3.4.1
+com.google.code.gson:gson$2.8.6
+org.bouncycastle:bcprov-jdk15on$1.65.01
+org.projectlombok:lombok-maven-plugin$1.18.16.0
+org.projectlombok:lombok$1.18.16
+org.junit.jupiter:junit-jupiter-api$5.7.1
+org.junit.jupiter:junit-jupiter-engine$5.7.1
+io.codearte.nexus-staging$0.22.0
+de.undercouch.download$4.1.1

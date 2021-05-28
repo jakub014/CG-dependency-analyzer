@@ -1,0 +1,7 @@
+org.web3j:core$4.2.0
+org.projectlombok:lombok$1.18.4
+com.google.guava:guava$27.0.1-jre
+com.google.code.gson:gson$2.8.5
+junit:junit$4.12
+com.squareup.okhttp3:okhttp$3.6.0
+com.google.protobuf:protobuf-java$3.6.1

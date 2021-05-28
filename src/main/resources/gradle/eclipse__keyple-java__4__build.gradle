@@ -1,0 +1,5 @@
+com.diffplug.spotless:spotless-plugin-gradle$3.14.0
+org.slf4j:slf4j-simple$1.7.25
+org.slf4j:slf4j-ext$1.7.25
+com.squareup.retrofit2:converter-gson$2.4.0
+junit:junit$4.12

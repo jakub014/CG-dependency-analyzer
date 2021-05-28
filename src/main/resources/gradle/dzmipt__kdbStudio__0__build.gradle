@@ -1,0 +1,8 @@
+org.junit.jupiter:junit-jupiter-api$5.3.1
+org.junit.jupiter:junit-jupiter-engine$5.3.1
+com.github.rjeschke:txtmark$0.13
+org.apache.logging.log4j:log4j-api$2.14.0
+org.apache.logging.log4j:log4j-core$2.14.0
+org.apache.logging.log4j:log4j-iostreams$2.14.0
+org.netbeans.api:org-openide-awt$RELEASE113
+org.jfree:jfreechart$1.0.14

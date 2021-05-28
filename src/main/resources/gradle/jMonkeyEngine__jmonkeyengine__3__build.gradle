@@ -1,0 +1,6 @@
+org.lwjgl:lwjgl$3.2.3
+org.lwjgl:lwjgl-glfw$3.2.3
+org.lwjgl:lwjgl-jemalloc$3.2.3
+org.lwjgl:lwjgl-openal$3.2.3
+org.lwjgl:lwjgl-opencl$3.2.3
+org.lwjgl:lwjgl-opengl$3.2.3

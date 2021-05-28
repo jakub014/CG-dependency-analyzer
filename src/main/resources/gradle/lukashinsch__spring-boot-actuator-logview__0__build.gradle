@@ -1,0 +1,3 @@
+org.springframework.boot:spring-boot-gradle-plugin$1.2.1.RELEASE
+org.springframework:springloaded$1.2.1.RELEASE
+org.kt3k.gradle.plugin:coveralls-gradle-plugin$2.0.1

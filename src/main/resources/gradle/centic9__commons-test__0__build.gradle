@@ -1,0 +1,9 @@
+org.apache.commons:commons-lang3$3.12.0
+org.dstadler:commons-dost$1.0.0.32
+javax.mail:javax.mail-api$1.5.6
+dumbster:dumbster$1.6
+junit:junit$4.13.2
+org.apache.commons:commons-email$1.5
+com.sun.activation:javax.activation$1.2.0
+net.researchgate.release$2.8.1
+io.codearte.nexus-staging$0.22.0

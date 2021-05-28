@@ -1,0 +1,4 @@
+com.google.protobuf:protobuf-java$3.12.0
+org.springframework.boot:spring-boot-starter-web$2.4.3
+org.springframework.cloud:spring-cloud-starter-sleuth$3.0.1
+org.springframework.boot$2.4.3

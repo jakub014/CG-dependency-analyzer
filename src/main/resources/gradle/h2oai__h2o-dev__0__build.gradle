@@ -1,0 +1,6 @@
+org.ow2.asm:asm$5.1
+com.github.jengelman.gradle.plugins:shadow$4.0.4
+org.gradle.api.plugins:gradle-nexus-plugin$0.7.1
+org.testng:testng$6.8
+me.champeau.gradle:jmh-gradle-plugin$0.4.6
+com.github.hierynomus.license$0.14.0

@@ -1,0 +1,6 @@
+junit:junit$4.13.1
+org.apache.httpcomponents:httpclient$4.5.13
+org.codehaus.groovy:groovy-all$3.0.7
+org.hamcrest:hamcrest$2.2
+org.hamcrest:hamcrest-library$2.2
+org.mockito:mockito-core$3.6.28

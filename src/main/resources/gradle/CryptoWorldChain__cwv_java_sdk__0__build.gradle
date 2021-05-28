@@ -1,0 +1,14 @@
+onight.osgi:zpp-gradle_1.8$3.4.0
+gradle.plugin.com.google.protobuf:protobuf-gradle-plugin$0.8.10
+org.projectlombok:lombok$1.18.8
+com.madgag.spongycastle:core$1.58.0.0
+com.madgag.spongycastle:prov$1.58.0.0
+org.slf4j:slf4j-api$1.7.25
+com.google.code.gson:gson$2.8.5
+com.google.protobuf:protobuf-java$3.6.1
+com.alibaba:fastjson$1.2.51
+com.squareup.okhttp3:okhttp$3.14.2
+ch.qos.logback:logback-core$1.2.3
+ch.qos.logback:logback-classic$1.2.3
+com.google.protobuf:protoc$3.6.1
+junit:junit$4.12

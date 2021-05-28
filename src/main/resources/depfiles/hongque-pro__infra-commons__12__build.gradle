@@ -1,5 +1,0 @@
-dependencies {
-    compile(project(':logging'))
-    compile "org.springframework.boot:spring-boot-configuration-processor:${spring_boot_version}"
-    compile "org.springframework.boot:spring-boot-autoconfigure:${spring_boot_version}"
-}

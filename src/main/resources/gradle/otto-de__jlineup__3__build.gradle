@@ -1,0 +1,6 @@
+org.apache.tomcat.embed:tomcat-embed-core$9.0.46
+de.otto.edison:edison-core$2.4.7
+org.hibernate.validator:hibernate-validator$6.2.0.Final
+commons-codec:commons-codec$1.15
+io.rest-assured:rest-assured$4.3.3
+org.awaitility:awaitility$4.1.0

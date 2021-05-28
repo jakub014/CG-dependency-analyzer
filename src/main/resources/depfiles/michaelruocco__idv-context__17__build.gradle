@@ -1,5 +1,0 @@
-dependencies {
-    api project(":policy-use-cases")
-
-    testImplementation testFixtures(project(":policy-entities"))
-}

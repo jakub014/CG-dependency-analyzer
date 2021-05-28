@@ -1,0 +1,13 @@
+org.jetbrains.kotlin:kotlin-gradle-plugin$1.4.32
+com.jetbrains.intellij.platform:core-impl$201.8743.12
+com.jetbrains.intellij.platform:lang-impl$201.8743.12
+com.jetbrains.intellij.platform:analysis-impl$201.8743.12
+com.jetbrains.intellij.platform:indexing-impl$201.8743.12
+junit:junit$4.12
+com.google.truth:truth$0.30
+gradle.plugin.org.jetbrains.intellij.plugins:gradle-grammarkit-plugin$2020.1.4
+com.alecstrong:grammar-kit-composer$0.1.5
+com.diffplug.spotless:spotless-plugin-gradle$5.11.1
+com.vanniktech:gradle-maven-publish-plugin$0.14.2
+org.jetbrains.dokka:dokka-gradle-plugin$1.4.32
+org.jetbrains.intellij.deps:asm-all$7.0.1

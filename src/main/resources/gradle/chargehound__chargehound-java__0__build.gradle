@@ -1,0 +1,5 @@
+com.google.http-client:google-http-client$1.25.0
+com.google.http-client:google-http-client-jackson2$1.25.0
+javax.json:javax.json-api$1.0
+org.glassfish:javax.json$1.0
+junit:junit$4.12

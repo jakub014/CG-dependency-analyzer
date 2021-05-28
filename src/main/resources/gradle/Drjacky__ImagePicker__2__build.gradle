@@ -1,0 +1,10 @@
+androidx.core:core-ktx$1.3.2
+androidx.appcompat:appcompat$1.2.0
+androidx.exifinterface:exifinterface$1.3.2
+androidx.documentfile:documentfile$1.0.1
+androidx.lifecycle:lifecycle-viewmodel-ktx$2.3.1
+androidx.fragment:fragment-ktx$1.3.3
+com.github.yalantis:ucrop$2.2.6
+junit:junit$4.13.2
+androidx.test.ext:junit$1.1.2
+androidx.test:core$1.3.0

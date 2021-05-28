@@ -1,0 +1,2 @@
+gradle.plugin.com.ewerk.gradle.plugins:jaxb2-plugin$1.0.10
+-Xep:MissingOverride$OFF

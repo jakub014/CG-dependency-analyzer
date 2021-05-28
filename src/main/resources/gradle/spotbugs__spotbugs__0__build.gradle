@@ -1,0 +1,5 @@
+org.junit:junit-bom$5.7.2
+org.sonarqube$3.2.0
+com.diffplug.spotless$5.12.5
+org.gradle.crypto.checksum$1.2.0
+com.github.spotbugs$4.7.1

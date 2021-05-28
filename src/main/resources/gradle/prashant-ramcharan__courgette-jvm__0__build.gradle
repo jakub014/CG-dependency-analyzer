@@ -1,0 +1,11 @@
+io.cucumber:cucumber-core$6.10.3
+io.cucumber:cucumber-java$6.10.3
+io.cucumber:cucumber-java8$6.10.3
+io.cucumber:cucumber-junit$6.10.3
+io.cucumber:cucumber-testng$6.10.3
+org.testng:testng$7.1.0
+com.fasterxml.jackson.core:jackson-databind$2.11.3
+org.apache.httpcomponents:httpclient$4.5.13
+org.apache.httpcomponents:httpmime$4.5.13
+com.aventstack:extentreports$5.0.3
+com.github.spullara.mustache.java:compiler$0.9.6

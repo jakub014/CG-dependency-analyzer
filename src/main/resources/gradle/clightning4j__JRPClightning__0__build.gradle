@@ -1,0 +1,10 @@
+gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin$0.9
+ch.qos.logback:logback-classic$1.2.3
+ch.qos.logback:logback-core$1.2.3
+org.slf4j:slf4j-api$1.7.25
+com.kohlschutter.junixsocket:junixsocket-common$2.3.2
+com.kohlschutter.junixsocket:junixsocket-native-common$2.3.2
+com.google.code.gson:gson$2.8.6
+org.reflections:reflections$0.9.11
+commons-io:commons-io$2.4
+junit:junit$4.13.1

@@ -1,4 +1,0 @@
-dependencies {
-    compile project(':broker:core:credhub-service')
-    compile project(':broker:core:credential-service')
-}

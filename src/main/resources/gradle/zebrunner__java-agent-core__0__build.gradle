@@ -1,0 +1,9 @@
+com.konghq:unirest-java$3.6.01
+org.yaml:snakeyaml$1.26
+net.bytebuddy:byte-buddy$1.10.18
+org.seleniumhq.selenium:selenium-remote-driver$3.141.59
+org.slf4j:slf4j-api$1.7.30
+log4j:log4j$1.2.17
+org.apache.logging.log4j:log4j-core$2.13.2
+ch.qos.logback:logback-classic$1.2.3
+org.projectlombok:lombok$1.18.10

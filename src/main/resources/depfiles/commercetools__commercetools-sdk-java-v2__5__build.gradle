@@ -1,4 +1,0 @@
-
-dependencies {
-    api project(":commercetools:commercetools-okhttp-client4")
-}

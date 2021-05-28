@@ -1,0 +1,12 @@
+commons-io:commons-io$2.4
+com.google.code.findbugs:annotations$3.0.0
+com.jayway.awaitility:awaitility$1.6.1
+org.assertj:assertj-core$3.3.0
+net.javacrumbs.json-unit:json-unit-fluent$1.5.5
+junit:junit$4.11
+org.testng:testng$6.8.8
+org.apache.httpcomponents:httpclient$4.5.13
+com.jayway.jsonpath:json-path$2.5.0
+org.apache.oltu.oauth2:org.apache.oltu.oauth2.authzserver$1.0.2
+org.apache.oltu.oauth2:org.apache.oltu.oauth2.resourceserver$1.0.2
+org.apache.oltu.oauth2:org.apache.oltu.oauth2.client$1.0.2

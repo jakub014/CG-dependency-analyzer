@@ -1,7 +1,0 @@
-archivesBaseName = "osmapi-user"
-version = user_version
-description = 'Client for the OSM API 0.6 - Managing user preferences, getting user information'
-
-dependencies {
-    compile "de.westnordost:osmapi-core:$core_version"
-}

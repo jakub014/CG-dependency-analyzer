@@ -1,0 +1,13 @@
+org.junit.jupiter:junit-jupiter-api$5.6.2
+org.junit.jupiter:junit-jupiter-params$5.6.2
+org.junit.jupiter:junit-jupiter-engine$5.6.2
+com.fasterxml.jackson.core:jackson-annotations$2.11.2
+org.springframework:spring-core$5.2.5.RELEASE
+com.google.guava:guava$29.0-jre
+com.google.code.gson:gson$2.8.6
+javax.validation:validation-api$2.0.1.Final
+org.hibernate:hibernate-validator$6.1.5.Final
+javax.el:javax.el-api$3.0.0
+org.glassfish.web:javax.el$2.2.6
+com.fasterxml.jackson.core:jackson-databind$2.11.2
+org.json:json$20200518

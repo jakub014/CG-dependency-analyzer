@@ -1,0 +1,3 @@
+org.apache.rocketmq:rocketmq-common$4.6.1
+org.apache.rocketmq:rocketmq-tools$4.6.1
+org.apache.rocketmq:rocketmq-client$4.6.1

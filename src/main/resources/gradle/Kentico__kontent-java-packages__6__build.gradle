@@ -1,0 +1,7 @@
+com.android.support:appcompat-v7$28.0.0
+com.android.support.constraint:constraint-layout$1.1.3
+com.android.support.test:runner$1.0.2
+org.jetbrains.kotlinx:kotlinx-coroutines-android$1.3.9
+org.jetbrains.kotlinx:kotlinx-coroutines-jdk8$1.3.9
+com.squareup.picasso:picasso$2.5.2
+org.jetbrains.kotlin.multiplatform$1.3.61

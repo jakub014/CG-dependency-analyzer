@@ -1,0 +1,10 @@
+org.eclipse.emf:org.eclipse.emf.mwe2.launch$2.11.3
+commons-io:commons-io$2.6
+org.apache.commons:commons-lang3$3.9
+org.freemarker:freemarker$2.3.30
+com.fasterxml.jackson.core:jackson-databind$2.9.9
+com.fasterxml.jackson.core:jackson-annotations$2.9.9
+org.yaml:snakeyaml$1.14
+org.contextmapper:henshin-interpreter$1.6.0
+org.contextmapper:context-map-generator$1.2.1
+org.contextmapper:service-cutter-library$1.2.1

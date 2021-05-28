@@ -1,7 +1,0 @@
-dependencies {
-  api project(":simplified-parser-api")
-
-  implementation libraries.joda_time
-  implementation libraries.kotlin_stdlib
-  implementation libraries.kotlin_reflect
-}

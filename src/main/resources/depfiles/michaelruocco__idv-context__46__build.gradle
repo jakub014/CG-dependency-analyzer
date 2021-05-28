@@ -1,9 +1,0 @@
-dependencies {
-    api project(":otp-use-cases")
-    implementation project(":method-config")
-    implementation project(":method-json")
-    implementation project(":method-use-cases")
-    implementation project(":context-use-cases")
-    implementation project(":otp-data-protector")
-    implementation "com.github.michaelruocco:random-value-suppliers:${randomValueSuppliersVersion}"
-}

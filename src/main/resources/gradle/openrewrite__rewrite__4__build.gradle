@@ -1,0 +1,5 @@
+io.micrometer:micrometer-core$latest.release
+io.github.classgraph:classgraph$latest.release
+org.ow2.asm:asm$latest.release
+io.micrometer:micrometer-registry-prometheus$latest.release
+nebula.integtest$7.0.9

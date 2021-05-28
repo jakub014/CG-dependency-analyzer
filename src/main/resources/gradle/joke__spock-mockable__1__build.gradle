@@ -1,0 +1,3 @@
+org.codehaus.groovy:groovy-bom$3.0.8
+org.spockframework:spock-bom$2.0-groovy-3.0
+org.jetbrains.kotlin.jvm$1.5.0

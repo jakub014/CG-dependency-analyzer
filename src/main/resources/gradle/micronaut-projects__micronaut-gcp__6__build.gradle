@@ -1,0 +1,2 @@
+com.google.cloud:google-cloud-pubsub$1.112.3
+org.testcontainers:spock$1.15.3

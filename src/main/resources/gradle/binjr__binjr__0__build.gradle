@@ -1,0 +1,6 @@
+org.junit.jupiter:junit-jupiter-api$5.7.1
+org.junit.jupiter:junit-jupiter-engine$5.7.1
+de.undercouch.download$4.1.1
+org.kordamp.gradle.markdown$2.2.0
+com.github.ben-manes.versions$0.38.0
+de.marcphilipp.nexus-publish$0.4.0

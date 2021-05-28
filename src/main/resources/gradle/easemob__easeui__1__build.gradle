@@ -1,0 +1,8 @@
+io.hyphenate:hyphenate-chat$3.8.1
+androidx.appcompat:appcompat$1.2.0
+androidx.constraintlayout:constraintlayout$2.0.4
+androidx.swiperefreshlayout:swiperefreshlayout$1.1.0
+androidx.lifecycle:lifecycle-viewmodel$2.2.0
+junit:junit$4.12
+androidx.recyclerview:recyclerview$1.2.0-beta01
+com.github.bumptech.glide:glide$4.9.0

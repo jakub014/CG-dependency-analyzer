@@ -1,0 +1,17 @@
+com.carrotsearch.thirdparty:simple-xml-safe$2.7.1
+com.google.guava:guava$30.0-jre
+com.squareup.okhttp3:okhttp$4.8.1
+com.fasterxml.jackson.core:jackson-annotations$2.11.2
+com.fasterxml.jackson.core:jackson-core$2.11.2
+com.fasterxml.jackson.core:jackson-databind$2.11.2
+com.github.spotbugs:spotbugs-annotations$4.1.2
+com.squareup.okhttp3:mockwebserver$4.8.1
+junit:junit$4.13
+org.jetbrains.kotlin:kotlin-stdlib$1.3.72
+org.jetbrains.kotlin:kotlin-stdlib-common$1.3.72
+me.tongfei:progressbar$0.5.3
+com.github.johnrengelman.shadow$6.1.0
+com.github.spotbugs$4.5.0
+io.codearte.nexus-staging$0.22.0
+de.marcphilipp.nexus-publish$0.4.0
+com.diffplug.spotless$5.3.0

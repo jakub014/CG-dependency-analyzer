@@ -1,0 +1,6 @@
+org.anarres.gradle:gradle-stdproject-plugin$1.0.10
+org.anarres.gradle:gradle-sablecc-plugin$1.0.4
+com.google.code.findbugs:annotations$3.0.1
+org.slf4j:slf4j-api$1.7.12
+com.google.guava:guava$18.0
+org.jgrapht:jgrapht-core$1.0.0

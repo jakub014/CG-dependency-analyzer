@@ -1,0 +1,7 @@
+com.google.code.findbugs:jsr305$3.0.2
+com.github.ben-manes.versions$0.38.0
+com.github.jk1.dependency-license-report$1.16
+com.github.sherter.google-java-format$0.9
+com.google.cloud.tools.jib$3.0.0
+org.sonarqube$3.1.1
+pl.allegro.tech.build.axion-release$1.13.1

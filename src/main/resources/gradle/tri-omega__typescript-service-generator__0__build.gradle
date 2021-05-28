@@ -1,0 +1,6 @@
+org.projectlombok:lombok$1.18.12
+org.springframework:spring-webmvc$5.2.6.RELEASE
+com.google.guava:guava$29.0-jre
+com.google.testing.compile:compile-testing$0.18
+org.junit.jupiter:junit-jupiter-api$5.6.2
+org.junit.jupiter:junit-jupiter-engine$5.6.2

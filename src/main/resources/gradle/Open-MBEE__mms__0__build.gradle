@@ -1,0 +1,7 @@
+org.jfrog.buildinfo:build-info-extractor-gradle$latest.release
+com.jfrog.bintray.gradle:gradle-bintray-plugin$1.8.4
+io.swagger.core.v3:swagger-annotations$2.1.2
+org.hibernate:hibernate-core$5.4.14.Final
+javax.servlet:javax.servlet-api$4.0.1
+org.slf4j:slf4j-api$1.7.30
+org.springframework.boot:spring-boot-starter-test$2.2.4.RELEASE

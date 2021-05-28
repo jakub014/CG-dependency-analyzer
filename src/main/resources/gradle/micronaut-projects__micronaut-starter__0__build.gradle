@@ -1,0 +1,2 @@
+gradle.plugin.com.github.jengelman.gradle.plugins:shadow$7.0.0
+io.micronaut.build.internal:micronaut-gradle-plugins$4.0.0

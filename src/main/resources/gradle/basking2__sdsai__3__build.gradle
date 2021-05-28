@@ -1,0 +1,5 @@
+org.slf4j:slf4j-api$1.7.21
+junit:junit$4.12
+org.slf4j:slf4j-simple$1.7.21
+org.asciidoctor.convert$2.3.0
+net.researchgate.release$2.8.1

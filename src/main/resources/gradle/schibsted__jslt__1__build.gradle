@@ -1,0 +1,4 @@
+com.fasterxml.jackson.core:jackson-databind$2.12.0
+junit:junit$4.13.1
+com.fasterxml.jackson.dataformat:jackson-dataformat-yaml$2.12.0
+com.github.johnrengelman.shadow$1.2.4

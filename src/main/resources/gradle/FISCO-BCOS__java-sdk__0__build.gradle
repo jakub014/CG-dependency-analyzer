@@ -1,0 +1,16 @@
+org.slf4j:slf4j-api$1.7.30
+junit:junit$4.12
+org.bouncycastle:bcprov-jdk15on$1.60
+org.apache.commons:commons-lang3$3.1
+io.netty:netty-all$4.1.53.Final
+org.fisco-bcos:netty-sm-ssl-context$1.2.0
+com.fasterxml.jackson.core:jackson-databind$2.11.0
+commons-io:commons-io$2.4
+com.squareup:javapoet$1.7.0
+info.picocli:picocli$3.6.0
+com.webank:key-mini-toolkit$1.0.3
+com.moandjiezana.toml:toml4j$0.7.2
+org.apache.commons:commons-collections4$4.4
+com.google.guava:guava$29.0-jre
+com.github.sherter.google-java-format$0.8
+org.ajoberstar.grgit$4.1.0

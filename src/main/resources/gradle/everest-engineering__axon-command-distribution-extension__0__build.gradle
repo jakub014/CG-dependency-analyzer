@@ -1,0 +1,14 @@
+org.springframework.boot:spring-boot-dependencies$2.4.0
+com.hazelcast:hazelcast$4.0.3
+javax.cache:cache-api$1.1.1
+org.ehcache:ehcache$3.9.0
+org.axonframework:axon-modelling$4.4.5
+com.hazelcast:hazelcast-kubernetes$2.0.2
+io.kubernetes:client-java$10.0.0
+org.junit.jupiter:junit-jupiter$5.7.0
+org.mockito:mockito-junit-jupiter$3.5.15
+com.github.stefanbirkner:system-lambda$1.1.1
+com.palantir.git-version$0.12.3
+io.freefair.lombok$5.1.1
+io.spring.dependency-management$1.0.10.RELEASE
+org.sonarqube$3.1.1

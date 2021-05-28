@@ -1,0 +1,7 @@
+org.powermock:powermock-core$2.0.7
+org.powermock:powermock-module-junit4$2.0.7
+org.powermock:powermock-module-junit4-rule$1.6.6
+org.powermock:powermock-api-mockito2$2.0.7
+org.powermock:powermock-classloading-xstream$1.6.6
+eu.codearte.catch-exception:catch-exception$2.0
+org.awaitility:awaitility$4.0.3

@@ -1,0 +1,6 @@
+org.junit.jupiter:junit-jupiter-api$5.6.0
+org.junit.jupiter:junit-jupiter-params$5.6.0
+javax.validation:validation-api$2.0.1.Final
+com.google.code.findbugs:jsr305$3.0.2
+org.assertj:assertj-core$3.8.0
+org.junit.jupiter:junit-jupiter-engine$5.6.0

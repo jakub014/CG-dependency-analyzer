@@ -1,0 +1,5 @@
+com.nimbusds:nimbus-jose-jwt$9.9.3
+org.bouncycastle:bcpkix-jdk15on$1.68
+org.bouncycastle:bcprov-jdk15on$1.68
+org.apache.velocity:velocity-engine-core$2.3
+com.github.erdi.webdriver-binaries$2.4

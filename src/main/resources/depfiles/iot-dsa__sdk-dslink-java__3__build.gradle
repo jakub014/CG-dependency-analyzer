@@ -1,7 +1,0 @@
-apply from: '../../bintray.gradle'
-
-description = 'SDK for creating Historian DSLinks'
-
-dependencies {
-    api project(':dslink')
-}

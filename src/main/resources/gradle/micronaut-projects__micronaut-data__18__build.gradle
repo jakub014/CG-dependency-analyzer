@@ -1,0 +1,6 @@
+org.springframework.boot:spring-boot-gradle-plugin$2.3.5.RELEASE
+com.zaxxer:HikariCP$3.4.5
+ch.qos.logback:logback-classic$1.2.3
+org.openjdk.jmh:jmh-core$1.30
+org.openjdk.jmh:jmh-generator-annprocess$1.25.2
+me.champeau.jmh$0.6.4

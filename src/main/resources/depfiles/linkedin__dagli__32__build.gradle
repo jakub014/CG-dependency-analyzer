@@ -1,6 +1,0 @@
-dependencies {
-  api project(':objectio-core')
-  api project(':tuple')
-  api project(':util')
-  testImplementation project(':objectio-testing')
-}

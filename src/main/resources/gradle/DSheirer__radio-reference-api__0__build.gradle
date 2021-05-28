@@ -1,0 +1,4 @@
+com.fasterxml.jackson.dataformat:jackson-dataformat-xml$2.9.8
+ch.qos.logback:logback-classic$1.2.3
+org.slf4j:slf4j-api$1.7.25
+junit:junit$4.12

@@ -1,0 +1,12 @@
+commons-logging:commons-logging$1.1.1
+com.fasterxml.jackson.core:jackson-annotations$2.6.7
+com.google.guava:guava$14.0.1
+com.google.protobuf:protobuf-java$2.5.0
+org.slf4j:slf4j-api$1.7.6
+com.esotericsoftware.kryo:kryo$2.21
+org.apache.avro:avro$1.7.7
+log4j:log4j$1.2.17
+com.google.code.findbugs:jsr305$2.0.1
+org.json4s:json4s-ast_2.10$3.2.10
+org.codehaus.woodstox:stax2-api$3.1.4
+org.eclipse.jetty.orbit:javax.servlet$3.0.0.v201112011016

@@ -1,0 +1,7 @@
+cglib:cglib$3.3.0
+org.javassist:javassist$3.27.0-GA
+com.fasterxml.jackson.core:jackson-annotations$2.12.1
+com.fasterxml.jackson.core:jackson-databind$2.12.1
+com.fasterxml.jackson.dataformat:jackson-dataformat-yaml$2.12.1
+com.sun.mail:jakarta.mail$1.6.5
+org.springframework:spring-beans$5.2.3.RELEASE

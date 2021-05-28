@@ -1,0 +1,12 @@
+org.sonarsource.scanner.gradle:sonarqube-gradle-plugin$3.2.0
+org.asciidoctor:asciidoctor-gradle-jvm$3.3.2
+org.owasp:dependency-check-gradle$6.1.6
+org.codehaus.groovy.modules.http-builder:http-builder$0.7.2
+org.checkerframework:checker-qual$3.13.0
+org.apache.kerby:kerby-asn1$2.0.1
+org.bouncycastle:bcprov-jdk15on$1.68
+org.bouncycastle:bcpkix-jdk15on$1.68
+org.mockito:mockito-core$3.10.0
+org.mockito:mockito-inline$3.10.0
+org.mockito:mockito-junit-jupiter$3.10.0
+org.springframework.boot:spring-boot-dependencies$2.5.0

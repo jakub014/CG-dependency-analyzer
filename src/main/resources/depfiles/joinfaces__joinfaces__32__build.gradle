@@ -1,8 +1,0 @@
-description = 'JoinFaces Undertow-Mojarra Test Project'
-
-dependencies {
-    implementation(project(':joinfaces-starters:jsf-spring-boot-starter')) {
-        exclude module: "tomcat-spring-boot-starter"
-    }
-    implementation project(':joinfaces-starters:undertow-spring-boot-starter')
-}

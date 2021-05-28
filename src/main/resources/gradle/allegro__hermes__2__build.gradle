@@ -1,0 +1,7 @@
+org.apache.commons:commons-lang3$3.0
+net.openhft:chronicle-map$3.16.0
+commons-io:commons-io$2.4
+com.jayway.awaitility:awaitility-groovy$1.7.0
+com.jayway.awaitility:awaitility$1.6.1
+org.testcontainers:spock$1.15.0
+org.testcontainers:kafka$1.15.0

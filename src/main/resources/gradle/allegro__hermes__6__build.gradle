@@ -1,0 +1,5 @@
+io.projectreactor:reactor-core$3.3.4.RELEASE
+javax.servlet:javax.servlet-api$3.1.0
+com.jayway.jsonpath:json-path$2.5.0
+io.projectreactor.netty:reactor-netty$0.8.10.RELEASE
+io.projectreactor:reactor-test$3.3.4.RELEASE

@@ -1,0 +1,5 @@
+org.jetbrains:annotations$19.0.0
+org.assertj:assertj-core$3.14.0
+com.fasterxml.jackson.dataformat:jackson-dataformat-properties$2.11.0.rc1
+org.apache.commons:commons-csv$1.8
+de.siegmar:fastcsv$1.0.3

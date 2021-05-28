@@ -1,0 +1,5 @@
+org.apache.opennlp:opennlp-tools$1.9.2
+org.apache.opennlp:opennlp-uima$1.9.2
+com.joestelmach:natty$0.13
+com.bladecoder.ink:blade-ink$0.7.3
+org.deeplearning4j:deeplearning4j-nlp$1.0.0-beta6

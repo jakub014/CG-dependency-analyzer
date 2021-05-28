@@ -1,0 +1,4 @@
+org.eclipse.jgit:org.eclipse.jgit$5.8.1.202007141445-r
+org.slf4j:slf4j-api$1.7.30
+com.fasterxml.jackson.core:jackson-databind$2.10.0
+org.slf4j:slf4j-jdk14$1.7.30

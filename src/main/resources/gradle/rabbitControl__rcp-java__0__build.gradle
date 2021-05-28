@@ -1,0 +1,4 @@
+io.kaitai:kaitai-struct-runtime$0.8
+io.netty:netty-all$4.1.59.Final
+junit:junit$4.12
+com.zoltu.git-versioning$3.0.3

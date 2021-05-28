@@ -1,9 +1,0 @@
-compileJava.options.compilerArgs += '-parameters'
-
-dependencies {
-    compileOnly project(':api')
-
-    api project(':test:core-model-test')
-    api "io.micronaut:micronaut-http:${versions.micronaut}"
-    api "io.micronaut:micronaut-aop:${versions.micronaut}"
-}

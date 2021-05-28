@@ -1,0 +1,7 @@
+io.rest-assured:rest-assured$4.0.0
+org.yaml:snakeyaml$1.19
+com.fasterxml.jackson.dataformat:jackson-dataformat-yaml$2.9.8
+com.fasterxml.jackson.core:jackson-databind$2.9.8
+com.fasterxml.jackson.module:jackson-module-kotlin$2.9.8
+org.apache.commons:commons-lang3$3.8.1
+com.github.tomakehurst:wiremock-jre8$2.23.2

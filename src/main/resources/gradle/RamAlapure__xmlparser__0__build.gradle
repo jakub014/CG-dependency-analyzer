@@ -1,0 +1,7 @@
+org.junit.jupiter:junit-jupiter$5.5.1
+org.junit.platform:junit-platform-runner$1.5.1
+com.github.xmlet:xsdParser$1.0.23
+in.jlibs:jlibs-xsd$2.2.3
+org.glassfish.jaxb:xsom$2.3.3-b02
+com.fasterxml.jackson.core:jackson-databind$2.10.0
+com.github.ramalapure:json-parser$1.1

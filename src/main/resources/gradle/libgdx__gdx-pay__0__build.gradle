@@ -1,0 +1,12 @@
+org.assertj:assertj-core$1.7.1
+com.google.code.findbugs:jsr305$3.0.2
+junit:junit$4.12
+com.badlogicgames.gdx:gdx$1.9.8
+com.badlogicgames.gdx:gdx-backend-android$1.9.8
+org.mockito:mockito-core$2.7.21
+com.mobidevelop.robovm:robovm-rt$2.3.4
+com.mobidevelop.robovm:robovm-cocoatouch$2.3.4
+com.android.support:support-v4$25.0.0
+com.android.tools.build:gradle$3.2.0
+com.mobidevelop.robovm:robovm-gradle-plugin$2.3.4
+de.mobilej.unmock:UnMockPlugin$0.7.0

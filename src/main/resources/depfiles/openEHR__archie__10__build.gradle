@@ -1,8 +1,0 @@
- description = "A basic metadata model implementation"
-
-dependencies {
-  compile project(':base')
-  compile project(':utils')
-  compile project(':odin')
-  testCompile project(':i18n')
-}

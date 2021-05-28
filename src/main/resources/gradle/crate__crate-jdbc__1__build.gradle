@@ -1,0 +1,9 @@
+com.github.dblock.waffle:waffle-jna$1.7.5
+net.java.dev.jna:jna$4.2.1
+net.java.dev.jna:jna-platform$4.2.1
+org.slf4j:jcl-over-slf4j$1.7.12
+com.fasterxml.jackson.core:jackson-databind$2.5.3
+org.osgi:org.osgi.enterprise$4.2.0
+org.osgi:org.osgi.core$4.3.1
+com.ongres.scram:client$1.0.0-beta.2
+com.igormaznitsa:jcp$6.0.1
