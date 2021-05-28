@@ -1,0 +1,4 @@
+io.micronaut.spring:micronaut-spring$3.1.0
+io.micronaut.neo4j:micronaut-neo4j-bolt$4.2.0
+io.micronaut.beanvalidation:micronaut-hibernate-validator$3.0.0
+io.netty:netty-transport-native-epoll$4.1.65.Final

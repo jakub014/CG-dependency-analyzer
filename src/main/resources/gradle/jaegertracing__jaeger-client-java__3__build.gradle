@@ -1,0 +1,3 @@
+org.codehaus.mojo.signature:java16$1.1
+io.zipkin.reporter2:zipkin-sender-urlconnection$2.12.0
+io.zipkin.zipkin2:zipkin-junit$2.19.2

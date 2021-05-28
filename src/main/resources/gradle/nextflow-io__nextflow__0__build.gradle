@@ -1,0 +1,4 @@
+org.fusesource.jansi:jansi$1.11
+org.codehaus.groovy:groovy-groovydoc$3.0.8
+org.codehaus.groovy:groovy-ant$3.0.8
+io.codearte.nexus-staging$0.21.2

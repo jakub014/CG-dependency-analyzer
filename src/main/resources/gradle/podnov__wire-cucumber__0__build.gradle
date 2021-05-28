@@ -1,0 +1,7 @@
+com.github.tomakehurst:wiremock-jre8$2.26.3
+org.slf4j:slf4j-api$1.7.30
+ch.qos.logback:logback-classic$1.2.3
+io.rest-assured:rest-assured$4.1.2
+junit:junit$4.12
+org.hamcrest:hamcrest$2.2
+org.mockito:mockito-core$3.2.4

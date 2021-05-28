@@ -1,0 +1,4 @@
+com.google.protobuf:protobuf-gradle-plugin$0.8.14
+com.github.nbaztec:coveralls-jacoco-gradle-plugin$1.2.6
+org.projectlombok:lombok$1.18.16
+org.junit.jupiter:junit-jupiter$5.7.0

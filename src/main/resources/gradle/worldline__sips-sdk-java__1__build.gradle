@@ -1,0 +1,4 @@
+commons-codec:commons-codec$1.15
+com.fasterxml.jackson.core:jackson-databind$2.12.1
+com.fasterxml.jackson.datatype:jackson-datatype-jsr310$2.12.1
+org.apache.commons:commons-lang3$3.11

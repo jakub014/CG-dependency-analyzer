@@ -1,0 +1,5 @@
+io.micronaut.rxjava1:micronaut-rxjava1$1.0.0
+com.netflix.ribbon:ribbon-loadbalancer$2.7.18
+com.netflix.ribbon:ribbon-core$2.7.18
+com.github.akarnokd:rxjava2-interop$0.13.7
+com.netflix.servo:servo-core$0.13.0

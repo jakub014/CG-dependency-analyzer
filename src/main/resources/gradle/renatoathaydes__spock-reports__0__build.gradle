@@ -1,0 +1,10 @@
+org.codehaus.groovy:groovy$3.0.8
+org.codehaus.groovy:groovy-xml$3.0.8
+org.codehaus.groovy:groovy-json$3.0.8
+org.codehaus.groovy:groovy-templates$3.0.8
+org.spockframework:spock-core$2.0-groovy-3.0
+org.slf4j:slf4j-api$1.7.30
+org.junit:junit-bom$5.7.0
+org.codehaus.groovy:groovy-test$3.0.8
+cglib:cglib-nodep$3.3.0
+org.slf4j:slf4j-simple$1.7.30

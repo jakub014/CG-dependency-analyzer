@@ -1,0 +1,4 @@
+com.vanniktech:gradle-maven-publish-plugin$0.8.0
+com.android.tools.build:gradle$4.1.2
+org.jetbrains.kotlin:kotlin-gradle-plugin$1.4.31
+org.jlleitschuh.gradle.ktlint$10.0.0

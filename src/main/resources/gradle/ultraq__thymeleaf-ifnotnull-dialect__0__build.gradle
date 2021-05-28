@@ -1,0 +1,7 @@
+org.codehaus.groovy:groovy$3.0.3
+nz.net.ultraq.thymeleaf:thymeleaf-expression-processor$2.0.0
+org.thymeleaf:thymeleaf$3.0.12.RELEASE
+nz.net.ultraq.thymeleaf:thymeleaf-testing-junit$3.0.1
+org.thymeleaf:thymeleaf-testing$3.0.4.RELEASE
+org.slf4j:slf4j-simple$1.7.12
+com.github.kt3k.coveralls$2.10.1

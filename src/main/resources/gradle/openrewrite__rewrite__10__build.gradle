@@ -1,0 +1,6 @@
+org.eclipse.jgit:org.eclipse.jgit$latest.release
+com.google.code.findbugs:jsr305$latest.release
+org.projectlombok:lombok$latest.release
+org.openjdk.jmh:jmh-core$latest.release
+org.openjdk.jmh:jmh-generator-annprocess$latest.release
+me.champeau.gradle.jmh$0.5.2

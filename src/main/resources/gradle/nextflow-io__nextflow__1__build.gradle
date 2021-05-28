@@ -1,0 +1,10 @@
+org.slf4j:slf4j-api$1.7.10
+org.pf4j:pf4j$3.4.1
+io.nextflow:nxf-s3fs$1.1.1
+com.amazonaws:aws-java-sdk-s3$1.11.542
+com.amazonaws:aws-java-sdk-ec2$1.11.542
+com.amazonaws:aws-java-sdk-batch$1.11.542
+com.amazonaws:aws-java-sdk-iam$1.11.542
+com.amazonaws:aws-java-sdk-ecs$1.11.542
+org.codehaus.groovy:groovy$3.0.8
+org.codehaus.groovy:groovy-nio$3.0.8

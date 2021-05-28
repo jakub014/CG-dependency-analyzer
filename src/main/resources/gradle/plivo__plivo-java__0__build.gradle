@@ -1,0 +1,9 @@
+com.github.jengelman.gradle.plugins:shadow$2.0.0
+com.squareup.retrofit2:converter-jackson$2.2.0
+com.squareup.retrofit2:retrofit$2.2.0
+com.squareup.okhttp3:logging-interceptor$3.7.0
+jakarta.xml.bind:jakarta.xml.bind-api$2.3.2
+org.glassfish.jaxb:jaxb-runtime$2.3.2
+com.auth0:java-jwt$3.10.2
+junit:junit$4.12
+com.squareup.okhttp:mockwebserver$2.7.5

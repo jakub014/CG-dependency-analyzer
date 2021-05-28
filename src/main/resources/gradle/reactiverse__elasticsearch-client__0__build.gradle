@@ -1,0 +1,4 @@
+io.vertx:vertx-core$3.9.3
+org.elasticsearch.client:elasticsearch-rest-high-level-client$7.9.2
+io.vertx:vertx-codegen$3.9.3
+com.github.ben-manes.versions$0.33.0

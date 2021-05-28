@@ -1,0 +1,7 @@
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.30.0
+com.github.jengelman.gradle.plugins:shadow$6.0.0
+org.junit.jupiter:junit-jupiter-api$5.7.1
+org.junit.jupiter:junit-jupiter-engine$5.7.1
+com.github.johnrengelman.shadow$6.1.0
+com.github.sherter.google-java-format$0.8
+com.jfrog.bintray$1.8.5

@@ -1,0 +1,9 @@
+org.apache.commons:commons-math3$3.6.1
+org.springframework.boot:spring-boot-starter-web$2.3.1.RELEASE
+com.google.guava:guava$29.0-jre
+com.fasterxml.jackson.core:jackson-databind$2.11.1
+org.apache.commons:commons-lang3$3.9
+org.junit.jupiter:junit-jupiter-api$5.6.2
+org.junit.jupiter:junit-jupiter-engine$5.6.2
+org.projectlombok:lombok$1.18.12
+org.mockito:mockito-core$3.4.4

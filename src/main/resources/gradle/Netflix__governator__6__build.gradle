@@ -1,0 +1,4 @@
+com.sun.jersey:jersey-server$1.19
+org.eclipse.jetty:jetty-servlet$9.4.33.v20201020
+org.eclipse.jetty:jetty-webapp$9.4.33.v20201020
+com.sun.jersey.contribs:jersey-guice$1.19

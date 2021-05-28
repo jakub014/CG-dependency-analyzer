@@ -1,0 +1,11 @@
+com.jfrog.bintray.gradle:gradle-bintray-plugin$1.8.5
+com.google.protobuf:protobuf-gradle-plugin$0.8.14
+org.springframework.data:spring-data-mongodb$3.0.6.RELEASE
+org.springframework.boot:spring-boot-starter-data-mongodb$2.4.2
+com.google.protobuf:protobuf-java$3.12.2
+com.google.protobuf:protobuf-java-util$3.12.2
+com.google.code.gson:gson$2.8.6
+com.google.protobuf:protoc$3.12.2
+junit:junit$4.12
+com.jfrog.bintray$1.8.5
+com.google.protobuf$0.8.14

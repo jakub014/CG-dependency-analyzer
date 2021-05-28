@@ -1,0 +1,5 @@
+org.codehaus.groovy:groovy$3.0.8
+org.thymeleaf:thymeleaf$3.0.12.RELEASE
+org.spockframework:spock-core$2.0-groovy-3.0
+org.slf4j:slf4j-simple$1.7.12
+com.github.kt3k.coveralls$2.10.1

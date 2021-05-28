@@ -1,0 +1,15 @@
+com.google.cloud:google-cloud-bigquery$1.79.0
+com.google.cloud:google-cloud-storage$1.79.0
+com.google.auth:google-auth-library-oauth2-http$0.9.0
+com.google.code.gson:gson$2.8.5
+org.slf4j:slf4j-api$1.6.1
+io.debezium:debezium-core$0.6.1
+org.apache.kafka:connect-api$2.5.0
+junit:junit$4.12
+org.mockito:mockito-core$3.2.4
+org.mockito:mockito-inline$3.2.4
+org.apache.avro:avro$1.8.1
+io.confluent:kafka-connect-avro-converter$5.5.0
+io.confluent:kafka-schema-registry-client$5.5.0
+org.apache.kafka:kafka-clients$2.5.0
+com.github.spotbugs$2.0.0

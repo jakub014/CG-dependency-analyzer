@@ -1,0 +1,8 @@
+com.fasterxml.jackson.core:jackson-core$2.9.10
+com.fasterxml.jackson.core:jackson-annotations$2.9.10
+com.google.guava:guava$17.0
+org.slf4j:slf4j-api$1.7.25
+commons-codec:commons-codec$1.9
+junit:junit$4.12
+org.powermock:powermock-module-junit4$1.6.6
+org.powermock:powermock-api-mockito$1.6.6

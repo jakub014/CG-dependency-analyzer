@@ -1,0 +1,9 @@
+org.eclipse.milo:sdk-client$0.5.3
+org.eclipse.milo:stack-client$0.5.3
+org.eclipse.milo:sdk-server$0.5.3
+org.eclipse.milo:stack-server$0.5.3
+org.eclipse.milo:sdk-core$0.5.3
+org.eclipse.milo:stack-core$0.5.3
+org.eclipse.milo:dictionary-manager$0.5.3
+org.eclipse.milo:dictionary-reader$0.5.3
+org.eclipse.paho:org.eclipse.paho.client.mqttv3$1.2.4

@@ -1,0 +1,11 @@
+org.projectlombok:lombok$1.18.16
+org.junit.jupiter:junit-jupiter-api$4.0.0
+org.junit.jupiter:junit-jupiter-engine$4.0.0
+io.vertx:vertx-core$4.0.0
+io.vertx:vertx-junit5$4.0.0
+com.fasterxml.jackson.core:jackson-databind$2.12.0
+org.slf4j:slf4j-api$1.7.30
+ch.qos.logback:logback-classic$1.2.3
+io.github.zero88.qwe.gradle.oss$1.0.0
+io.codearte.nexus-staging$0.22.0
+org.sonarqube$3.1.1

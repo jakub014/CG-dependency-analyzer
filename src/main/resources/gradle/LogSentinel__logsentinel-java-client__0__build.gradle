@@ -1,0 +1,11 @@
+com.github.dcendents:android-maven-gradle-plugin$1.5
+javax.annotation:jsr250-api$1.0
+io.swagger:swagger-annotations$1.5.17
+org.glassfish.jersey.core:jersey-client$2.25.1
+org.glassfish.jersey.media:jersey-media-multipart$2.25.1
+org.glassfish.jersey.media:jersey-media-json-jackson$2.25.1
+com.fasterxml.jackson.core:jackson-core$2.9.10
+com.fasterxml.jackson.core:jackson-annotations$2.9.10
+com.fasterxml.jackson.core:jackson-databind$2.9.10
+com.fasterxml.jackson.datatype:jackson-datatype-jsr310$2.9.10
+junit:junit$4.12

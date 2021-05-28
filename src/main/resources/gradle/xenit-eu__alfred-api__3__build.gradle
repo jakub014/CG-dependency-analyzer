@@ -1,0 +1,4 @@
+commons-io:commons-io$2.0.1
+org.slf4j:slf4j-api$1.7.22
+org.springframework:spring-core$3.2.10.RELEASE
+org.springframework.extensions.surf:spring-webscripts$5.0.d

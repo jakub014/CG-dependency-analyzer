@@ -1,0 +1,6 @@
+com.bmuschko:gradle-tomcat-plugin$2.3
+org.apache.struts:struts2-core$2.5.25
+javax.servlet:javax.servlet-api$3.1.0
+org.apache.tomcat.embed:tomcat-embed-core$7.0.57
+org.apache.tomcat.embed:tomcat-embed-logging-juli$7.0.57
+org.apache.tomcat.embed:tomcat-embed-jasper$7.0.57

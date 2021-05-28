@@ -1,0 +1,5 @@
+com.squareup:javapoet$1.9.0
+com.google.guava:guava$23.0
+junit:junit$4.12
+org.apache.httpcomponents:httpclient$4.5.3
+io.franzbecker.gradle-lombok$1.14

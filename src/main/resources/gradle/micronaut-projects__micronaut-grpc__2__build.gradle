@@ -1,0 +1,10 @@
+io.micronaut.discovery:micronaut-discovery-client$2.3.0
+io.opentracing.contrib:opentracing-grpc$0.2.3
+io.opentracing:opentracing-mock$0.33.0
+io.jaegertracing:jaeger-core$1.6.0
+io.micronaut.test:micronaut-test-spock$2.3.3
+io.netty:netty-tcnative$2.0.38.Final
+io.netty:netty-tcnative-boringssl-static$2.0.38.Final
+io.grpc:protoc-gen-grpc-java$1.37.0
+net.ltgt.apt$0.21
+com.google.protobuf$0.8.16

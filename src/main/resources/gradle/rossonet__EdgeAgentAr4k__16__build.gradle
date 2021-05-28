@@ -1,0 +1,13 @@
+com.vaadin:vaadin-bom$14.4.7
+com.vaadin:vaadin-material-theme$5.0.2
+com.vaadin:vaadin-spring-boot-starter$14.4.7
+com.vaadin:vaadin-icons-flow$4.0.0
+com.vaadin:vaadin-grid-flow$4..11
+com.vaadin:vaadin-app-layout-flow$4.0.0
+com.vaadin:vaadin-split-layout-flow$4.0.0
+com.vaadin:flow-client$4.0.8
+com.flowingcode.addons:xterm-console$1.0.2
+com.fasterxml.jackson.module:jackson-module-kotlin$2.12.1
+org.webjars:webjars-locator-core$0.46
+com.vladsch.flexmark:flexmark-all$0.62.2
+org.deeplearning4j:deeplearning4j-ui$1.0.0-beta6

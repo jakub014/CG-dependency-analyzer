@@ -1,0 +1,10 @@
+io.kubernetes:client-java$10.0.0
+software.amazon.awssdk:bom$2.15.75
+com.github.docker-java:docker-java$3.2.7
+com.openshift:openshift-java-client$2.7.0.Final
+software.amazon.awssdk:ec2$2.15.75
+software.amazon.awssdk:s3$2.15.75
+org.gradle:gradle-tooling-api$4.3
+io.fabric8:kubernetes-client$5.1.1
+io.fabric8:openshift-client$5.1.1
+org.anarres.tftp:tftp-server-netty$1.0.3

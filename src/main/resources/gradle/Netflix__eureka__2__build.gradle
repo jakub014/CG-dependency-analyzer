@@ -1,0 +1,2 @@
+org.glassfish.jersey.core:jersey-client$2.23.1
+org.glassfish.jersey.connectors:jersey-apache-connector$2.23.1

@@ -1,0 +1,12 @@
+com.amazonaws:aws-java-sdk-core$1.11.928
+com.amazonaws:aws-java-sdk-s3$1.11.928
+org.springframework:spring-context$5.3.5
+org.springframework:spring-core$5.3.5
+org.slf4j:slf4j-api$1.7.30
+io.awspring.cloud:spring-cloud-aws-core$2.3.0
+com.amazonaws:aws-java-sdk-kms$1.11.928
+org.junit.jupiter:junit-jupiter-api$5.7.0
+org.mockito:mockito-core$3.7.7
+org.mockito:mockito-junit-jupiter$3.7.7
+org.springframework.boot:spring-boot-starter-test$2.4.4
+org.junit.jupiter:junit-jupiter-engine$5.7.0

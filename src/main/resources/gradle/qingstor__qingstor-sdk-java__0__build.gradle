@@ -1,0 +1,9 @@
+com.squareup.okhttp3:okhttp$4.9.1
+com.fasterxml.jackson.dataformat:jackson-dataformat-yaml$2.9.10
+com.fasterxml.jackson.core:jackson-databind$2.9.10.8
+org.json:json$20210307
+org.slf4j:slf4j-api$1.7.30
+io.cucumber:cucumber-java$6.10.4
+io.cucumber:cucumber-junit$6.10.4
+ch.qos.logback:logback-classic$1.2.3
+com.diffplug.spotless$5.12.5

@@ -1,0 +1,14 @@
+io.grpc:grpc-protobuf$1.37.1
+io.grpc:grpc-stub$1.37.1
+io.grpc:grpc-core$1.37.1
+io.grpc:grpc-netty-shaded$1.37.1
+javax.annotation:javax.annotation-api$1.3.2
+com.google.protobuf:protoc$3.17.0
+io.grpc:protoc-gen-grpc-java$1.37.1
+com.google.protobuf:protobuf-java-util$3.17.0
+com.uber.m3:tally-core$0.6.1
+org.slf4j:slf4j-api$1.7.30
+ch.qos.logback:logback-classic$1.2.3
+org.mockito:mockito-core$3.10.0
+junit:junit$4.13.2
+com.google.protobuf$0.8.16

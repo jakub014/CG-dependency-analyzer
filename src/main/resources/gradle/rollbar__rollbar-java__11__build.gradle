@@ -1,0 +1,4 @@
+com.bmuschko:gradle-tomcat-plugin$2.3
+org.apache.tomcat.embed:tomcat-embed-core$8.0.42
+org.apache.tomcat.embed:tomcat-embed-logging-juli$8.0.42
+org.apache.tomcat.embed:tomcat-embed-jasper$8.0.42

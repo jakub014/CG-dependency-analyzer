@@ -1,0 +1,5 @@
+javax.inject:javax.inject$1
+javax.servlet:javax.servlet-api$4.0.1
+org.eclipse.jetty:jetty-servlet$9.4.11.v20180605
+org.eclipse.jetty:jetty-webapp$9.4.11.v20180605
+com.google.inject.extensions:guice-servlet$4.1.0

@@ -1,0 +1,7 @@
+io.github.novacrypto:BIP32$0.0.9
+io.github.novacrypto:BIP39$0.1.9
+com.squareup.okhttp3:okhttp$3.6.0
+org.bouncycastle:bcprov-jdk15on$1.59
+com.alibaba:fastjson$1.2.51
+org.fusesource.leveldbjni:leveldbjni-all$1.8
+junit:junit$4.12

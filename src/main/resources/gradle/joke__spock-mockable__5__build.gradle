@@ -1,0 +1,5 @@
+org.codehaus.groovy:groovy-bom$3.0.8
+org.spockframework:spock-bom$2.0-groovy-3.0
+net.bytebuddy:byte-buddy-agent$1.11.0
+net.bytebuddy:byte-buddy$1.11.0
+org.slf4j:slf4j-api$1.7.30

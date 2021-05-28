@@ -1,0 +1,7 @@
+net.ltgt.gradle:gradle-errorprone-plugin$latest.release
+org.slf4j:slf4j-api$1.7.7
+com.github.spotbugs:spotbugs-annotations$4.1.4
+net.jcip:jcip-annotations$1.0
+junit:junit$4.11
+ch.qos.logback:logback-classic$1.1.2
+com.github.spotbugs$2.0.0

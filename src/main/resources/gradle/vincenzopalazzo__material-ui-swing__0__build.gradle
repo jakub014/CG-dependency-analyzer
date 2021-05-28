@@ -1,0 +1,10 @@
+gradle.plugin.com.github.sherter.google-java-format:google-java-format-gradle-plugin$0.9
+org.swinglabs:swingx$1.6.1
+com.github.jiconfont:jiconfont-swing$1.0.1
+ch.qos.logback:logback-classic$1.2.3
+ch.qos.logback:logback-core$1.2.3
+org.slf4j:slf4j-api$1.7.25
+junit:junit$4.12
+io.github.material-ui-swing:DarkStackOverflowTheme$0.0.1-rc2
+org.assertj:assertj-swing-junit$3.9.2
+com.toedter:jcalendar$1.4

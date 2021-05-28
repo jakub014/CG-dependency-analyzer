@@ -1,0 +1,17 @@
+cn.hutool:hutool-all$5.3.7
+org.fisco-bcos.java-sdk:fisco-bcos-java-sdk$2.7.2
+commons-codec:commons-codec$1.4
+ch.qos.logback:logback-core$1.2.3
+ch.qos.logback:logback-classic$1.2.3
+org.projectlombok:lombok$1.18.10
+com.fasterxml.jackson.core:jackson-databind$2.11.0
+org.elasticsearch.client:transport$7.10.2
+org.apache.logging.log4j:log4j-core$2.11.0
+junit:junit$4.12
+com.github.briandilley.jsonrpc4j:jsonrpc4j$1.0
+com.google.guava:guava$30.0-jre
+org.apache.shardingsphere:shardingsphere-jdbc-core$5.0.0-alpha
+com.zaxxer:HikariCP$3.4.1
+org.apache.shardingsphere.elasticjob:elasticjob-lite-core$3.0.0-alpha
+mysql:mysql-connector-java$8.0.16
+org.ajoberstar.grgit$4.1.0

@@ -1,0 +1,6 @@
+org.springframework:spring-beans$3.2.10.RELEASE
+org.springframework.extensions.surf:spring-webscripts$5.0.d
+com.github.dynamicextensionsalfresco:annotations$1.4.0
+org.springframework:spring-core$3.2.10.RELEASE
+org.springframework:spring-test$3.2.10.RELEASE
+org.mockito:mockito-core$2.25.1

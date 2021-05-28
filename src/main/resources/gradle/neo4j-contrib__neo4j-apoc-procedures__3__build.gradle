@@ -1,0 +1,8 @@
+junit:junit$4.12
+com.google.guava:guava$20.0
+org.neo4j.driver:neo4j-java-driver$4.2.0
+org.gradle:gradle-tooling-api$6.0.1
+org.apache.hadoop:hadoop-hdfs$2.7.5
+org.apache.hadoop:hadoop-common$2.7.5
+org.apache.hadoop:hadoop-minicluster$2.7.5
+org.jetbrains:annotations$17.0.0

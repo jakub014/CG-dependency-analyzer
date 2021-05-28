@@ -1,0 +1,3 @@
+io.micronaut.servlet:micronaut-servlet-engine$1.0.0.M3
+io.micronaut.servlet:micronaut-http-server-jetty$1.0.0.M3
+ch.qos.logback:logback-classic$1.2.3

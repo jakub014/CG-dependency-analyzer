@@ -1,0 +1,11 @@
+com.github.ben-manes:gradle-versions-plugin$0.38.0
+com.puppycrawl.tools:checkstyle$8.41.1
+gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin$4.7.1
+io.franzbecker:gradle-lombok$4.0.0
+io.spring.gradle:dependency-management-plugin$1.0.11.RELEASE
+org.springframework.boot:spring-boot-gradle-plugin$2.3.5.RELEASE
+org.jetbrains.kotlin:kotlin-gradle-plugin$1.5.10
+com.github.stefanbirkner:system-lambda$1.2.0
+io.jsonwebtoken:jjwt-api$0.11.2
+io.jsonwebtoken:jjwt-impl$0.11.2
+io.jsonwebtoken:jjwt-jackson$0.11.2

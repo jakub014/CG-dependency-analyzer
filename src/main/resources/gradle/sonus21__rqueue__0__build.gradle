@@ -1,0 +1,14 @@
+org.projectlombok:lombok$1.18.10
+org.apache.commons:commons-lang3$3.9
+com.google.guava:guava$30.1-jre
+ch.qos.logback:logback-core$1.2.3
+ch.qos.logback:logback-classic$1.2.3
+org.junit.jupiter:junit-jupiter-engine$5.5.0
+org.junit.jupiter:junit-jupiter-api$5.5.0
+org.mockito:mockito-inline$3.5.0
+org.mockito:mockito-junit-jupiter$3.5.0
+org.hamcrest:hamcrest$2.2
+org.junit-pioneer:junit-pioneer$0.9.0
+com.github.kt3k.coveralls$2.6.3
+nebula.optional-base$5.0.2
+com.adarshr.test-logger$2.1.1

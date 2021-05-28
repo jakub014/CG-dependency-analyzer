@@ -1,0 +1,8 @@
+team.yi.tools:semantic-commit$0.5.13
+org.eclipse.jgit:org.eclipse.jgit$5.9.0.202009080501-r
+de.skuzzle:semantic-version$2.1.0
+com.github.spullara.mustache.java:compiler$0.9.6
+com.fasterxml.jackson.core:jackson-databind$2.11.2
+org.junit.jupiter:junit-jupiter$5.7.0
+io.freefair.lombok$5.2.1
+team.yi.semantic-gitlog$0.5.13

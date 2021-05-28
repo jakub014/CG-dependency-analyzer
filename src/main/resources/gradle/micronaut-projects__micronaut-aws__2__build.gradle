@@ -1,0 +1,5 @@
+com.amazonaws.serverless:aws-serverless-java-container-core$1.5.2
+org.slf4j:jcl-over-slf4j$1.7.30
+javax.servlet:servlet-api$2.5
+org.javadelight:delight-fileupload$0.0.5
+com.github.jknack:handlebars$4.2.0

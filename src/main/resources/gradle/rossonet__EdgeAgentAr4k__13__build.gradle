@@ -1,0 +1,9 @@
+org.deeplearning4j:deeplearning4j-core$1.0.0-beta6
+org.nd4j:nd4j-native-platform$1.0.0-beta6
+org.hyperledger.fabric:fabric-gateway-java$2.2.0
+org.drools:drools-core$7.47.0.Final
+org.drools:drools-compiler$7.49.0.t20210118
+org.drools:drools-templates$7.47.0.Final
+org.drools:drools-decisiontables$7.47.0.Final
+org.xerial:sqlite-jdbc$3.30.1
+org.rrd4j:rrd4j$3.8

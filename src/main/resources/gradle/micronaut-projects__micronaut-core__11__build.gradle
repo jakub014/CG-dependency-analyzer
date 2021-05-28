@@ -1,0 +1,4 @@
+io.kotlintest:kotlintest-runner-junit5$3.4.2
+org.zalando:logbook-netty$2.4.1
+org.bouncycastle:bcpkix-jdk15on$1.65
+com.amazonaws:aws-java-sdk-lambda$1.11.920

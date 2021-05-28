@@ -1,0 +1,7 @@
+org.slf4j:slf4j-api$1.7.30
+org.fusesource.jansi:jansi$2.1.1
+junit:junit$4.11
+jvm$1.5.0
+plugin.serialization$1.5.0
+com.github.johnrengelman.shadow$6.1.0
+io.codearte.nexus-staging$0.22.0

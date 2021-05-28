@@ -1,0 +1,6 @@
+com.google.guava:guava$28.1-jre
+javax.activation:activation$1.1.1
+org.glassfish.jaxb:jaxb-runtime$2.3.2
+org.locationtech.jts:jts-core$1.16.1
+org.xerial:sqlite-jdbc$3.28.0
+org.openstreetmap.osmosis:osmosis-core$0.47

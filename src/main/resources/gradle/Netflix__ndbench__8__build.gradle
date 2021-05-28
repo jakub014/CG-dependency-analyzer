@@ -1,0 +1,14 @@
+org.elasticsearch:elasticsearch$2.3.3
+org.elasticsearch.client:rest$5.4.2
+org.elasticsearch.client:transport$5.4.1
+javax.inject:javax.inject$1
+com.squareup.okhttp3:okhttp$3.8.0
+org.apache.logging.log4j:log4j-to-slf4j$2.8.2
+com.netflix.ndbench:ndbench-core$latest.release
+junit:junit$4.12
+org.assertj:assertj-core$3.6.2
+com.palantir.docker.compose:docker-compose-rule-junit4$0.31.1
+com.palantir.docker.compose:docker-compose-rule-core$0.31.1
+commons-io:commons-io$2.4
+io.rest-assured:rest-assured$3.0.1
+com.netflix.governator:governator-jetty$latest.release

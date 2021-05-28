@@ -1,0 +1,13 @@
+com.squareup.okhttp3:okhttp$4.7.2
+com.squareup.okhttp3:okhttp-urlconnection$4.7.2
+com.fasterxml.jackson.core:jackson-databind$2.11.0
+com.fasterxml.jackson.core:jackson-annotations$2.11.0
+org.slf4j:slf4j-api$1.7.30
+org.slf4j:slf4j-log4j12$1.7.30
+com.squareup.okhttp3:logging-interceptor$4.7.2
+log4j:log4j$1.2.17
+junit:junit$4.12
+pl.pragmatists:JUnitParams$1.1.1
+io.freefair.lombok$5.1.0
+com.jfrog.bintray$1.8.5
+net.nemerosa.versioning$2.8.2

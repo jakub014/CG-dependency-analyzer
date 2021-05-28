@@ -1,0 +1,7 @@
+org.jfrog.buildinfo:build-info-extractor-gradle$4.13.0
+com.android.tools.build:gradle$4.0.0
+net.researchgate:gradle-release$2.8.1
+com.github.sherter.google-java-format$0.8
+com.github.hierynomus.license$0.15.0
+io.codearte.nexus-staging$0.21.2
+net.ltgt.errorprone$1.2.1

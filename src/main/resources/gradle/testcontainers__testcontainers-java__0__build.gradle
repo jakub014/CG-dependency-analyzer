@@ -1,0 +1,5 @@
+ch.qos.logback:logback-classic$1.2.3
+io.franzbecker.gradle-lombok$3.1.0
+nebula.provided-base$3.0.3
+com.github.johnrengelman.shadow$5.2.0
+com.jfrog.bintray$1.8.4

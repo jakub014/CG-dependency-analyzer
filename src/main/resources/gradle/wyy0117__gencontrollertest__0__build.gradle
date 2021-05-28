@@ -1,0 +1,5 @@
+org.codehaus.groovy:groovy-all$2.5.8
+io.rest-assured:spring-mock-mvc$4.1.2
+junit:junit$4.12
+com.google.code.gson:gson$2.7
+org.freemarker:freemarker$2.3.30

@@ -1,0 +1,16 @@
+org.asciidoctor:asciidoctorj-pdf$1.5.0-alpha.11
+com.rabbitmq:amqp-client$5.11.0
+org.junit.jupiter:junit-jupiter-api$5.7.1
+org.junit.jupiter:junit-jupiter-params$5.7.1
+org.junit.jupiter:junit-jupiter-engine$5.7.1
+org.mockito:mockito-core$3.7.7
+org.assertj:assertj-core$3.19.0
+org.slf4j:jcl-over-slf4j$1.7.30
+org.slf4j:slf4j-api$1.7.30
+ch.qos.logback:logback-classic$1.2.3
+org.springframework.boot:spring-boot-starter$2.3.3.RELEASE
+org.springframework.amqp:spring-rabbit$2.2.10.RELEASE
+org.springframework.boot:spring-boot-starter-test$2.3.3.RELEASE
+org.asciidoctor.convert$1.5.6
+me.champeau.gradle.jmh$0.4.7
+com.jfrog.artifactory$4.15.2

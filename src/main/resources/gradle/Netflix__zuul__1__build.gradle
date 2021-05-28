@@ -1,0 +1,11 @@
+com.fasterxml.jackson.core:jackson-core$2.12.1
+com.fasterxml.jackson.core:jackson-databind$2.12.1
+com.netflix.archaius:archaius-core$0.7.5
+com.netflix.spectator:spectator-api$0.123.1
+com.netflix.netflix-commons:netflix-commons-util$0.3.0
+com.netflix.eureka:eureka-client$1.9.18
+io.reactivex:rxjava$1.2.1
+io.netty:netty-tcnative-boringssl-static$2.0.38.Final
+io.perfmark:perfmark-api$0.24.0
+javax.inject:javax.inject$1
+org.slf4j:slf4j-simple$1.7.29

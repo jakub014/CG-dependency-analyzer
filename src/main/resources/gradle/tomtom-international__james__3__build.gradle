@@ -1,0 +1,6 @@
+io.kubernetes:client-java$10.0.1
+org.assertj:assertj-core$3.11.1
+com.github.tomakehurst:wiremock-jre8$2.27.2
+junit:junit$4.13.2
+org.mockito:mockito-core$3.8.0
+org.slf4j:slf4j-simple$1.7.30

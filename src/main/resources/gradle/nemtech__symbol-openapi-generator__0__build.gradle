@@ -1,0 +1,7 @@
+javax.annotation:javax.annotation-api$1.3.2
+org.openapitools:jackson-databind-nullable$0.2.1
+org.sonarqube$2.7
+ch.netzwerg.release$1.2.5
+org.ajoberstar.git-publish$3.0.0-rc.1
+de.marcphilipp.nexus-publish$0.4.0
+io.codearte.nexus-staging$0.21.1

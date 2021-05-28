@@ -1,0 +1,6 @@
+com.github.shyiko.klob:klob$0.2.1
+org.ec4j.core:ec4j-core$0.3.0
+info.picocli:picocli$3.9.6
+junit:junit$4.13.1
+org.assertj:assertj-core$3.12.2
+com.google.jimfs:jimfs$1.1

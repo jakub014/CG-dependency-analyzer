@@ -1,0 +1,5 @@
+org.jetbrains.kotlin:kotlin-stdlib-jdk8$1.5.0
+org.jetbrains.kotlin:kotlin-reflect$1.5.0
+com.google.cloud.functions:functions-framework-api$1.0.2
+org.jetbrains.kotlin.jvm$1.5.0
+org.jetbrains.kotlin.kapt$1.5.0

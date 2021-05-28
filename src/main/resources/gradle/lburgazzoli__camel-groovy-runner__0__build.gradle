@@ -1,0 +1,7 @@
+org.codehaus.groovy:groovy$3.0.5
+org.slf4j:slf4j-api$1.7.30
+org.slf4j:slf4j-simple$1.7.30
+org.apache.camel.k:camel-k-loader-groovy$1.4.1
+org.apache.camel.k:camel-k-runtime-main$1.4.1
+net.researchgate.release$2.8.1
+io.codearte.nexus-staging$0.22.0

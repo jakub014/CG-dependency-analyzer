@@ -1,0 +1,3 @@
+org.hibernate.javax.persistence:hibernate-jpa-2.1-api$1.0.0.Final
+org.codehaus.gpars:gpars$1.2.1
+org.picocontainer:picocontainer$2.15

@@ -1,0 +1,4 @@
+com.bmuschko:gradle-nexus-plugin$2.3.1
+com.fasterxml.jackson.core:jackson-databind$2.12.3
+com.github.ben-manes.caffeine:caffeine$2.9.0
+junit:junit$4.13.2

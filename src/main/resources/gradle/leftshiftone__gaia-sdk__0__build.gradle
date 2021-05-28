@@ -1,0 +1,14 @@
+one.leftshift.asteria:asteria-code-analytics$latest.release
+one.leftshift.asteria:asteria-dependency$latest.release
+one.leftshift.asteria:asteria-docs$latest.release
+one.leftshift.asteria:asteria-email$latest.release
+one.leftshift.asteria:asteria-publish$latest.release
+one.leftshift.asteria:asteria-report$latest.release
+one.leftshift.asteria:asteria-version$latest.release
+org.jetbrains.kotlin:kotlin-gradle-plugin$1.3.41
+org.jetbrains.kotlin:kotlin-allopen$1.3.41
+org.jetbrains.dokka:dokka-gradle-plugin$0.9.17
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.30.0
+org.springframework.boot:spring-boot-dependencies$2.1.13.RELEASE
+org.apache.velocity:velocity-engine-core$2.1
+org.antlr:antlr4$4.7.2

@@ -1,0 +1,6 @@
+com.michael-bull.kotlin-result:kotlin-result$1.1.10
+jvm$1.4.30
+com.github.ben-manes.versions$0.36.0
+org.jetbrains.dokka$1.4.20
+org.jetbrains.kotlin.plugin.spring$1.4.30
+org.springframework.boot$2.4.2

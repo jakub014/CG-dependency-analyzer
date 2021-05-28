@@ -1,0 +1,6 @@
+org.apache.camel:camel-core$3.2.0
+org.apache.rocketmq:rocketmq-client$4.7.0
+junit:junit$4.13
+org.apache.camel.springboot:camel-spring-boot-starter$3.2.0
+io.hawt:hawtio-springboot$2.9.1
+org.apache.camel:camel-test-spring$3.2.0

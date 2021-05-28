@@ -1,0 +1,7 @@
+jvm$1.4.20
+org.jetbrains.dokka$1.4.20
+io.gitlab.arturbosch.detekt$1.16.0
+org.jlleitschuh.gradle.ktlint$10.0.0
+io.freefair.aggregate-javadoc-jar$5.3.3.3
+org.ajoberstar.git-publish$3.0.0
+com.github.ben-manes.versions$0.38.0

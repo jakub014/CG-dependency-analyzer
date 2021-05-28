@@ -1,0 +1,6 @@
+junit:junit$4.13
+org.powermock:powermock-module-junit4$2.0.7
+org.powermock:powermock-api-mockito2$2.0.2
+org.powermock:powermock-core$2.0.7
+androidx.legacy:legacy-support-v4$1.0.0
+androidx.annotation:annotation$1.1.0

@@ -1,0 +1,16 @@
+org.checkerframework:checker-qual$3.13.0
+org.apache.logging.log4j:log4j-api$2.8.1
+org.spongepowered:configurate-hocon$3.7.1
+org.spongepowered:configurate-yaml$3.7.1
+org.spongepowered:configurate-gson$3.7.1
+com.google.guava:guava$22.0
+com.google.errorprone:error_prone_annotations$2.0.15
+com.google.inject:guice$5.0.1
+com.google.code.gson:gson$2.8.6
+org.spongepowered:mixin$0.8.2
+org.ow2.asm:asm$9.1
+org.ow2.asm:asm-analysis$9.1
+org.ow2.asm:asm-commons$9.1
+org.ow2.asm:asm-tree$9.1
+org.ow2.asm:asm-util$9.1
+net.minecraftforge:accesstransformers$2.2.1

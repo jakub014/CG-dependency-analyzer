@@ -1,0 +1,7 @@
+org.jetbrains.dokka:dokka-gradle-plugin$0.10.1
+org.mockito:mockito-core$3.5.13
+org.junit.jupiter:junit-jupiter-api$5.6.2
+org.junit.jupiter:junit-jupiter-engine$5.7.0
+org.jetbrains.kotlin:kotlin-gradle-plugin$1.3.72
+io.codearte.nexus-staging$0.20.0
+de.marcphilipp.nexus-publish$0.2.0

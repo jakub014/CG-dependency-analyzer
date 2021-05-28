@@ -1,0 +1,5 @@
+org.xmlunit:xmlunit-core$2.8.2
+org.reflections:reflections$0.9.11
+com.vladsch.flexmark:flexmark-all$0.34.30
+es.nitaur.markdown:txtmark$0.16
+commons-net:commons-net$3.6

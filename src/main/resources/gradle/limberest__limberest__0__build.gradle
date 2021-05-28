@@ -1,0 +1,14 @@
+javax.servlet:javax.servlet-api$3.1.0
+javax.ws.rs:javax.ws.rs-api$2.1
+javax.validation:validation-api$2.0.1.Final
+org.json:json$20180130
+org.slf4j:slf4j-api$1.7.25
+org.reflections:reflections$0.9.11
+com.google.guava:guava$20.0
+io.swagger:swagger-annotations$1.5.19
+io.swagger:swagger-core$1.5.19
+io.swagger:swagger-models$1.5.19
+io.swagger:swagger-servlet$1.5.19
+io.swagger:swagger-codegen$2.3.1
+org.springframework:spring-context$5.0.5.RELEASE
+javax.xml.bind:jaxb-api$2.2.12

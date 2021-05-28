@@ -1,0 +1,4 @@
+org.codehaus.groovy:groovy-bom$3.0.8
+org.spockframework:spock-bom$2.0-groovy-3.0
+org.objenesis:objenesis$3.2
+org.slf4j:slf4j-simple$1.7.30

@@ -1,0 +1,4 @@
+com.beust:jcommander$1.78
+junit:junit$4.12
+com.google.zxing:javase$3.3.0
+org.reflections:reflections$0.9.10

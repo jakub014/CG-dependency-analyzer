@@ -1,0 +1,4 @@
+org.openjdk.jmh:jmh-core$1.27
+nf.fr.eraasoft:objectpool$1.1.2
+org.openjdk.jmh:jmh-generator-annprocess$1.27
+com.github.johnrengelman.shadow$5.2.0

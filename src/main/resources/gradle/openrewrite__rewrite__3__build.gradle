@@ -1,0 +1,4 @@
+org.ow2.asm:asm$latest.release
+org.junit.jupiter:junit-jupiter-api$latest.release
+org.junit.jupiter:junit-jupiter-engine$latest.release
+ch.qos.logback:logback-classic$1.0.13

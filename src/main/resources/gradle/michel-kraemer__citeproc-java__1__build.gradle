@@ -1,0 +1,12 @@
+org.apache.commons:commons-lang3$3.9
+org.apache.commons:commons-text$1.8
+org.jbibtex:jbibtex$1.0.17
+org.antlr:antlr4-runtime$4.7.2
+org.yaml:snakeyaml$1.25
+commons-io:commons-io$2.6
+org.fusesource.jansi:jansi$1.18
+org.citationstyles:styles$2.0.0
+org.citationstyles:locales$2.0.0
+com.carrotsearch:junit-benchmarks$0.7.2
+pl.pragmatists:JUnitParams$1.1.1
+nebula.optional-base$5.0.3

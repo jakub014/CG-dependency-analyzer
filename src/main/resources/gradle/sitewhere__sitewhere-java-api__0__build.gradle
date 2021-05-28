@@ -1,0 +1,2 @@
+gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin$0.14.0
+io.quarkus:quarkus-bom$1.7.2.Final

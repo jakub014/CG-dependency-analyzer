@@ -1,0 +1,3 @@
+com.netflix.dyno:dyno-core$latest.release
+com.netflix.dyno:dyno-jedis$latest.release
+com.netflix.dyno:dyno-contrib$latest.release

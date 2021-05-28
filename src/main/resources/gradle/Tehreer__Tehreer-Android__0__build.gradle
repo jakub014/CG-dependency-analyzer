@@ -1,0 +1,3 @@
+com.android.tools.build:gradle$4.1.1
+com.github.dcendents:android-maven-gradle-plugin$2.1
+com.jfrog.bintray.gradle:gradle-bintray-plugin$1.8.4

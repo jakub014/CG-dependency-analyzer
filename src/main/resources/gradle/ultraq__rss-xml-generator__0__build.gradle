@@ -1,0 +1,8 @@
+org.codehaus.groovy:groovy$3.0.8
+nz.net.ultraq.thymeleaf:thymeleaf-ifnotnull-dialect$3.0.0
+org.thymeleaf:thymeleaf$3.0.12.RELEASE
+org.thymeleaf.extras:thymeleaf-extras-java8time$3.0.4.RELEASE
+org.codehaus.groovy:groovy-xml$3.0.8
+org.spockframework:spock-core$2.0-groovy-3.0
+org.slf4j:slf4j-simple$1.7.30
+com.github.kt3k.coveralls$2.10.1

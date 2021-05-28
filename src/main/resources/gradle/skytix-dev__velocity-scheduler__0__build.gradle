@@ -1,0 +1,13 @@
+org.apache.mesos:mesos$1.9.0
+org.apache.commons:commons-lang3$3.11
+au.com.skytix:mesos-scheduler-client$1.0.10
+io.github.openfeign:feign-core$11.0
+io.github.openfeign:feign-jackson$11.0
+org.apache.httpcomponents:httpclient$4.5.13
+com.googlecode.protobuf-java-format:protobuf-java-format$1.4
+io.micrometer:micrometer-core$1.5.1
+javax.activation:activation$1.1.1
+javax.xml.bind:jaxb-api$2.4.0-b180830.0359
+ch.qos.logback:logback-classic$1.2.3
+junit:junit$4.12
+io.freefair.lombok$4.1.6

@@ -1,0 +1,5 @@
+org.jetbrains.dokka:kotlin-as-java-plugin$1.4.20
+io.kotest:kotest-runner-junit5-jvm$4.3.1
+io.kotest:kotest-assertions-core-jvm$4.3.1
+io.kotest:kotest-property-jvm$4.3.1
+multiplatform$1.4.20

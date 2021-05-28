@@ -1,0 +1,7 @@
+org.springframework:spring-web$5.3.6
+io.micrometer:micrometer-core$1.6.6
+org.apache.commons:commons-lang3$3.12.0
+org.apache.commons:commons-collections4$4.4
+commons-io:commons-io$2.8.0
+pl.allegro.tech.build.axion-release$1.13.2
+io.github.gradle-nexus.publish-plugin$1.1.0

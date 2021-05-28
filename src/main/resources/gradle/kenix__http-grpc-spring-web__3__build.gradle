@@ -1,0 +1,6 @@
+org.springframework.boot:spring-boot-starter-web$2.3.8.RELEASE
+net.devh:grpc-server-spring-boot-starter$2.10.1.RELEASE
+org.springframework.cloud:spring-cloud-starter-sleuth$2.2.7.RELEASE
+io.zipkin.brave:brave-instrumentation-grpc$5.13.3
+org.springframework.boot:spring-boot-starter-test$2.3.8.RELEASE
+org.springframework.boot$2.3.8.RELEASE

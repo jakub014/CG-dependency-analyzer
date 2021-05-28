@@ -1,0 +1,8 @@
+org.eclipse.jgit:org.eclipse.jgit$5.10.0.202012080955-r
+fr.jmini.asciidoctorj:git-link$3.2.1
+com.diffplug.spotless$5.1.1
+org.asciidoctor.jvm.convert$3.3.0
+org.ajoberstar.git-publish$3.0.0
+de.marcphilipp.nexus-publish$0.4.0
+net.researchgate.release$2.6.0
+io.codearte.nexus-staging$0.22.0

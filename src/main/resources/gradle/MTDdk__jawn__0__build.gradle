@@ -1,0 +1,5 @@
+com.google.guava:guava$28.2-jre
+junit:junit$4.13-rc-1
+org.hamcrest:hamcrest-core$2.2
+org.mockito:mockito-core$3.3.3
+com.google.truth:truth$1.0.1

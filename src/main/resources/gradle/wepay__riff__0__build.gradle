@@ -1,0 +1,12 @@
+org.jfrog.buildinfo:build-info-extractor-gradle$3.1.1
+org.slf4j:slf4j-api$1.7.21
+junit:junit$4.11
+com.wepay.zktools:zktools$0.7.1
+org.eclipse.jetty:jetty-http$9.4.10.v20180503
+org.eclipse.jetty:jetty-servlet$9.4.10.v20180503
+org.eclipse.jetty:jetty-server$9.4.10.v20180503
+com.fasterxml.jackson.core:jackson-databind$2.9.6
+javax.servlet:javax.servlet-api$4.0.1
+org.assertj:assertj-core$3.8.0
+org.mockito:mockito-core$2.23.0
+io.netty:netty-all$4.1.44.Final

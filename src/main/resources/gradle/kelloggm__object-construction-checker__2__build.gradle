@@ -1,0 +1,6 @@
+com.google.guava:guava$30.1.1-jre
+junit:junit$4.13.2
+com.amazonaws:aws-java-sdk-bom$1.11.1026
+com.amazonaws:aws-java-sdk-ec2$1.11.1026
+com.amazonaws:aws-java-sdk-kms$1.11.1026
+com.ryanharter.auto.value:auto-value-parcel$0.2.8
