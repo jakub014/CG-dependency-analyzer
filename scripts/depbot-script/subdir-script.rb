@@ -20,7 +20,7 @@ credentials =
     "host" => "github.com",
     "username" => "x-access-token",
     #"password" => ""
-    "password" => ""
+    "password" => "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"
   }]
 
 # Full name of the GitHub repo you want to create pull requests for.
@@ -33,7 +33,7 @@ directory = "/"
 # `parser.parse`.)
 
 
-csv = File.open("depfile-info.csv", "a")
+csv = File.open("onlydeps.csv", "a")
 counter = 0
 repos_file = File.open("vuln-repos-git-root.txt").read
 repos_file.gsub!(/\r\n?/, "\n")
@@ -43,7 +43,7 @@ repos_file.each_line do |line|
   repo_split = repo_name.split("/")
   group_id = repo_split[0]
   package_name = repo_split[1]
-  puts "checked: #{counter}: #{repo_name}"
+  puts "\n\nchecked: #{counter}: #{repo_name}"
   counter = counter + 1
 
   source = Dependabot::Source.new(
@@ -56,22 +56,14 @@ repos_file.each_line do |line|
   ##############################
   # Try process build.gradle
   ##############################
+  files = nil
+  package_manager = nil
   begin
   
 	fetcher = Dependabot::FileFetchers.for_package_manager("maven").
 			  new(source: source, credentials: credentials)
 	files = fetcher.files
-	
-	filecount = 0
-	for file in files
-		out = File.open("depfiles/#{group_id}__#{package_name}__#{filecount}__pom.xml", "a")
-		out.write(file.content)
-		
-		# Log depfile info
-		csv.write("depfiles/#{group_id}__#{package_name}__#{filecount}__pom.xml,#{repo_name},#{file.path},maven\n")
-		
-		filecount = filecount + 1
-	end
+	package_manager = "maven"
   rescue Dependabot::DependencyFileNotFound
 	##############################
 	# Try process pom.xml
@@ -80,17 +72,7 @@ repos_file.each_line do |line|
 		fetcher = Dependabot::FileFetchers.for_package_manager("gradle").
 				  new(source: source, credentials: credentials)
 		files = fetcher.files
-		
-		filecount = 0
-		for file in files
-			out = File.open("depfiles/#{group_id}__#{package_name}__#{filecount}__build.gradle", "a")
-			out.write(file.content)
-			
-			# Log depfile info
-			csv.write("depfiles/#{group_id}__#{package_name}__#{filecount}__build.gradle,#{repo_name},#{file.path},gradle\n")
-			
-			filecount = filecount + 1
-		end
+		package_manager = "gradle"
 	# Skip if no dependency file found
 	rescue Dependabot::DependencyFileNotFound
 		next
@@ -98,15 +80,45 @@ repos_file.each_line do |line|
 		next
 	rescue TypeError
 		next
-	end
-	
+	end	
   # Skip if no repo found or type error
   rescue Dependabot::RepoNotFound
     next
   rescue TypeError
     next
   end
+  
+  filecount = 0
+  unless files.nil? or package_manager.nil?
+		for file in files
+			out_path = "onlydeps/#{group_id}__#{package_name}__#{filecount}"
+			out = File.open(out_path, "a")
+			puts "\n#{out_path}"
+			
+			parser = Dependabot::FileParsers.for_package_manager(package_manager).new(
+			  dependency_files: files,
+			  source: source,
+			  credentials: credentials,
+			)
+			begin
+				dependencies = parser.parse
+			rescue Dependabot::DependencyFileNotEvaluatable
+				next
+			end
+			for dep in dependencies
+				out.write("#{dep.name}$#{dep.version}\n")
+				puts "#{dep.name}$#{dep.version}"
+			end
+			out.close()
+			
+			# Log depfile info
+			csv.write("#{out_path},#{repo_name},#{file.path},#{package_manager}\n")
+			
+			filecount = filecount + 1
+		end
+  end
 end
+cvs.close()
 
 
 
