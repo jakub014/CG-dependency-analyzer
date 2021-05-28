@@ -1,9 +1,0 @@
-apply from: 'libs.gradle'
-
-dependencies {
-	implementation project(':iplass-core')
-	implementation project(':iplass-web')
-	implementation project(':iplass-gem')
-	implementation project(':iplass-tools')
-}
-

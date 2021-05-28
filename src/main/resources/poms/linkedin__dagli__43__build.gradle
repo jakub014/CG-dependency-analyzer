@@ -1,5 +1,0 @@
-project.sourceSets.main.java.srcDir('src/template/generated')
-
-dependencies {
-  api project(':core')
-}

@@ -1,5 +1,0 @@
-dependencies {
-  api libraries.androidx_legacy_support_v4
-  api libraries.kotlin_stdlib
-  api libraries.slf4j
-}

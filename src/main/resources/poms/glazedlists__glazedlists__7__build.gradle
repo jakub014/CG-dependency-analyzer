@@ -1,4 +1,0 @@
-dependencies {
-    compile project(':extensions:issuesbrowser')
-    compile files('lib/ktable-2.1.2.jar')
-}

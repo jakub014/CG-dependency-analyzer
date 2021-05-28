@@ -1,8 +1,0 @@
-dependencies {
-    api project(":identity-use-cases")
-
-    implementation project(":common-use-cases")
-    implementation testFixtures(project(":common-entities"))
-    implementation testFixtures(project(":identity-use-cases"))
-    implementation "com.github.michaelruocco:duration-logger:${durationLoggerVersion}"
-}

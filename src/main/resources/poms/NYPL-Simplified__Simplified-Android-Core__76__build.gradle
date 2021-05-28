@@ -1,6 +1,0 @@
-dependencies {
-  api libraries.google_guava
-
-  implementation libraries.kotlin_stdlib
-  implementation libraries.kotlin_reflect
-}

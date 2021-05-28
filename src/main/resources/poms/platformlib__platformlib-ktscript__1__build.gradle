@@ -1,3 +1,0 @@
-dependencies {
-    api group: 'org.slf4j', name: 'slf4j-api', version: project['slf4j.version']
-}

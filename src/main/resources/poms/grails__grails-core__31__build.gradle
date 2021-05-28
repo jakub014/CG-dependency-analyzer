@@ -1,4 +1,0 @@
-dependencies {
-    api project(":grails-web"), project(":grails-plugin-controllers")
-    provided "junit:junit:${junitVersion}"
-}

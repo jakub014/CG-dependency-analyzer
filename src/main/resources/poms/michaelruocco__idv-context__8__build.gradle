@@ -1,5 +1,0 @@
-dependencies {
-    api project(":identity-use-cases")
-
-    testImplementation testFixtures(project(":identity-entities"))
-}

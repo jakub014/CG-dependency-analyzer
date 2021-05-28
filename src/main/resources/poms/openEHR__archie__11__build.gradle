@@ -1,9 +1,0 @@
-description = "tools to access OpenEHR reference model metadata"
-
-dependencies {
-  compile project(':bmm')
-  compile project(':odin')
-  compile project(':aom')
-  testCompile project(':openehr-rm')
-  testCompile project(':archie-utils')
-}

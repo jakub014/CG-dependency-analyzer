@@ -1,7 +1,0 @@
-dependencies {
-  api project(':core')
-  api project(':common')
-
-  annotationProcessor project(':annotation-processor')
-  compileOnly project(':annotation-processor')
-}

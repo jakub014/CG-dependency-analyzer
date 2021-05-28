@@ -1,6 +1,0 @@
-dependencies {
-    implementation project(":policy-in-memory-repository")
-    implementation project(":lockout-use-cases")
-
-    testImplementation testFixtures(project(":lockout-entities"))
-}

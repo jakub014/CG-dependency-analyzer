@@ -1,6 +1,0 @@
-dependencies {
-    implementation project(":policy-in-memory-repository")
-    implementation project(":context-use-cases")
-
-    testImplementation testFixtures(project(":context-entities"))
-}

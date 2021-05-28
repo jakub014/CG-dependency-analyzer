@@ -1,7 +1,0 @@
-ext.deployParams = [description: 'SPI for developing plugins for Apiator JSON Renderer']
-apply from: "$rootDir/gradle/deploy.gradle"
-
-dependencies {
-    // TODO katoquro: 26/04/2018 extract spi from core 
-    api project(':core')
-}

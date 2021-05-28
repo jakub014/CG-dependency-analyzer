@@ -1,7 +1,0 @@
-dependencies {
-    annotationProcessor project(":inject-java")
-
-    api project(":runtime")
-    implementation dependencyVersion("methvin.directory-watcher")
-    implementation dependencyVersion("jna")
-}

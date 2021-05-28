@@ -1,5 +1,0 @@
-dependencies {
-    implementation project(":policy-redis-repository")
-    implementation project(":lockout-use-cases")
-    implementation "com.github.michaelruocco:json-adapter:${jsonAdapterVersion}"
-}

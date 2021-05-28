@@ -1,4 +1,0 @@
-dependencies {
-    compile project(":core")
-    compile group: 'com.uber', name: 'h3', version: uber_h3_version
-}

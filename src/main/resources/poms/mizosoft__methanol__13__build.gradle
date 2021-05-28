@@ -1,9 +1,0 @@
-plugins {
-  id 'application'
-}
-
-mainClassName = "$moduleName/com.github.mizosoft.methanol.samples.crawler.Crawler"
-
-dependencies {
-  implementation deps.jsoup
-}

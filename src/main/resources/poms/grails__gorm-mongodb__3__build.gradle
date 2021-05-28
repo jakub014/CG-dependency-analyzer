@@ -1,4 +1,0 @@
-dependencies {
-    api "org.mongodb:mongodb-driver-sync:$mongodbDriverVersion"
-    api project(":grails-datastore-gorm-mongodb")
-}
