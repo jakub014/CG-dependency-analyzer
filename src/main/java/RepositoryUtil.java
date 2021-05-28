@@ -99,19 +99,20 @@ public class RepositoryUtil {
 
     private static void buildGradleProject(String repositoryName, String defaultBranch, String relativeDirectoryPath) {
         try {
-            String path = repositoryName + "/" + repositoryName + "-" + defaultBranch;
+            String path = "downloaded-repos/" + repositoryName + "/" + repositoryName + "-" + defaultBranch;
             if (!relativeDirectoryPath.equals("/")) {
                 path += relativeDirectoryPath;
             }
             File repoDir = new File(path);
-            Process process = Runtime.getRuntime().exec("bash gradlew assemble", null, repoDir.getAbsoluteFile());
 
-            StringBuilder output = new StringBuilder();
+            // https://docs.gradle.org/current/userguide/userguide_single.html#installing_manually
+            String[] env = {"PATH=$PATH:/opt/gradle/gradle-7.0.2/bin"};
+            Process process = Runtime.getRuntime().exec("bash gradlew assemble", env, new File(repoDir.getAbsolutePath()));
+
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
             String line;
             while ((line = reader.readLine()) != null) {
-                output.append(line + "\n");
+                System.out.println(line);
             }
 
             int exitVal = process.waitFor();

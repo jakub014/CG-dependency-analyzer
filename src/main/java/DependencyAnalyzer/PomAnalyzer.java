@@ -67,12 +67,13 @@ public class PomAnalyzer {
             System.out.println("POM NOT FOUND");
         }
 
-        for (Dependency d : listOfDeps) System.out.println(d);
+//         for (Dependency d : listOfDeps) System.out.println(d);
 
         //finds the intersection of both
         List<Dependency> result = listOfVuln.stream().distinct().filter(listOfDeps::contains).collect(Collectors.toList());
 
         if(result.size() > 0) {
+            System.out.println();
             return result;
         } else {
             throw new VulnsNotFoundException("Vulnerabilities not found in path " + pomXMLPath);

@@ -1,15 +1,8 @@
-import DependencyAnalyzer.BuildGradleAnalyzer;
-import DependencyAnalyzer.PomAnalyzer;
 import DependencyAnalyzer.Dependency;
-
+import DependencyAnalyzer.PomAnalyzer;
+import DependencyAnalyzer.TextDepFileAnalyzer;
 import DependencyAnalyzer.VulnsNotFoundException;
 import eu.fasten.analyzer.javacgopal.data.MavenCoordinate;
-
-import java.io.*;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
 import eu.fasten.analyzer.javacgopal.data.exceptions.MissingArtifactException;
 import eu.fasten.analyzer.javacgopal.data.exceptions.OPALException;
 import org.jooq.tools.csv.CSVReader;
@@ -18,18 +11,25 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MainScript {
 
     // Booleans
     private static final boolean filterEnabled = false;
-    private static final boolean scanMaven = true;
+    private static final boolean scanMaven = false;
     private static final boolean scanGradle = true;
 
     // Constants
-    private static final int startFrom = 0;
+    private static final int startFrom = 40;
     private static final int upTo = 100000000;
+    private static final int[] skip = {};
     private static final String FILTER_DATA_PATH = "src/main/resources/vulnerableProjectData.json";
-    private static final String PROJECT_INFO_CSV_PATH = "src/main/resources/depfile-info.csv";
+    private static final String MAVEN_PROJECT_CSV_PATH = "src/main/resources/depfile-info-maven.csv";
+    private static final String GRADLE_PROJECT_CSV_PATH = "src/main/resources/depfile-info-gradle.csv";
     private static final String LOG_FILE_PATH = "analysisResults/analysed-repos.txt";
     private static final Long TIMESTAMP_MAY_2020 = 1589454523000L;
     private static final Long TIMESTAMP_FEBRUARY_2021 = 1613308674000L;
@@ -37,8 +37,11 @@ public class MainScript {
     public static void main(String[] args) throws ParseException, IOException {
 
         // Load projects to be analyzed
-        List<ProjectInfo> projectInfoList = getProjectInfoList();
-        System.out.println("LOADED " + projectInfoList.size() + "PROJECTS TO ANALYZE");
+        ArrayList<Integer> skipList = new ArrayList<>();
+        for (int idx : skip) skipList.add(idx);
+        List<ProjectInfo> projectInfoList = new ArrayList<>();
+        if (scanMaven) projectInfoList.addAll(getProjectInfoList(MAVEN_PROJECT_CSV_PATH));
+        if (scanGradle) projectInfoList.addAll(getProjectInfoList(GRADLE_PROJECT_CSV_PATH));
 
         // Open logging file
         File file = new File(LOG_FILE_PATH);
@@ -48,7 +51,7 @@ public class MainScript {
         // Analyze projects
         int counter = 0;
         for (ProjectInfo projectInfo : projectInfoList) {
-            if (counter >= startFrom && counter <= upTo) {
+            if (counter >= startFrom && counter <= upTo && !skipList.contains(counter)) {
                 Long lastUpdated = projectInfo.getLastUpdated();
                 if (!filterEnabled || TIMESTAMP_FEBRUARY_2021 > lastUpdated) {
                     System.out.println("START ANALYSIS ON PROJECT NO." + counter);
@@ -57,7 +60,7 @@ public class MainScript {
                     String groupID = projectInfo.getUser();
                     String subdir = projectInfo.getRelativeDirectoryPath("/");
 
-                    String depFilePath =  String.valueOf(MainScript.class.getResource(projectInfo.getDownloadedDepFilePath()));
+                    String depFilePath = "src/main/resources/" + projectInfo.getDownloadedDepFilePath();
                     File depFile = new File(depFilePath);
 
                     if (!depFile.exists()) {
@@ -67,6 +70,7 @@ public class MainScript {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        counter++;
                         continue;
                     }
 
@@ -78,11 +82,11 @@ public class MainScript {
                     }*/
 
                     try {
-                        List<Dependency> dependencyList = new ArrayList<>();
+                        List<Dependency> dependencyList;
                         if (projectInfo.getProjectType() == ProjectType.MAVEN) {
                             dependencyList = PomAnalyzer.getProjectDependencies(depFilePath);
                         } else {
-                            dependencyList = BuildGradleAnalyzer.getProjectDependencies(depFilePath);
+                            dependencyList = TextDepFileAnalyzer.getProjectDependencies(depFilePath);
                         }
                         analyzeRepository(projectInfo, dependencyList);
                         try {
@@ -116,13 +120,14 @@ public class MainScript {
     }
 
     /**
-     * Read PROJECT_INF_CSV_PATH and intersects with FILTER_DATA_PATH, creating a ProjectInfo class for each entry.
+     * Read CSV file and intersects with FILTER_DATA_PATH, creating a ProjectInfo class for each entry.
      * @return The list of projects to be analyzed.
      */
-    private static List<ProjectInfo> getProjectInfoList() throws IOException, ParseException {
+    private static List<ProjectInfo> getProjectInfoList(String csvPath) throws IOException, ParseException {
+        System.out.println("LOADING PROJECTS FROM " + csvPath);
         JSONParser parser = new JSONParser();
         JSONArray data = (JSONArray) parser.parse(new FileReader(FILTER_DATA_PATH));
-        CSVReader reader = new CSVReader(new FileReader(PROJECT_INFO_CSV_PATH));
+        CSVReader reader = new CSVReader(new FileReader(csvPath));
 
         List<ProjectInfo> projectInfoList = new ArrayList<>();
         String[] nextLine;
@@ -154,6 +159,7 @@ public class MainScript {
                 }
             }
         }
+        System.out.println("SUCCESSFULLY LOADED " + projectInfoList.size() + " " + projectInfoList.get(0).getProjectType() + " PROJECTS");
         return projectInfoList;
     }
 
