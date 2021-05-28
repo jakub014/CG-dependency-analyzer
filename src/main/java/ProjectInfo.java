@@ -8,12 +8,8 @@ public class ProjectInfo {
     private JSONObject projectJSONData;
     private boolean innerProject;
 
-    public ProjectInfo(String projectType, String downloadedDepFilePath, String relativeDepFilePath, JSONObject projectJSONData, boolean innerProject) {
-        if (projectType.equals("maven")) {
-            this.projectType = ProjectType.MAVEN;
-        } else if (projectType.equals("gradle")) {
-            this.projectType = ProjectType.GRADLE;
-        }
+    public ProjectInfo(ProjectType projectType, String downloadedDepFilePath, String relativeDepFilePath, JSONObject projectJSONData, boolean innerProject) {
+        this.projectType = projectType;
         this.downloadedDepFilePath = downloadedDepFilePath;
         this.relativeDepFilePath = relativeDepFilePath;
         this.projectJSONData = projectJSONData;

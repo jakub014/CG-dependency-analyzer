@@ -1,4 +1,0 @@
-jcabi-http
-https://github.com/jcabi/jcabi-http
-Vulnerable dependency: org.apache.httpcomponents:httpclient
-_____fasten://mvn!jcabi-http$develop-snapshot/com.jcabi.http.request/BaseRequest.header(%2Fjava.lang%2FString,%2Fjava.lang%2FObject)%2Fcom.jcabi.http%2FRequest
