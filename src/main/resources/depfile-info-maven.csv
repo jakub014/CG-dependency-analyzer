@@ -12280,7 +12280,6 @@ poms/opentracing-contrib__java-spring-web__4__pom.xml,opentracing-contrib/java-s
 poms/opentracing-contrib__java-spring-web__5__pom.xml,opentracing-contrib/java-spring-web,/opentracing-spring-web-itest/boot/pom.xml,maven
 poms/opentracing-contrib__java-spring-web__6__pom.xml,opentracing-contrib/java-spring-web,/opentracing-spring-web-itest/mvc/pom.xml,maven
 poms/opentracing-contrib__java-spring-web__7__pom.xml,opentracing-contrib/java-spring-web,/opentracing-spring-web-itest/webflux/pom.xml,maven
-poms/opentripplanner__OpenTripPlanner__0__pom.xml,opentripplanner/OpenTripPlanner,/pom.xml,maven
 poms/OpenVidu__openvidu__0__pom.xml,OpenVidu/openvidu,/pom.xml,maven
 poms/OpenVidu__openvidu__1__pom.xml,OpenVidu/openvidu,/openvidu-server/pom.xml,maven
 poms/OpenVidu__openvidu__2__pom.xml,OpenVidu/openvidu,/openvidu-client/pom.xml,maven
@@ -15043,7 +15042,6 @@ poms/tballison__mp4parser__3__pom.xml,tballison/mp4parser,/muxer/pom.xml,maven
 poms/tballison__mp4parser__4__pom.xml,tballison/mp4parser,/streaming/pom.xml,maven
 poms/tballison__mp4parser__5__pom.xml,tballison/mp4parser,/androidtest/pom.xml,maven
 poms/tbee__teslaApi__0__pom.xml,tbee/teslaApi,/pom.xml,maven
-poms/tblsoft__solr-cmd-utils__0__pom.xml,tblsoft/solr-cmd-utils,/pom.xml,maven
 poms/tcaselli__java-data-graphql__0__pom.xml,tcaselli/java-data-graphql,/pom.xml,maven
 poms/tcbenkhard__envio__0__pom.xml,tcbenkhard/envio,/pom.xml,maven
 poms/tcdng__jacklyn-codebase__0__pom.xml,tcdng/jacklyn-codebase,/pom.xml,maven
@@ -16345,7 +16343,6 @@ poms/weibin268__my-message__1__pom.xml,weibin268/my-message,/my-message/pom.xml,
 poms/weibin268__my-message__2__pom.xml,weibin268/my-message,/my-message-starter/pom.xml,maven
 poms/weibocom__motan__0__pom.xml,weibocom/motan,/pom.xml,maven
 poms/weibocom__motan__1__pom.xml,weibocom/motan,/motan-core/pom.xml,maven
-poms/weibocom__motan__2__pom.xml,weibocom/motan,/motan-manager/pom.xml,maven
 poms/weibocom__motan__3__pom.xml,weibocom/motan,/motan-springsupport/pom.xml,maven
 poms/weibocom__motan__4__pom.xml,weibocom/motan,/motan-transport-netty/pom.xml,maven
 poms/weibocom__motan__5__pom.xml,weibocom/motan,/motan-transport-netty4/pom.xml,maven

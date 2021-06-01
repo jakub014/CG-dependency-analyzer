@@ -1,0 +1,10 @@
+vfsjfilechooser2
+https://github.com/fracpete/vfsjfilechooser2
+Vulnerable dependency: org.apache.httpcomponents:httpclient
+
+___fasten://mvn!vfsjfilechooser2$master/com.googlecode.vfsjfilechooser2.accessories.bookmarks/BookmarksEditorPanel$4.actionPerformed(%2Fjava.awt.event%2FActionEvent)%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+
+___fasten://mvn!vfsjfilechooser2$master/com.googlecode.vfsjfilechooser2.accessories.bookmarks/Bookmarks.setValueAt(%2Fjava.lang%2FObject,%2Fjava.lang%2FIntegerType,%2Fjava.lang%2FIntegerType)%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+
