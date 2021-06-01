@@ -19,12 +19,12 @@ import java.util.List;
 public class MainScript {
 
     // Booleans
-    private static final boolean filterEnabled = false;
-    private static final boolean scanMaven = false;
-    private static final boolean scanGradle = true;
+    private static final boolean filterEnabled = true;
+    private static final boolean scanMaven = true;
+    private static final boolean scanGradle = false;
 
     // Constants
-    private static final int startFrom = 40;
+    private static final int startFrom = 6015;
     private static final int upTo = 100000000;
     private static final int[] skip = {};
     private static final String FILTER_DATA_PATH = "src/main/resources/vulnerableProjectData.json";
@@ -49,14 +49,14 @@ public class MainScript {
         Writer output = new FileWriter(LOG_FILE_PATH, true);
 
         // Analyze projects
-        int counter = 0;
+        int counter = -1;
         for (ProjectInfo projectInfo : projectInfoList) {
+            counter++;
             if (counter >= startFrom && counter <= upTo && !skipList.contains(counter)) {
                 Long lastUpdated = projectInfo.getLastUpdated();
-                if (!filterEnabled || TIMESTAMP_FEBRUARY_2021 > lastUpdated) {
-                    System.out.println("START ANALYSIS ON PROJECT NO." + counter);
-
+                if (!filterEnabled || TIMESTAMP_FEBRUARY_2021 < lastUpdated) {
                     String packageName = projectInfo.getRepository();
+                    System.out.println("START ANALYSIS ON PROJECT NO." + counter + ": " + packageName);
                     String groupID = projectInfo.getUser();
                     String subdir = projectInfo.getRelativeDirectoryPath("/");
 
@@ -114,7 +114,6 @@ public class MainScript {
                     }
                 }
             }
-            counter++;
         }
         output.close();
     }
