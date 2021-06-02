@@ -8,12 +8,12 @@ public class ProjectInfo {
     private JSONObject projectJSONData;
     private boolean innerProject;
 
-    public ProjectInfo(ProjectType projectType, String downloadedDepFilePath, String relativeDepFilePath, JSONObject projectJSONData, boolean innerProject) {
+    public ProjectInfo(ProjectType projectType, String downloadedDepFilePath, String relativeDepFilePath, JSONObject projectJSONData) {
         this.projectType = projectType;
         this.downloadedDepFilePath = downloadedDepFilePath;
         this.relativeDepFilePath = relativeDepFilePath;
         this.projectJSONData = projectJSONData;
-        this.innerProject = innerProject;
+        this.innerProject = !downloadedDepFilePath.contains("__0__");
     }
 
     public Long getLastUpdated() {

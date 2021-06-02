@@ -12,7 +12,7 @@ import java.util.*;
 public class RepositoryUtil {
 
     // !!! IMPORTANT: Set MAVEN_HOME to the PATH on your computer
-    final static String MAVEN_HOME = "C:\\Program Files\\apache-maven-3.8.1";
+    final static String MAVEN_HOME = "/usr/share/maven";
 
     public static class JarNotFoundException extends Exception {
         public JarNotFoundException(String message) {
@@ -80,7 +80,7 @@ public class RepositoryUtil {
         return "downloaded-repos/" + repositoryName + "/" + repositoryName + "-" + defaultBranch;
     }
 
-    private static boolean buildMavenProject(String pomXMLPath) {
+    static boolean buildMavenProject(String pomXMLPath) {
         InvocationRequest request = new DefaultInvocationRequest();
         request.setPomFile(new File(pomXMLPath));
         // Run `mvn package -Dmaven.test.skip=true`. Last part of command skips run of tests
@@ -89,10 +89,19 @@ public class RepositoryUtil {
         Invoker invoker = new DefaultInvoker();
         invoker.setMavenHome(new File(Paths.get(MAVEN_HOME).toUri()));
         try {
-            invoker.execute(request);
+            var result = invoker.execute(request);
+            if (result.getExitCode() != 0) {
+                return false;
+            }
             return true;
         } catch (MavenInvocationException e) {
-            e.printStackTrace();
+            try {
+                Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
+                output.append("BUILD FAILED FOR POM XML PATH " + pomXMLPath);
+                output.close();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
         return false;
     }
@@ -182,13 +191,4 @@ public class RepositoryUtil {
         buildRepositoryJAR(projectInfo);
         return getJarPath(projectInfo);
     }
-
-//    public static void main(String[] args) {
-//        //Pair pair = getRepoAndLink("https://github.com/adobe/target-java-sdk");
-//        ProjectInfo projectInfo = new ProjectInfo(
-//
-//        );
-//        downloadRepository(pair.getRight(), pair.getLeft(), "main");
-//        buildGradleProject(pair.getLeft(), "main");
-//    }
 }
