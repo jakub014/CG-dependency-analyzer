@@ -1,0 +1,1363 @@
+DEPENDENCY FILE WITH PATH gradle/acrolinx__sdk-java__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/agile4j__agile4j-model-builder__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/aiven__aiven-kafka-connect-commons__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/aiven__aiven-kafka-connect-gcs__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/allegro__hermes__4__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/allegro__hermes__6__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.projectreactor.netty
+ artifactId: reactor-netty
+ version: 0.8.10.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/alphagov__verify-test-utils__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+
+ groupId: org.eclipse.jetty
+ artifactId: jetty-server
+ version: 9.0.7.v20131107
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/anatawa12__ForgeGradle-1.2__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/anatawa12__ForgeGradle-1.2__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/awslabs__rds-data-api-client-library-java__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/baoquan-hq__java-sdk__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/bertramdev__asset-pipeline__11__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Bisnode__opa-java-client__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/bitcoinj__bitcoinj__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/bkdevops-projects__devops-framework__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hadoop
+ artifactId: hadoop-hdfs
+ version: 2.6.0
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.6.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/broadinstitute__picard__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/bugsnag__bugsnag-java__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/bumptech__glide__6__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.caverock
+ artifactId: androidsvg
+ version: 1.2.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/bumptech__glide__7__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.3.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Catalysts__cat-boot__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/cisco-system-traffic-generator__trex-java-sdk__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.1-jre
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/cloudendpoints__endpoints-java__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.oauth-client
+ artifactId: google-oauth-client
+ version: 1.21.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/cloudendpoints__endpoints-management-java__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.oauth-client
+ artifactId: google-oauth-client
+ version: 1.22.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/cloudinary__cloudinary_java__3__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.2.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/cloudinary__cloudinary_java__4__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/cloudinary__cloudinary_java__5__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/conflux-chain__java-conflux-sdk__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/ContextMapper__context-mapper-dsl__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/copper-engine__copper-engine__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.batch
+ artifactId: spring-batch-infrastructure
+ version: 4.0.1.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/crate__crate-jdbc__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.5.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Crowdar__lippia-core__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0-jre
+
+
+
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.8.RELEASE
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/DeepAQ__Autumn__5__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/DeepAQ__Autumn__7__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/DeepAQ__Autumn__9__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/dita-ot__dita-ot__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/dnault__therapi-json-rpc__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 21.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/docusign__docusign-click-java-client__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/docusign__docusign-java-client__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/docusign__docusign-rooms-java-client__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/eaxdev__Java-JsonResume-Validator__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/elastic__elasticsearch-hadoop__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.7.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/elastic__elasticsearch-hadoop__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.7.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/elastic__elasticsearch-hadoop__3__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 11.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.7.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/elastic__elasticsearch-hadoop__4__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 14.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/elastic__elasticsearch-hadoop__5__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 16.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/elastic__elasticsearch-hadoop__8__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 16.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/elasticio__sailor-jvm__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/elastos__Elastos.DID.Java.SDK__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 26.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/elestyle__elepay-java-sdk__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/embulk__embulk-util-config__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.6.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/embulk__embulk-util-guess__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.6.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/ePages-de__restdocs-api-spec__4__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.swagger
+ artifactId: swagger-parser
+ version: 2.0.0-rc1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/EvidentSolutions__dalesbred__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/factoryfx__factoryfx__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/FireStack-Lab__LaksaJ__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/FledgeXu__ForgeGradleCN__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 26.0-jre
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/flexifyio__flexify-api-java__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/GetStream__stream-java__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/glookast__commons-templates__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/google__protobuf-gradle-plugin__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/google__tsunami-security-scanner__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/gradle-plugins__toolbox__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/gradle-plugins__toolbox__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/gradle-plugins__toolbox__4__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/gradle-plugins__toolbox__10__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/gradle-plugins__toolbox__12__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/gustavodsf__javers__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.6.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/hashgraph__ethereumj__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1-jre
+
+
+
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.0.30.Final
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.5.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Instamojo__instamojo-android-sdk__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.5.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/intercom__intercom-java__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 17.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/javers__javers__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.6.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/KennFalcon__tablestore-spring-boot-starter__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Kentico__kontent-java-packages__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.datatype
+ artifactId: jackson-datatype-jsr310
+ version: 2.4.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Kentico__kontent-java-packages__4__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Kentico__kontent-java-packages__5__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.0-android
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/kmgowda__sbk__13__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/kmgowda__sbk__21__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hive
+ artifactId: hive-jdbc
+ version: 1.1.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Koople__sdk-java__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/leancloud__archaius__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 16.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.4.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/lessthanoptimal__BoofCV__11__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/linkedin__TonY__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 11.0.2
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/LinuxForHealth__hl7v2-fhir-converter__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/LogSentinel__logsentinel-java-client__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/mapsforge__mapsforge__4__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/mapsforge__mapsforge__6__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/materna-se__fegen__6__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/mmihira__qualtrix-sdk__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Monkopedia__kpages__3__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/mparticle__mparticle-java-events-sdk__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.3.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/MTDdk__jawn__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/navdeepsekhon__kafkaer__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.kafka
+ artifactId: kafka-clients
+ version: 2.1.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/nebula-plugins__gradle-lint-plugin__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/nebula-plugins__nebula-dependency-recommender-plugin__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/nebula-plugins__nebula-test__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/nemerosa__ontrack__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 9.4.1208
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/nemerosa__ontrack__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/neo4j-contrib__neo4j-apoc-procedures__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-hdfs
+ version: 2.7.5
+
+
+
+ groupId: org.apache.hive
+ artifactId: hive-jdbc
+ version: 1.2.2
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.7.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/neo4j-contrib__neo4j-apoc-procedures__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4
+
+
+
+ groupId: org.apache.hive
+ artifactId: hive-jdbc
+ version: 1.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/neo4j-contrib__neo4j-apoc-procedures__3__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-hdfs
+ version: 2.7.5
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.7.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__AWSObjectMapper__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__dyno-queues__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.4.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__dynomite-manager__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__genie__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__governator__7__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.4.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__hollow__5__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.4.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__mantis__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.7.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__mantis__7__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__mantis__8__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__mantis__11__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__mantis__13__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__mantis__14__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__mantis__17__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.34.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__mantis-rxcontrol__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__ndbench__3__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__ndbench__10__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.7.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Netflix__Priam__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 21.0
+
+
+
+ groupId: org.apache.cassandra
+ artifactId: cassandra-all
+ version: 2.1.17
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Nexmo__nexmo-java__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/nextflow-io__nextflow__6__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.ignite
+ artifactId: ignite-core
+ version: 2.4.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/nextflow-io__nextflow-s3fs__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 11.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/nulab__backlog4j__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.1.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/NYPL-Simplified__audiobook-android__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.1-android
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/omise__omise-java__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/osmdroid__osmdroid__5__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.cxf
+ artifactId: cxf-rt-rs-extension-providers
+ version: 2.7.5
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.11
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/outfoxx__swiftpoet__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 22.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/outfoxx__typescriptpoet__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 22.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/pengrad__java-telegram-bot-api__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.sparkjava
+ artifactId: spark-core
+ version: 2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Petersoj__alpaca-java__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/plivo__plivo-java__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.2.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/pubnub__java__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/RamAlapure__xmlparser__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/relizaio__reliza-java-client__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.datatype
+ artifactId: jackson-datatype-jsr310
+ version: 2.9.4
+
+
+
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/rharter__auto-value-gson__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/rharter__auto-value-gson__3__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/robolectric__robolectric__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/robolectric__robolectric__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/robolectric__robolectric__4__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/robolectric__robolectric__7__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/robolectric__robolectric__8__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/robolectric__robolectric__9__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/robolectric__robolectric__10__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/robolectric__robolectric__13__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.0.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/robolectric__robolectric__15__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/robolectric__robolectric__26__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/rockitconsulting__test.rockitizer__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0-jre
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/rollbar__rollbar-java__7__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat.embed
+ artifactId: tomcat-embed-core
+ version: 7.0.57
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/rollbar__rollbar-java__11__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat.embed
+ artifactId: tomcat-embed-core
+ version: 8.0.42
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/rollbar__rollbar-java__13__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat.embed
+ artifactId: tomcat-embed-core
+ version: 7.0.57
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/rollbar__rollbar-java__14__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat.embed
+ artifactId: tomcat-embed-core
+ version: 7.0.57
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/rsocket__rsocket-rpc-java__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/rsocket__rsocket-rpc-java__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/rundeck__rundeck__6__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 26.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/samtools__htsjdk__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 26.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/scalar-labs__kelpie__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/scalar-labs__scalardb__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/service84-io__key-value-persistence__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.data
+ artifactId: spring-data-jpa
+ version: 2.0.0.RELEASE
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.0.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/shevek__graphviz4j__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/shipkit__shipkit-demo__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/shniu__toolbox__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Shynixn__BlockBall__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Shynixn__PetBlocks__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.2.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Shynixn__PetBlocks__3__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Simplify3x__simplifyOM__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/SonarSource__sonarqube__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/SourcePointUSA__CCPA_Android_SDK__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-android
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/SpectoLabs__hoverfly-java__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.20.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/SpectoLabs__hoverfly-java__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.20.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/splitio__android-client__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/spotinst__spotinst-sdk-java__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/spring-projects__spring-restdocs__5__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/spring-projects__spring-restdocs__6__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat.embed
+ artifactId: tomcat-embed-core
+ version: 8.5.13
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/SpringSocialMicrosoft__spring-social-partnercenter__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.datatype
+ artifactId: jackson-datatype-jsr310
+ version: 2.6.7
+
+
+
+ groupId: com.google.guava
+ artifactId: guava
+ version: 21.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.3
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.6.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/structurizr__java__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/SumoLogic__sumobot__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.1-jre
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/termermc__twine__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/tomasbjerre__git-changelog-lib__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 16.0.1
+
+
+
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.0.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/tomasbjerre__violation-comments-to-bitbucket-server-lib__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/TouK__sputnik__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: xerces
+ artifactId: xercesImpl
+ version: 2.9.1
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.3.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/trustedchoice__ask-kodiak-sdk__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Turasa__libsignal-service-java__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Vonage__vonage-java-sdk__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/web3j__web3j-evm__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/wepay__riff__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/wepay__waltz__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/what3words__w3w-android-wrapper__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/whylabs__whylogs-java__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/xebialabs__overthere__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.4.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/Yelp__nrtsearch__1__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/zeoflow__parcelled__2__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH gradle/zonkyio__embedded-database-spring-test__0__build.gradle HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.0
+
+
+---------------------------

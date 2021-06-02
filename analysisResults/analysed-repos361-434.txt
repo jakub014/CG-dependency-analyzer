@@ -1,0 +1,802 @@
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/nextfractal/nextfractal-master/pom.xml
+SUCCESSFULLY ANALYZED nextbreakpoint/nextfractal/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/nextflow-s3fs/nextflow-s3fs-master/pom.xml
+SUCCESSFULLY ANALYZED nextflow-io/nextflow-s3fs/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/link-move/link-move-master/pom.xml
+SUCCESSFULLY ANALYZED nhl/link-move/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT workflow
+AllocationSiteBasedPointsTo algorithm failed on jackson-databind:com.fasterxml.jackson.core in project workflow
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\workflow\workflow-master\target\nirmata-workflow-0.9.5-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/workflow/workflow-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/nirmata__workflow__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on jackson-databind:com.fasterxml.jackson.core in project workflow
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\workflow\workflow-master\target\nirmata-workflow-0.9.5-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/nirmata__workflow__0__pom.xml
+SUCCESSFULLY ANALYZED nirmata/workflow/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT xml-stream-css
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project xml-stream-css
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\xml-stream-css\xml-stream-css-master\target\xml-stream-css-1.0.1.jar
+USING ROOT POM FILE ATdownloaded-repos/xml-stream-css/xml-stream-css-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/nithril__xml-stream-css__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project xml-stream-css
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\xml-stream-css\xml-stream-css-master\target\xml-stream-css-1.0.1.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/nithril__xml-stream-css__0__pom.xml
+SUCCESSFULLY ANALYZED nithril/xml-stream-css/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/ahead-framework/ahead-framework-master/pom.xml
+SUCCESSFULLY ANALYZED niupengyu/ahead-framework/ahead-frame-jdbc/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT tinySpring
+AllocationSiteBasedPointsTo algorithm failed on mina-core:org.apache.mina in project tinySpring
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\tinySpring\tinySpring-master\target\tinyspring-1.0.3-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/tinySpring/tinySpring-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/nkligang__tinySpring__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on mina-core:org.apache.mina in project tinySpring
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\tinySpring\tinySpring-master\target\tinyspring-1.0.3-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/nkligang__tinySpring__0__pom.xml
+SUCCESSFULLY ANALYZED nkligang/tinySpring/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/NoraUi/NoraUi-master/pom.xml
+SUCCESSFULLY ANALYZED NoraUi/NoraUi/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT svea-pmt-admin-api
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\svea-pmt-admin-api\svea-pmt-admin-api-master\target\pmt-admin-api-2.0.2-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/svea-pmt-admin-api/svea-pmt-admin-api-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/notima__svea-pmt-admin-api__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\svea-pmt-admin-api\svea-pmt-admin-api-master\target\pmt-admin-api-2.0.2-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/notima__svea-pmt-admin-api__0__pom.xml
+SUCCESSFULLY ANALYZED notima/svea-pmt-admin-api/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT nuls-v2-sdk4j
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project nuls-v2-sdk4j
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\nuls-v2-sdk4j\nuls-v2-sdk4j-master\target\sdk4j-1.1.6.RELEASE.jar
+USING ROOT POM FILE ATdownloaded-repos/nuls-v2-sdk4j/nuls-v2-sdk4j-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/nuls-io__nuls-v2-sdk4j__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project nuls-v2-sdk4j
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\nuls-v2-sdk4j\nuls-v2-sdk4j-master\target\sdk4j-1.1.6.RELEASE.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/nuls-io__nuls-v2-sdk4j__0__pom.xml
+SUCCESSFULLY ANALYZED nuls-io/nuls-v2-sdk4j/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT nutz
+AllocationSiteBasedPointsTo algorithm failed on postgresql:org.postgresql in project nutz
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\nutz\nutz-master\target\nutz-1.r.69-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/nutz/nutz-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/nutzam__nutz__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on postgresql:org.postgresql in project nutz
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\nutz\nutz-master\target\nutz-1.r.69-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/nutzam__nutz__0__pom.xml
+SUCCESSFULLY ANALYZED nutzam/nutz/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/nutzboot/nutzboot-dev/pom.xml
+SUCCESSFULLY ANALYZED nutzam/nutzboot/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/nutzboot/nutzboot-dev/pom.xml
+SUCCESSFULLY ANALYZED nutzam/nutzboot/nutzboot-demo/nutzboot-demo-dubbo/nutzboot-demo-dubbo-rpc-client/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/nutzboot/nutzboot-dev/pom.xml
+SUCCESSFULLY ANALYZED nutzam/nutzboot/nutzboot-demo/nutzboot-demo-dubbo/nutzboot-demo-dubbo-rpc-service/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/nutzboot/nutzboot-dev/pom.xml
+SUCCESSFULLY ANALYZED nutzam/nutzboot/nutzboot-demo/nutzboot-demo-dubbo-seata/nutzboot-demo-dubbo-seata-web/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/nutzboot/nutzboot-dev/pom.xml
+SUCCESSFULLY ANALYZED nutzam/nutzboot/nutzboot-demo/nutzboot-demo-dubbo-seata/nutzboot-demo-dubbo-seata-order/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/nutzboot/nutzboot-dev/pom.xml
+SUCCESSFULLY ANALYZED nutzam/nutzboot/nutzboot-demo/nutzboot-demo-dubbo-seata/nutzboot-demo-dubbo-seata-account/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/nutzboot/nutzboot-dev/pom.xml
+SUCCESSFULLY ANALYZED nutzam/nutzboot/nutzboot-demo/nutzboot-demo-dubbo-seata/nutzboot-demo-dubbo-seata-storage/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/nutzmore/nutzmore-master/pom.xml
+SUCCESSFULLY ANALYZED nutzam/nutzmore/nutz-integration-rabbitmq/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/nutzmore/nutzmore-master/pom.xml
+SUCCESSFULLY ANALYZED nutzam/nutzmore/nutz-plugins-undertow/
+
+
+
+-----------------
+FOUND A TOTAL OF 4 TARGET FOLDER FOR PROJECT alfresco-file-encryption-extension
+SUCCESSFULLY ANALYZED nwforrer/alfresco-file-encryption-extension/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/rewrite/rewrite-master/pom.xml
+SUCCESSFULLY ANALYZED ocpsoft/rewrite/test-harness/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/rewrite/rewrite-master/pom.xml
+SUCCESSFULLY ANALYZED ocpsoft/rewrite/config-prettyfaces/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/rewrite/rewrite-master/pom.xml
+SUCCESSFULLY ANALYZED ocpsoft/rewrite/integration-spring/
+
+
+
+-----------------
+FOUND A TOTAL OF 3 TARGET FOLDER FOR PROJECT ojai
+SUCCESSFULLY ANALYZED ojai/ojai/
+
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project ojai
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\ojai\ojai-master\java\map-reduce\target\ojai-mapreduce-3.2-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/ojai/ojai-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/ojai__ojai__2__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on hadoop-common:org.apache.hadoop in project ojai
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\ojai\ojai-master\java\map-reduce\target\ojai-mapreduce-3.2-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/java/map-reduce/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/ojai__ojai__2__pom.xml
+SUCCESSFULLY ANALYZED ojai/ojai/java/map-reduce/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT TheKit
+AllocationSiteBasedPointsTo algorithm failed on httpclient:org.apache.httpcomponents in project TheKit
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\TheKit\TheKit-main\target\thekit-4.0.5.jar
+USING ROOT POM FILE ATdownloaded-repos/TheKit/TheKit-main/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/onekit-cloud-java__thekit__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on httpclient:org.apache.httpcomponents in project TheKit
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\TheKit\TheKit-main\target\thekit-4.0.5.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/onekit-cloud-java__thekit__0__pom.xml
+SUCCESSFULLY ANALYZED onekit-cloud-java/thekit/
+
+
+
+-----------------
+FOUND A TOTAL OF 4 TARGET FOLDER FOR PROJECT esl.sdk.java
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project esl.sdk.java
+AllocationSiteBasedPointsTo algorithm failed on httpclient:org.apache.httpcomponents in project esl.sdk.java
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\esl.sdk.java\esl.sdk.java-dev\target\esl-java-sdk-11.39-SNAPSHOT-jar-with-dependencies.jar
+USING ROOT POM FILE ATdownloaded-repos/esl.sdk.java/esl.sdk.java-dev/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/OneSpan__esl.sdk.java__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project esl.sdk.java
+AllocationSiteBasedPointsTo algorithm failed on httpclient:org.apache.httpcomponents in project esl.sdk.java
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\esl.sdk.java\esl.sdk.java-dev\target\esl-java-sdk-11.39-SNAPSHOT-jar-with-dependencies.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/OneSpan__esl.sdk.java__0__pom.xml
+SUCCESSFULLY ANALYZED OneSpan/esl.sdk.java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT fastmapper
+AllocationSiteBasedPointsTo algorithm failed on jackson-databind:com.fasterxml.jackson.core in project fastmapper
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\fastmapper\fastmapper-master\target\fastmapper-0.0.1.jar
+USING ROOT POM FILE ATdownloaded-repos/fastmapper/fastmapper-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/onlyeat3__fastmapper__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on jackson-databind:com.fasterxml.jackson.core in project fastmapper
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\fastmapper\fastmapper-master\target\fastmapper-0.0.1.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/onlyeat3__fastmapper__0__pom.xml
+SUCCESSFULLY ANALYZED onlyeat3/fastmapper/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/REST-doc/REST-doc-master-2.R/pom.xml
+SUCCESSFULLY ANALYZED Open-source-sharing/REST-doc/smartdoc-dashboard/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT security
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project security
+AllocationSiteBasedPointsTo algorithm failed on kafka-clients:org.apache.kafka in project security
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\security\security-main\target\opendistro_security-1.13.1.0.jar
+USING ROOT POM FILE ATdownloaded-repos/security/security-main/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/opendistro-for-elasticsearch__security__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project security
+AllocationSiteBasedPointsTo algorithm failed on kafka-clients:org.apache.kafka in project security
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\security\security-main\target\opendistro_security-1.13.1.0.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/opendistro-for-elasticsearch__security__0__pom.xml
+SUCCESSFULLY ANALYZED opendistro-for-elasticsearch/security/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/feign/feign-master/pom.xml
+SUCCESSFULLY ANALYZED openfeign/feign/hystrix/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/feign/feign-master/pom.xml
+SUCCESSFULLY ANALYZED openfeign/feign/ribbon/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/feign/feign-master/pom.xml
+SUCCESSFULLY ANALYZED openfeign/feign/spring4/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/feign/feign-master/pom.xml
+SUCCESSFULLY ANALYZED openfeign/feign/apt-test-generator/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT ets-swecommon20
+AllocationSiteBasedPointsTo algorithm failed on xercesImpl:xerces in project ets-swecommon20
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\ets-swecommon20\ets-swecommon20-master\target\ets-swecommon20-1.1-SNAPSHOT-aio.jar
+USING ROOT POM FILE ATdownloaded-repos/ets-swecommon20/ets-swecommon20-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/opengeospatial__ets-swecommon20__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on xercesImpl:xerces in project ets-swecommon20
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\ets-swecommon20\ets-swecommon20-master\target\ets-swecommon20-1.1-SNAPSHOT-aio.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/opengeospatial__ets-swecommon20__0__pom.xml
+SUCCESSFULLY ANALYZED opengeospatial/ets-swecommon20/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT Chronicle-Network
+AllocationSiteBasedPointsTo algorithm failed on netty-all:io.netty in project Chronicle-Network
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\Chronicle-Network\Chronicle-Network-ea\target\chronicle-network-2.21ea63-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/Chronicle-Network/Chronicle-Network-ea/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/OpenHFT__Chronicle-Network__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on netty-all:io.netty in project Chronicle-Network
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\Chronicle-Network\Chronicle-Network-ea\target\chronicle-network-2.21ea63-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/OpenHFT__Chronicle-Network__0__pom.xml
+SUCCESSFULLY ANALYZED OpenHFT/Chronicle-Network/
+
+
+
+-----------------
+FOUND A TOTAL OF 13 TARGET FOLDER FOR PROJECT openstack4j
+SUCCESSFULLY ANALYZED openstack4j/openstack4j/
+
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project openstack4j
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\openstack4j\openstack4j-master\connectors\httpclient\target\openstack4j-httpclient-2.0.0.jar
+USING ROOT POM FILE ATdownloaded-repos/openstack4j/openstack4j-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/openstack4j__openstack4j__6__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on httpclient:org.apache.httpcomponents in project openstack4j
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\openstack4j\openstack4j-master\connectors\httpclient\target\openstack4j-httpclient-2.0.0.jar
+USING NON-ROOT POM FILE AT/connectors/httpclient/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/openstack4j__openstack4j__6__pom.xml
+SUCCESSFULLY ANALYZED openstack4j/openstack4j/connectors/httpclient/
+
+
+
+-----------------
+FOUND A TOTAL OF 3 TARGET FOLDER FOR PROJECT java-kafka-client
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/java-kafka-client/java-kafka-client-master/pom.xml
+FOR JAR WITH PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\java-kafka-client\java-kafka-client-master\opentracing-kafka-spring\target\opentracing-kafka-spring-0.1.16-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/opentracing-contrib__java-kafka-client__3__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on jackson-databind:com.fasterxml.jackson.core in project java-kafka-client
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\java-kafka-client\java-kafka-client-master\opentracing-kafka-spring\target\opentracing-kafka-spring-0.1.16-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/opentracing-kafka-spring/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/opentracing-contrib__java-kafka-client__3__pom.xml
+SUCCESSFULLY ANALYZED opentracing-contrib/java-kafka-client/opentracing-kafka-spring/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/orientdb-gremlin/orientdb-gremlin-develop/pom.xml
+SUCCESSFULLY ANALYZED orientechnologies/orientdb-gremlin/driver/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT binance-api-client-java
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\binance-api-client-java\binance-api-client-java-master\target\binance-api-client-java-1.0.4-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/binance-api-client-java/binance-api-client-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/oril-software__binance-api-client-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\binance-api-client-java\binance-api-client-java-master\target\binance-api-client-java-1.0.4-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/oril-software__binance-api-client-java__0__pom.xml
+SUCCESSFULLY ANALYZED oril-software/binance-api-client-java/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/owlapi/owlapi-version5/pom.xml
+SUCCESSFULLY ANALYZED owlcs/owlapi/osgidistribution/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT canvas-api
+AllocationSiteBasedPointsTo algorithm failed on httpclient:org.apache.httpcomponents in project canvas-api
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\canvas-api\canvas-api-master\target\canvas-api-1.5.5-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/canvas-api/canvas-api-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/oxctl__canvas-api__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on httpclient:org.apache.httpcomponents in project canvas-api
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\canvas-api\canvas-api-master\target\canvas-api-1.5.5-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/oxctl__canvas-api__0__pom.xml
+SUCCESSFULLY ANALYZED oxctl/canvas-api/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/pagarme-java/pagarme-java-master/pom.xml
+SUCCESSFULLY ANALYZED pagarme/pagarme-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT eas-java-sdk
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project eas-java-sdk
+AllocationSiteBasedPointsTo algorithm failed on netty-all:io.netty in project eas-java-sdk
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\eas-java-sdk\eas-java-sdk-master\target\eas-sdk-2.0.3-jar-with-dependencies.jar
+USING ROOT POM FILE ATdownloaded-repos/eas-java-sdk/eas-java-sdk-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/pai-eas__eas-java-sdk__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project eas-java-sdk
+AllocationSiteBasedPointsTo algorithm failed on netty-all:io.netty in project eas-java-sdk
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\eas-java-sdk\eas-java-sdk-master\target\eas-sdk-2.0.3-jar-with-dependencies.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/pai-eas__eas-java-sdk__0__pom.xml
+SUCCESSFULLY ANALYZED pai-eas/eas-java-sdk/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/best-pay-sdk/best-pay-sdk-develop/pom.xml
+SUCCESSFULLY ANALYZED Pay-Group/best-pay-sdk/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT payjp-java
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project payjp-java
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\payjp-java\payjp-java-master\target\payjp-java-0.4.4-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/payjp-java/payjp-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/payjp__payjp-java__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project payjp-java
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\payjp-java\payjp-java-master\target\payjp-java-0.4.4-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/payjp__payjp-java__0__pom.xml
+SUCCESSFULLY ANALYZED payjp/payjp-java/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/parfait/parfait-main/pom.xml
+SUCCESSFULLY ANALYZED performancecopilot/parfait/parfait-cxf/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT perimeterx-java-sdk
+AllocationSiteBasedPointsTo algorithm failed on spring-web:org.springframework in project perimeterx-java-sdk
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\perimeterx-java-sdk\perimeterx-java-sdk-master\target\perimeterx-sdk-6.2.6-jar-with-dependencies.jar
+USING ROOT POM FILE ATdownloaded-repos/perimeterx-java-sdk/perimeterx-java-sdk-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PerimeterX__perimeterx-java-sdk__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on spring-web:org.springframework in project perimeterx-java-sdk
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\perimeterx-java-sdk\perimeterx-java-sdk-master\target\perimeterx-sdk-6.2.6-jar-with-dependencies.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PerimeterX__perimeterx-java-sdk__0__pom.xml
+SUCCESSFULLY ANALYZED PerimeterX/perimeterx-java-sdk/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT buffer-trigger
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project buffer-trigger
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\buffer-trigger\buffer-trigger-master\target\buffer-trigger-0.2.21-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/buffer-trigger/buffer-trigger-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PhantomThief__buffer-trigger__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project buffer-trigger
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\buffer-trigger\buffer-trigger-master\target\buffer-trigger-0.2.21-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PhantomThief__buffer-trigger__0__pom.xml
+SUCCESSFULLY ANALYZED PhantomThief/buffer-trigger/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT cursor-iterator
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project cursor-iterator
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\cursor-iterator\cursor-iterator-master\target\cursor-iterator-1.0.14-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/cursor-iterator/cursor-iterator-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PhantomThief__cursor-iterator__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project cursor-iterator
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\cursor-iterator\cursor-iterator-master\target\cursor-iterator-1.0.14-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PhantomThief__cursor-iterator__0__pom.xml
+SUCCESSFULLY ANALYZED PhantomThief/cursor-iterator/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT retrieve-id-utils
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project retrieve-id-utils
+AllocationSiteBasedPointsTo algorithm failed on spring-web:org.springframework in project retrieve-id-utils
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\retrieve-id-utils\retrieve-id-utils-master\target\retrieve-id-utils-1.0.11-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/retrieve-id-utils/retrieve-id-utils-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PhantomThief__retrieve-id-utils__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project retrieve-id-utils
+AllocationSiteBasedPointsTo algorithm failed on spring-web:org.springframework in project retrieve-id-utils
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\retrieve-id-utils\retrieve-id-utils-master\target\retrieve-id-utils-1.0.11-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PhantomThief__retrieve-id-utils__0__pom.xml
+SUCCESSFULLY ANALYZED PhantomThief/retrieve-id-utils/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT scope
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project scope
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\scope\scope-master\target\scope-1.0.20-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/scope/scope-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PhantomThief__scope__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project scope
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\scope\scope-master\target\scope-1.0.20-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PhantomThief__scope__0__pom.xml
+SUCCESSFULLY ANALYZED PhantomThief/scope/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT simple-failover-java
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project simple-failover-java
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\simple-failover-java\simple-failover-java-master\target\simple-failover-0.1.31-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/simple-failover-java/simple-failover-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PhantomThief__simple-failover-java__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project simple-failover-java
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\simple-failover-java\simple-failover-java-master\target\simple-failover-0.1.31-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PhantomThief__simple-failover-java__0__pom.xml
+SUCCESSFULLY ANALYZED PhantomThief/simple-failover-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT zknotify-cache
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project zknotify-cache
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\zknotify-cache\zknotify-cache-master\target\zknotify-cache-0.1.23-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/zknotify-cache/zknotify-cache-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PhantomThief__zknotify-cache__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project zknotify-cache
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\zknotify-cache\zknotify-cache-master\target\zknotify-cache-0.1.23-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PhantomThief__zknotify-cache__0__pom.xml
+SUCCESSFULLY ANALYZED PhantomThief/zknotify-cache/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT BigDataTesting
+AllocationSiteBasedPointsTo algorithm failed on hive-service:org.apache.hive in project BigDataTesting
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\BigDataTesting\BigDataTesting-master\target\BigDataTesting_2.12-0.8-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/BigDataTesting/BigDataTesting-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PhillHenry__BigDataTesting__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on hive-service:org.apache.hive in project BigDataTesting
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\BigDataTesting\BigDataTesting-master\target\BigDataTesting_2.12-0.8-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PhillHenry__BigDataTesting__0__pom.xml
+SUCCESSFULLY ANALYZED PhillHenry/BigDataTesting/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/sequoia-java-client-sdk/sequoia-java-client-sdk-master/pom.xml
+SUCCESSFULLY ANALYZED pikselpalette/sequoia-java-client-sdk/
+
+
+
+-----------------
+FOUND A TOTAL OF 3 TARGET FOLDER FOR PROJECT singer
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/singer/singer-master/pom.xml
+FOR JAR WITH PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\singer\singer-master\singer\target\singer-0.8.0.51-sources.jar
+AND DOWNLOADED LOCAL PATH poms/pinterest__singer__1__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on guava:com.google.guava in project singer
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\singer\singer-master\singer\target\singer-0.8.0.51-sources.jar
+USING NON-ROOT POM FILE AT/singer/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/pinterest__singer__1__pom.xml
+SUCCESSFULLY ANALYZED pinterest/singer/singer/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/producer-consumer-model/producer-consumer-model-master/pom.xml
+SUCCESSFULLY ANALYZED pizhicheng/producer-consumer-model/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/plasma/plasma-master/pom.xml
+SUCCESSFULLY ANALYZED plasma-framework/plasma/plasma-core/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/plivo-java/plivo-java-master/pom.xml
+SUCCESSFULLY ANALYZED plivo/plivo-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT PowerNukkit
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/PowerNukkit/PowerNukkit-master/pom.xml
+FOR JAR WITH PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\PowerNukkit\PowerNukkit-master\target\powernukkit-1.4.0.0-PN-CUSTOM-shaded-sources.jar
+AND DOWNLOADED LOCAL PATH poms/PowerNukkit__PowerNukkit__0__pom.xml
+NO VULNERABILITIES FOUND USING NON-ROOT POM FILE AT /pom.xml 
+FOR JAR WITH PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\PowerNukkit\PowerNukkit-master\target\powernukkit-1.4.0.0-PN-CUSTOM-shaded-sources.jar
+AND DOWNLOADED LOCAL PATH poms/PowerNukkit__PowerNukkit__0__pom.xml
+SUCCESSFULLY ANALYZED PowerNukkit/PowerNukkit/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/ujorm/ujorm-master/pom.xml
+SUCCESSFULLY ANALYZED pponec/ujorm/project-m2/ujo-tools/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/ujorm/ujorm-master/pom.xml
+SUCCESSFULLY ANALYZED pponec/ujorm/project-m2/ujo-spring/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/ujorm/ujorm-master/pom.xml
+SUCCESSFULLY ANALYZED pponec/ujorm/project-m2/ujo-web/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/ujorm/ujorm-master/pom.xml
+SUCCESSFULLY ANALYZED pponec/ujorm/samples/wicket/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/presto-hive-apache/presto-hive-apache-master/pom.xml
+SUCCESSFULLY ANALYZED prestodb/presto-hive-apache/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/pnc/pnc-master/pom.xml
+SUCCESSFULLY ANALYZED project-ncl/pnc/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/pnc/pnc-master/pom.xml
+SUCCESSFULLY ANALYZED project-ncl/pnc/indy-repository-manager/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/sunbird-cloud-storage-sdk/sunbird-cloud-storage-sdk-master/pom.xml
+SUCCESSFULLY ANALYZED project-sunbird/sunbird-cloud-storage-sdk/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/pustefix-framework/pustefix-framework-master/pom.xml
+SUCCESSFULLY ANALYZED pustefix-projects/pustefix-framework/pustefix-plugins/pustefix-tomcat-plugin/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/pustefix-framework/pustefix-framework-master/pom.xml
+SUCCESSFULLY ANALYZED pustefix-projects/pustefix-framework/pustefix-plugins/pustefix-translation-plugin/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/pustefix-framework/pustefix-framework-master/pom.xml
+SUCCESSFULLY ANALYZED pustefix-projects/pustefix-framework/pustefix-core/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/pyranid/pyranid-master/pom.xml
+SUCCESSFULLY ANALYZED pyranid/pyranid/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/autumn/autumn-master/pom.xml
+SUCCESSFULLY ANALYZED q843705423/autumn/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/elasticsearch-migration/elasticsearch-migration-master/pom.xml
+SUCCESSFULLY ANALYZED quandoo/elasticsearch-migration/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT qtcurate-java-sdk
+AllocationSiteBasedPointsTo algorithm failed on jackson-databind:com.fasterxml.jackson.core in project qtcurate-java-sdk
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\qtcurate-java-sdk\qtcurate-java-sdk-master\target\qtcurate-2.6.0-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/qtcurate-java-sdk/qtcurate-java-sdk-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/quantxt__qtcurate-java-sdk__0__pom.xml
+AllocationSiteBasedPointsTo algorithm failed on jackson-databind:com.fasterxml.jackson.core in project qtcurate-java-sdk
+SUCCESSFULLY ANALYZED JAR PATH H:\dependency-analyzer-fasten\CG-dependency-analyzer\downloaded-repos\qtcurate-java-sdk\qtcurate-java-sdk-master\target\qtcurate-2.6.0-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/quantxt__qtcurate-java-sdk__0__pom.xml
+SUCCESSFULLY ANALYZED quantxt/qtcurate-java-sdk/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/qds-sdk-java/qds-sdk-java-master/pom.xml
+SUCCESSFULLY ANALYZED qubole/qds-sdk-java/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/querqy/querqy-master/pom.xml
+SUCCESSFULLY ANALYZED querqy/querqy/querqy-core/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/automaton/automaton-master/pom.xml
+SUCCESSFULLY ANALYZED quinscape/automaton/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/domainql/domainql-master/pom.xml
+SUCCESSFULLY ANALYZED quinscape/domainql/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/matcher/matcher-master/pom.xml
+SUCCESSFULLY ANALYZED raghav-chandra/matcher/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/kafka-logback-appender/kafka-logback-appender-master/pom.xml
+SUCCESSFULLY ANALYZED rahulsinghai/kafka-logback-appender/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/presto-query-builder/presto-query-builder-master/pom.xml
+SUCCESSFULLY ANALYZED rapid7/presto-query-builder/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/twittered/twittered-develop/pom.xml
+SUCCESSFULLY ANALYZED Redouane59/twittered/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/yyl-base-lib/yyl-base-lib-master/pom.xml
+SUCCESSFULLY ANALYZED Relucent/yyl-base-lib/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/lxd-sdk/lxd-sdk-master/pom.xml
+SUCCESSFULLY ANALYZED relxd/lxd-sdk/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/conduit/conduit-master/pom.xml
+SUCCESSFULLY ANALYZED RentTheRunway/conduit/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/jeletask/jeletask-master/pom.xml
+SUCCESSFULLY ANALYZED ridiekel/jeletask/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/java_sdk/java_sdk-master/pom.xml
+SUCCESSFULLY ANALYZED Riskified/java_sdk/riskified-sdk/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/java_sdk/java_sdk-master/pom.xml
+SUCCESSFULLY ANALYZED Riskified/java_sdk/riskified-sample/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/JLifx/JLifx-main/pom.xml
+SUCCESSFULLY ANALYZED robvanderleek/JLifx/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/rockset-java-client/rockset-java-client-master/pom.xml
+SUCCESSFULLY ANALYZED rockset/rockset-java-client/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/rokuality-java/rokuality-java-master/pom.xml
+SUCCESSFULLY ANALYZED rokuality/rokuality-java/
+
