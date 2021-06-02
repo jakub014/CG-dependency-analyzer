@@ -1,0 +1,14 @@
+wavefronthq:wavefront-sdk-java/ ~ com.fasterxml.jackson.core:jackson-databind
+wavefronthq:wavefront-sdk-java/ ~ com.fasterxml.jackson.core:jackson-databind
+webmate-io:webmate-sdk-java/ ~ org.apache.httpcomponents:httpclient
+webmate-io:webmate-sdk-java/ ~ com.fasterxml.jackson.core:jackson-databind
+interfax:interfax-java/ ~ org.apache.httpcomponents:httpclient
+webmate-io:webmate-sdk-java/ ~ org.apache.httpcomponents:httpclient
+webmate-io:webmate-sdk-java/ ~ com.fasterxml.jackson.core:jackson-databind
+interfax:interfax-java/ ~ org.apache.httpcomponents:httpclient
+wildbit:postmark-java/ ~ com.fasterxml.jackson.core:jackson-databind
+wildbit:postmark-java/ ~ com.fasterxml.jackson.core:jackson-databind
+xiaoq7758:usmartbox-java-client/ ~ org.apache.tomcat.embed:tomcat-embed-core
+xiaoq7758:usmartbox-java-client/ ~ org.apache.tomcat.embed:tomcat-embed-core
+yindz:common-random/ ~ com.fasterxml.jackson.core:jackson-databind
+yindz:common-random/ ~ com.fasterxml.jackson.core:jackson-databind

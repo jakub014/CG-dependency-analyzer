@@ -1,0 +1,48 @@
+mp
+https://github.com/fatalwing/mp
+Vulnerable dependency: org.apache.httpcomponents:httpclient
+
+___fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+
+
+
+mp
+https://github.com/fatalwing/mp
+Vulnerable dependency: org.apache.httpcomponents:httpclient
+
+___fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+
+
+
+mp
+https://github.com/fatalwing/mp
+Vulnerable dependency: org.apache.httpcomponents:httpclient
+
+___fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+
+
+
+mp
+https://github.com/fatalwing/mp
+Vulnerable dependency: org.apache.httpcomponents:httpclient
+
+___fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+
+
+
