@@ -1,0 +1,7 @@
+rongcloud:server-sdk-java/ ~ com.fasterxml.jackson.core:jackson-databind
+rongcloud:server-sdk-java/ ~ com.fasterxml.jackson.core:jackson-databind
+smart-coding-team:smart-job/smart-job-schedule/ ~ com.fasterxml.jackson.core:jackson-databind
+spotify:ffwd-http-client/ ~ com.fasterxml.jackson.core:jackson-databind
+spotify:ffwd-http-client/ ~ com.fasterxml.jackson.core:jackson-databind
+spotinst:spotinst-sdk-java/ ~ org.apache.httpcomponents:httpclient
+terrier-org:terrier-core/modules/rest-client/ ~ org.apache.httpcomponents:httpclient
