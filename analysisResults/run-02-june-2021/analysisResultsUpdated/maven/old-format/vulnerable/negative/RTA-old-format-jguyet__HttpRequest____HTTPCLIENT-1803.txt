@@ -1,0 +1,32 @@
+Name is too general
+
+HttpRequest
+https://github.com/jguyet/HttpRequest
+Vulnerable dependency: org.apache.httpcomponents:httpclient
+
+___fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.execchain/MinimalClientExec.rewriteRequestURI(%2Forg.apache.http.client.methods%2FHttpRequestWrapper,%2Forg.apache.http.conn.routing%2FHttpRoute)%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIUtils.rewriteURI(%2Fjava.net%2FURI)%2Fjava.net%2FURI
+
+___fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/DefaultRedirectStrategy.getLocationURI(%2Forg.apache.http%2FHttpRequest,%2Forg.apache.http%2FHttpResponse,%2Forg.apache.http.protocol%2FHttpContext)%2Fjava.net%2FURI
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/DefaultRedirectStrategy.createLocationURI(%2Fjava.lang%2FString)%2Fjava.net%2FURI
+
+___fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.execchain/MinimalClientExec.rewriteRequestURI(%2Forg.apache.http.client.methods%2FHttpRequestWrapper,%2Forg.apache.http.conn.routing%2FHttpRoute)%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIUtils.rewriteURI(%2Fjava.net%2FURI,%2Forg.apache.http%2FHttpHost,%2Fjava.lang%2FBooleanType)%2Fjava.net%2FURI
+
+___fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/DefaultRedirectStrategy.getRedirect(%2Forg.apache.http%2FHttpRequest,%2Forg.apache.http%2FHttpResponse,%2Forg.apache.http.protocol%2FHttpContext)%2Forg.apache.http.client.methods%2FHttpUriRequest
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.methods/RequestBuilder.build()HttpUriRequest
+
+___fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/DefaultRedirectStrategy.getLocationURI(%2Forg.apache.http%2FHttpRequest,%2Forg.apache.http%2FHttpResponse,%2Forg.apache.http.protocol%2FHttpContext)%2Fjava.net%2FURI
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIUtils.resolve(%2Fjava.net%2FURI,%2Fjava.net%2FURI)%2Fjava.net%2FURI
+
+___fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/DefaultRequestDirector.execute(%2Forg.apache.http%2FHttpHost,%2Forg.apache.http%2FHttpRequest,%2Forg.apache.http.protocol%2FHttpContext)%2Forg.apache.http%2FHttpResponse
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/DefaultRequestDirector.rewriteRequestURI(RequestWrapper,%2Forg.apache.http.conn.routing%2FHttpRoute)%2Fjava.lang%2FVoidType
+
+___fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/DefaultRedirectStrategyAdaptor.getRedirect(%2Forg.apache.http%2FHttpRequest,%2Forg.apache.http%2FHttpResponse,%2Forg.apache.http.protocol%2FHttpContext)%2Forg.apache.http.client.methods%2FHttpUriRequest
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/DefaultRedirectHandler.getLocationURI(%2Forg.apache.http%2FHttpResponse,%2Forg.apache.http.protocol%2FHttpContext)%2Fjava.net%2FURI
+
+___fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.execchain/ProtocolExec.rewriteRequestURI(%2Forg.apache.http.client.methods%2FHttpRequestWrapper,%2Forg.apache.http.conn.routing%2FHttpRoute)%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIUtils.rewriteURIForRoute(%2Fjava.net%2FURI,%2Forg.apache.http.conn.routing%2FRouteInfo)%2Fjava.net%2FURI
+
+___fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/DefaultRedirectStrategy.getLocationURI(%2Forg.apache.http%2FHttpRequest,%2Forg.apache.http%2FHttpResponse,%2Forg.apache.http.protocol%2FHttpContext)%2Fjava.net%2FURI
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIUtils.rewriteURI(%2Fjava.net%2FURI,%2Forg.apache.http%2FHttpHost,%2Fjava.lang%2FBooleanType)%2Fjava.net%2FURI

@@ -1,7 +1,0 @@
-bing-search-sdk-for-java
-https://github.com/microsoft/bing-search-sdk-for-java
-Vulnerable dependency: org.apache.httpcomponents:httpclient
-
-___fasten://mvn!bing-search-sdk-for-java$main/com.microsoft.bing.samples/BingVisualSearch.main(%2Fjava.lang%2FString%5B%5D)%2Fjava.lang%2FVoidType
-_______fasten://mvn!org.apache.httpcomponents:httpclient$4.3.1/org.apache.http.impl.client/CloseableHttpClient.execute(%2Forg.apache.http.client.methods%2FHttpUriRequest)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
-
