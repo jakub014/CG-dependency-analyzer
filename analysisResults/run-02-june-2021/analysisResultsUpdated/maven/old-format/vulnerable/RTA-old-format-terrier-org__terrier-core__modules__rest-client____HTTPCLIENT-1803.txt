@@ -1,7 +1,0 @@
-terrier-core
-https://github.com/terrier-org/terrier-core
-Vulnerable dependency: org.apache.httpcomponents:httpclient
-
-___fasten://mvn!terrier-core$5.x/org.terrier.restclient/RestClientManagerBuilder$RESTManagerProxy.runSearchRequest(%2Forg.terrier.querying%2FSearchRequest)%2Fjava.lang%2FVoidType
-_______fasten://mvn!org.apache.httpcomponents:httpclient$4.3.6/org.apache.http.impl.client/CloseableHttpClient.execute(%2Forg.apache.http.client.methods%2FHttpUriRequest)%2Forg.apache.http%2FHttpResponse
-
