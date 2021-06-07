@@ -22,11 +22,11 @@ public class MainScript {
 
     // Booleans
     private static final boolean filterEnabled = false;
-    private static final boolean scanMaven = true;
-    private static final boolean scanGradle = false;
+    private static final boolean scanMaven = false;
+    private static final boolean scanGradle = true;
 
     // Constants
-    private static final int startFrom = 286;
+    private static final int startFrom = 0;
     private static final int upTo = 100000000;
     private static final int[] skip = {};
 
