@@ -1,0 +1,410 @@
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT gradle-lint-plugin
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/gradle-lint-plugin/build/libs/gradle-lint-plugin-0.1.0-dev.0.uncommitted-groovydoc.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/gradle-lint-plugin/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/nebula-plugins__gradle-lint-plugin__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/gradle-lint-plugin/build/libs/gradle-lint-plugin-0.1.0-dev.0.uncommitted-groovydoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/nebula-plugins__gradle-lint-plugin__0__build.gradle
+SUCCESSFULLY ANALYZED nebula-plugins/gradle-lint-plugin/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT nebula-dependency-recommender-plugin
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/nebula-dependency-recommender-plugin/build/libs/nebula-dependency-recommender-0.1.0-dev.0.uncommitted-sources.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/nebula-dependency-recommender-plugin/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/nebula-plugins__nebula-dependency-recommender-plugin__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/nebula-dependency-recommender-plugin/build/libs/nebula-dependency-recommender-0.1.0-dev.0.uncommitted-sources.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/nebula-plugins__nebula-dependency-recommender-plugin__0__build.gradle
+SUCCESSFULLY ANALYZED nebula-plugins/nebula-dependency-recommender-plugin/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT nebula-test
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/nebula-test/build/libs/nebula-test-0.1.0-dev.0.uncommitted-javadoc.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/nebula-test/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/nebula-plugins__nebula-test__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/nebula-test/build/libs/nebula-test-0.1.0-dev.0.uncommitted-javadoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/nebula-plugins__nebula-test__0__build.gradle
+SUCCESSFULLY ANALYZED nebula-plugins/nebula-test/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/nemerosa__ontrack__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 12 build/libs FOLDER(S) FOR PROJECT ontrack
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/ontrack/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/ontrack/build/libs/ontrack.jar
+AND DOWNLOADED LOCAL PATH gradle/nemerosa__ontrack__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/ontrack/build/libs/ontrack.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/nemerosa__ontrack__0__build.gradle
+SUCCESSFULLY ANALYZED nemerosa/ontrack/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/nemerosa__ontrack__1__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 12 build/libs FOLDER(S) FOR PROJECT ontrack
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/ontrack/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/ontrack/build/libs/ontrack.jar
+AND DOWNLOADED LOCAL PATH gradle/nemerosa__ontrack__1__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/ontrack/build/libs/ontrack.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/nemerosa__ontrack__1__build.gradle
+SUCCESSFULLY ANALYZED nemerosa/ontrack/
+
+
+
+-----------------
+FOUND A TOTAL OF 4 build/libs FOLDER(S) FOR PROJECT neo4j-apoc-procedures
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/neo4j-apoc-procedures/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/neo4j-apoc-procedures/build/libs/apoc-4.2.0.4-javadoc.jar
+AND DOWNLOADED LOCAL PATH gradle/neo4j-contrib__neo4j-apoc-procedures__1__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/neo4j-apoc-procedures/build/libs/apoc-4.2.0.4-javadoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/neo4j-contrib__neo4j-apoc-procedures__1__build.gradle
+SUCCESSFULLY ANALYZED neo4j-contrib/neo4j-apoc-procedures/
+
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/neo4j-apoc-procedures/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/neo4j-apoc-procedures/build/libs/apoc-4.2.0.4-javadoc.jar
+AND DOWNLOADED LOCAL PATH gradle/neo4j-contrib__neo4j-apoc-procedures__2__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/neo4j-apoc-procedures/build/libs/apoc-4.2.0.4-javadoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/neo4j-contrib__neo4j-apoc-procedures__2__build.gradle
+SUCCESSFULLY ANALYZED neo4j-contrib/neo4j-apoc-procedures/
+
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/neo4j-apoc-procedures/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/neo4j-apoc-procedures/build/libs/apoc-4.2.0.4-javadoc.jar
+AND DOWNLOADED LOCAL PATH gradle/neo4j-contrib__neo4j-apoc-procedures__3__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/neo4j-apoc-procedures/build/libs/apoc-4.2.0.4-javadoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/neo4j-contrib__neo4j-apoc-procedures__3__build.gradle
+SUCCESSFULLY ANALYZED neo4j-contrib/neo4j-apoc-procedures/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__AWSObjectMapper__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT AWSObjectMapper
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__AWSObjectMapper__0__build.gradle
+SUCCESSFULLY ANALYZED Netflix/AWSObjectMapper/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__dyno-queues__2__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT dyno-queues
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__dyno-queues__2__build.gradle
+SUCCESSFULLY ANALYZED Netflix/dyno-queues/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__dynomite-manager__2__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT dynomite-manager
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__dynomite-manager__2__build.gradle
+SUCCESSFULLY ANALYZED Netflix/dynomite-manager/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__genie__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT genie
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__genie__0__build.gradle
+SUCCESSFULLY ANALYZED Netflix/genie/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__governator__7__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT governator
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/governator/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/governator/buildSrc/build/libs/buildSrc.jar
+AND DOWNLOADED LOCAL PATH gradle/Netflix__governator__7__build.gradle
+SUCCESSFULLY ANALYZED Netflix/governator/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__hollow__5__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT hollow
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__hollow__5__build.gradle
+SUCCESSFULLY ANALYZED Netflix/hollow/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__mantis__2__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT mantis
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__mantis__2__build.gradle
+SUCCESSFULLY ANALYZED Netflix/mantis/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__mantis__7__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT mantis
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__mantis__7__build.gradle
+SUCCESSFULLY ANALYZED Netflix/mantis/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__mantis__8__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT mantis
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__mantis__8__build.gradle
+SUCCESSFULLY ANALYZED Netflix/mantis/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__mantis__11__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT mantis
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__mantis__11__build.gradle
+SUCCESSFULLY ANALYZED Netflix/mantis/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__mantis__13__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT mantis
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__mantis__13__build.gradle
+SUCCESSFULLY ANALYZED Netflix/mantis/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__mantis__14__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT mantis
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__mantis__14__build.gradle
+SUCCESSFULLY ANALYZED Netflix/mantis/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__mantis__17__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT mantis
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__mantis__17__build.gradle
+SUCCESSFULLY ANALYZED Netflix/mantis/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__mantis-rxcontrol__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT mantis-rxcontrol
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__mantis-rxcontrol__0__build.gradle
+SUCCESSFULLY ANALYZED Netflix/mantis-rxcontrol/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__ndbench__3__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT ndbench
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__ndbench__3__build.gradle
+SUCCESSFULLY ANALYZED Netflix/ndbench/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__ndbench__10__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT ndbench
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__ndbench__10__build.gradle
+SUCCESSFULLY ANALYZED Netflix/ndbench/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Netflix__Priam__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT Priam
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Netflix__Priam__0__build.gradle
+SUCCESSFULLY ANALYZED Netflix/Priam/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT nexmo-java
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/nexmo-java/build/libs/client-5.6.0-javadoc.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/nexmo-java/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/Nexmo__nexmo-java__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/nexmo-java/build/libs/client-5.6.0-javadoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/Nexmo__nexmo-java__0__build.gradle
+SUCCESSFULLY ANALYZED Nexmo/nexmo-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 11 build/libs FOLDER(S) FOR PROJECT nextflow
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/nextflow-io__nextflow__6__build.gradle
+SUCCESSFULLY ANALYZED nextflow-io/nextflow/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/nextflow-io__nextflow-s3fs__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT nextflow-s3fs
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/nextflow-s3fs/build/libs/nextflow-s3fs-1.1.1.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/nextflow-s3fs/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/nextflow-io__nextflow-s3fs__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/nextflow-s3fs/build/libs/nextflow-s3fs-1.1.1.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/nextflow-io__nextflow-s3fs__0__build.gradle
+SUCCESSFULLY ANALYZED nextflow-io/nextflow-s3fs/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/nulab__backlog4j__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT backlog4j
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/nulab__backlog4j__0__build.gradle
+SUCCESSFULLY ANALYZED nulab/backlog4j/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/NYPL-Simplified__audiobook-android__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT audiobook-android
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/NYPL-Simplified__audiobook-android__0__build.gradle
+SUCCESSFULLY ANALYZED NYPL-Simplified/audiobook-android/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/omise__omise-java__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT omise-java
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/omise-java/build/libs/omise-java-4.0.6.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/omise-java/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/omise__omise-java__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/omise-java/build/libs/omise-java-4.0.6.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/omise__omise-java__0__build.gradle
+SUCCESSFULLY ANALYZED omise/omise-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/osmdroid__osmdroid__5__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT osmdroid
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/osmdroid__osmdroid__5__build.gradle
+SUCCESSFULLY ANALYZED osmdroid/osmdroid/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/outfoxx__swiftpoet__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT swiftpoet
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/swiftpoet/build/libs/swiftpoet-1.2.0-SNAPSHOT.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/swiftpoet/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/outfoxx__swiftpoet__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/swiftpoet/build/libs/swiftpoet-1.2.0-SNAPSHOT.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/outfoxx__swiftpoet__0__build.gradle
+SUCCESSFULLY ANALYZED outfoxx/swiftpoet/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/outfoxx__typescriptpoet__0__build.gradle
+Continuing analysis, but analysis might be incomplete.

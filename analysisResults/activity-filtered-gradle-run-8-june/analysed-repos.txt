@@ -1,0 +1,708 @@
+
+
+-----------------
+FOUND A TOTAL OF 2 build/libs FOLDER(S) FOR PROJECT java-telegram-bot-api
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/pengrad__java-telegram-bot-api__1__build.gradle
+SUCCESSFULLY ANALYZED pengrad/java-telegram-bot-api/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT alpaca-java
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/alpaca-java/build/libs/alpaca-java-7.2.1-SNAPSHOT-sources.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/alpaca-java/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/Petersoj__alpaca-java__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/alpaca-java/build/libs/alpaca-java-7.2.1-SNAPSHOT-sources.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/Petersoj__alpaca-java__0__build.gradle
+SUCCESSFULLY ANALYZED Petersoj/alpaca-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/plivo__plivo-java__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT plivo-java
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/plivo__plivo-java__0__build.gradle
+SUCCESSFULLY ANALYZED plivo/plivo-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT java
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/java/build/libs/pubnub-gson-5.1.0-javadoc.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/java/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/pubnub__java__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/java/build/libs/pubnub-gson-5.1.0-javadoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/pubnub__java__0__build.gradle
+SUCCESSFULLY ANALYZED pubnub/java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT reliza-java-client
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/reliza-java-client/build/libs/reliza-java-client-0.1.47-SNAPSHOT-javadoc.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/reliza-java-client/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/relizaio__reliza-java-client__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/reliza-java-client/build/libs/reliza-java-client-0.1.47-SNAPSHOT-javadoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/relizaio__reliza-java-client__0__build.gradle
+SUCCESSFULLY ANALYZED relizaio/reliza-java-client/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/rharter__auto-value-gson__2__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT auto-value-gson
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/rharter__auto-value-gson__2__build.gradle
+SUCCESSFULLY ANALYZED rharter/auto-value-gson/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/rharter__auto-value-gson__3__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT auto-value-gson
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/rharter__auto-value-gson__3__build.gradle
+SUCCESSFULLY ANALYZED rharter/auto-value-gson/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/robolectric__robolectric__1__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT robolectric
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/robolectric__robolectric__1__build.gradle
+SUCCESSFULLY ANALYZED robolectric/robolectric/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/robolectric__robolectric__2__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT robolectric
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/robolectric__robolectric__2__build.gradle
+SUCCESSFULLY ANALYZED robolectric/robolectric/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/robolectric__robolectric__4__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT robolectric
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/robolectric__robolectric__4__build.gradle
+SUCCESSFULLY ANALYZED robolectric/robolectric/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/robolectric__robolectric__7__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT robolectric
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/robolectric__robolectric__7__build.gradle
+SUCCESSFULLY ANALYZED robolectric/robolectric/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/robolectric__robolectric__8__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT robolectric
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/robolectric__robolectric__8__build.gradle
+SUCCESSFULLY ANALYZED robolectric/robolectric/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/robolectric__robolectric__9__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT robolectric
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/robolectric__robolectric__9__build.gradle
+SUCCESSFULLY ANALYZED robolectric/robolectric/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/robolectric__robolectric__10__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT robolectric
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/robolectric__robolectric__10__build.gradle
+SUCCESSFULLY ANALYZED robolectric/robolectric/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/robolectric__robolectric__13__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT robolectric
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/robolectric__robolectric__13__build.gradle
+SUCCESSFULLY ANALYZED robolectric/robolectric/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/robolectric__robolectric__15__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT robolectric
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/robolectric__robolectric__15__build.gradle
+SUCCESSFULLY ANALYZED robolectric/robolectric/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/robolectric__robolectric__26__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT robolectric
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/robolectric__robolectric__26__build.gradle
+SUCCESSFULLY ANALYZED robolectric/robolectric/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/rockitconsulting__test.rockitizer__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT test.rockitizer
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/rockitconsulting__test.rockitizer__0__build.gradle
+SUCCESSFULLY ANALYZED rockitconsulting/test.rockitizer/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/rollbar__rollbar-java__7__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT rollbar-java
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/rollbar__rollbar-java__7__build.gradle
+SUCCESSFULLY ANALYZED rollbar/rollbar-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/rollbar__rollbar-java__11__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT rollbar-java
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/rollbar__rollbar-java__11__build.gradle
+SUCCESSFULLY ANALYZED rollbar/rollbar-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/rollbar__rollbar-java__13__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT rollbar-java
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/rollbar__rollbar-java__13__build.gradle
+SUCCESSFULLY ANALYZED rollbar/rollbar-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/rollbar__rollbar-java__14__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT rollbar-java
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/rollbar__rollbar-java__14__build.gradle
+SUCCESSFULLY ANALYZED rollbar/rollbar-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/rsocket__rsocket-rpc-java__1__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 7 build/libs FOLDER(S) FOR PROJECT rsocket-rpc-java
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/rsocket__rsocket-rpc-java__1__build.gradle
+SUCCESSFULLY ANALYZED rsocket/rsocket-rpc-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/rsocket__rsocket-rpc-java__2__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 7 build/libs FOLDER(S) FOR PROJECT rsocket-rpc-java
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/rsocket__rsocket-rpc-java__2__build.gradle
+SUCCESSFULLY ANALYZED rsocket/rsocket-rpc-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/rundeck__rundeck__6__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT rundeck
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/rundeck__rundeck__6__build.gradle
+SUCCESSFULLY ANALYZED rundeck/rundeck/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT htsjdk
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/htsjdk/build/libs/htsjdk-05501f5-SNAPSHOT.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/htsjdk/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/samtools__htsjdk__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/htsjdk/build/libs/htsjdk-05501f5-SNAPSHOT.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/samtools__htsjdk__0__build.gradle
+SUCCESSFULLY ANALYZED samtools/htsjdk/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT kelpie
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/kelpie/build/libs/kelpie.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/kelpie/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/scalar-labs__kelpie__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/kelpie/build/libs/kelpie.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/scalar-labs__kelpie__0__build.gradle
+SUCCESSFULLY ANALYZED scalar-labs/kelpie/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT scalardb
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/scalardb/build/libs/scalardb.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/scalardb/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/scalar-labs__scalardb__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/scalardb/build/libs/scalardb.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/scalar-labs__scalardb__0__build.gradle
+SUCCESSFULLY ANALYZED scalar-labs/scalardb/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/service84-io__key-value-persistence__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT key-value-persistence
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/service84-io__key-value-persistence__0__build.gradle
+SUCCESSFULLY ANALYZED service84-io/key-value-persistence/
+
+
+
+-----------------
+FOUND A TOTAL OF 3 build/libs FOLDER(S) FOR PROJECT graphviz4j
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/shevek__graphviz4j__0__build.gradle
+SUCCESSFULLY ANALYZED shevek/graphviz4j/
+
+
+
+-----------------
+FOUND A TOTAL OF 2 build/libs FOLDER(S) FOR PROJECT shipkit-demo
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/shipkit__shipkit-demo__2__build.gradle
+SUCCESSFULLY ANALYZED shipkit/shipkit-demo/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/shniu__toolbox__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 8 build/libs FOLDER(S) FOR PROJECT toolbox
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/shniu__toolbox__0__build.gradle
+SUCCESSFULLY ANALYZED shniu/toolbox/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Shynixn__BlockBall__2__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 2 build/libs FOLDER(S) FOR PROJECT BlockBall
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/BlockBall/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/BlockBall/build/libs/blockball-root.jar
+AND DOWNLOADED LOCAL PATH gradle/Shynixn__BlockBall__2__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/BlockBall/build/libs/blockball-root.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/Shynixn__BlockBall__2__build.gradle
+SUCCESSFULLY ANALYZED Shynixn/BlockBall/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Shynixn__PetBlocks__1__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT PetBlocks
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Shynixn__PetBlocks__1__build.gradle
+SUCCESSFULLY ANALYZED Shynixn/PetBlocks/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Shynixn__PetBlocks__3__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT PetBlocks
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Shynixn__PetBlocks__3__build.gradle
+SUCCESSFULLY ANALYZED Shynixn/PetBlocks/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT simplifyOM
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/simplifyOM/build/libs/ObjectPicker_sdk.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/simplifyOM/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/Simplify3x__simplifyOM__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/simplifyOM/build/libs/ObjectPicker_sdk.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/Simplify3x__simplifyOM__0__build.gradle
+SUCCESSFULLY ANALYZED Simplify3x/simplifyOM/
+
+
+
+-----------------
+FOUND A TOTAL OF 42 build/libs FOLDER(S) FOR PROJECT sonarqube
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/SonarSource__sonarqube__0__build.gradle
+SUCCESSFULLY ANALYZED SonarSource/sonarqube/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/SourcePointUSA__CCPA_Android_SDK__2__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT CCPA_Android_SDK
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/SourcePointUSA__CCPA_Android_SDK__2__build.gradle
+SUCCESSFULLY ANALYZED SourcePointUSA/CCPA_Android_SDK/
+
+
+
+-----------------
+FOUND A TOTAL OF 3 build/libs FOLDER(S) FOR PROJECT hoverfly-java
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/hoverfly-java/build/libs/hoverfly-java-0.14.1-SNAPSHOT-sources.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/hoverfly-java/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/SpectoLabs__hoverfly-java__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/hoverfly-java/build/libs/hoverfly-java-0.14.1-SNAPSHOT-sources.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/SpectoLabs__hoverfly-java__0__build.gradle
+SUCCESSFULLY ANALYZED SpectoLabs/hoverfly-java/
+
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/hoverfly-java/build/libs/hoverfly-java-0.14.1-SNAPSHOT-sources.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/hoverfly-java/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/SpectoLabs__hoverfly-java__2__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/hoverfly-java/build/libs/hoverfly-java-0.14.1-SNAPSHOT-sources.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/SpectoLabs__hoverfly-java__2__build.gradle
+SUCCESSFULLY ANALYZED SpectoLabs/hoverfly-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/splitio__android-client__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT android-client
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/splitio__android-client__0__build.gradle
+SUCCESSFULLY ANALYZED splitio/android-client/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/spotinst__spotinst-sdk-java__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT spotinst-sdk-java
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/spotinst__spotinst-sdk-java__0__build.gradle
+SUCCESSFULLY ANALYZED spotinst/spotinst-sdk-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/spring-projects__spring-restdocs__5__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 7 build/libs FOLDER(S) FOR PROJECT spring-restdocs
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/spring-projects__spring-restdocs__5__build.gradle
+SUCCESSFULLY ANALYZED spring-projects/spring-restdocs/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/spring-projects__spring-restdocs__6__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 10 build/libs FOLDER(S) FOR PROJECT spring-restdocs
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/spring-projects__spring-restdocs__6__build.gradle
+SUCCESSFULLY ANALYZED spring-projects/spring-restdocs/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/SpringSocialMicrosoft__spring-social-partnercenter__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT spring-social-partnercenter
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/SpringSocialMicrosoft__spring-social-partnercenter__0__build.gradle
+SUCCESSFULLY ANALYZED SpringSocialMicrosoft/spring-social-partnercenter/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/SumoLogic__sumobot__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT sumobot
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/SumoLogic__sumobot__0__build.gradle
+SUCCESSFULLY ANALYZED SumoLogic/sumobot/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT Twine
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/Twine/build/libs/twine-2.0-javadoc.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/Twine/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/termermc__twine__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/Twine/build/libs/twine-2.0-javadoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/termermc__twine__0__build.gradle
+SUCCESSFULLY ANALYZED termermc/twine/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT git-changelog-lib
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/git-changelog-lib/build/libs/git-changelog-lib-1.152.1-javadoc.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/git-changelog-lib/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/tomasbjerre__git-changelog-lib__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/git-changelog-lib/build/libs/git-changelog-lib-1.152.1-javadoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/tomasbjerre__git-changelog-lib__0__build.gradle
+SUCCESSFULLY ANALYZED tomasbjerre/git-changelog-lib/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT violation-comments-to-bitbucket-server-lib
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/violation-comments-to-bitbucket-server-lib/build/libs/violation-comments-to-bitbucket-server-lib-1.101.2.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/violation-comments-to-bitbucket-server-lib/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/tomasbjerre__violation-comments-to-bitbucket-server-lib__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/violation-comments-to-bitbucket-server-lib/build/libs/violation-comments-to-bitbucket-server-lib-1.101.2.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/tomasbjerre__violation-comments-to-bitbucket-server-lib__0__build.gradle
+SUCCESSFULLY ANALYZED tomasbjerre/violation-comments-to-bitbucket-server-lib/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT sputnik
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/sputnik/build/libs/sputnik-javadoc.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/sputnik/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/TouK__sputnik__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/sputnik/build/libs/sputnik-javadoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/TouK__sputnik__0__build.gradle
+SUCCESSFULLY ANALYZED TouK/sputnik/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/trustedchoice__ask-kodiak-sdk__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT ask-kodiak-sdk
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/trustedchoice__ask-kodiak-sdk__0__build.gradle
+SUCCESSFULLY ANALYZED trustedchoice/ask-kodiak-sdk/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT vonage-java-sdk
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/vonage-java-sdk/build/libs/client-6.4.0.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/vonage-java-sdk/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/Vonage__vonage-java-sdk__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/vonage-java-sdk/build/libs/client-6.4.0.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/Vonage__vonage-java-sdk__0__build.gradle
+SUCCESSFULLY ANALYZED Vonage/vonage-java-sdk/
+
+
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT web3j-evm
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/web3j__web3j-evm__0__build.gradle
+SUCCESSFULLY ANALYZED web3j/web3j-evm/
+
+
+
+-----------------
+FOUND A TOTAL OF 3 build/libs FOLDER(S) FOR PROJECT riff
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/riff/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/riff/riff-config/build/libs/riff-config-2.4.6.jar
+AND DOWNLOADED LOCAL PATH gradle/wepay__riff__0__build.gradle
+SUCCESSFULLY ANALYZED wepay/riff/
+
+
+
+-----------------
+FOUND A TOTAL OF 8 build/libs FOLDER(S) FOR PROJECT waltz
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/waltz/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/waltz/waltz-test/build/libs/waltz-test-0.10.0.jar
+AND DOWNLOADED LOCAL PATH gradle/wepay__waltz__0__build.gradle
+SUCCESSFULLY ANALYZED wepay/waltz/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/what3words__w3w-android-wrapper__2__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT w3w-android-wrapper
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/what3words__w3w-android-wrapper__2__build.gradle
+SUCCESSFULLY ANALYZED what3words/w3w-android-wrapper/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/whylabs__whylogs-java__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT whylogs-java
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/whylogs-java/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/whylogs-java/build/libs/whylogs-java-0.1.2-b7.jar
+AND DOWNLOADED LOCAL PATH gradle/whylabs__whylogs-java__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/whylogs-java/build/libs/whylogs-java-0.1.2-b7.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/whylabs__whylogs-java__0__build.gradle
+SUCCESSFULLY ANALYZED whylabs/whylogs-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/xebialabs__overthere__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT overthere
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/xebialabs__overthere__0__build.gradle
+SUCCESSFULLY ANALYZED xebialabs/overthere/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Yelp__nrtsearch__1__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT nrtsearch
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Yelp__nrtsearch__1__build.gradle
+SUCCESSFULLY ANALYZED Yelp/nrtsearch/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/zeoflow__parcelled__2__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT parcelled
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/parcelled/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/parcelled/buildSrc/build/libs/buildSrc.jar
+AND DOWNLOADED LOCAL PATH gradle/zeoflow__parcelled__2__build.gradle
+SUCCESSFULLY ANALYZED zeoflow/parcelled/
+
+
+
+-----------------
+FOUND A TOTAL OF 2 build/libs FOLDER(S) FOR PROJECT embedded-database-spring-test
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/embedded-database-spring-test/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/embedded-database-spring-test/embedded-database-spring-test-autoconfigure/build/libs/embedded-database-spring-test-autoconfigure-2.1.0-SNAPSHOT-sources.jar
+AND DOWNLOADED LOCAL PATH gradle/zonkyio__embedded-database-spring-test__0__build.gradle
+SUCCESSFULLY ANALYZED zonkyio/embedded-database-spring-test/
+

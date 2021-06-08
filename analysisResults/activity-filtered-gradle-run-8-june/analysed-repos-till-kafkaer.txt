@@ -1,0 +1,883 @@
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT sdk-java
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/sdk-java/build/libs/sdk-java-1.0.15-SNAPSHOT-sources.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/sdk-java/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/acrolinx__sdk-java__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/sdk-java/build/libs/sdk-java-1.0.15-SNAPSHOT-sources.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/acrolinx__sdk-java__0__build.gradle
+SUCCESSFULLY ANALYZED acrolinx/sdk-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT aiven-kafka-connect-commons
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/aiven-kafka-connect-commons/build/libs/aiven-kafka-connect-commons-0.8.0-SNAPSHOT-sources.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/aiven-kafka-connect-commons/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/aiven__aiven-kafka-connect-commons__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/aiven-kafka-connect-commons/build/libs/aiven-kafka-connect-commons-0.8.0-SNAPSHOT-sources.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/aiven__aiven-kafka-connect-commons__0__build.gradle
+SUCCESSFULLY ANALYZED aiven/aiven-kafka-connect-commons/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT aiven-kafka-connect-gcs
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/aiven-kafka-connect-gcs/build/libs/aiven-kafka-connect-gcs-0.9.0-SNAPSHOT-javadoc.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/aiven-kafka-connect-gcs/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/aiven__aiven-kafka-connect-gcs__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/aiven-kafka-connect-gcs/build/libs/aiven-kafka-connect-gcs-0.9.0-SNAPSHOT-javadoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/aiven__aiven-kafka-connect-gcs__0__build.gradle
+SUCCESSFULLY ANALYZED aiven/aiven-kafka-connect-gcs/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/allegro__hermes__4__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT hermes
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/allegro__hermes__4__build.gradle
+SUCCESSFULLY ANALYZED allegro/hermes/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/allegro__hermes__6__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT hermes
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/allegro__hermes__6__build.gradle
+SUCCESSFULLY ANALYZED allegro/hermes/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT verify-test-utils
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/verify-test-utils/build/libs/common-test-utils-2.0.0-SNAPSHOT-javadoc.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/verify-test-utils/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/alphagov__verify-test-utils__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/verify-test-utils/build/libs/common-test-utils-2.0.0-SNAPSHOT-javadoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/alphagov__verify-test-utils__0__build.gradle
+SUCCESSFULLY ANALYZED alphagov/verify-test-utils/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/anatawa12__ForgeGradle-1.2__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT ForgeGradle-1.2
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/anatawa12__ForgeGradle-1.2__0__build.gradle
+SUCCESSFULLY ANALYZED anatawa12/ForgeGradle-1.2/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/anatawa12__ForgeGradle-1.2__1__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT ForgeGradle-1.2
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/anatawa12__ForgeGradle-1.2__1__build.gradle
+SUCCESSFULLY ANALYZED anatawa12/ForgeGradle-1.2/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/awslabs__rds-data-api-client-library-java__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT rds-data-api-client-library-java
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/awslabs__rds-data-api-client-library-java__0__build.gradle
+SUCCESSFULLY ANALYZED awslabs/rds-data-api-client-library-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/bertramdev__asset-pipeline__11__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 4 build/libs FOLDER(S) FOR PROJECT asset-pipeline
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/asset-pipeline/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/asset-pipeline/build/libs/asset-pipeline.jar
+AND DOWNLOADED LOCAL PATH gradle/bertramdev__asset-pipeline__11__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/asset-pipeline/build/libs/asset-pipeline.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/bertramdev__asset-pipeline__11__build.gradle
+SUCCESSFULLY ANALYZED bertramdev/asset-pipeline/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/bitcoinj__bitcoinj__1__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT bitcoinj
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/bitcoinj__bitcoinj__1__build.gradle
+SUCCESSFULLY ANALYZED bitcoinj/bitcoinj/
+
+
+
+-----------------
+FOUND A TOTAL OF 15 build/libs FOLDER(S) FOR PROJECT devops-framework
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/bkdevops-projects__devops-framework__0__build.gradle
+SUCCESSFULLY ANALYZED bkdevops-projects/devops-framework/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/broadinstitute__picard__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT picard
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/broadinstitute__picard__0__build.gradle
+SUCCESSFULLY ANALYZED broadinstitute/picard/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/bugsnag__bugsnag-java__1__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT bugsnag-java
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/bugsnag__bugsnag-java__1__build.gradle
+SUCCESSFULLY ANALYZED bugsnag/bugsnag-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/bumptech__glide__6__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT glide
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/bumptech__glide__6__build.gradle
+SUCCESSFULLY ANALYZED bumptech/glide/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/bumptech__glide__7__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT glide
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/bumptech__glide__7__build.gradle
+SUCCESSFULLY ANALYZED bumptech/glide/
+
+
+
+-----------------
+FOUND A TOTAL OF 8 build/libs FOLDER(S) FOR PROJECT cat-boot
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Catalysts__cat-boot__0__build.gradle
+SUCCESSFULLY ANALYZED Catalysts/cat-boot/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT trex-java-sdk
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/trex-java-sdk/build/libs/trex-java-sdk-0.0.1.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/trex-java-sdk/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/cisco-system-traffic-generator__trex-java-sdk__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/trex-java-sdk/build/libs/trex-java-sdk-0.0.1.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/cisco-system-traffic-generator__trex-java-sdk__0__build.gradle
+SUCCESSFULLY ANALYZED cisco-system-traffic-generator/trex-java-sdk/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/cloudendpoints__endpoints-java__2__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT endpoints-java
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/cloudendpoints__endpoints-java__2__build.gradle
+SUCCESSFULLY ANALYZED cloudendpoints/endpoints-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/cloudendpoints__endpoints-management-java__1__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT endpoints-management-java
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/endpoints-management-java/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/endpoints-management-java/build/libs/endpoints-api-management-1.0.14.jar
+AND DOWNLOADED LOCAL PATH gradle/cloudendpoints__endpoints-management-java__1__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/endpoints-management-java/build/libs/endpoints-api-management-1.0.14.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/cloudendpoints__endpoints-management-java__1__build.gradle
+SUCCESSFULLY ANALYZED cloudendpoints/endpoints-management-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 7 build/libs FOLDER(S) FOR PROJECT cloudinary_java
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/cloudinary__cloudinary_java__3__build.gradle
+SUCCESSFULLY ANALYZED cloudinary/cloudinary_java/
+
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/cloudinary__cloudinary_java__4__build.gradle
+SUCCESSFULLY ANALYZED cloudinary/cloudinary_java/
+
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/cloudinary__cloudinary_java__5__build.gradle
+SUCCESSFULLY ANALYZED cloudinary/cloudinary_java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT java-conflux-sdk
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/java-conflux-sdk/build/libs/conflux-web3j-1.0.5.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/java-conflux-sdk/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/conflux-chain__java-conflux-sdk__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/java-conflux-sdk/build/libs/conflux-web3j-1.0.5.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/conflux-chain__java-conflux-sdk__0__build.gradle
+SUCCESSFULLY ANALYZED conflux-chain/java-conflux-sdk/
+
+
+
+-----------------
+FOUND A TOTAL OF 4 build/libs FOLDER(S) FOR PROJECT context-mapper-dsl
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/ContextMapper__context-mapper-dsl__1__build.gradle
+SUCCESSFULLY ANALYZED ContextMapper/context-mapper-dsl/
+
+
+
+-----------------
+FOUND A TOTAL OF 8 build/libs FOLDER(S) FOR PROJECT copper-engine
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/copper-engine/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/copper-engine/projects/copper-jmx-interface/build/libs/copper-jmx-interface-5.3.1-SNAPSHOT-javadoc.jar
+AND DOWNLOADED LOCAL PATH gradle/copper-engine__copper-engine__0__build.gradle
+SUCCESSFULLY ANALYZED copper-engine/copper-engine/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/crate__crate-jdbc__1__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT crate-jdbc
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/crate__crate-jdbc__1__build.gradle
+SUCCESSFULLY ANALYZED crate/crate-jdbc/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Crowdar__lippia-core__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT lippia-core
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Crowdar__lippia-core__0__build.gradle
+SUCCESSFULLY ANALYZED Crowdar/lippia-core/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/DeepAQ__Autumn__5__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT Autumn
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/DeepAQ__Autumn__5__build.gradle
+SUCCESSFULLY ANALYZED DeepAQ/Autumn/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/DeepAQ__Autumn__7__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT Autumn
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/DeepAQ__Autumn__7__build.gradle
+SUCCESSFULLY ANALYZED DeepAQ/Autumn/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/DeepAQ__Autumn__9__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT Autumn
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/DeepAQ__Autumn__9__build.gradle
+SUCCESSFULLY ANALYZED DeepAQ/Autumn/
+
+
+
+-----------------
+FOUND A TOTAL OF 6 build/libs FOLDER(S) FOR PROJECT dita-ot
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/dita-ot/build/libs/dost.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/dita-ot/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/dita-ot__dita-ot__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/dita-ot/build/libs/dost.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/dita-ot__dita-ot__0__build.gradle
+SUCCESSFULLY ANALYZED dita-ot/dita-ot/
+
+
+
+-----------------
+FOUND A TOTAL OF 3 build/libs FOLDER(S) FOR PROJECT therapi-json-rpc
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/therapi-json-rpc/build/libs/therapi-json-rpc-0.5.1-SNAPSHOT.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/therapi-json-rpc/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/dnault__therapi-json-rpc__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/therapi-json-rpc/build/libs/therapi-json-rpc-0.5.1-SNAPSHOT.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/dnault__therapi-json-rpc__0__build.gradle
+SUCCESSFULLY ANALYZED dnault/therapi-json-rpc/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/elastic__elasticsearch-hadoop__1__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT elasticsearch-hadoop
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/elastic__elasticsearch-hadoop__1__build.gradle
+SUCCESSFULLY ANALYZED elastic/elasticsearch-hadoop/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/elastic__elasticsearch-hadoop__2__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT elasticsearch-hadoop
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/elastic__elasticsearch-hadoop__2__build.gradle
+SUCCESSFULLY ANALYZED elastic/elasticsearch-hadoop/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/elastic__elasticsearch-hadoop__3__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT elasticsearch-hadoop
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/elastic__elasticsearch-hadoop__3__build.gradle
+SUCCESSFULLY ANALYZED elastic/elasticsearch-hadoop/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/elastic__elasticsearch-hadoop__4__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT elasticsearch-hadoop
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/elastic__elasticsearch-hadoop__4__build.gradle
+SUCCESSFULLY ANALYZED elastic/elasticsearch-hadoop/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/elastic__elasticsearch-hadoop__5__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT elasticsearch-hadoop
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/elastic__elasticsearch-hadoop__5__build.gradle
+SUCCESSFULLY ANALYZED elastic/elasticsearch-hadoop/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/elastic__elasticsearch-hadoop__8__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT elasticsearch-hadoop
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/elastic__elasticsearch-hadoop__8__build.gradle
+SUCCESSFULLY ANALYZED elastic/elasticsearch-hadoop/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT sailor-jvm
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/sailor-jvm/build/libs/sailor-jvm-3.3.7-SNAPSHOT.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/sailor-jvm/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/elasticio__sailor-jvm__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/sailor-jvm/build/libs/sailor-jvm-3.3.7-SNAPSHOT.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/elasticio__sailor-jvm__0__build.gradle
+SUCCESSFULLY ANALYZED elasticio/sailor-jvm/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT Elastos.DID.Java.SDK
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/Elastos.DID.Java.SDK/build/libs/DID Java SDK.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/Elastos.DID.Java.SDK/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/elastos__Elastos.DID.Java.SDK__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/Elastos.DID.Java.SDK/build/libs/DID Java SDK.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/elastos__Elastos.DID.Java.SDK__0__build.gradle
+SUCCESSFULLY ANALYZED elastos/Elastos.DID.Java.SDK/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT embulk-util-config
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/embulk-util-config/build/libs/embulk-util-config-0.3.0-SNAPSHOT-javadoc.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/embulk-util-config/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/embulk__embulk-util-config__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/embulk-util-config/build/libs/embulk-util-config-0.3.0-SNAPSHOT-javadoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/embulk__embulk-util-config__0__build.gradle
+SUCCESSFULLY ANALYZED embulk/embulk-util-config/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT embulk-util-guess
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/embulk-util-guess/build/libs/embulk-util-guess-0.1.1-SNAPSHOT.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/embulk-util-guess/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/embulk__embulk-util-guess__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/embulk-util-guess/build/libs/embulk-util-guess-0.1.1-SNAPSHOT.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/embulk__embulk-util-guess__0__build.gradle
+SUCCESSFULLY ANALYZED embulk/embulk-util-guess/
+
+
+
+-----------------
+FOUND A TOTAL OF 13 build/libs FOLDER(S) FOR PROJECT restdocs-api-spec
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/restdocs-api-spec/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/restdocs-api-spec/build/libs/restdocs-api-spec-parent-0.1.0-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH gradle/ePages-de__restdocs-api-spec__4__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/restdocs-api-spec/build/libs/restdocs-api-spec-parent-0.1.0-SNAPSHOT.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/ePages-de__restdocs-api-spec__4__build.gradle
+SUCCESSFULLY ANALYZED ePages-de/restdocs-api-spec/
+
+
+
+-----------------
+FOUND A TOTAL OF 2 build/libs FOLDER(S) FOR PROJECT dalesbred
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/EvidentSolutions__dalesbred__0__build.gradle
+SUCCESSFULLY ANALYZED EvidentSolutions/dalesbred/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/factoryfx__factoryfx__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT factoryfx
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/factoryfx__factoryfx__0__build.gradle
+SUCCESSFULLY ANALYZED factoryfx/factoryfx/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/FireStack-Lab__LaksaJ__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT LaksaJ
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/FireStack-Lab__LaksaJ__0__build.gradle
+SUCCESSFULLY ANALYZED FireStack-Lab/LaksaJ/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/FledgeXu__ForgeGradleCN__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT ForgeGradleCN
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/FledgeXu__ForgeGradleCN__0__build.gradle
+SUCCESSFULLY ANALYZED FledgeXu/ForgeGradleCN/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT stream-java
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/stream-java/build/libs/stream-java-3.2.4.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/stream-java/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/GetStream__stream-java__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/stream-java/build/libs/stream-java-3.2.4.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/GetStream__stream-java__0__build.gradle
+SUCCESSFULLY ANALYZED GetStream/stream-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/glookast__commons-templates__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT commons-templates
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/glookast__commons-templates__0__build.gradle
+SUCCESSFULLY ANALYZED glookast/commons-templates/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT protobuf-gradle-plugin
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/protobuf-gradle-plugin/build/libs/protobuf-gradle-plugin-0.8.17-SNAPSHOT-javadoc.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/protobuf-gradle-plugin/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/google__protobuf-gradle-plugin__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/protobuf-gradle-plugin/build/libs/protobuf-gradle-plugin-0.8.17-SNAPSHOT-javadoc.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/google__protobuf-gradle-plugin__0__build.gradle
+SUCCESSFULLY ANALYZED google/protobuf-gradle-plugin/
+
+
+
+-----------------
+FOUND A TOTAL OF 5 build/libs FOLDER(S) FOR PROJECT tsunami-security-scanner
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/google__tsunami-security-scanner__0__build.gradle
+SUCCESSFULLY ANALYZED google/tsunami-security-scanner/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/gradle-plugins__toolbox__1__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 8 build/libs FOLDER(S) FOR PROJECT toolbox
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/gradle-plugins__toolbox__1__build.gradle
+SUCCESSFULLY ANALYZED gradle-plugins/toolbox/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/gradle-plugins__toolbox__2__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 8 build/libs FOLDER(S) FOR PROJECT toolbox
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/gradle-plugins__toolbox__2__build.gradle
+SUCCESSFULLY ANALYZED gradle-plugins/toolbox/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/gradle-plugins__toolbox__4__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 8 build/libs FOLDER(S) FOR PROJECT toolbox
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/gradle-plugins__toolbox__4__build.gradle
+SUCCESSFULLY ANALYZED gradle-plugins/toolbox/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/gradle-plugins__toolbox__10__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 8 build/libs FOLDER(S) FOR PROJECT toolbox
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/gradle-plugins__toolbox__10__build.gradle
+SUCCESSFULLY ANALYZED gradle-plugins/toolbox/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/gradle-plugins__toolbox__12__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 8 build/libs FOLDER(S) FOR PROJECT toolbox
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/gradle-plugins__toolbox__12__build.gradle
+SUCCESSFULLY ANALYZED gradle-plugins/toolbox/
+
+
+
+-----------------
+FOUND A TOTAL OF 8 build/libs FOLDER(S) FOR PROJECT javers
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/gustavodsf__javers__1__build.gradle
+SUCCESSFULLY ANALYZED gustavodsf/javers/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/hashgraph__ethereumj__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT ethereumj
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/hashgraph__ethereumj__0__build.gradle
+SUCCESSFULLY ANALYZED hashgraph/ethereumj/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT intercom-java
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/intercom__intercom-java__0__build.gradle
+SUCCESSFULLY ANALYZED intercom/intercom-java/
+
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/javers__javers__1__build.gradle
+SUCCESSFULLY ANALYZED javers/javers/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/KennFalcon__tablestore-spring-boot-starter__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT tablestore-spring-boot-starter
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/KennFalcon__tablestore-spring-boot-starter__0__build.gradle
+SUCCESSFULLY ANALYZED KennFalcon/tablestore-spring-boot-starter/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Kentico__kontent-java-packages__2__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT kontent-java-packages
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Kentico__kontent-java-packages__2__build.gradle
+SUCCESSFULLY ANALYZED Kentico/kontent-java-packages/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Kentico__kontent-java-packages__4__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT kontent-java-packages
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Kentico__kontent-java-packages__4__build.gradle
+SUCCESSFULLY ANALYZED Kentico/kontent-java-packages/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/Kentico__kontent-java-packages__5__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT kontent-java-packages
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/Kentico__kontent-java-packages__5__build.gradle
+SUCCESSFULLY ANALYZED Kentico/kontent-java-packages/
+
+
+
+-----------------
+FOUND A TOTAL OF 42 build/libs FOLDER(S) FOR PROJECT SBK
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/SBK/build/libs/sbk-0.89.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/SBK/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/kmgowda__sbk__13__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/SBK/build/libs/sbk-0.89.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/kmgowda__sbk__13__build.gradle
+SUCCESSFULLY ANALYZED kmgowda/sbk/
+
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/SBK/build/libs/sbk-0.89.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/SBK/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/kmgowda__sbk__21__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/SBK/build/libs/sbk-0.89.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/kmgowda__sbk__21__build.gradle
+SUCCESSFULLY ANALYZED kmgowda/sbk/
+
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/sdk-java/build/libs/sdk-java-1.0.15-SNAPSHOT-sources.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/sdk-java/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/Koople__sdk-java__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/sdk-java/build/libs/sdk-java-1.0.15-SNAPSHOT-sources.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/Koople__sdk-java__0__build.gradle
+SUCCESSFULLY ANALYZED Koople/sdk-java/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/leancloud__archaius__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT archaius
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/leancloud__archaius__0__build.gradle
+SUCCESSFULLY ANALYZED leancloud/archaius/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/lessthanoptimal__BoofCV__11__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 26 build/libs FOLDER(S) FOR PROJECT BoofCV
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/lessthanoptimal__BoofCV__11__build.gradle
+SUCCESSFULLY ANALYZED lessthanoptimal/BoofCV/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/linkedin__TonY__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 7 build/libs FOLDER(S) FOR PROJECT TonY
+NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT downloaded-repos/TonY/pom.xml
+FOR JAR WITH PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/TonY/build/libs/tony-0.4.6.jar
+AND DOWNLOADED LOCAL PATH gradle/linkedin__TonY__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/TonY/build/libs/tony-0.4.6.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/linkedin__TonY__0__build.gradle
+SUCCESSFULLY ANALYZED linkedin/TonY/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT hl7v2-fhir-converter
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/hl7v2-fhir-converter/build/libs/hl7v2-fhir-converter-1.0.1-SNAPSHOT.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/hl7v2-fhir-converter/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/LinuxForHealth__hl7v2-fhir-converter__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/hl7v2-fhir-converter/build/libs/hl7v2-fhir-converter-1.0.1-SNAPSHOT.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/LinuxForHealth__hl7v2-fhir-converter__0__build.gradle
+SUCCESSFULLY ANALYZED LinuxForHealth/hl7v2-fhir-converter/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/mapsforge__mapsforge__4__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT mapsforge
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/mapsforge__mapsforge__4__build.gradle
+SUCCESSFULLY ANALYZED mapsforge/mapsforge/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/mapsforge__mapsforge__6__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT mapsforge
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/mapsforge__mapsforge__6__build.gradle
+SUCCESSFULLY ANALYZED mapsforge/mapsforge/
+
+
+
+-----------------
+FOUND A TOTAL OF 12 build/libs FOLDER(S) FOR PROJECT fegen
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/materna-se__fegen__6__build.gradle
+SUCCESSFULLY ANALYZED materna-se/fegen/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/mmihira__qualtrix-sdk__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT qualtrix-sdk
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/mmihira__qualtrix-sdk__0__build.gradle
+SUCCESSFULLY ANALYZED mmihira/qualtrix-sdk/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT mparticle-java-events-sdk
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/mparticle-java-events-sdk/build/libs/server-events-sdk-2.3.2.jar
+USING ROOT BUILD GRADLE FILE ATdownloaded-repos/mparticle-java-events-sdk/pom.xml
+AND DOWNLOADED LOCAL BUILD GRADLE PATHgradle/mparticle__mparticle-java-events-sdk__0__build.gradle
+SUCCESSFULLY ANALYZED JAR PATH /home/tudorpopovici/Documents/University/Research-Project/CG-dependency-analyzer/downloaded-repos/mparticle-java-events-sdk/build/libs/server-events-sdk-2.3.2.jar
+USING NON-ROOT BUILD GRADLE FILE AT/build.gradle.kts
+AND DOWNLOADED LOCAL BUILD GRADLE PATH gradle/mparticle__mparticle-java-events-sdk__0__build.gradle
+SUCCESSFULLY ANALYZED mparticle/mparticle-java-events-sdk/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/MTDdk__jawn__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 0 build/libs FOLDER(S) FOR PROJECT jawn
+JAR NOT FOUND FOR PROJECT WITH 
+ DOWNLOADED LOCAL PATH gradle/MTDdk__jawn__0__build.gradle
+SUCCESSFULLY ANALYZED MTDdk/jawn/
+
+
+
+-----------------
+BUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE gradle/navdeepsekhon__kafkaer__0__build.gradle
+Continuing analysis, but analysis might be incomplete.
+
+-----------------
+FOUND A TOTAL OF 1 build/libs FOLDER(S) FOR PROJECT kafkaer
