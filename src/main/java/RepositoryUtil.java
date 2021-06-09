@@ -70,14 +70,18 @@ public class RepositoryUtil {
         // Extract zip file
         try {
             ZipFile zipFile = new ZipFile(zipPath);
-            zipFile.extractAll("downloaded-repos/" + repositoryName);
-        } catch (ZipException e) {
+            zipFile.extractAll("downloaded-repos/" + repositoryName + "-temp");
+            File extractedRepo = new File("downloaded-repos" + "/" + repositoryName + "-temp/" + repositoryName + "-" + defaultBranch);
+            var res = extractedRepo.renameTo(new File("downloaded-repos/" + repositoryName));
+            System.out.println("SUCCESSFUL RENAME OF ZIP FILE: " + res);
+            FileUtils.deleteDirectory(new File("downloaded-repos/" + repositoryName + "-temp"));
+        } catch (ZipException | IOException e) {
             e.printStackTrace();
         }
 
         // Delete downloaded zip file.
         new File(zipPath).delete();
-        return "downloaded-repos/" + repositoryName + "/" + repositoryName + "-" + defaultBranch;
+        return "downloaded-repos/" + repositoryName;
     }
 
     static boolean buildMavenProject(String pomXMLPath) {
@@ -106,17 +110,17 @@ public class RepositoryUtil {
         return false;
     }
 
-    private static void buildGradleProject(String repositoryName, String defaultBranch, String relativeDirectoryPath) {
+    static boolean buildGradleProject(String repositoryName, String defaultBranch, String relativeDirectoryPath) {
         try {
-            String path = "downloaded-repos/" + repositoryName + "/" + repositoryName + "-" + defaultBranch;
-            if (!relativeDirectoryPath.equals("/")) {
+            String path = "downloaded-repos/" + repositoryName;
+            if (!relativeDirectoryPath.equals("/") && !relativeDirectoryPath.equals("")) {
                 path += relativeDirectoryPath;
             }
             File repoDir = new File(path);
 
             // https://docs.gradle.org/current/userguide/userguide_single.html#installing_manually
-            String[] env = {"PATH=$PATH:/opt/gradle/gradle-7.0.2/bin"};
-            Process process = Runtime.getRuntime().exec("bash gradlew assemble", env, new File(repoDir.getAbsolutePath()));
+            // String[] env = {"PATH=$PATH:/opt/gradle/gradle-7.0.2/bin"};
+            Process process = Runtime.getRuntime().exec("bash gradlew assemble", null, repoDir.getAbsoluteFile());
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line;
@@ -127,13 +131,16 @@ public class RepositoryUtil {
             int exitVal = process.waitFor();
             if (exitVal == 0) {
                 System.out.println("BUILD SUCCESS!");
+                return true;
             } else {
                 //abnormal...
                 System.out.println("BUILD FAILED!");
+                return false;
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     private static void buildRepositoryJAR(ProjectInfo projectInfo) {

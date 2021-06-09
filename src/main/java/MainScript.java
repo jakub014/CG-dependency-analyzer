@@ -1,7 +1,4 @@
-import DependencyAnalyzer.Dependency;
-import DependencyAnalyzer.PomAnalyzer;
-import DependencyAnalyzer.TextDepFileAnalyzer;
-import DependencyAnalyzer.VulnsNotFoundException;
+import DependencyAnalyzer.*;
 import eu.fasten.analyzer.javacgopal.data.MavenCoordinate;
 import eu.fasten.analyzer.javacgopal.data.exceptions.MissingArtifactException;
 import eu.fasten.analyzer.javacgopal.data.exceptions.OPALException;
@@ -95,7 +92,6 @@ public class MainScript {
     private static List<ProjectInfo> getProjectInfoList(String csvPath) throws IOException, ParseException {
         System.out.println("LOADING PROJECTS FROM " + csvPath);
         List<String> projectsToInspect = getProjectsToInspect();
-        //projectsToInspect.add("eclipse/dirigible");
         for (String s : projectsToInspect) System.out.println(s);
 
         JSONParser parser = new JSONParser();
@@ -145,14 +141,31 @@ public class MainScript {
         return projectInfoList;
     }
 
-    public static void listOfFiles(File dirPath, List<File> targetDirs) {
+    public static void listOfTargetFiles(File dirPath, List<File> targetDirs) {
         File filesList[] = dirPath.listFiles();
         for (File file : filesList) {
             if (file.isDirectory() && file.getName().equals("target")) {
                 targetDirs.add(file);
             } else {
                 if (file.isDirectory()) {
-                    listOfFiles(file, targetDirs);
+                    listOfTargetFiles(file, targetDirs);
+                }
+            }
+        }
+    }
+
+    public static void listOfBuildLibsFiles(File dirPath, List<File> buildLibsDirs) {
+        File filesList[] = dirPath.listFiles();
+        for (File file : filesList) {
+            if (file.isDirectory() && file.getName().equals("build")) {
+                for (File file2 : file.listFiles()) {
+                    if (file2.isDirectory() && file2.getName().equals("libs")) {
+                        buildLibsDirs.add(file2);
+                    }
+                }
+            } else {
+                if (file.isDirectory()) {
+                    listOfBuildLibsFiles(file, buildLibsDirs);
                 }
             }
         }
@@ -185,6 +198,20 @@ public class MainScript {
         return pomXMLPath;
     }
 
+    private static String getInnerBuildGradlePath(File f) {
+        String buildGradlePath = null;
+        var res2 = f.getParentFile().getParentFile().listFiles();
+        if (res2 != null) {
+            for (File f2 : res2) {
+                if (f2.isFile() && (f2.getName().equals("build.gradle") || f2.getName().equals("build.gradle.kts"))) {
+                    buildGradlePath = f2.getAbsolutePath();
+                }
+
+            }
+        }
+        return buildGradlePath;
+    }
+
     public static void analyzeRepository(ProjectInfo projectInfo, List<Dependency> dependencyList) throws IOException, OPALException, MissingArtifactException, ParseException, RepositoryUtil.JarNotFoundException, VulnsNotFoundException {
         // Get project link, name, and default branch
         String link = projectInfo.getLink();
@@ -195,7 +222,7 @@ public class MainScript {
 
 //        try {
         // Download repository from GitHub
-        String repositoryPath = "downloaded-repos/" + repositoryName + "/" + repositoryName + "-" + defaultBranch;
+        String repositoryPath = "downloaded-repos/" + repositoryName;
         if (!new File(repositoryPath).exists()) {
             System.out.println("DOWNLOADING REPOSITORY FROM LINK " + link);
             repositoryPath = RepositoryUtil.downloadRepository(link, repositoryName, defaultBranch);
@@ -205,24 +232,130 @@ public class MainScript {
         }
 
         if (projectInfo.getProjectType() == ProjectType.GRADLE) {
-            // Get the jar of the downloaded repository
-            System.out.println("GENERATING JAR FILE");
-            String jarPath = RepositoryUtil.getRepositoryJAR(projectInfo);
-            System.out.println("FINAL JAR PATH IS " + jarPath);
-            System.out.println("SUCCESSFULLY GENERATED JAR FILE WITH JAR PATH " + jarPath);
-
-            List<MavenCoordinate> coordList = new ArrayList<>();
-            for (Dependency dep : dependencyList) {
-                MavenCoordinate depcoord = new MavenCoordinate(dep.groupId, dep.artifactId, dep.version, "jar");
-                coordList.add(depcoord);
+            String rootBuildGradlePath = repositoryPath + "/build.gradle";
+            File alreadyBuiltFile = new File(repositoryPath + "/built.txt");
+            Boolean alreadyBuiltFileExists = alreadyBuiltFile.exists();
+            // Only build project if not already built!
+            if (!alreadyBuiltFileExists) {
+                var res = RepositoryUtil.buildGradleProject(repositoryName, defaultBranch, "");
+                if (!res) {
+                    Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
+                    output.append("\n\n-----------------\nBUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE "
+                            + projectInfo.getDownloadedDepFilePath()
+                            + "\nContinuing analysis, but analysis might be incomplete."
+                    );
+                    output.close();
+                    //return;
+                } else {
+                    // Create empty file
+                    alreadyBuiltFile.createNewFile();
+                }
             }
 
-            MavenCoordinate[] toBeFilled = new MavenCoordinate[coordList.size()];
-            new VulnerabilityTracerAllocationSiteBased().traceProjectVulnerabilities(new File(jarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
-            new VulnerabilityTracer().traceProjectVulnerabilities(new File(jarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
+            List<File> buildLibsDirs = new ArrayList<>();
+            listOfBuildLibsFiles(new File(repositoryPath), buildLibsDirs);
+            if (!alreadyBuiltFileExists) {
+                Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
+                String result = "\n\n-----------------\nFOUND A TOTAL OF " + buildLibsDirs.size() + " build/libs FOLDER(S) FOR PROJECT " + repositoryName + "\n";
+                output.append(result);
+                output.close();
+            }
+
+            var jarIsFound = false;
+            for (File f : buildLibsDirs) {
+                String buildGradlePath = getInnerBuildGradlePath(f);
+                String targetBuildGradlePath = new File(repositoryPath + "/" + projectInfo.getRelativeDepFilePath()).getAbsolutePath();
+                System.out.println("BUILD GRADLE PATH IS " + buildGradlePath);
+                System.out.println("TARGET BUILD GRADLE PATH IS " + targetBuildGradlePath);
+                if (buildGradlePath != null && !buildGradlePath.equals(targetBuildGradlePath) && !(buildGradlePath + ".kts").equals(targetBuildGradlePath)) continue;
+
+                String innerJarPath = getInnerJarPath(f);
+                System.out.println("INNER JAR PATH IS " + innerJarPath);
+                if (innerJarPath != null) {
+                    jarIsFound = true;
+                    // Get dependencies from project dependency file.
+                    try {
+                        System.out.println("GETTING DEPENDENCIES FROM ROOT build.gradle file");
+                        System.out.println("GETTING build.gradle DEPENDENCIES FROM path " + buildGradlePath);
+                        dependencyList = BuildGradleAnalyzer.getProjectDependencies(repositoryPath);
+                        System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM build.gradle file");
+
+                        List<MavenCoordinate> coordList = new ArrayList<>();
+                        for (Dependency dep : dependencyList) {
+                            MavenCoordinate depcoord = new MavenCoordinate(dep.groupId, dep.artifactId, dep.version, "jar");
+                            coordList.add(depcoord);
+                        }
+                        MavenCoordinate[] toBeFilled = new MavenCoordinate[coordList.size()];
+                        //new VulnerabilityTracerAllocationSiteBased().traceProjectVulnerabilities(new File(innerJarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
+                        new VulnerabilityTracer().traceProjectVulnerabilities(new File(innerJarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
+                        String result = "SUCCESSFULLY ANALYZED JAR PATH "
+                                + new File(innerJarPath).getPath()
+                                + "\nUSING ROOT BUILD GRADLE FILE AT" + repositoryPath + "/pom.xml"
+                                + "\nAND DOWNLOADED LOCAL BUILD GRADLE PATH" + projectInfo.getDownloadedDepFilePath() + "\n";
+                        Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
+                        output.append(result);
+                        output.close();
+                    } catch (VulnsNotFoundException e) {
+                        String result = "NO VULNERABILITIES FOUND USING ROOT BUILD GRADLE FILE AT "
+                                + repositoryPath + "/pom.xml"
+                                + "\nFOR JAR WITH PATH " + new File(innerJarPath).getPath()
+                                + "\nAND DOWNLOADED LOCAL PATH "
+                                + projectInfo.getDownloadedDepFilePath() + "\n";
+                        Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
+                        output.append(result);
+                        output.close();
+                    }
+
+                    if (buildGradlePath != null) {
+                        try {
+                            // Get dependencies from project dependency file.
+                            System.out.println("GETTING DEPENDENCIES FROM build.gradle file");
+                            System.out.println("GETTING build.gradle DEPENDENCIES FROM path " + buildGradlePath);
+                            System.out.println("DOWNLOADED DEP FILE PATH IS " + projectInfo.getDownloadedDepFilePath());
+                            dependencyList = TextDepFileAnalyzer.getProjectDependencies("src/main/resources/" + projectInfo.getDownloadedDepFilePath());
+                            System.out.println("SUCCESSFULLY RETRIEVED DEPENDENCIES FROM build.gradle file");
+                            List<MavenCoordinate> coordList = new ArrayList<>();
+                            for (Dependency dep : dependencyList) {
+                                MavenCoordinate depcoord = new MavenCoordinate(dep.groupId, dep.artifactId, dep.version, "jar");
+                                coordList.add(depcoord);
+                            }
+                            MavenCoordinate[] toBeFilled = new MavenCoordinate[coordList.size()];
+                            //new VulnerabilityTracerAllocationSiteBased().traceProjectVulnerabilities(new File(innerJarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
+                            new VulnerabilityTracer().traceProjectVulnerabilities(new File(innerJarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
+                            String result = "SUCCESSFULLY ANALYZED JAR PATH "
+                                    + innerJarPath + "\nUSING NON-ROOT BUILD GRADLE FILE AT"
+                                    + projectInfo.getRelativeDepFilePath()
+                                    + "\nAND DOWNLOADED LOCAL BUILD GRADLE PATH "
+                                    + projectInfo.getDownloadedDepFilePath() + "\n";
+                            Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
+                            output.append(result);
+                            output.close();
+
+                        } catch (VulnsNotFoundException e) {
+                            String result = "NO VULNERABILITIES FOUND USING NON-ROOT BUILD GRADLE AT "
+                                    + projectInfo.getRelativeDepFilePath()
+                                    + " \nFOR JAR WITH PATH " + innerJarPath
+                                    + "\nAND DOWNLOADED LOCAL PATH "
+                                    + projectInfo.getDownloadedDepFilePath() + "\n";
+                            Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
+                            output.append(result);
+                            output.close();
+                        }
+
+                    }
+                }
+                if (jarIsFound) break;
+            }
+            if (!jarIsFound) {
+                String result = "JAR NOT FOUND FOR PROJECT WITH "
+                        + "\n DOWNLOADED LOCAL PATH "
+                        + projectInfo.getDownloadedDepFilePath() + "\n";
+                Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
+                output.append(result);
+                output.close();
+            }
         } else {
             String rootPomXMLPath = repositoryPath + "/pom.xml";
-
             File alreadyBuiltFile = new File(repositoryPath + "/built.txt");
             Boolean alreadyBuiltFileExists = alreadyBuiltFile.exists();
             // Only build project if not already built!
@@ -239,7 +372,7 @@ public class MainScript {
             }
 
             List<File> targetDirs = new ArrayList<>();
-            listOfFiles(new File(repositoryPath), targetDirs);
+            listOfTargetFiles(new File(repositoryPath), targetDirs);
             if (!alreadyBuiltFileExists) {
                 Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
                 String result = "\n\n-----------------\nFOUND A TOTAL OF " + targetDirs.size() + " TARGET FOLDER FOR PROJECT " + repositoryName + "\n";

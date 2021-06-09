@@ -1,0 +1,112 @@
+nextflow-s3fs
+https://github.com/nextflow-io/nextflow-s3fs
+Vulnerable dependency: org.apache.httpcomponents:httpclient
+
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs/S3FileSystemProvider.checkAccess(%2Fjava.nio.file%2FPath,%2Fjava.nio.file%2FAccessMode%5B%5D)%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs.util/S3ObjectSummaryLookup.getS3ObjectMetadata(%2Fcom.upplication.s3fs%2FS3Path)%2Fcom.amazonaws.services.s3.model%2FObjectMetadata
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs/S3FileSystemProvider.createFileSystem0(%2Fjava.net%2FURI,%2Fjava.lang%2FObject,%2Fjava.lang%2FObject,%2Fjava.lang%2FObject)S3FileSystem
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs/S3Path.endsWith(%2Fjava.nio.file%2FPath)%2Fjava.lang%2FBooleanType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs/S3FileSystemProvider.newInputStream(%2Fjava.nio.file%2FPath,%2Fjava.nio.file%2FOpenOption%5B%5D)%2Fjava.io%2FInputStream
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs/S3FileSystemProvider.newByteChannel(%2Fjava.nio.file%2FPath,%2Fjava.util%2FSet,%2Fjava.nio.file.attribute%2FFileAttribute%5B%5D)%2Fjava.nio.channels%2FSeekableByteChannel
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs/S3FileSystemProvider.copy(%2Fjava.nio.file%2FPath,%2Fjava.nio.file%2FPath,%2Fjava.nio.file%2FCopyOption%5B%5D)%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs/S3FileSystemProvider$2.close()%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs/AmazonS3Client.multipartCopyObject(S3Path,S3Path,%2Fjava.lang%2FLong,%2Fcom.upplication.s3fs.util%2FS3MultipartOptions)%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs.util/S3ObjectSummaryLookup.lookup(%2Fcom.upplication.s3fs%2FS3Path)%2Fcom.amazonaws.services.s3.model%2FS3ObjectSummary
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs/S3FileSystemProvider.createDirectory(%2Fjava.nio.file%2FPath,%2Fjava.nio.file.attribute%2FFileAttribute%5B%5D)%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs/S3FileSystemProvider.delete(%2Fjava.nio.file%2FPath)%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs/S3FileSystemProvider$1.iterator()%2Fjava.util%2FIterator
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs/S3Path.relativize(%2Fjava.nio.file%2FPath)%2Fjava.nio.file%2FPath
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!nextflow-s3fs$master/com.upplication.s3fs/S3Path.startsWith(%2Fjava.nio.file%2FPath)%2Fjava.lang%2FBooleanType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+
+
+
