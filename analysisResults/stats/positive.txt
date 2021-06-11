@@ -1,4 +1,0 @@
-avatao-content:sdk-tfw-jdk/ ~ com.fasterxml.jackson.core:jackson-databind
-flexifyio:flexify-api-java/ ~ com.fasterxml.jackson.core:jackson-databind
-GetStream:stream-java/ ~ com.fasterxml.jackson.core:jackson-databind
-juan-carlos-duarte:bitbucket-api-client-lib/ ~ com.fasterxml.jackson.core:jackson-databind
