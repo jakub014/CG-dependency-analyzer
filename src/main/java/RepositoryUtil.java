@@ -58,7 +58,34 @@ public class RepositoryUtil {
      * @param link: string containing the url of the GitHub repository source code to download
      * @param defaultBranch: default branch of the repository
      */
-    public static String downloadRepository(String link, String repositoryName, String defaultBranch) {
+    public static String downloadMavenRepository(String link, String repositoryName, String defaultBranch) {
+        // Download zip file.
+        String zipPath = "downloaded-repos/" + repositoryName + ".zip";
+        try {
+            FileUtils.copyURLToFile(new URL(link + "/archive/refs/heads/" + defaultBranch + ".zip"), new File(zipPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Extract zip file
+        try {
+            ZipFile zipFile = new ZipFile(zipPath);
+            zipFile.extractAll("downloaded-repos/" + repositoryName);
+        } catch (ZipException e) {
+            e.printStackTrace();
+        }
+
+        // Delete downloaded zip file.
+        new File(zipPath).delete();
+        return "downloaded-repos/" + repositoryName + "/" + repositoryName + "-" + defaultBranch;
+    }
+
+    /**
+     * Downloads a zip file of a given GitHub repository and extracts the zip file to a folder
+     * @param link: string containing the url of the GitHub repository source code to download
+     * @param defaultBranch: default branch of the repository
+     */
+    public static String downloadGradleRepository(String link, String repositoryName, String defaultBranch) {
         // Download zip file.
         String zipPath = "downloaded-repos/" + repositoryName + ".zip";
         try {
@@ -88,7 +115,7 @@ public class RepositoryUtil {
         InvocationRequest request = new DefaultInvocationRequest();
         request.setPomFile(new File(pomXMLPath));
         // Run `mvn package -Dmaven.test.skip=true`. Last part of command skips run of tests
-        request.setGoals(Collections.singletonList("package -Dmaven.test.skip=true -Dmaven.javadoc.skip=true"));
+        request.setGoals(Collections.singletonList("package -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dspotless.check.skip=true -Dcheckstyle.skip=true"));
 
         Invoker invoker = new DefaultInvoker();
         invoker.setMavenHome(new File(Paths.get(MAVEN_HOME).toUri()));

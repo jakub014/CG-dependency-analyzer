@@ -19,8 +19,8 @@ public class MainScript {
 
     // Booleans
     private static final boolean filterEnabled = false;
-    private static final boolean scanMaven = false;
-    private static final boolean scanGradle = true;
+    private static final boolean scanMaven = true;
+    private static final boolean scanGradle = false;
 
     // Constants
     private static final int startFrom = 0;
@@ -222,16 +222,18 @@ public class MainScript {
 
 //        try {
         // Download repository from GitHub
-        String repositoryPath = "downloaded-repos/" + repositoryName;
-        if (!new File(repositoryPath).exists()) {
-            System.out.println("DOWNLOADING REPOSITORY FROM LINK " + link);
-            repositoryPath = RepositoryUtil.downloadRepository(link, repositoryName, defaultBranch);
-            System.out.println("SUCCESSFULLY DOWNLOADED REPOSITORY " + repositoryPath);
-        } else {
-            System.out.println("REPOSITORY ALREADY DOWNLOADED");
-        }
+
 
         if (projectInfo.getProjectType() == ProjectType.GRADLE) {
+            String repositoryPath = "downloaded-repos/" + repositoryName;
+            if (!new File(repositoryPath).exists()) {
+                System.out.println("DOWNLOADING REPOSITORY FROM LINK " + link);
+                repositoryPath = RepositoryUtil.downloadGradleRepository(link, repositoryName, defaultBranch);
+                System.out.println("SUCCESSFULLY DOWNLOADED REPOSITORY " + repositoryPath);
+            } else {
+                System.out.println("REPOSITORY ALREADY DOWNLOADED");
+            }
+
             String rootBuildGradlePath = repositoryPath + "/build.gradle";
             File alreadyBuiltFile = new File(repositoryPath + "/built.txt");
             Boolean alreadyBuiltFileExists = alreadyBuiltFile.exists();
@@ -355,6 +357,16 @@ public class MainScript {
                 output.close();
             }
         } else {
+
+            String repositoryPath = "downloaded-repos/" + repositoryName + "/" + repositoryName + "-" + defaultBranch;
+            if (!new File(repositoryPath).exists()) {
+                System.out.println("DOWNLOADING REPOSITORY FROM LINK " + link);
+                repositoryPath = RepositoryUtil.downloadMavenRepository(link, repositoryName, defaultBranch);
+                System.out.println("SUCCESSFULLY DOWNLOADED REPOSITORY " + repositoryPath);
+            } else {
+                System.out.println("REPOSITORY ALREADY DOWNLOADED");
+            }
+
             String rootPomXMLPath = repositoryPath + "/pom.xml";
             File alreadyBuiltFile = new File(repositoryPath + "/built.txt");
             Boolean alreadyBuiltFileExists = alreadyBuiltFile.exists();
@@ -401,7 +413,7 @@ public class MainScript {
                             coordList.add(depcoord);
                         }
                         MavenCoordinate[] toBeFilled = new MavenCoordinate[coordList.size()];
-                        new VulnerabilityTracerAllocationSiteBased().traceProjectVulnerabilities(new File(innerJarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
+//                        new VulnerabilityTracerAllocationSiteBased().traceProjectVulnerabilities(new File(innerJarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
                         new VulnerabilityTracer().traceProjectVulnerabilities(new File(innerJarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
                         String result = "SUCCESSFULLY ANALYZED JAR PATH "
                                 + new File(innerJarPath).getPath()
@@ -434,7 +446,7 @@ public class MainScript {
                                 coordList.add(depcoord);
                             }
                             MavenCoordinate[] toBeFilled = new MavenCoordinate[coordList.size()];
-                            new VulnerabilityTracerAllocationSiteBased().traceProjectVulnerabilities(new File(innerJarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
+//                            new VulnerabilityTracerAllocationSiteBased().traceProjectVulnerabilities(new File(innerJarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
                             new VulnerabilityTracer().traceProjectVulnerabilities(new File(innerJarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
                             String result = "SUCCESSFULLY ANALYZED JAR PATH "
                                     + innerJarPath + "\nUSING NON-ROOT POM FILE AT"
