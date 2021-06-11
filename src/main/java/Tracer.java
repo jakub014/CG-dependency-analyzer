@@ -72,7 +72,7 @@ public abstract class Tracer {
         }
     }
 
-    static void logResults(Boolean isVulnerable, ProjectInfo projectInfo, String projectName, String vulnDep) {
+    static void logResults(Boolean isVulnerable, ProjectInfo projectInfo, String projectName, String vulnDep, String cveString) {
         try {
             String filePath;
             if (!isVulnerable) {
@@ -81,7 +81,7 @@ public abstract class Tracer {
                 filePath = "analysisResults/stats/positive.txt";
             }
             Writer output = new FileWriter(filePath, true);
-            String result = projectInfo.getUser() + ":" + projectName + projectInfo.getRelativeDirectoryPath("/") + " ~ " + vulnDep + "\n";
+            String result = projectInfo.getUser() + ":" + projectName + projectInfo.getRelativeDirectoryPath("/") + "," + vulnDep + "," + cveString + "\n";
             output.append(result);
             output.close();
         } catch (IOException e) {
