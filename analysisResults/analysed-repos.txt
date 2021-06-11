@@ -1,0 +1,24 @@
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/databasesandlife-java-common/databasesandlife-java-common-master/pom.xml
+SUCCESSFULLY ANALYZED adrianmsmith/databasesandlife-java-common/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/databasesandlife-java-common/pom.xml
+SUCCESSFULLY ANALYZED adrianmsmith/databasesandlife-java-common/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/databasesandlife-java-common/databasesandlife-java-common-master/pom.xml
+SUCCESSFULLY ANALYZED adrianmsmith/databasesandlife-java-common/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/databasesandlife-java-common/databasesandlife-java-common-master/pom.xml
+SUCCESSFULLY ANALYZED adrianmsmith/databasesandlife-java-common/
+
