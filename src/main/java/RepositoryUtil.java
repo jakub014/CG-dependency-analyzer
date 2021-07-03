@@ -12,7 +12,7 @@ import java.util.*;
 public class RepositoryUtil {
 
     // !!! IMPORTANT: Set MAVEN_HOME to the PATH on your computer
-    final static String MAVEN_HOME = "/usr/share/maven";
+    final static String MAVEN_HOME = "C:\\Program Files\\apache-maven-3.8.1";
 
     public static class JarNotFoundException extends Exception {
         public JarNotFoundException(String message) {
@@ -115,7 +115,7 @@ public class RepositoryUtil {
         InvocationRequest request = new DefaultInvocationRequest();
         request.setPomFile(new File(pomXMLPath));
         // Run `mvn package -Dmaven.test.skip=true`. Last part of command skips run of tests
-        request.setGoals(Collections.singletonList("package -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Dspotless.check.skip=true -Dcheckstyle.skip=true"));
+        request.setGoals(Collections.singletonList("package -Dmaven.test.skip=true -Dmaven.javadoc.skip=true"));
 
         Invoker invoker = new DefaultInvoker();
         invoker.setMavenHome(new File(Paths.get(MAVEN_HOME).toUri()));

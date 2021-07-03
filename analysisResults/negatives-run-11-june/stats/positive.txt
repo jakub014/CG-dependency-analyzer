@@ -1,0 +1,15 @@
+cloudnil:marathon-client/,com.fasterxml.jackson.core:jackson-databind,CVE-2016-5556
+cloudnil:marathon-client/,com.fasterxml.jackson.core:jackson-databind,CVE-2016-5582
+cloudnil:marathon-client/,com.fasterxml.jackson.core:jackson-databind,CVE-2019-14379
+cloudnil:marathon-client/,com.fasterxml.jackson.core:jackson-databind,CVE-2016-5568
+cloudnil:marathon-client/,com.fasterxml.jackson.core:jackson-databind,CVE-2017-4995-JK
+conveyal:gtfs-lib/,org.postgresql:postgresql,CVE-2020-13692
+conveyal:gtfs-lib/,org.postgresql:postgresql,CVE-2020-13692
+embold:embold-maven-plugin/,com.fasterxml.jackson.core:jackson-databind,CVE-2016-5556
+embold:embold-maven-plugin/,com.fasterxml.jackson.core:jackson-databind,CVE-2016-5582
+embold:embold-maven-plugin/,com.fasterxml.jackson.core:jackson-databind,CVE-2019-14379
+embold:embold-maven-plugin/,com.fasterxml.jackson.core:jackson-databind,CVE-2016-5568
+embold:embold-maven-plugin/,com.fasterxml.jackson.core:jackson-databind,CVE-2017-4995-JK
+kagkarlsson:db-scheduler/db-scheduler/,org.postgresql:postgresql,CVE-2020-13692
+wavesplatform:WavesJ/,org.apache.httpcomponents:httpclient,HTTPCLIENT-1803
+wavesplatform:WavesJ/,org.apache.httpcomponents:httpclient,HTTPCLIENT-1803

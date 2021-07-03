@@ -48,7 +48,7 @@ public class MainScript {
                 Long lastUpdated = projectInfo.getLastUpdated();
                 if (!filterEnabled || Const.TIMESTAMP_FEBRUARY_2021 < lastUpdated) {
                     String packageName = projectInfo.getRepository();
-                    System.out.println("START ANALYSIS ON PROJECT NO." + counter + ": " + packageName);
+                    System.out.println("START ANALYSIS ON PROJECT NO." + counter + ": " + packageName + projectInfo.getRelativeDepFilePath());
                     String groupID = projectInfo.getUser();
                     String subdir = projectInfo.getRelativeDirectoryPath("/");
 
@@ -238,30 +238,30 @@ public class MainScript {
             File alreadyBuiltFile = new File(repositoryPath + "/built.txt");
             Boolean alreadyBuiltFileExists = alreadyBuiltFile.exists();
             // Only build project if not already built!
-            if (!alreadyBuiltFileExists) {
-                var res = RepositoryUtil.buildGradleProject(repositoryName, defaultBranch, "");
-                if (!res) {
-                    Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
-                    output.append("\n\n-----------------\nBUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE "
-                            + projectInfo.getDownloadedDepFilePath()
-                            + "\nContinuing analysis, but analysis might be incomplete."
-                    );
-                    output.close();
-                    //return;
-                } else {
-                    // Create empty file
-                    alreadyBuiltFile.createNewFile();
-                }
-            }
+//            if (!alreadyBuiltFileExists) {
+//                var res = RepositoryUtil.buildGradleProject(repositoryName, defaultBranch, "");
+//                if (!res) {
+//                    Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
+//                    output.append("\n\n-----------------\nBUILD FAILED FOR REPOSITORY WITH BUILD GRADLE FILE "
+//                            + projectInfo.getDownloadedDepFilePath()
+//                            + "\nContinuing analysis, but analysis might be incomplete."
+//                    );
+//                    output.close();
+//                    //return;
+//                } else {
+//                    // Create empty file
+//                    alreadyBuiltFile.createNewFile();
+//                }
+//            }
 
             List<File> buildLibsDirs = new ArrayList<>();
             listOfBuildLibsFiles(new File(repositoryPath), buildLibsDirs);
-            if (!alreadyBuiltFileExists) {
-                Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
-                String result = "\n\n-----------------\nFOUND A TOTAL OF " + buildLibsDirs.size() + " build/libs FOLDER(S) FOR PROJECT " + repositoryName + "\n";
-                output.append(result);
-                output.close();
-            }
+//            if (!alreadyBuiltFileExists) {
+//                Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
+//                String result = "\n\n-----------------\nFOUND A TOTAL OF " + buildLibsDirs.size() + " build/libs FOLDER(S) FOR PROJECT " + repositoryName + "\n";
+//                output.append(result);
+//                output.close();
+//            }
 
             var jarIsFound = false;
             for (File f : buildLibsDirs) {
