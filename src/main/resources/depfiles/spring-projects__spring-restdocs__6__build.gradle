@@ -1,6 +1,0 @@
-description = 'Support code for AsciidoctorJ extensions for Spring REST Docs'
-
-dependencies {
-	testCompile 'junit:junit'
-	testCompile 'org.assertj:assertj-core'
-}

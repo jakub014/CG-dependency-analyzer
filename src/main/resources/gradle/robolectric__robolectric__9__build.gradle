@@ -1,0 +1,7 @@
+com.google.code.findbugs:jsr305$3.0.2
+org.ow2.asm:asm$9.0
+org.ow2.asm:asm-commons$9.0
+com.google.guava:guava$27.0.1-jre
+com.google.code.gson:gson$2.8.6
+javax.annotation:jsr250-api$1.0
+com.google.testing.compile:compile-testing$0.18

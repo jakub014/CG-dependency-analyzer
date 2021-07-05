@@ -1,0 +1,6 @@
+io.vertx:vertx-core$3.9.4
+com.typesafe:config$1.4.0
+io.vertx:vertx-junit5$3.9.4
+org.junit.jupiter:junit-jupiter-api$5.7.0
+org.junit.jupiter:junit-jupiter-engine$5.7.0
+com.github.ben-manes.versions$0.27.0

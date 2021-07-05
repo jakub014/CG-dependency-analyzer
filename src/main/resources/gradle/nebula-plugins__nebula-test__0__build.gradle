@@ -1,0 +1,8 @@
+com.google.guava:guava$19.0
+commons-io:commons-io$2.5
+org.spockframework:spock-core$2.0-M4-groovy-3.0
+org.spockframework:spock-junit4$2.0-M4-groovy-3.0
+cglib:cglib-nodep$3.2.2
+org.objenesis:objenesis$2.4
+com.github.stefanbirkner:system-rules$1.19.0
+nebula.plugin-plugin$15.2.1

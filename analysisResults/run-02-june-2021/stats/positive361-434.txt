@@ -1,0 +1,14 @@
+onekit-cloud-java:TheKit/ ~ org.apache.httpcomponents:httpclient
+onekit-cloud-java:TheKit/ ~ org.apache.httpcomponents:httpclient
+OneSpan:esl.sdk.java/ ~ org.apache.httpcomponents:httpclient
+OneSpan:esl.sdk.java/ ~ org.apache.httpcomponents:httpclient
+onlyeat3:fastmapper/ ~ com.fasterxml.jackson.core:jackson-databind
+opendistro-for-elasticsearch:security/ ~ org.apache.kafka:kafka-clients
+opendistro-for-elasticsearch:security/ ~ org.apache.kafka:kafka-clients
+opengeospatial:ets-swecommon20/ ~ xerces:xercesImpl
+opengeospatial:ets-swecommon20/ ~ xerces:xercesImpl
+openstack4j:openstack4j/connectors/httpclient/ ~ org.apache.httpcomponents:httpclient
+oxctl:canvas-api/ ~ org.apache.httpcomponents:httpclient
+oxctl:canvas-api/ ~ org.apache.httpcomponents:httpclient
+pai-eas:eas-java-sdk/ ~ io.netty:netty-all
+pai-eas:eas-java-sdk/ ~ io.netty:netty-all

@@ -1,7 +1,0 @@
-description = "Fat jar of Ar4k Semantic Router - IBM Watson component"
-
-dependencies {
-	compile project(':ar4k-core')
-	compile 'com.ibm.watson:ibm-watson:9.0.2'
-}
-

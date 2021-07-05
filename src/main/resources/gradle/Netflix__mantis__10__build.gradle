@@ -1,0 +1,10 @@
+org.projectlombok:lombok$1.16.16
+javax.servlet:javax.servlet-api$3.1.0
+com.netflix.spectator:spectator-ext-ipc$0.96.0
+com.netflix.archaius:archaius2-core$latest.release
+com.netflix.archaius:archaius2-guice$latest.release
+com.google.inject:guice$4.2.2
+com.netflix.spectator:spectator-nflx-plugin$0.96.0
+org.slf4j:slf4j-log4j12$1.7.28
+com.google.inject.extensions:guice-servlet$4.0
+org.gretty$2.2.0

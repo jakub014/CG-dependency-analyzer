@@ -1,0 +1,4 @@
+io.swagger.core.v3:swagger-core$2.1.3
+io.swagger:swagger-parser$2.0.0-rc1
+org.assertj:assertj-core$3.10.0
+com.jayway.jsonpath:json-path$2.4.0

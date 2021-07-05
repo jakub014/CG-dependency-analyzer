@@ -1,0 +1,5 @@
+com.squareup.okhttp3:okhttp$3.14.0
+net.servicestack:client$1.0.35
+junit:junit$4.12
+commons-codec:commons-codec$1.12
+commons-httpclient:commons-httpclient$3.1

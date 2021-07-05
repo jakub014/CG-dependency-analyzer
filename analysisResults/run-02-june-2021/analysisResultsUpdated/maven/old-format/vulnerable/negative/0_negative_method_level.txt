@@ -1,0 +1,16 @@
+RTA-old-format-AElfProject__aelf-sdk.java__AElfClient____HTTPCLIENT-1803.txt
+RTA-old-format-OneSpan__esl.sdk.java____HTTPCLIENT-1803.txt
+RTA-old-format-anterostecnologia__anterospaymentapi____CVE-2019-14379.txt
+RTA-old-format-apigee__apigee-config-maven-plugin____HTTPCLIENT-1803.txt
+RTA-old-format-aquality-automation__aquality-selenium-java____CVE-2019-14379.txt
+RTA-old-format-duosecurity__duo_client_java__duo-client____CVE-2016-2402.txt
+RTA-old-format-fangjinuo__easyjson__fastjson-to-easyjson____CVE-2019-14379.txt
+RTA-old-format-fatalwing__mp____HTTPCLIENT-1803.txt
+RTA-old-format-jguyet__HttpRequest____HTTPCLIENT-1803.txt
+RTA-old-format-kumuluz__kumuluzee-health____HTTPCLIENT-1803.txt
+RTA-old-format-opendistro-for-elasticsearch__security____CVE-2018-17196.txt
+RTA-old-format-pai-eas__eas-java-sdk____CVE-2019-20444.txt
+RTA-old-format-pai-eas__eas-java-sdk____CVE-2019-20445.txt
+RTA-old-format-tingyugetc520__DtJava____HTTPCLIENT-1803.txt
+RTA-old-format-xiaoq7758__usmartbox-java-client____CVE-2021-25122.txt
+RTA-old-format-xiaoq7758__usmartbox-java-client____CVE-2021-25329.txt

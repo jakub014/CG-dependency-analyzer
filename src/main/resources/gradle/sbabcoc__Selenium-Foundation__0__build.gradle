@@ -1,0 +1,8 @@
+com.nordstrom.tools:java-utils$2.0.0
+com.nordstrom.tools:settings$2.3.5
+com.nordstrom.tools:junit-foundation$15.1.1
+com.github.sbabcoc:logback-testng$1.3.2
+org.jsoup:jsoup$1.12.1
+org.hamcrest:hamcrest-core$2.2
+io.codearte.nexus-staging$0.21.1
+net.researchgate.release$2.8.1

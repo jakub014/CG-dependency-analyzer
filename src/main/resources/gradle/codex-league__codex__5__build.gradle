@@ -1,0 +1,4 @@
+javax.validation:validation-api$2.0.1.Final
+com.google.code.gson:gson$2.8.5
+com.google.guava:guava$18.0
+org.freemarker:freemarker$2.3.20

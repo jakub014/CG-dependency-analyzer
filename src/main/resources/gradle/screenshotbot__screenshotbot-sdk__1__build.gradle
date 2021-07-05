@@ -1,0 +1,11 @@
+com.github.kittinunf.fuel:fuel$2.2.3
+com.github.kittinunf.fuel:fuel-jackson$2.2.3
+commons-cli:commons-cli$1.4
+org.eclipse.jgit:org.eclipse.jgit$5.9.0.202009080501-r
+org.slf4j:slf4j-api$1.7.30
+com.fasterxml.jackson.core:jackson-core$2.11.2
+com.fasterxml.jackson.core:jackson-databind$2.11.2
+com.fasterxml.jackson.dataformat:jackson-dataformat-xml$2.11.3
+com.google.guava:guava$29.0-jre
+com.fasterxml.jackson.module:jackson-module-kotlin$2.11.3
+junit:junit$4.12

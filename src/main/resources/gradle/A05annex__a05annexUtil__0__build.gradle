@@ -1,0 +1,6 @@
+org.jetbrains:annotations$17.0.0
+com.googlecode.json-simple:json-simple$1.1.1
+junit:junit$4.12
+org.junit.platform:junit-platform-runner$1.4.2
+org.junit.jupiter:junit-jupiter-api$5.4.2
+org.junit.jupiter:junit-jupiter-engine$5.4.2

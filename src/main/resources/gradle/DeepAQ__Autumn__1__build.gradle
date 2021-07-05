@@ -1,0 +1,4 @@
+javax.servlet:javax.servlet-api$4.0.1
+org.slf4j:slf4j-log4j12$1.7.26
+org.eclipse.jetty.toolchain:jetty-jsp-jdt$2.3.3
+org.dom4j:dom4j$2.1.1

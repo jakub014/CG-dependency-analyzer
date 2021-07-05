@@ -1,0 +1,9 @@
+com.jfrog.bintray.gradle:gradle-bintray-plugin$1.8.4
+org.codehaus.groovy:groovy$2.4.12
+org.codehaus.groovy:groovy-sql$2.4.12
+org.liquibase:liquibase-core$4.3.3
+junit:junit$4.12
+com.h2database:h2$1.4.185
+ch.qos.logback:logback-classic$1.2.3
+org.apache.maven.wagon:wagon-ssh$2.8
+org.apache.maven.wagon:wagon-ssh-external$2.8

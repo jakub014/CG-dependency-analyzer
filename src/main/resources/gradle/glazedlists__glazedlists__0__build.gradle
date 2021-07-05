@@ -1,0 +1,6 @@
+junit:junit$4.11
+org.awaitility:awaitility$4.0.3
+org.assertj:assertj-core$3.16.1
+it.gianluz.capsule$1.0.3
+biz.aQute.bnd.builder$4.1.0
+org.openjfx.javafxplugin$0.0.7

@@ -1,0 +1,4 @@
+cn.featherfly.common:common-core$1.7.14
+org.testng:testng$6.8.21
+com.fasterxml.jackson.core:jackson-databind$2.9.10.1
+com.fasterxml.jackson.dataformat:jackson-dataformat-yaml$2.9.10

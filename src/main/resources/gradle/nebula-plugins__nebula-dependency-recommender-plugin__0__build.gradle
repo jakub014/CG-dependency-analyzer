@@ -1,0 +1,5 @@
+com.netflix.nebula:nebula-gradle-interop$latest.release
+com.google.guava:guava$20.0
+com.netflix.nebula:nebula-test$latest.release
+org.xmlunit:xmlunit-core$2.6.0
+nebula.plugin-plugin$15.2.1

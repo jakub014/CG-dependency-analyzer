@@ -1,0 +1,10 @@
+com.github.jengelman.gradle.plugins:shadow$4.0.4
+io.freefair.gradle:lombok-plugin$6.0.0-m2
+com.google.guava:guava$21.0
+org.apache.commons:commons-lang3$3.5
+com.squareup:javapoet$1.13.0
+commons-io:commons-io$2.8.0
+org.junit.jupiter:junit-jupiter-api$5.7.1
+com.google.testing.compile:compile-testing$0.19
+org.junit.jupiter:junit-jupiter-engine$5.7.1
+net.jqwik:jqwik$1.4.0

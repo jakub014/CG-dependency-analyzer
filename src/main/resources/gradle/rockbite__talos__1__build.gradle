@@ -1,0 +1,2 @@
+org.gradle.api.plugins:gradle-nexus-plugin$0.7.1
+com.github.jitpack:gradle-simple$1.0

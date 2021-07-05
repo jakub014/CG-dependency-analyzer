@@ -1,0 +1,8 @@
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.9.0
+org.projectlombok:lombok$1.18.6
+com.viridiansoftware:java-descriptor-parser-lib$1.0.2
+com.viridiansoftware:java-signature-parser-lib$1.0.2
+junit:junit$4.8.1
+org.jmock:jmock-junit4$2.5.1
+org.jmock:jmock-legacy$2.5.1
+net.jodah:concurrentunit$0.4.2

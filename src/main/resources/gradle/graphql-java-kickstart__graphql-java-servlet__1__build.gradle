@@ -1,0 +1,16 @@
+javax.servlet:javax.servlet-api$4.0.1
+javax.websocket:javax.websocket-api$1.1
+org.osgi:org.osgi.core$6.0.0
+org.osgi:org.osgi.service.cm$1.6.0
+org.osgi:org.osgi.service.component$1.4.0
+org.osgi:org.osgi.service.component.annotations$1.4.0
+org.osgi:org.osgi.service.metatype.annotations$1.4.0
+org.osgi:org.osgi.annotation$6.0.0
+io.github.graphql-java:graphql-java-annotations$8.3
+org.codehaus.groovy:groovy-all$3.0.8
+org.spockframework:spock-core$2.0-groovy-3.0
+cglib:cglib-nodep$3.3.0
+org.objenesis:objenesis$3.2
+org.springframework:spring-test$5.3.7
+org.springframework:spring-web$5.3.7
+com.google.guava:guava$30.1.1-jre

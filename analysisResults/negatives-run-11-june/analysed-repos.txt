@@ -1,0 +1,2185 @@
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT beanmapper-spring
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\beanmapper-spring\beanmapper-spring-master\target\beanmapper-spring-3.1.1-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/beanmapper-spring/beanmapper-spring-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/42BV__beanmapper-spring__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\beanmapper-spring\beanmapper-spring-master\target\beanmapper-spring-3.1.1-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/42BV__beanmapper-spring__0__pom.xml
+SUCCESSFULLY ANALYZED 42BV/beanmapper-spring/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT xdm-event-model
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\xdm-event-model\xdm-event-model-master\target\xdm-event-model-0.92.6-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/xdm-event-model/xdm-event-model-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/adobe__xdm-event-model__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\xdm-event-model\xdm-event-model-master\target\xdm-event-model-0.92.6-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/adobe__xdm-event-model__0__pom.xml
+SUCCESSFULLY ANALYZED adobe/xdm-event-model/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/databasesandlife-java-common/databasesandlife-java-common-master/pom.xml
+SUCCESSFULLY ANALYZED adrianmsmith/databasesandlife-java-common/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT sign-sdk-java
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\sign-sdk-java\sign-sdk-java-master\target\sign-sdk-java-1.8.6-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/sign-sdk-java/sign-sdk-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/aiosign__sign-sdk-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\sign-sdk-java\sign-sdk-java-master\target\sign-sdk-java-1.8.6-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/aiosign__sign-sdk-java__0__pom.xml
+SUCCESSFULLY ANALYZED aiosign/sign-sdk-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT axcboot
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\axcboot\axcboot-master\target\axcboot-0.40-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/axcboot/axcboot-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/airxiechao__axcboot__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\axcboot\axcboot-master\target\axcboot-0.40-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/airxiechao__axcboot__0__pom.xml
+SUCCESSFULLY ANALYZED airxiechao/axcboot/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT GDS-PMD-Security-Rules
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\GDS-PMD-Security-Rules\GDS-PMD-Security-Rules-main\target\pmd-gds-2.25.0-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/GDS-PMD-Security-Rules/GDS-PMD-Security-Rules-main/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/albfernandez__GDS-PMD-Security-Rules__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\GDS-PMD-Security-Rules\GDS-PMD-Security-Rules-main\target\pmd-gds-2.25.0-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/albfernandez__GDS-PMD-Security-Rules__0__pom.xml
+SUCCESSFULLY ANALYZED albfernandez/GDS-PMD-Security-Rules/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT embedded-rabbitmq
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\embedded-rabbitmq\embedded-rabbitmq-master\target\embedded-rabbitmq-1.5.1-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/embedded-rabbitmq/embedded-rabbitmq-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/AlejandroRivera__embedded-rabbitmq__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\embedded-rabbitmq\embedded-rabbitmq-master\target\embedded-rabbitmq-1.5.1-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/AlejandroRivera__embedded-rabbitmq__0__pom.xml
+SUCCESSFULLY ANALYZED AlejandroRivera/embedded-rabbitmq/
+
+
+
+-----------------
+FOUND A TOTAL OF 76 TARGET FOLDER FOR PROJECT Sentinel
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/Sentinel/Sentinel-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Sentinel\Sentinel-master\sentinel-extension\sentinel-datasource-spring-cloud-config\target\sentinel-datasource-spring-cloud-config-1.8.2-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/alibaba__Sentinel__10__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Sentinel\Sentinel-master\sentinel-extension\sentinel-datasource-spring-cloud-config\target\sentinel-datasource-spring-cloud-config-1.8.2-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/sentinel-extension/sentinel-datasource-spring-cloud-config/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/alibaba__Sentinel__10__pom.xml
+SUCCESSFULLY ANALYZED alibaba/Sentinel/sentinel-extension/sentinel-datasource-spring-cloud-config/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/Sentinel/Sentinel-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Sentinel\Sentinel-master\sentinel-transport\sentinel-transport-netty-http\target\sentinel-transport-netty-http-1.8.2-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/alibaba__Sentinel__18__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Sentinel\Sentinel-master\sentinel-transport\sentinel-transport-netty-http\target\sentinel-transport-netty-http-1.8.2-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/sentinel-transport/sentinel-transport-netty-http/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/alibaba__Sentinel__18__pom.xml
+SUCCESSFULLY ANALYZED alibaba/Sentinel/sentinel-transport/sentinel-transport-netty-http/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/Sentinel/Sentinel-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Sentinel\Sentinel-master\sentinel-demo\sentinel-demo-dubbo\target\sentinel-demo-dubbo-1.8.2-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/alibaba__Sentinel__56__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Sentinel\Sentinel-master\sentinel-demo\sentinel-demo-dubbo\target\sentinel-demo-dubbo-1.8.2-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/sentinel-demo/sentinel-demo-dubbo/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/alibaba__Sentinel__56__pom.xml
+SUCCESSFULLY ANALYZED alibaba/Sentinel/sentinel-demo/sentinel-demo-dubbo/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/Sentinel/Sentinel-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Sentinel\Sentinel-master\sentinel-demo\sentinel-demo-apache-dubbo\target\sentinel-demo-apache-dubbo-1.8.2-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/alibaba__Sentinel__69__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Sentinel\Sentinel-master\sentinel-demo\sentinel-demo-apache-dubbo\target\sentinel-demo-apache-dubbo-1.8.2-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/sentinel-demo/sentinel-demo-apache-dubbo/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/alibaba__Sentinel__69__pom.xml
+SUCCESSFULLY ANALYZED alibaba/Sentinel/sentinel-demo/sentinel-demo-apache-dubbo/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/Sentinel/Sentinel-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Sentinel\Sentinel-master\sentinel-demo\sentinel-demo-zuul-gateway\target\sentinel-demo-zuul-gateway-1.8.2-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/alibaba__Sentinel__73__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Sentinel\Sentinel-master\sentinel-demo\sentinel-demo-zuul-gateway\target\sentinel-demo-zuul-gateway-1.8.2-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/sentinel-demo/sentinel-demo-zuul-gateway/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/alibaba__Sentinel__73__pom.xml
+SUCCESSFULLY ANALYZED alibaba/Sentinel/sentinel-demo/sentinel-demo-zuul-gateway/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT fc-java-sdk
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\fc-java-sdk\fc-java-sdk-master\target\aliyun-java-sdk-fc-1.8.19-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/fc-java-sdk/fc-java-sdk-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/aliyun__fc-java-sdk__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\fc-java-sdk\fc-java-sdk-master\target\aliyun-java-sdk-fc-1.8.19-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/aliyun__fc-java-sdk__0__pom.xml
+SUCCESSFULLY ANALYZED aliyun/fc-java-sdk/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT eces-sbi
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\eces-sbi\eces-sbi-master\target\sbi-1.1.13.jar
+USING ROOT POM FILE ATdownloaded-repos/eces-sbi/eces-sbi-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/amovanb__eces-sbi__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\eces-sbi\eces-sbi-master\target\sbi-1.1.13.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/amovanb__eces-sbi__0__pom.xml
+SUCCESSFULLY ANALYZED amovanb/eces-sbi/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT eces-topologies
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\eces-topologies\eces-topologies-master\target\topologies-2.0.5.jar
+USING ROOT POM FILE ATdownloaded-repos/eces-topologies/eces-topologies-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/amovanb__eces-topologies__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\eces-topologies\eces-topologies-master\target\topologies-2.0.5.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/amovanb__eces-topologies__0__pom.xml
+SUCCESSFULLY ANALYZED amovanb/eces-topologies/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT analytics-java
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\analytics-java\analytics-java-master\target\analytics-java-1.0.1.jar
+USING ROOT POM FILE ATdownloaded-repos/analytics-java/analytics-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/analytics-java__analytics-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\analytics-java\analytics-java-master\target\analytics-java-1.0.1.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/analytics-java__analytics-java__0__pom.xml
+SUCCESSFULLY ANALYZED analytics-java/analytics-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT anteroscollections
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\anteroscollections\anteroscollections-master\target\Anteros-Collections-1.0.1.jar
+USING ROOT POM FILE ATdownloaded-repos/anteroscollections/anteroscollections-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/anterostecnologia__anteroscollections__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\anteroscollections\anteroscollections-master\target\Anteros-Collections-1.0.1.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/anterostecnologia__anteroscollections__0__pom.xml
+SUCCESSFULLY ANALYZED anterostecnologia/anteroscollections/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT anterossecurityspring
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\anterossecurityspring\anterossecurityspring-master\target\Anteros-Security-Spring-2.0.17.jar
+USING ROOT POM FILE ATdownloaded-repos/anterossecurityspring/anterossecurityspring-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/anterostecnologia__anterossecurityspring__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\anterossecurityspring\anterossecurityspring-master\target\Anteros-Security-Spring-2.0.17.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/anterostecnologia__anterossecurityspring__0__pom.xml
+SUCCESSFULLY ANALYZED anterostecnologia/anterossecurityspring/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT anterossecuritystore
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\anterossecuritystore\anterossecuritystore-master\target\Anteros-Security-Store-1.0.14.jar
+USING ROOT POM FILE ATdownloaded-repos/anterossecuritystore/anterossecuritystore-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/anterostecnologia__anterossecuritystore__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\anterossecuritystore\anterossecuritystore-master\target\Anteros-Security-Store-1.0.14.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/anterostecnologia__anterossecuritystore__0__pom.xml
+SUCCESSFULLY ANALYZED anterostecnologia/anterossecuritystore/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/iotdb/iotdb-master/pom.xml
+SUCCESSFULLY ANALYZED apache/iotdb/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/iotdb/iotdb-master/pom.xml
+SUCCESSFULLY ANALYZED apache/iotdb/server/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/iotdb/iotdb-master/pom.xml
+SUCCESSFULLY ANALYZED apache/iotdb/hive-connector/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT netbeans-mavenutils-nbm-maven-plugin
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\netbeans-mavenutils-nbm-maven-plugin\netbeans-mavenutils-nbm-maven-plugin-master\target\nbm-maven-plugin-4.7-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/netbeans-mavenutils-nbm-maven-plugin/netbeans-mavenutils-nbm-maven-plugin-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/apache__netbeans-mavenutils-nbm-maven-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\netbeans-mavenutils-nbm-maven-plugin\netbeans-mavenutils-nbm-maven-plugin-master\target\nbm-maven-plugin-4.7-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/apache__netbeans-mavenutils-nbm-maven-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED apache/netbeans-mavenutils-nbm-maven-plugin/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/royale-compiler/royale-compiler-develop/pom.xml
+SUCCESSFULLY ANALYZED apache/royale-compiler/compiler-common/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/royale-compiler/royale-compiler-develop/pom.xml
+SUCCESSFULLY ANALYZED apache/royale-compiler/compiler/
+
+
+
+-----------------
+FOUND A TOTAL OF 2 TARGET FOLDER FOR PROJECT apigee-deploy-maven-plugin
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/apigee-deploy-maven-plugin/apigee-deploy-maven-plugin-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\apigee-deploy-maven-plugin\apigee-deploy-maven-plugin-master\target\apigee-edge-maven-plugin-1.2.4-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/apigee__apigee-deploy-maven-plugin__0__pom.xml
+NO VULNERABILITIES FOUND USING NON-ROOT POM FILE AT /pom.xml 
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\apigee-deploy-maven-plugin\apigee-deploy-maven-plugin-master\target\apigee-edge-maven-plugin-1.2.4-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/apigee__apigee-deploy-maven-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED apigee/apigee-deploy-maven-plugin/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT java-asana
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\java-asana\java-asana-master\target\asana-0.10.4.jar
+USING ROOT POM FILE ATdownloaded-repos/java-asana/java-asana-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/Asana__java-asana__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\java-asana\java-asana-master\target\asana-0.10.4.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/Asana__java-asana__0__pom.xml
+SUCCESSFULLY ANALYZED Asana/java-asana/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT assertthat-bdd-standalone
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\assertthat-bdd-standalone\assertthat-bdd-standalone-master\target\assertthat-bdd-standalone-1.9.3-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/assertthat-bdd-standalone/assertthat-bdd-standalone-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/assertthat__assertthat-bdd-standalone__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\assertthat-bdd-standalone\assertthat-bdd-standalone-master\target\assertthat-bdd-standalone-1.9.3-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/assertthat__assertthat-bdd-standalone__0__pom.xml
+SUCCESSFULLY ANALYZED assertthat/assertthat-bdd-standalone/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT elasticsearch-statsd-plugin
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\elasticsearch-statsd-plugin\elasticsearch-statsd-plugin-master\target\elasticsearch-statsd-7.10.2.0.jar
+USING ROOT POM FILE ATdownloaded-repos/elasticsearch-statsd-plugin/elasticsearch-statsd-plugin-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/Automattic__elasticsearch-statsd-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\elasticsearch-statsd-plugin\elasticsearch-statsd-plugin-master\target\elasticsearch-statsd-7.10.2.0.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/Automattic__elasticsearch-statsd-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED Automattic/elasticsearch-statsd-plugin/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/ats-testexplorer/ats-testexplorer-master/pom.xml
+SUCCESSFULLY ANALYZED Axway/ats-testexplorer/
+
+
+
+-----------------
+FOUND A TOTAL OF 7 TARGET FOLDER FOR PROJECT azure-cosmosdb-java
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/azure-cosmosdb-java/azure-cosmosdb-java-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\azure-cosmosdb-java\azure-cosmosdb-java-master\direct-impl\target\azure-cosmosdb-direct-2.6.13-empty-javadoc.jar
+AND DOWNLOADED LOCAL PATH poms/Azure__azure-cosmosdb-java__3__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\azure-cosmosdb-java\azure-cosmosdb-java-master\direct-impl\target\azure-cosmosdb-direct-2.6.13-empty-javadoc.jar
+USING NON-ROOT POM FILE AT/direct-impl/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/Azure__azure-cosmosdb-java__3__pom.xml
+SUCCESSFULLY ANALYZED Azure/azure-cosmosdb-java/direct-impl/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT azure-documentdb-java
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/azure-documentdb-java/azure-documentdb-java-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\azure-documentdb-java\azure-documentdb-java-master\documentdb-examples\target\documentdb-examples-1.0.0-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/Azure__azure-documentdb-java__1__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\azure-documentdb-java\azure-documentdb-java-master\documentdb-examples\target\documentdb-examples-1.0.0-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/documentdb-examples/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/Azure__azure-documentdb-java__1__pom.xml
+SUCCESSFULLY ANALYZED Azure/azure-documentdb-java/documentdb-examples/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT duplicate-finder-maven-plugin
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\duplicate-finder-maven-plugin\duplicate-finder-maven-plugin-master\target\duplicate-finder-maven-plugin-1.5.1-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/duplicate-finder-maven-plugin/duplicate-finder-maven-plugin-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/basepom__duplicate-finder-maven-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\duplicate-finder-maven-plugin\duplicate-finder-maven-plugin-master\target\duplicate-finder-maven-plugin-1.5.1-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/basepom__duplicate-finder-maven-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED basepom/duplicate-finder-maven-plugin/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT mybatis-more
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\mybatis-more\mybatis-more-main\target\sf-mybatis-1.0.2.RELEASE-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/mybatis-more/mybatis-more-main/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/bgqrjf__mybatis-more__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\mybatis-more\mybatis-more-main\target\sf-mybatis-1.0.2.RELEASE-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/bgqrjf__mybatis-more__0__pom.xml
+SUCCESSFULLY ANALYZED bgqrjf/mybatis-more/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT clavin
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\clavin\clavin-master\target\clavin-2.3.1-8.4.0-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/clavin/clavin-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/bigconnect__clavin__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\clavin\clavin-master\target\clavin-2.3.1-8.4.0-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/bigconnect__clavin__0__pom.xml
+SUCCESSFULLY ANALYZED bigconnect/clavin/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT structured-map-proxy
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\structured-map-proxy\structured-map-proxy-develop\target\structured-map-proxy-1.0.6-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/structured-map-proxy/structured-map-proxy-develop/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/BlackBeltTechnology__structured-map-proxy__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\structured-map-proxy\structured-map-proxy-develop\target\structured-map-proxy-1.0.6-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/BlackBeltTechnology__structured-map-proxy__0__pom.xml
+SUCCESSFULLY ANALYZED BlackBeltTechnology/structured-map-proxy/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT castle-java
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\castle-java\castle-java-master\target\castle-java-1.6.0-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/castle-java/castle-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/castle__castle-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\castle-java\castle-java-master\target\castle-java-1.6.0-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/castle__castle-java__0__pom.xml
+SUCCESSFULLY ANALYZED castle/castle-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT Dtective
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Dtective\Dtective-master\target\dtective-core-1.0.9-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/Dtective/Dtective-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/Catena-Media__Dtective__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Dtective\Dtective-master\target\dtective-core-1.0.9-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/Catena-Media__Dtective__0__pom.xml
+SUCCESSFULLY ANALYZED Catena-Media/Dtective/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT Cx-Client-Common
+EXCEPTION class java.lang.OutOfMemoryError THROWN FOR checkmarx-ltd/Cx-Client-Common/
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT checkmarx-spring-boot-java-sdk
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\checkmarx-spring-boot-java-sdk\checkmarx-spring-boot-java-sdk-develop\target\cx-spring-boot-sdk-0.4.94-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/checkmarx-spring-boot-java-sdk/checkmarx-spring-boot-java-sdk-develop/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/checkmarx-ts__checkmarx-spring-boot-java-sdk__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\checkmarx-spring-boot-java-sdk\checkmarx-spring-boot-java-sdk-develop\target\cx-spring-boot-sdk-0.4.94-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/checkmarx-ts__checkmarx-spring-boot-java-sdk__0__pom.xml
+SUCCESSFULLY ANALYZED checkmarx-ts/checkmarx-spring-boot-java-sdk/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT rabbit-common
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\rabbit-common\rabbit-common-master\target\rabbit-common-2.0.1-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/rabbit-common/rabbit-common-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/chengyuxing__rabbit-common__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\rabbit-common\rabbit-common-master\target\rabbit-common-2.0.1-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/chengyuxing__rabbit-common__0__pom.xml
+SUCCESSFULLY ANALYZED chengyuxing/rabbit-common/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT marathon-client
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\marathon-client\marathon-client-master\target\marathon-client-0.4.3.jar
+USING ROOT POM FILE ATdownloaded-repos/marathon-client/marathon-client-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/cloudnil__marathon-client__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\marathon-client\marathon-client-master\target\marathon-client-0.4.3.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/cloudnil__marathon-client__0__pom.xml
+SUCCESSFULLY ANALYZED cloudnil/marathon-client/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT simple-mybatis
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\simple-mybatis\simple-mybatis-master\target\simple-mybatis-1.2.1.jar
+USING ROOT POM FILE ATdownloaded-repos/simple-mybatis/simple-mybatis-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/codingapi__simple-mybatis__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\simple-mybatis\simple-mybatis-master\target\simple-mybatis-1.2.1.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/codingapi__simple-mybatis__0__pom.xml
+SUCCESSFULLY ANALYZED codingapi/simple-mybatis/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT gtfs-lib
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\gtfs-lib\gtfs-lib-dev\target\gtfs-lib-6.2.3-SNAPSHOT-shaded.jar
+USING ROOT POM FILE ATdownloaded-repos/gtfs-lib/gtfs-lib-dev/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/conveyal__gtfs-lib__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\gtfs-lib\gtfs-lib-dev\target\gtfs-lib-6.2.3-SNAPSHOT-shaded.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/conveyal__gtfs-lib__0__pom.xml
+SUCCESSFULLY ANALYZED conveyal/gtfs-lib/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT restabuild
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\restabuild\restabuild-master\target\original-restabuild-0.6-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/restabuild/restabuild-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/danielflower__restabuild__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\restabuild\restabuild-master\target\original-restabuild-0.6-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/danielflower__restabuild__0__pom.xml
+SUCCESSFULLY ANALYZED danielflower/restabuild/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/condition-plugins/condition-plugins-develop/pom.xml
+SUCCESSFULLY ANALYZED data-integrations/condition-plugins/
+
+
+
+-----------------
+FOUND A TOTAL OF 12 TARGET FOLDER FOR PROJECT database-rider
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/database-rider/database-rider-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\database-rider\database-rider-master\rider-examples\jpa-productivity-boosters\target\jpa-productivity-boosters-1.23.2-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/database-rider__database-rider__5__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\database-rider\database-rider-master\rider-examples\jpa-productivity-boosters\target\jpa-productivity-boosters-1.23.2-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/rider-examples/jpa-productivity-boosters/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/database-rider__database-rider__5__pom.xml
+SUCCESSFULLY ANALYZED database-rider/database-rider/rider-examples/jpa-productivity-boosters/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT d1_cn_common
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\d1_cn_common\d1_cn_common-main\target\d1_cn_common-2.3.0-javadoc-resources.jar
+USING ROOT POM FILE ATdownloaded-repos/d1_cn_common/d1_cn_common-main/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/DataONEorg__d1_cn_common__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\d1_cn_common\d1_cn_common-main\target\d1_cn_common-2.3.0-javadoc-resources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/DataONEorg__d1_cn_common__0__pom.xml
+SUCCESSFULLY ANALYZED DataONEorg/d1_cn_common/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/hc-common/hc-common-main/pom.xml
+SUCCESSFULLY ANALYZED dawnyangcat/hc-common/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT hc-utils
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\hc-utils\hc-utils-main\target\hc-utils-1.0.1-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/hc-utils/hc-utils-main/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/dawnyangcat__hc-utils__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\hc-utils\hc-utils-main\target\hc-utils-1.0.1-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/dawnyangcat__hc-utils__0__pom.xml
+SUCCESSFULLY ANALYZED dawnyangcat/hc-utils/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT common
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\common\common-master\target\common-0.0.8-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/common/common-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/DeBug-Bug__common__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\common\common-master\target\common-0.0.8-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/DeBug-Bug__common__0__pom.xml
+SUCCESSFULLY ANALYZED DeBug-Bug/common/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT device-detector
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\device-detector\device-detector-main\target\device-detector-1.5.0-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/device-detector/device-detector-main/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/deevvicom__device-detector__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\device-detector\device-detector-main\target\device-detector-1.5.0-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/deevvicom__device-detector__0__pom.xml
+SUCCESSFULLY ANALYZED deevvicom/device-detector/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT senior-core-java
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\senior-core-java\senior-core-java-master\target\senior-core-java-2.1.0-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/senior-core-java/senior-core-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/dev-senior-com-br__senior-core-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\senior-core-java\senior-core-java-master\target\senior-core-java-2.1.0-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/dev-senior-com-br__senior-core-java__0__pom.xml
+SUCCESSFULLY ANALYZED dev-senior-com-br/senior-core-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT chystat-api-client-java
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\chystat-api-client-java\chystat-api-client-java-master\target\chystat-api-client-java-1.0.0-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/chystat-api-client-java/chystat-api-client-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/diribet__chystat-api-client-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\chystat-api-client-java\chystat-api-client-java-master\target\chystat-api-client-java-1.0.0-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/diribet__chystat-api-client-java__0__pom.xml
+SUCCESSFULLY ANALYZED diribet/chystat-api-client-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT docsdk-java
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\docsdk-java\docsdk-java-main\target\docsdk-java-1.0.3-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/docsdk-java/docsdk-java-main/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/docsdk__docsdk-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\docsdk-java\docsdk-java-main\target\docsdk-java-1.0.3-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/docsdk__docsdk-java__0__pom.xml
+SUCCESSFULLY ANALYZED docsdk/docsdk-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT docspring-java
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\docspring-java\docspring-java-master\target\DocSpring-1.3.1-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/docspring-java/docspring-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/DocSpring__docspring-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\docspring-java\docspring-java-master\target\DocSpring-1.3.1-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/DocSpring__docspring-java__0__pom.xml
+SUCCESSFULLY ANALYZED DocSpring/docspring-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT dbflare-client
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dbflare-client\dbflare-client-master\target\dbflare-client-2.0.7-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/dbflare-client/dbflare-client-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/droidlogix__dbflare-client__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dbflare-client\dbflare-client-master\target\dbflare-client-2.0.7-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/droidlogix__dbflare-client__0__pom.xml
+SUCCESSFULLY ANALYZED droidlogix/dbflare-client/
+
+
+
+-----------------
+FOUND A TOTAL OF 7 TARGET FOLDER FOR PROJECT glsp-server
+SUCCESSFULLY ANALYZED eclipse-glsp/glsp-server/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\glsp-server\glsp-server-master\plugins\org.eclipse.glsp.graph\target\org.eclipse.glsp.graph-0.9.0-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/glsp-server/glsp-server-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/eclipse-glsp__glsp-server__4__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\glsp-server\glsp-server-master\plugins\org.eclipse.glsp.graph\target\org.eclipse.glsp.graph-0.9.0-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/plugins/org.eclipse.glsp.graph/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/eclipse-glsp__glsp-server__4__pom.xml
+SUCCESSFULLY ANALYZED eclipse-glsp/glsp-server/plugins/org.eclipse.glsp.graph/
+
+
+
+-----------------
+FOUND A TOTAL OF 260 TARGET FOLDER FOR PROJECT dirigible
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/dirigible/dirigible-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dirigible\dirigible-master\api\api-facade\api-spark\target\dirigible-api-facade-spark.jar
+AND DOWNLOADED LOCAL PATH poms/eclipse__dirigible__29__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dirigible\dirigible-master\api\api-facade\api-spark\target\dirigible-api-facade-spark.jar
+USING NON-ROOT POM FILE AT/api/api-facade/api-spark/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/eclipse__dirigible__29__pom.xml
+SUCCESSFULLY ANALYZED eclipse/dirigible/api/api-facade/api-spark/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/dirigible/dirigible-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dirigible\dirigible-master\modules\repository\repository-database\target\dirigible-repository-database.jar
+AND DOWNLOADED LOCAL PATH poms/eclipse__dirigible__198__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dirigible\dirigible-master\modules\repository\repository-database\target\dirigible-repository-database.jar
+USING NON-ROOT POM FILE AT/modules/repository/repository-database/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/eclipse__dirigible__198__pom.xml
+SUCCESSFULLY ANALYZED eclipse/dirigible/modules/repository/repository-database/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/dirigible/dirigible-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dirigible\dirigible-master\modules\database\database-data-models\target\dirigible-database-data-models.jar
+AND DOWNLOADED LOCAL PATH poms/eclipse__dirigible__224__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dirigible\dirigible-master\modules\database\database-data-models\target\dirigible-database-data-models.jar
+USING NON-ROOT POM FILE AT/modules/database/database-data-models/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/eclipse__dirigible__224__pom.xml
+SUCCESSFULLY ANALYZED eclipse/dirigible/modules/database/database-data-models/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/dirigible/dirigible-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dirigible\dirigible-master\modules\database\database-persistence\target\dirigible-database-persistence.jar
+AND DOWNLOADED LOCAL PATH poms/eclipse__dirigible__228__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dirigible\dirigible-master\modules\database\database-persistence\target\dirigible-database-persistence.jar
+USING NON-ROOT POM FILE AT/modules/database/database-persistence/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/eclipse__dirigible__228__pom.xml
+SUCCESSFULLY ANALYZED eclipse/dirigible/modules/database/database-persistence/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/dirigible/dirigible-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dirigible\dirigible-master\modules\cms\cms-database\target\dirigible-cms-database.jar
+AND DOWNLOADED LOCAL PATH poms/eclipse__dirigible__244__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dirigible\dirigible-master\modules\cms\cms-database\target\dirigible-cms-database.jar
+USING NON-ROOT POM FILE AT/modules/cms/cms-database/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/eclipse__dirigible__244__pom.xml
+SUCCESSFULLY ANALYZED eclipse/dirigible/modules/cms/cms-database/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT auf-rest
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\auf-rest\auf-rest-master\target\auf-rest-2.4.1-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/auf-rest/auf-rest-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/ehp246__auf-rest__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\auf-rest\auf-rest-master\target\auf-rest-2.4.1-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/ehp246__auf-rest__0__pom.xml
+SUCCESSFULLY ANALYZED ehp246/auf-rest/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT elepay-java-sdk
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\elepay-java-sdk\elepay-java-sdk-master\target\elepay-java-sdk-1.1.14-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/elepay-java-sdk/elepay-java-sdk-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/elestyle__elepay-java-sdk__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\elepay-java-sdk\elepay-java-sdk-master\target\elepay-java-sdk-1.1.14-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/elestyle__elepay-java-sdk__0__pom.xml
+SUCCESSFULLY ANALYZED elestyle/elepay-java-sdk/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT embold-maven-plugin
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\embold-maven-plugin\embold-maven-plugin-main\target\embold-maven-plugin-1.0.3-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/embold-maven-plugin/embold-maven-plugin-main/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/embold__embold-maven-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\embold-maven-plugin\embold-maven-plugin-main\target\embold-maven-plugin-1.0.3-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/embold__embold-maven-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED embold/embold-maven-plugin/
+
+
+
+-----------------
+FOUND A TOTAL OF 3 TARGET FOLDER FOR PROJECT everit-json-schema
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/everit-json-schema/everit-json-schema-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\everit-json-schema\everit-json-schema-master\core\target\org.everit.json.schema-0.0.0-develop-sources.jar
+AND DOWNLOADED LOCAL PATH poms/erosb__everit-json-schema__1__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\everit-json-schema\everit-json-schema-master\core\target\org.everit.json.schema-0.0.0-develop-sources.jar
+USING NON-ROOT POM FILE AT/core/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/erosb__everit-json-schema__1__pom.xml
+SUCCESSFULLY ANALYZED erosb/everit-json-schema/core/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT para-dao-sql
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\para-dao-sql\para-dao-sql-master\target\para-dao-sql-1.39.1-SNAPSHOT-shaded.jar
+USING ROOT POM FILE ATdownloaded-repos/para-dao-sql/para-dao-sql-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/erudika__para-dao-sql__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\para-dao-sql\para-dao-sql-master\target\para-dao-sql-1.39.1-SNAPSHOT-shaded.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/erudika__para-dao-sql__0__pom.xml
+SUCCESSFULLY ANALYZED erudika/para-dao-sql/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT rancher-java-client
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\rancher-java-client\rancher-java-client-master\target\rancher-java-client-1.6.27-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/rancher-java-client/rancher-java-client-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/esirotkin__rancher-java-client__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\rancher-java-client\rancher-java-client-master\target\rancher-java-client-1.6.27-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/esirotkin__rancher-java-client__0__pom.xml
+SUCCESSFULLY ANALYZED esirotkin/rancher-java-client/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT mvc
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\mvc\mvc-master\target\esprit-mvc-0.3.5-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/mvc/mvc-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/espr-it__mvc__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\mvc\mvc-master\target\esprit-mvc-0.3.5-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/espr-it__mvc__0__pom.xml
+SUCCESSFULLY ANALYZED espr-it/mvc/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT jaqpotj
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jaqpotj\jaqpotj-main\target\jaqpotj-0.0.1-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/jaqpotj/jaqpotj-main/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/euclia__jaqpotj__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jaqpotj\jaqpotj-main\target\jaqpotj-0.0.1-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/euclia__jaqpotj__0__pom.xml
+SUCCESSFULLY ANALYZED euclia/jaqpotj/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT orderbook
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\orderbook\orderbook-master\target\orderbook-0.7.24-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/orderbook/orderbook-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/exchange-core__orderbook__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\orderbook\orderbook-master\target\orderbook-0.7.24-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/exchange-core__orderbook__0__pom.xml
+SUCCESSFULLY ANALYZED exchange-core/orderbook/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT octopus-energy-web-api-java
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\octopus-energy-web-api-java\octopus-energy-web-api-java-main\target\octopus-energy-web-api-java-1.0.4-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/octopus-energy-web-api-java/octopus-energy-web-api-java-main/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/faeludire__octopus-energy-web-api-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\octopus-energy-web-api-java\octopus-energy-web-api-java-main\target\octopus-energy-web-api-java-1.0.4-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/faeludire__octopus-energy-web-api-java__0__pom.xml
+SUCCESSFULLY ANALYZED faeludire/octopus-energy-web-api-java/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/agileway/agileway-master/pom.xml
+SUCCESSFULLY ANALYZED fangjinuo/agileway/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/agileway/agileway-master/pom.xml
+SUCCESSFULLY ANALYZED fangjinuo/agileway/agileway-feign/
+
+
+
+-----------------
+FOUND A TOTAL OF 5 TARGET FOLDER FOR PROJECT jackson-datatypes-collections
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/jackson-datatypes-collections/jackson-datatypes-collections-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jackson-datatypes-collections\jackson-datatypes-collections-master\guava\target\jackson-datatype-guava-3.0.0-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/FasterXML__jackson-datatypes-collections__1__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jackson-datatypes-collections\jackson-datatypes-collections-master\guava\target\jackson-datatype-guava-3.0.0-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/guava/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/FasterXML__jackson-datatypes-collections__1__pom.xml
+SUCCESSFULLY ANALYZED FasterXML/jackson-datatypes-collections/guava/
+
+
+
+-----------------
+FOUND A TOTAL OF 5 TARGET FOLDER FOR PROJECT jackson-jr
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/jackson-jr/jackson-jr-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jackson-jr\jackson-jr-master\jr-retrofit2\target\jackson-jr-retrofit2-3.0.0-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/FasterXML__jackson-jr__2__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jackson-jr\jackson-jr-master\jr-retrofit2\target\jackson-jr-retrofit2-3.0.0-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/jr-retrofit2/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/FasterXML__jackson-jr__2__pom.xml
+SUCCESSFULLY ANALYZED FasterXML/jackson-jr/jr-retrofit2/
+
+
+
+-----------------
+FOUND A TOTAL OF 2 TARGET FOLDER FOR PROJECT payment
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/payment/payment-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\payment\payment-master\service\target\payment.jar
+AND DOWNLOADED LOCAL PATH poms/febiAlfarabi__payment__1__pom.xml
+EXCEPTION class java.lang.OutOfMemoryError THROWN FOR febiAlfarabi/payment/service/
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/payment/payment-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\payment\payment-master\payment-model\target\payment-model-1.0.50-SNAPSHOT-sources.jar
+AND DOWNLOADED LOCAL PATH poms/febiAlfarabi__payment__2__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\payment\payment-master\payment-model\target\payment-model-1.0.50-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/payment-model/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/febiAlfarabi__payment__2__pom.xml
+SUCCESSFULLY ANALYZED febiAlfarabi/payment/payment-model/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT pdb
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\pdb\pdb-master\target\pdb-2.8.3-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/pdb/pdb-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/feedzai__pdb__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\pdb\pdb-master\target\pdb-2.8.3-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/feedzai__pdb__0__pom.xml
+SUCCESSFULLY ANALYZED feedzai/pdb/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT finmath-lib-plot-extensions
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\finmath-lib-plot-extensions\finmath-lib-plot-extensions-master\target\finmath-lib-plot-extensions-0.4.5-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/finmath-lib-plot-extensions/finmath-lib-plot-extensions-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/finmath__finmath-lib-plot-extensions__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\finmath-lib-plot-extensions\finmath-lib-plot-extensions-master\target\finmath-lib-plot-extensions-0.4.5-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/finmath__finmath-lib-plot-extensions__0__pom.xml
+SUCCESSFULLY ANALYZED finmath/finmath-lib-plot-extensions/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT keywords
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\keywords\keywords-master\target\keywords-1.1-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/keywords/keywords-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/firmboy__keywords__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\keywords\keywords-master\target\keywords-1.1-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/firmboy__keywords__0__pom.xml
+SUCCESSFULLY ANALYZED firmboy/keywords/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT hbase-orm
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\hbase-orm\hbase-orm-main\target\hbase-object-mapper-1.19-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/hbase-orm/hbase-orm-main/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/flipkart-incubator__hbase-orm__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\hbase-orm\hbase-orm-main\target\hbase-object-mapper-1.19-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/flipkart-incubator__hbase-orm__0__pom.xml
+SUCCESSFULLY ANALYZED flipkart-incubator/hbase-orm/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT vfsjfilechooser2
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\vfsjfilechooser2\vfsjfilechooser2-master\target\vfsjfilechooser2-0.2.10-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/vfsjfilechooser2/vfsjfilechooser2-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/fracpete__vfsjfilechooser2__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\vfsjfilechooser2\vfsjfilechooser2-master\target\vfsjfilechooser2-0.2.10-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/fracpete__vfsjfilechooser2__0__pom.xml
+SUCCESSFULLY ANALYZED fracpete/vfsjfilechooser2/
+
+
+
+-----------------
+FOUND A TOTAL OF 3 TARGET FOLDER FOR PROJECT fj-lib
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/fj-lib/fj-lib-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\fj-lib\fj-lib-master\fj-ext\target\fj-ext-0.7.5.10.jar
+AND DOWNLOADED LOCAL PATH poms/fugerit-org__fj-lib__2__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\fj-lib\fj-lib-master\fj-ext\target\fj-ext-0.7.5.10.jar
+USING NON-ROOT POM FILE AT/fj-ext/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/fugerit-org__fj-lib__2__pom.xml
+SUCCESSFULLY ANALYZED fugerit-org/fj-lib/fj-ext/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT fusionauth-spring-security
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\fusionauth-spring-security\fusionauth-spring-security-master\target\fusionauth-spring-security-1.0.5-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/fusionauth-spring-security/fusionauth-spring-security-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/fusionauth__fusionauth-spring-security__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\fusionauth-spring-security\fusionauth-spring-security-master\target\fusionauth-spring-security-1.0.5-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/fusionauth__fusionauth-spring-security__0__pom.xml
+SUCCESSFULLY ANALYZED fusionauth/fusionauth-spring-security/
+
+
+
+-----------------
+FOUND A TOTAL OF 2 TARGET FOLDER FOR PROJECT geolatte-geom
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/geolatte-geom/geolatte-geom-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\geolatte-geom\geolatte-geom-master\json\target\geolatte-geojson-1.9.0-SNAPSHOT-sources.jar
+AND DOWNLOADED LOCAL PATH poms/geolatte__geolatte-geom__2__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\geolatte-geom\geolatte-geom-master\json\target\geolatte-geojson-1.9.0-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/json/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/geolatte__geolatte-geom__2__pom.xml
+SUCCESSFULLY ANALYZED geolatte/geolatte-geom/json/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT getui-pushapi-java-client-v2
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\getui-pushapi-java-client-v2\getui-pushapi-java-client-v2-main\target\restful-sdk-1.0.0.1-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/getui-pushapi-java-client-v2/getui-pushapi-java-client-v2-main/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/GetuiLaboratory__getui-pushapi-java-client-v2__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\getui-pushapi-java-client-v2\getui-pushapi-java-client-v2-main\target\restful-sdk-1.0.0.1-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/GetuiLaboratory__getui-pushapi-java-client-v2__0__pom.xml
+SUCCESSFULLY ANALYZED GetuiLaboratory/getui-pushapi-java-client-v2/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT closure-stylesheets
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\closure-stylesheets\closure-stylesheets-master\target\closure-stylesheets-1.6.0-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/closure-stylesheets/closure-stylesheets-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/google__closure-stylesheets__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\closure-stylesheets\closure-stylesheets-master\target\closure-stylesheets-1.6.0-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/google__closure-stylesheets__0__pom.xml
+SUCCESSFULLY ANALYZED google/closure-stylesheets/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT closure-templates
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\closure-templates\closure-templates-master\target\soy-2021-02-01-jssrc_js.jar
+USING ROOT POM FILE ATdownloaded-repos/closure-templates/closure-templates-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/google__closure-templates__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\closure-templates\closure-templates-master\target\soy-2021-02-01-jssrc_js.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/google__closure-templates__0__pom.xml
+SUCCESSFULLY ANALYZED google/closure-templates/
+
+
+
+-----------------
+FOUND A TOTAL OF 2 TARGET FOLDER FOR PROJECT essentials
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/essentials/essentials-main/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\essentials\essentials-main\java-essentials\target\essentials-3.0.0-SNAPSHOT-sources.jar
+AND DOWNLOADED LOCAL PATH poms/greenrobot__essentials__1__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\essentials\essentials-main\java-essentials\target\essentials-3.0.0-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/java-essentials/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/greenrobot__essentials__1__pom.xml
+SUCCESSFULLY ANALYZED greenrobot/essentials/java-essentials/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT presto-consul-connect
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\presto-consul-connect\presto-consul-connect-master\target\presto-consul-connect-2.2.0-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/presto-consul-connect/presto-consul-connect-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/gugalnikov__presto-consul-connect__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\presto-consul-connect\presto-consul-connect-master\target\presto-consul-connect-2.2.0-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/gugalnikov__presto-consul-connect__0__pom.xml
+SUCCESSFULLY ANALYZED gugalnikov/presto-consul-connect/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT toolkit
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\toolkit\toolkit-master\target\common-toolkit-1.0.2-RELEASE-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/toolkit/toolkit-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/hanframework__toolkit__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\toolkit\toolkit-master\target\common-toolkit-1.0.2-RELEASE-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/hanframework__toolkit__0__pom.xml
+SUCCESSFULLY ANALYZED hanframework/toolkit/
+
+
+
+-----------------
+FOUND A TOTAL OF 15 TARGET FOLDER FOR PROJECT hazelcast-simulator
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/hazelcast-simulator/hazelcast-simulator-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\hazelcast-simulator\hazelcast-simulator-master\drivers\driver-infinispan10\target\annotations-3.0.1u2.jar
+AND DOWNLOADED LOCAL PATH poms/hazelcast__hazelcast-simulator__8__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\hazelcast-simulator\hazelcast-simulator-master\drivers\driver-infinispan10\target\annotations-3.0.1u2.jar
+USING NON-ROOT POM FILE AT/drivers/driver-infinispan10/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/hazelcast__hazelcast-simulator__8__pom.xml
+SUCCESSFULLY ANALYZED hazelcast/hazelcast-simulator/drivers/driver-infinispan10/
+
+
+
+-----------------
+FOUND A TOTAL OF 2 TARGET FOLDER FOR PROJECT displaytag
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/displaytag/displaytag-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\displaytag\displaytag-master\displaytag\target\displaytag-2.4.1-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/hazendaz__displaytag__1__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\displaytag\displaytag-master\displaytag\target\displaytag-2.4.1-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/displaytag/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/hazendaz__displaytag__1__pom.xml
+SUCCESSFULLY ANALYZED hazendaz/displaytag/displaytag/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT springfox-enum-plugin
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\springfox-enum-plugin\springfox-enum-plugin-master\target\springfox-enum-plugin-3.0.1-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/springfox-enum-plugin/springfox-enum-plugin-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/hoereth__springfox-enum-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\springfox-enum-plugin\springfox-enum-plugin-master\target\springfox-enum-plugin-3.0.1-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/hoereth__springfox-enum-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED hoereth/springfox-enum-plugin/
+
+
+
+-----------------
+FOUND A TOTAL OF 3 TARGET FOLDER FOR PROJECT Sidechains-SDK
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/Sidechains-SDK/Sidechains-SDK-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Sidechains-SDK\Sidechains-SDK-master\sdk\target\sidechains-sdk-0.2.7.jar
+AND DOWNLOADED LOCAL PATH poms/HorizenOfficial__sidechains-sdk__1__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Sidechains-SDK\Sidechains-SDK-master\sdk\target\sidechains-sdk-0.2.7.jar
+USING NON-ROOT POM FILE AT/sdk/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/HorizenOfficial__sidechains-sdk__1__pom.xml
+SUCCESSFULLY ANALYZED HorizenOfficial/sidechains-sdk/sdk/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/beeju/beeju-main/pom.xml
+SUCCESSFULLY ANALYZED HotelsDotCom/beeju/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT javasdk
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\javasdk\javasdk-master\target\litesdk-1.0.4-jar-with-dependencies.jar
+USING ROOT POM FILE ATdownloaded-repos/javasdk/javasdk-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/hyperchain__javasdk__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\javasdk\javasdk-master\target\litesdk-1.0.4-jar-with-dependencies.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/hyperchain__javasdk__0__pom.xml
+SUCCESSFULLY ANALYZED hyperchain/javasdk/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT iDFlakies
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\iDFlakies\iDFlakies-master\target\idflakies-1.2.0-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/iDFlakies/iDFlakies-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/idflakies__iDFlakies__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\iDFlakies\iDFlakies-master\target\idflakies-1.2.0-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/idflakies__iDFlakies__0__pom.xml
+SUCCESSFULLY ANALYZED idflakies/iDFlakies/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT relax-utils
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\relax-utils\relax-utils-master\target\relax-utils-0.3.0-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/relax-utils/relax-utils-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/infilow__relax-utils__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\relax-utils\relax-utils-master\target\relax-utils-0.3.0-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/infilow__relax-utils__0__pom.xml
+SUCCESSFULLY ANALYZED infilow/relax-utils/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT sidecar-common
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\sidecar-common\sidecar-common-master\target\sidecar-common-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/sidecar-common/sidecar-common-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/instaclustr__sidecar-common__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\sidecar-common\sidecar-common-master\target\sidecar-common-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/instaclustr__sidecar-common__0__pom.xml
+SUCCESSFULLY ANALYZED instaclustr/sidecar-common/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT interacto-javafx-test
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\interacto-javafx-test\interacto-javafx-test-master\target\interacto-javafx-test-4.3.1.jar
+USING ROOT POM FILE ATdownloaded-repos/interacto-javafx-test/interacto-javafx-test-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/interacto__interacto-javafx-test__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\interacto-javafx-test\interacto-javafx-test-master\target\interacto-javafx-test-4.3.1.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/interacto__interacto-javafx-test__0__pom.xml
+SUCCESSFULLY ANALYZED interacto/interacto-javafx-test/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT flink-clickhouse-sink
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\flink-clickhouse-sink\flink-clickhouse-sink-master\target\flink-clickhouse-sink-1.3.1-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/flink-clickhouse-sink/flink-clickhouse-sink-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/ivi-ru__flink-clickhouse-sink__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\flink-clickhouse-sink\flink-clickhouse-sink-master\target\flink-clickhouse-sink-1.3.1-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/ivi-ru__flink-clickhouse-sink__0__pom.xml
+SUCCESSFULLY ANALYZED ivi-ru/flink-clickhouse-sink/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT jsonapi-converter
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jsonapi-converter\jsonapi-converter-develop\target\jsonapi-converter-0.12-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/jsonapi-converter/jsonapi-converter-develop/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/jasminb__jsonapi-converter__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jsonapi-converter\jsonapi-converter-develop\target\jsonapi-converter-0.12-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/jasminb__jsonapi-converter__0__pom.xml
+SUCCESSFULLY ANALYZED jasminb/jsonapi-converter/
+
+
+
+-----------------
+FOUND A TOTAL OF 3 TARGET FOLDER FOR PROJECT xjc-kafka-connect-plugin
+SUCCESSFULLY ANALYZED jcustenborder/xjc-kafka-connect-plugin/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\xjc-kafka-connect-plugin\xjc-kafka-connect-plugin-master\xjc-kafka-connect-plugin\target\xjc-kafka-connect-plugin-0.2-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/xjc-kafka-connect-plugin/xjc-kafka-connect-plugin-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/jcustenborder__xjc-kafka-connect-plugin__1__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\xjc-kafka-connect-plugin\xjc-kafka-connect-plugin-master\xjc-kafka-connect-plugin\target\xjc-kafka-connect-plugin-0.2-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/xjc-kafka-connect-plugin/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/jcustenborder__xjc-kafka-connect-plugin__1__pom.xml
+SUCCESSFULLY ANALYZED jcustenborder/xjc-kafka-connect-plugin/xjc-kafka-connect-plugin/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\xjc-kafka-connect-plugin\xjc-kafka-connect-plugin-master\kafka-connect-xml\target\kafka-connect-xml-0.2-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/xjc-kafka-connect-plugin/xjc-kafka-connect-plugin-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/jcustenborder__xjc-kafka-connect-plugin__2__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\xjc-kafka-connect-plugin\xjc-kafka-connect-plugin-master\kafka-connect-xml\target\kafka-connect-xml-0.2-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/kafka-connect-xml/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/jcustenborder__xjc-kafka-connect-plugin__2__pom.xml
+SUCCESSFULLY ANALYZED jcustenborder/xjc-kafka-connect-plugin/kafka-connect-xml/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT flyway-validator-maven-plugin
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\flyway-validator-maven-plugin\flyway-validator-maven-plugin-master\target\flyway-validator-maven-plugin-0.4.2-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/flyway-validator-maven-plugin/flyway-validator-maven-plugin-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/jebeaudet__flyway-validator-maven-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\flyway-validator-maven-plugin\flyway-validator-maven-plugin-master\target\flyway-validator-maven-plugin-0.4.2-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/jebeaudet__flyway-validator-maven-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED jebeaudet/flyway-validator-maven-plugin/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT force-rest-api
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\force-rest-api\force-rest-api-master\target\force-rest-api-0-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/force-rest-api/force-rest-api-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/jesperfj__force-rest-api__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\force-rest-api\force-rest-api-master\target\force-rest-api-0-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/jesperfj__force-rest-api__0__pom.xml
+SUCCESSFULLY ANALYZED jesperfj/force-rest-api/
+
+
+
+-----------------
+FOUND A TOTAL OF 2 TARGET FOLDER FOR PROJECT jeyzer-profile-updaters
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/jeyzer-profile-updaters/jeyzer-profile-updaters-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jeyzer-profile-updaters\jeyzer-profile-updaters-master\core\target\jeyzer-profile-updater-core-2.1-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/jeyzer-community__jeyzer-profile-updaters__1__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jeyzer-profile-updaters\jeyzer-profile-updaters-master\core\target\jeyzer-profile-updater-core-2.1-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/core/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/jeyzer-community__jeyzer-profile-updaters__1__pom.xml
+SUCCESSFULLY ANALYZED jeyzer-community/jeyzer-profile-updaters/core/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT imdb-api
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\imdb-api\imdb-api-master\target\imdb-api-2.0.0.jar
+USING ROOT POM FILE ATdownloaded-repos/imdb-api/imdb-api-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/jimmyd-be__imdb-api__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\imdb-api\imdb-api-master\target\imdb-api-2.0.0.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/jimmyd-be__imdb-api__0__pom.xml
+SUCCESSFULLY ANALYZED jimmyd-be/imdb-api/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT jpmml-converter
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jpmml-converter\jpmml-converter-master\target\jpmml-converter-1.4-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/jpmml-converter/jpmml-converter-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/jpmml__jpmml-converter__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jpmml-converter\jpmml-converter-master\target\jpmml-converter-1.4-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/jpmml__jpmml-converter__0__pom.xml
+SUCCESSFULLY ANALYZED jpmml/jpmml-converter/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jpush-api-java-client\jpush-api-java-client-master\target\jpush-client-3.4.8-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/jpush-api-java-client/jpush-api-java-client-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/jpush__jpush-api-java-client__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jpush-api-java-client\jpush-api-java-client-master\target\jpush-client-3.4.8-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/jpush__jpush-api-java-client__0__pom.xml
+SUCCESSFULLY ANALYZED jpush/jpush-api-java-client/
+
+
+
+-----------------
+FOUND A TOTAL OF 4 TARGET FOLDER FOR PROJECT db-scheduler
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/db-scheduler/db-scheduler-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\db-scheduler\db-scheduler-master\db-scheduler\target\db-scheduler-master-SNAPSHOT-shaded.jar
+AND DOWNLOADED LOCAL PATH poms/kagkarlsson__db-scheduler__1__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\db-scheduler\db-scheduler-master\db-scheduler\target\db-scheduler-master-SNAPSHOT-shaded.jar
+USING NON-ROOT POM FILE AT/db-scheduler/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/kagkarlsson__db-scheduler__1__pom.xml
+SUCCESSFULLY ANALYZED kagkarlsson/db-scheduler/db-scheduler/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT kutils
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\kutils\kutils-master\target\kutils-0.0.5-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/kutils/kutils-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/Kenny-Tang__kutils__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\kutils\kutils-master\target\kutils-0.0.5-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/Kenny-Tang__kutils__0__pom.xml
+SUCCESSFULLY ANALYZED Kenny-Tang/kutils/
+
+
+
+-----------------
+FOUND A TOTAL OF 4 TARGET FOLDER FOR PROJECT kestros-root-project
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\kestros-root-project\kestros-root-project-master\target\kestros-root-project-0.2.0-javadoc.jar
+USING ROOT POM FILE ATdownloaded-repos/kestros-root-project/kestros-root-project-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/kestros__kestros-root-project__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\kestros-root-project\kestros-root-project-master\target\kestros-root-project-0.2.0-javadoc.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/kestros__kestros-root-project__0__pom.xml
+SUCCESSFULLY ANALYZED kestros/kestros-root-project/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT bean2bean
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\bean2bean\bean2bean-master\target\bean2bean-4.0.0-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/bean2bean/bean2bean-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/kfgodel__bean2bean__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\bean2bean\bean2bean-master\target\bean2bean-4.0.0-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/kfgodel__bean2bean__0__pom.xml
+SUCCESSFULLY ANALYZED kfgodel/bean2bean/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/sdk-java/sdk-java-master/pom.xml
+SUCCESSFULLY ANALYZED Koople/sdk-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT wicket-jquery-selectors
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\wicket-jquery-selectors\wicket-jquery-selectors-wicket-7.x\target\jquery-selectors-0.2.7-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/wicket-jquery-selectors/wicket-jquery-selectors-wicket-7.x/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/l0rdn1kk0n__wicket-jquery-selectors__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\wicket-jquery-selectors\wicket-jquery-selectors-wicket-7.x\target\jquery-selectors-0.2.7-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/l0rdn1kk0n__wicket-jquery-selectors__0__pom.xml
+SUCCESSFULLY ANALYZED l0rdn1kk0n/wicket-jquery-selectors/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT bitsy
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\bitsy\bitsy-master\target\bitsy-3.4.2-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/bitsy/bitsy-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/lambdazen__bitsy__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\bitsy\bitsy-master\target\bitsy-3.4.2-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/lambdazen__bitsy__0__pom.xml
+SUCCESSFULLY ANALYZED lambdazen/bitsy/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT guice-jersey
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\guice-jersey\guice-jersey-master\target\guice-jersey-1.0.14-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/guice-jersey/guice-jersey-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/logzio__guice-jersey__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\guice-jersey\guice-jersey-master\target\guice-jersey-1.0.14-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/logzio__guice-jersey__0__pom.xml
+SUCCESSFULLY ANALYZED logzio/guice-jersey/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT logzio-logback-appender
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\logzio-logback-appender\logzio-logback-appender-master\target\logzio-logback-appender-0-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/logzio-logback-appender/logzio-logback-appender-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/logzio__logzio-logback-appender__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\logzio-logback-appender\logzio-logback-appender-master\target\logzio-logback-appender-0-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/logzio__logzio-logback-appender__0__pom.xml
+SUCCESSFULLY ANALYZED logzio/logzio-logback-appender/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT c84j
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\c84j\c84j-master\target\c84j-1.0.11-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/c84j/c84j-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/Macrometacorp__C84j__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\c84j\c84j-master\target\c84j-1.0.11-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/Macrometacorp__C84j__0__pom.xml
+SUCCESSFULLY ANALYZED Macrometacorp/C84j/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT widgetmap
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\widgetmap\widgetmap-master\target\widgetmap-4.0.1.jar
+USING ROOT POM FILE ATdownloaded-repos/widgetmap/widgetmap-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/matthewhorridge__widgetmap__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\widgetmap\widgetmap-master\target\widgetmap-4.0.1.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/matthewhorridge__widgetmap__0__pom.xml
+SUCCESSFULLY ANALYZED matthewhorridge/widgetmap/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT SpecialSource
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\SpecialSource\SpecialSource-master\target\SpecialSource-1.9.1-SNAPSHOT-shaded.jar
+USING ROOT POM FILE ATdownloaded-repos/SpecialSource/SpecialSource-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/md-5__SpecialSource__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\SpecialSource\SpecialSource-master\target\SpecialSource-1.9.1-SNAPSHOT-shaded.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/md-5__SpecialSource__0__pom.xml
+SUCCESSFULLY ANALYZED md-5/SpecialSource/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT chart
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\chart\chart-master\target\chart-2.6.0-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/chart/chart-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/mdewilde__chart__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\chart\chart-master\target\chart-2.6.0-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/mdewilde__chart__0__pom.xml
+SUCCESSFULLY ANALYZED mdewilde/chart/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/sdk-java/sdk-java-master/pom.xml
+SUCCESSFULLY ANALYZED mercadopago/sdk-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT rest-schemagen-spring
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\rest-schemagen-spring\rest-schemagen-spring-master\target\rest-schemagen-spring-0.2.2-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/rest-schemagen-spring/rest-schemagen-spring-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/Mercateo__rest-schemagen-spring__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\rest-schemagen-spring\rest-schemagen-spring-master\target\rest-schemagen-spring-0.2.2-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/Mercateo__rest-schemagen-spring__0__pom.xml
+SUCCESSFULLY ANALYZED Mercateo/rest-schemagen-spring/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT custom-plugin-java
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\custom-plugin-java\custom-plugin-java-master\target\mia-service-java-library-1.0.3-javadoc.jar
+USING ROOT POM FILE ATdownloaded-repos/custom-plugin-java/custom-plugin-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/mia-platform__custom-plugin-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\custom-plugin-java\custom-plugin-java-master\target\mia-service-java-library-1.0.3-javadoc.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/mia-platform__custom-plugin-java__0__pom.xml
+SUCCESSFULLY ANALYZED mia-platform/custom-plugin-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 11 TARGET FOLDER FOR PROJECT botbuilder-java
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/botbuilder-java/botbuilder-java-main/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\botbuilder-java\botbuilder-java-main\libraries\bot-connector\target\bot-connector-4.14.0-SNAPSHOT-sources.jar
+AND DOWNLOADED LOCAL PATH poms/Microsoft__botbuilder-java__2__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\botbuilder-java\botbuilder-java-main\libraries\bot-connector\target\bot-connector-4.14.0-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/libraries/bot-connector/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/Microsoft__botbuilder-java__2__pom.xml
+SUCCESSFULLY ANALYZED Microsoft/botbuilder-java/libraries/bot-connector/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT java-properties-to-json
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\java-properties-to-json\java-properties-to-json-develop\target\java-properties-to-json-5.2.1-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/java-properties-to-json/java-properties-to-json-develop/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/mikolajmitura__java-properties-to-json__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\java-properties-to-json\java-properties-to-json-develop\target\java-properties-to-json-5.2.1-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/mikolajmitura__java-properties-to-json__0__pom.xml
+SUCCESSFULLY ANALYZED mikolajmitura/java-properties-to-json/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT rescu
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\rescu\rescu-develop\target\rescu-2.1.1-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/rescu/rescu-develop/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/mmazi__rescu__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\rescu\rescu-develop\target\rescu-2.1.1-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/mmazi__rescu__0__pom.xml
+SUCCESSFULLY ANALYZED mmazi/rescu/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT jgossip
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jgossip\jgossip-master\target\jgossip-1.3.4-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/jgossip/jgossip-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/monkeymq__jgossip__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jgossip\jgossip-master\target\jgossip-1.3.4-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/monkeymq__jgossip__0__pom.xml
+SUCCESSFULLY ANALYZED monkeymq/jgossip/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT workflow
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\workflow\workflow-master\target\nirmata-workflow-0.9.5-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/workflow/workflow-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/nirmata__workflow__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\workflow\workflow-master\target\nirmata-workflow-0.9.5-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/nirmata__workflow__0__pom.xml
+SUCCESSFULLY ANALYZED nirmata/workflow/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT xml-stream-css
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\xml-stream-css\xml-stream-css-master\target\xml-stream-css-1.0.1.jar
+USING ROOT POM FILE ATdownloaded-repos/xml-stream-css/xml-stream-css-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/nithril__xml-stream-css__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\xml-stream-css\xml-stream-css-master\target\xml-stream-css-1.0.1.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/nithril__xml-stream-css__0__pom.xml
+SUCCESSFULLY ANALYZED nithril/xml-stream-css/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT tinySpring
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\tinySpring\tinySpring-master\target\tinyspring-1.0.3-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/tinySpring/tinySpring-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/nkligang__tinySpring__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\tinySpring\tinySpring-master\target\tinyspring-1.0.3-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/nkligang__tinySpring__0__pom.xml
+SUCCESSFULLY ANALYZED nkligang/tinySpring/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT svea-pmt-admin-api
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\svea-pmt-admin-api\svea-pmt-admin-api-master\target\pmt-admin-api-2.0.2-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/svea-pmt-admin-api/svea-pmt-admin-api-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/notima__svea-pmt-admin-api__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\svea-pmt-admin-api\svea-pmt-admin-api-master\target\pmt-admin-api-2.0.2-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/notima__svea-pmt-admin-api__0__pom.xml
+SUCCESSFULLY ANALYZED notima/svea-pmt-admin-api/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT nuls-v2-sdk4j
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\nuls-v2-sdk4j\nuls-v2-sdk4j-master\target\sdk4j-1.1.6.RELEASE.jar
+USING ROOT POM FILE ATdownloaded-repos/nuls-v2-sdk4j/nuls-v2-sdk4j-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/nuls-io__nuls-v2-sdk4j__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\nuls-v2-sdk4j\nuls-v2-sdk4j-master\target\sdk4j-1.1.6.RELEASE.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/nuls-io__nuls-v2-sdk4j__0__pom.xml
+SUCCESSFULLY ANALYZED nuls-io/nuls-v2-sdk4j/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT nutz
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\nutz\nutz-master\target\nutz-1.r.69-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/nutz/nutz-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/nutzam__nutz__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\nutz\nutz-master\target\nutz-1.r.69-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/nutzam__nutz__0__pom.xml
+SUCCESSFULLY ANALYZED nutzam/nutz/
+
+
+
+-----------------
+FOUND A TOTAL OF 3 TARGET FOLDER FOR PROJECT ojai
+SUCCESSFULLY ANALYZED ojai/ojai/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\ojai\ojai-master\java\map-reduce\target\ojai-mapreduce-3.2-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/ojai/ojai-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/ojai__ojai__2__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\ojai\ojai-master\java\map-reduce\target\ojai-mapreduce-3.2-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/java/map-reduce/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/ojai__ojai__2__pom.xml
+SUCCESSFULLY ANALYZED ojai/ojai/java/map-reduce/
+
+
+
+-----------------
+BUILD FAILED FOR POM XML PATH downloaded-repos/Chronicle-Network/Chronicle-Network-ea/pom.xml
+SUCCESSFULLY ANALYZED OpenHFT/Chronicle-Network/
+
+
+
+-----------------
+FOUND A TOTAL OF 3 TARGET FOLDER FOR PROJECT java-kafka-client
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/java-kafka-client/java-kafka-client-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\java-kafka-client\java-kafka-client-master\opentracing-kafka-spring\target\opentracing-kafka-spring-0.1.16-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/opentracing-contrib__java-kafka-client__3__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\java-kafka-client\java-kafka-client-master\opentracing-kafka-spring\target\opentracing-kafka-spring-0.1.16-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/opentracing-kafka-spring/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/opentracing-contrib__java-kafka-client__3__pom.xml
+SUCCESSFULLY ANALYZED opentracing-contrib/java-kafka-client/opentracing-kafka-spring/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT binance-api-client-java
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\binance-api-client-java\binance-api-client-java-master\target\binance-api-client-java-1.0.4-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/binance-api-client-java/binance-api-client-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/oril-software__binance-api-client-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\binance-api-client-java\binance-api-client-java-master\target\binance-api-client-java-1.0.4-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/oril-software__binance-api-client-java__0__pom.xml
+SUCCESSFULLY ANALYZED oril-software/binance-api-client-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT payjp-java
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\payjp-java\payjp-java-master\target\payjp-java-0.4.4-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/payjp-java/payjp-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/payjp__payjp-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\payjp-java\payjp-java-master\target\payjp-java-0.4.4-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/payjp__payjp-java__0__pom.xml
+SUCCESSFULLY ANALYZED payjp/payjp-java/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT perimeterx-java-sdk
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\perimeterx-java-sdk\perimeterx-java-sdk-master\target\perimeterx-sdk-6.2.6-jar-with-dependencies.jar
+USING ROOT POM FILE ATdownloaded-repos/perimeterx-java-sdk/perimeterx-java-sdk-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PerimeterX__perimeterx-java-sdk__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\perimeterx-java-sdk\perimeterx-java-sdk-master\target\perimeterx-sdk-6.2.6-jar-with-dependencies.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PerimeterX__perimeterx-java-sdk__0__pom.xml
+SUCCESSFULLY ANALYZED PerimeterX/perimeterx-java-sdk/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT buffer-trigger
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\buffer-trigger\buffer-trigger-master\target\buffer-trigger-0.2.21-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/buffer-trigger/buffer-trigger-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PhantomThief__buffer-trigger__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\buffer-trigger\buffer-trigger-master\target\buffer-trigger-0.2.21-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PhantomThief__buffer-trigger__0__pom.xml
+SUCCESSFULLY ANALYZED PhantomThief/buffer-trigger/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT cursor-iterator
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\cursor-iterator\cursor-iterator-master\target\cursor-iterator-1.0.14-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/cursor-iterator/cursor-iterator-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PhantomThief__cursor-iterator__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\cursor-iterator\cursor-iterator-master\target\cursor-iterator-1.0.14-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PhantomThief__cursor-iterator__0__pom.xml
+SUCCESSFULLY ANALYZED PhantomThief/cursor-iterator/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT retrieve-id-utils
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\retrieve-id-utils\retrieve-id-utils-master\target\retrieve-id-utils-1.0.11-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/retrieve-id-utils/retrieve-id-utils-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PhantomThief__retrieve-id-utils__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\retrieve-id-utils\retrieve-id-utils-master\target\retrieve-id-utils-1.0.11-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PhantomThief__retrieve-id-utils__0__pom.xml
+SUCCESSFULLY ANALYZED PhantomThief/retrieve-id-utils/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT scope
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\scope\scope-master\target\scope-1.0.20-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/scope/scope-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PhantomThief__scope__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\scope\scope-master\target\scope-1.0.20-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PhantomThief__scope__0__pom.xml
+SUCCESSFULLY ANALYZED PhantomThief/scope/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT simple-failover-java
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\simple-failover-java\simple-failover-java-master\target\simple-failover-0.1.31-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/simple-failover-java/simple-failover-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PhantomThief__simple-failover-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\simple-failover-java\simple-failover-java-master\target\simple-failover-0.1.31-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PhantomThief__simple-failover-java__0__pom.xml
+SUCCESSFULLY ANALYZED PhantomThief/simple-failover-java/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\zknotify-cache\zknotify-cache-master\target\zknotify-cache-0.1.23-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/zknotify-cache/zknotify-cache-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PhantomThief__zknotify-cache__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\zknotify-cache\zknotify-cache-master\target\zknotify-cache-0.1.23-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PhantomThief__zknotify-cache__0__pom.xml
+SUCCESSFULLY ANALYZED PhantomThief/zknotify-cache/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT BigDataTesting
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\BigDataTesting\BigDataTesting-master\target\BigDataTesting_2.12-0.8-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/BigDataTesting/BigDataTesting-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/PhillHenry__BigDataTesting__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\BigDataTesting\BigDataTesting-master\target\BigDataTesting_2.12-0.8-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/PhillHenry__BigDataTesting__0__pom.xml
+SUCCESSFULLY ANALYZED PhillHenry/BigDataTesting/
+
+
+
+-----------------
+FOUND A TOTAL OF 3 TARGET FOLDER FOR PROJECT singer
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/singer/singer-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\singer\singer-master\singer\target\singer-0.8.0.51-sources.jar
+AND DOWNLOADED LOCAL PATH poms/pinterest__singer__1__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\singer\singer-master\singer\target\singer-0.8.0.51-sources.jar
+USING NON-ROOT POM FILE AT/singer/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/pinterest__singer__1__pom.xml
+SUCCESSFULLY ANALYZED pinterest/singer/singer/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT qtcurate-java-sdk
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\qtcurate-java-sdk\qtcurate-java-sdk-master\target\qtcurate-2.6.0-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/qtcurate-java-sdk/qtcurate-java-sdk-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/quantxt__qtcurate-java-sdk__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\qtcurate-java-sdk\qtcurate-java-sdk-master\target\qtcurate-2.6.0-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/quantxt__qtcurate-java-sdk__0__pom.xml
+SUCCESSFULLY ANALYZED quantxt/qtcurate-java-sdk/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\kafka-workers\kafka-workers-master\target\kafka-workers-1.1.4-shaded.jar
+USING ROOT POM FILE ATdownloaded-repos/kafka-workers/kafka-workers-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/RTBHOUSE__kafka-workers__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\kafka-workers\kafka-workers-master\target\kafka-workers-1.1.4-shaded.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/RTBHOUSE__kafka-workers__0__pom.xml
+SUCCESSFULLY ANALYZED RTBHOUSE/kafka-workers/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\redis-sdk-plus\redis-sdk-plus-master\target\redis-sdk-plus-1.0.4.jar
+USING ROOT POM FILE ATdownloaded-repos/redis-sdk-plus/redis-sdk-plus-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/rtf666__redis-sdk-plus__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\redis-sdk-plus\redis-sdk-plus-master\target\redis-sdk-plus-1.0.4.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/rtf666__redis-sdk-plus__0__pom.xml
+SUCCESSFULLY ANALYZED rtf666/redis-sdk-plus/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dropwizard-db-sharding-bundle\dropwizard-db-sharding-bundle-master\target\db-sharding-bundle-1.3.13-9-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/dropwizard-db-sharding-bundle/dropwizard-db-sharding-bundle-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/santanusinha__dropwizard-db-sharding-bundle__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dropwizard-db-sharding-bundle\dropwizard-db-sharding-bundle-master\target\db-sharding-bundle-1.3.13-9-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/santanusinha__dropwizard-db-sharding-bundle__0__pom.xml
+SUCCESSFULLY ANALYZED santanusinha/dropwizard-db-sharding-bundle/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dropwizard-rabbitmq-actors\dropwizard-rabbitmq-actors-master\target\dropwizard-rabbitmq-actors-1.3.18-8-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/dropwizard-rabbitmq-actors/dropwizard-rabbitmq-actors-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/santanusinha__dropwizard-rabbitmq-actors__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\dropwizard-rabbitmq-actors\dropwizard-rabbitmq-actors-master\target\dropwizard-rabbitmq-actors-1.3.18-8-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/santanusinha__dropwizard-rabbitmq-actors__0__pom.xml
+SUCCESSFULLY ANALYZED santanusinha/dropwizard-rabbitmq-actors/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/page-factory-2/page-factory-2-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\page-factory-2\page-factory-2-master\page-factory-core\target\page-factory-core-16.0-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/sbtqa__page-factory-2__2__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\page-factory-2\page-factory-2-master\page-factory-core\target\page-factory-core-16.0-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/page-factory-core/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/sbtqa__page-factory-2__2__pom.xml
+SUCCESSFULLY ANALYZED sbtqa/page-factory-2/page-factory-core/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\maven-s3-wagon\maven-s3-wagon-master\target\maven-s3-wagon-1.3.4-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/maven-s3-wagon/maven-s3-wagon-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/seahen__maven-s3-wagon__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\maven-s3-wagon\maven-s3-wagon-master\target\maven-s3-wagon-1.3.4-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/seahen__maven-s3-wagon__0__pom.xml
+SUCCESSFULLY ANALYZED seahen/maven-s3-wagon/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\mayaa\mayaa-master\target\mayaa-1.2.1-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/mayaa/mayaa-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/seasarorg__mayaa__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\mayaa\mayaa-master\target\mayaa-1.2.1-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/seasarorg__mayaa__0__pom.xml
+SUCCESSFULLY ANALYZED seasarorg/mayaa/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/sensecap-sdk/sensecap-sdk-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\sensecap-sdk\sensecap-sdk-master\sensecap-java-sdk\target\sensecap-java-sdk-1.0.3-RELEASE-sources.jar
+AND DOWNLOADED LOCAL PATH poms/Seeed-Solution__sensecap-sdk__1__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\sensecap-sdk\sensecap-sdk-master\sensecap-java-sdk\target\sensecap-java-sdk-1.0.3-RELEASE-sources.jar
+USING NON-ROOT POM FILE AT/sensecap-java-sdk/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/Seeed-Solution__sensecap-sdk__1__pom.xml
+SUCCESSFULLY ANALYZED Seeed-Solution/sensecap-sdk/sensecap-java-sdk/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\mediawikixml\mediawikixml-master\target\mediawikixml-1.0.2-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/mediawikixml/mediawikixml-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/seeseekey__mediawikixml__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\mediawikixml\mediawikixml-master\target\mediawikixml-1.0.2-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/seeseekey__mediawikixml__0__pom.xml
+SUCCESSFULLY ANALYZED seeseekey/mediawikixml/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/serenity-core/serenity-core-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\serenity-core\serenity-core-master\serenity-browsermob-plugin\target\serenity-browsermob-plugin-2.4.25-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/serenity-bdd__serenity-core__20__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\serenity-core\serenity-core-master\serenity-browsermob-plugin\target\serenity-browsermob-plugin-2.4.25-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/serenity-browsermob-plugin/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/serenity-bdd__serenity-core__20__pom.xml
+SUCCESSFULLY ANALYZED serenity-bdd/serenity-core/serenity-browsermob-plugin/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\binance-java-api\binance-java-api-master\target\binance-api-client-1.0.2.jar
+USING ROOT POM FILE ATdownloaded-repos/binance-java-api/binance-java-api-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/Serg-Maximchuk__binance-java-api__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\binance-java-api\binance-java-api-master\target\binance-api-client-1.0.2.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/Serg-Maximchuk__binance-java-api__0__pom.xml
+SUCCESSFULLY ANALYZED Serg-Maximchuk/binance-java-api/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\base-toolkit\base-toolkit-master\target\base-toolkit-0.0.1-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/base-toolkit/base-toolkit-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/shizhan84__base-toolkit__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\base-toolkit\base-toolkit-master\target\base-toolkit-0.0.1-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/shizhan84__base-toolkit__0__pom.xml
+SUCCESSFULLY ANALYZED shizhan84/base-toolkit/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/japicmp/japicmp-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\japicmp\japicmp-master\japicmp-testbase\japicmp-test-maven-plugin\target\guava-18.0.jar
+AND DOWNLOADED LOCAL PATH poms/siom79__japicmp__6__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\japicmp\japicmp-master\japicmp-testbase\japicmp-test-maven-plugin\target\guava-18.0.jar
+USING NON-ROOT POM FILE AT/japicmp-testbase/japicmp-test-maven-plugin/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/siom79__japicmp__6__pom.xml
+SUCCESSFULLY ANALYZED siom79/japicmp/japicmp-testbase/japicmp-test-maven-plugin/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/japicmp/japicmp-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\japicmp\japicmp-master\japicmp-testbase\japicmp-test-maven-plugin-guava\target\japicmp-test-maven-plugin-guava-0.15.4-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/siom79__japicmp__7__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\japicmp\japicmp-master\japicmp-testbase\japicmp-test-maven-plugin-guava\target\japicmp-test-maven-plugin-guava-0.15.4-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/japicmp-testbase/japicmp-test-maven-plugin-guava/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/siom79__japicmp__7__pom.xml
+SUCCESSFULLY ANALYZED siom79/japicmp/japicmp-testbase/japicmp-test-maven-plugin-guava/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/sonar-flex/sonar-flex-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\sonar-flex\sonar-flex-master\flex-squid\target\flex-squid-2.7.0-SNAPSHOT.jar
+AND DOWNLOADED LOCAL PATH poms/SonarSource__sonar-flex__1__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\sonar-flex\sonar-flex-master\flex-squid\target\flex-squid-2.7.0-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/flex-squid/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/SonarSource__sonar-flex__1__pom.xml
+SUCCESSFULLY ANALYZED SonarSource/sonar-flex/flex-squid/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\sonar-packaging-maven-plugin\sonar-packaging-maven-plugin-master\target\sonar-packaging-maven-plugin-1.21-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/sonar-packaging-maven-plugin/sonar-packaging-maven-plugin-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/SonarSource__sonar-packaging-maven-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\sonar-packaging-maven-plugin\sonar-packaging-maven-plugin-master\target\sonar-packaging-maven-plugin-1.21-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/SonarSource__sonar-packaging-maven-plugin__0__pom.xml
+SUCCESSFULLY ANALYZED SonarSource/sonar-packaging-maven-plugin/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\github-java-client\github-java-client-master\target\github-client-0.0.26-SNAPSHOT-shaded.jar
+USING ROOT POM FILE ATdownloaded-repos/github-java-client/github-java-client-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/spotify__github-java-client__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\github-java-client\github-java-client-master\target\github-client-0.0.26-SNAPSHOT-shaded.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/spotify__github-java-client__0__pom.xml
+SUCCESSFULLY ANALYZED spotify/github-java-client/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\logging-java\logging-java-master\target\logging-2.3.2-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/logging-java/logging-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/spotify__logging-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\logging-java\logging-java-master\target\logging-2.3.2-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/spotify__logging-java__0__pom.xml
+SUCCESSFULLY ANALYZED spotify/logging-java/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\sparkey-java\sparkey-java-master\target\sparkey-3.2.2-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/sparkey-java/sparkey-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/spotify__sparkey-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\sparkey-java\sparkey-java-master\target\sparkey-3.2.2-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/spotify__sparkey-java__0__pom.xml
+SUCCESSFULLY ANALYZED spotify/sparkey-java/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Persism\Persism-master\target\persism-1.1.0-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/Persism/Persism-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/sproket__Persism__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\Persism\Persism-master\target\persism-1.1.0-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/sproket__Persism__0__pom.xml
+SUCCESSFULLY ANALYZED sproket/Persism/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\stuart-client-java\stuart-client-java-master\target\stuart-client-java-1.0.3-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/stuart-client-java/stuart-client-java-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/StuartApp__stuart-client-java__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\stuart-client-java\stuart-client-java-master\target\stuart-client-java-1.0.3-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/StuartApp__stuart-client-java__0__pom.xml
+SUCCESSFULLY ANALYZED StuartApp/stuart-client-java/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\messageml-utils\messageml-utils-master\target\messageml-0.9.71-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/messageml-utils/messageml-utils-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/symphonyoss__messageml-utils__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\messageml-utils\messageml-utils-master\target\messageml-0.9.71-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/symphonyoss__messageml-utils__0__pom.xml
+SUCCESSFULLY ANALYZED symphonyoss/messageml-utils/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/mp4parser/mp4parser-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\mp4parser\mp4parser-master\examples\target\examples-1.9.41.7.jar
+AND DOWNLOADED LOCAL PATH poms/tballison__mp4parser__2__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\mp4parser\mp4parser-master\examples\target\examples-1.9.41.7.jar
+USING NON-ROOT POM FILE AT/examples/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/tballison__mp4parser__2__pom.xml
+SUCCESSFULLY ANALYZED tballison/mp4parser/examples/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\java-data-graphql\java-data-graphql-master\target\java-data-graphql-1.23-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/java-data-graphql/java-data-graphql-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/tcaselli__java-data-graphql__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\java-data-graphql\java-data-graphql-master\target\java-data-graphql-1.23-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/tcaselli__java-data-graphql__0__pom.xml
+SUCCESSFULLY ANALYZED tcaselli/java-data-graphql/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/lb-components-server/lb-components-server-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\lb-components-server\lb-components-server-master\generator-component\target\generator-component-1.0.1-LB-sources.jar
+AND DOWNLOADED LOCAL PATH poms/Tearan__lb-components-server__2__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\lb-components-server\lb-components-server-master\generator-component\target\generator-component-1.0.1-LB-sources.jar
+USING NON-ROOT POM FILE AT/generator-component/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/Tearan__lb-components-server__2__pom.xml
+SUCCESSFULLY ANALYZED Tearan/lb-components-server/generator-component/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\kafka-common\kafka-common-master\target\kafka-mysql-offset.jar
+USING ROOT POM FILE ATdownloaded-repos/kafka-common/kafka-common-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/ThinkingDataAnalytics__kafka-common__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\kafka-common\kafka-common-master\target\kafka-mysql-offset.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/ThinkingDataAnalytics__kafka-common__0__pom.xml
+SUCCESSFULLY ANALYZED ThinkingDataAnalytics/kafka-common/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT mandrillservice
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\mandrillservice\mandrillservice-master\target\mandrillservice-0.0.10-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/mandrillservice/mandrillservice-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/tobasschu__mandrillservice__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\mandrillservice\mandrillservice-master\target\mandrillservice-0.0.10-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/tobasschu__mandrillservice__0__pom.xml
+SUCCESSFULLY ANALYZED tobasschu/mandrillservice/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT vscript
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\vscript\vscript-master\target\vscript-3.3.1-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/vscript/vscript-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/valdroz__vscript__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\vscript\vscript-master\target\vscript-3.3.1-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/valdroz__vscript__0__pom.xml
+SUCCESSFULLY ANALYZED valdroz/vscript/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT VersionOne.SDK.Java.APIClient
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\VersionOne.SDK.Java.APIClient\VersionOne.SDK.Java.APIClient-master\target\VersionOne.SDK.Java.APIClient-16.1.3-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/VersionOne.SDK.Java.APIClient/VersionOne.SDK.Java.APIClient-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/versionone__VersionOne.SDK.Java.APIClient__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\VersionOne.SDK.Java.APIClient\VersionOne.SDK.Java.APIClient-master\target\VersionOne.SDK.Java.APIClient-16.1.3-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/versionone__VersionOne.SDK.Java.APIClient__0__pom.xml
+SUCCESSFULLY ANALYZED versionone/VersionOne.SDK.Java.APIClient/
+
+
+
+-----------------
+FOUND A TOTAL OF 11 TARGET FOLDER FOR PROJECT vertx-config
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/vertx-config/vertx-config-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\vertx-config\vertx-config-master\vertx-config-spring-config-server\target\vertx-config-spring-config-server-4.1.0-SNAPSHOT-sources.jar
+AND DOWNLOADED LOCAL PATH poms/vert-x3__vertx-config__4__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\vertx-config\vertx-config-master\vertx-config-spring-config-server\target\vertx-config-spring-config-server-4.1.0-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/vertx-config-spring-config-server/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/vert-x3__vertx-config__4__pom.xml
+SUCCESSFULLY ANALYZED vert-x3/vertx-config/vertx-config-spring-config-server/
+
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/vertx-config/vertx-config-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\vertx-config\vertx-config-master\vertx-config-zookeeper\target\vertx-config-zookeeper-4.1.0-SNAPSHOT-sources.jar
+AND DOWNLOADED LOCAL PATH poms/vert-x3__vertx-config__8__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\vertx-config\vertx-config-master\vertx-config-zookeeper\target\vertx-config-zookeeper-4.1.0-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/vertx-config-zookeeper/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/vert-x3__vertx-config__8__pom.xml
+SUCCESSFULLY ANALYZED vert-x3/vertx-config/vertx-config-zookeeper/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT vertx-zookeeper
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\vertx-zookeeper\vertx-zookeeper-master\target\vertx-zookeeper-4.1.0-SNAPSHOT-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/vertx-zookeeper/vertx-zookeeper-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/vert-x3__vertx-zookeeper__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\vertx-zookeeper\vertx-zookeeper-master\target\vertx-zookeeper-4.1.0-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/vert-x3__vertx-zookeeper__0__pom.xml
+SUCCESSFULLY ANALYZED vert-x3/vertx-zookeeper/
+
+
+
+-----------------
+FOUND A TOTAL OF 12 TARGET FOLDER FOR PROJECT bucket4j
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/bucket4j/bucket4j-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\bucket4j\bucket4j-master\bucket4j-benchmarks\target\benchmarks.jar
+AND DOWNLOADED LOCAL PATH poms/vladimir-bukhtoyarov__bucket4j__15__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\bucket4j\bucket4j-master\bucket4j-benchmarks\target\benchmarks.jar
+USING NON-ROOT POM FILE AT/bucket4j-benchmarks/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/vladimir-bukhtoyarov__bucket4j__15__pom.xml
+SUCCESSFULLY ANALYZED vladimir-bukhtoyarov/bucket4j/bucket4j-benchmarks/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT WavesJ
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\WavesJ\WavesJ-master\target\wavesj-1.1.0-jar-with-dependencies.jar
+USING ROOT POM FILE ATdownloaded-repos/WavesJ/WavesJ-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/wavesplatform__WavesJ__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\WavesJ\WavesJ-master\target\wavesj-1.1.0-jar-with-dependencies.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/wavesplatform__WavesJ__0__pom.xml
+SUCCESSFULLY ANALYZED wavesplatform/WavesJ/
+
+
+
+-----------------
+FOUND A TOTAL OF 19 TARGET FOLDER FOR PROJECT motan
+SUCCESSFULLY ANALYZED weibocom/motan/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\motan\motan-master\motan-transport-netty4\target\motan-transport-netty4-1.1.10-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/motan/motan-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/weibocom__motan__5__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\motan\motan-master\motan-transport-netty4\target\motan-transport-netty4-1.1.10-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/motan-transport-netty4/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/weibocom__motan__5__pom.xml
+SUCCESSFULLY ANALYZED weibocom/motan/motan-transport-netty4/
+
+SUCCESSFULLY ANALYZED weibocom/motan/motan-demo/
+
+SUCCESSFULLY ANALYZED weibocom/motan/motan-benchmark/
+
+
+
+-----------------
+FOUND A TOTAL OF 5 TARGET FOLDER FOR PROJECT breeze
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/breeze/breeze-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\breeze\breeze-master\breeze-maven-plugin\target\breeze-maven-plugin-0.1.5-SNAPSHOT-sources.jar
+AND DOWNLOADED LOCAL PATH poms/weibreeze__breeze__5__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\breeze\breeze-master\breeze-maven-plugin\target\breeze-maven-plugin-0.1.5-SNAPSHOT-sources.jar
+USING NON-ROOT POM FILE AT/breeze-maven-plugin/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/weibreeze__breeze__5__pom.xml
+SUCCESSFULLY ANALYZED weibreeze/breeze/breeze-maven-plugin/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT w3w-android-wrapper
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\w3w-android-wrapper\w3w-android-wrapper-master\target\w3w-android-wrapper-3.1.3.jar
+USING ROOT POM FILE ATdownloaded-repos/w3w-android-wrapper/w3w-android-wrapper-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/what3words__w3w-android-wrapper__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\w3w-android-wrapper\w3w-android-wrapper-master\target\w3w-android-wrapper-3.1.3.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/what3words__w3w-android-wrapper__0__pom.xml
+SUCCESSFULLY ANALYZED what3words/w3w-android-wrapper/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT w3w-java-wrapper
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\w3w-java-wrapper\w3w-java-wrapper-master\target\w3w-java-wrapper-3.1.7-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/w3w-java-wrapper/w3w-java-wrapper-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/what3words__w3w-java-wrapper__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\w3w-java-wrapper\w3w-java-wrapper-master\target\w3w-java-wrapper-3.1.7-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/what3words__w3w-java-wrapper__0__pom.xml
+SUCCESSFULLY ANALYZED what3words/w3w-java-wrapper/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT xinge-api-java
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT bleach
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\bleach\bleach-master\target\bleach-0.1.2.jar
+USING ROOT POM FILE ATdownloaded-repos/bleach/bleach-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/xinput123__bleach__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\bleach\bleach-master\target\bleach-0.1.2.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/xinput123__bleach__0__pom.xml
+SUCCESSFULLY ANALYZED xinput123/bleach/
+
+
+
+-----------------
+FOUND A TOTAL OF 2 TARGET FOLDER FOR PROJECT we-end
+SUCCESSFULLY ANALYZED xwine/we-end/
+
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\we-end\we-end-master\we-end-spring\target\we-end-spring-1.4.1-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/we-end/we-end-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/xwine__we-end__2__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\we-end\we-end-master\we-end-spring\target\we-end-spring-1.4.1-sources.jar
+USING NON-ROOT POM FILE AT/we-end-spring/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/xwine__we-end__2__pom.xml
+SUCCESSFULLY ANALYZED xwine/we-end/we-end-spring/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT yosegi
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\yosegi\yosegi-master\target\yosegi-1.2.0-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/yosegi/yosegi-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/yahoojapan__yosegi__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\yosegi\yosegi-master\target\yosegi-1.2.0-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/yahoojapan__yosegi__0__pom.xml
+SUCCESSFULLY ANALYZED yahoojapan/yosegi/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT yosegi-hadoop
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\yosegi-hadoop\yosegi-hadoop-master\target\yosegi-hadoop-0.9.1-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/yosegi-hadoop/yosegi-hadoop-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/yahoojapan__yosegi-hadoop__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\yosegi-hadoop\yosegi-hadoop-master\target\yosegi-hadoop-0.9.1-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/yahoojapan__yosegi-hadoop__0__pom.xml
+SUCCESSFULLY ANALYZED yahoojapan/yosegi-hadoop/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT common-random
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\common-random\common-random-master\target\common-random-1.0.6-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/common-random/common-random-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/yindz__common-random__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\common-random\common-random-master\target\common-random-1.0.6-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/yindz__common-random__0__pom.xml
+SUCCESSFULLY ANALYZED yindz/common-random/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT jpush-spring-boot-starter
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jpush-spring-boot-starter\jpush-spring-boot-starter-master\target\jpush-spring-boot-starter-1.0.2-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/jpush-spring-boot-starter/jpush-spring-boot-starter-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/yindz__jpush-spring-boot-starter__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\jpush-spring-boot-starter\jpush-spring-boot-starter-master\target\jpush-spring-boot-starter-1.0.2-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/yindz__jpush-spring-boot-starter__0__pom.xml
+SUCCESSFULLY ANALYZED yindz/jpush-spring-boot-starter/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT zahori-framework
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\zahori-framework\zahori-framework-master\target\zahori-framework-0.1.10-SNAPSHOT.jar
+USING ROOT POM FILE ATdownloaded-repos/zahori-framework/zahori-framework-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/zahori-io__zahori-framework__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\zahori-framework\zahori-framework-master\target\zahori-framework-0.1.10-SNAPSHOT.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/zahori-io__zahori-framework__0__pom.xml
+SUCCESSFULLY ANALYZED zahori-io/zahori-framework/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT nway-jdbc
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\nway-jdbc\nway-jdbc-master\target\nway-jdbc-1.1.1-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/nway-jdbc/nway-jdbc-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/zdtjss__nway-jdbc__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\nway-jdbc\nway-jdbc-master\target\nway-jdbc-1.1.1-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/zdtjss__nway-jdbc__0__pom.xml
+SUCCESSFULLY ANALYZED zdtjss/nway-jdbc/
+
+
+
+-----------------
+FOUND A TOTAL OF 1 TARGET FOLDER FOR PROJECT maxwell
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\maxwell\maxwell-master\target\maxwell-1.33.0-sources.jar
+USING ROOT POM FILE ATdownloaded-repos/maxwell/maxwell-master/pom.xml
+AND DOWNLOADED LOCAL POM PATHpoms/zendesk__maxwell__0__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\maxwell\maxwell-master\target\maxwell-1.33.0-sources.jar
+USING NON-ROOT POM FILE AT/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/zendesk__maxwell__0__pom.xml
+SUCCESSFULLY ANALYZED zendesk/maxwell/
+
+
+
+-----------------
+FOUND A TOTAL OF 2 TARGET FOLDER FOR PROJECT api-tools
+NO VULNERABILITIES FOUND USING ROOT POM FILE AT downloaded-repos/api-tools/api-tools-master/pom.xml
+FOR JAR WITH PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\api-tools\api-tools-master\api-tools-doc\target\api-tools-doc-3.19.0.jar
+AND DOWNLOADED LOCAL PATH poms/zhangjianshe__api-tools__2__pom.xml
+SUCCESSFULLY ANALYZED JAR PATH C:\Users\Niels\Documents\repositories\CG-dependency-analyzer\downloaded-repos\api-tools\api-tools-master\api-tools-doc\target\api-tools-doc-3.19.0.jar
+USING NON-ROOT POM FILE AT/api-tools-doc/pom.xml
+AND DOWNLOADED LOCAL POM PATH poms/zhangjianshe__api-tools__2__pom.xml
+SUCCESSFULLY ANALYZED zhangjianshe/api-tools/api-tools-doc/
+

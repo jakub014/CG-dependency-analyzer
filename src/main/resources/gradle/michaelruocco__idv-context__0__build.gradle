@@ -1,0 +1,16 @@
+org.eclipse.jgit:org.eclipse.jgit$5.7.0.202003110725-r
+org.projectlombok:lombok$1.18.20
+org.slf4j:slf4j-api$1.7.30
+org.slf4j:slf4j-simple$1.7.30
+org.junit.jupiter:junit-jupiter$5.7.2
+org.junit.jupiter:junit-jupiter-api$5.7.2
+org.assertj:assertj-core$3.19.0
+org.mockito:mockito-core$3.10.0
+com.diffplug.spotless$5.12.5
+com.github.ben-manes.versions$0.38.0
+com.vanniktech.dependency.graph.generator$0.5.0
+pl.allegro.tech.build.axion-release$1.13.2
+org.sonarqube$3.2.0
+nebula.lint$16.23.0
+io.codearte.nexus-staging$0.30.0
+com.adarshr.test-logger$3.0.0

@@ -1,0 +1,3 @@
+jakarta.persistence:jakarta.persistence-api$2.2.3
+cglib:cglib-nodep$3.3.0
+org.objenesis:objenesis$3.2

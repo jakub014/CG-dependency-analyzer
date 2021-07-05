@@ -1,0 +1,4 @@
+org.eclipse.persistence:org.eclipse.persistence.moxy$2.7.4
+com.sun.xml.bind:jaxb-core$2.2.11
+com.sun.xml.bind:jaxb-impl$2.2.11
+junit:junit$4.12

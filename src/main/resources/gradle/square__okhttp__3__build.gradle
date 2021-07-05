@@ -1,0 +1,9 @@
+com.google.android.gms:play-services-safetynet$17.0.0
+com.squareup.okhttp3:okhttp$3.12.12
+com.squareup.okhttp3:okhttp-tls$3.12.12
+com.squareup.okhttp3:mockwebserver$3.12.12
+androidx.test.ext:junit$1.1.2
+androidx.test.espresso:espresso-core$3.3.0
+org.apache.httpcomponents.client5:httpclient5$5.0
+com.squareup.moshi:moshi$1.11.0
+com.squareup.moshi:moshi-kotlin$1.11.0

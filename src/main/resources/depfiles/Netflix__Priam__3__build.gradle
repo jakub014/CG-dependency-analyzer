@@ -1,3 +1,0 @@
-jar {
-    manifest { attributes 'Premain-Class': 'com.netflix.priam.cassandra.extensions.PriamStartupAgent' }
-}

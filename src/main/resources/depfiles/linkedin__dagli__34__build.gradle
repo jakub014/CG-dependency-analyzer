@@ -1,7 +1,0 @@
-dependencies {
-  api project.ext.dependencies.libphonenumber
-  api project(':core')
-
-  annotationProcessor project(':annotation-processor')
-  compileOnly project(':annotation-processor')
-}

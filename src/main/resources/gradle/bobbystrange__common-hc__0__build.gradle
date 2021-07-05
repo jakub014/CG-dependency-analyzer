@@ -1,0 +1,7 @@
+com.squareup.okhttp3:okhttp$4.5.0
+com.squareup.okhttp3:logging-interceptor$4.5.0
+com.squareup.retrofit2:retrofit$2.8.1
+com.squareup.retrofit2:converter-gson$2.8.1
+org.apache.httpcomponents:httpclient$4.5.7
+org.apache.httpcomponents:httpmime$4.5.7
+com.thoughtworks.xstream:xstream$1.4.11.1

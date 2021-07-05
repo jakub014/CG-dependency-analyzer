@@ -1,0 +1,11 @@
+org.apache.commons:commons-lang3$3.10
+org.clojure:clojure$1.10.1
+org.clojure:core.match$1.0.0
+org.clojure:core.rrb-vector$0.1.1
+leiningen-core:leiningen-core$2.9.4
+org.apache.maven:maven-aether-provider$3.0.5
+org.sonatype.aether:aether-connector-file$1.13.1
+org.sonatype.aether:aether-connector-wagon$1.13.1
+org.clojure:tools.nrepl$0.2.13
+org.spockframework:spock-core$2.0-groovy-3.0
+nebula.clojure$9.4.1

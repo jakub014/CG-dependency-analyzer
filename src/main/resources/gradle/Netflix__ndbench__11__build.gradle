@@ -1,0 +1,4 @@
+com.google.inject.extensions:guice-servlet$4.0
+com.google.inject:guice$4.0
+com.owlike:genson$1.4
+com.netflix.eureka:eureka-client$1.9.13

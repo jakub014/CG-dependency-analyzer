@@ -1,0 +1,11 @@
+com.adobe.experiencecloud.ecid:ecid-service$1.0.2
+org.slf4j:slf4j-api$1.7.30
+com.fasterxml.jackson.core:jackson-annotations$2.11.3
+com.fasterxml.jackson.core:jackson-core$2.11.3
+com.fasterxml.jackson.core:jackson-databind$2.11.3
+com.konghq:unirest-java$3.11.02
+io.github.jamsesso:json-logic-java$1.0.5
+org.slf4j:slf4j-simple$1.7.30
+org.junit.jupiter:junit-jupiter-engine$5.5.2
+org.mockito:mockito-junit-jupiter$3.0.0
+com.diffplug.spotless$5.6.1

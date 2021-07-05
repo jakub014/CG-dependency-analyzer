@@ -1,0 +1,5 @@
+androidx.lifecycle:lifecycle-livedata-core-ktx$2.2.0
+androidx.lifecycle:lifecycle-viewmodel-ktx$2.2.0
+androidx.lifecycle:lifecycle-runtime-ktx$2.2.0
+androidx.arch.core:core-testing$2.1.0
+junit:junit$4.13

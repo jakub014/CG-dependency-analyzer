@@ -1,0 +1,6 @@
+javax.annotation:javax.annotation-api$1.3.2
+io.micronaut.test:micronaut-test-spock$2.3.3
+com.hubspot.jackson:jackson-datatype-protobuf$0.9.12
+net.ltgt.apt-eclipse$0.21
+net.ltgt.apt-idea$0.21
+com.google.protobuf$0.8.16

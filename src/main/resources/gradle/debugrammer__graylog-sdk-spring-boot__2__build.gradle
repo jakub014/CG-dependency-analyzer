@@ -1,0 +1,7 @@
+org.projectlombok:lombok$1.18.20
+com.squareup.okhttp3:okhttp$4.9.1
+com.jayway.jsonpath:json-path$2.5.0
+com.google.guava:guava$30.1.1-jre
+org.apache.commons:commons-lang3$3.12.0
+com.fasterxml.uuid:java-uuid-generator$4.0.1
+org.mongodb:bson$4.2.3

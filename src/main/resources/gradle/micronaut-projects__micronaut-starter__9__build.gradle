@@ -1,0 +1,4 @@
+ch.qos.logback:logback-classic$1.2.3
+org.postgresql:postgresql$42.2.20
+com.google.cloud.sql:postgres-socket-factory$1.2.3
+com.google.cloud.tools.jib$3.0.0

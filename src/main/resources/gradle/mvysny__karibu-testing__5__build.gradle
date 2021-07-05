@@ -1,0 +1,4 @@
+org.springframework.boot:spring-boot-starter-test$2.3.0.RELEASE
+org.springframework.boot:spring-boot-starter-web$2.3.0.RELEASE
+com.vaadin:vaadin-spring$12.2.0
+com.github.appreciated:app-layout-addon$4.0.0.beta5

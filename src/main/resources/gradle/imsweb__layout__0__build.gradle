@@ -1,0 +1,11 @@
+com.imsweb:naaccr-xml$7.10
+commons-io:commons-io$2.7
+com.opencsv:opencsv$5.4
+com.thoughtworks.xstream:xstream$1.4.16
+junit:junit$4.13
+com.imsweb:seerutils-gui$1.15
+com.imsweb:seerutils$5.6
+org.xhtmlrenderer:flying-saucer-core$9.1.19
+com.github.spotbugs$4.5.1
+com.bmuschko.nexus$2.3.1
+io.codearte.nexus-staging$0.21.2

@@ -1,0 +1,15 @@
+org.antlr:antlr4$latest.release
+org.apache.commons:commons-lang3$3.9
+org.postgresql:postgresql$42.2.19
+com.microsoft.sqlserver:mssql-jdbc$9.2.1.jre11
+org.mariadb.jdbc:mariadb-java-client$2.7.2
+mysql:mysql-connector-java$8.0.23
+org.hsqldb:hsqldb$2.6.0
+com.zaxxer:HikariCP$4.0.3
+org.json:json$latest.release
+org.yaml:snakeyaml$latest.release
+com.vikmad:base$latest.release
+org.junit:junit-bom$5.7.0
+org.junit.jupiter:junit-jupiter$5.7.0
+io.codearte.nexus-staging$0.22.0
+synapticloop.projectFilestatistics$1.1.0

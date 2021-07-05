@@ -58,7 +58,11 @@ public class VulnParser {
 
             String[] info1 = info.split("/");
             String[] info2 = info1[2].split("@");
-            packages.add(new Dependency(info1[1], info2[0], info2[1]));
+
+            String groupID = info1[1];
+            String artifactID = info2[0];
+            String version = info2[1];
+            packages.add(new Dependency(groupID, artifactID, version));
         }
         return packages;
     }

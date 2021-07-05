@@ -1,0 +1,4621 @@
+DEPENDENCY FILE WITH PATH poms/1and1__ioc-unit__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/1and1__ioc-unit__3__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/1and1__ioc-unit__4__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/1and1__ioc-unit__5__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/1and1__ioc-unit__29__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/a982338665__lf-open-java-swagger2word__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Acxiom__metalus__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Acxiom__metalus__6__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Acxiom__metalus__7__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.kafka
+ artifactId: kafka-clients
+ version: 2.0.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/adobe__aem-core-forms-components__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/adobe__xdm-event-model__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/adrianmsmith__databasesandlife-java-common__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.ws
+ artifactId: spring-ws-core
+ version: 2.4.2.RELEASE
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/aeshell__aesh-readline__3__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.mina
+ artifactId: mina-core
+ version: 2.0.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/aiosign__sign-sdk-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.alibaba
+ artifactId: fastjson
+ version: 1.2.9
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/airxiechao__axcboot__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/albfernandez__GDS-PMD-Security-Rules__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat
+ artifactId: tomcat-catalina
+ version: 8.0.24
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/AlejandroRivera__embedded-rabbitmq__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.rabbitmq
+ artifactId: amqp-client
+ version: 4.8.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/alexcojocaru__elasticsearch-maven-plugin__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.zeroturnaround
+ artifactId: zt-zip
+ version: 1.10
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/algorand__java-algorand-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.7.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/alibaba__easy-retry__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 16.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/alibaba__Sentinel__10__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.cloud
+ artifactId: spring-cloud-config-server
+ version: 2.0.0.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/alibaba__Sentinel__18__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.31.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/alibaba__Sentinel__56__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.42.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/alibaba__Sentinel__69__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.31.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/alibaba__Sentinel__73__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/alibaba__termd__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.undertow
+ artifactId: undertow-core
+ version: 1.2.6.Final
+
+
+
+ groupId: org.apache.mina
+ artifactId: mina-core
+ version: 2.0.9
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.7.9.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/alisson-gomesc__jkniv__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 9.4-1200-jdbc41
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/aliyun__alibabacloud-ververica-common__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/aliyun__aliyun-apsaradb-hbase-demo__3__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.thrift
+ artifactId: libthrift
+ version: 0.9.3
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.7.3
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/aliyun__aliyun-log-java-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/aliyun__aliyun-odps-java-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.7.1
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/aliyun__fc-java-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/alluxio__alluxio__32__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 3.1.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/alluxio__alluxio__33__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 14.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/allwefantasy__common-utils__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hadoop
+ artifactId: hadoop-hdfs
+ version: 2.6.0
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.6.0
+
+
+
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.17.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/analytics-java__analytics-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 26.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/anterostecnologia__anterosiot__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/anterostecnologia__anterosnosqlspringweb__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 5.0.7.RELEASE
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/anterostecnologia__anterospaymentapi__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/anterostecnologia__anterospersistenceapt__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 17.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/anterostecnologia__anterosrestdocmavenplugin__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/anterostecnologia__anterossecurityspring__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.security.oauth
+ artifactId: spring-security-oauth2
+ version: 2.3.3.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/anterostecnologia__anterossecuritystore__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.security.oauth
+ artifactId: spring-security-oauth2
+ version: 2.3.4.RELEASE
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/anterostecnologia__anterossecuritystoresql__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.security.oauth
+ artifactId: spring-security-oauth2
+ version: 2.3.4.RELEASE
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/anterostecnologia__anterossmsintegration__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/anterostecnologia__anterosspringweb__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 5.0.7.RELEASE
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/aoju__lancia__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__bookkeeper__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.vertx
+ artifactId: vertx-web
+ version: 3.5.3
+
+
+
+ groupId: io.vertx
+ artifactId: vertx-core
+ version: 3.5.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__drill__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: org.eclipse.jetty
+ artifactId: jetty-util
+ version: 9.3.28.v20191105
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__flink__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hadoop
+ artifactId: hadoop-hdfs
+ version: 2.4.1
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-mapreduce-client-core
+ version: 2.4.1
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.4.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__flink__46__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hive
+ artifactId: hive-exec
+ version: 1.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__flink__47__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hive
+ artifactId: hive-exec
+ version: 2.2.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__guacamole-client__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat
+ artifactId: tomcat-catalina
+ version: 7.0.37
+
+
+
+ groupId: org.apache.tomcat
+ artifactId: tomcat-coyote
+ version: 7.0.37
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__incubator-livy__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hadoop
+ artifactId: hadoop-hdfs
+ version: 2.7.3
+
+
+
+ groupId: org.eclipse.jetty
+ artifactId: jetty-util
+ version: 9.3.24.v20180605
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.7.3
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__incubator-nemo__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 22.0
+
+
+
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.42.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__incubator-sedona__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hadoop
+ artifactId: hadoop-hdfs
+ version: 2.8.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__iotdb__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.27.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__iotdb__10__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat.embed
+ artifactId: tomcat-embed-core
+ version: 8.5.15
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__iotdb__30__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__netbeans-mavenutils-nbm-maven-plugin__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__rocketmq__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.0.42.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__royale-compiler__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__royale-compiler__4__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__8__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__12__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__15__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat.embed
+ artifactId: tomcat-embed-core
+ version: 8.0.36
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__26__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.10.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__41__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.struts
+ artifactId: struts2-core
+ version: 2.3.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__47__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.eclipse.jetty
+ artifactId: jetty-server
+ version: 9.0.0.v20130308
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__63__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.0.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__70__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.kafka
+ artifactId: kafka-clients
+ version: 2.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__71__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.kafka
+ artifactId: kafka-clients
+ version: 2.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__83__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.rabbitmq
+ artifactId: amqp-client
+ version: 5.2.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__100__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.linecorp.armeria
+ artifactId: armeria
+ version: 0.85.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__123__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.cxf
+ artifactId: cxf-rt-transports-http
+ version: 3.1.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__144__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.projectreactor.netty
+ artifactId: reactor-netty
+ version: 0.8.11.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__165__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__skywalking__241__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__spark__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 14.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apache__spark__28__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apigee__apigee-config-maven-plugin__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/apigee__apigee-deploy-maven-plugin__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/appform-io__opentracing-annotations__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/aquality-automation__aquality-selenium-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/archivesunleashed__aut__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.7.4
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/arpnetworking__metrics-aggregator-daemon__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+
+ groupId: io.vertx
+ artifactId: vertx-core
+ version: 2.1.6
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/arpnetworking__metrics-cluster-aggregator__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.4-jre
+
+
+
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 9.4-1202-jdbc42
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/arpnetworking__metrics-portal__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.6.1-jre
+
+
+
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 9.4-1206-jdbc42
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/artipie__nuget-adapter__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Asana__java-asana__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/AsyncHttpClient__async-http-client__5__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/authorjapps__zerocode__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.0
+
+
+
+ groupId: org.apache.kafka
+ artifactId: kafka-clients
+ version: 2.1.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Automattic__elasticsearch-statsd-plugin__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/aws__amazon-neptune-sigv4-signer__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/aws__amazon-neptune-sparql-java-sigv4__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/awslabs__amazon-kinesis-client__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 26.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/awslabs__aws-serverless-java-container__5__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.struts
+ artifactId: struts2-core
+ version: 2.5.22
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/awslabs__dynamodb-cross-region-library__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Axway__ats-testexplorer__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.wicket
+ artifactId: wicket-util
+ version: 7.3.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Axway__iron__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+
+ groupId: org.apache.kafka
+ artifactId: kafka-clients
+ version: 2.1.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Azure__autorest-clientruntime-for-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Azure__azure-cosmosdb-java__3__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Azure__azure-sdk-for-java__22__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Azure__azure-sdk-for-java__152__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Azure__azure-sdk-for-java__154__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/baidu__iotcore-sdk-java__5__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/baidubce__bce-sdk-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 17.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.3.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/basepom__duplicate-finder-maven-plugin__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/bedrin__kerb4j__9__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat.embed
+ artifactId: tomcat-embed-core
+ version: 8.5.27
+
+
+
+ groupId: org.apache.tomcat
+ artifactId: tomcat-jasper
+ version: 8.5.27
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/bigconnect__clavin__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.opennlp
+ artifactId: opennlp-tools
+ version: 1.5.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/bitbar__testdroid-api__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.oauth-client
+ artifactId: google-oauth-client
+ version: 1.25.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/BlackBeltTechnology__epsilon-runtime__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/BlackBeltTechnology__osgi-utils__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/bluecrystalsign__bluecrystal__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/bouncestorage__chaos-http-proxy__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/brettwooldridge__HikariCP__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/bsc-dom__javaclay__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/bullhorn__sdk-rest__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.2.6.RELEASE
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/castle__castle-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Catena-Media__Dtective__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/checkmarx-ltd__Cx-Client-Common__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/checkmarx-ltd__cx-config-provider__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/checkmarx-ts__checkmarx-spring-boot-java-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/chengyuxing__rabbit-common__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/chenhaoxiang__primo__12__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/ChuanLikeCode__netty-rpc__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.42.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/clickntap__click_framework__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.itextpdf
+ artifactId: itextpdf
+ version: 5.5.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/CloudSlang__cs-actions__24__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/CloudSlang__cs-actions__31__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/codingapi__simple-mybatis__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Commonjava__indy__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.6-jre
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Commonjava__o11yphant__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.6-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/computablefacts__jupiter__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.7.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/contentful__contentful.java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.5.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/conveyal__gtfs-lib__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.0.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/CoreMedia__jangaroo-tools__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 22.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.7.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Crowdar__lippia-core__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0-jre
+
+
+
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.8.RELEASE
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/daichi-m__notification4J__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/danielflower__restabuild__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.eclipse.jetty
+ artifactId: jetty-util
+ version: 9.4.15.v20190215
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/data-integrations__condition-plugins__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 13.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/data-integrations__google-cloud__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.11.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/data-integrations__wrangler__4__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hadoop
+ artifactId: hadoop-mapreduce-client-core
+ version: 2.3.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/database-rider__database-rider__5__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.data
+ artifactId: spring-data-jpa
+ version: 1.7.2.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/debezium__debezium-connector-cassandra__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/deevvicom__device-detector__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/dev-about-code__stage__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/dev-senior-com-br__senior-core-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/diribet__chystat-api-client-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/docsdk__docsdk-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/droidlogix__dbflare-client__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/dromara__hmily__79__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 5.0.7.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/drone__ff-java-server-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/duracloud__duracloud__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 17.0
+
+
+
+ groupId: xerces
+ artifactId: xercesImpl
+ version: 2.9.1
+
+
+
+ groupId: org.springframework.data
+ artifactId: spring-data-commons
+ version: 1.12.1.RELEASE
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/dzieciou__curl-logger__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/e-amzallag__bricksetapi__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/eclipse-glsp__glsp-server__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 21.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/eclipse-glsp__glsp-server__4__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/eclipse__dirigible__29__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/eclipse__dirigible__198__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/eclipse__dirigible__224__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/eclipse__dirigible__228__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/eclipse__dirigible__244__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/edmunds__databricks-rest-client__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/EdurtIO__incubator-gcm__20__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.kafka
+ artifactId: kafka-clients
+ version: 0.11.0.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/ehp246__auf-rest__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/elastic__apm-agent-java__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.undertow
+ artifactId: undertow-core
+ version: 2.0.23.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/elastic__apm-agent-java__3__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.undertow
+ artifactId: undertow-core
+ version: 2.0.23.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/elastic__apm-agent-java__6__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.0.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/elastic__apm-agent-java__14__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/elastic__apm-agent-java__73__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.rabbitmq
+ artifactId: amqp-client
+ version: 3.6.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/elastic__apm-agent-java__83__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.vertx
+ artifactId: vertx-web
+ version: 3.6.0
+
+
+
+ groupId: io.vertx
+ artifactId: vertx-core
+ version: 3.6.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/elastic__apm-agent-java__84__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.vertx
+ artifactId: vertx-web
+ version: 3.6.0
+
+
+
+ groupId: io.vertx
+ artifactId: vertx-core
+ version: 3.6.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/elestyle__elepay-java-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/entando__entando-core__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/erudika__para-dao-sql__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/esirotkin__rancher-java-client__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.1.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/eulery__opentsdb-java-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/exchange-core__orderbook__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/facebook__facebook-java-business-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/faeludire__octopus-energy-web-api-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.5.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/FamilySearch__gedcomx-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/fangjinuo__agileway__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/fangjinuo__agileway__13__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.6.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/fangjinuo__easyjson__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.6.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/fangjinuo__easyjson__5__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.cxf
+ artifactId: cxf-rt-transports-http
+ version: 3.1.2
+
+
+
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.5.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/fanyong920__jvppeteer__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/fashionbrot__mars-validated__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.0.0.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/FasterXML__jackson-datatypes-collections__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/FasterXML__jackson-jr__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.5.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/featureflow__featureflow-java-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/feedzai__feedzai-openml-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.6.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/feedzai__pdb__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/finmath__finmath-lib-plot-extensions__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/flipkart-incubator__hbase-orm__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/fracpete__vfsjfilechooser2__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/fugerit-org__fj-lib__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.struts
+ artifactId: struts-core
+ version: 1.3.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/FunnelbackPtyLtd__funnelback-shared__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 21.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/fusionauth__fusionauth-spring-security__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 5.1.1.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/g127__jia54321-utils__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/gabrielenizzoli__spark_engine__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/gasparbarancelli__spring-native-query__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/gematik__ref-ePA-vauchannel__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/gematik__ref-ePA-vauchannel__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/geolatte__geolatte-geom__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/geomesa__geomesa-geoserver__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/GetuiLaboratory__getui-pushapi-java-client-v2__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/goldmansachs__jdmn__11__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.data
+ artifactId: spring-data-jpa
+ version: 2.1.8.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/google__closure-stylesheets__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/google__closure-templates__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/google__guice__12__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.struts
+ artifactId: struts2-core
+ version: 2.2.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/graphfoundation__ongdb__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.24.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/greenrobot__essentials__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hadii-tech__clarpse__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/harwey__cups4j__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hazelcast__hazelcast-simulator__8__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hazelcast__hazelcast-tomcat-sessionmanager__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hazelcast__hazelcast-tomcat-sessionmanager__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat
+ artifactId: tomcat-catalina
+ version: 7.0.54
+
+
+
+ groupId: org.apache.tomcat
+ artifactId: tomcat-coyote
+ version: 7.0.54
+
+
+
+ groupId: org.apache.tomcat
+ artifactId: tomcat-jasper
+ version: 7.0.54
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hazelcast__hazelcast-tomcat-sessionmanager__3__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat
+ artifactId: tomcat-catalina
+ version: 8.0.36
+
+
+
+ groupId: org.apache.tomcat
+ artifactId: tomcat-coyote
+ version: 8.0.36
+
+
+
+ groupId: org.apache.tomcat
+ artifactId: tomcat-jasper
+ version: 8.0.36
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hazelcast__hazelcast-tomcat-sessionmanager__4__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat
+ artifactId: tomcat-catalina
+ version: 8.5.9
+
+
+
+ groupId: org.apache.tomcat
+ artifactId: tomcat-coyote
+ version: 8.5.9
+
+
+
+ groupId: org.apache.tomcat
+ artifactId: tomcat-jasper
+ version: 8.5.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hazelcast__hazelcast-tomcat-sessionmanager__5__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat
+ artifactId: tomcat-jasper
+ version: 9.0.27
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hazendaz__displaytag__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.struts
+ artifactId: struts-core
+ version: 1.3.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hdiv__hdiv__5__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.struts
+ artifactId: struts-core
+ version: 1.3.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hdiv__hdiv__8__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.6.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hellowzk__light-spark__3__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 16.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hoereth__springfox-enum-plugin__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.18.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/HorizenOfficial__sidechains-sdk__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 21.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/HotelsDotCom__beeju__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hive
+ artifactId: hive-service
+ version: 3.1.2
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 3.1.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hs-web__hsweb-easy-orm__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hs-web__hsweb-easy-orm__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hugegraph__hugegraph-common__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hugegraph__hugegraph-loader__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/hyperchain__javasdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/ICIJ__datashare__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/idflakies__iDFlakies__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/idsec-solutions__signservice-integration-api__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/indeedeng__proctor__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.18.RELEASE
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/infilow__relax-utils__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/InscopeMetrics__kairosdb__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: org.eclipse.jetty
+ artifactId: jetty-server
+ version: 8.1.16.v20140903
+
+
+
+ groupId: org.eclipse.jetty
+ artifactId: jetty-util
+ version: 8.1.16.v20140903
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/inscopemetrics__kairosdb-extensions__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/interfax__interfax-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/intuit__QuickBooks-V3-Java-SDK__3__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/iteaj__iot__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: cn.hutool
+ artifactId: hutool-all
+ version: 4.1.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/ivi-ru__flink-clickhouse-sink__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/jasminb__jsonapi-converter__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.5.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/javamonkey__beetl2.0__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.struts
+ artifactId: struts2-core
+ version: 2.3.16.1
+
+
+
+ groupId: org.apache.struts.xwork
+ artifactId: xwork-core
+ version: 2.3.16.1
+
+
+
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 3.2.8.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/javamonkey__beetl2.0__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.security
+ artifactId: spring-security-core
+ version: 3.1.7.RELEASE
+
+
+
+ groupId: org.apache.struts.xwork
+ artifactId: xwork-core
+ version: 2.3.24
+
+
+
+ groupId: org.apache.struts
+ artifactId: struts2-core
+ version: 2.3.24
+
+
+
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.2.1.RELEASE
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/jberet__jsr352__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+
+ groupId: io.vertx
+ artifactId: vertx-core
+ version: 3.6.0
+
+
+
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.42.Final
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/jcabi__jcabi-http__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/jcgay__buildplan-maven-plugin__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 11.0.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/jdbi__jdbi__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 21.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/jeremylong__DependencyCheck__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.struts
+ artifactId: struts2-core
+ version: 2.1.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/jesperfj__force-rest-api__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.eclipse.jetty
+ artifactId: jetty-util
+ version: 8.1.14.v20131031
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/jiayaoguang__gameserver__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.42.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/jklasd__spring-junit-test__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 16.0
+
+
+
+ groupId: org.springframework.amqp
+ artifactId: spring-rabbit
+ version: 1.6.1.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/jklingsporn__vertx-jooq__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/jnthnclt__lab__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/jpmml__jpmml-converter__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 21.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/jpush__jpush-api-java-client__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.6.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/junxworks__junx__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.26.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/kagkarlsson__db-scheduler__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 9.4.1207
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/kancyframework__springx-boot__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.alibaba
+ artifactId: fastjson
+ version: 1.2.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Kenny-Tang__kutils__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/kestros__kestros-root-project__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/kiegroup__droolsjbpm-build-bootstrap__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.0-jre
+
+
+
+ groupId: org.apache.karaf
+ artifactId: apache-karaf
+ version: 2.4.0
+
+
+
+ groupId: org.eclipse.jetty
+ artifactId: jetty-util
+ version: 9.2.14.v20151106
+
+
+
+ groupId: io.undertow
+ artifactId: undertow-core
+ version: 2.0.28.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/komma__komma__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Koople__sdk-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/kumuluz__kumuluzee-health__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Kurento__kurento-maven-plugin__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/labai__ted__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.0.0.jre7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/labai__ted__3__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.0.0.jre7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/lambdazen__bitsy__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 13.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/lifeomic__fhirlib-scala__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/linkedin__linkedin-calcite__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.geode
+ artifactId: geode-core
+ version: 1.6.0
+
+
+
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 9.3-1102-jdbc41
+
+
+
+ groupId: xerces
+ artifactId: xercesImpl
+ version: 2.9.1
+
+
+
+ groupId: org.eclipse.jetty
+ artifactId: jetty-util
+ version: 9.4.11.v20180605
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.7.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/liumapp__qtools__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.5-jre
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/liuyehcf__liuyehcf-framework__9__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/liuzhenghui__weaver-ecology-parent__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 17.0
+
+
+
+ groupId: com.rabbitmq
+ artifactId: amqp-client
+ version: 4.0.3
+
+
+
+ groupId: net.sf.mpxj
+ artifactId: mpxj
+ version: 7.4.3
+
+
+
+ groupId: xerces
+ artifactId: xercesImpl
+ version: 2.10.0
+
+
+
+ groupId: org.owasp.antisamy
+ artifactId: antisamy
+ version: 1.5.3
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.4.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Lizixiang__triph-cloud__3__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Lizixiang__triph-cloud__4__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.security.oauth
+ artifactId: spring-security-oauth2
+ version: 2.3.3.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/lob__lob-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/locationtech__geowave__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+
+ groupId: org.apache.thrift
+ artifactId: libthrift
+ version: 0.9.3
+
+
+
+ groupId: org.springframework.security
+ artifactId: spring-security-core
+ version: 4.2.7.RELEASE
+
+
+
+ groupId: xerces
+ artifactId: xercesImpl
+ version: 2.11.0
+
+
+
+ groupId: org.eclipse.jetty
+ artifactId: jetty-util
+ version: 9.4.24.v20191120
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.8.4
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/locationtech__geowave__21__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 12.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/locationtech__geowave__54__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.security.oauth
+ artifactId: spring-security-oauth2
+ version: 2.3.3.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/logzio__guice-jersey__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/logzio__logzio-logback-appender__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/lucmoreau__ProvToolbox__19__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/lucmoreau__ProvToolbox__20__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/luismanuelamengual__NeoGroup-Warp__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.0.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/lumigo-io__java-tracer__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/magrifle__search-api__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/marco-eckstein__autoannotator__3__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/marklogic__marklogic-contentpump__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hadoop
+ artifactId: hadoop-hdfs
+ version: 2.6.0
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-mapreduce-client-core
+ version: 2.6.0
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.6.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/md-5__SpecialSource__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mdewilde__chart__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mercadopago__sdk-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Metatavu__edelphi__8__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.7.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/MicroFocus__octane-plugin-common__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.4.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/microsoft__bing-search-sdk-for-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.1
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Microsoft__botbuilder-java__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.5.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/miguelperezcolom__mateu-mdd__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/miguelperezcolom__mateu-mdd__16__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: xerces
+ artifactId: xercesImpl
+ version: 2.9.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mikolajmitura__java-properties-to-json__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mizool__mizool__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mmazi__rescu__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/molr__molr__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/monkeymq__jgossip__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.vertx
+ artifactId: vertx-core
+ version: 3.5.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.data
+ artifactId: spring-data-jpa
+ version: 2.0.7.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__4__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.vertx
+ artifactId: vertx-web
+ version: 3.6.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__6__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__7__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__9__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__10__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__11__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__12__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__14__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__15__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__34__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__37__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__38__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__40__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__41__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__42__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__43__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: io.vertx
+ artifactId: vertx-web
+ version: 3.6.2
+
+
+
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__44__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: io.vertx
+ artifactId: vertx-web
+ version: 3.6.2
+
+
+
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__45__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__46__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mosip__commons__49__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/mynewworldyyl__jmicro__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.30.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/N3TWORK__dynamap__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nablarch__nablarch-parent__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4.jre6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nandbox__nandboxbotsapi__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.eclipse.jetty
+ artifactId: jetty-util
+ version: 9.3.18.v20170406
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/NASA-PDS__mi-label__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/NASA-PDS__pds4-jparser__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/neo4j-labs__neosemantics__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nervepoint__identity4j__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nervepoint__identity4j__12__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nervepoint__identity4j__24__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/networknt__json-overlay__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 26.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nextbreakpoint__nextfractal__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nextflow-io__nextflow-s3fs__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 11.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nhl__link-move__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nirmata__workflow__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nithril__xml-stream-css__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/niupengyu__ahead-framework__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nkligang__tinySpring__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.mina
+ artifactId: mina-core
+ version: 2.0.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/NoraUi__NoraUi__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4.jre7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nuls-io__nuls-v2-sdk4j__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nutzam__nutz__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 9.4-1206-jdbc41
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nutzam__nutzboot__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.cxf
+ artifactId: cxf-rt-transports-http
+ version: 3.1.15
+
+
+
+ groupId: com.rabbitmq
+ artifactId: amqp-client
+ version: 5.4.3
+
+
+
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.21.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nutzam__nutzboot__148__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.34.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nutzam__nutzboot__149__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.34.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nutzam__nutzboot__169__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.34.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nutzam__nutzboot__170__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.34.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nutzam__nutzboot__171__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.34.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nutzam__nutzboot__172__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.34.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nutzam__nutzmore__14__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.rabbitmq
+ artifactId: amqp-client
+ version: 5.0.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nutzam__nutzmore__41__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.undertow
+ artifactId: undertow-core
+ version: 1.4.20.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/nwforrer__alfresco-file-encryption-extension__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/ocpsoft__rewrite__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.2.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/ocpsoft__rewrite__11__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 3.0.2.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/ocpsoft__rewrite__33__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 3.0.6.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/onekit-cloud-java__thekit__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/OneSpan__esl.sdk.java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 17.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Open-source-sharing__REST-doc__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/opendistro-for-elasticsearch__security__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+
+ groupId: org.apache.kafka
+ artifactId: kafka-clients
+ version: 2.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/openfeign__feign__5__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/openfeign__feign__13__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/openfeign__feign__16__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.6.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/openfeign__feign__25__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/opengeospatial__ets-swecommon20__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: xerces
+ artifactId: xercesImpl
+ version: 2.11.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/OpenHFT__Chronicle-Network__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 5.0.0.Alpha2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/openstack4j__openstack4j__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/openstack4j__openstack4j__6__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/opentracing-contrib__java-kafka-client__3__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/orientechnologies__orientdb-gremlin__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/oril-software__binance-api-client-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.4.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/owlcs__owlapi__11__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/oxctl__canvas-api__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/pagarme__pagarme-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 10.0.1
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/pai-eas__eas-java-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.0.21.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Pay-Group__best-pay-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.5.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/payjp__payjp-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/performancecopilot__parfait__11__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.cxf
+ artifactId: cxf-rt-transports-http
+ version: 2.2.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/PerimeterX__perimeterx-java-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.1.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/PhantomThief__buffer-trigger__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/PhantomThief__cursor-iterator__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/PhantomThief__retrieve-id-utils__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.2.4.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/PhantomThief__scope__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/PhantomThief__simple-failover-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/PhantomThief__zknotify-cache__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/pinterest__singer__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/plasma-framework__plasma__4__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: xerces
+ artifactId: xercesImpl
+ version: 2.11.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/plivo__plivo-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.2.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/PowerNukkit__PowerNukkit__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/pponec__ujorm__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.9.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/pponec__ujorm__4__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.9.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/pponec__ujorm__7__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.9.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/pponec__ujorm__14__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.22.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/prestodb__presto-hive-apache__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.hive
+ artifactId: hive-exec
+ version: 3.0.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/project-ncl__pnc__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.data
+ artifactId: spring-data-jpa
+ version: 1.11.23.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/project-ncl__pnc__12__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/pyranid__pyranid__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/q843705423__autumn__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/quandoo__elasticsearch-migration__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 21.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/quantxt__qtcurate-java-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/querqy__querqy__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/quinscape__automaton__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/quinscape__domainql__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1-jre
+
+
+
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/rahulsinghai__kafka-logback-appender__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.kafka
+ artifactId: kafka-clients
+ version: 2.1.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/rapid7__presto-query-builder__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Redouane59__twittered__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Relucent__yyl-base-lib__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.18.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/relxd__lxd-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/RentTheRunway__conduit__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.qpid
+ artifactId: qpid-broker
+ version: 6.1.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/ridiekel__jeletask__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Riskified__java_sdk__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Riskified__java_sdk__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.eclipse.jetty
+ artifactId: jetty-server
+ version: 9.3.0.M1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/robvanderleek__JLifx__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 5.0.0.Alpha2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/rockset__rockset-java-client__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/rokuality__rokuality-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/rongcloud__server-sdk-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/RTBHOUSE__kafka-workers__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/rtf666__redis-sdk-plus__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/santanusinha__dropwizard-db-sharding-bundle__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/santanusinha__dropwizard-rabbitmq-actors__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+
+ groupId: com.rabbitmq
+ artifactId: amqp-client
+ version: 5.5.3
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/santanusinha__dropwizard-service-discovery__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/sbtqa__page-factory-2__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/scalyr__Scalyr-Java-Client__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/sdrss__reportNG__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/seahen__maven-s3-wagon__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/seasarorg__mayaa__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 3.2.18.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/seata__seata__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4
+
+
+
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.30.Final
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/sentilo__sentilo__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 5.0.8.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/sentilo__sentilo__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 16.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/serenity-bdd__serenity-core__20__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.42.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/serenity-bdd__serenity-cucumber6__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Serg-Maximchuk__binance-java-api__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.4.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/shijingsh__mg2-framework__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+
+ groupId: xerces
+ artifactId: xercesImpl
+ version: 2.11.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/SimonAlong__Neo__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.1.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Simplify3x__simplifyOM__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/siom79__japicmp__6__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+
+ groupId: com.google.guava
+ artifactId: guava
+ version: 22.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/siom79__japicmp__7__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/sirv__sirv-rest-api-java__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.8.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/smart-coding-team__smart-job__4__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/smart-coding-team__smart-job__5__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.10
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/sofastack__sofa-rpc__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/sofastack__sofa-rpc__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0-jre
+
+
+
+ groupId: org.apache.cxf
+ artifactId: cxf-core
+ version: 3.0.14
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/SonarSource__sonar-flex__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 10.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/SonarSource__sonar-packaging-maven-plugin__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/sos-berlin__scheduler-engine__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 9.4.1207
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/spdx__tools__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/SpigotMC__BungeeCord__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 21.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/sportradar__UnifiedOddsSdkJava__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 21.0
+
+
+
+ groupId: com.rabbitmq
+ artifactId: amqp-client
+ version: 3.6.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/spotify__bigtable-autoscaler__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 42.2.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/spotify__futures-extra__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/spotify__github-java-client__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.datatype
+ artifactId: jackson-datatype-jsr310
+ version: 2.8.9
+
+
+
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/spotify__sparkey-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/spotinst__spotinst-sdk-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.4.1
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/sproket__Persism__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 9.2-1004-jdbc41
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/sproutsocial__nsq-j__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/srujankujmar__hyscale__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/stoicflame__enunciate__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.3.3.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/stoicflame__enunciate__33__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 3.2.14.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/stoicflame__enunciate__35__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.cxf
+ artifactId: cxf-rt-transports-http
+ version: 3.1.2
+
+
+
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 3.2.14.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Stratio__bdt__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 21.0
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-hdfs
+ version: 2.7.2
+
+
+
+ groupId: org.apache.hadoop
+ artifactId: hadoop-common
+ version: 2.7.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/susom__vertx-base__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/symphonyoss__messageml-utils__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/targomo__targomo-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/tcaselli__java-data-graphql__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/Tearan__lb-components-server__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/teiid__teiid__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+
+ groupId: org.apache.olingo
+ artifactId: odata-client-core
+ version: 4.7.1
+
+
+
+ groupId: org.apache.olingo
+ artifactId: odata-server-core
+ version: 4.7.1
+
+
+
+ groupId: com.google.oauth-client
+ artifactId: google-oauth-client
+ version: 1.25.0
+
+
+
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.42.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/teiid__teiid__68__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/tencentyun__cmq-java-tcp-sdk__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.24.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/termd__termd__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.undertow
+ artifactId: undertow-core
+ version: 1.2.6.Final
+
+
+
+ groupId: org.apache.mina
+ artifactId: mina-core
+ version: 2.0.9
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.7.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/terrier-org__terrier-core__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/tesler-platform__tesler__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 23.5-jre
+
+
+
+ groupId: org.springframework.data
+ artifactId: spring-data-jpa
+ version: 2.1.10.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/theshoeshiner__commons-jpa__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/ThinkingDataAnalytics__kafka-common__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/thirtyai__nezha-starters__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.2-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/tigerJayjay__easyrpc__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.34.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/tingyugetc520__DtJava__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/tohodog__QSRPC-starter__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 21.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/treasure-data__td-client-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/try0__wicket-iziToast__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/urbanairship__connect-java-library__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/urbanairship__java-library__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/uwolfer__gerrit-rest-java-client__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/valdroz__vscript__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/versionone__VersionOne.SDK.Java.APIClient__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/vert-x3__vertx-config__4__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.cloud
+ artifactId: spring-cloud-config-server
+ version: 1.3.2.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/vert-x3__vertx-config__8__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 25.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/vert-x3__vertx-zookeeper__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 27.0.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/verygoodsecurity__vgs-proxy-spring__4__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/verytouch__vkit__4__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.security.oauth
+ artifactId: spring-security-oauth2
+ version: 2.3.3.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/visenze__visearch-sdk-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/vladimir-bukhtoyarov__bucket4j__15__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/VladimirAntin__spring-core__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 20.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/vladmihalcea__hibernate-types__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 12.0
+
+
+
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 9.4-1202-jdbc4
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.7.9.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/vladmihalcea__hibernate-types__3__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 12.0
+
+
+
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 9.4-1202-jdbc4
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.7.9.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/vladmihalcea__hibernate-types__4__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 12.0
+
+
+
+ groupId: org.postgresql
+ artifactId: postgresql
+ version: 9.4-1202-jdbc4
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.7.9.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wavefronthq__wavefront-sdk-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wavesplatform__WavesJ__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io-caravan__caravan-tooling__2__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.4
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.5.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__9__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__10__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__11__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__12__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+
+ groupId: org.apache.sling
+ artifactId: org.apache.sling.xss
+ version: 2.0.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__13__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__14__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__15__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: org.apache.sling
+ artifactId: org.apache.sling.xss
+ version: 2.0.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__16__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: org.apache.sling
+ artifactId: org.apache.sling.xss
+ version: 2.0.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__17__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__18__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__19__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.8.4
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__20__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__21__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__22__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__23__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__24__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: org.apache.sling
+ artifactId: org.apache.sling.xss
+ version: 2.0.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__25__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__26__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__27__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.8
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__28__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__29__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__30__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__31__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__32__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wcm-io__wcm-io-tooling__33__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 15.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/webmate-io__webmate-sdk-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/weibocom__motan__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/weibocom__motan__5__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.42.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/weibocom__motan__6__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.42.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/weibocom__motan__12__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 4.2.4.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/what3words__w3w-android-wrapper__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-android
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/what3words__w3w-java-wrapper__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.squareup.retrofit2
+ artifactId: retrofit
+ version: 2.5.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wildbit__postmark-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/windup__windup__12__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/windup__windup__30__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 14.0.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/windup__windup__35__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/windup__windup__43__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: xerces
+ artifactId: xercesImpl
+ version: 2.9.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/windup__windup__59__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.vertx
+ artifactId: vertx-core
+ version: 3.5.2
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/windup__windup__65__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/windup__windup__73__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/windup__windup-web__9__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/windup__windup-web__10__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.7
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wizzdi__flexicore__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 26.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wizzdi__flexicore-base-service__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 26.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wizzdi__product-service__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 26.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wizzdi__ui-component-service__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 26.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wmlynar__jyroscope2__11__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 28.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/wso2__transport-http__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.3.6
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/xacml4j-opensource__xacml4j__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/XiaoMi__galaxy-fds-sdk-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 16.0.1
+
+
+
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.4.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/xiaoq7758__usmartbox-java-client__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.tomcat.embed
+ artifactId: tomcat-embed-core
+ version: 8.5.43
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/xingePush__xinge-api-java__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.5
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/yahoojapan__yosegi__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/yamcs__yamcs__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 24.1.1-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/yindz__common-random__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.10.0.pr1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/ynicing__ursful-mina__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.mina
+ artifactId: mina-core
+ version: 2.0.13
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/yuanweiquan-007__quick.start__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/yugabyte__cassandra-java-driver__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 19.0
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.7.9.3
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/yuweihn__assist4j__1__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 18.0
+
+
+
+ groupId: org.springframework
+ artifactId: spring-web
+ version: 5.0.7.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/zahori-io__zahori-framework__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: io.netty
+ artifactId: netty-all
+ version: 4.1.42.Final
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/zdtjss__nway-jdbc__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.springframework.data
+ artifactId: spring-data-jpa
+ version: 2.1.3.RELEASE
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/zendesk__maxwell__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.kafka
+ artifactId: kafka-clients
+ version: 0.10.0.1
+
+
+
+ groupId: org.apache.kafka
+ artifactId: kafka-clients
+ version: 0.10.2.1
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/zkbiocloud-open__isv-sdk__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: com.google.guava
+ artifactId: guava
+ version: 26.0-jre
+
+
+---------------------------DEPENDENCY FILE WITH PATH poms/znerd__confluence-publisher__0__pom.xml HAS THE FOLLOWING VULNERABILITIES:
+ groupId: org.apache.httpcomponents
+ artifactId: httpclient
+ version: 4.5.2
+
+
+
+ groupId: com.fasterxml.jackson.core
+ artifactId: jackson-databind
+ version: 2.9.9.3
+
+
+---------------------------

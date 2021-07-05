@@ -1,0 +1,7 @@
+androidx.core:core-ktx$1.3.1
+androidx.appcompat:appcompat$1.2.0
+androidx.constraintlayout:constraintlayout$2.0.1
+junit:junit$4.13
+org.robolectric:robolectric$4.3
+androidx.test.ext:junit$1.1.2
+androidx.test.espresso:espresso-core$3.3.0

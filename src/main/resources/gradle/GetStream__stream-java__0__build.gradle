@@ -1,0 +1,14 @@
+junit:junit$4.12
+com.pholser:junit-quickcheck-core$0.8.1
+com.pholser:junit-quickcheck-generators$0.8.1
+org.junit.vintage:junit-vintage-engine$5.2.0
+com.google.guava:guava$20.0
+com.squareup.okhttp3:okhttp$3.11.0
+com.fasterxml.jackson.core:jackson-core$2.9.6
+com.fasterxml.jackson.core:jackson-annotations$2.9.6
+com.fasterxml.jackson.core:jackson-databind$2.9.6
+com.auth0:java-jwt$3.4.0
+net.sourceforge.streamsupport:streamsupport$1.7.0
+net.sourceforge.streamsupport:streamsupport-cfuture$1.7.0
+me.tatarka.retrolambda$3.7.1
+com.prot.versioninfo$0.5

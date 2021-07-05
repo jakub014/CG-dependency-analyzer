@@ -1,0 +1,14 @@
+org.embulk:embulk-api$0.10.31
+org.embulk:embulk-spi$0.10.31
+org.embulk:embulk-util-config$0.3.0
+org.embulk:embulk-util-json$0.1.1
+org.embulk:embulk-util-timestamp$0.2.1
+com.fasterxml.jackson.core:jackson-annotations$2.6.7
+com.fasterxml.jackson.core:jackson-core$2.6.7
+com.fasterxml.jackson.core:jackson-databind$2.6.7
+junit:junit$4.13
+org.embulk:embulk-core$0.10.31
+org.embulk:embulk-deps$0.10.31
+org.embulk:embulk-util-retryhelper-jaxrs$0.8.1
+org.jboss.resteasy:resteasy-client$3.0.19.Final
+org.embulk.embulk-plugins$0.4.2

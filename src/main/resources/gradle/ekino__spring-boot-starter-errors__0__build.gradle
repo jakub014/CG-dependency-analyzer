@@ -1,0 +1,8 @@
+org.springframework.boot:spring-boot-dependencies$2.5.0
+software.amazon.awssdk:s3$2.16.69
+com.ekino.oss.jcv:jcv-hamcrest$1.5.0
+com.willowtreeapps.assertk:assertk-jvm$0.24
+com.ekino.oss.plugin.kotlin-quality$2.1.1
+org.jlleitschuh.gradle.ktlint$10.0.0
+org.unbroken-dome.test-sets$4.0.0
+org.jetbrains.dokka$1.4.32

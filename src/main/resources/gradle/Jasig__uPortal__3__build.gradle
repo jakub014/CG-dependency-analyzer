@@ -1,0 +1,7 @@
+com.sun.xml.bind:jaxb-xjc$2.3.4
+com.sun.xml.bind:jaxb-impl$2.3.4
+javax.xml.bind:jaxb-api$2.3.1
+org.jvnet.jaxb2_commons:jaxb2-basics-ant$1.11.1
+org.jvnet.jaxb2_commons:jaxb2-basics$1.11.1
+org.jvnet.jaxb2_commons:jaxb2-basics-annotate$1.1.0
+org.openrepose.gradle.plugins.jaxb$2.5.0

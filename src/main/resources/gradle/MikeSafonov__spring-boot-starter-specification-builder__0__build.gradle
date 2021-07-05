@@ -1,0 +1,6 @@
+org.springframework.boot:spring-boot-dependencies$2.4.4
+org.projectlombok:lombok$1.18.18
+com.h2database:h2$1.4.200
+io.spring.dependency-management$1.0.11.RELEASE
+info.solidsoft.pitest$1.6.0
+org.sonarqube$3.2.0

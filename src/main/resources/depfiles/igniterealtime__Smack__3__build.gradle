@@ -1,9 +1,0 @@
-description = """\
-Smack for standard XMPP connections over TCP."""
-
-dependencies {
-	api project(':smack-core')
-	api project(':smack-streammanagement')
-
-	testFixturesApi(testFixtures(project(":smack-core")))
-}

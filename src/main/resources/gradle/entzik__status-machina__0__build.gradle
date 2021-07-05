@@ -1,0 +1,6 @@
+com.google.guava:guava$28.1-jre
+org.slf4j:slf4j-api$1.7.30
+org.junit.jupiter:junit-jupiter-api$5.3.2
+org.junit.jupiter:junit-jupiter-engine$5.3.2
+org.assertj:assertj-core$3.4.1
+org.springframework.boot$2.1.6.RELEASE

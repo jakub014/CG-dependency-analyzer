@@ -1,0 +1,7 @@
+com.bmuschko:gradle-nexus-plugin$2.3.1
+org.slf4j:slf4j-api$1.7.30
+com.h2database:h2$1.4.200
+org.apache.poi:poi-ooxml$5.0.0
+org.apache.commons:commons-text$1.9
+junit:junit$4.13.2
+org.slf4j:slf4j-simple$1.7.30

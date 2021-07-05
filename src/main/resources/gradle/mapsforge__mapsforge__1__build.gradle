@@ -1,0 +1,4 @@
+net.sf.kxml:kxml2$2.3.0
+commons-io:commons-io$2.5
+org.mortbay.jetty:jetty$6.1.26
+org.slf4j:slf4j-log4j12$1.7.28

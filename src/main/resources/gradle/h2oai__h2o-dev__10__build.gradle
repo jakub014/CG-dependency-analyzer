@@ -1,0 +1,4 @@
+org.apache.hive:hive-jdbc$1.1.0-cdh5.10.0
+org.apache.hadoop:hadoop-client$2.6.0-cdh5.10.0
+org.apache.hive:hive-exec$1.1.0-cdh5.10.0
+org.apache.hive:hive-metastore$1.1.0-cdh5.10.0

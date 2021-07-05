@@ -1,0 +1,8 @@
+org.bouncycastle:bcprov-jdk15on$1.60
+com.fasterxml.jackson.core:jackson-databind$2.9.6
+com.squareup.okhttp3:okhttp$3.11.0
+com.squareup.okhttp3:logging-interceptor$3.11.0
+org.mockito:mockito-core$2.19.0
+org.junit.jupiter:junit-jupiter-api$5.2.0
+org.junit.jupiter:junit-jupiter-engine$5.2.0
+com.jfrog.bintray$1.8.4

@@ -1,4 +1,0 @@
-dependencies {
-  compile project(':sda-commons-server-dropwizard')
-  compile 'io.dropwizard:dropwizard-forms'
-}

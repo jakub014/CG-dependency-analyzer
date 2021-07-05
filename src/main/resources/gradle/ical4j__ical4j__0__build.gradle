@@ -1,0 +1,8 @@
+org.hidetake:gradle-ssh-plugin$2.10.1
+com.sun.mail:javax.mail$1.6.2
+javax.cache:cache-api$1.1.1
+org.junit.vintage:junit-vintage-engine$5.7.1
+org.spockframework:spock-bom$2.0-M4-groovy-3.0
+pl.allegro.tech.build.axion-release$1.13.1
+nebula.provided-base$3.0.3
+net.ltgt.errorprone$1.2.1

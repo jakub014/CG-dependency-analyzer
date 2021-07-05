@@ -1,0 +1,7 @@
+com.thoughtworks.xstream:xstream$1.4.11.1
+org.spockframework:spock-core$1.1-groovy-2.4
+com.gradle.plugin-publish$0.10.1
+com.jfrog.bintray$1.7.3
+nu.studer.plugindev$1.0.6
+com.jfrog.artifactory$4.4.12
+org.unbroken-dome.test-sets$2.1.1

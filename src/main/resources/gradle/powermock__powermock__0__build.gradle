@@ -1,0 +1,6 @@
+org.springframework.build.gradle:propdeps-plugin$0.0.7
+com.jfrog.bintray.gradle:gradle-bintray-plugin$1.8.4
+net.researchgate:gradle-release$2.4.0
+com.github.jengelman.gradle.plugins:shadow$1.2.4
+org.shipkit:shipkit$2.3.4
+ru.vyarus:gradle-animalsniffer-plugin$1.4.1

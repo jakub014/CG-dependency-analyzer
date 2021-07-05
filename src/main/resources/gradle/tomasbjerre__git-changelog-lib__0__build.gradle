@@ -1,0 +1,14 @@
+com.squareup.retrofit2:retrofit$2.0.0
+com.squareup.retrofit2:converter-gson$2.0.0
+com.squareup.okhttp:okhttp$2.7.5
+com.jayway.jsonpath:json-path$2.1.0
+com.google.guava:guava$16.0.1
+org.eclipse.jgit:org.eclipse.jgit$5.10.0.202012080955-r
+com.github.jknack:handlebars$4.2.0
+org.gitlab:java-gitlab-api$4.1.0
+junit:junit$4.12
+org.slf4j:slf4j-simple$1.7.13
+org.assertj:assertj-core$2.3.0
+org.mockito:mockito-all$1.8.5
+com.approvaltests:approvaltests$9.5.0
+org.mockito:mockito-core$3.10.0

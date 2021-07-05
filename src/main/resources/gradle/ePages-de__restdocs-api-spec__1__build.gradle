@@ -1,0 +1,6 @@
+org.junit-pioneer:junit-pioneer$0.2.2
+org.hibernate.validator:hibernate-validator$6.0.10.Final
+org.assertj:assertj-core$3.10.0
+com.jayway.jsonpath:json-path$2.3.0
+com.github.java-json-tools:json-schema-validator$2.2.10
+com.github.erosb:everit-json-schema$1.11.0

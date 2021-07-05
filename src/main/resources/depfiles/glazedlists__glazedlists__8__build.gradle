@@ -1,4 +1,0 @@
-dependencies {
-    compile project(':extensions:issuesbrowser')
-    compile 'org.swinglabs.swingx:swingx-all:1.6.5-1'
-}

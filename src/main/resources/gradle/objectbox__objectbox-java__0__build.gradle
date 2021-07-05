@@ -1,0 +1,4 @@
+org.jetbrains.kotlin:kotlin-gradle-plugin$1.4.21
+org.jetbrains.dokka:dokka-gradle-plugin$1.4.20
+gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin$4.5.1
+io.github.gradle-nexus:publish-plugin$1.0.0

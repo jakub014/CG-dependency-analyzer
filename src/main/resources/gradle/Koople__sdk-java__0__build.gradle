@@ -1,0 +1,5 @@
+org.easymock:easymock$4.1
+com.google.guava:guava$28.1-jre
+com.fasterxml.jackson.module:jackson-module-kotlin$2.9.8
+junit:junit$4.12
+commons-codec:commons-codec$1.5

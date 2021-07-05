@@ -1,0 +1,12 @@
+com.amazonaws:aws-lambda-java-log4j2$1.1.1
+com.amazonaws:aws-lambda-java-core$1.2.1
+org.zalando:jackson-datatype-problem$0.25.0
+org.slf4j:slf4j-api$1.8.0-beta4
+org.apiguardian:apiguardian-api$1.1.1
+org.mockito:mockito-core$3.8.0
+org.hamcrest:hamcrest$2.2
+org.hamcrest:hamcrest-core$2.2
+com.github.npathai:hamcrest-optional$2.0.0
+com.github.BIBSYSDEV:nva-testutils$0.1.14
+nebula.lint$16.17.0
+io.github.gradle-nexus.publish-plugin$1.0.0

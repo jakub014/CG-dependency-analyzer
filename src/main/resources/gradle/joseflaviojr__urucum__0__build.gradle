@@ -1,0 +1,5 @@
+com.ibm.icu:icu4j$68.2
+org.json:json$20201115
+com.fasterxml.jackson.core:jackson-databind$2.12.1
+com.sun.activation:javax.activation$1.2.0
+junit:junit$4.13

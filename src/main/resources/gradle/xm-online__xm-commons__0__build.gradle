@@ -1,0 +1,5 @@
+io.spring.gradle:dependency-management-plugin$1.0.3.RELEASE
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.11.0
+net.saliman.properties$1.4.6
+org.ajoberstar.grgit$2.0.0
+com.github.spotbugs$1.6.3

@@ -1,0 +1,5 @@
+io.quarkus:quarkus-bom$1.7.2.Final
+org.graalvm.nativeimage:svm$20.2.0
+junit:junit$4.12
+com.github.hierynomus.license$0.15.0
+org.ajoberstar.grgit$2.2.1

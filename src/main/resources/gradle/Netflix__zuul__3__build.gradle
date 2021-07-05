@@ -1,0 +1,4 @@
+com.netflix.eureka:eureka-client$1.9.18
+commons-configuration:commons-configuration$1.8
+org.apache.logging.log4j:log4j-core$2.14.0
+org.apache.logging.log4j:log4j-slf4j-impl$2.14.0

@@ -1,0 +1,4 @@
+com.android.tools.build:gradle$3.2.1
+com.jfrog.bintray.gradle:gradle-bintray-plugin$1.8.4
+com.github.dcendents:android-maven-gradle-plugin$2.1
+org.jacoco:org.jacoco.core$0.8.2

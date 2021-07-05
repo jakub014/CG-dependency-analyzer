@@ -1,0 +1,4 @@
+com.fasterxml.jackson.core:jackson-annotations$2.9.5
+commons-logging:commons-logging$1.2
+junit:junit$4.12
+org.assertj:assertj-core$3.9.1

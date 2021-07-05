@@ -1,0 +1,4 @@
+commons-httpclient:commons-httpclient$3.0.1
+commons-logging:commons-logging$1.1.1
+commons-codec:commons-codec$1.4
+javax.xml.bind:jaxb-api$2.3.1

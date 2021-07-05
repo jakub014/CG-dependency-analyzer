@@ -1,0 +1,15 @@
+org.javassist:javassist$3.27.0-GA
+com.github.ok2c.hc5:hc5-async-json$0.2.1
+org.apache.httpcomponents.client5:httpclient5$5.0.3
+com.fasterxml.jackson.core:jackson-databind$2.12.2
+com.fasterxml.jackson.core:jackson-core$2.12.2
+com.fasterxml.jackson.datatype:jackson-datatype-jsr310$2.12.2
+org.apache.spark:spark-core_2.11$2.4.7
+org.apache.spark:spark-sql_2.11$2.4.7
+com.google.cloud.spark:spark-bigquery-with-dependencies_2.11$0.19.1
+net.bytebuddy:byte-buddy-agent$1.10.21
+net.bytebuddy:byte-buddy-dep$1.10.21
+org.junit:junit-bom$5.7.1
+org.hamcrest:hamcrest-library$2.2
+org.xerial:sqlite-jdbc$3.34.0
+org.projectlombok:lombok$1.18.16

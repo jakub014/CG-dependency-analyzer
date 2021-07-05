@@ -1,0 +1,7 @@
+com.android.tools.build:gradle$4.1.1
+com.vanniktech:gradle-maven-publish-plugin$0.14.2
+com.github.sherter.google-java-format$0.9
+net.ltgt.errorprone$2.0.1
+com.github.johnrengelman.shadow$6.1.0
+com.github.nbaztec.coveralls-jacoco$1.2.5
+com.android.application$3.5.0

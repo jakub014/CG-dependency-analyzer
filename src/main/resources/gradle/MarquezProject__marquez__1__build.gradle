@@ -1,0 +1,16 @@
+io.prometheus:simpleclient$0.10.0
+io.prometheus:simpleclient_dropwizard$0.10.0
+io.prometheus:simpleclient_hotspot$0.10.0
+io.prometheus:simpleclient_servlet$0.10.0
+org.jdbi:jdbi3-core$3.20.0
+org.jdbi:jdbi3-postgres$3.20.0
+org.jdbi:jdbi3-sqlobject$3.20.0
+com.google.guava:guava$30.1-jre
+org.dhatim:dropwizard-sentry$2.0.20
+io.sentry:sentry$4.3.0
+org.flywaydb:flyway-core$6.5.7
+com.graphql-java:graphql-java$16.2
+com.graphql-java-kickstart:graphql-java-servlet$11.1.0
+org.jdbi:jdbi3-testing$3.20.0
+org.testcontainers:postgresql$1.15.2
+org.testcontainers:junit-jupiter$1.15.2

@@ -1,0 +1,3 @@
+net.sf.opencsv:opencsv$2.3
+mysql:mysql-connector-java$5.1.16
+org.testng:testng$6.8

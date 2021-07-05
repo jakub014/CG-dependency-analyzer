@@ -1,8 +1,0 @@
-
-
-
-dependencies {
-  implementation project(':service-locator:service-locator-api')
-  implementation project(':shared')
-  testImplementation 'org.bouncycastle:bcpkix-jdk15on'
-}

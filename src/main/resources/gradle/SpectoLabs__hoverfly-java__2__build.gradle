@@ -1,0 +1,8 @@
+org.testng:testng$6.14.3
+junit:junit$4.12
+org.springframework:spring-web$4.3.20.RELEASE
+org.assertj:assertj-core$3.11.1
+org.skyscreamer:jsonassert$1.5.0
+org.eclipse.jetty:jetty-server$9.3.11.v20160721
+com.google.guava:guava$20.0
+org.mockito:mockito-core$2.23.4

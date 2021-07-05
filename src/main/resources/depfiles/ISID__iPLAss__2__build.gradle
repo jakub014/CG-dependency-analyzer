@@ -1,4 +1,0 @@
-apply from: 'libs.gradle'
-dependencies {
-	api project(':iplass-core')
-}

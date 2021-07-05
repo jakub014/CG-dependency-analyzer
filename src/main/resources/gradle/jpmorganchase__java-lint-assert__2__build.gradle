@@ -1,0 +1,6 @@
+org.javatuples:javatuples$1.2
+com.googlecode.json-simple:json-simple$1.1.1
+org.ow2.asm:asm$7.0
+org.ow2.asm:asm-util$7.0
+io.github.classgraph:classgraph$4.8.24
+org.junit.platform:junit-platform-launcher$1.7.0

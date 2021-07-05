@@ -1,0 +1,9 @@
+com.guardsquare:proguard-gradle$7.0.0
+com.android.tools.lint:lint-api$26.5.3
+com.android.tools.lint:lint-checks$26.5.3
+org.codehaus.groovy:groovy-all$2.4.15
+junit:junit$4.12
+com.android.tools.lint:lint$26.5.3
+com.android.tools.lint:lint-tests$26.5.3
+com.android.tools:testutils$26.5.3
+org.easytesting:fest-assert-core$2.0M10

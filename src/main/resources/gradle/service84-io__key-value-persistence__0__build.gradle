@@ -1,0 +1,10 @@
+org.springframework:spring-core$5.0.0.RELEASE
+org.springframework.data:spring-data-jpa$2.0.0.RELEASE
+org.hibernate:hibernate-core$5.0.0.Final
+com.fasterxml.jackson.core:jackson-databind$2.0.0
+org.hibernate:hibernate-envers$5.0.0.Final
+org.springframework.boot:spring-boot-starter-data-jpa$2.4.2
+com.h2database:h2$1.4.200
+org.springframework.boot:spring-boot-starter-test$2.4.2
+org.hibernate:hibernate-jpamodelgen$5.4.27.Final
+com.diffplug.eclipse.apt$3.22.0

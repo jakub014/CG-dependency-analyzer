@@ -1,5 +1,0 @@
-dependencies {
-    api project(":grails-web")
-
-    provided "org.codehaus.groovy:groovy-ant:$groovyVersion"
-}

@@ -1,2 +1,0 @@
-ext.deployParams = [description: 'Apiator API and Annotations']
-apply from: "$rootDir/gradle/deploy.gradle"

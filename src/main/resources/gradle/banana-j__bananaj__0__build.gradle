@@ -1,0 +1,4 @@
+commons-codec:commons-codec$1.11
+net.sourceforge.jexcelapi:jxl$2.6.12
+org.json:json$20180130
+org.apache.httpcomponents:httpclient$4.5.5

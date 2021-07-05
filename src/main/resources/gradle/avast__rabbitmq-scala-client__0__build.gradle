@@ -1,0 +1,9 @@
+com.google.protobuf:protobuf-gradle-plugin$0.8.16
+com.avast.gradle:gradle-docker-compose-plugin$0.14.3
+com.github.ben-manes:gradle-versions-plugin$0.39.0
+com.avast.metrics:metrics-jmx$2.8.5
+junit:junit$4.13.2
+org.mockito:mockito-all$1.10.19
+ch.qos.logback:logback-classic$1.2.3
+org.pegdown:pegdown$1.6.0
+io.github.gradle-nexus.publish-plugin$1.1.0

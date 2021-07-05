@@ -1,0 +1,5 @@
+org.springframework.boot:spring-boot-devtools$2.1.0.RELEASE
+org.springframework.cloud:spring-cloud-starter-sleuth$2.1.0.RELEASE
+org.aspectj:aspectjweaver$1.9.5
+org.aspectj:aspectjrt$1.9.5
+io.spring.dependency-management$1.0.8.RELEASE

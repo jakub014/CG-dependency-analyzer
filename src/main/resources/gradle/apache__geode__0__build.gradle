@@ -1,0 +1,10 @@
+nebula.facet$8.0.0
+com.diffplug.spotless$5.11.1
+com.github.ben-manes.versions$0.38.0
+nebula.lint$16.17.1
+com.palantir.docker$0.26.0
+io.spring.dependency-management$1.0.11.RELEASE
+org.ajoberstar.grgit$4.1.0
+org.nosphere.apache.rat$0.7.0
+org.sonarqube$3.1.1
+me.champeau.gradle.jmh$0.5.3

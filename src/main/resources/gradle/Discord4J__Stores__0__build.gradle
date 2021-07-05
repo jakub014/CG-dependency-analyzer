@@ -1,0 +1,4 @@
+io.projectreactor:reactor-bom$2020.0.6
+net.ltgt.apt$0.21
+com.github.ben-manes.versions$0.38.0
+net.researchgate.release$2.8.1

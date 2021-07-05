@@ -1,0 +1,6 @@
+com.fasterxml.jackson.dataformat:jackson-dataformat-xml$2.9.5
+org.junit.jupiter:junit-jupiter-api$5.5.1
+org.junit.jupiter:junit-jupiter-engine$5.5.1
+org.junit.jupiter:junit-jupiter-params$5.5.1
+org.xmlunit:xmlunit-matchers$2.4.0
+org.apache.commons:commons-lang3$3.6

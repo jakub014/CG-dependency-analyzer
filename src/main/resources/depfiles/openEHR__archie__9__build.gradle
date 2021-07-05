@@ -1,5 +1,0 @@
-description = "Basic utilities for use in the archie library"
-
-dependencies {
-	compile project(':base')
-}

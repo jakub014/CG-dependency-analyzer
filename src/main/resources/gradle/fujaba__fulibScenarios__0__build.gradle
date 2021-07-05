@@ -1,0 +1,14 @@
+de.clashsoft:gentreesrc$0.10.2
+org.antlr:antlr4$4.9.1
+org.fulib:fulib$1.5.1
+org.fulib:fulibTools$1.5.1
+org.apache.commons:commons-text$1.9
+org.antlr:antlr4-runtime$4.9.1
+commons-cli:commons-cli$1.4
+org.ow2.asm:asm$8.0.1
+junit:junit$4.13
+org.fulib:fulibMockups$0.3.1
+org.fulib:fulibTables$1.4.0
+de.clashsoft.gentreesrc-gradle$0.5.0
+com.bmuschko.nexus$2.3.1
+io.codearte.nexus-staging$0.22.0

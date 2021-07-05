@@ -1,0 +1,9 @@
+org.plumelib:plume-util$1.5.3
+org.plumelib:reflection-util$1.0.3
+io.github.classgraph:classgraph$4.8.105
+com.google.errorprone:error_prone_annotations$2.6.0
+org.checkerframework.annotatedlib:guava$30.1.1-jre
+com.google.auto.value:auto-value-annotations$1.7.4
+com.google.auto.value:auto-value$1.7.4
+org.projectlombok:lombok$1.18.20
+junit:junit$4.13.2

@@ -1,0 +1,4 @@
+javax.ws.rs:javax.ws.rs-api$2.1
+org.kohsuke.metainf-services:metainf-services$1.6
+org.glassfish.jersey.core:jersey-common$2.27
+org.semarglproject:semargl-rdf$0.6.1

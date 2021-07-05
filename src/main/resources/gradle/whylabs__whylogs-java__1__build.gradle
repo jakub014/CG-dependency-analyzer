@@ -1,0 +1,8 @@
+org.slf4j:slf4j-api$1.7.27
+ai.whylabs:whylabs-api-client$0.1.2
+com.squareup.okhttp3:okhttp$4.9.1
+org.projectlombok:lombok$1.18.12
+org.testng:testng$6.8
+org.slf4j:slf4j-log4j12$1.7.30
+com.vladsch.flexmark:flexmark-profile-pegdown$0.36.8
+com.github.maiflai.scalatest$0.26

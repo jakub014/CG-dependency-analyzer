@@ -1,0 +1,9 @@
+org.codehaus.groovy:groovy$3.0.3
+org.springframework:spring-context$5.1.6.RELEASE
+org.springframework:spring-web$5.1.6.RELEASE
+org.thymeleaf:thymeleaf$3.0.12.RELEASE
+org.thymeleaf:thymeleaf-spring5$3.0.12.RELEASE
+nz.net.ultraq.thymeleaf:thymeleaf-testing-junit$3.0.1
+org.springframework:spring-webmvc$5.1.6.RELEASE
+org.thymeleaf:thymeleaf-testing$3.0.4.RELEASE
+com.github.kt3k.coveralls$2.10.1

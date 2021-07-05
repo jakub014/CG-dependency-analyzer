@@ -1,0 +1,7 @@
+com.google.code.findbugs:jsr305$3.0.2
+io.github.microutils:kotlin-logging$2.0.3
+com.michael-bull.kotlin-result:kotlin-result$1.1.9
+io.kotlintest:kotlintest-runner-junit5$3.3.2
+org.hamcrest:hamcrest$2.1
+org.spockframework:spock-core$2.0-groovy-3.0
+org.antlr:antlr4$4.7.2

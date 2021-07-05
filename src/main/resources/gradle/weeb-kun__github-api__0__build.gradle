@@ -1,0 +1,9 @@
+com.google.guava:guava$28.2-jre
+com.squareup.moshi:moshi$1.11.0
+com.squareup.okhttp3:okhttp$4.9.0
+com.google.code.gson:gson$2.8.6
+org.kamranzafar:jtar$2.3
+org.apache.commons:commons-compress$1.20
+junit:junit$4.12
+com.github.weeb-kun:list-utils$1.1.0-alpha
+com.jfrog.bintray$1.8.5

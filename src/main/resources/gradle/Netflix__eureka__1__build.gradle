@@ -1,0 +1,8 @@
+com.netflix.netflix-commons:netflix-eventbus$0.3.0
+com.thoughtworks.xstream:xstream$1.4.17
+javax.ws.rs:jsr311-api$1.1.1
+com.github.vlsi.compactmap:compactmap$2.0
+org.mortbay.jetty:jetty$6.1H.22
+com.github.tomakehurst:wiremock-jre8$2.25.1
+org.assertj:assertj-core$3.11.1
+javax.servlet:javax.servlet-api$4.0.1

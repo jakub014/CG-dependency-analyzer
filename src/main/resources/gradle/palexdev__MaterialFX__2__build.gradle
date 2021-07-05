@@ -1,0 +1,8 @@
+org.testfx:testfx-core$4.0.16-alpha
+junit:junit$4.13.1
+org.testfx:testfx-junit$4.0.16-alpha
+fr.brouillard.oss:cssfx$11.4.0
+org.kordamp.ikonli:ikonli-core$12.2.0
+org.kordamp.ikonli:ikonli-javafx$12.2.0
+org.kordamp.ikonli:ikonli-fontawesome5-pack$12.2.0
+org.beryx.jlink$2.23.3

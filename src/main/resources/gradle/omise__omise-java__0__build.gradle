@@ -1,0 +1,8 @@
+com.github.jengelman.gradle.plugins:shadow$5.2.0
+com.github.ben-manes:gradle-versions-plugin$0.15.0
+joda-time:joda-time$2.9.9
+com.fasterxml.jackson.core:jackson-core$2.9.9
+com.fasterxml.jackson.datatype:jackson-datatype-joda$2.9.9
+com.squareup.okhttp3:okhttp$3.7.0
+junit:junit$4.12
+com.google.guava:guava$20.0

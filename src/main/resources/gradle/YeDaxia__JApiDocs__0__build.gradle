@@ -1,0 +1,5 @@
+com.github.jengelman.gradle.plugins:shadow$1.2.3
+com.alibaba:fastjson$1.2.70
+com.github.javaparser:javaparser-core$3.6.16
+junit:junit$4.11
+org.freemarker:freemarker$2.3.30

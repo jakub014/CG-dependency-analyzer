@@ -1,0 +1,8 @@
+androidx.browser:browser$1.2.0
+junit:junit$4.12
+org.robolectric:robolectric$4.3
+androidx.test:runner$1.2.0
+androidx.test:core$1.2.0
+androidx.test.ext:truth$1.2.0
+androidx.test.ext:junit$1.1.1
+com.squareup.okhttp3:mockwebserver$4.4.0

@@ -1,7 +1,0 @@
-dependencies {
-  api project(':objectio-avro')
-  api project(':objectio-biglist')
-  api project(':objectio-core')
-  api project(':objectio-kryo')
-  api project(':objectio-tuple')
-}

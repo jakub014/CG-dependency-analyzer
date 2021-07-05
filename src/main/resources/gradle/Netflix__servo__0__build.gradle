@@ -1,0 +1,6 @@
+com.netflix.nebula:nebula-dependency-recommender$9.1.1
+com.netflix.nebula:gradle-netflixoss-project-plugin$9.1.0
+org.testng:testng$6.1.1
+log4j:log4j$1.2.17
+me.champeau.gradle.jmh$0.5.2
+com.github.spotbugs$4.6.0

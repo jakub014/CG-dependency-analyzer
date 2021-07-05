@@ -1,0 +1,14 @@
+com.android.tools.build:gradle$4.2.0
+org.jetbrains.kotlinx:atomicfu-gradle-plugin$0.16.1
+org.jetbrains.kotlinx:binary-compatibility-validator$0.5.0
+org.jetbrains.kotlin:kotlin-gradle-plugin$1.5.0
+com.vanniktech:gradle-maven-publish-plugin$0.15.1
+org.jetbrains.kotlinx:kotlinx-knit$0.2.3
+com.github.ben-manes.versions$0.38.0
+com.autonomousapps.dependency-analysis$0.73.0
+com.osacky.doctor$0.7.0
+io.gitlab.arturbosch.detekt$1.17.1
+org.jetbrains.dokka$1.4.10
+com.dorongold.task-tree$1.5
+com.diffplug.spotless$5.12.5
+dev.zacsweers.kgp-150-leak-patcher$1.1.0

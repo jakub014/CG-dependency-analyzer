@@ -1,8 +1,0 @@
-plugins {
-    id 'java'
-}
-
-
-dependencies {
-    compile project(":driver-minio")
-}

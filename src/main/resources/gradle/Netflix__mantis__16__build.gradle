@@ -1,0 +1,6 @@
+io.mantisrx:mql-jvm$3.2.2
+com.netflix.spectator:spectator-api$latest.release
+com.netflix.spectator:spectator-ext-ipc$latest.release
+com.netflix.archaius:archaius2-api$latest.release
+com.netflix.archaius:archaius2-core$latest.release
+com.github.tomakehurst:wiremock-jre8$2.21.0

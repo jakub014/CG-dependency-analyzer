@@ -1,0 +1,4 @@
+net.bytebuddy:byte-buddy$1.10.14
+com.fasterxml.jackson.core:jackson-core$2.11.2
+com.fasterxml.jackson.dataformat:jackson-dataformat-yaml$2.11.2
+com.github.johnrengelman.shadow$6.0.0

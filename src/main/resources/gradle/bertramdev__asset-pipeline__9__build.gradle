@@ -1,0 +1,8 @@
+io.ratpack:ratpack-guice$1.6.1
+org.codehaus.groovy:groovy-all$2.4.19
+org.slf4j:slf4j-simple$1.7.10
+org.spockframework:spock-core$1.0-groovy-2.4
+cglib:cglib$2.2.2
+org.objenesis:objenesis$2.1
+io.ratpack:ratpack-test$1.6.1
+com.jfrog.bintray$1.8.5

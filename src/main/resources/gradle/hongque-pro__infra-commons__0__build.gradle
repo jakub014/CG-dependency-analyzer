@@ -1,0 +1,10 @@
+org.springframework.boot:spring-boot-gradle-plugin$2.4.5
+io.spring.gradle:dependency-management-plugin$1.0.10.RELEASE
+org.jetbrains.kotlin:kotlin-gradle-plugin$1.4.10
+org.jetbrains.kotlin:kotlin-allopen$1.4.10
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.22.0
+org.springframework.cloud:spring-cloud-dependencies$2020.0.2
+org.junit.jupiter:junit-jupiter-api$5.7.0
+org.junit.jupiter:junit-jupiter-engine$5.7.0
+org.mockito:mockito-all$1.10.19
+org.jetbrains.kotlin:kotlin-stdlib-jdk8$1.4.10

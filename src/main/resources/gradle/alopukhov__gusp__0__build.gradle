@@ -1,0 +1,7 @@
+com.google.guava:guava$15.0
+org.springframework:spring-context$4.1.1.RELEASE
+org.junit.jupiter:junit-jupiter-api$5.6.2
+org.junit.jupiter:junit-jupiter-params$5.6.2
+org.assertj:assertj-core$3.16.1
+org.mockito:mockito-core$3.4.6
+org.junit.jupiter:junit-jupiter-engine$5.6.2

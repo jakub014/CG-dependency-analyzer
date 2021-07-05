@@ -1,0 +1,4 @@
+org.gradle.api.plugins:gradle-nexus-plugin$0.7.1
+info.debatty:java-string-similarity$1.2.1
+com.github.Tom-Ski:spine-runtimes$3.9-8e40258
+org.yaml:snakeyaml$1.21

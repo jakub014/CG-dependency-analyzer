@@ -1,0 +1,10 @@
+com.github.spotbugs:spotbugs$4.2.3
+com.thoughtworks.xstream:xstream$1.4.16
+junit:junit$4.13.2
+commons-io:commons-io$2.8.0
+org.jsoup:jsoup$1.13.1
+com.github.spotbugs$4.7.1
+io.codearte.nexus-staging$0.30.0
+com.adarshr.test-logger$3.0.0
+com.github.ben-manes.versions$0.38.0
+org.sonatype.gradle.plugins.scan$2.0.9

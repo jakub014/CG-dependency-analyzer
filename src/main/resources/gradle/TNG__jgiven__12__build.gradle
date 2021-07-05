@@ -1,0 +1,3 @@
+org.junit.jupiter:junit-jupiter-engine$5.7.2
+org.spockframework:spock-core$2.0-groovy-3.0
+com.gradle.plugin-publish$0.15.0

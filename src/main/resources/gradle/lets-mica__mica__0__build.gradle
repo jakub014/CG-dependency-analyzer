@@ -1,0 +1,5 @@
+org.springframework.boot:spring-boot-dependencies$2.5.0
+org.springframework.cloud:spring-cloud-dependencies$2020.0.2
+org.projectlombok:lombok$1.18.20
+com.google.code.findbugs:jsr305$3.0.2
+org.sonarqube$3.0

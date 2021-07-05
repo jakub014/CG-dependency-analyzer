@@ -1,0 +1,10 @@
+org.codehaus.groovy.modules.http-builder:http-builder$0.7.2
+io.github.gradle-nexus:publish-plugin$1.0.0
+com.bmuschko:gradle-nexus-plugin$2.3.1
+io.github.groovylang.groovydoc:groovydoc-gradle-plugin$1.0.1
+org.grails.plugins:views-gradle$2.1.0.M4
+org.asciidoctor:asciidoctor-gradle-plugin$1.6.1
+io.projectreactor:reactor-test$3.4.0
+org.junit.jupiter:junit-jupiter-api$5.7.0
+org.junit.platform:junit-platform-runner$1.7.0
+org.junit.jupiter:junit-jupiter-engine$5.7.0

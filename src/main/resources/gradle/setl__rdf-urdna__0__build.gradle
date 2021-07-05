@@ -1,0 +1,5 @@
+org.sonarsource.scanner.gradle:sonarqube-gradle-plugin$2.7
+io.setl.gradle.plugins:setl-gradle-plugins$1.0.1
+com.apicatalog:titanium-json-ld$1.0.0
+junit:junit$4.12
+com.github.spotbugs$4.0.2

@@ -1,0 +1,11 @@
+org.yaml:snakeyaml$1.25
+com.alibaba:fastjson$1.2.61
+org.javassist:javassist$3.27.0-GA
+org.reflections:reflections$0.9.11
+javax.servlet:javax.servlet-api$4.0.1
+org.apache.commons:commons-lang3$3.10
+org.slf4j:slf4j-nop$1.7.30
+junit:junit$4.12
+com.github.stefanbirkner:system-rules$1.19.0
+org.mockito:mockito-core$2.28.2
+io.github.gradle-nexus.publish-plugin$1.0.0

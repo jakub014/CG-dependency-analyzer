@@ -1,0 +1,6 @@
+com.android.tools.build:gradle$4.0.2
+com.google.gms:google-services$4.3.4
+org.jetbrains.kotlin:kotlin-gradle-plugin$1.4.32
+com.hiya:jacoco-android$0.2
+com.jfrog.bintray.gradle:gradle-bintray-plugin$1.8.0
+com.github.dcendents:android-maven-gradle-plugin$2.1

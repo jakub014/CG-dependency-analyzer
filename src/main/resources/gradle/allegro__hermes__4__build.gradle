@@ -1,0 +1,10 @@
+org.jctools:jctools-core$1.2
+javax.jms:javax.jms-api$2.0
+joda-time:joda-time$2.5
+org.apache.httpcomponents:httpclient$4.5.1
+com.github.rholder:guava-retrying$2.0.0
+org.agrona:agrona$1.0.6
+org.hornetq:hornetq-jms-client$2.4.1.Final
+javax.servlet:javax.servlet-api$3.1.0
+com.jayway.awaitility:awaitility$1.6.1
+uk.co.real-logic:sbe-all$1.12.8

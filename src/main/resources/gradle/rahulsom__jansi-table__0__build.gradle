@@ -1,0 +1,5 @@
+org.fusesource.jansi:jansi$1.18
+org.codehaus.groovy:groovy$3.0.8
+org.spockframework:spock-core$2.0-groovy-3.0
+nebula.source-jar$17.3.2
+nebula.javadoc-jar$17.3.2

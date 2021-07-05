@@ -1,0 +1,17 @@
+org.immutables:value$2.8.8
+org.immutables:value-annotations$2.8.8
+com.google.guava:guava$29.0-jre
+com.google.errorprone:error_prone_core$2.3.4
+org.apache.logging.log4j:log4j-api$2.13.3
+org.apache.logging.log4j:log4j-core$2.13.3
+org.apache.logging.log4j:log4j-slf4j-impl$2.13.3
+org.slf4j:jcl-over-slf4j$1.7.30
+org.slf4j:jul-to-slf4j$1.7.30
+org.slf4j:slf4j-api$1.7.30
+org.junit.jupiter:junit-jupiter$5.7.0
+com.github.ben-manes.versions$0.33.0
+org.inferred.processors$3.3.0
+net.ltgt.errorprone$1.2.1
+io.codearte.nexus-staging$0.22.0
+com.github.johnrengelman.shadow$5.2.0
+com.arakelian.multitool$3.2.0

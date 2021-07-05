@@ -1,0 +1,4 @@
+aopalliance:aopalliance$1.0
+org.aspectj:aspectjrt$1.9.3
+org.aspectj:aspectjweaver$1.9.3
+cglib:cglib$3.2.10

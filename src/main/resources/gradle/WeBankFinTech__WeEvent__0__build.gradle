@@ -1,0 +1,15 @@
+org.springframework.boot:spring-boot-gradle-plugin$2.1.14.RELEASE
+gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties$2.1.0
+org.projectlombok:lombok$1.18.12
+com.alibaba:fastjson$1.2.70
+io.netty:netty-all$4.1.44.Final
+org.apache.zookeeper:zookeeper$3.5.5
+org.apache.commons:commons-lang3$3.6
+org.apache.commons:commons-collections4$4.1
+com.fasterxml.jackson.core:jackson-databind$2.11.2
+com.fasterxml.jackson.core:jackson-core$2.11.2
+com.fasterxml.jackson.core:jackson-annotations$2.11.2
+org.slf4j:slf4j-api$1.7.30
+junit:junit$4.12
+org.junit.jupiter:junit-jupiter-api$5.2.0
+org.junit.jupiter:junit-jupiter-engine$5.2.0

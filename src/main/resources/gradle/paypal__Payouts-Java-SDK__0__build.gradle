@@ -1,0 +1,5 @@
+com.paypal:paypalhttp$1.0.0
+com.github.tomakehurst:wiremock$2.4.1
+org.apache.commons:commons-text$1.9
+org.testng:testng$6.9.13.6
+org.json:json$20180813

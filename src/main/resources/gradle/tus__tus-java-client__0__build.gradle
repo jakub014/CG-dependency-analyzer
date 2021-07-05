@@ -1,0 +1,4 @@
+org.jetbrains:annotations$13.0
+junit:junit$4.12
+org.mock-server:mockserver-netty$5.2.2
+org.mockito:mockito-core$2.28.2

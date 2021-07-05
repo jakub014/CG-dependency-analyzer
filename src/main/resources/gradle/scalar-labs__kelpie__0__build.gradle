@@ -1,0 +1,11 @@
+com.google.inject:guice$4.2.2
+com.google.guava:guava$24.1-jre
+com.moandjiezana.toml:toml4j$0.7.2
+info.picocli:picocli$4.1.4
+javax.json:javax.json-api$1.1.4
+org.glassfish:javax.json$1.1.4
+org.slf4j:slf4j-log4j12$1.7.30
+org.hdrhistogram:HdrHistogram$2.1.12
+junit:junit$4.13
+org.assertj:assertj-core$3.14.0
+org.mockito:mockito-core$3.2.4

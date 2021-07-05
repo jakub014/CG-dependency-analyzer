@@ -1,0 +1,9 @@
+com.google.osdetector$1.4.0
+com.github.sherter.google-java-format$0.9
+com.github.johnrengelman.shadow$5.2.0
+com.jfrog.artifactory$4.18.3
+com.jfrog.bintray$1.8.5
+me.champeau.gradle.jmh$0.5.0
+io.morethan.jmhreport$0.9.0
+com.google.protobuf$0.8.14
+io.spring.dependency-management$1.0.10.RELEASE

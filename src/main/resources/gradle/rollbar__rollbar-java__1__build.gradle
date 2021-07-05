@@ -1,0 +1,5 @@
+com.netflix.nebula:nebula-project-plugin$3.4.0
+com.google.code.findbugs:jsr305$3.0.2
+org.slf4j:slf4j-api$1.7.25
+com.github.tomakehurst:wiremock$2.27.0
+com.google.code.gson:gson$2.8.2

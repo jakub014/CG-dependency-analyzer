@@ -1,6 +1,0 @@
-dependencies {
-    compileOnly project(':api')
-
-    api "javax.ws.rs:javax.ws.rs-api:${versions.jaxrsApi}"
-    api "com.google.code.findbugs:jsr305:${versions.jsr305}"
-}

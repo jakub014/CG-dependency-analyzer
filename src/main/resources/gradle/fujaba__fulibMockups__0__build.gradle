@@ -1,0 +1,10 @@
+org.fulib:fulibScenarios$1.7.0
+org.fulib:fulibYaml$1.5.0
+org.antlr:ST4$4.3.1
+com.codeborne:selenide$5.19.0
+com.sparkjava:spark-core$2.9.3
+org.fulib:fulibTools$1.5.1
+junit:junit$4.13
+org.fulib.fulibGradle$0.5.0
+com.bmuschko.nexus$2.3.1
+io.codearte.nexus-staging$0.22.0

@@ -1,0 +1,4 @@
+org.springframework.boot$2.3.3.RELEASE
+io.freefair.lombok$5.2.1
+org.padler.gradle.minify$1.6.0
+org.sonatype.gradle.plugins.scan$2.0.4

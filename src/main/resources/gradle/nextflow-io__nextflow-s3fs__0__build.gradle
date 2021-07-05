@@ -1,0 +1,16 @@
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.5.1
+org.slf4j:slf4j-api$1.7.10
+com.amazonaws:aws-java-sdk-s3$1.11.172
+com.google.guava:guava$11.0.1
+org.apache.tika:tika-core$1.5
+org.slf4j:jcl-over-slf4j$1.7.10
+ch.qos.logback:logback-classic$1.2.3
+org.codehaus.groovy:groovy$3.0.8
+org.codehaus.groovy:groovy-nio$3.0.8
+org.codehaus.groovy:groovy-json$3.0.8
+org.codehaus.groovy:groovy-test$3.0.8
+cglib:cglib-nodep$3.3.0
+org.objenesis:objenesis$3.1
+org.spockframework:spock-core$2.0-M3-groovy-3.0
+org.spockframework:spock-junit4$2.0-M3-groovy-3.0
+com.google.jimfs:jimfs$1.1

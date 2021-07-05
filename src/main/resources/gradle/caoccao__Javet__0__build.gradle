@@ -1,0 +1,4 @@
+org.eclipse.jetty.websocket:websocket-server$9.4.38.v20210224
+org.eclipse.jetty.websocket:javax-websocket-server-impl$9.4.38.v20210224
+com.fasterxml.jackson.core:jackson-databind$2.12.2
+org.junit.jupiter:junit-jupiter-api$5.6.0

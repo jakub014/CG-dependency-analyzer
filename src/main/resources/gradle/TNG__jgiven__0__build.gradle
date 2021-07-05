@@ -1,0 +1,12 @@
+org.slf4j:slf4j-api$1.7.30
+org.slf4j:jcl-over-slf4j$1.7.30
+org.slf4j:slf4j-simple$1.7.30
+org.assertj:assertj-core$3.19.0
+com.tngtech.java:junit-dataprovider$1.13.1
+net.java.quickcheck:quickcheck$0.6
+com.github.kt3k.coveralls$2.12.0
+org.asciidoctor.jvm.convert$3.3.2
+io.codearte.nexus-staging$0.30.0
+com.github.ben-manes.versions$0.39.0
+org.sonarqube$3.2.0
+com.github.node-gradle.node$3.1.0

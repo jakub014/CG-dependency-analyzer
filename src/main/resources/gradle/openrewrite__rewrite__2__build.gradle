@@ -1,0 +1,8 @@
+io.micrometer:micrometer-core$latest.release
+org.jetbrains:annotations$latest.release
+org.antlr:antlr4$4.8-1
+commons-lang:commons-lang$latest.release
+com.fasterxml.jackson.core:jackson-annotations$latest.release
+org.ow2.asm:asm$latest.release
+org.ow2.asm:asm-util$latest.release
+org.yaml:snakeyaml$latest.release

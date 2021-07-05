@@ -1,0 +1,6 @@
+junit:junit$4.12
+org.assertj:assertj-core$2.9.0
+org.projectlombok:lombok$1.18.12
+log4j:log4j$1.2.17
+org.apache.logging.log4j:log4j-core$2.12.1
+ch.qos.logback:logback-classic$1.2.3

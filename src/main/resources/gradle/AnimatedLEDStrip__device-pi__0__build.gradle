@@ -1,0 +1,7 @@
+io.github.animatedledstrip:animatedledstrip-core-jvm$1.0.1
+com.github.mbelling:rpi-ws281x-java$2.0.0-SNAPSHOT
+org.apache.logging.log4j:log4j-core$2.13.2
+org.apache.logging.log4j:log4j-api$2.13.2
+jvm$1.4.32
+de.marcphilipp.nexus-publish$0.4.0
+io.codearte.nexus-staging$0.30.0

@@ -1,0 +1,8 @@
+com.github.bft-smart:library$master-v1.1-beta-g6215ec8-87
+commons-codec:commons-codec$1.13
+io.atomix.copycat:copycat-client$1.2.3
+io.atomix.copycat:copycat-server$1.2.3
+io.atomix.catalyst:catalyst-netty$1.1.2
+org.jboss.byteman:byteman-submit$4.0.11
+org.jboss.byteman:byteman$4.0.11
+com.google.cloud.tools.jib$0.9.4

@@ -1,0 +1,6 @@
+com.android.tools.build:gradle$3.6.2
+com.android.support.test.espresso:espresso-core$2.2.2
+com.android.support:appcompat-v7$27.1.1
+com.android.support.constraint:constraint-layout$1.0.2
+com.android.support:design$27.1.1
+junit:junit$4.12

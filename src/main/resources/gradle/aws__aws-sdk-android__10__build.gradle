@@ -1,0 +1,5 @@
+org.conscrypt:conscrypt-android$2.5.1
+org.eclipse.paho:org.eclipse.paho.client.mqttv3$1.2.5
+junit:junit$4.13.1
+org.mockito:mockito-all$1.10.19
+org.robolectric:robolectric$4.4

@@ -1,0 +1,5 @@
+org.apache.logging.log4j:log4j-core$2.14.1
+org.glassfish:javax.el$3.0.1-b12
+ch.qos.logback:logback-classic$1.2.3
+org.jsr107.ri:cache-ri-impl$1.1.1
+com.github.stefanbirkner:system-lambda$1.2.0

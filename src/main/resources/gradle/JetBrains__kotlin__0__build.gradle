@@ -1,0 +1,5 @@
+org.jetbrains.kotlin:kotlin-build-gradle-plugin$0.0.29
+org.jetbrains.dokka:dokka-gradle-plugin$0.9.17
+org.jfrog.buildinfo:build-info-extractor-gradle$4.17.2
+compiler:visualizer$test
+org.gradle.crypto.checksum$1.2.0

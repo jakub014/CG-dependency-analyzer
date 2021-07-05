@@ -1,0 +1,6 @@
+com.github.gestalt-config:gestalt-core$0.8.0
+com.github.gestalt-config:gestalt-hocon$0.8.0
+com.github.gestalt-config:gestalt-kotlin$0.8.0
+com.github.gestalt-config:gestalt-json$0.8.0
+com.github.gestalt-config:gestalt-yaml$0.8.0
+com.github.gestalt-config:gestalt-s3$0.8.0

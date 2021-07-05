@@ -1,0 +1,5 @@
+io.spring.gradle:propdeps-plugin$0.0.9.RELEASE
+com.github.stefanbirkner:system-rules$1.19.0
+junit:junit$4.12
+com.github.johnrengelman.shadow$5.2.0
+io.codearte.nexus-staging$0.21.2

@@ -1,0 +1,6 @@
+org.hibernate:hibernate-core$5.2.17.Final
+org.javassist:javassist$3.23.1-GA
+javax.xml.bind:jaxb-api$2.3.0
+org.glassfish.jaxb:jaxb-runtime$2.3.0.1
+com.sun.activation:javax.activation$1.2.0
+org.hsqldb:hsqldb$2.3.4

@@ -1,0 +1,3 @@
+org.pcap4j:pcap4j-core$1.8.2
+org.pcap4j:pcap4j-packetfactory-static$1.8.2
+commons-codec:commons-codec$1.15

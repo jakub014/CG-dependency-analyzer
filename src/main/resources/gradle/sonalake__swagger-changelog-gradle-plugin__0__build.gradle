@@ -1,0 +1,15 @@
+se.sawano.java:alphanumeric-comparator$1.4.1
+org.junit.jupiter:junit-jupiter-api$5.3.1
+org.junit.jupiter:junit-jupiter-engine$5.3.1
+org.junit.vintage:junit-vintage-engine$5.3.1
+org.powermock:powermock-module-junit4$2.0.0
+org.apache.commons:commons-collections4$4.4
+com.mashape.unirest:unirest-java$1.4.9
+org.slf4j:slf4j-api$1.7.25
+com.fasterxml.jackson.core:jackson-databind$2.9.8
+com.deepoove:swagger-diff$1.2.1
+nl.jworks.markdown_to_asciidoc:markdown_to_asciidoc$1.1
+org.powermock:powermock-api-mockito2$2.0.0
+com.github.kt3k.coveralls$2.10.1
+com.gradle.plugin-publish$0.12.0
+io.freefair.lombok$4.1.6

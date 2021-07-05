@@ -1,8 +1,0 @@
-dependencies {
-    api project(":push-notification-use-cases")
-    implementation project(":method-config")
-    implementation project(":method-json")
-    implementation project(":method-use-cases")
-    implementation project(":context-use-cases")
-    implementation project(":push-notification-data-protector")
-}

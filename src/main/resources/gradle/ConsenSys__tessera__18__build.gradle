@@ -1,0 +1,3 @@
+software.amazon.awssdk:secretsmanager$2.10.25
+com.typesafe.netty:netty-reactive-streams$2.0.4
+com.typesafe.netty:netty-reactive-streams-http$2.0.4

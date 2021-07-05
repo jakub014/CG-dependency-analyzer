@@ -1,0 +1,9 @@
+org.slf4j:slf4j-api$1.7.7
+org.junit.jupiter:junit-jupiter$5.6.2
+org.mockito:mockito-junit-jupiter$3.3.3
+org.assertj:assertj-core$3.13.2
+com.google.errorprone:error_prone_core$2.3.4
+-Xep:FutureReturnValueIgnored$OFF
+-Xep:StringSplitter$OFF
+-Xep:ImmutableEnumChecker$OFF
+net.ltgt.errorprone$1.1.1

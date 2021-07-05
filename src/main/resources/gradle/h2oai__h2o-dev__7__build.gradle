@@ -1,0 +1,4 @@
+com.amazonaws:aws-java-sdk-s3$1.10.77
+javax.xml.bind:jaxb-api$2.3.0
+com.adobe.testing:s3mock$2.1.28
+com.adobe.testing:s3mock-junit4$2.1.28

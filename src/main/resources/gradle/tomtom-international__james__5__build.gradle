@@ -1,0 +1,3 @@
+com.amazonaws:amazon-kinesis-producer$0.12.9
+javax.xml.bind:jaxb-api$2.3.0
+org.apache.logging.log4j:log4j-jcl$2.11.1

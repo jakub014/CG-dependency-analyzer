@@ -1,0 +1,5 @@
+com.sun.activation:javax.activation$1.2.0
+org.testcontainers:testcontainers$1.15.3
+org.jetbrains.kotlin:kotlin-stdlib-jdk8$1.5.0
+org.jetbrains.kotlin.jvm$1.5.0
+com.github.erdi.webdriver-binaries$2.4

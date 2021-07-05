@@ -1,0 +1,10 @@
+org.springframework.boot:spring-boot-dependencies$2.4.0
+org.axonframework:axon-modelling$4.4.5
+com.google.guava:guava$30.0-jre
+org.junit.jupiter:junit-jupiter$5.7.0
+org.mockito:mockito-junit-jupiter$3.5.15
+com.h2database:h2$1.4.200
+com.palantir.git-version$0.12.3
+io.freefair.lombok$5.1.1
+io.spring.dependency-management$1.0.10.RELEASE
+org.sonarqube$3.1.1

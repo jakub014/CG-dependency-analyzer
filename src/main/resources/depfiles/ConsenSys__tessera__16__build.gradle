@@ -1,6 +1,0 @@
-dependencies {
-  implementation project(':encryption:encryption-api')
-  implementation 'eu.neilalexander:jnacl'
-}
-
-description = 'encryption-jnacl'

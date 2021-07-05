@@ -1,0 +1,8 @@
+org.yaml:snakeyaml$1.15
+javax.validation:validation-api$1.1.0.Final
+org.mockito:mockito-core$2.25.1
+org.slf4j:slf4j-api$1.7.2
+eu.xenit.testing:integration-testing$1.1.0
+eu.xenit.de$2.0.2
+eu.xenit.amp$1.0.0
+eu.xenit.alfresco$1.0.0

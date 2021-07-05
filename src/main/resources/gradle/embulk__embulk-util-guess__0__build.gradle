@@ -1,0 +1,12 @@
+org.embulk:embulk-api$0.10.19
+org.embulk:embulk-util-config$0.1.4
+org.embulk:embulk-util-file$0.1.1
+org.embulk:embulk-util-text$0.1.0
+com.ibm.icu:icu4j$54.1.1
+com.fasterxml.jackson.core:jackson-annotations$2.6.7
+com.fasterxml.jackson.core:jackson-core$2.6.7
+com.fasterxml.jackson.core:jackson-databind$2.6.7
+org.embulk:embulk-util-rubytime$0.3.2
+org.junit.jupiter:junit-jupiter-api$5.7.0
+org.junit.jupiter:junit-jupiter-params$5.6.1
+org.junit.jupiter:junit-jupiter-engine$5.7.0

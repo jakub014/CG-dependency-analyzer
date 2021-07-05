@@ -1,0 +1,4 @@
+io.zipkin.gcp:brave-propagation-stackdriver$1.0.2
+io.grpc:grpc-auth$1.37.0
+io.grpc:grpc-netty-shaded$1.37.0
+io.opentracing.brave:brave-opentracing$1.0.0

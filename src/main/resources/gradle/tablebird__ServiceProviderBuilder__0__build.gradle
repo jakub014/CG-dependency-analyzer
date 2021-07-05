@@ -1,0 +1,10 @@
+org.javassist:javassist$3.27.0-GA
+junit:junit$4.12
+androidx.annotation:annotation$1.0.0
+androidx.appcompat:appcompat$1.0.2
+androidx.test:runner$1.2.0
+androidx.test.espresso:espresso-core$3.2.0
+com.squareup:javapoet$1.10.0
+com.google.auto.service:auto-service$1.0-rc4
+com.google.auto:auto-common$0.10
+com.google.code.gson:gson$2.8.1

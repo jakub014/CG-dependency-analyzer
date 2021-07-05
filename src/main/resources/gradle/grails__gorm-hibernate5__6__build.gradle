@@ -1,0 +1,3 @@
+org.grails.plugins:spring-security-rest$3.0.1
+org.glassfish.web:el-impl$2.1.2-b03
+javax.xml.bind:jaxb-api$2.3.1

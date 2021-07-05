@@ -1,8 +1,0 @@
-dependencies {
-    implementation project(":identity-entities")
-    implementation "com.github.michaelruocco:string-utils:${mruocStringUtilsVersion}"
-
-    testImplementation testFixtures(project(":identity-entities"))
-}
-
-apply from: rootProject.file("publish.gradle")

@@ -1,0 +1,11 @@
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.5.3
+com.adarshr:gradle-test-logger-plugin$1.6.0
+net.iharder:base64$2.3.9
+javax.portlet:portlet-api$3.0.1
+javax.servlet:javax.servlet-api$4.0.1
+commons-codec:commons-codec$1.10
+org.apache.httpcomponents:httpcore-nio$4.4.5
+junit:junit$4.12
+org.easymock:easymock$3.4
+org.apache.logging.log4j:log4j-slf4j-impl$2.7
+org.apache.logging.log4j:log4j-core$2.7

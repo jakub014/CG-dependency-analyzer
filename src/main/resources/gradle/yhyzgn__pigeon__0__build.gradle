@@ -1,0 +1,9 @@
+com.squareup.okhttp3:okhttp$5.0.0-alpha.2
+com.fasterxml.jackson.core:jackson-core$2.12.3
+com.fasterxml.jackson.core:jackson-databind$2.12.3
+com.google.code.gson:gson$2.8.6
+com.google.guava:guava$29.0-jre
+org.slf4j:slf4j-api$2.0.0-alpha1
+org.jetbrains:annotations$19.0.0
+org.slf4j:slf4j-simple$2.0.0-alpha1
+junit:junit$4.12

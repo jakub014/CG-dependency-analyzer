@@ -1,9 +1,0 @@
-buildscript {
-  repositories {
-    jcenter()
-  }
-}
-
-dependencies {
-	compile project(':usage-metrics-api')
-}

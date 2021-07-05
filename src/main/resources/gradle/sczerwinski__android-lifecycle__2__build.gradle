@@ -1,0 +1,4 @@
+androidx.lifecycle:lifecycle-livedata-ktx$2.3.1
+org.junit.jupiter:junit-jupiter-api$5.7.1
+org.junit.jupiter:junit-jupiter-engine$5.7.1
+io.gitlab.arturbosch.detekt$1.16.0

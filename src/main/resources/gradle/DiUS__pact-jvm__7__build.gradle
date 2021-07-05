@@ -1,0 +1,12 @@
+org.apache.commons:commons-lang3$3.10
+org.apache.commons:commons-collections4$4.1
+com.jayway.restassured:rest-assured$2.9.0
+javax.xml.bind:jaxb-api$2.3.0
+org.spockframework:spock-core$2.0-groovy-3.0
+org.objenesis:objenesis$3.1
+com.fasterxml.jackson.core:jackson-databind$2.11.0.rc1
+org.clojure:clojure$1.10.1
+http-kit:http-kit$2.3.0
+javax.activation:activation$1.1
+org.glassfish.jaxb:jaxb-runtime$2.3.0
+nebula.clojure$9.4.1

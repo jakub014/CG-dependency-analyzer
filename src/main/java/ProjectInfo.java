@@ -8,28 +8,23 @@ public class ProjectInfo {
     private JSONObject projectJSONData;
     private boolean innerProject;
 
-    public ProjectInfo(String projectType, String downloadedDepFilePath, String relativeDepFilePath, JSONObject projectJSONData) {
-        if (projectType.equals("maven")) {
-            this.projectType = ProjectType.MAVEN;
-        } else if (projectType.equals("gradle")) {
-            this.projectType = ProjectType.GRADLE;
-        }
+    public ProjectInfo(ProjectType projectType, String downloadedDepFilePath, String relativeDepFilePath, JSONObject projectJSONData) {
+        this.projectType = projectType;
         this.downloadedDepFilePath = downloadedDepFilePath;
         this.relativeDepFilePath = relativeDepFilePath;
         this.projectJSONData = projectJSONData;
-        this.innerProject = true;
+        this.innerProject = !downloadedDepFilePath.contains("__0__");
     }
 
     public Long getLastUpdated() {
         return (Long) this.projectJSONData.get("lastUpdated");
     }
 
-    public String getRelativeDirectoryPath() {
+    public String getRelativeDirectoryPath(String delimiter) {
         String[] splitPath = this.getRelativeDepFilePath().split("/");
         StringBuilder newRepositoryPathBuilder = new StringBuilder();
-        newRepositoryPathBuilder.append("/");
         for (int i = 0; i < splitPath.length-1; i++) {
-            newRepositoryPathBuilder.append(splitPath[i]);
+            newRepositoryPathBuilder.append(splitPath[i] + delimiter);
         }
         return newRepositoryPathBuilder.toString();
     }
@@ -62,10 +57,6 @@ public class ProjectInfo {
         return downloadedDepFilePath;
     }
 
-    public void setDownloadedDepFilePath(String downloadedDepFilePath) {
-        this.downloadedDepFilePath = downloadedDepFilePath;
-    }
-
     public String getRelativeDepFilePath() {
         return relativeDepFilePath;
     }
@@ -90,11 +81,6 @@ public class ProjectInfo {
         this.innerProject = innerProject;
     }
 
-    public ProjectInfo(ProjectType projectType, JSONObject projectJSONData) {
-        this.projectType = projectType;
-        this.projectJSONData = projectJSONData;
-        this.innerProject = false;
-    }
 
     @Override
     public String toString() {

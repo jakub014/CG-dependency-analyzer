@@ -1,0 +1,16 @@
+org.projectlombok:lombok$1.18.12
+org.apache.commons:commons-lang3$3.11
+com.google.code.findbugs:jsr305$3.0.2
+org.apache.logging.log4j:log4j-api$2.13.3
+org.apache.logging.log4j:log4j-core$2.13.3
+com.google.re2j:re2j$1.4
+org.reflections:reflections$0.9.12
+com.fasterxml.jackson.core:jackson-core$2.11.2
+com.fasterxml.jackson.core:jackson-annotations$2.11.2
+com.fasterxml.jackson.core:jackson-databind$2.11.2
+com.fasterxml.jackson.datatype:jackson-datatype-jdk8$2.11.2
+com.fasterxml.jackson.datatype:jackson-datatype-jsr310$2.11.2
+junit:junit$4.13
+org.junit.jupiter:junit-jupiter-api$5.6.2
+org.junit.jupiter:junit-jupiter-engine$5.6.2
+org.junit.vintage:junit-vintage-engine$5.6.2

@@ -1,0 +1,4 @@
+junit:junit$4.13.1
+net.jpountz.lz4:lz4$1.2.0
+org.apache.maven.wagon:wagon-webdav$1.0-beta-2
+com.github.spotbugs$4.5.1

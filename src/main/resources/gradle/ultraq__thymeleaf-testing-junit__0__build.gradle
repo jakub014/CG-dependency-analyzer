@@ -1,0 +1,6 @@
+org.codehaus.groovy:groovy$3.0.3
+junit:junit$4.12
+org.reflections:reflections$0.9.10
+org.thymeleaf:thymeleaf$3.0.12.RELEASE
+org.thymeleaf:thymeleaf-testing$3.0.4.RELEASE
+com.github.kt3k.coveralls$2.10.1

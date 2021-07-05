@@ -1,0 +1,4 @@
+com.android.tools.build:gradle$4.0.1
+org.sonarsource.scanner.gradle:sonarqube-gradle-plugin$2.5
+com.palantir:jacoco-coverage$0.2.1
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.22.0

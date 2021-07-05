@@ -1,0 +1,4 @@
+com.github.tomakehurst:wiremock$2.24.1
+commons-logging:commons-logging$1.2
+com.auth0:java-jwt$3.10.3
+io.mockk:mockk$1.10.2

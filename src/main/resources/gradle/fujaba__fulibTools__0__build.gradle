@@ -1,0 +1,11 @@
+org.fulib:fulibScenarios$1.6.2
+org.fulib:fulib$1.5.1
+org.apache.commons:commons-text$1.9
+org.antlr:ST4$4.3.1
+guru.nidi:graphviz-java-all-j2v8$0.18.0
+junit:junit$4.13
+commons-io:commons-io$2.8.0
+com.palantir.revapi$1.4.4
+org.fulib.fulibGradle$0.5.0
+com.bmuschko.nexus$2.3.1
+io.codearte.nexus-staging$0.22.0

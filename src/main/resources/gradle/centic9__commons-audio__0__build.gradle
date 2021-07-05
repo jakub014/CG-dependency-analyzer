@@ -1,0 +1,15 @@
+de.thetaphi:forbiddenapis$3.1
+org.dstadler:commons-dost$1.0.0.32
+com.fasterxml.jackson.core:jackson-core$2.12.1
+com.fasterxml.jackson.core:jackson-databind$2.12.1
+com.google.code.findbugs:jsr305$3.0.2
+com.google.guava:guava$30.1-jre
+commons-io:commons-io$2.8.0
+com.googlecode.soundlibs:mp3spi$1.9.5.4
+com.googlecode.soundlibs:vorbisspi$1.0.3.3
+com.googlecode.soundlibs:jlayer$1.0.1.4
+de.undercouch:bson4jackson$2.11.0
+junit:junit$4.13.2
+org.dstadler:commons-test$1.0.0.19
+net.researchgate.release$2.8.1
+io.codearte.nexus-staging$0.22.0

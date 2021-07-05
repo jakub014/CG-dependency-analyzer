@@ -12,7 +12,7 @@ import java.util.*;
 public class RepositoryUtil {
 
     // !!! IMPORTANT: Set MAVEN_HOME to the PATH on your computer
-    final static String MAVEN_HOME = "/usr/share/maven";
+    final static String MAVEN_HOME = "C:\\Program Files\\apache-maven-3.8.1";
 
     public static class JarNotFoundException extends Exception {
         public JarNotFoundException(String message) {
@@ -58,9 +58,36 @@ public class RepositoryUtil {
      * @param link: string containing the url of the GitHub repository source code to download
      * @param defaultBranch: default branch of the repository
      */
-    public static String downloadRepository(String link, String repositoryName, String defaultBranch) {
+    public static String downloadMavenRepository(String link, String repositoryName, String defaultBranch) {
         // Download zip file.
-        String zipPath = repositoryName + ".zip";
+        String zipPath = "downloaded-repos/" + repositoryName + ".zip";
+        try {
+            FileUtils.copyURLToFile(new URL(link + "/archive/refs/heads/" + defaultBranch + ".zip"), new File(zipPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Extract zip file
+        try {
+            ZipFile zipFile = new ZipFile(zipPath);
+            zipFile.extractAll("downloaded-repos/" + repositoryName);
+        } catch (ZipException e) {
+            e.printStackTrace();
+        }
+
+        // Delete downloaded zip file.
+        new File(zipPath).delete();
+        return "downloaded-repos/" + repositoryName + "/" + repositoryName + "-" + defaultBranch;
+    }
+
+    /**
+     * Downloads a zip file of a given GitHub repository and extracts the zip file to a folder
+     * @param link: string containing the url of the GitHub repository source code to download
+     * @param defaultBranch: default branch of the repository
+     */
+    public static String downloadGradleRepository(String link, String repositoryName, String defaultBranch) {
+        // Download zip file.
+        String zipPath = "downloaded-repos/" + repositoryName + ".zip";
         try {
            FileUtils.copyURLToFile(new URL(link + "/archive/refs/heads/" + defaultBranch + ".zip"), new File(zipPath));
         } catch (IOException e) {
@@ -70,17 +97,21 @@ public class RepositoryUtil {
         // Extract zip file
         try {
             ZipFile zipFile = new ZipFile(zipPath);
-            zipFile.extractAll(repositoryName);
-        } catch (ZipException e) {
+            zipFile.extractAll("downloaded-repos/" + repositoryName + "-temp");
+            File extractedRepo = new File("downloaded-repos" + "/" + repositoryName + "-temp/" + repositoryName + "-" + defaultBranch);
+            var res = extractedRepo.renameTo(new File("downloaded-repos/" + repositoryName));
+            System.out.println("SUCCESSFUL RENAME OF ZIP FILE: " + res);
+            FileUtils.deleteDirectory(new File("downloaded-repos/" + repositoryName + "-temp"));
+        } catch (ZipException | IOException e) {
             e.printStackTrace();
         }
 
         // Delete downloaded zip file.
         new File(zipPath).delete();
-        return repositoryName + "/" + repositoryName + "-" + defaultBranch;
+        return "downloaded-repos/" + repositoryName;
     }
 
-    private static boolean buildMavenProject(String pomXMLPath) {
+    static boolean buildMavenProject(String pomXMLPath) {
         InvocationRequest request = new DefaultInvocationRequest();
         request.setPomFile(new File(pomXMLPath));
         // Run `mvn package -Dmaven.test.skip=true`. Last part of command skips run of tests
@@ -89,41 +120,54 @@ public class RepositoryUtil {
         Invoker invoker = new DefaultInvoker();
         invoker.setMavenHome(new File(Paths.get(MAVEN_HOME).toUri()));
         try {
-            invoker.execute(request);
+            var result = invoker.execute(request);
+            if (result.getExitCode() != 0) {
+                return false;
+            }
             return true;
         } catch (MavenInvocationException e) {
-            e.printStackTrace();
+            try {
+                Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
+                output.append("BUILD FAILED FOR POM XML PATH " + pomXMLPath);
+                output.close();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
         }
         return false;
     }
 
-    private static void buildGradleProject(String repositoryName, String defaultBranch, String relativeDirectoryPath) {
+    static boolean buildGradleProject(String repositoryName, String defaultBranch, String relativeDirectoryPath) {
         try {
-            String path = repositoryName + "/" + repositoryName + "-" + defaultBranch;
-            if (!relativeDirectoryPath.equals("/")) {
+            String path = "downloaded-repos/" + repositoryName;
+            if (!relativeDirectoryPath.equals("/") && !relativeDirectoryPath.equals("")) {
                 path += relativeDirectoryPath;
             }
             File repoDir = new File(path);
+
+            // https://docs.gradle.org/current/userguide/userguide_single.html#installing_manually
+            // String[] env = {"PATH=$PATH:/opt/gradle/gradle-7.0.2/bin"};
             Process process = Runtime.getRuntime().exec("bash gradlew assemble", null, repoDir.getAbsoluteFile());
 
-            StringBuilder output = new StringBuilder();
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
             String line;
             while ((line = reader.readLine()) != null) {
-                output.append(line + "\n");
+                System.out.println(line);
             }
 
             int exitVal = process.waitFor();
             if (exitVal == 0) {
                 System.out.println("BUILD SUCCESS!");
+                return true;
             } else {
                 //abnormal...
                 System.out.println("BUILD FAILED!");
+                return false;
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     private static void buildRepositoryJAR(ProjectInfo projectInfo) {
@@ -134,7 +178,7 @@ public class RepositoryUtil {
         // Check whether pom.xml file exists in project
         if (projectType != null) {
             if (projectType == ProjectType.MAVEN) {
-                String pomXMLPath = repositoryName + "/" + repositoryName + "-" + defaultBranch;
+                String pomXMLPath = "downloaded-repos/" + repositoryName + "/" + repositoryName + "-" + defaultBranch;
                 if (projectInfo.isInnerProject()) {
                     pomXMLPath += projectInfo.getRelativeDepFilePath();
                 } else {
@@ -142,7 +186,7 @@ public class RepositoryUtil {
                 }
                 buildMavenProject(pomXMLPath);
             } else {
-                buildGradleProject(repositoryName, defaultBranch, projectInfo.getRelativeDirectoryPath());
+                buildGradleProject(repositoryName, defaultBranch, projectInfo.getRelativeDirectoryPath("/"));
             }
         }
         // No known dependency file in project.
@@ -154,9 +198,9 @@ public class RepositoryUtil {
         ProjectType projectType = projectInfo.getProjectType();
 
         if (projectType != null) {
-            String repositoryTargetPath = repositoryName + "/" + repositoryName + "-" + defaultBranch;
+            String repositoryTargetPath = "downloaded-repos/" + repositoryName + "/" + repositoryName + "-" + defaultBranch;
             if (projectInfo.isInnerProject()) {
-                String relativeDirPath = projectInfo.getRelativeDirectoryPath();
+                String relativeDirPath = projectInfo.getRelativeDirectoryPath("/");
                 if (!relativeDirPath.equals("/")) repositoryTargetPath += relativeDirPath;
             }
             if (projectType == ProjectType.MAVEN) {
@@ -181,13 +225,4 @@ public class RepositoryUtil {
         buildRepositoryJAR(projectInfo);
         return getJarPath(projectInfo);
     }
-
-//    public static void main(String[] args) {
-//        //Pair pair = getRepoAndLink("https://github.com/adobe/target-java-sdk");
-//        ProjectInfo projectInfo = new ProjectInfo(
-//
-//        );
-//        downloadRepository(pair.getRight(), pair.getLeft(), "main");
-//        buildGradleProject(pair.getLeft(), "main");
-//    }
 }

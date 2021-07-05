@@ -1,0 +1,12 @@
+com.fasterxml.jackson.core:jackson-core$2.9.8
+com.fasterxml.jackson.core:jackson-databind$2.9.8
+io.github.openfeign:feign-core$11.1
+io.github.openfeign:feign-jackson$11.1
+io.github.openfeign:feign-slf4j$11.1
+org.slf4j:slf4j-api$1.7.26
+org.projectlombok:lombok$1.18.6
+org.junit.jupiter:junit-jupiter-api$5.4.0
+org.junit.jupiter:junit-jupiter-engine$5.4.0
+ch.qos.logback:logback-classic$1.2.3
+io.freefair.lombok$3.2.0
+com.jfrog.bintray$1.8.4

@@ -1,0 +1,11 @@
+com.github.spotbugs:spotbugs$4.2.3
+com.squareup.retrofit2:retrofit$2.9.0
+com.squareup.retrofit2:converter-jackson$2.9.0
+com.fasterxml.jackson.core:jackson-databind$2.10.5.1
+junit:junit$4.13.2
+org.assertj:assertj-core$3.19.0
+com.github.spotbugs$4.7.1
+io.codearte.nexus-staging$0.30.0
+com.adarshr.test-logger$3.0.0
+com.github.ben-manes.versions$0.38.0
+org.sonatype.gradle.plugins.scan$2.0.9

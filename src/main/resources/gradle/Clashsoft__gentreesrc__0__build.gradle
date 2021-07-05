@@ -1,0 +1,9 @@
+de.clashsoft:gentreesrc$0.10.0
+junit:junit$4.13
+org.antlr:antlr4$4.9.1
+org.antlr:antlr4-runtime$4.9.1
+org.antlr:ST4$4.3.1
+commons-cli:commons-cli$1.4
+com.bmuschko.nexus$2.3.1
+io.codearte.nexus-staging$0.22.0
+de.clashsoft.gentreesrc-gradle$0.8.0

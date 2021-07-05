@@ -1,0 +1,6 @@
+org.slf4j:slf4j-api$1.7.10
+org.pf4j:pf4j$3.4.1
+com.azure:azure-storage-blob$12.9.0
+com.microsoft.azure:azure-batch$9.0.0
+org.codehaus.groovy:groovy$3.0.8
+org.codehaus.groovy:groovy-nio$3.0.8

@@ -1,7 +1,0 @@
-group 'com.labijie.infra'
-
-
-dependencies {
-    compile project(":sink-core")
-    compile "org.elasticsearch.client:elasticsearch-rest-high-level-client:$elasticsearch_version"
-}

@@ -1,0 +1,205 @@
+visearch-sdk-java
+https://github.com/visenze/visearch-sdk-java
+Vulnerable dependency: org.apache.httpcomponents:httpclient
+
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal.http/ViSearchHttpClientImpl.executeRequest(%2Forg.apache.http.client.methods%2FHttpUriRequest)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/CloseableHttpClient.execute(%2Forg.apache.http.client.methods%2FHttpUriRequest)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/CloseableHttpClient.execute(%2Forg.apache.http.client.methods%2FHttpUriRequest)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/CloseableHttpClient.execute(%2Forg.apache.http.client.methods%2FHttpUriRequest,%2Forg.apache.http.protocol%2FHttpContext)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/MinimalHttpClient.doExecute(%2Forg.apache.http%2FHttpHost,%2Forg.apache.http%2FHttpRequest,%2Forg.apache.http.protocol%2FHttpContext)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.execchain/MinimalClientExec.execute(%2Forg.apache.http.conn.routing%2FHttpRoute,%2Forg.apache.http.client.methods%2FHttpRequestWrapper,%2Forg.apache.http.client.protocol%2FHttpClientContext,%2Forg.apache.http.client.methods%2FHttpExecutionAware)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.execchain/MinimalClientExec.rewriteRequestURI(%2Forg.apache.http.client.methods%2FHttpRequestWrapper,%2Forg.apache.http.conn.routing%2FHttpRoute)%2Fjava.lang%2FVoidType
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIUtils.rewriteURI(%2Fjava.net%2FURI,%2Forg.apache.http%2FHttpHost,%2Fjava.lang%2FBooleanType)%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal/InternalViSearchException.%3Cinit%3E(%2Fcom.visenze.visearch%2FResponseMessages,%2Fjava.lang%2FString)%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch/BaseSearchParams.toMap()%2Fcom.google.common.collect%2FMultimap
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.methods/RequestBuilder.build()HttpUriRequest
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.methods/RequestBuilder.build()HttpUriRequest
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal/SearchOperationsImpl.getPagedResult(%2Fcom.visenze.visearch.internal.http%2FViSearchHttpResponse)%2Fcom.visenze.visearch%2FPagedSearchResult
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/CloseableHttpClient.execute(%2Forg.apache.http.client.methods%2FHttpUriRequest)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/CloseableHttpClient.execute(%2Forg.apache.http.client.methods%2FHttpUriRequest)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/CloseableHttpClient.execute(%2Forg.apache.http.client.methods%2FHttpUriRequest,%2Forg.apache.http.protocol%2FHttpContext)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/MinimalHttpClient.doExecute(%2Forg.apache.http%2FHttpHost,%2Forg.apache.http%2FHttpRequest,%2Forg.apache.http.protocol%2FHttpContext)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.execchain/MinimalClientExec.execute(%2Forg.apache.http.conn.routing%2FHttpRoute,%2Forg.apache.http.client.methods%2FHttpRequestWrapper,%2Forg.apache.http.client.protocol%2FHttpClientContext,%2Forg.apache.http.client.methods%2FHttpExecutionAware)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.execchain/MinimalClientExec.rewriteRequestURI(%2Forg.apache.http.client.methods%2FHttpRequestWrapper,%2Forg.apache.http.conn.routing%2FHttpRoute)%2Fjava.lang%2FVoidType
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIUtils.rewriteURI(%2Fjava.net%2FURI,%2Forg.apache.http%2FHttpHost,%2Fjava.lang%2FBooleanType)%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal/InternalViSearchException.%3Cinit%3E(%2Fcom.visenze.visearch%2FResponseMessages)%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal.http/ViSearchHttpClientImpl.mapToNameValuePair(%2Fcom.google.common.collect%2FMultimap)%2Fjava.util%2FList
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal.http/ViSearchHttpClientImpl.buildPostRequest(%2Fjava.lang%2FString,%2Fcom.google.common.collect%2FMultimap)%2Forg.apache.http.client.methods%2FHttpUriRequest
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.methods/RequestBuilder.build()HttpUriRequest
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.methods/RequestBuilder.build()HttpUriRequest
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal.http/ViSearchHttpClientImpl.buildPostUri(%2Fjava.lang%2FString)%2Fjava.net%2FURI
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal.http/ViSearchHttpClientImpl.buildGetRequest(%2Fjava.lang%2FString,%2Fcom.google.common.collect%2FMultimap)%2Forg.apache.http.client.methods%2FHttpUriRequest
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.methods/RequestBuilder.build()HttpUriRequest
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.methods/RequestBuilder.build()HttpUriRequest
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal.http/ViSearchHttpClientImpl.buildGetUri(%2Fjava.lang%2FString,%2Fjava.util%2FList)%2Fjava.net%2FURI
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal/InternalViSearchException.%3Cinit%3E(%2Fcom.visenze.visearch%2FResponseMessages,%2Fjava.lang%2FThrowable,%2Fjava.lang%2FString)%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal/BaseViSearchOperations.deserializeFeatureResponseResult(%2Fjava.lang%2FString,%2Fcom.fasterxml.jackson.databind%2FJsonNode)%2Fcom.visenze.visearch%2FFeatureResponseResult
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal/InternalViSearchException.%3Cinit%3E(%2Fcom.visenze.visearch%2FResponseMessages,%2Fjava.lang%2FThrowable)%2Fjava.lang%2FVoidType
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+
+
+
+visearch-sdk-java
+https://github.com/visenze/visearch-sdk-java
+Vulnerable dependency: org.apache.httpcomponents:httpclient
+
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal.http/ViSearchHttpClientImpl.buildPostUri(%2Fjava.lang%2FString)%2Fjava.net%2FURI
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.common.util/ViJsonAny.asDouble()%2Fjava.lang%2FDouble
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.methods/RequestBuilder.build()HttpUriRequest
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.methods/RequestBuilder.build()HttpUriRequest
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal.http/ViSearchHttpClientImpl.mapToNameValuePair(%2Fcom.google.common.collect%2FMultimap)%2Fjava.util%2FList
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal.http/ViSearchHttpClientImpl.buildGetRequest(%2Fjava.lang%2FString,%2Fcom.google.common.collect%2FMultimap)%2Forg.apache.http.client.methods%2FHttpUriRequest
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.methods/RequestBuilder.build()HttpUriRequest
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.methods/RequestBuilder.build()HttpUriRequest
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch/ViSearch.discoverSearch(UploadSearchParams)PagedSearchResult
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/CloseableHttpClient.execute(%2Forg.apache.http.client.methods%2FHttpUriRequest)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/CloseableHttpClient.execute(%2Forg.apache.http.client.methods%2FHttpUriRequest)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/CloseableHttpClient.execute(%2Forg.apache.http.client.methods%2FHttpUriRequest,%2Forg.apache.http.protocol%2FHttpContext)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/MinimalHttpClient.doExecute(%2Forg.apache.http%2FHttpHost,%2Forg.apache.http%2FHttpRequest,%2Forg.apache.http.protocol%2FHttpContext)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.execchain/MinimalClientExec.execute(%2Forg.apache.http.conn.routing%2FHttpRoute,%2Forg.apache.http.client.methods%2FHttpRequestWrapper,%2Forg.apache.http.client.protocol%2FHttpClientContext,%2Forg.apache.http.client.methods%2FHttpExecutionAware)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.execchain/MinimalClientExec.rewriteRequestURI(%2Forg.apache.http.client.methods%2FHttpRequestWrapper,%2Forg.apache.http.conn.routing%2FHttpRoute)%2Fjava.lang%2FVoidType
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIUtils.rewriteURI(%2Fjava.net%2FURI,%2Forg.apache.http%2FHttpHost,%2Fjava.lang%2FBooleanType)%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal/BaseViSearchOperations.pagify(%2Fjava.lang%2FString,%2Fcom.fasterxml.jackson.databind%2FJsonNode)%2Fcom.visenze.visearch%2FPagedSearchResult
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal.http/ViSearchHttpClientImpl.buildGetUri(%2Fjava.lang%2FString,%2Fjava.util%2FList)%2Fjava.net%2FURI
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal.http/ViSearchHttpClientImpl.buildPostRequest(%2Fjava.lang%2FString,%2Fcom.google.common.collect%2FMultimap)%2Forg.apache.http.client.methods%2FHttpUriRequest
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.methods/RequestBuilder.build()HttpUriRequest
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.methods/RequestBuilder.build()HttpUriRequest
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal.http/ViSearchHttpClientImpl.executeRequest(%2Forg.apache.http.client.methods%2FHttpUriRequest)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/CloseableHttpClient.execute(%2Forg.apache.http.client.methods%2FHttpUriRequest)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/CloseableHttpClient.execute(%2Forg.apache.http.client.methods%2FHttpUriRequest)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/CloseableHttpClient.execute(%2Forg.apache.http.client.methods%2FHttpUriRequest,%2Forg.apache.http.protocol%2FHttpContext)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.client/MinimalHttpClient.doExecute(%2Forg.apache.http%2FHttpHost,%2Forg.apache.http%2FHttpRequest,%2Forg.apache.http.protocol%2FHttpContext)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.execchain/MinimalClientExec.execute(%2Forg.apache.http.conn.routing%2FHttpRoute,%2Forg.apache.http.client.methods%2FHttpRequestWrapper,%2Forg.apache.http.client.protocol%2FHttpClientContext,%2Forg.apache.http.client.methods%2FHttpExecutionAware)%2Forg.apache.http.client.methods%2FCloseableHttpResponse
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.impl.execchain/MinimalClientExec.rewriteRequestURI(%2Forg.apache.http.client.methods%2FHttpRequestWrapper,%2Forg.apache.http.conn.routing%2FHttpRoute)%2Fjava.lang%2FVoidType
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIUtils.rewriteURI(%2Fjava.net%2FURI,%2Forg.apache.http%2FHttpHost,%2Fjava.lang%2FBooleanType)%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.build()%2Fjava.net%2FURI
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+___fasten://mvn!visearch-sdk-java$master/com.visenze.visearch.internal/SearchOperationsImpl.getPagedResult(%2Fcom.visenze.visearch.internal.http%2FViSearchHttpResponse)%2Fcom.visenze.visearch%2FPagedSearchResult
+_______fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+___________fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+METHOD TRACES: 
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.toString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.buildString()%2Fjava.lang%2FString
+fasten://mvn!org.apache.httpcomponents:httpclient$4.5.2/org.apache.http.client.utils/URIBuilder.normalizePath(%2Fjava.lang%2FString)%2Fjava.lang%2FString
+
+
+

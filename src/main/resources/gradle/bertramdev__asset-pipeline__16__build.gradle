@@ -1,0 +1,4 @@
+org.codehaus.groovy:groovy-all$2.4.19
+org.groocss:groocss$1.0-M1
+org.spockframework:spock-core$1.1-groovy-2.4
+com.jfrog.bintray$1.8.5

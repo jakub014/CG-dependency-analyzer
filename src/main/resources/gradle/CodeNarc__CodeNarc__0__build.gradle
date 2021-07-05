@@ -1,0 +1,13 @@
+org.codehaus.groovy:groovy$2.5.14
+org.codehaus.groovy:groovy-xml$2.5.14
+org.codehaus.groovy:groovy-json$2.5.14
+org.codehaus.groovy:groovy-ant$2.5.14
+org.codehaus.groovy:groovy-templates$2.5.14
+org.slf4j:slf4j-api$1.7.25
+org.gmetrics:GMetrics$1.1
+junit:junit$4.12
+org.slf4j:slf4j-simple$1.7.25
+commons-cli:commons-cli$1.4
+com.github.stefanbirkner:system-rules$1.16.1
+org.codehaus.groovy:groovy-macro$2.5.14
+com.github.johnrengelman.shadow$6.1.0

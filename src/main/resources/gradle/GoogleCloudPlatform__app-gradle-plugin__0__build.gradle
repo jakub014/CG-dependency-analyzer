@@ -1,0 +1,7 @@
+com.google.cloud.tools:appengine-plugins-core$0.9.1
+commons-io:commons-io$2.4
+junit:junit$4.12
+org.hamcrest:hamcrest-library$1.3
+org.mockito:mockito-core$2.23.4
+net.researchgate.release$2.6.0
+com.github.sherter.google-java-format$0.8

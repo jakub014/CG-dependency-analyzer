@@ -1,0 +1,8 @@
+org.springframework:spring-framework-bom$5.3.5
+javax.servlet:javax.servlet-api$3.1.0
+com.google.code.findbugs:jsr305$3.0.2
+org.junit:junit-bom$5.6.1
+org.assertj:assertj-core$3.15.0
+nl.jqno.equalsverifier:equalsverifier$3.1.13
+org.mockito:mockito-core$3.3.3
+org.sonarqube$2.8

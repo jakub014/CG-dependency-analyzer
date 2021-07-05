@@ -1,0 +1,6 @@
+org.jetbrains.kotlin:kotlin-gradle-plugin$1.4.10
+org.jetbrains.kotlin:kotlin-allopen$1.4.10
+io.codearte.gradle.nexus:gradle-nexus-staging-plugin$0.22.0
+org.jetbrains.kotlin:kotlin-stdlib-jdk8$1.4.10
+org.junit.jupiter:junit-jupiter-api$5.7.0
+org.junit.jupiter:junit-jupiter-engine$5.7.0

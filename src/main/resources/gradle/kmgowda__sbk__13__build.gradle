@@ -1,0 +1,8 @@
+org.apache.derby:derby$10.10.2.0
+org.apache.derby:derbyclient$10.10.2.0
+org.apache.derby:derbynet$10.10.2.0
+mysql:mysql-connector-java$8.0.22
+org.postgresql:postgresql$42.1.4
+com.microsoft.sqlserver:mssql-jdbc$8.2.2.jre8
+org.xerial:sqlite-jdbc$3.31.1
+org.mariadb.jdbc:mariadb-java-client$2.7.1

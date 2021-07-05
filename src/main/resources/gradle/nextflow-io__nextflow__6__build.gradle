@@ -1,0 +1,7 @@
+org.slf4j:slf4j-api$1.7.10
+org.pf4j:pf4j$3.4.1
+org.apache.ignite:ignite-core$2.4.0
+org.apache.ignite:ignite-slf4j$2.4.0
+org.codehaus.groovy:groovy$3.0.8
+org.codehaus.groovy:groovy-nio$3.0.8
+org.apache.ignite:ignite-spring$2.4.0

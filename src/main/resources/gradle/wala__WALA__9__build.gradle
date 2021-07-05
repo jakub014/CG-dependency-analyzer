@@ -1,0 +1,4 @@
+org.slf4j:slf4j-api$1.7.30
+org.smali:dexlib2$2.4.0
+com.android.tools:r8$2.2.42
+junit:junit$4.13.2

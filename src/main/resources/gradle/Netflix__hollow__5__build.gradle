@@ -1,0 +1,4 @@
+com.fasterxml.jackson.core:jackson-core$2.4.3
+com.fasterxml.jackson.core:jackson-databind$2.4.3
+commons-io:commons-io$2.6
+junit:junit$4.11

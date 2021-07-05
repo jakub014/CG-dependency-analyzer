@@ -1,0 +1,3 @@
+ch.qos.logback:logback-core$1.0.0
+ch.qos.logback:logback-classic$1.0.0
+com.gorylenko.gradle-git-properties$2.3.1

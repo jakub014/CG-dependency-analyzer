@@ -1,0 +1,6 @@
+com.jfrog.bintray.gradle:gradle-bintray-plugin$0.5
+com.bertramlabs.plugins:asset-pipeline-core$2.0.5
+org.codehaus.groovy:groovy$2.0.7
+org.mozilla:rhino$1.7R4
+log4j:log4j$1.2.17
+org.spockframework:spock-core$0.7-groovy-2.0

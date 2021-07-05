@@ -1,0 +1,5 @@
+org.codehaus.groovy:groovy$3.0.7
+org.codehaus.groovy:groovy-jsr223$3.0.7
+io.netty:netty-all$4.1.59.Final
+com.joseflavio:urucum$1.0-A16
+junit:junit$4.12

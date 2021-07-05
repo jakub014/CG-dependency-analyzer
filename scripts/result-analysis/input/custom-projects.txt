@@ -1,0 +1,15 @@
+Azure:azure-documentdb-java
+greenrobot:essentials
+HorizenOfficial:Sidechains-SDK
+jeyzer-community:jeyzer-profile-updaters
+sbtqa:page-factory-2
+adobe:xdm-event-model
+alibaba:Sentinel
+anterostecnologia:anteroscollections
+eclipse-glsp:glsp-server
+idflakies:iDFlakies
+logzio:guice-jersey
+notima:svea-pmt-admin-api
+rtf666:redis-sdk-plus
+monkeymq:jgossip
+anterostecnologia:anterossecurityspring

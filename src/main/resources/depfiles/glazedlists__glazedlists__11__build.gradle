@@ -1,3 +1,0 @@
-dependencies {
-    compile files('lib/nachocalendar-0.23.jar')
-}
