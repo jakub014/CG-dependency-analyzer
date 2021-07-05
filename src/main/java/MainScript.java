@@ -25,6 +25,8 @@ public class MainScript {
     // Constants
     private static final int startFrom = 0;
     private static final int upTo = 100000000;
+
+    //indices to skip, bc e.g. merging of CGs results in stack overflows.
     private static final int[] skip = {};
 
     public static void main(String[] args) throws ParseException, IOException {
@@ -40,12 +42,16 @@ public class MainScript {
         File file = new File(Const.LOG_FILE_PATH);
         file.createNewFile();
 
-        // Analyze projects
+
         int counter = -1;
+        // For each project
         for (ProjectInfo projectInfo : projectInfoList) {
             counter++;
+            // Checking indices for parallel runs
             if (counter >= startFrom && counter <= upTo && !skipList.contains(counter)) {
                 Long lastUpdated = projectInfo.getLastUpdated();
+
+                // Filter out projects that were not updated after February 2021
                 if (!filterEnabled || Const.TIMESTAMP_FEBRUARY_2021 < lastUpdated) {
                     String packageName = projectInfo.getRepository();
                     System.out.println("START ANALYSIS ON PROJECT NO." + counter + ": " + packageName + projectInfo.getRelativeDepFilePath());
@@ -60,7 +66,11 @@ public class MainScript {
                         } else {
                             dependencyList = TextDepFileAnalyzer.getProjectDependencies(depFilePath);
                         }
+
+
                         analyzeRepository(projectInfo, dependencyList);
+
+
                         String result = "SUCCESSFULLY ANALYZED " + groupID + "/" + packageName + subdir + "\n\n";
                         Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
                         output.append(result);
@@ -413,7 +423,6 @@ public class MainScript {
                             coordList.add(depcoord);
                         }
                         MavenCoordinate[] toBeFilled = new MavenCoordinate[coordList.size()];
-//                        new VulnerabilityTracerAllocationSiteBased().traceProjectVulnerabilities(new File(innerJarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
                         new VulnerabilityTracer().traceProjectVulnerabilities(new File(innerJarPath), coordList.toArray(toBeFilled), repositoryName, link, defaultBranch, projectInfo);
                         String result = "SUCCESSFULLY ANALYZED JAR PATH "
                                 + new File(innerJarPath).getPath()
