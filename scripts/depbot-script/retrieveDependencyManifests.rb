@@ -4,6 +4,7 @@
 # It's used regularly by the Dependabot team to manually debug issues, so should
 # always be up-to-date.
 
+require 'fileutils'
 require "dependabot/file_fetchers"
 require "dependabot/file_parsers"
 require "dependabot/update_checkers"
@@ -18,9 +19,9 @@ credentials =
   [{
     "type" => "git_source",
     "host" => "github.com",
-    "username" => "x-access-token",
+    "username" => "jakub014",
     #"password" => ""
-    "password" => "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"
+    "password" => "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"
   }]
 
 # Full name of the GitHub repo you want to create pull requests for.
@@ -43,7 +44,7 @@ repos_file.each_line do |line|
   repo_split = repo_name.split("/")
   group_id = repo_split[0]
   package_name = repo_split[1]
-  puts "\n\nchecked: #{counter}: #{repo_name}"
+  puts "\n\nchecking: #{counter}: #{repo_name}"
   counter = counter + 1
 
   source = Dependabot::Source.new(
@@ -53,35 +54,33 @@ repos_file.each_line do |line|
     branch: nil
   )
 
-  ##############################
-  # Try process build.gradle
-  ##############################
+
   files = nil
   package_manager = nil
   begin
-  
-	fetcher = Dependabot::FileFetchers.for_package_manager("maven").
-			  new(source: source, credentials: credentials)
-	files = fetcher.files
-	package_manager = "maven"
+
+    fetcher = Dependabot::FileFetchers.for_package_manager("maven").
+      new(source: source, credentials: credentials)
+    files = fetcher.files
+    package_manager = "maven"
   rescue Dependabot::DependencyFileNotFound
-	##############################
-	# Try process pom.xml
-	##############################
-	begin
-		fetcher = Dependabot::FileFetchers.for_package_manager("gradle").
-				  new(source: source, credentials: credentials)
-		files = fetcher.files
-		package_manager = "gradle"
-	# Skip if no dependency file found
-	rescue Dependabot::DependencyFileNotFound
-		next
-	rescue Dependabot::RepoNotFound
-		next
-	rescue TypeError
-		next
-	end	
-  # Skip if no repo found or type error
+    ##############################
+    # Try process pom.xml
+    ##############################
+    begin
+      fetcher = Dependabot::FileFetchers.for_package_manager("gradle").
+        new(source: source, credentials: credentials)
+      files = fetcher.files
+      package_manager = "gradle"
+      # Skip if no dependency file found
+    rescue Dependabot::DependencyFileNotFound
+      next
+    rescue Dependabot::RepoNotFound
+      next
+    rescue TypeError
+      next
+    end
+    # Skip if no repo found or type error
   rescue Dependabot::RepoNotFound
     next
   rescue TypeError
@@ -89,26 +88,23 @@ repos_file.each_line do |line|
   end
   
   filecount = 0
+
   unless files.nil? or package_manager.nil?
 		for file in files
-			out_path = "onlydeps/#{group_id}__#{package_name}__#{filecount}"
+
+      # Create output path for the manifests
+			out_path = "dependencyManifests/#{repo_name}#{file.path}"
+      tempArr = out_path.split('/')
+      tempArr.pop()
+      pathToManifest = tempArr.join('/')
+
+      puts pathToManifest
+      FileUtils.mkdir_p pathToManifest
 			out = File.open(out_path, "a")
 			puts "\n#{out_path}"
 			
-			parser = Dependabot::FileParsers.for_package_manager(package_manager).new(
-			  dependency_files: files,
-			  source: source,
-			  credentials: credentials,
-			)
-			begin
-				dependencies = parser.parse
-			rescue Dependabot::DependencyFileNotEvaluatable
-				next
-			end
-			for dep in dependencies
-				out.write("#{dep.name}$#{dep.version}\n")
-				puts "#{dep.name}$#{dep.version}"
-			end
+      out.write(file.content)
+
 			out.close()
 			
 			# Log depfile info
@@ -118,7 +114,7 @@ repos_file.each_line do |line|
 		end
   end
 end
-cvs.close()
+csv.close()
 
 
 
