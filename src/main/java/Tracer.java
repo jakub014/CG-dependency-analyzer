@@ -22,8 +22,6 @@ public abstract class Tracer {
      * @param dependencyCoordinates maven coordinates for all vulnerable dependencies
      * @param projectName project name
      * @param link github repository url
-     * @param branch the branch name
-     * @param projectInfo project information
      * @throws OPALException
      * @throws MissingArtifactException
      * @throws IOException
@@ -31,7 +29,7 @@ public abstract class Tracer {
      */
     public abstract void traceProjectVulnerabilities(
             File project, MavenCoordinate[] dependencyCoordinates,
-            String projectName, String link, String branch, ProjectInfo projectInfo
+            String projectName, String link
     ) throws OPALException, MissingArtifactException, IOException, ParseException;
 
     /**
@@ -105,12 +103,11 @@ public abstract class Tracer {
     /**
      * Logging for projects where call graph analysis was conducted. Either vulnerable methods were reachable or not.
      * @param isVulnerable
-     * @param projectInfo
      * @param projectName
      * @param vulnDep
      * @param cveString
      */
-    static void logResults(Boolean isVulnerable, ProjectInfo projectInfo, String projectName, String vulnDep, String cveString) {
+    static void logResults(Boolean isVulnerable, String projectName, String vulnDep, String cveString) {
         try {
             String filePath;
             if (!isVulnerable) {
@@ -119,7 +116,7 @@ public abstract class Tracer {
                 filePath = "analysisResults/stats/positive.txt";
             }
             Writer output = new FileWriter(filePath, true);
-            String result = projectInfo.getUser() + ":" + projectName + projectInfo.getRelativeDirectoryPath("/") + "," + vulnDep + "," + cveString + "\n";
+            String result = projectName + "," + vulnDep + "," + cveString + "\n";
             output.append(result);
             output.close();
         } catch (IOException e) {
@@ -191,6 +188,7 @@ public abstract class Tracer {
                     if (!visited.contains(callingMethod)) {
                         String callingMethodURI = allUris.get(callingMethod);
                         discoveredMap.put(callingMethod, visitedMethod);
+                        //TODO Callbacks are not considered in this implementation
                         if (callingMethodURI.contains(projectName)) {
                             localImpacts.add(new ImpactPoint(callingMethod, visitedMethod, vulnerableMethod));
                         } else {

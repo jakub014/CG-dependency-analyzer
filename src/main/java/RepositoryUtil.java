@@ -1,3 +1,4 @@
+import java.net.MalformedURLException;
 import net.lingala.zip4j.core.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import org.apache.commons.io.FileUtils;
@@ -53,19 +54,27 @@ public class RepositoryUtil {
         return new Pair(repositoryName, link);
     }
 
+    public static String downloadMavenRepository(String link, String repositoryName, String[] possiblebranches) throws IOException {
+        for (String branch : possiblebranches) {
+            try {
+                return downloadMavenRepository(link, repositoryName, branch);
+            } catch (IOException e) {
+                // Branch not found
+            }
+        }
+
+        throw new IOException("None of the branches " + possiblebranches.toString() + " were found in " + link);
+    }
+
     /**
      * Downloads a zip file of a given GitHub repository and extracts the zip file to a folder
      * @param link: string containing the url of the GitHub repository source code to download
      * @param defaultBranch: default branch of the repository
      */
-    public static String downloadMavenRepository(String link, String repositoryName, String defaultBranch) {
+    public static String downloadMavenRepository(String link, String repositoryName, String defaultBranch) throws IOException {
         // Download zip file.
         String zipPath = "downloaded-repos/" + repositoryName + ".zip";
-        try {
-            FileUtils.copyURLToFile(new URL(link + "/archive/refs/heads/" + defaultBranch + ".zip"), new File(zipPath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FileUtils.copyURLToFile(new URL(link + "/archive/refs/heads/" + defaultBranch + ".zip"), new File(zipPath));
 
         // Extract zip file
         try {
