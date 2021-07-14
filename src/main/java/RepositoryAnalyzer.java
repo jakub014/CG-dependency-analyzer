@@ -51,7 +51,7 @@ public class RepositoryAnalyzer {
             String repositoryName = tmp[1];
             System.out.println("User: " + user + " Repo: " + repositoryName);
 
-            Set<Revision> revisions = MavenResolver.resolveFullDependencySetOnline(repo.getAbsolutePath());
+            Set<Revision> revisions = MavenResolver.resolveDependencySet(repo.getAbsolutePath());
 
             //Checking package-level vulnerability
             Set<Revision> vulnerableRevisions = getVulnerableDependencies(revisions, vulnerablePackages);
@@ -86,7 +86,7 @@ public class RepositoryAnalyzer {
 
                 //Create Maven coordinates out of revisions
                 List<MavenCoordinate> coordList = new ArrayList<>();
-                for (Revision rev : vulnerableRevisions) {
+                for (Revision rev : revisions) {
                     MavenCoordinate depcoord = new MavenCoordinate(rev.groupId, rev.artifactId, rev.version.toString(), "jar");
                     coordList.add(depcoord);
                 }
@@ -100,7 +100,7 @@ public class RepositoryAnalyzer {
                     String pomXMLPath = getInnerPomXMLPath(f);
 
                     //Search for Jar
-                    String innerJarPath = getInnerJarPath(f); //TODO discuss: What to do with multiple Jars in 'target' directories
+                    String innerJarPath = getInnerJarPath(f); //TODO Search all Jars & add all to the call graph analysis
                     System.out.println("INNER JAR PATH IS " + innerJarPath);
                     if (innerJarPath != null) {
                         try {
