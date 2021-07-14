@@ -81,7 +81,7 @@ public class RepositoryAnalyzer {
 
                 //build Project
                 if (!RepositoryUtil.buildMavenProject(rootPomXMLPath)) {
-                    continue; //TODO discuss: Skip over failed builds (failed builds could still output some jar files)
+                    //continue; //TODO maybe Skip over failed builds, check results
                 }
 
                 //Create Maven coordinates out of revisions
@@ -94,29 +94,32 @@ public class RepositoryAnalyzer {
                 //Search for target directories
                 List<File> targetDirs = new ArrayList<>();
                 listOfTargetFiles(new File(repositoryPath), targetDirs);
+
+                List<File> projectsJars = new ArrayList<>();
+
                 //For every target directory
                 for (File f : targetDirs) {
                     //TODO put this scope in a separate method
                     String pomXMLPath = getInnerPomXMLPath(f);
 
-                    //Search for Jar
-                    String innerJarPath = getInnerJarPath(f); //TODO Search all Jars & add all to the call graph analysis
-                    System.out.println("INNER JAR PATH IS " + innerJarPath);
-                    if (innerJarPath != null) {
-                        try {
-                            MavenCoordinate[] toBeFilled = new MavenCoordinate[coordList.size()];
+                    //Search for Jars
+                    List<File> innerJars = getInnerJars(f);
+                    projectsJars.addAll(innerJars);
+                }
 
-                            //run call graph analysis
-                            new VulnerabilityTracer().traceProjectVulnerabilities(new File(innerJarPath), coordList.toArray(toBeFilled), repositoryName, link);
-                            String result = "SUCCESSFULLY ANALYZED JAR PATH "
-                                + new File(innerJarPath).getPath();
-                            Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
-                            output.append(result);
-                            output.close();
-                        } catch (OPALException e) {
-                            //Call graph generation exception
-                        }
-                    }
+
+                try {
+                    MavenCoordinate[] toBeFilled = new MavenCoordinate[coordList.size()];
+
+                    //run call graph analysis
+                    new VulnerabilityTracer().traceProjectVulnerabilities(projectsJars, coordList.toArray(toBeFilled), repositoryName, link);
+                    String result = "SUCCESSFULLY ANALYZED REPO"
+                        + user + "/" + repositoryName;
+                    Writer output = new FileWriter(Const.LOG_FILE_PATH, true);
+                    output.append(result);
+                    output.close();
+                } catch (OPALException e) {
+                    //Call graph generation exception
                 }
             }
         }
@@ -256,13 +259,13 @@ public class RepositoryAnalyzer {
         }
     }
 
-    private static String getInnerJarPath(File f) {
-        //TODO always finds the first jar (what to do if there are many?)
+    private static List<File> getInnerJars(File f) {
+        List<File> results = new ArrayList<>();
         var res = f.listFiles();
         if (res != null) {
             for (File f2 : res) {
                 if (f2.getName().endsWith(".jar")) {
-                    return f2.getAbsolutePath();
+                    results.add(f2);
                 }
             }
         }

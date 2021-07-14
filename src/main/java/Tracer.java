@@ -28,7 +28,7 @@ public abstract class Tracer {
      * @throws ParseException
      */
     public abstract void traceProjectVulnerabilities(
-            File project, MavenCoordinate[] dependencyCoordinates,
+            List<File> projectJars, MavenCoordinate[] dependencyCoordinates,
             String projectName, String link
     ) throws OPALException, MissingArtifactException, IOException, ParseException;
 
