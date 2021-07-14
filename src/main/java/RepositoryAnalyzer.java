@@ -35,7 +35,7 @@ public class RepositoryAnalyzer {
         file.createNewFile();
 
         // Get & read vulnerable packages from lima statements
-        File vulnerablePackagesFile = new File("PATH TO VULNERABLE PACKAGES"); //TODO figure out where to get these from, e.g. python scripts
+        File vulnerablePackagesFile = new File("PATH TO VULNERABLE PACKAGES");
         Set<Revision> vulnerablePackages = readVulnerablePackages(vulnerablePackagesFile);
 
         // Provide path to manifests downloaded by Ruby script
@@ -51,10 +51,10 @@ public class RepositoryAnalyzer {
             String repositoryName = tmp[1];
             System.out.println("User: " + user + " Repo: " + repositoryName);
 
-            Set<Revision> revisions = MavenResolver.resolveDependencySet(repo.getAbsolutePath());
+            Set<RevisionExt> revisions = MavenResolver.resolveDependencySet(repo.getAbsolutePath());
 
             //Checking package-level vulnerability
-            Set<Revision> vulnerableRevisions = getVulnerableDependencies(revisions, vulnerablePackages);
+            Set<RevisionExt> vulnerableRevisions = getVulnerableDependencies(revisions, vulnerablePackages);
 
             if (vulnerableRevisions.size() > 0) {
                 // Package-level vulnerable
@@ -86,7 +86,7 @@ public class RepositoryAnalyzer {
 
                 //Create Maven coordinates out of revisions
                 List<MavenCoordinate> coordList = new ArrayList<>();
-                for (Revision rev : revisions) {
+                for (RevisionExt rev : revisions) {
                     MavenCoordinate depcoord = new MavenCoordinate(rev.groupId, rev.artifactId, rev.version.toString(), "jar");
                     coordList.add(depcoord);
                 }
@@ -149,12 +149,13 @@ public class RepositoryAnalyzer {
      * @param vulnerableRevisions the packages that are considered vulnerable.
      * @return the dependencies that are considered vulnerable according to the vulnerable packages provided
      */
-    public static Set<Revision> getVulnerableDependencies(Set<Revision> dependencies, Set<Revision> vulnerableRevisions) {
-        Set<Revision> vulnerabledependencies = new HashSet<>();
-        for (Revision r : vulnerableRevisions) {
-            //TODO check whether this 'contains' check works as intended (same groupid, artifactId & version should be considered)
-            if (dependencies.contains(r)) {
-                vulnerabledependencies.add(r);
+    public static Set<RevisionExt> getVulnerableDependencies(Set<RevisionExt> dependencies, Set<Revision> vulnerableRevisions) {
+        Set<RevisionExt> vulnerabledependencies = new HashSet<>();
+        for (RevisionExt r : dependencies) {
+            for(Revision vR : vulnerableRevisions) {
+                if (r.groupId.equals(vR.groupId) && r.artifactId.equals(vR.artifactId) && r.version.equals(vR.version)) {
+                    vulnerabledependencies.add(r);
+                }
             }
         }
         return vulnerabledependencies;

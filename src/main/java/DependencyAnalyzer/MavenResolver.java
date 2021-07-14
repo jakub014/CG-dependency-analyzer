@@ -22,18 +22,18 @@ public class MavenResolver {
     //small test execution, if it works the main method can be removed
     public static void main(String[] args) throws IOException {
         //String dir = "C:\\dependency-analyzer-fasten\\spider-flow-master"; <-- example path
-        String dir = "PATH TO PROJECT"; //TODO edit this line
+        String dir = "<Path to project>"; //TODO edit this line
 
         var revisions = resolveDependencySet(dir);
 
         System.out.println("Found dependencies: ");
-        for(Revision r : revisions) {
-            System.out.println(r.groupId + " "+ r.artifactId + " " + r.version);
+        for(RevisionExt r : revisions) {
+            System.out.println(r.groupId + " "+ r.artifactId + " " + r.version + " Direct dependency: " + r.isDirectDependency);
         }
     }
 
 
-    public static Set<Revision> resolveDependencySet(String pathToPomXML) {
+    public static Set<RevisionExt> resolveDependencySet(String pathToPomXML) {
         try {
 
             String outputfilePath = pathToPomXML + "\\mvn_dependency_tree.txt";
@@ -71,8 +71,8 @@ public class MavenResolver {
      * @return
      * @throws FileNotFoundException
      */
-    private static Set<Revision> parseDependencyTreeOutput(File dependencyTree) throws FileNotFoundException {
-        Set<Revision> dependencies = new HashSet<>();
+    private static Set<RevisionExt> parseDependencyTreeOutput(File dependencyTree) throws FileNotFoundException {
+        Set<RevisionExt> dependencies = new HashSet<>();
         Scanner sc = new Scanner(dependencyTree);
 
         String[] dependencyTreeStructureElements = {"+-", "|", "\\-"};
@@ -81,10 +81,15 @@ public class MavenResolver {
             String line = sc.nextLine();
             char firstChar = line.charAt(0);
             if(!Character.isLetter(firstChar) && !Character.isDigit(firstChar)) {
-                line = line.trim();
-                String dependencyString = multipleRemoves(dependencyTreeStructureElements, line);
-
-                dependencies.add(parseDependencyStringToRevision(dependencyString));
+                if (line.startsWith("+- ") || line.startsWith("\\- ")) {
+                    //Direct dependency
+                    String dependencyString = line.substring(3).trim();
+                    dependencies.add(parseDependencyStringToRevision(dependencyString, true));
+                } else {
+                    line = line.trim();
+                    String dependencyString = multipleRemoves(dependencyTreeStructureElements, line);
+                    dependencies.add(parseDependencyStringToRevision(dependencyString, false));
+                }
             }
         }
         sc.close();
@@ -96,12 +101,12 @@ public class MavenResolver {
      * @param dependency a dependency string of the format: <GroupID>:<artifactID>:<packaging>:<Version>:<compile>
      * @return the revision
      */
-    private static Revision parseDependencyStringToRevision(String dependency) {
+    private static RevisionExt parseDependencyStringToRevision(String dependency, boolean directDependency) {
         String[] tmp = dependency.split(":");
         var groupID = tmp[0];
         var artifactID = tmp[1];
         var version = tmp[3];
-        return new Revision(groupID, artifactID, version, new Timestamp(-1));
+        return new RevisionExt(groupID, artifactID, version, new Timestamp(-1), directDependency);
     }
 
     private static String multipleRemoves(String[] charsToRemove, String targetString) {
