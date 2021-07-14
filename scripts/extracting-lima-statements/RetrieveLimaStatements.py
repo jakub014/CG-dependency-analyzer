@@ -1,9 +1,11 @@
 import json
 import os
 import re
+import sys
 
 #v_dir = '/mnt/fasten/vuln/consumer/lima-statements'
-v_dir = 'C:/lima-statements_Local_13-07'
+
+v_dir = sys.argv[1]
 limaStatementsPath = 'limaStatements.json'
 groupedStatementsPath = 'limaStatementsGroupedByPackage.json'
 
@@ -12,7 +14,6 @@ def retrieve_limastatements():
     data_list = []
 
     for v_filename in os.listdir(v_dir):
-
         # For each file in v_dir, open and load data
         v_filepath = os.path.join(v_dir, v_filename)
         v_file = open(v_filepath, "r")
