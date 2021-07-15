@@ -19,8 +19,8 @@ credentials =
   [{
     "type" => "git_source",
     "host" => "github.com",
-    "username" => "jakub014", # <---- ENTER GITHUB USERNAME
-    "password" => "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" # <---- ENTER PERSONAL ACCESS TOKEN
+    "username" => "", # <---- ENTER GITHUB USERNAME
+    "password" => "" # <---- ENTER PERSONAL ACCESS TOKEN
   }]
 
 # Full name of the GitHub repo you want to create pull requests for.
