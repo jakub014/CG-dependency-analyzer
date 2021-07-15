@@ -15,65 +15,6 @@ import org.json.simple.parser.JSONParser;
 
 public class InformationGathering {
 
-    public static void main(String[] args) throws OPALException, ParseException, IOException, org.json.simple.parser.ParseException {
-        GitHubAPIClient client = new GitHubAPIClient("https://api.github.com");
-
-        JSONParser parser = new JSONParser();
-        JSONArray data = (JSONArray) parser.parse(new FileReader("src/main/resources/vuln-repos.json"));
-
-
-        int failures = 0;
-        int total = data.size();
-
-        int counter = 0;
-
-        org.json.JSONArray endResults = new org.json.JSONArray();
-
-
-        for (Object o : data) {
-            org.json.simple.JSONObject temp = (org.json.simple.JSONObject) o;
-
-            String url = (String) temp.get("repository");
-
-            String[] splitUrl = url.split("/");
-            try {
-                String user = "";
-                String repo = "";
-                boolean found = false;
-
-                for(int i = 0; i < splitUrl.length; i++) {
-                    if(splitUrl[i].endsWith(".git")) {
-                        repo = splitUrl[i];
-                        var tmp = splitUrl[i - 1].split(":");
-                        user = tmp[tmp.length - 1];
-                        found = true;
-                    }
-                }
-
-                if(!found) {
-                    user = splitUrl[3];
-                    repo = splitUrl[4];
-                }
-
-                if(repo.endsWith(".git"))
-                    repo = repo.substring(0, repo.length() - 4);
-
-                //DO SOMETHING HERE
-                endResults.put(processRepo(client, user, repo));
-                counter++;
-                System.out.println(counter);
-            }
-            catch (Exception e) {
-                failures++;
-            }
-
-        }
-
-        System.out.println("Parsed all URLs ~" + failures + " failures out of " + total);
-
-        writeResultsToFile(endResults, "");
-    }
-
     /**
      * Requests GitHubs REST API to gather information about specified repository
      * @param client api client
