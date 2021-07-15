@@ -19,9 +19,8 @@ credentials =
   [{
     "type" => "git_source",
     "host" => "github.com",
-    "username" => "", # <---- ENTER GITHUB USERNAME
-    #"password" => ""
-    "password" => "" # <---- ENTER PERSONAL ACCESS TOKEN
+    "username" => "jakub014", # <---- ENTER GITHUB USERNAME
+    "password" => "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" # <---- ENTER PERSONAL ACCESS TOKEN
   }]
 
 # Full name of the GitHub repo you want to create pull requests for.
@@ -36,10 +35,15 @@ directory = "/"
 
 csv = File.open("onlydeps.csv", "a")
 counter = 0
-repos_file = File.open("vuln-repos-git-root.txt").read
+repos_file = File.open("H:/dependency-analyzer-fasten/CG-dependency-analyzer/data-15-07/extractedRepositories.txt").read
 repos_file.gsub!(/\r\n?/, "\n")
 repos_file.each_line do |line|
-  
+  retrieveManifests(line)
+end
+csv.close()
+
+
+def retrieveManifests(line)
   repo_name = line.gsub(/\n/, "")
   repo_split = repo_name.split("/")
   group_id = repo_split[0]
@@ -63,6 +67,12 @@ repos_file.each_line do |line|
       new(source: source, credentials: credentials)
     files = fetcher.files
     package_manager = "maven"
+  rescue Octokit::InvalidRepository
+    next
+  rescue Octokit::TooManyRequests # If too many requests, wait for an hour and continue
+    sleep(3630)
+    retrieveManifests(line)
+    next
   rescue Dependabot::DependencyFileNotFound
     ##############################
     # Try process pom.xml
@@ -77,7 +87,13 @@ repos_file.each_line do |line|
       next
     rescue Dependabot::RepoNotFound
       next
+    rescue Octokit::TooManyRequests # If too many requests, wait for an hour and continue
+      sleep(3630)
+      retrieveManifests(line)
+      next
     rescue TypeError
+      next
+    rescue Octokit::InvalidRepository
       next
     end
     # Skip if no repo found or type error
@@ -86,35 +102,35 @@ repos_file.each_line do |line|
   rescue TypeError
     next
   end
-  
+
   filecount = 0
 
   unless files.nil? or package_manager.nil?
-		for file in files
+    for file in files
 
       # Create output path for the manifests
-			out_path = "dependencyManifests/#{repo_name}#{file.path}"
+      repoNameNoSlash = repo_name.sub("/", "#")
+      out_path = "dependencyManifests/#{package_manager}/#{repoNameNoSlash}#{file.path}"
       tempArr = out_path.split('/')
       tempArr.pop()
       pathToManifest = tempArr.join('/')
 
       puts pathToManifest
       FileUtils.mkdir_p pathToManifest
-			out = File.open(out_path, "a")
-			puts "\n#{out_path}"
-			
+      out = File.open(out_path, "a")
+      puts "\n#{out_path}"
+
       out.write(file.content)
 
-			out.close()
-			
-			# Log depfile info
-			csv.write("#{out_path},#{repo_name},#{file.path},#{package_manager}\n")
-			
-			filecount = filecount + 1
-		end
+      out.close()
+
+      # Log depfile info
+      # csv.write("#{out_path},#{repo_name},#{file.path},#{package_manager}\n")
+
+      filecount = filecount + 1
+    end
   end
 end
-csv.close()
 
 
 
